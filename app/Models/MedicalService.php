@@ -13,4 +13,8 @@ class MedicalService extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function physician(){
+        return $this->hasMany('App\Models\MedicalServicesPhysician');
+    }
 }

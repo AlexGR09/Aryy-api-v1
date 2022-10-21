@@ -13,4 +13,8 @@ class Disease extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function physician(){
+        return $this->hasMany('App\Models\DiseasesPhysician');
+    }
 }

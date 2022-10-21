@@ -19,4 +19,24 @@ class Physician extends Model
         'c1_license',
         'a1_license'
     ];
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function speciality(){
+        return $this->hasMany('App\Models\SpecialitiesPhysician');
+    }
+
+    public function diseases(){
+        return $this->hasMany('App\Models\DiseasesPhysician');
+    }
+
+    public function medical_services(){
+        return $this->hasMany('App\Models\MedicalServicesPhysician');
+    }
+
+    public function facilities(){
+        return $this->hasMany('App\Models\FacilitiesPhysician');
+    }
 }

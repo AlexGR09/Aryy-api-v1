@@ -19,4 +19,12 @@ class Facility extends Model
         'zip_code',
         'schedule'
     ];
+
+    public function physician(){
+        return $this->hasMany('App\Models\FacilitiesPhysician');
+    }
+
+    public function city(){
+        return $this->belongsTo('App\Models\City');
+    }
 }
