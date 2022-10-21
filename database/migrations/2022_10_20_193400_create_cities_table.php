@@ -14,8 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cities', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->unsignedBigInteger('states_id');
+            $table->foreign('states_id')->references('id')->on('states')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

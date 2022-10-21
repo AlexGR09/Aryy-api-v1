@@ -14,8 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('physicians', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('professional_name');
+            $table->string('country_code');
+            $table->string('phone_number');
+            $table->enum('gender',array('Masculino','Femenino'));
+            $table->string('bussiness_email');
+            $table->string('c1_license');
+            $table->string('a1_license');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
