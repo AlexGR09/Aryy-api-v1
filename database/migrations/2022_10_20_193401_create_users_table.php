@@ -17,12 +17,12 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('last_name');
-            $table->enum('sex',array('Masculino','Femenino','Transgenero','Transexual','Intersexual'));
-            $table->enum('gender',array('Masculino','Femenino'));
-            $table->date('birthday');            
+            $table->enum('sex',array('Masculino','Femenino','Transgenero','Transexual','Intersexual'))->nullable();
+            $table->enum('gender',array('Masculino','Femenino'))->nullable();
+            $table->date('birthday')->nullable();            
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->default('');
+            $table->string('password');
             $table->string('code_country')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('emergency_number')->nullable();
