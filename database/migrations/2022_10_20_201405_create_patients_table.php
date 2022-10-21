@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('health_insurance_id')->nullable();
             $table->foreign('health_insurance_id')->references('id')->on('health_insurances')->onDelete('cascade');
             $table->unsignedBigInteger('medical_history_id')->nullable();
-            $table->foreign('medical_history_id')->references('id')->on('medical_history')->onDelete('cascade');
+            $table->foreign('medical_history_id')->references('id')->on('medical_histories')->onDelete('cascade');
             $table->unsignedBigInteger('medical_records_id')->nullable();
             $table->foreign('medical_records_id')->references('id')->on('medical_records')->onDelete('cascade');
             $table->timestamps();

@@ -23,13 +23,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->default('');
-            $table->strng('code_country');
+            $table->string('code_country')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('emergency_number')->nullable();
             $table->string('address')->nullable();
             $table->string('zide_code')->nullable();
             $table->string('id_card')->nullable();
-            $table->unsignedBigInteger('cities_id');
+            $table->unsignedBigInteger('cities_id')->nullable();
             $table->foreign('cities_id')->references('id')->on('cities')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();

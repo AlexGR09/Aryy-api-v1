@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->strin('name');
+            $table->string('name');
             $table->unsignedBigInteger('states_id');
             $table->foreign('states_id')->references('id')->on('states')->onDelete('cascade');
             $table->timestamps();

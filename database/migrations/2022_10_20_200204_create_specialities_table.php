@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('specialities', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->name('name');
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });

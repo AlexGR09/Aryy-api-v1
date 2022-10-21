@@ -71,5 +71,8 @@ class RoleSeeder extends Seeder
         $user2->assignRole('Patient');
 
         $role3->givePermissionTo([$permission13, $permission14, $permission15]);
+
+        $user3 = User::where('id', 3)->first();
+        $user3->assignRole('Physician');
     }
 }

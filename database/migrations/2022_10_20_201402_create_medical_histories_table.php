@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('previous_medication');
             $table->string('family_history');
             $table->string('habits');
-            $table->string('habits');
             $table->unsignedBigInteger('alergies_id');
             $table->foreign('alergies_id')->references('id')->on('alergies')->onDelete('cascade');
             $table->timestamps();

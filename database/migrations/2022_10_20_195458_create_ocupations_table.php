@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('ocupations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $tabe->string('name');
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });
