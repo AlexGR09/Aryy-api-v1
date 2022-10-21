@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AuthRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -39,14 +38,15 @@ class AuthController extends Controller
            $mobile = $request->mobile; // Es Mobile o SPA 
            $user = new User();
            $user->name = $request->name;
+           $user->last_name = $request->last_name;
            $user->email = $request->email;
            $user->password = bcrypt($request->password);
            if ($mobile) $user->assignRole('Patient'); 
-           if (!$mobile) $user->assignRole('Physician'); 
+           if (!$mobile) $user->assignRole('NewPhysician'); 
            $user->save();
            return (new UserResource($user))->additional(['Message' => 'Register successfully, welcome.']);
         } catch (\Throwable $th) {
-           return response()->json(['Error' => $th->getMessage()], 503);;
+           return response()->json(['Error' => $th->getMessage()], 503);
         }
      }
 
@@ -57,7 +57,7 @@ class AuthController extends Controller
            }
            return response()->json(['Message' => 'You do not have permission for this action.'], 403);
         } catch (\Throwable $th) {
-           return response()->json(['Error' => $th->getMessage()], 503);;
+           return response()->json(['Error' => $th->getMessage()], 503);
         }
      }
 
@@ -65,6 +65,7 @@ class AuthController extends Controller
         try {
            if ($this->user->hasPermissionTo('edit profile')) {
               $this->user->name = $request->name;
+              $this->user->last_name = $request->last_name;
               $this->user->email = $request->email;
               if ($request->password) {
                  $this->user->password = bcrypt($request->password);
@@ -75,7 +76,7 @@ class AuthController extends Controller
            }
            return response()->json(['Message' => 'You do not have permission for this action.'], 403);
         } catch (\Throwable $th) {
-           return response()->json(['Error' => $th->getMessage()], 503);;
+           return response()->json(['Error' => $th->getMessage()], 503);
         }
      }
   
@@ -87,19 +88,18 @@ class AuthController extends Controller
            }
            return response()->json(['Message' => 'You do not have permission for this action.'], 403);
         } catch (\Throwable $th) {
-           return response()->json(['Error' => $th->getMessage()], 503);;
+           return response()->json(['Error' => $th->getMessage()], 503);
         } 
      }
   
      public function logout() {
         try {
-           $this->user = auth()->user();
            $this->user->tokens()->delete();
            $this->user->remember_token = NULL;
            $this->user->save();
            return (new UserResource($this->user))->additional(['Message' => 'Logout successfully, Bye.']);
         } catch (\Throwable $th) {
-           return response()->json(['Error' => $th->getMessage()], 503);;
+           return response()->json(['Error' => $th->getMessage()], 503);
         }
      }
 
