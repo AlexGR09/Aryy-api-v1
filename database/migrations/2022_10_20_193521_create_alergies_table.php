@@ -14,8 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('alergies', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->strng('name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

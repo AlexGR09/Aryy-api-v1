@@ -14,8 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('health_insurances', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('insurance_number');
+            $table->unsignedBigInteger('insurances_id');
+            $table->foreign('insurances_id')->references('id')->on('insurances')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -14,8 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ocupations', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $tabe->string('name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

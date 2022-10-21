@@ -14,8 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('specialities', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->name('name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

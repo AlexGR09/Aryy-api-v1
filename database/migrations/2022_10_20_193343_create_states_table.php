@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('contries_id');
             $table->foreign('contries_id')->references('id')->on('countries');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
