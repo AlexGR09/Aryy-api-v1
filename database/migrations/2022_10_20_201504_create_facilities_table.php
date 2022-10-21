@@ -19,10 +19,11 @@ return new class extends Migration
             $table->string('type_of_facility');
             $table->string('address');
             $table->string('phone_number');
-            $table->string('clues');
+            $table->string('clues')->nullable();
             $table->string('zide_code');
-            //$table->string('schedule');
+            $table->json('schedule');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
