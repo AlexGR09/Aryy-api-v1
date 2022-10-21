@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('medical_histories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('current_medication');
-            $table->string('previous_medication');
-            $table->string('family_history');
-            $table->string('habits');
+            $table->string('current_medication')->nullable();
+            $table->string('previous_medication')->nullable();
+            $table->json('family_history')->nullable();
+            $table->json('habits')->nullable();
             $table->unsignedBigInteger('alergies_id');
             $table->foreign('alergies_id')->references('id')->on('alergies')->onDelete('cascade');
             $table->timestamps();
