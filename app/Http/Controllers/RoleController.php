@@ -20,22 +20,22 @@ class RoleController extends Controller
         try {
             if ($this->user->hasPermissionTo('show roles')) {
                 $roles = Role::with('permissions')->paginate(5);
-                return (RoleResource::collection($roles))->additional(['Message' => 'Roles found.']);
+                return (RoleResource::collection($roles))->additional(['message' => 'Rol encontrado.']);
             }
-            return response()->json(['Message' => 'You do not have permission for this action.'], 403);
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {  
-            return response()->json(['Error' => $th->getMessage()], 503);
+            return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
     public function show(Role $role) {
         try {
             if ($this->user->hasPermissionTo('show roles')) {
-                return (new RoleResource($role))->additional(['Message' => 'Role found']);
+                return (new RoleResource($role))->additional(['message' => 'Roles encontrados']);
             }
-            return response()->json(['Message' => 'You do not have permission for this action.'], 403);
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
-            return response()->json(['Error' => $th->getMessage()], 503);
+            return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
@@ -48,12 +48,12 @@ class RoleController extends Controller
                     $role->givePermissionTo($request->permissions);
                 }
                 DB::commit();
-                return (new RoleResource($role))->additional(['Message' => 'Role created successfully.']);
+                return (new RoleResource($role))->additional(['message' => 'Rol creado con éxito']);
             }
-            return response()->json(['Message' => 'You do not have permission for this action.'], 403);
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return response()->json(['Error' => $th->getMessage()], 503);
+            return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
@@ -67,12 +67,12 @@ class RoleController extends Controller
                     $role->syncPermissions($request->permissions);
                 }
                 DB::commit();
-                return (new RoleResource($role))->additional(['Message' => 'Role updated successfully.']);
+                return (new RoleResource($role))->additional(['message' => 'Rol actualizado con éxito.']);
             }
-            return response()->json(['Message' => 'You do not have permission for this action.'], 403);
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return response()->json(['Error' => $th->getMessage()], 503);
+            return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
@@ -80,11 +80,11 @@ class RoleController extends Controller
         try {
             if ($this->user->hasPermissionTo('delete roles')) {
                 $role->delete();
-                return (new RoleResource($role))->additional(['Message' => 'Role deleted successfully.']);
+                return (new RoleResource($role))->additional(['message' => 'Rol eliminado con éxito.']);
             }
-            return response()->json(['Message' => 'You do not have permission for this action.'], 403);
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
-            return response()->json(['Error' => $th->getMessage()], 503);
+            return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 

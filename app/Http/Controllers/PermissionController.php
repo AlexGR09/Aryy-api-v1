@@ -19,22 +19,22 @@ class PermissionController extends Controller
         try {
             if ($this->user->hasPermissionTo('show permissions')) {
                 $permissions = Permission::paginate(5);
-                return (PermissionResource::collection($permissions))->additional(['Message' => 'Permissions found.']);
+                return (PermissionResource::collection($permissions))->additional(['message' => 'Permisos encontrados.']);
             }
-            return response()->json(['Message' => 'You do not have permission for this action.'], 403);
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
-            return response()->json(['Error' => $th->getMessage()], 503);
+            return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
     public function show(Permission $permission) {
         try {
             if ($this->user->hasPermissionTo('show permissions')) {
-                return (new PermissionResource($permission))->additional(['Message' => 'Permission found']);
+                return (new PermissionResource($permission))->additional(['message' => 'Permiso encontrado.']);
             }
-            return response()->json(['Message' => 'You do not have permission for this action.'], 403);
+            return response()->json(['Message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
-            return response()->json(['Error' => $th->getMessage()], 503);
+            return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
@@ -42,11 +42,11 @@ class PermissionController extends Controller
         try {
             if ($this->user->hasPermissionTo('create permissions')) {
                 $permission = Permission::create(['name' => $request->name]);
-                return (new PermissionResource($permission))->additional(['Message' => 'Permission created successfully.']);
+                return (new PermissionResource($permission))->additional(['message' => 'Permiso creado con éxito.']);
             }
-            return response()->json(['Message' => 'You do not have permission for this action.'], 403);
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
-            return response()->json(['Error' => $th->getMessage()], 503);
+            return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
@@ -55,11 +55,11 @@ class PermissionController extends Controller
             if ($this->user->hasPermissionTo('edit permissions')) {
                 $permission->name = $request->name;
                 $permission->save();
-                return (new PermissionResource($permission))->additional(['Message' => 'Permission updated successfully.']);
+                return (new PermissionResource($permission))->additional(['message' => 'Permiso actualizado con éxito.']);
             }
-            return response()->json(['Message' => 'You do not have permission for this action.'], 403);
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
-            return response()->json(['Error' => $th->getMessage()], 503);
+            return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
@@ -67,11 +67,11 @@ class PermissionController extends Controller
         try {
             if ($this->user->hasPermissionTo('delete permissions')) {
                 $permission->delete();
-                return (new PermissionResource($permission))->additional(['Message' => 'Permission deleted successfully.']);
+                return (new PermissionResource($permission))->additional(['message' => 'Permiso eliminado con éxito.']);
             }
-            return response()->json(['Message' => 'You do not have permission for this action.'], 403);
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
-            return response()->json(['Error' => $th->getMessage()], 503);
+            return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 

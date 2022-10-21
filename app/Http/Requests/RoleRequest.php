@@ -16,11 +16,5 @@ class RoleRequest extends FormRequest
             'name' => ($this->getMethod() == 'POST') ? 'required|min:4|max:24|unique:roles' : 'required|min:4|max:24|unique:roles,name,'.$this->role->id,
         ];
     }
-
-    public function attributes() {
-        return [
-            'name' => 'role',
-        ];
-    } 
-
+    
 }

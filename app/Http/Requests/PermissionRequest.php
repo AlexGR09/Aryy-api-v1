@@ -17,10 +17,4 @@ class PermissionRequest extends FormRequest
         ];
     }
 
-    public function attributes() {
-        return [
-            'name' => 'permission',
-        ];
-    }
-
 }

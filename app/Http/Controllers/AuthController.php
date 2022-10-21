@@ -20,16 +20,16 @@ class AuthController extends Controller
         try {
            $user = User::where('email', $request->email)->first();
            if (!$user || !Hash::check($request->password, $user->password)) {
-              return response()->json(['Message' => 'Invalid Credentials.'], 503);
+              return response()->json(['message' => 'Credenciales no válidas.'], 503);
            }
            $token = $user->createToken('authToken')->plainTextToken;
            $user->remember_token = $token;
            $user->save();
            return (new UserResource($user))->additional([
-                 'Message' => 'Welcome to Aryy.', 
+                 'message' => 'Bienvenido a Aryy.', 
                  'access_token' => $token ]);
         } catch (\Throwable $th) {
-           return response()->json(['Error' => $th->getMessage()], 503);
+           return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
@@ -44,20 +44,20 @@ class AuthController extends Controller
            if ($mobile) $user->assignRole('Patient'); 
            if (!$mobile) $user->assignRole('NewPhysician'); 
            $user->save();
-           return (new UserResource($user))->additional(['Message' => 'Register successfully, welcome.']);
+           return (new UserResource($user))->additional(['message' => 'Usuario registrado con éxito']);
         } catch (\Throwable $th) {
-           return response()->json(['Error' => $th->getMessage()], 503);
+           return response()->json(['error' => $th->getMessage()], 503);
         }
      }
 
     public function show() { 
         try {
            if ($this->user->hasPermissionTo('show profile')) {
-              return (new UserResource($this->user))->additional(['Message' => 'My profile']);
+              return (new UserResource($this->user))->additional(['message' => 'My profile']);
            }
-           return response()->json(['Message' => 'You do not have permission for this action.'], 403);
+           return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
-           return response()->json(['Error' => $th->getMessage()], 503);
+           return response()->json(['error' => $th->getMessage()], 503);
         }
      }
 
@@ -72,11 +72,11 @@ class AuthController extends Controller
                  $this->logout(); // Invocación del método logout
               }
               $this->user->save();
-              return (new UserResource($this->user))->additional(['Message' => 'Profile updated successfully.']);
+              return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
            }
-           return response()->json(['Message' => 'You do not have permission for this action.'], 403);
+           return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
-           return response()->json(['Error' => $th->getMessage()], 503);
+           return response()->json(['error' => $th->getMessage()], 503);
         }
      }
   
@@ -84,11 +84,11 @@ class AuthController extends Controller
         try {
            if ($this->user->hasPermissionTo('delete profile')) {
               $this->user->delete();
-              return (new UserResource($this->user))->additional(['Message' => 'User deleted successfully, Bye.']);
+              return (new UserResource($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
            }
-           return response()->json(['Message' => 'You do not have permission for this action.'], 403);
-        } catch (\Throwable $th) {
-           return response()->json(['Error' => $th->getMessage()], 503);
+           return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) { 
+           return response()->json(['error' => $th->getMessage()], 503);
         } 
      }
   
@@ -97,9 +97,9 @@ class AuthController extends Controller
            $this->user->tokens()->delete();
            $this->user->remember_token = NULL;
            $this->user->save();
-           return (new UserResource($this->user))->additional(['Message' => 'Logout successfully, Bye.']);
+           return (new UserResource($this->user))->additional(['message' => 'Cierre de sesión exitoso, adiós']);
         } catch (\Throwable $th) {
-           return response()->json(['Error' => $th->getMessage()], 503);
+           return response()->json(['error' => $th->getMessage()], 503);
         }
      }
 
