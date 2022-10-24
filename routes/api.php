@@ -27,5 +27,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         ->only(['index', 'store', 'show', 'update', 'destroy']);
 
 
-        Route::resource('/ocupaciones',OcupationController::class)->only(['index']);
+    Route::resource('/ocupaciones',OcupationController::class)
+        ->only(['index','store','show','update', 'destroy']);
 });
