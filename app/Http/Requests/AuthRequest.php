@@ -20,8 +20,8 @@ class AuthRequest extends FormRequest
             ];  
         }
         return [
-            'name' => 'required|min:8|max:40',
-            'last_name' => 'required|min:4|max:60',
+            'name' => 'required|max:40',
+            'last_name' => 'required|min:1|max:60',
             'email' => ($this->getMethod() == 'POST') ? 'required|email|max:35|unique:users' : 'required|email|max:35|unique:users,email,'.auth()->user()->id,
             'password' => ($this->getMethod() == 'POST') ? 'required|min:8|max:16' : 'min:8|max:16'
          ];
