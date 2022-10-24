@@ -15,7 +15,7 @@ class CountryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:32'
+            'name' => ($this->getMethod() == 'POST') ? 'required|max:32|unique:countries' : 'required|max:24|unique:countries,name,'.$this->country->id,
         ];
     }
 }
