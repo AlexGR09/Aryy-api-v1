@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('country_code');
             $table->string('phone_number');
             $table->enum('gender',array('Masculino','Femenino'));
-            $table->string('bussiness_email');
             $table->string('c1_license');
             $table->string('a1_license');
             $table->timestamps();

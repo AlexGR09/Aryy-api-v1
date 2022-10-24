@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Alergy;
+use App\Models\Country;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-
-class AlergiesSeeder extends Seeder
+class CountrySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,8 +15,7 @@ class AlergiesSeeder extends Seeder
      */
     public function run()
     {
-    $alergies = Alergy::create(["name"=>"Alimentaria"]);
-    $alergies2 = Alergy::create(["name"=>"Fármacos"]);
-    $alergies3 = Alergy::create(["name"=>"Factores ambientales"]);
+        $country  = Country::create(["name" => "México"]);
+        
     }
 }
