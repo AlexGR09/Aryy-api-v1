@@ -20,7 +20,7 @@ class Facility extends Model
         'schedule'
     ];
 
-    public function physician(){
+    public function physicians(){
         return $this->hasMany('App\Models\FacilitiesPhysician');
     }
 
