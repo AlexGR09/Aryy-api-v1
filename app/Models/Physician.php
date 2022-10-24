@@ -24,7 +24,7 @@ class Physician extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function speciality(){
+    public function specialities(){
         return $this->hasMany('App\Models\SpecialitiesPhysician');
     }
 

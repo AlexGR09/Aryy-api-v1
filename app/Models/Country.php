@@ -14,7 +14,7 @@ class Country extends Model
         'name'
     ];
 
-    public function state(){
+    public function states(){
         return $this->hasMany('App\Models\State');
     }
 }

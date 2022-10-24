@@ -14,7 +14,7 @@ class Speciality extends Model
         'name'
     ];
 
-    public function physician(){
+    public function physicians(){
         return $this->hasMany('App\Models\SpecialitiesPhysician');
     }
 }

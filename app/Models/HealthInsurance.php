@@ -14,7 +14,7 @@ class HealthInsurance extends Model
         'insurance_number'
     ];
 
-    public function patient(){
+    public function patients(){
         return $this->hasMany('App\Models\Patient');
     }
 
