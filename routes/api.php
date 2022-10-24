@@ -25,4 +25,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // PERMISOS
     Route::resource('permissions', PermissionController::class)
         ->only(['index', 'store', 'show', 'update', 'destroy']);
+
+
+        Route::resource('/ocupaciones',OcupationController::class)->only(['index']);
 });

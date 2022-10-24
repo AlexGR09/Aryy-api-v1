@@ -51,7 +51,8 @@ class OcupationController extends Controller
     {
         try {
             if ($this->user->hasPermissionTo('show ocupations')) {
-                return (new Ocupation($ocupation))->additional(['message' => 'Roles encontrados']);
+                $ocupation = Ocupation::all();
+                return $ocupation->additional(['message' => 'Roles encontrados']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
