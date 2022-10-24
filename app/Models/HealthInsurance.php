@@ -13,4 +13,12 @@ class HealthInsurance extends Model
     protected $fillable = [
         'insurance_number'
     ];
+
+    public function patient(){
+        return $this->hasMany('App\Models\Patient');
+    }
+
+    public function insurance(){
+        return $this->belongsTo('App\Models\Insurance');
+    }
 }

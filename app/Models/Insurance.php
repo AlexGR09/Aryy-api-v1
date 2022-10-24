@@ -13,4 +13,8 @@ class Insurance extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function health_insurance(){
+        return $this->hasMany('App\Models\HealthInsurance');
+    }
 }

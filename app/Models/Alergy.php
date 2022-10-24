@@ -13,4 +13,9 @@ class Alergy extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function medical_history(){
+        return $this->hasOne('App\Models\MedicalHistory');
+    }
+
 }

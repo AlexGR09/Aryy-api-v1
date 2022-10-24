@@ -13,4 +13,9 @@ class Ocupation extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function patient(){
+        return $this->hasMany('App\Models\OcupationPatient');
+    }
+
 }

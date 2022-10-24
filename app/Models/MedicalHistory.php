@@ -16,4 +16,12 @@ class MedicalHistory extends Model
         'family_history',
         'habits'
     ];
+
+    public function patient(){
+        return $this->hasOne('App\Models\Patient');
+    }
+
+    public function alergy(){
+        return $this->belongsTo('App\Models\Alergy');
+    }
 }

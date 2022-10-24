@@ -13,4 +13,12 @@ class City extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function state(){
+        return $this->belongsTo('App\Models\State');
+    }
+
+    public function User(){
+        return $this->hasMany('App\Models\User');
+    }
 }

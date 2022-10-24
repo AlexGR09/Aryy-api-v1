@@ -13,4 +13,8 @@ class MedicalRecord extends Model
     protected $fillable = [
         'medical_recordscol'
     ];
+
+    public function patient(){
+        return $this->hasMany('App\Models\Patient');
+    }
 }
