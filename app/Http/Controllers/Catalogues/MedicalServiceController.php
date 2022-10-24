@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Catalogues\MedicalServiceResource;
 use App\Models\MedicalService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MedicalServiceController extends Controller
 {

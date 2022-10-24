@@ -41,6 +41,18 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // CIUDADES
     Route::resource('cities',  $catalogues.CityController::class)
         ->only(['index', 'store', 'show', 'update', 'destroy']);
+
+    //OCUPACIONES
+    Route::resource('ocupations', $catalogues.OcupationController::class)
+        ->only(['index', 'store', 'show', 'update', 'destroy']);
+
+    //MEDICAL SERVICE
+    Route::resource('medicalservice', $catalogues.MedicalServiceController::class)
+        ->only(['index', 'store', 'show', 'update', 'destroy']);
+
+    //INSURANCE
+    Route::resource('insurance', $catalogues.InsuranceController::class)
+        ->only(['index', 'store', 'show', 'update', 'destroy']);
 });
 
 
