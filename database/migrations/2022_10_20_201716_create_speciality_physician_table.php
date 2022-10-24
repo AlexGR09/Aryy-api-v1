@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('speciality_physician', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('specialities_id');
-            $table->foreign('specialities_id')->references('id')->on('specialities')->onDelete('cascade');
+            $table->unsignedBigInteger('speciality_id');
+            $table->foreign('speciality_id')->references('id')->on('specialities')->onDelete('cascade');
             $table->unsignedBigInteger('physician_id');
             $table->foreign('physician_id')->references('id')->on('physicians')->onDelete('cascade');
             $table->timestamps();

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Catalogues\InsuranceResource;
 use App\Models\Insurance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InsuranceController extends Controller
 {
