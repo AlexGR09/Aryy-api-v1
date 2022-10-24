@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('medical_services_physicians', function (Blueprint $table) {
+        Schema::create('medical_service_physician', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('medical_services_id');
             $table->foreign('medical_services_id')->references('id')->on('medical_services')->onDelete('cascade');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medical_services_physicians');
+        Schema::dropIfExists('medical_service_physician');
     }
 };
