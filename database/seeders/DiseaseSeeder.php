@@ -30,10 +30,24 @@ class DiseaseSeeder extends Seeder
         $diseases10 = Disease::create(["name"=>"Trastornos del ritmo cardíaco"]);
 
         //Dermatólogo
-        $diseases11  = Disease::create(["name"=>"Infarto de miocardio"]);
-        $diseases12  = Disease::create(["name"=>"Angina de pecho"]);
-        $diseases13  = Disease::create(["name"=>"Hipertensión arterial"]);
-        $diseases14  = Disease::create(["name"=>"Insuficiencia cardíaca"]);
-        $diseases15  = Disease::create(["name"=>"Trastornos del ritmo cardíaco"]);
+        $diseases11  = Disease::create(["name"=>"Alopecia"]);
+        $diseases12  = Disease::create(["name"=>"Urticaria"]);
+        $diseases13  = Disease::create(["name"=>"Dermatitis"]);
+        $diseases14  = Disease::create(["name"=>"Psoriasis"]);
+        $diseases15  = Disease::create(["name"=>"Acné"]);
+
+        //Endocrinólogo
+        $diseases11  = Disease::create(["name"=>"Resistencia a la insulina"]);
+        $diseases12  = Disease::create(["name"=>"Prediabetes"]);
+        $diseases13  = Disease::create(["name"=>"Diabetes Mellitus"]);
+        $diseases14  = Disease::create(["name"=>"Acromegalia"]);
+        $diseases15  = Disease::create(["name"=>"Gigantismo"]);
+
+        //Ginecólogo
+        $diseases11  = Disease::create(["name"=>"Adenomiosis"]);
+        $diseases12  = Disease::create(["name"=>"Cáncer de cuello uterino"]);
+        $diseases13  = Disease::create(["name"=>"Diabetes gestacional"]);
+        $diseases14  = Disease::create(["name"=>"Endometriosis"]);
+        $diseases15  = Disease::create(["name"=>"Menopausia"]);
     }
 }
