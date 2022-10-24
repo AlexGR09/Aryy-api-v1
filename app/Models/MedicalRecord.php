@@ -15,6 +15,6 @@ class MedicalRecord extends Model
     ];
 
     public function patient(){
-        return $this->hasMany('App\Models\Patient');
+        return $this->hasOne('App\Models\Patient');
     }
 }

@@ -15,6 +15,6 @@ class Insurance extends Model
     ];
 
     public function health_insurance(){
-        return $this->hasMany('App\Models\HealthInsurance');
+        return $this->hasOne('App\Models\HealthInsurance');
     }
 }
