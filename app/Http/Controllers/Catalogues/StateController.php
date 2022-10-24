@@ -42,7 +42,9 @@ class StateController extends Controller
     public function store(StateRequest $request) {
         try {
             if ($this->user->hasPermissionTo('create states')) {
-                $state = State::create(['name' => $request->name, 'country_id' => $request->country_id]);
+                $state = State::create([
+                    'name' => $request->name, 
+                    'country_id' => $request->country_id ]);
                 return (new StateResource($state))->additional(['message' => 'Estado creado con éxito.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
