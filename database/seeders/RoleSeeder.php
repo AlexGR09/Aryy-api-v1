@@ -85,6 +85,12 @@ class RoleSeeder extends Seeder
         $permission42 = Permission::create(['name' => 'edit insurances']);
         $permission43 = Permission::create(['name' => 'delete insurances']);
 
+        // PAISES
+        $permission44 = Permission::create(['name' => 'show insurances']);
+        $permission44 = Permission::create(['name' => 'create insurances']);
+        $permission45 = Permission::create(['name' => 'edit insurances']);
+        $permission46 = Permission::create(['name' => 'delete insurances']);
+
 
         // ASIGNAR ROLES Y PERMISOS A USUARIOS (SE ASIGNARÁN MÁS PERMISOS COMO SE REQUIERAN)
    
