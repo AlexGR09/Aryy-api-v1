@@ -32,7 +32,7 @@ class PermissionController extends Controller
             if ($this->user->hasPermissionTo('show permissions')) {
                 return (new PermissionResource($permission))->additional(['message' => 'Permiso encontrado.']);
             }
-            return response()->json(['Message' => 'No puedes realizar esta acción.'], 403);
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
