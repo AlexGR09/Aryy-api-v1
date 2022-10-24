@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Catalogues;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Catalogues\CityRequest;
+use App\Http\Resources\Catalogues\CityResource;
+use App\Models\City;
 
 class CityController extends Controller
 {
@@ -15,9 +18,9 @@ class CityController extends Controller
 
     public function index() {
         try {
-            if ($this->user->hasPermissionTo('show states')) {
-                $states = State::paginate(5);
-                return (StateResource::collection($states))->additional(['message' => 'Estados encontrados.']);
+            if ($this->user->hasPermissionTo('show cities')) {
+                $cities = City::paginate(5);
+                return (CityResource::collection($cities))->additional(['message' => 'Ciudades encontradas.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
@@ -25,10 +28,10 @@ class CityController extends Controller
         }
     }
 
-    public function show(State $state) {
+    public function show(City $city) {
         try {
-            if ($this->user->hasPermissionTo('show states')) {
-                return (new StateResource($state))->additional(['message' => 'Estado encontrado.']);
+            if ($this->user->hasPermissionTo('show cities')) {
+                return (new CityResource($city))->additional(['message' => 'Ciudad encontrada.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
@@ -36,11 +39,11 @@ class CityController extends Controller
         }
     }
 
-    public function store(StateRequest $request) {
+    public function store(CityRequest $request) {
         try {
-            if ($this->user->hasPermissionTo('create states')) {
-                $state = State::create(['name' => $request->name, 'country_id' => $request->country_id]);
-                return (new StateResource($state))->additional(['message' => 'Estado creado con éxito.']);
+            if ($this->user->hasPermissionTo('create cities')) {
+                $city = City::create(['name' => $request->name, 'state_id' => $request->state_id]);
+                return (new CityResource($city))->additional(['message' => 'Ciudad creada con éxito.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
@@ -48,13 +51,13 @@ class CityController extends Controller
         }
     }
 
-    public function update(StateRequest $request, State $state) {
+    public function update(CityRequest $request, City $city) {
         try {
-            if ($this->user->hasPermissionTo('edit states')) {
-                $state->name = $request->name;
-                $state->country_id = $request->country_id;
-                $state->save();
-                return (new StateResource($state))->additional(['message' => 'Estado actualizado con éxito.']);
+            if ($this->user->hasPermissionTo('edit cities')) {
+                $city->name = $request->name;
+                $city->state_id = $request->state_id;
+                $city->save();
+                return (new CityResource($city))->additional(['message' => 'Ciudad actualizada con éxito.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
@@ -62,11 +65,11 @@ class CityController extends Controller
         }
     }
 
-    public function destroy(State $state) {
+    public function destroy(City $city) {
         try {
-            if ($this->user->hasPermissionTo('delete states')) {
-                $state->delete();
-                return (new StateResource($state))->additional(['message' => 'Estado eliminado con éxito.']);
+            if ($this->user->hasPermissionTo('delete cities')) {
+                $city->delete();
+                return (new CityResource($city))->additional(['message' => 'Ciudad eliminada con éxito.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
