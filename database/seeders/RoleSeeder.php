@@ -87,9 +87,21 @@ class RoleSeeder extends Seeder
 
         // PAISES
         $permission44 = Permission::create(['name' => 'show countries']);
-        $permission44 = Permission::create(['name' => 'create countries']);
-        $permission45 = Permission::create(['name' => 'edit countries']);
-        $permission46 = Permission::create(['name' => 'delete countries']);
+        $permission45 = Permission::create(['name' => 'create countries']);
+        $permission46 = Permission::create(['name' => 'edit countries']);
+        $permission47 = Permission::create(['name' => 'delete countries']);
+
+        // ESTADOS
+        $permission48 = Permission::create(['name' => 'show states']);
+        $permission49 = Permission::create(['name' => 'create states']);
+        $permission50 = Permission::create(['name' => 'edit states']);
+        $permission51 = Permission::create(['name' => 'delete states']);
+
+        // CUIDADES
+        $permission52 = Permission::create(['name' => 'show cities']);
+        $permission53 = Permission::create(['name' => 'create cities']);
+        $permission54 = Permission::create(['name' => 'edit cities']);
+        $permission55 = Permission::create(['name' => 'delete cities']);
 
 
         // ASIGNAR ROLES Y PERMISOS A USUARIOS (SE ASIGNARÁN MÁS PERMISOS COMO SE REQUIERAN)
