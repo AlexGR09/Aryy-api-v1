@@ -18,7 +18,15 @@ class AlergyController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            if ($this->user->hasPermissionTo('show alergies')) {
+                $alergies = Alergy::paginate(5);
+                return (AlergyResource::collection($alergies))->additional(['message' => 'Alergias existentes']);
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 
     /**
@@ -70,9 +78,18 @@ class AlergyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AlergyRequest $request, Alergy $alergy)
     {
-        //
+        try {
+            if ($this->user->hasPermissionTo('edit alergies')) {
+                $alergy->name = $request->name;
+                $alergy->save();
+                return (new AlergyResource($alergy))->additional(['message' => 'Alergia actualizada con éxito.']);
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 
     /**
@@ -81,8 +98,16 @@ class AlergyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Alergy $alergy)
     {
-        //
+        try {
+            if ($this->user->hasPermissionTo('delete alergies')) {
+                $alergy->delete();
+                return (new AlergyResource($alergy))->additional(['message' => 'Alergia eliminada con éxito.']);
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 }

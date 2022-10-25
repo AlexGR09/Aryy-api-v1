@@ -17,7 +17,15 @@ class DiseaseController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            if ($this->user->hasPermissionTo('show diseases')) {
+                $diseases = Disease::paginate(5);
+                return (DiseaseResource::collection($diseases))->additional(['message' => 'Enfermedades existentes']);
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 
     /**
@@ -31,8 +39,8 @@ class DiseaseController extends Controller
 
         try {
             if ($this->user->hasPermissionTo('create diseases')) {
-                $state = Disease::create(['name' => $request->name]);
-                return (new DiseaseResource($state))->additional(['message' => 'Enfermedad creada con éxito.']);
+                $disease = Disease::create(['name' => $request->name]);
+                return (new DiseaseResource($disease))->additional(['message' => 'Enfermedad creada con éxito.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
@@ -50,9 +58,16 @@ class DiseaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Disease $disease)
     {
-        return DiseaseResource::find($id);
+        try {
+            if ($this->user->hasPermissionTo('show diseases')) {
+                return (new DiseaseResource($disease))->additional(['message' => 'Enfermedad encontrada']);
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 
     /**
@@ -62,9 +77,19 @@ class DiseaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DiseaseRequest $request, Disease $disease)
     {
-        //
+        try {
+            if ($this->user->hasPermissionTo('edit diseases')) {
+                $disease->name = $request->name;
+                $disease->country_id = $request->country_id;
+                $disease->save();
+                return (new DiseaseResource($disease))->additional(['message' => 'Enfermedad actualizada con éxito.']);
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 
     /**
@@ -73,8 +98,16 @@ class DiseaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Disease $disease)
     {
-        //
+        try {
+            if ($this->user->hasPermissionTo('delete states')) {
+                $disease->delete();
+                return (new DiseaseResource($disease))->additional(['message' => 'Enfermedad eliminada exitosamente.']);
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 }
