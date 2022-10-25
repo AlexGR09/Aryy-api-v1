@@ -8,13 +8,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class FacilitiesPhysician extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
-    public function physician(){
+    public function physician()
+    {
         return $this->belongsTo('App\Models\Physician');
     }
 
-    public function facility(){
+    public function facility()
+    {
         return $this->belongsTo('App\Models\Facility');
     }
 }

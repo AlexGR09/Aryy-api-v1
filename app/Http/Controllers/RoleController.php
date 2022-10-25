@@ -9,26 +9,28 @@ use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
-    
     protected $user;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->user = auth()->user();
     }
 
-    public function index() {
+    public function index()
+    {
         try {
             if ($this->user->hasPermissionTo('show roles')) {
                 $roles = Role::with('permissions')->paginate(5);
                 return (RoleResource::collection($roles))->additional(['message' => 'Rol encontrado.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
-        } catch (\Throwable $th) {  
+        } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function show(Role $role) {
+    public function show(Role $role)
+    {
         try {
             if ($this->user->hasPermissionTo('show roles')) {
                 return (new RoleResource($role))->additional(['message' => 'Roles encontrados']);
@@ -39,7 +41,8 @@ class RoleController extends Controller
         }
     }
 
-    public function store(RoleRequest $request) {
+    public function store(RoleRequest $request)
+    {
         try {
             if ($this->user->hasPermissionTo('create roles')) {
                 DB::beginTransaction();
@@ -57,7 +60,8 @@ class RoleController extends Controller
         }
     }
 
-    public function update(RoleRequest $request, Role $role) {
+    public function update(RoleRequest $request, Role $role)
+    {
         try {
             if ($this->user->hasPermissionTo('edit roles')) {
                 DB::beginTransaction();
@@ -76,7 +80,8 @@ class RoleController extends Controller
         }
     }
 
-    public function destroy(Role $role) {
+    public function destroy(Role $role)
+    {
         try {
             if ($this->user->hasPermissionTo('delete roles')) {
                 $role->delete();
@@ -87,5 +92,4 @@ class RoleController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-
 }

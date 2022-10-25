@@ -10,7 +10,6 @@ use App\Models\User;
 
 class RoleSeeder extends Seeder
 {
-    
     public function run()
     {
         // ROLES
@@ -49,37 +48,37 @@ class RoleSeeder extends Seeder
 
         //PERMISOS PARA LOS CATÁLOGOS
 
-         //ESPECIALIDADES
+        //ESPECIALIDADES
         $permission20 = Permission::create(['name' => 'show specialitites']);
         $permission21 = Permission::create(['name' => 'create specialitites']);
         $permission22 = Permission::create(['name' => 'edit specialitites']);
         $permission23 = Permission::create(['name' => 'delete specialitites']);
 
-         //ENFERMEDADES
+        //ENFERMEDADES
         $permission24 = Permission::create(['name' => 'show diseases']);
         $permission25 = Permission::create(['name' => 'create diseases']);
         $permission26 = Permission::create(['name' => 'edit diseases']);
         $permission27 = Permission::create(['name' => 'delete diseases']);
 
-         //SERVICIOS MEDICOS
+        //SERVICIOS MEDICOS
         $permission28 = Permission::create(['name' => 'show medical services']);
         $permission29 = Permission::create(['name' => 'create medical services']);
         $permission30 = Permission::create(['name' => 'edit medical services']);
         $permission31 = Permission::create(['name' => 'delete medical services']);
-        
-         //ALERGIAS
+
+        //ALERGIAS
         $permission32 = Permission::create(['name' => 'show alergies']);
         $permission33 = Permission::create(['name' => 'create alergies']);
         $permission34 = Permission::create(['name' => 'edit alergies']);
         $permission35 = Permission::create(['name' => 'delete alergies']);
 
-         //OCUPACIONES
+        //OCUPACIONES
         $permission36 = Permission::create(['name' => 'show ocupations']);
         $permission37 = Permission::create(['name' => 'create ocupations']);
         $permission38 = Permission::create(['name' => 'edit ocupations']);
         $permission39 = Permission::create(['name' => 'delete ocupations']);
 
-         //SEGUROS MEDICOS
+        //SEGUROS MEDICOS
         $permission40 = Permission::create(['name' => 'show insurances']);
         $permission41 = Permission::create(['name' => 'create insurances']);
         $permission42 = Permission::create(['name' => 'edit insurances']);
@@ -105,7 +104,7 @@ class RoleSeeder extends Seeder
 
 
         // ASIGNAR ROLES Y PERMISOS A USUARIOS (SE ASIGNARÁN MÁS PERMISOS COMO SE REQUIERAN)
-   
+
         $role1->givePermissionTo(Permission::all());
         $user1 = User::where('id', 1)->first();
         $user1->assignRole('Administrator');

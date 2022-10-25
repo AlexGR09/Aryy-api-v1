@@ -36,18 +36,18 @@ class MedicalServiceSeeder extends Seeder
         $medical_service14 = MedicalService::create(["name"=>"Lesiones de la piel"]);
         $medical_service15 = MedicalService::create(["name"=>"Pérdida de cabello"]);
 
-         //servicos de Endocrinólogo
-         $medical_service16 = MedicalService::create(["name"=>"Pruebas del nivel de azúcar en la sangre"]);
-         $medical_service17 = MedicalService::create(["name"=>"Exploración de los huesos"]);
-         $medical_service18 = MedicalService::create(["name"=>"Reemplazo de hormonas"]);
-         $medical_service19 = MedicalService::create(["name"=>"Control médico"]);
-         $medical_service20 = MedicalService::create(["name"=>"Control con la bomba de insulina"]);
+        //servicos de Endocrinólogo
+        $medical_service16 = MedicalService::create(["name"=>"Pruebas del nivel de azúcar en la sangre"]);
+        $medical_service17 = MedicalService::create(["name"=>"Exploración de los huesos"]);
+        $medical_service18 = MedicalService::create(["name"=>"Reemplazo de hormonas"]);
+        $medical_service19 = MedicalService::create(["name"=>"Control médico"]);
+        $medical_service20 = MedicalService::create(["name"=>"Control con la bomba de insulina"]);
 
-         //servicos de Ginecólogo
-         $medical_service16 = MedicalService::create(["name"=>"Papanicolau"]);
-         $medical_service17 = MedicalService::create(["name"=>"Mamografía"]);
-         $medical_service18 = MedicalService::create(["name"=>"Colposcopia"]);
-         $medical_service19 = MedicalService::create(["name"=>"Histeroscopia"]);
-         $medical_service20 = MedicalService::create(["name"=>"Laparoscopia pélvica"]);
+        //servicos de Ginecólogo
+        $medical_service16 = MedicalService::create(["name"=>"Papanicolau"]);
+        $medical_service17 = MedicalService::create(["name"=>"Mamografía"]);
+        $medical_service18 = MedicalService::create(["name"=>"Colposcopia"]);
+        $medical_service19 = MedicalService::create(["name"=>"Histeroscopia"]);
+        $medical_service20 = MedicalService::create(["name"=>"Laparoscopia pélvica"]);
     }
 }

@@ -10,7 +10,6 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-
     public function register()
     {
         //
@@ -21,5 +20,4 @@ class AppServiceProvider extends ServiceProvider
         Country::observe(CountryObserver::class);
         State::observe(StateObserver::class);
     }
-
 }

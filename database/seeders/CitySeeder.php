@@ -9,24 +9,22 @@ use Illuminate\Support\Facades\Storage;
 
 class CitySeeder extends Seeder
 {
-    
     public function run()
     {
         // STORAGE/APP/JSON
         $json = Storage::disk('local')->get('/json/cities.json');
         $data = json_decode($json);
         $state_id = 1;
-        foreach($data as $state) {
-            if(is_array($state)) {
+        foreach ($data as $state) {
+            if (is_array($state)) {
                 foreach ($state as $city_state) {
-                    City::create(array(
+                    City::create([
                         'name' => $city_state,
                         'state_id' => $state_id
-                    ));
+                    ]);
                 }
             }
             $state_id++;
         }
     }
-
 }

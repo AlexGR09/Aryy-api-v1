@@ -12,7 +12,8 @@ class MedicalServiceController extends Controller
 {
     protected $user;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->user = auth()->user();
     }
 
@@ -24,7 +25,7 @@ class MedicalServiceController extends Controller
                 return (MedicalServiceResource::collection($medical_service))->additional(['message' => 'Servicios medicos encontrados']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
-        } catch (\Throwable $th) {  
+        } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -33,9 +34,8 @@ class MedicalServiceController extends Controller
     {
         try {
             if ($this->user->hasPermissionTo('create medical services')) {
-                
                 $medical_service = MedicalService::create(['name' => $request->name]);
-                
+
                 DB::commit();
                 return (new MedicalServiceResource($medical_service))->additional(['message' => 'Servicio medico creada correctamente']);
             }
@@ -58,14 +58,13 @@ class MedicalServiceController extends Controller
         }
     }
 
-    public function update(Request $request,MedicalService $medical_service)
+    public function update(Request $request, MedicalService $medical_service)
     {
         try {
             if ($this->user->hasPermissionTo('edit medical services')) {
-               
                 $medical_service->name = $request->name;
                 $medical_service->save();
-            
+
                 DB::commit();
                 return (new MedicalServiceResource($medical_service))->additional(['message' => 'Servicio medico actualizado con éxito.']);
             }

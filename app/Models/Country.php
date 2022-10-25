@@ -8,13 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Country extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'name'
     ];
 
-    public function states(){
+    public function states()
+    {
         return $this->hasMany('App\Models\State');
     }
 }

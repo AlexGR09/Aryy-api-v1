@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
@@ -17,9 +16,9 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('last_name');
-            $table->enum('sex',array('Masculino','Femenino','Transgenero','Transexual','Intersexual'))->nullable();
-            $table->enum('gender',array('Masculino','Femenino'))->nullable();
-            $table->date('birthday')->nullable();            
+            $table->enum('sex', ['Masculino','Femenino','Transgenero','Transexual','Intersexual'])->nullable();
+            $table->enum('gender', ['Masculino','Femenino'])->nullable();
+            $table->date('birthday')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

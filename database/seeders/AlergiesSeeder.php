@@ -6,7 +6,6 @@ use App\Models\Alergy;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-
 class AlergiesSeeder extends Seeder
 {
     /**
@@ -16,8 +15,8 @@ class AlergiesSeeder extends Seeder
      */
     public function run()
     {
-    $alergies = Alergy::create(["name"=>"Alimentaria"]);
-    $alergies2 = Alergy::create(["name"=>"Fármacos"]);
-    $alergies3 = Alergy::create(["name"=>"Factores ambientales"]);
+        $alergies = Alergy::create(["name"=>"Alimentaria"]);
+        $alergies2 = Alergy::create(["name"=>"Fármacos"]);
+        $alergies3 = Alergy::create(["name"=>"Factores ambientales"]);
     }
 }

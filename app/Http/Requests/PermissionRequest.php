@@ -11,10 +11,10 @@ class PermissionRequest extends FormRequest
         return true;
     }
 
-    public function rules() {
+    public function rules()
+    {
         return [
             'name' => ($this->getMethod() == 'POST') ? 'required|min:4|max:24|unique:permissions' : 'required|min:4|max:24|unique:permissions,name,'.$this->permission->id,
         ];
     }
-
 }

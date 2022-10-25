@@ -8,17 +8,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class HealthInsurance extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'insurance_number'
     ];
 
-    public function patients(){
+    public function patients()
+    {
         return $this->hasMany('App\Models\Patient');
     }
 
-    public function insurance(){
+    public function insurance()
+    {
         return $this->belongsTo('App\Models\Insurance');
     }
 }

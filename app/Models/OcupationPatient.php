@@ -9,11 +9,13 @@ class OcupationPatient extends Model
 {
     use HasFactory;
 
-    public function patient(){
+    public function patient()
+    {
         return $this->belongsTo('App\Models\Patient');
     }
 
-    public function ocupation(){
+    public function ocupation()
+    {
         return $this->belongsTo('App\Models\Ocupation');
     }
 }

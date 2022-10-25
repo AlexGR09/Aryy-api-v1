@@ -5,7 +5,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 
-
 Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login');
     Route::post('/register', 'register');
@@ -17,8 +16,6 @@ Route::controller(AuthController::class)->group(function () {
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-
-
     // ROLES
     Route::resource('roles', RoleController::class)
         ->only(['index', 'store', 'show', 'update', 'destroy']);
@@ -31,15 +28,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     $catalogues = "App\\Http\\Controllers\\Catalogues\\";
 
     // PAISES
-    Route::resource('countries',  $catalogues.CountryController::class)
+    Route::resource('countries', $catalogues.CountryController::class)
         ->only(['index', 'store', 'show', 'update', 'destroy']);
-    
+
     //  ESTADOS
-    Route::resource('states',  $catalogues.StateController::class)
+    Route::resource('states', $catalogues.StateController::class)
         ->only(['index', 'store', 'show', 'update', 'destroy']);
 
     // CIUDADES
-    Route::resource('cities',  $catalogues.CityController::class)
+    Route::resource('cities', $catalogues.CityController::class)
         ->only(['index', 'store', 'show', 'update', 'destroy']);
 
     //OCUPACIONES
@@ -54,5 +51,3 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('insurance', $catalogues.InsuranceController::class)
         ->only(['index', 'store', 'show', 'update', 'destroy']);
 });
-
-

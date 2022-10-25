@@ -12,7 +12,8 @@ class InsuranceController extends Controller
 {
     protected $user;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->user = auth()->user();
     }
 
@@ -24,7 +25,7 @@ class InsuranceController extends Controller
                 return (InsuranceResource::collection($insurance))->additional(['message' => 'Seguros medicos encontrados']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
-        } catch (\Throwable $th) {  
+        } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -33,9 +34,8 @@ class InsuranceController extends Controller
     {
         try {
             if ($this->user->hasPermissionTo('create insurances')) {
-                
                 $insurance = Insurance::create(['name' => $request->name]);
-                
+
                 DB::commit();
                 return (new InsuranceResource($insurance))->additional(['message' => 'Seguros medicos creado correctamente']);
             }
@@ -62,10 +62,9 @@ class InsuranceController extends Controller
     {
         try {
             if ($this->user->hasPermissionTo('edit medical services')) {
-               
                 $insurance->name = $request->name;
                 $insurance->save();
-            
+
                 DB::commit();
                 return (new InsuranceResource($insurance))->additional(['message' => 'Servicio medico actualizado con éxito.']);
             }

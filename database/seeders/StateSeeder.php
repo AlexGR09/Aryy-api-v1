@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class StateSeeder extends Seeder
 {
-    
     public function run()
     {
         //contry -> mexico
@@ -20,18 +19,15 @@ class StateSeeder extends Seeder
         // $states5 = State::create(["name" => "Morelos","country_id" => 1]);
 
         //STORAGE/APP/JSON
-      $json = Storage::disk('local')->get('/json/states.json');
-      $data = json_decode($json);
+        $json = Storage::disk('local')->get('/json/states.json');
+        $data = json_decode($json);
 
         foreach ($data as $obj) {
-            State::create(array(
+            State::create([
             'name' => $obj->name,
             'short_name' => $obj->short_name,
             'country_id' => 1
-        ));
-      }
-
-
+        ]);
+        }
     }
-
 }

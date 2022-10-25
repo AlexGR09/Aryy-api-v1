@@ -8,14 +8,15 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
-
     protected $user;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->user = auth()->user();
     }
 
-    public function index() {
+    public function index()
+    {
         try {
             if ($this->user->hasPermissionTo('show permissions')) {
                 $permissions = Permission::paginate(5);
@@ -27,7 +28,8 @@ class PermissionController extends Controller
         }
     }
 
-    public function show(Permission $permission) {
+    public function show(Permission $permission)
+    {
         try {
             if ($this->user->hasPermissionTo('show permissions')) {
                 return (new PermissionResource($permission))->additional(['message' => 'Permiso encontrado.']);
@@ -38,7 +40,8 @@ class PermissionController extends Controller
         }
     }
 
-    public function store(PermissionRequest $request) {
+    public function store(PermissionRequest $request)
+    {
         try {
             if ($this->user->hasPermissionTo('create permissions')) {
                 $permission = Permission::create(['name' => $request->name]);
@@ -50,7 +53,8 @@ class PermissionController extends Controller
         }
     }
 
-    public function update(PermissionRequest $request, Permission $permission) {
+    public function update(PermissionRequest $request, Permission $permission)
+    {
         try {
             if ($this->user->hasPermissionTo('edit permissions')) {
                 $permission->name = $request->name;
@@ -63,7 +67,8 @@ class PermissionController extends Controller
         }
     }
 
-    public function destroy(Permission $permission) {
+    public function destroy(Permission $permission)
+    {
         try {
             if ($this->user->hasPermissionTo('delete permissions')) {
                 $permission->delete();
@@ -74,5 +79,4 @@ class PermissionController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-
 }
