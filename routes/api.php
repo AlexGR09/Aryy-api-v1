@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // CATALOGOS
     $catalogues = "App\\Http\\Controllers\\Catalogues\\";
+    $patient = "App\\Http\\Controllers\\Patient\\";
 
     // PAISES
     Route::resource('countries',  $catalogues.CountryController::class)
@@ -53,6 +54,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //INSURANCE
     Route::resource('insurance', $catalogues.InsuranceController::class)
         ->only(['index', 'store', 'show', 'update', 'destroy']);
+
+    //PATIENT
+    Route::resource('patient', $patient.PatientContoller::class)
+        ->only(['index','store','show']);
 });
 
 

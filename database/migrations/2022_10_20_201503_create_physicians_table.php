@@ -20,9 +20,11 @@ return new class extends Migration
             $table->string('professional_name');
             $table->string('country_code');
             $table->string('phone_number');
-            $table->enum('gender',array('Masculino','Femenino'));
+            $table->enum('gender',array('Masculino','Femenino'))->nullable();
             $table->string('c1_license');
             $table->string('a1_license');
+            $table->unsignedBigInteger('city_id');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
