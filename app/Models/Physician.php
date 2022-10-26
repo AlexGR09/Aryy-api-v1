@@ -12,13 +12,14 @@ class Physician extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'user_id',
         'professional_name',
-        'phone_number',
         'country_code',
+        'phone_number',
         'gender',
-        'bussiness_email',
         'c1_license',
-        'a1_license'
+        'a1_license',
+        'city_id'
     ];
 
     public function user()

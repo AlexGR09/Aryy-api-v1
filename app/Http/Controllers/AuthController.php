@@ -43,8 +43,9 @@ class AuthController extends Controller
             $user->last_name = $request->last_name;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
+            $user->assignRole('User');
             if ($mobile) {
-                $user->assignRole('Patient');
+                $user->assignRole('NewPatient');
             }
             if (!$mobile) {
                 $user->assignRole('NewPhysician');

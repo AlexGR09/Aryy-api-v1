@@ -3,7 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\Physician\PhysicianController;
 use App\Http\Controllers\RoleController;
+
+
+// CREAR RUTAS SÓLO PARA ADMINISTRADOR
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login');
@@ -55,4 +59,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //PATIENT
     Route::resource('patient', $patient.PatientContoller::class)
         ->only(['index','store','show']);
+
+    // PHYSICIAN
+    Route::resource('physicians', PhysicianController::class)
+        ->only(['index', 'store', 'show', 'update', 'destroy']);
+
+
+    Route::controller(PhysicianController::class)->group(function() {
+        Route::post('/physician', 'store');
+        Route::get('/physician', 'show');
+    });
 });
