@@ -120,9 +120,9 @@ class RoleSeeder extends Seeder
         /* $user2 = User::where('id', 2)->first();
         $user2->assignRole('User'); */
 
-        $role3->givePermissionTo([$permission13, $permission14, $permission15, $permission56,$permission57,$permission58]);
+        $role3->givePermissionTo([$permission13, $permission14, $permission15, $permission56]);
         $user3 = User::where('id', 2)->first();
-        $user3->assignRole('Patient');
+        $user3->assignRole([$role2,$role3]);
 
         $role4->givePermissionTo([$permission16, $permission17, $permission18, $permission19]);
         /* $user4 = User::where('id', 4)->first();
