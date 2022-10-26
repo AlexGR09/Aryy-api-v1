@@ -45,7 +45,8 @@ class PatientContoller extends Controller
                 if($patient){
                     return (new PatientResource($request))->additional(['message' => 'El usario paciente ya existe']);
                 }
-                $patient = Patient::create(['user_id' => $this->user->id]);
+                $patient = Patient::create(['user_id' => $this->user->id])->assignRole('User','NewPatient');
+
                 
                 return (new PatientResource($patient))->additional(['message' => 'Paciente creado con éxito.']);
             }
