@@ -12,7 +12,9 @@ class Patient extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'user_id',
         'photo'
+
     ];
 
     public function user()

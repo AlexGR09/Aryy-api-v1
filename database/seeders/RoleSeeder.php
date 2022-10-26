@@ -102,6 +102,8 @@ class RoleSeeder extends Seeder
         $permission54 = Permission::create(['name' => 'edit cities']);
         $permission55 = Permission::create(['name' => 'delete cities']);
 
+        $permission56 = Permission::create(['name' => 'complete profile patient']);
+        $permission57 = Permission::create(['name' => 'show profile patient']);
 
         // ASIGNAR ROLES Y PERMISOS A USUARIOS (SE ASIGNARÁN MÁS PERMISOS COMO SE REQUIERAN)
 
@@ -109,7 +111,7 @@ class RoleSeeder extends Seeder
         $user1 = User::where('id', 1)->first();
         $user1->assignRole('Administrator');
 
-        $role2->givePermissionTo([$permission13, $permission14, $permission15]);
+        $role2->givePermissionTo([$permission13, $permission14, $permission15, $permission56,$permission57]);
         $user2 = User::where('id', 2)->first();
         $user2->assignRole('Patient');
 
