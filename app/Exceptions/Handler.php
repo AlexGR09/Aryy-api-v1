@@ -12,7 +12,6 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    
     protected $levels = [
         //
     ];
@@ -35,7 +34,8 @@ class Handler extends ExceptionHandler
     }
 
     // Se lanzan errores personalizados
-    public function render($request, Throwable $e){
+    public function render($request, Throwable $e)
+    {
         switch ($e) {
             case ($e instanceof ModelNotFoundException):
                 return response()->json([
@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
                     "error" => $e->getMessage()
                 ], 401);
                 break;
-            
+
             case ($e instanceof MethodNotAllowedHttpException):
                 return response()->json([
                     "message" => "El método actual no es compatible con esta ruta.",
@@ -71,12 +71,11 @@ class Handler extends ExceptionHandler
                     "error" => $e->getMessage()
                 ], 500);
                 break;
-            
+
             default:
                 break;
         }
 
         return parent::render($request, $e);
     }
-
 }

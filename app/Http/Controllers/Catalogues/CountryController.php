@@ -9,14 +9,15 @@ use App\Models\Country;
 
 class CountryController extends Controller
 {
-
     protected $user;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->user = auth()->user();
     }
 
-    public function index() {
+    public function index()
+    {
         try {
             if ($this->user->hasPermissionTo('show countries')) {
                 $countries = Country::paginate(5);
@@ -28,7 +29,8 @@ class CountryController extends Controller
         }
     }
 
-    public function show(Country $country) {
+    public function show(Country $country)
+    {
         try {
             if ($this->user->hasPermissionTo('show countries')) {
                 return (new CountryResource($country))->additional(['message' => 'País encontrado.']);
@@ -39,7 +41,8 @@ class CountryController extends Controller
         }
     }
 
-    public function store(CountryRequest $request) {
+    public function store(CountryRequest $request)
+    {
         try {
             if ($this->user->hasPermissionTo('create countries')) {
                 $country = Country::create(['name' => $request->name]);
@@ -51,7 +54,8 @@ class CountryController extends Controller
         }
     }
 
-    public function update(CountryRequest $request, Country $country) {
+    public function update(CountryRequest $request, Country $country)
+    {
         try {
             if ($this->user->hasPermissionTo('edit countries')) {
                 $country->name = $request->name;
@@ -64,7 +68,8 @@ class CountryController extends Controller
         }
     }
 
-    public function destroy(Country $country) {
+    public function destroy(Country $country)
+    {
         try {
             if ($this->user->hasPermissionTo('delete countries')) {
                 $country->delete();
@@ -75,5 +80,4 @@ class CountryController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-
 }

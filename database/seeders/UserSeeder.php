@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->save();
-        
+
         $user = new User();
         $user->name = "Paciente";
         $user->email = "paciente@gmail.com";

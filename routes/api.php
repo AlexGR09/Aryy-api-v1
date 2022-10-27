@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\Physician\PhysicianController;
 use App\Http\Controllers\RoleController;
 
+
+// CREAR RUTAS SÓLO PARA ADMINISTRADOR
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login');
@@ -17,8 +20,6 @@ Route::controller(AuthController::class)->group(function () {
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-
-
     // ROLES
     Route::resource('roles', RoleController::class)
         ->only(['index', 'store', 'show', 'update', 'destroy']);
@@ -32,15 +33,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     $patient = "App\\Http\\Controllers\\Patient\\";
 
     // PAISES
-    Route::resource('countries',  $catalogues.CountryController::class)
+    Route::resource('countries', $catalogues.CountryController::class)
         ->only(['index', 'store', 'show', 'update', 'destroy']);
-    
+
     //  ESTADOS
-    Route::resource('states',  $catalogues.StateController::class)
+    Route::resource('states', $catalogues.StateController::class)
         ->only(['index', 'store', 'show', 'update', 'destroy']);
 
     // CIUDADES
-    Route::resource('cities',  $catalogues.CityController::class)
+    Route::resource('cities', $catalogues.CityController::class)
         ->only(['index', 'store', 'show', 'update', 'destroy']);
 
     //OCUPACIONES
@@ -57,7 +58,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //PATIENT
     Route::resource('patient', $patient.PatientContoller::class)
-        ->only(['index','store','show','update']);
+        ->only(['index','store','show']);
+
+    // PHYSICIAN
+    Route::resource('physicians', PhysicianController::class)
+        ->only(['index', 'store', 'show', 'update', 'destroy']);
+
+
+    Route::controller(PhysicianController::class)->group(function() {
+        Route::post('/physician', 'store');
+        Route::get('/physician', 'show');
+    });
 });
-
-

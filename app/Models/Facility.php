@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Facility extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'facility_name',
@@ -20,11 +21,13 @@ class Facility extends Model
         'schedule'
     ];
 
-    public function physicians(){
+    public function physicians()
+    {
         return $this->hasMany('App\Models\FacilitiesPhysician');
     }
 
-    public function city(){
+    public function city()
+    {
         return $this->belongsTo('App\Models\City');
     }
 }

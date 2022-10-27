@@ -10,16 +10,17 @@ use App\Models\User;
 
 class RoleSeeder extends Seeder
 {
-    
     public function run()
     {
         // ROLES
         $role1 = Role::create(['name' => 'Administrator']);
         $role2 = Role::create(['name' => 'User']);
-        $role3 = Role::create(['name' => 'Patient']);
-        $role4 = Role::create(['name' => 'NewPatient']);
-        $role5 = Role::create(['name' => 'NewPhysician']);
+        $role3 = Role::create(['name' => 'NewPatient']);
+        $role4 = Role::create(['name' => 'NewPhysician']);
+        $role5 = Role::create(['name' => 'Patient']);
         $role6 = Role::create(['name' => 'Physician']);
+        
+        
 
 
         // PERMISOS ADMINSTRADOR
@@ -43,45 +44,39 @@ class RoleSeeder extends Seeder
         $permission14 = Permission::create(['name' => 'edit profile']);
         $permission15 = Permission::create(['name' => 'delete profile']);
 
-        // PERMISOS PARA EL MÉDICO AUTENTICADO
-        $permission16 = Permission::create(['name' => 'show patients']);
-        $permission17 = Permission::create(['name' => 'create patients']);
-        $permission18 = Permission::create(['name' => 'edit patients']);
-        $permission19 = Permission::create(['name' => 'delete patients']);
-
         //PERMISOS PARA LOS CATÁLOGOS
 
-         //ESPECIALIDADES
+        //ESPECIALIDADES
         $permission20 = Permission::create(['name' => 'show specialitites']);
         $permission21 = Permission::create(['name' => 'create specialitites']);
         $permission22 = Permission::create(['name' => 'edit specialitites']);
         $permission23 = Permission::create(['name' => 'delete specialitites']);
 
-         //ENFERMEDADES
+        //ENFERMEDADES
         $permission24 = Permission::create(['name' => 'show diseases']);
         $permission25 = Permission::create(['name' => 'create diseases']);
         $permission26 = Permission::create(['name' => 'edit diseases']);
         $permission27 = Permission::create(['name' => 'delete diseases']);
 
-         //SERVICIOS MEDICOS
+        //SERVICIOS MEDICOS
         $permission28 = Permission::create(['name' => 'show medical services']);
         $permission29 = Permission::create(['name' => 'create medical services']);
         $permission30 = Permission::create(['name' => 'edit medical services']);
         $permission31 = Permission::create(['name' => 'delete medical services']);
-        
-         //ALERGIAS
+
+        //ALERGIAS
         $permission32 = Permission::create(['name' => 'show alergies']);
         $permission33 = Permission::create(['name' => 'create alergies']);
         $permission34 = Permission::create(['name' => 'edit alergies']);
         $permission35 = Permission::create(['name' => 'delete alergies']);
 
-         //OCUPACIONES
+        //OCUPACIONES
         $permission36 = Permission::create(['name' => 'show ocupations']);
         $permission37 = Permission::create(['name' => 'create ocupations']);
         $permission38 = Permission::create(['name' => 'edit ocupations']);
         $permission39 = Permission::create(['name' => 'delete ocupations']);
 
-         //SEGUROS MEDICOS
+        //SEGUROS MEDICOS
         $permission40 = Permission::create(['name' => 'show insurances']);
         $permission41 = Permission::create(['name' => 'create insurances']);
         $permission42 = Permission::create(['name' => 'edit insurances']);
@@ -105,35 +100,50 @@ class RoleSeeder extends Seeder
         $permission54 = Permission::create(['name' => 'edit cities']);
         $permission55 = Permission::create(['name' => 'delete cities']);
 
-        $permission56 = Permission::create(['name' => 'complete profile patient']);
-        $permission57 = Permission::create(['name' => 'show profile patient']);
-        $permission58 = Permission::create(['name' => 'delete profile patient']);
+        // NUEVOS USUARIOS
+        $permission56 = Permission::create(['name' => 'complete patient profile']);
+        $permission57 = Permission::create(['name' => 'complete physician profile']);
+
+        // PACIENTES
+        $permission58 = Permission::create(['name' => 'show patient']);
+        $permission59 = Permission::create(['name' => 'edit patient']);
+
+        // MEDICOS
+        $permission60 = Permission::create(['name' => 'show physician']);
+        $permission61 = Permission::create(['name' => 'edit physician']);
+
+        
+        // $permission57 = Permission::create(['name' => 'show profile patient']);
+        // $permission58 = Permission::create(['name' => 'delete profile patient']);
 
 
         // ASIGNAR ROLES Y PERMISOS A USUARIOS (SE ASIGNARÁN MÁS PERMISOS COMO SE REQUIERAN)
-   
+
+        // ADMINISTRADOR
         $role1->givePermissionTo(Permission::all());
+
+        // USER
+        $role2->givePermissionTo([$permission13,$permission14,$permission15]);
+
+        // NUEVO PACIENTE
+        $role3->givePermissionTo([$permission56]);
+
+        // NUEVO MÉDICO
+        $role4->givePermissionTo([$permission57]);
+
+        // PACIENTE
+        $role5->givePermissionTo([$permission58, $permission59]);
+
+        // MÉDICO
+        $role6->givePermissionTo([$permission60, $permission61]);
+
+
+        // ASIGNANDO ROLES A USUARIOS
         $user1 = User::where('id', 1)->first();
-        $user1->assignRole('Administrator');
+        $user1->assignRole($role1);
 
-        $role2->givePermissionTo([$permission13,$permission14,$permission15,$permission56]);
-        /* $user2 = User::where('id', 2)->first();
-        $user2->assignRole('User'); */
-
-        $role3->givePermissionTo([$permission13, $permission14, $permission15, $permission56]);
-        $user3 = User::where('id', 2)->first();
-        $user3->assignRole([$role2,$role3]);
-
-        $role4->givePermissionTo([$permission13, $permission14, $permission15,$permission56,$permission57,$permission58]);
-        /* $user4 = User::where('id', 4)->first();
-        $user4->assignRole('NewPatient');*/
-        $role5->givePermissionTo([$permission16, $permission17, $permission18, $permission19]);
-       /*  $user5 = User::where('id', 5)->first();
-        $user5->assignRole('NewPhysician'); */
-
-        $role6->givePermissionTo([$permission13, $permission14, $permission15]);
-        $user6 = User::where('id', 3)->first();
-        $user6->assignRole('Physician');
+        $user2 = User::where('id', 2)->first();
+        $user2->assignRole([$role2, $role3]);
 
     }
 }

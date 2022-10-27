@@ -8,13 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MedicalRecord extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'medical_recordscol'
     ];
 
-    public function patient(){
+    public function patient()
+    {
         return $this->hasOne('App\Models\Patient');
     }
 }

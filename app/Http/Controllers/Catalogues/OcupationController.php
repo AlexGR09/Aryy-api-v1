@@ -14,7 +14,8 @@ class OcupationController extends Controller
 {
     protected $user;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->user = auth()->user();
     }
 
@@ -26,7 +27,7 @@ class OcupationController extends Controller
                 return (OcupationResource::collection($ocupation))->additional(['message' => 'ocupaciones encontradas']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
-        } catch (\Throwable $th) {  
+        } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -35,9 +36,8 @@ class OcupationController extends Controller
     {
         try {
             if ($this->user->hasPermissionTo('create ocupations')) {
-                
                 $ocupation = Ocupation::create(['name' => $request->name]);
-                
+
                 DB::commit();
                 return (new OcupationResource($ocupation))->additional(['message' => 'Ocupacion creada correctamente']);
             }
@@ -64,10 +64,9 @@ class OcupationController extends Controller
     {
         try {
             if ($this->user->hasPermissionTo('edit ocupations')) {
-               
                 $ocupation->name = $request->name;
                 $ocupation->save();
-            
+
                 DB::commit();
                 return (new OcupationResource($ocupation))->additional(['message' => 'Ocupacion actualizada con éxito.']);
             }

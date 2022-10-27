@@ -18,23 +18,28 @@ class Patient extends Model
 
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\Models\User');
     }
 
-    public function ocupations(){
+    public function ocupations()
+    {
         return $this->hasMany('App\Models\OcupationPatient');
     }
 
-    public function health_insurance(){
+    public function health_insurance()
+    {
         return $this->belongsTo('App\Models\HealthInsurance');
     }
 
-    public function medical_records(){
+    public function medical_records()
+    {
         return $this->belongsTo('App\Models\MedicalRecord');
     }
 
-    public function medical_history(){
+    public function medical_history()
+    {
         return $this->belongsTo('App\Models\MedicalHistory');
     }
 }

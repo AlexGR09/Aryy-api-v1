@@ -8,13 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Insurance extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'name'
     ];
 
-    public function health_insurance(){
+    public function health_insurance()
+    {
         return $this->hasOne('App\Models\HealthInsurance');
     }
 }

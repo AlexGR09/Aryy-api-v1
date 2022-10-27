@@ -12,5 +12,4 @@ class StateObserver
             'name' => time() . '::' . $state->name
         ]);
     }
-
 }

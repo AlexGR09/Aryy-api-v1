@@ -20,6 +20,5 @@ class InsuranceSeeder extends Seeder
         $insurance3 = Insurance::create(["name" => "Seguros banorte"]);
         $insurance4 = Insurance::create(["name" => "Metlife"]);
         $insurance5 = Insurance::create(["name" => "Allianz Seguros"]);
-
     }
 }
