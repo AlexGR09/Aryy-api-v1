@@ -6,19 +6,16 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 
-class StateSeeder extends Seeder
+class CitySeederJson extends Seeder
 {
     public function run()
     {
-        //STORAGE/APP/JSON
-        $json = Storage::disk('local')->get('/json/states.json');
+        $json = Storage::disk('local')->get('/json/cities(base).json');
         $data = json_decode($json);
-
         foreach ($data as $obj) {
-            \DB::table('states')->insert([
+            \DB::table('cities')->insert([
                 ['name' => $obj->name,
-                'short_name' => $obj->short_name,
-                'country_id' => 1]
+                'state_id' => $obj->state_id]
             ]);
         }
     }

@@ -30,16 +30,8 @@ class PhysicianController extends Controller
                     'a1_license' => $request->a1_license,
                     'city_id' => $request->city_id
                 ]);
-
                 $this->user->syncRoles(['User', 'Physician']);
-                //     $roles = array()
-                //     $permission->syncRoles($roles);
-
-                // return $roles;
-
-                // $role->syncPermissions($request->permissions);
                 DB::commit();
-                // ACA SE SINCRONIXZARÁN LOS ROLES
                 return (new PhysicianResource($physician))->additional(['message' => 'Perfil médico creado con éxito.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
@@ -51,18 +43,10 @@ class PhysicianController extends Controller
 
     public function show() {
         try {
-            // $user = Physician::find(1)->user;
-            // return $user;
-
-            $physician = Physician::where('user_id', $this->user->id)->get();
-            // $physician = Physician::with('user')
-            //         ->where('user_id', $this->user->id)        
-            //         ->get();
-
-            // return $physician;
-
-            return ( PhysicianResource::collection($physician))->additional(['message' => 'Mi perfil médico.']);
-           
+            if ($this->user->hasRole('Physician')) {
+                $physician = Physician::where('user_id', $this->user->id)->get();
+                return ( PhysicianResource::collection($physician))->additional(['message' => 'Mi perfil médico.']);
+            }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
