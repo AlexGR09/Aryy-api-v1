@@ -21,13 +21,14 @@ class PatientContoller extends Controller
     
     public function index()
     {
-        $user= auth()->user()->id;
         try {
-            if ($this->user->hasPermissionTo('show profile patient')) {
+            if($this->user->hasPermissionTo('show profile')){
 
-                $patient = Patient::where("user_id",$user)->first();
+                if ($this->user->hasPermissionTo('show profile patient')) {
+                    /* $user=User::where('id',$this->user->id)->first(); */
+                    return (new UserResource($this->user))->additional(['message' => 'Usuario encontrado']);
+                }
 
-                return (new PatientResource($patient))->additional(['message' => 'usuario encontrado.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
@@ -46,9 +47,8 @@ class PatientContoller extends Controller
                     return (new PatientResource($request))->additional(['message' => 'El usario paciente ya existe']);
                 }
                 $patient = Patient::create(['user_id' => $this->user->id]);
-                $patient->assignRole('NewPatient');
+                User::where('id',$this->user->id)->first()->assignRole('User','NewPatient');
 
-                
                 return (new PatientResource($patient))->additional(['message' => 'Paciente creado con éxito.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
@@ -57,12 +57,16 @@ class PatientContoller extends Controller
         }
     }
 
-    public function show(Patient $patient)
+    public function show(Patient $patient,User $user)
     {
         
         try {
-            if ($this->user->hasPermissionTo('show profile patient')) {
-                return (new PatientResource($patient))->additional(['message' => 'Usuario encontrado']);
+            if($this->user->hasPermissionTo('show profile')){
+                if ($this->user->hasPermissionTo('show profile patient')) {
+                /* $user_patient=Patient::where('user_id',$this->user->id)->first();
+                return (new PatientResource($user_patient))->additional(['message' => 'Usuario encontrado']); */
+                    return (new PatientResource($patient))->additional(['message' => 'Usuario encontrado']);
+                }
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
@@ -70,9 +74,22 @@ class PatientContoller extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Patient $patient)
     {
-        //
+       /*  try {
+            if ($this->user->hasPermissionTo('complete profile patient')) {
+               
+                $patient->name = $request->name;
+                $patient->save();
+            
+                DB::commit();
+                return (new PatientResource($patient))->additional(['message' => 'paciente actualizado con éxito.']);
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 503);
+        } */
     }
 
     public function destroy($id)

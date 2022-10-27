@@ -57,7 +57,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //PATIENT
     Route::resource('patient', $patient.PatientContoller::class)
-        ->only(['index','store','show']);
+        ->only(['index','store','show','update']);
 });
 
 

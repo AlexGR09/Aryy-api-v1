@@ -17,7 +17,12 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('photo')->nullable();
+            $table->string('emergency_number')->nullable();
+            $table->string('address')->nullable();
+            $table->string('zip_code')->nullable();
+            $table->enum('id_card',array('INE','Pasaporte'))->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->unsignedBigInteger('health_insurance_id')->nullable();
             $table->foreign('health_insurance_id')->references('id')->on('health_insurances')->onDelete('cascade');
             $table->unsignedBigInteger('medical_history_id')->nullable();
