@@ -11,7 +11,7 @@ class City extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name'
+        'name', 'state_id'
     ];
 
     public function state(){

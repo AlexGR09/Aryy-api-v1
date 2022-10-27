@@ -2,27 +2,24 @@
 
 namespace App\Providers;
 
+use App\Models\Country;
+use App\Models\State;
+use App\Observers\Catalogues\CountryObserver;
+use App\Observers\Catalogues\StateObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
+
     public function register()
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
     public function boot()
     {
-        //
+        Country::observe(CountryObserver::class);
+        State::observe(StateObserver::class);
     }
+
 }

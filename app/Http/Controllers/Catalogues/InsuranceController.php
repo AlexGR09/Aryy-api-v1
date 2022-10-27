@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Catalogues;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Catalogues\OcupationResource;
-use App\Http\Resources\RoleResource;
-use App\Models\Ocupation;
+use App\Http\Resources\Catalogues\InsuranceResource;
+use App\Models\Insurance;
 use Illuminate\Http\Request;
-use Spatie\Permission\Contracts\Role;
 use Illuminate\Support\Facades\DB;
 
-class OcupationController extends Controller
+class InsuranceController extends Controller
 {
     protected $user;
 
@@ -21,9 +19,9 @@ class OcupationController extends Controller
     public function index()
     {
         try {
-            if ($this->user->hasPermissionTo('show ocupations')) {
-                $ocupation = Ocupation::paginate(5);
-                return (OcupationResource::collection($ocupation))->additional(['message' => 'ocupaciones encontradas']);
+            if ($this->user->hasPermissionTo('show insurances')) {
+                $insurance = Insurance::paginate(5);
+                return (InsuranceResource::collection($insurance))->additional(['message' => 'Seguros medicos encontrados']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {  
@@ -34,12 +32,12 @@ class OcupationController extends Controller
     public function store(Request $request)
     {
         try {
-            if ($this->user->hasPermissionTo('create ocupations')) {
+            if ($this->user->hasPermissionTo('create insurances')) {
                 
-                $ocupation = Ocupation::create(['name' => $request->name]);
+                $insurance = Insurance::create(['name' => $request->name]);
                 
                 DB::commit();
-                return (new OcupationResource($ocupation))->additional(['message' => 'Ocupacion creada correctamente']);
+                return (new InsuranceResource($insurance))->additional(['message' => 'Seguros medicos creado correctamente']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
@@ -48,11 +46,11 @@ class OcupationController extends Controller
         }
     }
 
-    public function show(Ocupation $ocupation)
+    public function show(Insurance $insurance)
     {
         try {
-            if ($this->user->hasPermissionTo('show ocupations')) {
-                return (new OcupationResource($ocupation))->additional(['message' => 'Ocupaciones encontradas']);
+            if ($this->user->hasPermissionTo('show insurances')) {
+                return (new InsuranceResource($insurance))->additional(['message' => 'Servicios medicos encontrados']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
@@ -60,16 +58,16 @@ class OcupationController extends Controller
         }
     }
 
-    public function update(Request $request, Ocupation $ocupation)
+    public function update(Request $request, Insurance $insurance)
     {
         try {
-            if ($this->user->hasPermissionTo('edit ocupations')) {
+            if ($this->user->hasPermissionTo('edit medical services')) {
                
-                $ocupation->name = $request->name;
-                $ocupation->save();
+                $insurance->name = $request->name;
+                $insurance->save();
             
                 DB::commit();
-                return (new OcupationResource($ocupation))->additional(['message' => 'Ocupacion actualizada con éxito.']);
+                return (new InsuranceResource($insurance))->additional(['message' => 'Servicio medico actualizado con éxito.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
@@ -78,12 +76,12 @@ class OcupationController extends Controller
         }
     }
 
-    public function destroy(Ocupation $ocupation)
+    public function destroy(Insurance $insurance)
     {
         try {
             if ($this->user->hasPermissionTo('delete ocupations')) {
-                $ocupation->delete();
-                return response()->json(['message' => 'Ocupacion eliminada con éxito.']);
+                $insurance->delete();
+                return response()->json(['message' => 'Seguro medico eliminado con éxito.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {

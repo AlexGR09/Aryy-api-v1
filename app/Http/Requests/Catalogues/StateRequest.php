@@ -15,7 +15,7 @@ class StateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:32',
+            'name' => ($this->getMethod() == 'POST') ? 'required|max:32|unique:states' : 'required|max:32|unique:states,name,'.$this->state->id,
             'country_id' => 'required'
         ];
     }
