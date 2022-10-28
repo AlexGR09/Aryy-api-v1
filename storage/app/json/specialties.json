@@ -138,10 +138,10 @@
         "name": "Especialista en Medicina Integrada"
     },
     {
-        "name": "Internista,"
+        "name": "Internista"
     },
     {
-        "name": "Especialista en Medicina Nuclear,"
+        "name": "Especialista en Medicina Nuclear"
     },
     {
         "name": "Especialista en Medicina Preventiva"
@@ -310,9 +310,6 @@
     },
     {
         "name": "Otorrinolaringólogo Pediátrico"
-    },
-    {
-        "name": "Sin Especialidad"
     },
     {
         "name": "Cirujano vascular"

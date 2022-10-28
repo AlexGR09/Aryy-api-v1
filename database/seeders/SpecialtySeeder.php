@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class SpecialtySeeder extends Seeder
@@ -17,7 +18,7 @@ class SpecialtySeeder extends Seeder
          $data = json_decode($json);
  
          foreach ($data as $obj) {
-             \DB::table('specialties')->insert([
+             DB::table('specialties')->insert([
                  [
                     'name' => $obj->name,
                  ]
