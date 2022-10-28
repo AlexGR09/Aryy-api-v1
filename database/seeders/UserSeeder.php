@@ -16,7 +16,6 @@ class UserSeeder extends Seeder
         $user->email = "admin@email.com";
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->last_name = "admin";
-        $user->sex = "Masculino";
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->save();
@@ -26,7 +25,6 @@ class UserSeeder extends Seeder
         $user->email = "paciente@gmail.com";
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->last_name = "prueba";
-        $user->sex = "Masculino";
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->save();
@@ -36,7 +34,6 @@ class UserSeeder extends Seeder
         $user->email = "medico@gmail.com";
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->last_name = "prueba";
-        $user->sex = "Masculino";
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->save();
