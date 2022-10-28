@@ -10,6 +10,17 @@
         "Alergología pediátrica",
         "Alergología ambulatoria"
     ],
+    "Anatomopatólogo":[
+         "Técnicas Cuantitativas",
+         "Patología Molecular y Citogenética",
+         "Oncopatología",
+         "Nefropatología",
+         "Microscopía Electrónica",
+         "Inmuno-Histoquímica",
+         "Cultivo de Tejidos",
+         "Citología y Biopsias",
+         "Autopsias-Necropsias"
+    ],
     "Anestesiólogo": [
         "Tratamiento del Dolor",
         "Tanatología",
