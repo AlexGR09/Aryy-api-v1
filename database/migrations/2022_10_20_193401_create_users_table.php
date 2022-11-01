@@ -18,7 +18,7 @@ return new class () extends Migration {
             $table->string('password');
             $table->string('code_country')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('photo')->nullable();
+            $table->json('photo')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
