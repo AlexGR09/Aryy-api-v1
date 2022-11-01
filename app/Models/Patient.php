@@ -14,8 +14,11 @@ class Patient extends Model
 
     protected $fillable = [
         'user_id',
-        'photo'
-
+        'address',
+        'zip_code',
+        'country_code',
+        'emergency_number',
+        'card',
     ];
 
     public function user()
@@ -23,9 +26,9 @@ class Patient extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function ocupations()
+    public function occupations()
     {
-        return $this->hasMany('App\Models\OcupationPatient');
+        return $this->hasMany('App\Models\OccupationPatient');
     }
 
     public function health_insurance()
