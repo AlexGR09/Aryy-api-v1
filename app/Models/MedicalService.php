@@ -8,13 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MedicalService extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'name'
     ];
 
-    public function physicians(){
+    public function physicians()
+    {
         return $this->hasMany('App\Models\MedicalServicesPhysician');
     }
 }

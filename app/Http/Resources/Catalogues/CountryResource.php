@@ -6,7 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class CountryResource extends JsonResource
 {
-    
     public function toArray($request)
     {
         return [
@@ -14,5 +13,4 @@ class CountryResource extends JsonResource
             'name' => $this->name
         ];
     }
-
 }

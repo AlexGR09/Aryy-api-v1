@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CityRequest extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -19,5 +18,4 @@ class CityRequest extends FormRequest
             'state_id' => 'required'
         ];
     }
-
 }

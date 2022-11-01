@@ -8,11 +8,7 @@ use App\Models\User;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    
     public function run()
     {
         $user = new User();
@@ -24,7 +20,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->save();
-        
+
         $user = new User();
         $user->name = "Paciente";
         $user->email = "paciente@gmail.com";
@@ -44,5 +40,12 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->save();
+
+        // ASIGNANDO ROLES A USUARIOS
+        $user1 = User::where('id', 1)->first();
+        $user1->assignRole(['Administrator']);
+
+        $user2 = User::where('id', 2)->first();
+        $user2->assignRole(['User', 'NewPatient']);
     }
 }

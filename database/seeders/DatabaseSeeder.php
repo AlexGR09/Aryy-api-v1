@@ -8,22 +8,21 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
+    
     public function run()
     {
-        $this->call(UserSeeder::class);
+        $this->call(PermissionSeeder::class);
         $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(CountrySeeder::class);
         $this->call(StateSeeder::class);
         $this->call(CitySeeder::class);
+        // $this->call(CitySeederJson::class);
         $this->call(AlergiesSeeder::class);
         $this->call(OcupationSeeder::class);
         $this->call(InsuranceSeeder::class);
-        $this->call(SpecialitySeeder::class);
+        $this->call(SpecialtySeeder::class);
+        $this->call(SubSpecialtySeeder::class);
         $this->call(DiseaseSeeder::class);
         $this->call(MedicalServiceSeeder::class);
         $this->call(MedicalHistorySeeder::class);

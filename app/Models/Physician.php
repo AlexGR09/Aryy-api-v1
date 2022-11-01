@@ -8,35 +8,42 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Physician extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
+        'user_id',
         'professional_name',
-        'phone_number',
         'country_code',
+        'phone_number',
         'gender',
-        'bussiness_email',
         'c1_license',
-        'a1_license'
+        'a1_license',
+        'city_id'
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\Models\User');
     }
 
-    public function specialities(){
+    public function specialities()
+    {
         return $this->hasMany('App\Models\SpecialitiesPhysician');
     }
 
-    public function diseases(){
+    public function diseases()
+    {
         return $this->hasMany('App\Models\DiseasesPhysician');
     }
 
-    public function medical_services(){
+    public function medical_services()
+    {
         return $this->hasMany('App\Models\MedicalServicesPhysician');
     }
 
-    public function facilities(){
+    public function facilities()
+    {
         return $this->hasMany('App\Models\FacilitiesPhysician');
     }
 }

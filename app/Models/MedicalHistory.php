@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MedicalHistory extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'current_medication',
@@ -17,11 +18,13 @@ class MedicalHistory extends Model
         'habits'
     ];
 
-    public function patient(){
+    public function patient()
+    {
         return $this->hasOne('App\Models\Patient');
     }
 
-    public function alergy(){
+    public function alergy()
+    {
         return $this->belongsTo('App\Models\Alergy');
     }
 }

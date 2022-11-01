@@ -8,14 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Alergy extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'name'
     ];
 
-    public function medical_histories(){
+    public function medical_histories()
+    {
         return $this->hasMany('App\Models\MedicalHistory');
     }
-
 }

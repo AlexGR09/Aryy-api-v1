@@ -9,14 +9,15 @@ use App\Models\City;
 
 class CityController extends Controller
 {
-
     protected $user;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->user = auth()->user();
     }
 
-    public function index() {
+    public function index()
+    {
         try {
             if ($this->user->hasPermissionTo('show cities')) {
                 $cities = City::paginate(5);
@@ -28,7 +29,8 @@ class CityController extends Controller
         }
     }
 
-    public function show(City $city) {
+    public function show(City $city)
+    {
         try {
             if ($this->user->hasPermissionTo('show cities')) {
                 return (new CityResource($city))->additional(['message' => 'Ciudad encontrada.']);
@@ -39,7 +41,8 @@ class CityController extends Controller
         }
     }
 
-    public function store(CityRequest $request) {
+    public function store(CityRequest $request)
+    {
         try {
             if ($this->user->hasPermissionTo('create cities')) {
                 $city = City::create(['name' => $request->name, 'state_id' => $request->state_id]);
@@ -51,7 +54,8 @@ class CityController extends Controller
         }
     }
 
-    public function update(CityRequest $request, City $city) {
+    public function update(CityRequest $request, City $city)
+    {
         try {
             if ($this->user->hasPermissionTo('edit cities')) {
                 $city->name = $request->name;
@@ -65,7 +69,8 @@ class CityController extends Controller
         }
     }
 
-    public function destroy(City $city) {
+    public function destroy(City $city)
+    {
         try {
             if ($this->user->hasPermissionTo('delete cities')) {
                 $city->delete();
@@ -76,5 +81,4 @@ class CityController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-
 }

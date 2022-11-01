@@ -6,8 +6,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class PermissionResource extends JsonResource
 {
-
-    public function toArray($request) {
+    public function toArray($request)
+    {
         return [
             'permission_id' => $this->id,
             'name' => $this->name,
@@ -16,5 +16,4 @@ class PermissionResource extends JsonResource
             // 'updated_at' => $this->updated_at,
         ];
     }
-
 }

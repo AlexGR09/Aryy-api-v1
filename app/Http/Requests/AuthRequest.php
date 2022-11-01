@@ -13,11 +13,11 @@ class AuthRequest extends FormRequest
 
     public function rules()
     {
-        if (request()->is('api/login') ){
+        if (request()->is('api/login')) {
             return [
                 'email' => 'required|email|max:35',
                 'password' => 'required|min:8|max:16'
-            ];  
+            ];
         }
         return [
             'name' => 'required|max:40',
@@ -25,7 +25,5 @@ class AuthRequest extends FormRequest
             'email' => ($this->getMethod() == 'POST') ? 'required|email|max:35|unique:users' : 'required|email|max:35|unique:users,email,'.auth()->user()->id,
             'password' => ($this->getMethod() == 'POST') ? 'required|min:8|max:16' : 'min:8|max:16'
          ];
-        
     }
-
 }

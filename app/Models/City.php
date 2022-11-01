@@ -8,17 +8,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class City extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'name', 'state_id'
     ];
 
-    public function state(){
+    public function state()
+    {
         return $this->belongsTo('App\Models\State');
     }
 
-    public function users(){
+    public function users()
+    {
         return $this->hasMany('App\Models\User');
     }
 }
