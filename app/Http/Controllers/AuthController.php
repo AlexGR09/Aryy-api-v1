@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AuthRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -27,8 +29,8 @@ class AuthController extends Controller
             $user->remember_token = $token;
             $user->save();
             return (new UserResource($user))->additional([
-                  'message' => 'Bienvenido a Aryy.',
-                  'access_token' => $token ]);
+                'message' => 'Bienvenido a Aryy.',
+                'access_token' => $token ]);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -37,17 +39,15 @@ class AuthController extends Controller
     public function register(AuthRequest $request)
     {
         try {
-            $mobile = $request->mobile; // Es Mobile o SPA
             $user = new User();
-            $user->name = $request->name;
-            $user->last_name = $request->last_name;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
             $user->assignRole('User');
-            if ($mobile) {
+            if ($request->mobile) { // SI ES MOBILE SERÁ UN USUARIO PACIENTE, DE LO CONTRARIO SERÁ UN USUARIO MÉDICO
                 $user->assignRole('NewPatient');
-            }
-            if (!$mobile) {
+            } else {
+                $user->code_country = $request->code_country;
+                $user->phone_number = $request->phone_number;
                 $user->assignRole('NewPhysician');
             }
             $user->save();
@@ -69,48 +69,75 @@ class AuthController extends Controller
         }
     }
 
-     public function update(AuthRequest $request)
-     {
-         try {
-             if ($this->user->hasPermissionTo('edit profile')) {
-                 $this->user->name = $request->name;
-                 $this->user->last_name = $request->last_name;
-                 $this->user->email = $request->email;
-                 if ($request->password) {
-                     $this->user->password = bcrypt($request->password);
-                     $this->logout(); // Invocación del método logout
-                 }
-                 $this->user->save();
-                 return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
-             }
-             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
-         } catch (\Throwable $th) {
-             return response()->json(['error' => $th->getMessage()], 503);
-         }
-     }
+    public function update(AuthRequest $request)
+    {
+    try {
+        if ($this->user->hasPermissionTo('edit profile')) {
+            DB::beginTransaction();
+            $this->user->name = $request->name;
+            $this->user->last_name = $request->last_name;
+            $this->user->gender = $request->gender;
+            $this->user->birthday = $request->birthday;
+            $this->user->code_country = $request->code_country;
+            $this->user->phone_number = $request->phone_number;
+            $this->user->email = $request->email;
+            // Si se recibe una imagen
+            if ($request->photo) {
+                // Si existe una foto previa asociada al usuario, esta se elimina
+                if (file_exists(public_path('profile-photos/'.$this->user->photo)) ){
+                    unlink(public_path("profile-photos/". $this->user->photo)); 
+                } 
+                $this->user->photo = $photoName = time()."_". $request->file('photo')->getClientOriginalName();
+                // Mueve la imagen cargada de temporal a la carpeta pública
+                $request->file('photo')->move(public_path("profile-photos"), $photoName);
+            }
+            // Si el usuario es nuevo médico se actualizan sus roles
+            if ($this->user->hasRole('NewPhysician')) {
+                $this->user->syncRoles(['User', 'Physician']);
+            }
+            // Si el usuario es nuevo paciente se actualizan sus roles
+            if ($this->user->hasRole('NewPatient')) {
+                $this->user->syncRoles(['User', 'Patient']);
+            }
+            // Si se recibe una contraseña
+            if ($request->password) {
+                $this->user->password = bcrypt($request->password);
+                $this->logout(); // Invocación del método logout
+            }
+            $this->user->save();
+            DB::commit();
+            return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
+        }
+        return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) {
+        DB::rollBack();
+        // FALTA REGRESAR LA IMAGEN BORRADA
+        return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
 
-     public function destroy()
-     {
-         try {
-             if ($this->user->hasPermissionTo('delete profile')) {
-                 $this->user->delete();
-                 return (new UserResource($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
-             }
-             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
-         } catch (\Throwable $th) {
-             return response()->json(['error' => $th->getMessage()], 503);
-         }
-     }
+    public function destroy()
+    {
+        try {
+            if ($this->user->hasPermissionTo('delete profile')) {
+                $this->user->delete();
+                return (new UserResource($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
 
-     public function logout()
-     {
-         try {
-             $this->user->tokens()->delete();
-             $this->user->remember_token = null;
-             $this->user->save();
-             return (new UserResource($this->user))->additional(['message' => 'Cierre de sesión exitoso, adiós']);
-         } catch (\Throwable $th) {
-             return response()->json(['error' => $th->getMessage()], 503);
-         }
-     }
+    public function logout()
+    {
+    try {
+        $this->user->tokens()->delete();
+        $this->user->remember_token = null;
+        $this->user->save();
+        return (new UserResource($this->user))->additional(['message' => 'Cierre de sesión exitoso, adiós']);
+    } catch (\Throwable $th) {
+        return response()->json(['error' => $th->getMessage()], 503);
+    }
+    }
 }
