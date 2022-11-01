@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AuthRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class AuthRequest extends FormRequest
         return true;
     }
 
-    public function rules()
+    public function rules(Request $request)
     {
         if (request()->is('api/login')) {
             return [
@@ -19,11 +21,38 @@ class AuthRequest extends FormRequest
                 'password' => 'required|min:8|max:16'
             ];
         }
-        return [
-            'name' => 'required|max:40',
-            'last_name' => 'required|min:1|max:60',
-            'email' => ($this->getMethod() == 'POST') ? 'required|email|max:35|unique:users' : 'required|email|max:35|unique:users,email,'.auth()->user()->id,
-            'password' => ($this->getMethod() == 'POST') ? 'required|min:8|max:16' : 'min:8|max:16'
-         ];
+
+        if (request()->is('api/register')) {
+            return [
+                'email' => 'required|email|max:35|unique:users',
+                'password' => 'required|min:8|max:16',
+                'code_country' => (!$request->mobile) ? 'required|max:6' : '',
+                'phone_number' => (!$request->mobile) ? 'required|unique:users|regex:/^([0-9\s\-\+\(\)]*)$/|min:10' : '' 
+            ];
+        }
+
+        if (request()->is('api/profile')) {
+            return [
+                'name' => 'required|max:40',
+                'last_name' => 'required|max:40',
+                'gender' => 'required|'. Rule::in(['Masculino','Femenino']),
+                'birthday' => 'required|date',
+                'email' => 'required|email|max:35|'. Rule::unique('users')->ignore(auth()->user()),
+                'password' => 'min:8|max:16',
+                'code_country' =>  'required|max:6',
+                'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|'. Rule::unique('users')->ignore(auth()->user()), 
+                'photo' => 'image|mimes:jpg,jpeg,png|max:2000|dimensions:max_width=512,max_height=512'
+            ];
+        }
     }
+
+    public function attributes()
+    {
+        return [
+            'code_country' => 'código del país',
+            'phone_number' => 'número de teléfono',
+            'birthday' => 'fecha de nacimiento'
+        ];
+    }
+
 }
