@@ -5,11 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class () extends Migration {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('physicians', function (Blueprint $table) {
@@ -17,23 +13,15 @@ return new class () extends Migration {
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('professional_name');
-            $table->string('country_code');
-            $table->string('phone_number');
-            $table->enum('gender',array('Masculino','Femenino'))->nullable();
-            $table->string('c1_license');
-            $table->string('a1_license');
-            $table->unsignedBigInteger('city_id');
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->json('certificates');
+            $table->json('social_networks');
+            $table->string('biography');
+            $table->string('recipe_template');
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('physicians');
