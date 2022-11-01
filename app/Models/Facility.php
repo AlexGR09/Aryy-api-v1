@@ -13,12 +13,14 @@ class Facility extends Model
 
     protected $fillable = [
         'facility_name',
-        'type_of_facility',
         'address',
         'phone_number',
         'clues',
         'zip_code',
-        'schedule'
+        'schedule',
+        'consultation_length',
+        'accessibility',
+
     ];
 
     public function physicians()

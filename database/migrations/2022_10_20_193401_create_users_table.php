@@ -16,7 +16,7 @@ return new class () extends Migration {
             $table->date('birthday')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('code_country')->nullable();
+            $table->string('country_code')->nullable();
             $table->string('phone_number')->nullable();
             $table->json('photo')->nullable();
             $table->timestamp('email_verified_at')->nullable();
