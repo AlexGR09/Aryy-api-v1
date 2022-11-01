@@ -8,6 +8,7 @@ use App\Http\Resources\Physician\PhysicianResource;
 use App\Models\Physician;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class PhysicianController extends Controller
 {

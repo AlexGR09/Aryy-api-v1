@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Catalogues;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Catalogues\SpecialityRequest;
-use App\Http\Resources\Catalogues\SpecialityResource;
+use App\Http\Requests\Catalogues\SpecialtyRequest;
+use App\Http\Resources\Catalogues\SpecialtyResource;
 use App\Models\Disease;
-use App\Models\Speciality;
+use App\Models\Specialty;
 use Illuminate\Http\Request;
 
-class SpecialityController extends Controller
+class SpecialtyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +19,9 @@ class SpecialityController extends Controller
     public function index()
     {
         try {
-            if ($this->user->hasPermissionTo('show specialities')) {
-                $specialities = Speciality::paginate(5);
-                return (SpecialityResource::collection($specialities))->additional(['message' => 'Estados encontrados.']);
+            if ($this->user->hasPermissionTo('show specialties')) {
+                $specialties = Specialty::paginate(5);
+                return (SpecialtyResource::collection($specialties))->additional(['message' => 'Estados encontrados.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
@@ -35,21 +35,21 @@ class SpecialityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SpecialityRequest $request)
+    public function store(SpecialtyRequest $request)
     {
         try {
-            if ($this->user->hasPermissionTo('create specialities')) {
-                $state = Speciality::create(['name' => $request->name]);
-                return (new SpecialityResource($state))->additional(['message' => 'Especialidad creada con éxito.']);
+            if ($this->user->hasPermissionTo('create specialties')) {
+                $state = Specialty::create(['name' => $request->name]);
+                return (new SpecialtyResource($state))->additional(['message' => 'Especialidad creada con éxito.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
-        /* $speciality = Speciality::create([
+        /* $specialty = Specialty::create([
             'name' => $request->name,
         ]);
-        return new SpecialityResource($speciality); */
+        return new SpecialtyResource($specialty); */
     }
 
     /**
@@ -58,11 +58,11 @@ class SpecialityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Speciality $speciality)
+    public function show(Specialty $specialty)
     {
         try {
-            if ($this->user->hasPermissionTo('show specialities')) {
-                return (new SpecialityResource($speciality))->additional(['message' => 'Especialidad encontrada.']);
+            if ($this->user->hasPermissionTo('show specialties')) {
+                return (new SpecialtyResource($specialty))->additional(['message' => 'Especialidad encontrada.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
@@ -77,13 +77,13 @@ class SpecialityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SpecialityRequest $request, Speciality $speciality)
+    public function update(SpecialtyRequest $request, Specialty $specialty)
     {
         try {
-            if ($this->user->hasPermissionTo('edit specialities')) {
-                $speciality->name = $request->name;
-                $speciality->save();
-                return (new SpecialityResource($speciality))->additional(['message' => 'Especialidad actualizada exitosamente.']);
+            if ($this->user->hasPermissionTo('edit specialties')) {
+                $specialty->name = $request->name;
+                $specialty->save();
+                return (new SpecialtyResource($specialty))->additional(['message' => 'Especialidad actualizada exitosamente.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
@@ -97,12 +97,12 @@ class SpecialityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Speciality$speciality)
+    public function destroy(Specialty$specialty)
     {
         try {
-            if ($this->user->hasPermissionTo('delete specialities')) {
-                $speciality->delete();
-                return (new SpecialityResource($speciality))->additional(['message' => 'La especialidad se eliminó de forma exitosa']);
+            if ($this->user->hasPermissionTo('delete specialties')) {
+                $specialty->delete();
+                return (new SpecialtyResource($specialty))->additional(['message' => 'La especialidad se eliminó de forma exitosa']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {

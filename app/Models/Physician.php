@@ -27,9 +27,9 @@ class Physician extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function specialities()
+    public function specialties()
     {
-        return $this->hasMany('App\Models\SpecialitiesPhysician');
+        return $this->hasMany('App\Models\SpecialtiesPhysician');
     }
 
     public function diseases()

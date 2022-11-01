@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SpecialitiesPhysician extends Model
+class SpecialtiesPhysician extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -16,8 +16,8 @@ class SpecialitiesPhysician extends Model
         return $this->belongsTo('App\Models\Physician');
     }
 
-    public function speciality()
+    public function specialty()
     {
-        return $this->belongsTo('App\Models\Speciality');
+        return $this->belongsTo('App\Models\Specialty');
     }
 }

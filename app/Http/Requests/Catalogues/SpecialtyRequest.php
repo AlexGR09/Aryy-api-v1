@@ -4,7 +4,7 @@ namespace App\Http\Requests\Catalogues;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SpecialityRequest extends FormRequest
+class SpecialtyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
