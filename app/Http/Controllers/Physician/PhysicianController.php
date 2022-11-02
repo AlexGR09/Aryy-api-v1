@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Physician\PhysicianRequest;
 use App\Http\Resources\Physician\PhysicianResource;
 use App\Models\Physician;
+use App\Models\PhysicianSpecialty;
+use App\Models\SpecialtiesPhysician;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -25,13 +27,24 @@ class PhysicianController extends Controller
                 $physician = Physician::create([
                     'user_id' => $this->user->id,
                     'professional_name' => $request->professional_name,
-                    'country_code' => $request->country_code,
-                    'phone_number' => $request->phone_number,
-                    'c1_license' => $request->c1_license,
-                    'a1_license' => $request->a1_license,
-                    'city_id' => $request->city_id
+                    'certificates' => $request->certificates,
+                    'biography' => $request->biography,
+                    'recipe_template' => $request->recipe_template,
+                    'social_networks' => $request->social_networks,
+                    'is_verified' => 'in_verification'
                 ]);
-                $this->user->syncRoles(['User', 'Physician']);
+                // DB::table('physician_specialty')->insert([
+                //     $request->specialties
+                // ]);
+                // REALIZAR UN CICLO AQUÍ PARA INSERTAR 
+                return $request->specialties->specialty_id;
+
+                PhysicianSpecialty::create([
+                    'specialty_id' => $request->specialties->specialty_id
+                    // $request->specialties
+                ]);
+                // SpecialtiesPhysician
+                $this->user->syncRoles(['User', 'NewPhysicianInVerification']);
                 DB::commit();
                 return (new PhysicianResource($physician))->additional(['message' => 'Perfil médico creado con éxito.']);
             }
@@ -44,7 +57,7 @@ class PhysicianController extends Controller
 
     public function show() {
         try {
-            if ($this->user->hasRole('Physician')) {
+            if ($this->user->hasPermissionTo('show physician')) {
                 $physician = Physician::where('user_id', $this->user->id)->get();
                 return ( PhysicianResource::collection($physician))->additional(['message' => 'Mi perfil médico.']);
             }

@@ -10,13 +10,14 @@ return new class () extends Migration {
     {
         Schema::create('physicians', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('professional_name');
             $table->json('certificates');
-            $table->json('social_networks');
-            $table->string('biography');
-            $table->string('recipe_template');
+            $table->json('social_networks')->nullable();
+            $table->string('biography')->nullable();
+            $table->string('recipe_template')->nullable();
+            $table->enum('is_verified', ['not_verified', 'in_verification', 'verified'])->default('not_verified');
             $table->timestamps();
             $table->softDeletes();
         });

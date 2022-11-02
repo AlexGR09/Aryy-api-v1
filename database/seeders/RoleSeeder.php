@@ -24,9 +24,13 @@ class RoleSeeder extends Seeder
             [
                 'name' => 'NewPatient', 
                 'guard_name' => 'sanctum'
-            ],
+            ],    
             [
                 'name' => 'NewPhysician', 
+                'guard_name' => 'sanctum'
+            ],
+            [
+                'name' => 'NewPhysicianInVerification', 
                 'guard_name' => 'sanctum'
             ],
             [
@@ -52,6 +56,8 @@ class RoleSeeder extends Seeder
         Role::findByName('NewPatient')->givePermissionTo(['complete patient profile']);
         // NUEVO MÉDICO
         Role::findByName('NewPhysician')->givePermissionTo(['complete physician profile']);
+        // MÉDICO EN VERIFICACIÓN 
+        Role::findByName('NewPhysicianInVerification')->givePermissionTo(['show physician']);
         // PACIENTE
         Role::findByName('Patient')->givePermissionTo([
             'show patient', 

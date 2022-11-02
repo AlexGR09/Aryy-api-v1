@@ -63,4 +63,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('/physician', 'show');
         Route::post('/physician', 'store');
     });
+
+
 });

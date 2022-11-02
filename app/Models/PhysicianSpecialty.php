@@ -6,10 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SpecialtiesPhysician extends Model
+class PhysicianSpecialty extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable = [
+        'specialty_id',
+        'physician_id',
+        'license',
+        'institution'
+    ];
 
     public function physician()
     {
