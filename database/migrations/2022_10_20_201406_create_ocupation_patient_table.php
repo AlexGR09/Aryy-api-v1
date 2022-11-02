@@ -15,7 +15,7 @@ return new class () extends Migration {
         Schema::create('occupation_patient', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('occupations_id');
-            $table->foreign('occupations_id')->references('id')->on('ocupations')->onDelete('cascade');
+            $table->foreign('occupations_id')->references('id')->on('occupations')->onDelete('cascade');
             $table->unsignedBigInteger('patients_id');
             $table->foreign('patients_id')->references('id')->on('patients')->onDelete('cascade');
             $table->timestamps();

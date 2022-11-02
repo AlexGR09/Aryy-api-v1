@@ -11,7 +11,7 @@ class OcupationSeeder extends Seeder
     
     public function run()
     {
-        DB::table('ocupations')->insert([
+        DB::table('occupations')->insert([
             ['name'=>'Bombero'],
             ['name'=>'Dentista'],
             ['name'=>'Enfermera'],

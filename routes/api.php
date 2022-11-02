@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EncrypController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Physician\PhysicianController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PruebaEncryp;
 
 
 // CREAR RUTAS SÓLO PARA ADMINISTRADOR
@@ -63,4 +65,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('/physician', 'show');
         Route::post('/physician', 'store');
     });
+
+    Route::resource('prueba',PruebaEncryp::class)->only(['store','show']);
 });
+
