@@ -4,13 +4,14 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DiseaseSeeder extends Seeder
 {
 
     public function run()
     {
-        \DB::table('diseases')->insert([
+        DB::table('diseases')->insert([
             // ACUPUNTOR
             ['name' => 'Fibromialgia'],
             ['name' => 'Dolores de cabeza'],

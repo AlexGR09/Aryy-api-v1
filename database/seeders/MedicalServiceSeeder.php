@@ -6,12 +6,13 @@ use App\Models\MedicalService;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use Illuminate\Support\Facades\DB;
 class MedicalServiceSeeder extends Seeder
 {
     
     public function run()
     {
-        \DB::table('medical_services')->insert([
+        DB::table('medical_services')->insert([
             // Servicos de Acupuntor
             ['name'=>'Homotoxicología'],
             ['name'=>'Ozonoterapia'],

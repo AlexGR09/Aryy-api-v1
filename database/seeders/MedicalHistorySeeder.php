@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class MedicalHistorySeeder extends Seeder
 {
@@ -19,7 +20,7 @@ class MedicalHistorySeeder extends Seeder
             "campo 4" => "valor 4"
         ];
 
-        \DB::table('medical_histories')->insert([
+        DB::table('medical_histories')->insert([
             [
                 'alergies_id' => 1,
                 'family_history' => json_encode($history1) 

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class CitySeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class CitySeeder extends Seeder
         $state_id = 1;
         foreach ($data as $state) {
                 foreach ($state as $city_state) {
-                    \DB::table('cities')->insert([
+                    DB::table('cities')->insert([
                         ['name' => $city_state,
                         'state_id' => $state_id ]
                     ]);
