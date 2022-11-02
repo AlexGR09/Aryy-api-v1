@@ -16,7 +16,7 @@ return new class () extends Migration {
             $table->json('certificates');
             $table->json('social_networks');
             $table->string('biography');
-            $table->string('recipe_template');
+            $table->json('recipe_template');
             $table->timestamps();
             $table->softDeletes();
         });

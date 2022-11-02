@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->string('zip_code');
             $table->json('schedule');
-            $table->string('duration_consultation');
+            $table->string('consultation_length');
             $table->json('accessibility');
             $table->string('clues')->nullable();
             $table->unsignedBigInteger('city_id')->nullable();

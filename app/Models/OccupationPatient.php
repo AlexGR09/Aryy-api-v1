@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OcupationPatient extends Model
+class OccupationPatient extends Model
 {
     use HasFactory;
 
@@ -14,8 +14,8 @@ class OcupationPatient extends Model
         return $this->belongsTo('App\Models\Patient');
     }
 
-    public function ocupation()
+    public function occupation()
     {
-        return $this->belongsTo('App\Models\Ocupation');
+        return $this->belongsTo('App\Models\Occupation');
     }
 }
