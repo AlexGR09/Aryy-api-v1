@@ -14,10 +14,10 @@ class Physician extends Model
         'user_id',
         'professional_name',
         'certificates',
-        'social_networks' ,
+        'social_networks',
         'biography',
         'recipe_template',
-        'city_id'
+        'is_verified'
     ];
 
     public function user()
@@ -25,10 +25,14 @@ class Physician extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function specialties()
-    {
-        return $this->hasMany('App\Models\SpecialtiesPhysician');
+    public function specialties() {
+        return $this->belongsToMany('App\Models\Specialty');
     }
+
+    // public function specialties()
+    // {
+    //     return $this->hasMany('App\Models\SpecialtiesPhysician');
+    // }
 
     public function diseases()
     {

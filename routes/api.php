@@ -66,6 +66,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::post('/physician', 'store');
     });
 
-    Route::resource('prueba',PruebaEncryp::class)->only(['store','show']);
+
 });
 
