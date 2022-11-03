@@ -14,12 +14,21 @@ class PhysicianRequest extends FormRequest
 
     public function rules()
     {
+        $data = json_decode($this->specialties, true);
         return [
             'professional_name' => 'required|max:50',
             'biography' => 'max:255',
             'recipe_template' => 'max:255',
             'certificates' => 'required|json',
-            'social_networks' => 'json'
+            'social_networks' => 'json',
+            // 'specialties' => 'required|json',
+            'specialties.*.name' => 'required|string',
+    
+            // '{$data}*.license' => 'required'
+            // $datas['*']['license']=> 'required'
+          
+            // json_decode($this->specialties->license) => 'required'
+            // '"$datas".license' => 'required'    
         ];
     }
 

@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Physician;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Physician\PhysicianRequest;
+use App\Http\Requests\Physician\PhysicianSpecialtyRequest;
 use App\Http\Resources\Physician\PhysicianResource;
 use App\Models\Physician;
-use App\Models\PhysicianSpecialty;
+// use App\Models\PhysicianSpecialty;
 use App\Models\SpecialtiesPhysician;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,36 +16,65 @@ use Spatie\Permission\Models\Role;
 class PhysicianController extends Controller
 {
     protected $user;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->user = auth()->user();
     }
 
-    public function store(PhysicianRequest $request) {
+    public function store(PhysicianRequest $request)
+    {
         try {
             if ($this->user->hasRole('NewPhysician')) {
-                DB::beginTransaction();
-                $physician = Physician::create([
-                    'user_id' => $this->user->id,
-                    'professional_name' => $request->professional_name,
-                    'certificates' => $request->certificates,
-                    'biography' => $request->biography,
-                    'recipe_template' => $request->recipe_template,
-                    'social_networks' => $request->social_networks,
-                    'is_verified' => 'in_verification'
-                ]);
-                // DB::table('physician_specialty')->insert([
-                //     $request->specialties
-                // ]);
-                // REALIZAR UN CICLO AQUÍ PARA INSERTAR 
-                return $request->specialties->specialty_id;
 
-                PhysicianSpecialty::create([
-                    'specialty_id' => $request->specialties->specialty_id
-                    // $request->specialties
-                ]);
-                // SpecialtiesPhysician
-                $this->user->syncRoles(['User', 'NewPhysicianInVerification']);
+                
+                // $this->validate($specialties, [
+                //     'data.*.id' => 'digits:2|between:1,70',
+                //     'data.*.intensity' => 'digits:3|between:1,100',
+                //     'data.*.new_intensity' => 'digits:3|between:1,100'
+                //  ]);
+               
+
+                // $validator = \Validator::make(json_decode($request->specialties, true), [
+                //     'data.*.name' => 'required|string'
+                //  ]);
+              
+
+                // $validator = \Validator::make(json_decode($request->specialties, true), [
+                //     '*.license' => 'required',
+                //     '*.institution' => 'required'
+                // ]);
+
+                // if($validator->fails()){
+                //     return $validator->errors();
+                // } 
+
+                // return "pasó";
+
+
+                return $request;
+
+                DB::beginTransaction();
+                $physician = new Physician();
+                $physician->user_id = $this->user->id;
+                $physician->professional_name = $request->professional_name;
+                $physician->certificates = $request->certificates;
+                $physician->biography = $request->biography;
+                $physician->recipe_template = $request->recipe_template;
+                $physician->social_networks = $request->social_networks;
+                $physician->is_verified = 'in_verification';
+                $physician->save();
+                // GUARDA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVIOTE
+                foreach (json_decode($request->specialties) as $specialty) {
+                    $physician->specialties()->attach([
+                        $specialty->specialty_id => [
+                            'physician_id' => $physician->id,
+                            'license' => $specialty->license ,
+                            'institution' => $specialty->institution
+                        ]
+                    ]);
+                }           
+                // $this->user->syncRoles(['User', 'NewPhysicianInVerification']);
                 DB::commit();
                 return (new PhysicianResource($physician))->additional(['message' => 'Perfil médico creado con éxito.']);
             }
@@ -55,11 +85,12 @@ class PhysicianController extends Controller
         }
     }
 
-    public function show() {
+    public function show()
+    {
         try {
             if ($this->user->hasPermissionTo('show physician')) {
                 $physician = Physician::where('user_id', $this->user->id)->get();
-                return ( PhysicianResource::collection($physician))->additional(['message' => 'Mi perfil médico.']);
+                return (PhysicianResource::collection($physician))->additional(['message' => 'Mi perfil médico.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {

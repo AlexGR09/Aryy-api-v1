@@ -15,8 +15,13 @@ class Specialty extends Model
         'name'
     ];
 
+    // public function physicians()
+    // {
+    //     return $this->hasMany('App\Models\SpecialtiesPhysician');
+    // }
+
     public function physicians()
     {
-        return $this->hasMany('App\Models\SpecialtiesPhysician');
+        return $this->belongsToMany('App\Models\Physician');
     }
 }

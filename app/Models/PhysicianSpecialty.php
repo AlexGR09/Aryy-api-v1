@@ -18,13 +18,14 @@ class PhysicianSpecialty extends Model
         'institution'
     ];
 
+    // MÉTODOS PARA AGREGAR MÁS CAMPOS ENTRE TABLAS CON UNA TABLA PIVOTW (M:N)
     public function physician()
     {
-        return $this->belongsTo('App\Models\Physician');
+        return $this->belongsToMany('App\Models\Physician')->withPivot('license', 'institution');
     }
 
     public function specialty()
     {
-        return $this->belongsTo('App\Models\Specialty');
+        return $this->belongsToMany('App\Models\Specialty')->withPivot('license', 'institution');
     }
 }
