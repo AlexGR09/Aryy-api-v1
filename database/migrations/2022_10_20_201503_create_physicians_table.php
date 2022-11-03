@@ -13,7 +13,7 @@ return new class () extends Migration {
             $table->unsignedBigInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('professional_name');
-            $table->json('certificates');
+            $table->json('certificates')->nullable();
             $table->json('social_networks')->nullable();
             $table->string('biography')->nullable();
             $table->string('recipe_template')->nullable();
