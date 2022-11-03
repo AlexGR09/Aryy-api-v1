@@ -70,12 +70,7 @@ class PruebaEncryp extends Controller
         /*   */
         try {
             $decrypted = Crypt::decryptString($encryptedValue->name);
-
-            if($request->name == $decrypted){
-              
-                return $decrypted;
-            }
-           
+            return $decrypted;
         } catch (DecryptException $e) {}
 
     }
