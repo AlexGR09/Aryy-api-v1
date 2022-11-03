@@ -26,55 +26,27 @@ class PhysicianController extends Controller
     {
         try {
             if ($this->user->hasRole('NewPhysician')) {
-
-                
-                // $this->validate($specialties, [
-                //     'data.*.id' => 'digits:2|between:1,70',
-                //     'data.*.intensity' => 'digits:3|between:1,100',
-                //     'data.*.new_intensity' => 'digits:3|between:1,100'
-                //  ]);
-               
-
-                // $validator = \Validator::make(json_decode($request->specialties, true), [
-                //     'data.*.name' => 'required|string'
-                //  ]);
-              
-
-                // $validator = \Validator::make(json_decode($request->specialties, true), [
-                //     '*.license' => 'required',
-                //     '*.institution' => 'required'
-                // ]);
-
-                // if($validator->fails()){
-                //     return $validator->errors();
-                // } 
-
-                // return "pasó";
-
-
-                return $request;
-
                 DB::beginTransaction();
                 $physician = new Physician();
-                $physician->user_id = $this->user->id;
+                $physician->user_id = $this->user->id; // SE PASARÁ COMO PARAMETRO
                 $physician->professional_name = $request->professional_name;
-                $physician->certificates = $request->certificates;
+                $physician->certificates = json_encode($request->certificates);
                 $physician->biography = $request->biography;
                 $physician->recipe_template = $request->recipe_template;
                 $physician->social_networks = $request->social_networks;
                 $physician->is_verified = 'in_verification';
                 $physician->save();
                 // GUARDA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVIOTE
-                foreach (json_decode($request->specialties) as $specialty) {
+                foreach ($request->specialties as $specialty) {
                     $physician->specialties()->attach([
-                        $specialty->specialty_id => [
+                        $specialty['specialty_id']  => [     
                             'physician_id' => $physician->id,
-                            'license' => $specialty->license ,
-                            'institution' => $specialty->institution
+                            'license' => $specialty['license'],
+                            'institution' => $specialty['institution']
                         ]
                     ]);
-                }           
-                // $this->user->syncRoles(['User', 'NewPhysicianInVerification']);
+                }     
+                $this->user->syncRoles(['User', 'NewPhysicianInVerification']);
                 DB::commit();
                 return (new PhysicianResource($physician))->additional(['message' => 'Perfil médico creado con éxito.']);
             }

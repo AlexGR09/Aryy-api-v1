@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Physician;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PhysicianRequest extends FormRequest
 {
@@ -14,21 +15,17 @@ class PhysicianRequest extends FormRequest
 
     public function rules()
     {
-        $data = json_decode($this->specialties, true);
+        // $this->array = json_encode($this->array);
         return [
             'professional_name' => 'required|max:50',
             'biography' => 'max:255',
             'recipe_template' => 'max:255',
-            'certificates' => 'required|json',
-            'social_networks' => 'json',
-            // 'specialties' => 'required|json',
-            'specialties.*.name' => 'required|string',
-    
-            // '{$data}*.license' => 'required'
-            // $datas['*']['license']=> 'required'
-          
-            // json_decode($this->specialties->license) => 'required'
-            // '"$datas".license' => 'required'    
+            'certificates' => 'required|array',
+            'social_networks' => 'array',
+            'specialties' => 'required|array',
+            'specialties.*.specialty_id' => 'required',
+            'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty'),
+            'specialties.*.institution' => 'required',
         ];
     }
 
@@ -39,7 +36,10 @@ class PhysicianRequest extends FormRequest
             'biography' => 'biografía',
             'recipe_template' => 'plantilla de receta',
             'certificates' => 'certificado(s)',
-            'social_networks' => 'redes sociales'
+            'social_networks' => 'redes sociales',
+            'specialties.*.specialty_id' => 'id de la especialidad',
+            'specialties.*.license' => 'licencia de la especialidad',
+            'specialties.*.institution' => 'institución de la especialidad'
         ];
     }
 }
