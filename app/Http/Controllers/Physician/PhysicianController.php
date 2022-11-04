@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Physician\PhysicianRequest;
 use App\Http\Resources\Physician\PhysicianResource;
 use App\Models\Physician;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PhysicianController extends Controller
@@ -29,10 +28,10 @@ class PhysicianController extends Controller
                 $physician->certificates = json_encode($request->certificates);
                 $physician->biography = $request->biography;
                 $physician->recipe_template = $request->recipe_template;
-                $physician->social_networks = $request->social_networks;
+                $physician->social_networks = json_encode($request->social_networks);
                 $physician->is_verified = 'in_verification';
                 $physician->save();
-                // GUARDA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVIOTE
+                // CREA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVIOTE
                 foreach ($request->specialties as $specialty) {
                     $physician->specialties()->attach([
                         $specialty['specialty_id']  => [     
@@ -42,7 +41,7 @@ class PhysicianController extends Controller
                         ]
                     ]);
                 }     
-                $this->user->syncRoles(['User', 'NewPhysicianInVerification']);
+                $this->user->syncRoles(['User', 'PhysicianInVerification']);
                 DB::commit();
                 return (new PhysicianResource($physician))->additional(['message' => 'Perfil médico creado con éxito.']);
             }
@@ -72,9 +71,31 @@ class PhysicianController extends Controller
 
     public function update(PhysicianRequest $request) {
         try {
-            DB::beginTransaction();
-                return $request;
-            DB::commit();
+            if ($this->user->hasRole('Physician')) {
+                DB::beginTransaction();
+                $physician = Physician::where('user_id', $this->user->id)->first();
+                $physician->professional_name = $request->professional_name;
+                $physician->certificates = json_encode($request->certificates);
+                $physician->biography = $request->biography;
+                $physician->recipe_template = $request->recipe_template;
+                $physician->social_networks = json_encode($request->social_networks);
+                $physician->is_verified = 'verified';
+                $physician->save();
+                // SINCRONIZA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVIOTE
+                $specialties = [];
+                foreach ($request->specialties as $specialty) { 
+                    $specialties += [ $specialty['specialty_id'] => [
+                            'physician_id' => $physician->id,
+                            'license' => $specialty['license'],
+                            'institution' => $specialty['institution']
+                        ]
+                    ];
+                }
+                $physician->specialties()->sync($specialties);
+                DB::commit();
+                return (new PhysicianResource($physician))->additional(['message' => 'Perfil médico actualizado con éxito.']);
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);

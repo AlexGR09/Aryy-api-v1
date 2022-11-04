@@ -25,17 +25,12 @@ class User extends Authenticatable
         'id',
         'name',
         'last_name',
-        'sex',
         'gender',
         'birthday',
         'email',
         'code_country',
         'phone_number',
-        'emergency_number',
-        'address',
-        'zide_code',
-        'id_card',
-        'cities_id',
+        'photo',
     ];
 
     /**
