@@ -15,14 +15,14 @@ class AuthRequest extends FormRequest
 
     public function rules(Request $request)
     {
-        if (request()->is('api/login')) {
+        if (request()->is('api/v1/login')) {
             return [
                 'email' => 'required|email|max:35',
                 'password' => 'required|min:8|max:16'
             ];
         }
 
-        if (request()->is('api/register')) {
+        if (request()->is('api/v1/register')) {
             return [
                 'email' => 'required|email|max:35|unique:users',
                 'password' => 'required|min:8|max:16',
@@ -31,7 +31,7 @@ class AuthRequest extends FormRequest
             ];
         }
 
-        if (request()->is('api/profile')) {
+        if (request()->is('api/v1/profile')) {
             return [
                 'name' => 'required|max:40',
                 'last_name' => 'required|max:40',

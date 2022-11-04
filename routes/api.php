@@ -62,6 +62,7 @@ Route::prefix('v1')->group(function () {
         Route::controller(PhysicianController::class)->group(function() {
             Route::get('/physician', 'show');
             Route::post('/physician', 'store');
+            Route::put('/physician', 'update');
         });
     
     });

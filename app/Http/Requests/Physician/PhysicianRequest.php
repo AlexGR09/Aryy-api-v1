@@ -20,12 +20,14 @@ class PhysicianRequest extends FormRequest
             'professional_name' => 'required|max:50',
             'biography' => 'max:255',
             'recipe_template' => 'max:255',
-            'certificates' => 'required|array',
+            'certificates' => 'array',
             'social_networks' => 'array',
             'specialties' => 'required|array',
             'specialties.*.specialty_id' => 'required',
-            'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty'),
+            'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty')->ignore($this->physician_specialty),
             'specialties.*.institution' => 'required',
+
+            // 'shop.name' => 'unique:shops,name,' . $this->shop['id'],
         ];
     }
 

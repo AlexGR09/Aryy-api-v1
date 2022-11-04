@@ -4,14 +4,10 @@ namespace App\Http\Controllers\Physician;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Physician\PhysicianRequest;
-use App\Http\Requests\Physician\PhysicianSpecialtyRequest;
 use App\Http\Resources\Physician\PhysicianResource;
 use App\Models\Physician;
-// use App\Models\PhysicianSpecialty;
-use App\Models\SpecialtiesPhysician;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Role;
 
 class PhysicianController extends Controller
 {
@@ -61,12 +57,29 @@ class PhysicianController extends Controller
     {
         try {
             if ($this->user->hasPermissionTo('show physician')) {
+                $message = 'Mi perfil médico.';
                 $physician = Physician::where('user_id', $this->user->id)->get();
-                return (PhysicianResource::collection($physician))->additional(['message' => 'Mi perfil médico.']);
+                if ($this->user->hasRole('PhysicianInVerification')) {
+                    $message = 'Su perfil médico está en proceso de verificación, esto puede tomar un par de días. Por favor, tenga paciencia, nosotros le avisaremos.';
+                }
+                return (PhysicianResource::collection($physician))->additional(['message' => $message]);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
+    }
+
+    public function update(PhysicianRequest $request) {
+        try {
+            DB::beginTransaction();
+                return $request;
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+        
+        
     }
 }
