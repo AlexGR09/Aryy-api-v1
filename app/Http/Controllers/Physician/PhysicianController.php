@@ -31,7 +31,7 @@ class PhysicianController extends Controller
                 $physician->social_networks = json_encode($request->social_networks);
                 $physician->is_verified = 'in_verification';
                 $physician->save();
-                // CREA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVIOTE
+                // CREA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVOTE
                 foreach ($request->specialties as $specialty) {
                     $physician->specialties()->attach([
                         $specialty['specialty_id']  => [     
@@ -81,7 +81,7 @@ class PhysicianController extends Controller
                 $physician->social_networks = json_encode($request->social_networks);
                 $physician->is_verified = 'verified';
                 $physician->save();
-                // SINCRONIZA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVIOTE
+                // SINCRONIZA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVOTE
                 $specialties = [];
                 foreach ($request->specialties as $specialty) { 
                     $specialties += [ $specialty['specialty_id'] => [
@@ -100,7 +100,6 @@ class PhysicianController extends Controller
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
-        
         
     }
 }
