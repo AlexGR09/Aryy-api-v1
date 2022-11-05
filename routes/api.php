@@ -6,7 +6,9 @@ use App\Http\Controllers\EncrypController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Physician\PhysicianController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PhysicianSerachController;
 use App\Http\Controllers\PruebaEncryp;
+use Illuminate\Support\Facades\DB;
 
 
 // CREAR RUTAS SÓLO PARA ADMINISTRADOR
@@ -68,4 +70,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
 });
-
+Route::resource('search',PhysicianSerachController::class)->only(['index']);
+/* Route::get('procedure',function(){
+    $specialty=1;
+    return $getsubspecialty = DB::select(
+        'CALL get_sub_specialty ('.$specialty.')'
+    );
+    
+}); */
