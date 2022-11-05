@@ -83,7 +83,7 @@ class AuthController extends Controller
                 // Si se recibe una imagen
                 if ($request->photo) {
                     // Si existe una foto previa asociada al usuario, esta se elimina
-                    if (file_exists(public_path('profile-photos/'.$this->user->photo)) ){
+                    if ($this->user->photo != NULL && file_exists(public_path('profile-photos/'.$this->user->photo) ) ){
                         unlink(public_path("profile-photos/". $this->user->photo)); 
                     } 
                     $this->user->photo = $photoName = time()."_". $request->file('photo')->getClientOriginalName();
