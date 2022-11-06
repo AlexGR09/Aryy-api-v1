@@ -8281,8 +8281,8 @@ class DiseaseSeeder extends Seeder
             //Psiquiatra
             ['name' => 'Abstinencia de la cocaína'],
             ['name' => 'Accidente cerebrovascular relacionado con el consumo de cocaína'],
-            ['name' => 'ADD'],,
-            ['name' => 'Agorafobia'],],
+            ['name' => 'ADD'],
+            ['name' => 'Agorafobia'],
             ['name' => 'Alcoholismo'],
             ['name' => 'Alucinosis alcohólica'],
             ['name' => 'Anomalías congénitas relacionadas con el alcohol'],
