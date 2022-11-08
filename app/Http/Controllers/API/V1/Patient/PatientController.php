@@ -51,7 +51,7 @@ class PatientController extends Controller
                     ->get();
                 // $patient->health_insurances;
 
-                return $patient;
+                // return $patient;
 
                 return (PatientResource::collection($patient))->additional(['message' => 'Mi perfil de paciente.']);
             }
