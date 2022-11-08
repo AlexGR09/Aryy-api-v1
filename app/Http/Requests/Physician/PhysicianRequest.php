@@ -3,32 +3,34 @@
 namespace App\Http\Requests\Physician;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class PhysicianRequest extends FormRequest
 {
     
     public function authorize()
     {
-        return true;
+        return auth()->check();
     }
 
     public function rules()
     {
-        $data = json_decode($this->specialties, true);
+        // SE HACE ESTA CONSULTA YA QUE NO SE INSTANCIA EL MODELO PHYSICIAN EN EL REQUEST DEL CONTROLADOR
+        $physician_id = DB::table('physicians')
+            ->where('user_id', '=', auth()->user()->id)
+            ->pluck('id')
+            ->first();
         return [
             'professional_name' => 'required|max:50',
             'biography' => 'max:255',
             'recipe_template' => 'max:255',
-            'certificates' => 'required|json',
-            'social_networks' => 'json',
-            // 'specialties' => 'required|json',
-            'specialties.*.name' => 'required|string',
-    
-            // '{$data}*.license' => 'required'
-            // $datas['*']['license']=> 'required'
-          
-            // json_decode($this->specialties->license) => 'required'
-            // '"$datas".license' => 'required'    
+            'certificates' => 'array',
+            'social_networks' => 'array',
+            'specialties' => 'required|array',
+            'specialties.*.specialty_id' => 'required|numeric',
+            'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty')->whereNot('physician_id', $physician_id),
+            'specialties.*.institution' => 'required',
         ];
     }
 
@@ -39,7 +41,10 @@ class PhysicianRequest extends FormRequest
             'biography' => 'biografía',
             'recipe_template' => 'plantilla de receta',
             'certificates' => 'certificado(s)',
-            'social_networks' => 'redes sociales'
+            'social_networks' => 'redes sociales',
+            'specialties.*.specialty_id' => 'id de la especialidad',
+            'specialties.*.license' => 'licencia de la especialidad',
+            'specialties.*.institution' => 'institución de la especialidad'
         ];
     }
 }

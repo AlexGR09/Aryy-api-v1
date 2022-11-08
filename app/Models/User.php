@@ -29,7 +29,6 @@ class User extends Authenticatable
         'country_code',
         'phone_number',
         'photo',
-        'cities_id',
     ];
 
     /**

@@ -20,32 +20,33 @@ class Physician extends Model
         'is_verified'
     ];
 
+    // RELACIÓN UNO UNO CON EL MODELO USARIO
     public function user()
     {
         return $this->belongsTo('App\Models\User');
     }
-
+    // RELACIÓN MUCHOS A MUCHOS CON EL MODELO ESPECIALIDADES
     public function specialties() {
         return $this->belongsToMany('App\Models\Specialty');
     }
-
-    // public function specialties()
+    //RELACIÓN MUCHOS A MUCHOS CON EL MODELO MÉDICO-ESPECIALIDADES
+    public function psychologist_specialties()
+    {
+        return $this->hasMany('App\Models\PhysicianSpecialty');
+    }
+    
+    // public function diseases()
     // {
-    //     return $this->hasMany('App\Models\SpecialtiesPhysician');
+    //     return $this->hasMany('App\Models\DiseasesPhysician');
     // }
 
-    public function diseases()
-    {
-        return $this->hasMany('App\Models\DiseasesPhysician');
-    }
+    // public function medical_services()
+    // {
+    //     return $this->hasMany('App\Models\MedicalServicesPhysician');
+    // }
 
-    public function medical_services()
-    {
-        return $this->hasMany('App\Models\MedicalServicesPhysician');
-    }
-
-    public function facilities()
-    {
-        return $this->hasMany('App\Models\FacilitiesPhysician');
-    }
+    // public function facilities()
+    // {
+    //     return $this->hasMany('App\Models\FacilitiesPhysician');
+    // }
 }
