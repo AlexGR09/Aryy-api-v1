@@ -1,15 +1,14 @@
 <?php
 
+use App\Http\Controllers\API\V1\AuthController;
+use App\Http\Controllers\API\V1\PermissionController;
+use App\Http\Controllers\API\V1\RoleController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\Physician\PhysicianController;
-use App\Http\Controllers\RoleController;
 
 
-// CREAR RUTAS SÓLO PARA ADMINISTRADOR
 Route::prefix('v1')->group(function () {
 
+    // RUTAS REGISTRO, LOGIN, PERFIL DE USUARIO
     Route::controller(AuthController::class)->group(function () {
         Route::post('/login', 'login');
         Route::post('/register', 'register');
@@ -20,21 +19,22 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::group(['middleware' => ['auth:sanctum']], function () {
+
+        // RUTA API VERSIÓN 1
+        $v1 = "App\\Http\\Controllers\\API\\V1\\";
+        // CATALOGOS
+        $catalogues = "App\\Http\\Controllers\\API\\V1\\Catalogues\\";
+
+        // SÓLO ADMIN
         // ROLES
         Route::resource('roles', RoleController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
-    
         // PERMISOS
         Route::resource('permissions', PermissionController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
-    
-        // CATALOGOS
-        $catalogues = "App\\Http\\Controllers\\Catalogues\\";
-        $patient = "App\\Http\\Controllers\\Patient\\";
-    
         // PAISES
         Route::resource('countries', $catalogues.CountryController::class)
-            ->only(['index', 'store', 'show', 'update', 'destroy']);
+        ->only(['index', 'store', 'show', 'update', 'destroy']);
         // ESTADOS
         Route::resource('states', $catalogues.StateController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
@@ -50,19 +50,19 @@ Route::prefix('v1')->group(function () {
         //INSURANCE
         Route::resource('insurance', $catalogues.InsuranceController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
-        //PATIENT
-        Route::resource('patient', $patient.PatientContoller::class)
-            ->only(['index','store','show']);
-    
-        // PHYSICIAN
-        // Route::resource('physicians', PhysicianController::class)
-        //     ->only(['index', 'store', 'show', 'update', 'destroy']);
-    
-        // PHYSICIAN
-        Route::controller(PhysicianController::class)->group(function() {
+            
+        // SÓLO 2 TIPOS DE USUARIOS (MÉDICO O PACIENTE)
+        // MÉDICO
+        Route::controller($v1.'Physician\\'.PhysicianController::class)->group(function() {
             Route::get('/physician', 'show');
             Route::post('/physician', 'store');
             Route::put('/physician', 'update');
+        });
+        // PACIENTE
+        Route::controller($v1.'Patient\\'.PatientController::class)->group(function() {
+            Route::get('/patient', 'show');
+            Route::post('/patient', 'store');
+            Route::put('/patient', 'update');
         });
     
     });

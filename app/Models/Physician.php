@@ -21,7 +21,7 @@ class Physician extends Model
         'is_verified'
     ];
 
-    // RELACIÓN UNO UNO CON EL MODELO USARIO
+    // RELACIÓN UNO UNO CON EL MODELO USUARIO
     public function user()
     {
         return $this->belongsTo('App\Models\User');
@@ -31,7 +31,7 @@ class Physician extends Model
         return $this->belongsToMany('App\Models\Specialty');
     }
     //RELACIÓN MUCHOS A MUCHOS CON EL MODELO MÉDICO-ESPECIALIDADES
-    public function psychologist_specialties()
+    public function physician_specialties()
     {
         return $this->hasMany('App\Models\PhysicianSpecialty');
     }
