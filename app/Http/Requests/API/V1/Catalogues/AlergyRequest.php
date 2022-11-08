@@ -4,7 +4,7 @@ namespace App\Http\Requests\API\V1\Catalogues;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OccupationRequest extends FormRequest
+class AlergyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class OccupationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class OccupationRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ($this->getMethod() == 'POST') ? 'required' : 'required,name,'
+            'name' => 'required',
         ];
     }
 }

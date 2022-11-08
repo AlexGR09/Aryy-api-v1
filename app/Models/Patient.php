@@ -20,29 +20,36 @@ class Patient extends Model
         'emergency_number',
         'id_card',
     ];
-
+    
+    // RELACIÓN UNO UNO CON EL MODELO USUARIO
     public function user()
     {
         return $this->belongsTo('App\Models\User');
     }
-
-    public function occupations()
+    // RELACIÓN MUCHOS A UNO CON SEGUROS MÉDICOS
+    public function health_insurances()
     {
-        return $this->hasMany('App\Models\OccupationPatient');
+        return $this->belongsTo('App\Models\HealthInsurance', 'id');
     }
 
-    public function health_insurance()
-    {
-        return $this->belongsTo('App\Models\HealthInsurance');
-    }
 
-    public function medical_records()
-    {
-        return $this->belongsTo('App\Models\MedicalRecord');
-    }
+    // public function ocupations()
+    // {
+    //     return $this->hasMany('App\Models\OcupationPatient');
+    // }
 
-    public function medical_history()
-    {
-        return $this->belongsTo('App\Models\MedicalHistory');
-    }
+    // public function health_insurance()
+    // {
+    //     return $this->belongsTo('App\Models\HealthInsurance');
+    // }
+
+    // public function medical_records()
+    // {
+    //     return $this->belongsTo('App\Models\MedicalRecord');
+    // }
+
+    // public function medical_history()
+    // {
+    //     return $this->belongsTo('App\Models\MedicalHistory');
+    // }
 }

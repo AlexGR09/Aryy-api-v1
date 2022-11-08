@@ -4,7 +4,7 @@ namespace App\Http\Resources\API\V1\Catalogues;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class OccupationResource extends JsonResource
+class SpecialtyResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,7 +15,7 @@ class OccupationResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => $this->name
+            'name' => $this->name,
         ];
     }
 }

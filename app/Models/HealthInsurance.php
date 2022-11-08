@@ -14,7 +14,8 @@ class HealthInsurance extends Model
         'insurance_number'
     ];
 
-    public function patients()
+    // RELACIÓN MUCHOS A UNO CON PACIENTE
+    public function patient()
     {
         return $this->hasMany('App\Models\Patient');
     }
