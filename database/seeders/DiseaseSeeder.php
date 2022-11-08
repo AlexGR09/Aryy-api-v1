@@ -1670,7 +1670,7 @@ class DiseaseSeeder extends Seeder
             ['name' => 'Fiebre de Chipre'],
             ['name' => 'Fiebre de Gibraltar'],
             ['name' => 'Fiebre de los arrozales'],
-            ['name' => 'Fiebre de Query'],//<-vas aqui TT_TT
+            ['name' => 'Fiebre de Query'],
             ['name' => 'Fiebre del fango'],
             ['name' => 'Fiebre icterohemorrágica'],
             ['name' => 'Fiebre ondulante'],
@@ -1719,7 +1719,7 @@ class DiseaseSeeder extends Seeder
             ['name' => 'Infección por hongos'],
             ['name' => 'Infección por la tenia enana (Hymenolepis nana )'],
             ['name' => 'Infección por oxiuros'],
-            ['name' => 'Infección por T. trichiura'],
+            ['name' => 'Infección por T. trichiura'],//<-vas aqui TT_TT
             ['name' => 'Infección por tenia'],
             ['name' => 'Infección por tenia de los peces (Diphyllobothrium latum )'],
             ['name' => 'Inflamación del esófago'],
