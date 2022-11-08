@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CountrySeeder::class);
         $this->call(StateSeeder::class);
         $this->call(CitySeeder::class);
-        // $this->call(CitySeederJson::class);
         $this->call(AlergiesSeeder::class);
         $this->call(OcupationSeeder::class);
         $this->call(InsuranceSeeder::class);
@@ -30,5 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PhysicianSpecialtySeeder::class);
         $this->call(FacilitySeeder::class);
         $this->call(FacilityPyshicianSeeder::class);
+        $this->call(SpecialtiesDiseasesSeeder::class);
     }
 }

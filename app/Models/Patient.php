@@ -18,7 +18,7 @@ class Patient extends Model
         'zip_code',
         'country_code',
         'emergency_number',
-        'card',
+        'id_card',
     ];
 
     public function user()
