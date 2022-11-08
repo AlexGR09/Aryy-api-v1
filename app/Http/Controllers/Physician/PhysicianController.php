@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Physician\PhysicianRequest;
 use App\Http\Resources\Physician\PhysicianResource;
 use App\Models\Physician;
+use App\Models\PhysicianSpecialty;
 use Illuminate\Support\Facades\DB;
 
 class PhysicianController extends Controller
@@ -81,17 +82,25 @@ class PhysicianController extends Controller
                 $physician->social_networks = json_encode($request->social_networks);
                 $physician->is_verified = 'verified';
                 $physician->save();
-                // SINCRONIZA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVOTE
-                $specialties = [];
-                foreach ($request->specialties as $specialty) { 
-                    $specialties += [ $specialty['specialty_id'] => [
-                            'physician_id' => $physician->id,
-                            'license' => $specialty['license'],
-                            'institution' => $specialty['institution']
-                        ]
-                    ];
+                // CONSULTA LOS REGISTROS EXISTENTES DE ESPECIALIDADES-MÉDICO
+                $previousSpecialties = PhysicianSpecialty::where('physician_id', $physician->id)->get()->toArray();
+                if ($previousSpecialties != $request->specialties) {
+                    // SINCRONIZA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVOTE
+                    $specialties = [];
+                    foreach ($request->specialties as $specialty) { 
+                        $specialties += [ 
+                            $specialty['specialty_id'] => [
+                                'physician_id' => $physician->id,
+                                'license' => $specialty['license'],
+                                'institution' => $specialty['institution']
+                            ]
+                        ];
+                    }
+                    $physician->specialties()->sync($specialties);
+                    $this->user->syncRoles(['User', 'PhysicianInVerification']);
+                    $physician->is_verified = 'in_verification';
+                    $physician->save();
                 }
-                $physician->specialties()->sync($specialties);
                 DB::commit();
                 return (new PhysicianResource($physician))->additional(['message' => 'Perfil médico actualizado con éxito.']);
             }

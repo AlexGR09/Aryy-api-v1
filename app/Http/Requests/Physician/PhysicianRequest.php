@@ -11,12 +11,12 @@ class PhysicianRequest extends FormRequest
     
     public function authorize()
     {
-        return true;
+        return auth()->check();
     }
 
     public function rules()
     {
-        // SE HACE ESTA CONSULTA YA QUE NO SE INSTANCIA EL MODELO PHYSICIAN EN EL CONTROLADOR
+        // SE HACE ESTA CONSULTA YA QUE NO SE INSTANCIA EL MODELO PHYSICIAN EN EL REQUEST DEL CONTROLADOR
         $physician_id = DB::table('physicians')
             ->where('user_id', '=', auth()->user()->id)
             ->pluck('id')
@@ -28,24 +28,9 @@ class PhysicianRequest extends FormRequest
             'certificates' => 'array',
             'social_networks' => 'array',
             'specialties' => 'required|array',
-            'specialties.*.specialty_id' => 'required',
+            'specialties.*.specialty_id' => 'required|numeric',
             'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty')->whereNot('physician_id', $physician_id),
             'specialties.*.institution' => 'required',
-
-            // 'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty')->ignore($this->physician_specialty),
-
-            // 'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty', 'license')->where(function($query) use ($physician){
-            //     $query->whereNotIn('physician_id', $physician);
-            //     return $query;
-            // }),
-
-        //     Rule::unique('deed_legalization_numbers', 'number')->where(function ($query) use ($deed_legalization_id) {
-        //     $query->whereNotIn('id', $deed_legalization_id);
-        //     return $query;
-        // }),
-            
-
-            // 'shop.name' => 'unique:shops,name,' . $this->shop['id'],
         ];
     }
 

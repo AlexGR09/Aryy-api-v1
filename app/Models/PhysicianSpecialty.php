@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PhysicianSpecialty extends Model
 {
+    protected $table = 'physician_specialty';
+
     use HasFactory;
     use SoftDeletes;
 
@@ -18,14 +20,23 @@ class PhysicianSpecialty extends Model
         'institution'
     ];
 
-    // MÉTODOS PARA AGREGAR MÁS CAMPOS ENTRE TABLAS CON UNA TABLA PIVOTW (M:N)
-    public function physician()
-    {
-        return $this->belongsToMany('App\Models\Physician')->withPivot('license', 'institution');
-    }
+    // protected $hidden = [
+    //     'id',
+    //     'physician_id',
+    //     'created_at',
+    //     'updated_at',
+    //     'deleted_at',
+    // ];
 
-    public function specialty()
-    {
-        return $this->belongsToMany('App\Models\Specialty')->withPivot('license', 'institution');
-    }
+    // MÉTODOS PARA AGREGAR MÁS CAMPOS ENTRE TABLAS CON UNA TABLA PIVOTW (M:N)
+    // public function physicians()
+    // {
+    //     return $this->belongsToMany('App\Models\Physician');
+    // }
+
+    // public function specialties()
+    // {
+    //     return $this->belongsToMany('App\Models\Specialty')->withPivot('specialty_id');
+    // }
+    
 }
