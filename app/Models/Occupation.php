@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Ocupation extends Model
+class Occupation extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name'
@@ -17,6 +16,6 @@ class Ocupation extends Model
 
     public function patients()
     {
-        return $this->hasMany('App\Models\OcupationPatient');
+        return $this->hasMany('App\Models\OccupationPatient');
     }
 }

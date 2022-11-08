@@ -4,13 +4,14 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PermissionSeeder extends Seeder
 {
     
     public function run()
     {
-        \DB::table('permissions')->insert([
+        DB::table('permissions')->insert([
             // ADMINISTRADOR
             // CRUD ROLES
             ['name' => 'show roles', 'guard_name' => 'sanctum'],

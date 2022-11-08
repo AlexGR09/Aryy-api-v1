@@ -6,21 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class City extends Model
+class SpecialtiesPhysician extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'state_id'
+        'license'=>'unique',
+        'institution',
     ];
 
-    public function state()
+    public function physician()
     {
-        return $this->belongsTo('App\Models\State');
+        return $this->belongsTo('App\Models\Physician');
     }
 
-    public function users()
+    public function specialty()
     {
-        return $this->hasMany('App\Models\User');
+        return $this->belongsTo('App\Models\Specialty');
     }
 }

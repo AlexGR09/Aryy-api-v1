@@ -12,12 +12,9 @@ return new class () extends Migration {
      */
     public function up()
     {
-        Schema::create('occupation_patient', function (Blueprint $table) {
+        Schema::create('occupations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('occupations_id');
-            $table->foreign('occupations_id')->references('id')->on('occupations')->onDelete('cascade');
-            $table->unsignedBigInteger('patients_id');
-            $table->foreign('patients_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +27,6 @@ return new class () extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('occupation_patient');
+        Schema::dropIfExists('occupations');
     }
 };

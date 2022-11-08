@@ -12,12 +12,12 @@ return new class extends Migration
         Schema::create('facilities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('facility_name');
-            $table->json('address');
+            $table->json('location');
             $table->string('phone_number')->nullable();
             $table->string('zip_code');
             $table->json('schedule');
-            $table->string('duration_consultation');
-            $table->json('accessibility');
+            $table->string('consultation_length')->nullable();
+            $table->json('accessibility')->nullable();
             $table->string('clues')->nullable();
             $table->unsignedBigInteger('city_id')->nullable();
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('set null');

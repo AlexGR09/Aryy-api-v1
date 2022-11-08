@@ -4,18 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class OcupationPatient extends Model
+class OccupationPatient extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     public function patient()
     {
         return $this->belongsTo('App\Models\Patient');
     }
 
-    public function ocupation()
+    public function occupation()
     {
-        return $this->belongsTo('App\Models\Ocupation');
+        return $this->belongsTo('App\Models\Occupation');
     }
 }

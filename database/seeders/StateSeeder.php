@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class StateSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class StateSeeder extends Seeder
         $data = json_decode($json);
 
         foreach ($data as $obj) {
-            \DB::table('states')->insert([
+            DB::table('states')->insert([
                 ['name' => $obj->name,
                 'short_name' => $obj->short_name,
                 'country_id' => 1]

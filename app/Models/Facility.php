@@ -8,17 +8,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Facility extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'facility_name',
-        'type_of_facility',
         'address',
         'phone_number',
         'clues',
         'zip_code',
-        'schedule'
+        'schedule',
+        'consultation_length',
+        'accessibility',
+
     ];
 
     public function physicians()

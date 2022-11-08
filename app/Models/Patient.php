@@ -14,8 +14,11 @@ class Patient extends Model
 
     protected $fillable = [
         'user_id',
-        'photo'
-
+        'address',
+        'zip_code',
+        'country_code',
+        'emergency_number',
+        'id_card',
     ];
     
     // RELACIÓN UNO UNO CON EL MODELO USUARIO

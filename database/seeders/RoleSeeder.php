@@ -7,12 +7,13 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class RoleSeeder extends Seeder
 {
     public function run()
     {
-        \DB::table('roles')->insert([
+        DB::table('roles')->insert([
             [
                 'name' => 'Administrator', 
                 'guard_name' => 'sanctum'
