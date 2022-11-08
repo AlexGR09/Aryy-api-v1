@@ -3,11 +3,7 @@
 namespace App\Http\Controllers\API\V1\Catalogues;
 
 use App\Http\Controllers\Controller;
-<<<<<<< HEAD:app/Http/Controllers/Catalogues/OccupationController.php
-use App\Http\Resources\Catalogues\OccupationResource;
-=======
-use App\Http\Resources\API\V1\Catalogues\OcupationResource;
->>>>>>> e9f901783278a3cda4a2324f762fb45245ad5537:app/Http/Controllers/API/V1/Catalogues/OcupationController.php
+use App\Http\Resources\API\V1\Catalogues\OccupationResource;
 use App\Http\Resources\RoleResource;
 use App\Models\Occupation;
 use Illuminate\Http\Request;
