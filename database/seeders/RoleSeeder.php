@@ -31,7 +31,7 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'sanctum'
             ],
             [
-                'name' => 'NewPhysicianInVerification', 
+                'name' => 'PhysicianInVerification', 
                 'guard_name' => 'sanctum'
             ],
             [
