@@ -26,7 +26,7 @@ class AuthRequest extends FormRequest
             return [
                 'email' => 'required|email|max:35|unique:users',
                 'password' => 'required|min:8|max:16',
-                'code_country' => (!$request->mobile) ? 'required|max:6' : '',
+                'country_code' => (!$request->mobile) ? 'required|max:6' : '',
                 'phone_number' => (!$request->mobile) ? 'required|unique:users|regex:/^([0-9\s\-\+\(\)]*)$/|min:10' : '' 
             ];
         }
@@ -39,7 +39,7 @@ class AuthRequest extends FormRequest
                 'birthday' => 'required|date',
                 'email' => 'required|email|max:35|'. Rule::unique('users')->ignore(auth()->user()),
                 'password' => 'min:8|max:16',
-                'code_country' =>  'required|max:6',
+                'country_code' =>  'required|max:6',
                 'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|'. Rule::unique('users')->ignore(auth()->user()), 
                 'photo' => 'image|mimes:jpg,jpeg,png|max:2000|dimensions:max_width=512,max_height=512'
             ];
@@ -49,7 +49,7 @@ class AuthRequest extends FormRequest
     public function attributes()
     {
         return [
-            'code_country' => 'código del país',
+            'country_code' => 'código del país',
             'phone_number' => 'número de teléfono',
             'birthday' => 'fecha de nacimiento'
         ];

@@ -17,7 +17,6 @@ class PatientController extends Controller
         $this->user = auth()->user();
     }
 
-
     public function store(PatientRequest $request)
     {
         try {

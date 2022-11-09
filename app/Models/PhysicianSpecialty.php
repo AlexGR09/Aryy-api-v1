@@ -20,13 +20,13 @@ class PhysicianSpecialty extends Model
         'institution'
     ];
 
-    // protected $hidden = [
-    //     'id',
-    //     'physician_id',
-    //     'created_at',
-    //     'updated_at',
-    //     'deleted_at',
-    // ];
+    protected $hidden = [
+        'id',
+        'physician_id',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
     // MÉTODOS PARA AGREGAR MÁS CAMPOS ENTRE TABLAS CON UNA TABLA PIVOTW (M:N)
     // public function physicians()

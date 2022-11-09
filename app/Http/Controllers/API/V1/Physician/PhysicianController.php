@@ -81,7 +81,6 @@ class PhysicianController extends Controller
                 $physician->recipe_template = $request->recipe_template;
                 $physician->social_networks = json_encode($request->social_networks);
                 $physician->is_verified = 'verified';
-                $physician->save();
                 // CONSULTA LOS REGISTROS EXISTENTES DE ESPECIALIDADES-MÉDICO
                 $previousSpecialties = PhysicianSpecialty::where('physician_id', $physician->id)->get()->toArray();
                 if ($previousSpecialties != $request->specialties) {
@@ -99,8 +98,8 @@ class PhysicianController extends Controller
                     $physician->specialties()->sync($specialties);
                     $this->user->syncRoles(['User', 'PhysicianInVerification']);
                     $physician->is_verified = 'in_verification';
-                    $physician->save();
                 }
+                $physician->save();
                 DB::commit();
                 return (new PhysicianResource($physician))->additional(['message' => 'Perfil médico actualizado con éxito.']);
             }
