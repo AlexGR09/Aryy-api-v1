@@ -1,5 +1,4 @@
-{
-    "enfermedades": [  
+[
     "Fibromialgia",
     "Dolores de cabeza",
     "Artrosis",
@@ -56,7 +55,6 @@
     "Urticaria",
     "Urticaria pigmentosa",
     "Vasculitis alérgica",
-
     "Abetalipoproteinemia",
     "Androblastoma",
     "Enfermedad de Batten",
@@ -84,7 +82,6 @@
     "Teratoma: tumor de células germinales no seminomatosas",
     "Trombocitosis esencial",
     "Tumor testicular",
-
     "Algodistrofia del miembro superior",
     "Dolor de nervio o dolor nervioso",
     "Dolor oncológico",
@@ -519,7 +516,6 @@
     "Ventrículo común",
     "Ventrículo único (corazón univentricular)",
     "WPW",
-
     "Accidente cerebrovascular secundario a la aterosclerosis",
     "Accidente cerebrovascular secundario a la estenosis de la carótida",
     "Atresia pulmonar",
@@ -563,7 +559,6 @@
     "Tumor mediastinal",
     "Tumor productor de péptido intestinal vasoactivo",
     "Tumores cardíacos",
-
     "Hombro congelado",
     "Lesion de Plexo Braquial",
     "Lesión facial",
@@ -572,7 +567,6 @@
     "Neuropatía del nervio radial",
     "Neuropatias Compresivas",
     "Síndrome de pinzamiento del hombro",
-
     "Adenoides agrandadas",
     "Apnea del sueño de tipo obstructivo",
     "Blefaroespasmo",
@@ -594,7 +588,6 @@
     "Sindactilia",
     "Síndrome de Treacher-Collins",
     "Tumor nasal",
-
     "Abdomen agudo",
     "Absceso anal",
     "Absceso hepático bacteriano",
@@ -806,7 +799,6 @@
     "Vibrio",
     "Vipoma",
     "Vómito persistente",
-
     "Absceso del espacio faringomaxilar",
     "Absceso periamigdalino",
     "Absceso retrofaríngeo",
@@ -858,7 +850,6 @@
     "Trastornos de las glándulas salivales",
     "Traumatismo facial",
     "Tumor de la glándula lagrimal",
-
     "Cáncer de endometrio",
     "Cáncer de los ovarios",
     "Cáncer de piel",
@@ -866,7 +857,6 @@
     "Cáncer del cuello uterino",
     "Cáncer tiroideo (carcinoma medular)",
     "Quistes ováricos",
-
     "Craneosinostosis",
     "DDH",
     "Dedo supernumerario",
@@ -889,7 +879,6 @@
     "Síndrome del abdomen en ciruela pasa",
     "Tumor de Wilms",
     "Tumor del ángulo",
-
     "Absceso subcutáneo",
     "Acné quístico",
     "Cáncer de piel escamocelular",
@@ -911,7 +900,6 @@
     "Talipes",
     "Transexualismo",
     "Xantelasma",
-
     "Absceso",
     "Absceso de la piel",
     "Acantosis pigmentaria",
@@ -1249,7 +1237,6 @@
     "Xerosis",
     "Yatobyo (Japón)",
     "Zumaque venenoso",
-
     "Anorexia",
     "Ansiedad",
     "Bulímia",
@@ -1265,7 +1252,6 @@
     "Síndrome de resistencia a la insulina",
     "Síndrome metabólico",
     "Tumor pituitario (tumor de la hipófisis)",
-
     "Acidosis láctica",
     "Acidosis metabólica",
     "Acondrogénesis",
@@ -1432,7 +1418,6 @@
     "Trastorno disfórico premenstrual (TDPM)",
     "Trastornos hormonales",
     "Tumor hipofisario",
-
     "Cirrosis biliar primaria",
     "Colangitis biliar",
     "Colitits ulcerativa",
@@ -1441,7 +1426,6 @@
     "Hepatitis autoinmunitaria",
     "Intolerancia a la lactosa",
     "Síndrome de Zollinger-Ellison",
-
     "Autismo",
     "Bullying (acoso escolar)",
     "Callos y callosidades",
@@ -1478,7 +1462,6 @@
     "Tensión arterial baja",
     "Trastorno de conducta del sueño en fase REM",
     "Tumor",
-
     "Atrofia muscular espinal",
     "AVN",
     "Bursitis",
@@ -1524,7 +1507,6 @@
     "Syrinx",
     "Tendinitis del manguito de los rotadores",
     "Tendinitis, esguinces articulares",
-
     "Absceso del ano y el recto",
     "Adenocarcinoma del estómago",
     "Agente delta (hepatitis D)",
@@ -1765,7 +1747,6 @@
     "Várices esofágicas sangrantes",
     "Virus de Norwalk",
     "Vómitos persistentes en el embarazo",
-
     "Anencefalia",
     "Coproporfiria hereditaria",
     "Corea de Huntington",
@@ -1782,7 +1763,6 @@
     "Síndrome de Aase-Smith",
     "Síndrome de Morquio",
     "Síndrome de Sturge-Weber",
- 
     "ACV",
     "Cataratas",
     "CJD",
@@ -1801,8 +1781,6 @@
     "Trastornos de la marcha",
     "Trastornos del sueño en personas mayores",
     "Trastornos en la alimentación del anciano",
-
-
     "Ablación de la placenta",
     "Aborto consumado",
     "Aborto electivo o terapéutico",
@@ -2515,7 +2493,6 @@
     "Trastorno fonológico",
     "Artritis",
     "Celotipia",
-
     "Condromalacia rotuliana",
     "Depresión",
     "Disfunción eréctil",
@@ -3033,10 +3010,8 @@
     "Virus del Nilo Occidental",
     "Vulvitis",
     "Xeroftalmia",
-
     "Hipercolesterolemia",
     "Virus del Zika",
-
     "Enfermedad sistémica relacionada con inmunoglobulina G4 (IgG4)",
     "Absceso cerebral",
     "Accidente cerebrovascular isquémico",
@@ -3239,17 +3214,13 @@
     "Uremia",
     "Vasculitis necrosante",
     "Virus del Zika",
-
     "Amiloidosis cardíaca",
     "Sarcoma de Kaposi",
-
     "Enfermedad de Chagas",
     "Intoxicación por arsénico",
     "Intoxicación por mercurio",
     "Intoxicación por plaguicidas",
     "Virus del Zika",
-
-
     "Absceso alrededor del riñón (perinéfrico)",
     "Absceso perirrenal",
     "Acidosis tubular distal renal",
@@ -3588,7 +3559,6 @@
     "Tularemia",
     "Tusilexil",
     "VSR",
-
     "Absceso cerebral",
     "Absceso de la médula espinal",
     "Absceso en el SNC",
@@ -3657,7 +3627,6 @@
     "Tumor del glomo timpánico",
     "Tumor hipotalámico",
     "Tumor maligno",
-
     "Accidente cerebrovascular",
     "ALS",
     "Alteraciones del sueño",
@@ -3731,7 +3700,6 @@
     "Síndrome miasténico",
     "Trastorno convulsivo",
     "Tumor cerebral en niños",
-
     "Absceso cerebral",
     "Absceso de la médula espinal",
     "Absceso en el SNC",
@@ -4108,13 +4076,11 @@
     "Vejiga espasmódica",
     "Vejiga hiperreactiva",
     "Vejiga neurógena",
-
     "Desnutrición",
     "Dislipidemia",
     "Enfermedades renales",
     "Síntomas gastrointestinales",
     "Trastorno por atracón",
-
     "Alcohol en el embarazo",
     "Bulimia nerviosa",
     "Deficiencia de vitamina D",
@@ -4151,12 +4117,10 @@
     "Trastorno de alimentación en la lactancia y en la primera infancia",
     "Trastorno de dolor",
     "Trastorno por atracón",
-
     "Desnutrición",
     "Dislipidemia",
     "Embarazo abdominal",
     "Obesidad infantil",
-
     "Absceso dental",
     "Alveolitis",
     "Amelogénesis imperfecta",
@@ -4206,7 +4170,6 @@
     "Úlcera labial",
     "Úlceras bucales",
     "Uvulitis",
-
     "Acromatopsia",
     "Agujero macular",
     "Albinismo ocular",
@@ -4337,7 +4300,6 @@
     "Visión baja",
     "Vitreoretinopatía proliferativa",
     "Xeroftalmia",
-
     "Adenocarcinoma de las células renales",
     "Adenocarcinoma del útero",
     "Arrenoblastoma",
@@ -4461,7 +4423,6 @@
     "Tumor vaginal",
     "Tumores neuroectodérmicos primitivos",
     "TVP",
-
     "Alta miopía",
     "Astigmatismo",
     "Cataratas",
@@ -4483,7 +4444,6 @@
     "Síndrome del ojo seco",
     "Visión baja",
     "Visión corta",
-
     "Acondroplasia",
     "Acrodisostosis",
     "Acrodisplasia",
@@ -4585,7 +4545,6 @@
     "Tibia vara",
     "Tortícolis",
     "Tumor vaginal",
-
     "Absceso de las amígdalas",
     "Agrandamiento de adenoides",
     "Alergias nasales",
@@ -4719,10 +4678,8 @@
     "Tumores de las glándulas salivales",
     "Tumores neuroectodérmicos primitivos",
     "Uvulitis",
-
     "Cáncer bucal",
     "Hemocromatosis",
-
     "Abuso sexual infantil",
     "Acantocitosis",
     "Acidemia metilmalónica",
@@ -6032,5 +5989,5 @@
     "Absceso perirrenal",
     "HIV/SIDA",
     "Infección por VIH",
-    "Sífilis"]
-}
+    "Sífilis"
+]

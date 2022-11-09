@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\V1\AuthController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\RoleController;
+use App\Http\Controllers\PruebaEncryp;
 use Illuminate\Support\Facades\Route;
 
 
@@ -71,3 +72,5 @@ Route::prefix('v1')->group(function () {
 
 
 });
+
+Route::resource('prueba',PruebaEncryp::class)->only(['index']);

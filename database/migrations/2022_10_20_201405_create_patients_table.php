@@ -16,7 +16,7 @@ return new class () extends Migration {
             $table->string('zip_code');
             $table->string('code_country')->nullable();
             $table->string('emergency_number')->nullable();
-            $table->json('card')->nullable();
+            $table->json('id_card')->nullable();
             $table->unsignedBigInteger('city_id')->nullable();
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('set null');
             $table->unsignedBigInteger('health_insurance_id')->nullable();
