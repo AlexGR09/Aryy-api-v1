@@ -46,13 +46,7 @@ class PatientController extends Controller
     {
         try {
             if ($this->user->hasPermissionTo('show patient')) {
-                $patient = Patient::where('user_id', $this->user->id)
-                    ->with('health_insurances')
-                    ->get();
-                // $patient->health_insurances;
-
-                // return $patient;
-
+                $patient = Patient::where('user_id', $this->user->id)->get();
                 return (PatientResource::collection($patient))->additional(['message' => 'Mi perfil de paciente.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
