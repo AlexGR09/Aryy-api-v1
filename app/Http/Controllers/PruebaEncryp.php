@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Disease;
 use Illuminate\Http\Request;
 use App\Models\encryp;
+use App\Models\Specialty;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Hash;
@@ -21,20 +23,30 @@ class PruebaEncryp extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { $json = Storage::disk('local')->get('/json/diseases.json');
+    { $json = Storage::disk('local')->get('/json/specialties.json');
         $data = json_decode($json,true);
 
-        $array2 = array("cosa1","cosa2","cosa2","cosa3","cosa4");
+        $json2 = Storage::disk('local')->get('/json/medical_service.json');
+        $data2 = json_decode($json2,true);
+
         
 
-/* */
+       /*  foreach($data as $obj){
+           $specialty = Specialty::where('name',$obj)->pluck('id')->first();
+
+
+           return $specialty;
+        } */
+
+
+    
       
-       
-        $array = array_unique($data,SORT_STRING);
+      
+       /*  $array = array_unique($data,SORT_STRING);
         $array = array_values($array);
         return json_encode($array);
     
-      return "f";
+      return "f"; */
             
        /*  $encryptedValue = encryp::find(2);
         return $encryptedValue;

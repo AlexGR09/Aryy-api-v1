@@ -21,11 +21,13 @@ class SubSpecialtySeeder extends Seeder
         $data = json_decode($json);
         $specialty_id = 1;
         foreach ($data as $specialty) {
-            if(is_array($specialty)){
+            if (is_array($specialty)) {
                 foreach ($specialty as $sub_specialty) {
                     DB::table('sub_specialties')->insert([
-                        ['name' => $sub_specialty,
-                        'specialty_id' => $specialty_id ]
+                        [
+                            'name' => $sub_specialty,
+                            'specialty_id' => $specialty_id
+                        ]
                     ]);
                 }
             }
