@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Disease;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -19,22 +20,23 @@ class SpecialtiesDiseasesSeeder extends Seeder
         //STORAGE/APP/JSON
         $json = Storage::disk('local')->get('/json/specialties_diseases.json');
         $data = json_decode($json);
-        
-       /*  $disease_id = 1; */
         $specialty_id = 1;
-        foreach ($data as $specialty_disease) {
-            if (is_array($specialty_disease)) {
-                foreach ($specialty_disease as $specialties_diseases) {
-                    DB::table('specialties_diseases')->insert([
-                        [
-                            'specialty_id' => $specialty_id,
-                            'disease_id' => $specialties_diseases
-                        ]
-                    ]);
+        foreach ($data as $disease) {
+            if (is_array($disease)) {
+                foreach ($disease as $diseases) {
+                    $enfermedad = Disease::where('name', $diseases)->pluck('id')->first();
+                        DB::table('specialties_diseases')->insert([
+                            [
+                                'disease_id' => $enfermedad,
+                                'specialty_id' => $specialty_id
+                            ]
+                        ]);
+                    
                 }
-                
+            
             }
             $specialty_id++;
         }
+
     }
 }
