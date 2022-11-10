@@ -45,8 +45,8 @@ class Physician extends Model
     //     return $this->hasMany('App\Models\MedicalServicesPhysician');
     // }
 
-    // public function facilities()
-    // {
-    //     return $this->hasMany('App\Models\FacilitiesPhysician');
-    // }
+    public function facilities()
+    {
+        return $this->belongsToMany('App\Models\Facility', 'facility_physician');
+    }
 }
