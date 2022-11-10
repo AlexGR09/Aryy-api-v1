@@ -11,7 +11,8 @@ class HealthInsurance extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'insurance_number'
+        'insurance_number',
+        'insurances_id'
     ];
 
     // RELACIÓN MUCHOS A UNO CON PACIENTE
@@ -24,4 +25,5 @@ class HealthInsurance extends Model
     {
         return $this->belongsTo('App\Models\Insurance');
     }
+
 }

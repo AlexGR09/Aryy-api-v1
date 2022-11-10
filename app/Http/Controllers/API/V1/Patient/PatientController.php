@@ -17,7 +17,6 @@ class PatientController extends Controller
         $this->user = auth()->user();
     }
 
-
     public function store(PatientRequest $request)
     {
         try {
@@ -46,13 +45,7 @@ class PatientController extends Controller
     {
         try {
             if ($this->user->hasPermissionTo('show patient')) {
-                $patient = Patient::where('user_id', $this->user->id)
-                    ->with('health_insurances')
-                    ->get();
-                // $patient->health_insurances;
-
-                // return $patient;
-
+                $patient = Patient::where('user_id', $this->user->id)->get();
                 return (PatientResource::collection($patient))->additional(['message' => 'Mi perfil de paciente.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
@@ -61,8 +54,10 @@ class PatientController extends Controller
         }
     }
 
-    public function update(Request $request, Patient $patient)
+    public function update()
     {
+
+        return response()->json("FUNCIONALIDAD EN CREACIÓN");
         /*  try {
              if ($this->user->hasPermissionTo('complete profile patient')) {
 
@@ -79,8 +74,5 @@ class PatientController extends Controller
          } */
     }
 
-    public function destroy($id)
-    {
-        //
-    }
+
 }

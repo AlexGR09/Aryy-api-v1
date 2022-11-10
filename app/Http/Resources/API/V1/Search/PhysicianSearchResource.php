@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Resources\API\V1\Physician;
+namespace App\Http\Resources\API\V1\Search;
 
-// use App\Models\PhysicianSpecialty;
-use App\Http\Resources\API\V1\UserResource;
+use App\Http\Resources\API\V1\Physician\PhysicianSpecialtyResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PhysicianResource extends JsonResource
+class PhysicianSearchResource extends JsonResource
 {
+    
     public function toArray($request)
     {
         return [
@@ -16,11 +16,8 @@ class PhysicianResource extends JsonResource
             'certificates' => json_decode($this->certificates),
             'social_networks' => json_decode($this->social_networks),
             'biography' => $this->biography,
-            'recipe_template' => $this->recipe_template,
             'is_verified' => $this->is_verified,
-            // 'physician_specialties' => PhysicianSpecialty::where('physician_id', $this->id)->get(),
             'physician_specialties' => PhysicianSpecialtyResource::collection($this->physician_specialty),
-            'user' => new UserResource($this->user),
         ];
     }
 }

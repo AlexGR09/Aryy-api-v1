@@ -46,7 +46,7 @@ class AuthController extends Controller
             if ($request->mobile) { // SI ES MOBILE SERÁ UN USUARIO PACIENTE, DE LO CONTRARIO SERÁ UN USUARIO MÉDICO
                 $user->assignRole('NewPatient');
             } else {
-                $user->code_country = $request->code_country;
+                $user->country_code = $request->country_code;
                 $user->phone_number = $request->phone_number;
                 $user->assignRole('NewPhysician');
             }
