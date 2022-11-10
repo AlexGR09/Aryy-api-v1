@@ -54,14 +54,24 @@ class PatientController extends Controller
         }
     }
 
-    public function update()
+    public function update(PatientRequest $request)
     {
 
-        return response()->json("FUNCIONALIDAD EN CREACIÓN");
-        /*  try {
-             if ($this->user->hasPermissionTo('complete profile patient')) {
+        /* return response()->json("FUNCIONALIDAD EN CREACIÓN"); */
+         try {
+             if ($this->user->hasPermissionTo('edit patient')) {
+                
+                DB::beginTransaction();
 
-                 $patient->name = $request->name;
+                 $patient = Patient::where('user_id',$this->user->id)->first();
+                 
+                 $patient->address = json_encode($request->address);
+                 $patient->zip_code = $request->zip_code;
+                 $patient->emergency_number = $request->emergency_number;
+                 $patient->city_id = $request->city_id;
+                 $patient->code_country = $request->code_country;
+                 $patient->id_card = json_encode($request->id_card);
+
                  $patient->save();
 
                  DB::commit();
@@ -71,7 +81,7 @@ class PatientController extends Controller
          } catch (\Throwable $th) {
              DB::rollBack();
              return response()->json(['error' => $th->getMessage()], 503);
-         } */
+         }
     }
 
 
