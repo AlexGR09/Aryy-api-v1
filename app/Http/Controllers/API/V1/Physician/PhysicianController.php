@@ -58,11 +58,11 @@ class PhysicianController extends Controller
         try {
             if ($this->user->hasPermissionTo('show physician')) {
                 $message = 'Mi perfil médico.';
-                $physician = Physician::where('user_id', $this->user->id)->get();
+                $physician = Physician::where('user_id', $this->user->id)->first();
                 if ($this->user->hasRole('PhysicianInVerification')) {
                     $message = 'Su perfil médico está en proceso de verificación, esto puede tomar un par de días. Por favor, tenga paciencia, nosotros le avisaremos.';
                 }
-                return (PhysicianResource::collection($physician))->additional(['message' => $message]);
+                return (new PhysicianResource($physician))->additional(['message' => $message]);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {

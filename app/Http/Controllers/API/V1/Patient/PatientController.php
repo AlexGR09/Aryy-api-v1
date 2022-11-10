@@ -54,8 +54,10 @@ class PatientController extends Controller
         }
     }
 
-    public function update(Request $request, Patient $patient)
+    public function update()
     {
+
+        return response()->json("FUNCIONALIDAD EN CREACIÓN");
         /*  try {
              if ($this->user->hasPermissionTo('complete profile patient')) {
 
@@ -72,8 +74,5 @@ class PatientController extends Controller
          } */
     }
 
-    public function destroy($id)
-    {
-        //
-    }
+
 }

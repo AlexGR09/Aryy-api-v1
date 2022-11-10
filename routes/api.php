@@ -64,6 +64,12 @@ Route::prefix('v1')->group(function () {
             Route::post('/patient', 'store');
             Route::put('/patient', 'update');
         });
+
+
+        // BÚSQUEDAS
+        // DEL PACIENTE
+        Route::get('/searchphy', [$v1.'Search\\'.PhysicianSearchController::class, 'index']);
+        // Route::get('/user', [UserController::class, 'index']);
     
     });
 

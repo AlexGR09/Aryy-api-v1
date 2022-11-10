@@ -28,7 +28,7 @@ class PhysicianSpecialty extends Model
         'deleted_at',
     ];
 
-    // MÉTODOS PARA AGREGAR MÁS CAMPOS ENTRE TABLAS CON UNA TABLA PIVOTW (M:N)
+    // RELACIONES DE ESTA TABLA PIVOT (M:N)
     // public function physicians()
     // {
     //     return $this->belongsToMany('App\Models\Physician');

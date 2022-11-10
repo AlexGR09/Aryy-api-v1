@@ -21,15 +21,20 @@ class Patient extends Model
         'id_card',
     ];
     
-    // RELACIÓN UNO UNO CON EL MODELO USUARIO
+    // RELACIÓN UNO UNO CON USUARIO
     public function user()
     {
         return $this->belongsTo('App\Models\User');
     }
     // RELACIÓN MUCHOS A UNO CON SEGUROS MÉDICOS
-    public function health_insurances()
+    public function health_insurance()
     {
-        return $this->belongsTo('App\Models\HealthInsurance', 'id');
+        return $this->belongsTo('App\Models\HealthInsurance');
+    }
+    // RELACIÓN MUCHOS A UNO CON CIUDADES
+    public function city()
+    {
+        return $this->belongsTo('App\Models\City');
     }
 
 
