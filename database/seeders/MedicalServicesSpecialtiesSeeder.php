@@ -17,16 +17,16 @@ class MedicalServicesSpecialtiesSeeder extends Seeder
      */
     public function run()
     {
-        $json = Storage::disk('local')->get('/json/specialtie.json');
+        $json = Storage::disk('local')->get('/json/medical_services_specialties.json');
         $data = json_decode($json);
         $specialty_id = 1;
-        foreach ($data as $disease) {
-            if (is_array($disease)) {
-                foreach ($disease as $diseases) {
-                    $enfermedad = MedicalService::where('name', $diseases)->pluck('id')->first();
-                        DB::table('specialties_diseases')->insert([
+        foreach ($data as $service) {
+            if (is_array($service)) {
+                foreach ($service as $medicalservice) {
+                    $medical_service = MedicalService::where('name', $medicalservice)->pluck('id')->first();
+                        DB::table('medical_services_specialties')->insert([
                             [
-                                'disease_id' => $enfermedad,
+                                'medical_service_id' => $medical_service,
                                 'specialty_id' => $specialty_id
                             ]
                         ]);
