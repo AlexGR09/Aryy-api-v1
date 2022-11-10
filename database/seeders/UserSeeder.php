@@ -214,10 +214,67 @@ class UserSeeder extends Seeder
         // ASIGNANDO ROLES A USUARIOS
         $user1 = User::where('id', 1)->first();
         $user1->assignRole(['Administrator']);
-//medicos
+        
+        //medicos
+        $medico = User::where('id', 3)->first();
+        $medico->assignRole(['User', 'Physician']);
+
+        $medico2 = User::where('id', 4)->first();
+        $medico2->assignRole(['User', 'Physician']);
+
+        $medico5 = User::where('id', 5)->first();
+        $medico5->assignRole(['User', 'Physician']);
+
+        $medico6 = User::where('id', 6)->first();
+        $medico6->assignRole(['User', 'Physician']);
+
+        $medico7 = User::where('id', 7)->first();
+        $medico7->assignRole(['User', 'Physician']);
+
+        $medico8 = User::where('id', 8)->first();
+        $medico8->assignRole(['User', 'Physician']);
+
+        $medico9 = User::where('id', 9)->first();
+        $medico9->assignRole(['User', 'Physician']);
+
+        $medico10 = User::where('id', 10)->first();
+        $medico10->assignRole(['User', 'Physician']);
+
+        $medico11 = User::where('id', 11)->first();
+        $medico11->assignRole(['User', 'Physician']);
+
+        $medico12 = User::where('id', 12)->first();
+        $medico12->assignRole(['User', 'Physician']);
 
         //pacientes
-        $user2 = User::where('id', 2)->first();
-        $user2->assignRole(['User', 'NewPatient']);
+        $patient = User::where('id', 13)->first();
+        $patient->assignRole(['User', 'NewPatient']);
+
+        $patient2 = User::where('id', 14)->first();
+        $patient2->assignRole(['User', 'NewPatient']);
+
+        $patient3 = User::where('id', 15)->first();
+        $patient3->assignRole(['User', 'NewPatient']);
+
+        $patient4 = User::where('id', 16)->first();
+        $patient4->assignRole(['User', 'NewPatient']);
+
+        $patient6 = User::where('id', 17)->first();
+        $patient6->assignRole(['User', 'NewPatient']);
+
+        $patient7 = User::where('id', 18)->first();
+        $patient7->assignRole(['User', 'NewPatient']);
+
+        $patient8 = User::where('id', 19)->first();
+        $patient8->assignRole(['User', 'NewPatient']);
+
+        $patient9 = User::where('id', 20)->first();
+        $patient9->assignRole(['User', 'NewPatient']);
+
+        $patient10 = User::where('id', 21)->first();
+        $patient10->assignRole(['User', 'NewPatient']);
+
+        $patient11 = User::where('id', 22)->first();
+        $patient11->assignRole(['User', 'NewPatient']);
     }
 }

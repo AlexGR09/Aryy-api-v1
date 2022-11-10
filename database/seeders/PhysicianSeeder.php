@@ -32,6 +32,26 @@ class PhysicianSeeder extends Seeder
                 'user_id'=>7,
                 'professional_name'=>'Dr. Daniel'
             ],
+            [
+                'user_id'=>8,
+                'professional_name'=>'Dr. Marco'
+            ],
+            [
+                'user_id'=>9,
+                'professional_name'=>'Dr. Angel'
+            ],
+            [
+                'user_id'=>10,
+                'professional_name'=>'Dr. Miguel'
+            ],
+            [
+                'user_id'=>11,
+                'professional_name'=>'Dr. Joel'
+            ],
+            [
+                'user_id'=>12,
+                'professional_name'=>'Dr. Alejandro'
+            ],
 
 
         ]);
