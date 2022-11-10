@@ -19,7 +19,7 @@ class PhysicianResource extends JsonResource
             'recipe_template' => $this->recipe_template,
             'is_verified' => $this->is_verified,
             // 'physician_specialties' => PhysicianSpecialty::where('physician_id', $this->id)->get(),
-            'physician_specialties' => PhysicianSpecialtyResource::collection($this->physician_specialties),
+            'physician_specialties' => PhysicianSpecialtyResource::collection($this->physician_specialty),
             'user' => new UserResource($this->user),
         ];
     }

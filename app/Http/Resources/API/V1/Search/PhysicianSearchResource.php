@@ -17,7 +17,7 @@ class PhysicianSearchResource extends JsonResource
             'social_networks' => json_decode($this->social_networks),
             'biography' => $this->biography,
             'is_verified' => $this->is_verified,
-            'physician_specialties' => PhysicianSpecialtyResource::collection($this->physician_specialties),
+            'physician_specialties' => PhysicianSpecialtyResource::collection($this->physician_specialty),
         ];
     }
 }

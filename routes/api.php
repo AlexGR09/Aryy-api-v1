@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\V1\AuthController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\RoleController;
+use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -66,14 +67,14 @@ Route::prefix('v1')->group(function () {
         });
 
 
-        // BÚSQUEDAS
-        // DEL PACIENTE
-        Route::get('/searchphy', [$v1.'Search\\'.PhysicianSearchController::class, 'index']);
+        
         // Route::get('/user', [UserController::class, 'index']);
     
     });
 
 
-
+// BÚSQUEDAS
+    // DEL PACIENTE
+    Route::get('/searchphy', [PhysicianSearchController::class, 'index']);
 
 });

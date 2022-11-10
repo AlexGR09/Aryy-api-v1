@@ -27,41 +27,31 @@ class PhysicianSearchController extends Controller
         switch ($request->search) {
             // BÚSQUEDA POR NOMBRE DEL MÉDICO
             case 'physician':
-                    $physicians = Physician::where('professional_name', 'like', '%'.$value.'%')
-                        ->where('is_verified', 'verified')
-                        ->paginate(10);
-
-                    
-
-                        return $physicians;
-                        
-                    if ($physicians->isEmpty()) {
-                        return response()->json(['message' =>'Ningún resultado en la búsqueda'], 404);
-                    }
-                    return (PhysicianSearchResource::collection($physicians))->additional(['message' => 'Médico(s) encontrado(s).']);
+                $physicians = Physician::where('professional_name', 'like', '%'.$value.'%')
+                    ->where('is_verified', 'verified')
+                    ->paginate(10);
+                if ($physicians->isEmpty()) {
+                    return response()->json(['message' =>'Ningún resultado en la búsqueda'], 404);
+                }
+                return (PhysicianSearchResource::collection($physicians))->additional(['message' => 'Médico(s) encontrado(s).']);
                 break;
 
             case 'specialty':
-                // $physician = Specialty::where('id', '12')
-                //     ->with('physicians')
-                //     ->paginate(10);
-                // return $physician;
-
-                $physicians = DB::table('physicians')
+                // BÚSQUEDA POR ESPECIALIDAD
+                $physicians = Physician::where('is_verified', '=', 'verified')
                     ->join('physician_specialty', 'physicians.id', '=', 'physician_specialty.physician_id')
                     ->join('specialties', 'physician_specialty.specialty_id', '=', 'specialties.id')
-                    ->where('specialties.name', '=', 'Cirujano general')
-                    ->select('physicians.*', 'specialties.id as specialty_id')
-                    ->get();
-
-                    return (PhysicianSearchResource::collection($physicians))->additional(['message' => 'Médico(s) encontrado(s).']);
-
-                    return $physicians;
-
-                // $physician = Physician::
+                    ->select('physicians.*')
+                    ->where('specialties.name', '=', $value)
+                    ->paginate(10);
+                if ($physicians->isEmpty()) {
+                    return response()->json(['message' =>'Ningún resultado en la búsqueda'], 404);
+                }
+                return (PhysicianSearchResource::collection($physicians))->additional(['message' => 'Médico(s) encontrado(s).']);
+                break;
 
             default:
-                return "no hay resultados";
+                return response()->json(['message' =>'Faltan datos para generar la búsqueda'], 404);
                 break;
         }
     }

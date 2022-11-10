@@ -28,15 +28,15 @@ class PhysicianSpecialty extends Model
         'deleted_at',
     ];
 
-    // RELACIONES DE ESTA TABLA PIVOT (M:N)
-    // public function physicians()
-    // {
-    //     return $this->belongsToMany('App\Models\Physician');
-    // }
+    // RELACIONES DE ESTA TABLA PIVOT (M:N) PRUEBAS
+    public function physicians()
+    {
+        return $this->belongsToMany('App\Models\Physician')->withPivot('physician_id');
+    }
 
-    // public function specialties()
-    // {
-    //     return $this->belongsToMany('App\Models\Specialty')->withPivot('specialty_id');
-    // }
+    public function specialties()
+    {
+        return $this->belongsToMany('App\Models\Specialty')->withPivot('specialty_id');
+    }
     
 }
