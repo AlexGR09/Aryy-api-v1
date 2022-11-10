@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    
+
     public function run()
     {
         $this->call(PermissionSeeder::class);
@@ -32,5 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SpecialtiesDiseasesSeeder::class);
         $this->call(MedicalServicesSpecialtiesSeeder::class);
         $this->call(MedicalServicesPhysicianSeeder::class);
+        $this->call(DiseasesPhysicianSeeder::class);
     }
 }
