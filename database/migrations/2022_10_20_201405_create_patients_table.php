@@ -14,7 +14,7 @@ return new class () extends Migration {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->json('address');
             $table->string('zip_code');
-            $table->string('code_country')->nullable();
+            $table->string('country_code')->nullable();
             $table->string('emergency_number')->nullable();
             $table->json('id_card')->nullable();
             $table->unsignedBigInteger('city_id')->nullable();

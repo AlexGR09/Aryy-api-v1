@@ -20,9 +20,9 @@ class PatientRequest extends FormRequest
             'zip_code' => 'required|digits:5',
             'emergency_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|'.  Rule::unique('patients'),
             'city_id' => 'required|numeric',
-            /* 'id_card' => 'required_array_keys:type,image',
+            'id_card' => 'required_array_keys:type,image',
             'id_card.type' => 'max:50',
-            'id_card.image' => 'image|mimes:jpg,jpeg,png|max:2000|dimensions:max_width=512,max_height=512', */
+            'id_card.image' => 'image|mimes:jpg,jpeg,png|max:2000|dimensions:max_width=512,max_height=512',
         ];
     }
 }

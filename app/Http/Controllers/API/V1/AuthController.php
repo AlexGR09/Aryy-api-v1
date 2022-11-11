@@ -78,7 +78,7 @@ class AuthController extends Controller
                 $this->user->last_name = $request->last_name;
                 $this->user->gender = $request->gender;
                 $this->user->birthday = $request->birthday;
-                $this->user->code_country = $request->code_country;
+                $this->user->country_code = $request->country_code;
                 $this->user->phone_number = $request->phone_number;
                 $this->user->email = $request->email;
                 // Si se recibe una imagen

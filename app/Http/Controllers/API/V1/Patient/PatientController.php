@@ -69,7 +69,7 @@ class PatientController extends Controller
                  $patient->zip_code = $request->zip_code;
                  $patient->emergency_number = $request->emergency_number;
                  $patient->city_id = $request->city_id;
-                 $patient->code_country = $request->code_country;
+                 $patient->country_code = $request->country_code;
                  $patient->id_card = json_encode($request->id_card);
 
                  $patient->save();
