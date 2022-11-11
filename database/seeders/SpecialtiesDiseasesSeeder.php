@@ -25,7 +25,7 @@ class SpecialtiesDiseasesSeeder extends Seeder
             if (is_array($disease)) {
                 foreach ($disease as $diseases) {
                     $enfermedad = Disease::where('name', $diseases)->pluck('id')->first();
-                        DB::table('specialties_diseases')->insert([
+                        DB::table('specialty_disease')->insert([
                             [
                                 'disease_id' => $enfermedad,
                                 'specialty_id' => $specialty_id
