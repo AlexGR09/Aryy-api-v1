@@ -24,7 +24,7 @@ class Facility extends Model
 
     public function physicians()
     {
-        return $this->hasMany('App\Models\FacilitiesPhysician');
+        return $this->belongsToMany('App\Models\Physician', 'facility_physician');
     }
 
     public function city()

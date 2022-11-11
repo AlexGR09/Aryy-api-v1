@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('specialties_diseases', function (Blueprint $table) {
+        Schema::create('specialty_disease', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('specialty_id');
             $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('specialty_disease');
     }
 };

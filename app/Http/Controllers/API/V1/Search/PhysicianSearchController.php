@@ -35,9 +35,8 @@ class PhysicianSearchController extends Controller
                 }
                 return (PhysicianSearchResource::collection($physicians))->additional(['message' => 'Médico(s) encontrado(s).']);
                 break;
-
+            // BÚSQUEDA POR ESPECIALIDAD
             case 'specialty':
-                // BÚSQUEDA POR ESPECIALIDAD
                 $physicians = Physician::where('is_verified', '=', 'verified')
                     ->join('physician_specialty', 'physicians.id', '=', 'physician_specialty.physician_id')
                     ->join('specialties', 'physician_specialty.specialty_id', '=', 'specialties.id')
@@ -49,7 +48,67 @@ class PhysicianSearchController extends Controller
                 }
                 return (PhysicianSearchResource::collection($physicians))->additional(['message' => 'Médico(s) encontrado(s).']);
                 break;
+            // BÚSQUEDA POR ENFERMEDAD
+            case 'disease':
+                $physicians = Physician::where('is_verified', '=', 'verified')
+                    ->join('disease_physician', 'physicians.id', '=', 'disease_physician.physician_id')
+                    ->join('diseases', 'disease_physician.disease_id', '=', 'diseases.id')
+                    ->select('physicians.*')
+                    ->where('diseases.name', '=', $value)
+                    ->paginate(10);
+                if ($physicians->isEmpty()) {
+                    return response()->json(['message' =>'Ningún resultado en la búsqueda'], 404);
+                }
+                return (PhysicianSearchResource::collection($physicians))->additional(['message' => 'Médico(s) encontrado(s).']);
+                break;
+            // BÚSQUEDA POR SERVICIO
+            case 'service':
 
+                // $physicians = Physician::where('is_verified', '=', 'verified')
+                //     ->join('medical_service_physician', 'physicians.id', '=', 'medical_service_physician.physician_id')
+                //     ->join('medical_services', 'medical_service_physician.medical_service_id', '=', 'medical_services.id')
+                //     ->join('facility_physician', 'physicians.id', '=', 'facility_physician.physician_id')
+                //     ->join('facilities', 'facility_physician.facility_id', '=', 'facilities.id')
+                //     ->select('physicians.*')
+                //     ->where('medical_services.name', '=', $value)
+                //     ->where('facilities.city_id', '=', 12)
+                //     ->groupBy('physicians.id')
+                //     ->paginate(10);
+
+                
+                //     return $physicians;
+                // $physicians = Physician::where('is_verified', '=', 'verified')
+                //     ->join('facility_physician', 'physicians.id', '=', 'facility_physician.physician_id')
+                //     ->join('facilities', 'facility_physician.facility_id', '=', 'facilities.id')
+                //     ->select('physicians.*')
+                //     ->where('facilities.city_id', '=', 12)
+                //     ->get();
+
+
+                // 
+
+
+                // BUSCA SIN CIUDAD
+                $physicians = Physician::where('is_verified', '=', 'verified')
+                    ->join('medical_service_physician', 'physicians.id', '=', 'medical_service_physician.physician_id')
+                    ->join('medical_services', 'medical_service_physician.medical_service_id', '=', 'medical_services.id')
+                    ->select('physicians.*')
+                    ->where('medical_services.name', '=', $value)
+                    ->paginate(10);
+
+
+                if ($physicians->isEmpty()) {
+                    return response()->json(['message' =>'Ningún resultado en la búsqueda'], 404);
+                }
+                return (PhysicianSearchResource::collection($physicians))->additional(['message' => 'Médico(s) encontrado(s).']);
+                break;
+            // case 'facility':
+            //     $physicians = Physician::where('id', 1)->with('facilities')->get();
+            //     // $physicians = DB::table('physicians')->get();
+            //     return (PhysicianSearchResource::collection($physicians))->additional(['message' => 'Médico(s) encontrado(s).']);
+            //     return $physicians;
+            //     break;
+            // CUALQUIER OTRA BÚSQUEDA
             default:
                 return response()->json(['message' =>'Faltan datos para generar la búsqueda'], 404);
                 break;
