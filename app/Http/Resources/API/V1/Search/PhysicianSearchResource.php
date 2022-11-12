@@ -12,23 +12,17 @@ class PhysicianSearchResource extends JsonResource
     
     public function toArray($request)
     {
-        // $facilities = $this->__isset('facilities') ? $this->facilities : null; 
-
-
-        // ESTO SE RECIBIRÁ COMO PARÁMETRO
-        $city = 12;
         $facilities = $this->facilities;
-        if (isset($city)) {
-            // GENERAR LA CONSULTA CON EL PARAMETRO
-            $facilities = Facility::where('city_id', $city)
+
+        if (isset($this->city)) {
+            $facilities = Facility::where('city_id', $this->city)
                 ->join('facility_physician', 'facilities.id', '=', 'facility_physician.facility_id')
                 ->join('physicians', 'facility_physician.physician_id', '=', 'physicians.id')
+                ->select('facilities.*')
                 ->where('physicians.id', $this->id)
-            ->get();
-            // throw new \ErrorException('existe facilities');
+                ->get();
         }
         
-
         return [
             'physician_id' => $this->id,
             'professional_name' => $this->professional_name,
@@ -37,8 +31,6 @@ class PhysicianSearchResource extends JsonResource
             'biography' => $this->biography,
             'is_verified' => $this->is_verified,
             'physician_specialties' => PhysicianSpecialtyResource::collection($this->physician_specialty),
-            // 'facilities' => Facility::where()
-            // 'facilities' => $facilities,
             'facilities' => $this->__isset('facilities') ? FacilityResource::collection($facilities) : NULL,
         ];
     }
