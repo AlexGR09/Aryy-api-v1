@@ -28,7 +28,8 @@ class PatientSeeder extends Seeder
                 "address" => json_encode($location),
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
-                'emergency_number'=> $faker->regexify('[0-9]{8}')
+                'emergency_number'=> $faker->regexify('[0-9]{8}'),
+                'city_id'=>1
     
             ], 
             [
@@ -37,7 +38,8 @@ class PatientSeeder extends Seeder
                 "address" => json_encode($location),
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
-                'emergency_number'=> $faker->regexify('[0-9]{8}')
+                'emergency_number'=> $faker->regexify('[0-9]{8}'),
+                'city_id'=>9
     
             ],
             [
@@ -46,7 +48,8 @@ class PatientSeeder extends Seeder
                 "address" => json_encode($location),
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
-                'emergency_number'=> $faker->regexify('[0-9]{8}')
+                'emergency_number'=> $faker->regexify('[0-9]{8}'),
+                'city_id'=>13
     
             ],
             [
@@ -55,7 +58,8 @@ class PatientSeeder extends Seeder
                 "address" => json_encode($location),
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
-                'emergency_number'=> $faker->regexify('[0-9]{8}')
+                'emergency_number'=> $faker->regexify('[0-9]{8}'),
+                'city_id'=>15
     
             ],
             [
@@ -64,7 +68,8 @@ class PatientSeeder extends Seeder
                 "address" => json_encode($location),
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
-                'emergency_number'=> $faker->regexify('[0-9]{8}')
+                'emergency_number'=> $faker->regexify('[0-9]{8}'),
+                'city_id'=>18
     
             ],
             [
@@ -73,7 +78,8 @@ class PatientSeeder extends Seeder
                 "address" => json_encode($location),
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
-                'emergency_number'=> $faker->regexify('[0-9]{8}')
+                'emergency_number'=> $faker->regexify('[0-9]{8}'),
+                'city_id'=>13
     
             ],
             [
@@ -82,7 +88,8 @@ class PatientSeeder extends Seeder
                 "address" => json_encode($location),
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
-                'emergency_number'=> $faker->regexify('[0-9]{8}')
+                'emergency_number'=> $faker->regexify('[0-9]{8}'),
+                'city_id'=>19
     
             ],
             [
@@ -91,7 +98,8 @@ class PatientSeeder extends Seeder
                 "address" => json_encode($location),
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
-                'emergency_number'=> $faker->regexify('[0-9]{8}')
+                'emergency_number'=> $faker->regexify('[0-9]{8}'),
+                'city_id'=>21
     
             ],
             [
@@ -100,7 +108,8 @@ class PatientSeeder extends Seeder
                 "address" => json_encode($location),
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
-                'emergency_number'=> $faker->regexify('[0-9]{8}')
+                'emergency_number'=> $faker->regexify('[0-9]{8}'),
+                'city_id'=>31
     
             ],
             [
@@ -109,7 +118,8 @@ class PatientSeeder extends Seeder
                 "address" => json_encode($location),
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
-                'emergency_number'=> $faker->regexify('[0-9]{8}')
+                'emergency_number'=> $faker->regexify('[0-9]{8}'),
+                'city_id'=>1
     
             ],
 
