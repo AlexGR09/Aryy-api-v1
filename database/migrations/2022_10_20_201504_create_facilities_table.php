@@ -10,7 +10,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('facilities', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('facility_name');
             $table->json('location');
             $table->string('phone_number')->nullable();
@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('consultation_length')->nullable();
             $table->json('accessibility')->nullable();
             $table->string('clues')->nullable();
-            $table->unsignedBigInteger('city_id')->nullable();
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('set null');
+            $table->foreignId('city_id')->constrained('cities');
             $table->timestamps();
             $table->softDeletes();
         });

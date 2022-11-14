@@ -13,11 +13,10 @@ return new class () extends Migration {
     public function up()
     {
         Schema::create('states', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->string('short_name');
-            $table->unsignedBigInteger('country_id');
-            $table->foreign('country_id')->references('id')->on('countries');
+            $table->foreignId('country_id')->constrained('countries');
             $table->timestamps();
             $table->softDeletes();
         });

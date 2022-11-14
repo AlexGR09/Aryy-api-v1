@@ -14,10 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sub_specialties', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('specialty_id');
-            $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');
+            $table->foreignId('specialty_id')->constrained('specialties')->onDelete('cascade');
             $table->timestamps();
         });
     }

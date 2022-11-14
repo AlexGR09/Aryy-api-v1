@@ -13,11 +13,9 @@ return new class () extends Migration {
     public function up()
     {
         Schema::create('medical_service_physician', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('medical_service_id');
-            $table->foreign('medical_service_id')->references('id')->on('medical_services')->onDelete('cascade');
-            $table->unsignedBigInteger('physician_id');
-            $table->foreign('physician_id')->references('id')->on('physicians')->onDelete('cascade');
+            $table->id();
+            $table->foreignId('medical_service_id')->constrained('medical_services')->onDelete('cascade');
+            $table->foreignId('physician_id')->constrained('physicians')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
