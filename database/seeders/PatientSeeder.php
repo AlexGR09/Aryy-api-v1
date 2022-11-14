@@ -39,7 +39,7 @@ class PatientSeeder extends Seeder
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
                 'emergency_number'=> $faker->regexify('[0-9]{8}'),
-                'city_id'=>9
+                'city_id'=>10
     
             ],
             [
@@ -49,7 +49,7 @@ class PatientSeeder extends Seeder
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
                 'emergency_number'=> $faker->regexify('[0-9]{8}'),
-                'city_id'=>13
+                'city_id'=>3
     
             ],
             [
@@ -59,7 +59,7 @@ class PatientSeeder extends Seeder
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
                 'emergency_number'=> $faker->regexify('[0-9]{8}'),
-                'city_id'=>15
+                'city_id'=>3
     
             ],
             [
@@ -69,7 +69,7 @@ class PatientSeeder extends Seeder
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
                 'emergency_number'=> $faker->regexify('[0-9]{8}'),
-                'city_id'=>18
+                'city_id'=>9
     
             ],
             [
@@ -79,7 +79,7 @@ class PatientSeeder extends Seeder
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
                 'emergency_number'=> $faker->regexify('[0-9]{8}'),
-                'city_id'=>13
+                'city_id'=>10
     
             ],
             [
@@ -89,7 +89,7 @@ class PatientSeeder extends Seeder
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
                 'emergency_number'=> $faker->regexify('[0-9]{8}'),
-                'city_id'=>19
+                'city_id'=>12
     
             ],
             [
@@ -99,7 +99,7 @@ class PatientSeeder extends Seeder
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
                 'emergency_number'=> $faker->regexify('[0-9]{8}'),
-                'city_id'=>21
+                'city_id'=>5
     
             ],
             [
@@ -109,7 +109,7 @@ class PatientSeeder extends Seeder
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
                 'emergency_number'=> $faker->regexify('[0-9]{8}'),
-                'city_id'=>31
+                'city_id'=>6
     
             ],
             [
@@ -119,7 +119,7 @@ class PatientSeeder extends Seeder
                 'zip_code' =>$faker->regexify('[0-9]{5}'),
                 'country_code' =>"+52",
                 'emergency_number'=> $faker->regexify('[0-9]{8}'),
-                'city_id'=>1
+                'city_id'=>7
     
             ],
 
