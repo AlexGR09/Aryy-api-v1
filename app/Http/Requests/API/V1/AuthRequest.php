@@ -25,7 +25,7 @@ class AuthRequest extends FormRequest
         if (request()->is('api/v1/register')) {
             return [
                 'email' => 'required|email|max:35|unique:users',
-                'password' => 'required|min:8|max:16',
+                'password' => 'required|confirmed|min:8|max:16',
                 'country_code' => (!$request->mobile) ? 'required|max:6' : '',
                 'phone_number' => (!$request->mobile) ? 'required|unique:users|regex:/^([0-9\s\-\+\(\)]*)$/|min:10' : '' 
             ];

@@ -4,6 +4,7 @@ use App\Http\Controllers\API\V1\AuthController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\RoleController;
 use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
+use App\Http\Controllers\TestJoseController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -43,7 +44,7 @@ Route::prefix('v1')->group(function () {
         Route::resource('cities', $catalogues.CityController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
         //OCUPACIONES
-        Route::resource('ocupations', $catalogues.OcupationController::class)
+        Route::resource('ocupations', $catalogues.OccupationController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
         //MEDICAL SERVICES
         Route::resource('medicalservice', $catalogues.MedicalServiceController::class)
@@ -65,10 +66,6 @@ Route::prefix('v1')->group(function () {
             Route::post('/patient', 'store');
             Route::put('/patient', 'update');
         });
-
-
-        
-        // Route::get('/user', [UserController::class, 'index']);
     
     });
 
@@ -79,4 +76,7 @@ Route::prefix('v1')->group(function () {
 
 });
 
-Route::resource('prueba',PruebaEncryp::class)->only(['index']);
+
+// TESTS
+// JOSÉ
+    Route::get('/testjose', [TestJoseController::class, 'index']);
