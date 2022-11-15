@@ -13,7 +13,7 @@ return new class () extends Migration {
     public function up()
     {
         Schema::create('specialties', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name')->unique();
             $table->timestamps();
             $table->softDeletes();

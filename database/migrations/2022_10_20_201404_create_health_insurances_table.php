@@ -9,10 +9,9 @@ return new class () extends Migration {
     public function up()
     {
         Schema::create('health_insurances', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('insurance_number')->unique();
-            $table->unsignedBigInteger('insurance_id');
-            $table->foreign('insurance_id')->references('id')->on('insurances')->onDelete('cascade');
+            $table->foreignId('insurance_id')->constrained('insurances')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -18,6 +18,7 @@ class PatientResource extends JsonResource
             'address' => json_decode($this->address),
             'zip_code' => $this->zip_code,
             'city_id' => $this->city_id,
+            'code_country' => $this->country_code,
             'city' => new CityResource($this->city),
             'health_insurance_id' => $this->health_insurance_id,
             'health_insurance' => new HealthInsuranceResource($this->health_insurance),

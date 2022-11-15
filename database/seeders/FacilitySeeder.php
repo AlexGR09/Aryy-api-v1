@@ -103,6 +103,47 @@ class FacilitySeeder extends Seeder
                 'schedule' => json_encode($horarios),
                 'city_id' => 12
             ],
+            //
+            [
+                'facility_name' => 'Consultorio Dr. Marco',
+                'location' => json_encode($location),
+                'phone_number' => $faker->regexify('[0-9]{8}'),
+                'zip_code' =>$faker->regexify('[0-9]{5}'),
+                'schedule' => json_encode($horarios),
+                'city_id' => 3
+            ],
+            [
+                'facility_name' => 'Consultorio medico Dr. Angel',
+                'location' => json_encode($location),
+                'phone_number' => $faker->regexify('[0-9]{8}'),
+                'zip_code' => $faker->regexify('[0-9]{5}'),
+                'schedule' => json_encode($horarios),
+                'city_id' => 6
+            ],
+            [
+                'facility_name' => 'Consultorio medico Dr. Miguel',
+                'location' => json_encode($location),
+                'phone_number' => $faker->regexify('[0-9]{8}'),
+                'zip_code' => $faker->regexify('[0-9]{5}'),
+                'schedule' => json_encode($horarios),
+                'city_id' => 10
+            ],
+            [
+                'facility_name' => 'Consultorio medico Dr. Joel',
+                'location' => json_encode($location),
+                'phone_number' => $faker->regexify('[0-9]{8}'),
+                'zip_code' => $faker->regexify('[0-9]{5}'),
+                'schedule' => json_encode($horarios),
+                'city_id' => 12
+            ],
+            [
+                'facility_name' => 'Consultorio medico Dr. Alejandro',
+                'location' => json_encode($location),
+                'phone_number' => $faker->regexify('[0-9]{8}'),
+                'zip_code' => $faker->regexify('[0-9]{5}'),
+                'schedule' => json_encode($horarios),
+                'city_id' => 12
+            ],
 
         ]);
     }

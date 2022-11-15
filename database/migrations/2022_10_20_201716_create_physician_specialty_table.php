@@ -9,11 +9,9 @@ return new class () extends Migration {
     public function up()
     {
         Schema::create('physician_specialty', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('specialty_id')->nullable();
-            $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('set null');
-            $table->unsignedBigInteger('physician_id')->nullable();
-            $table->foreign('physician_id')->references('id')->on('physicians')->onDelete('set null');
+            $table->id();
+            $table->foreignId('specialty_id')->constrained('specialties');
+            $table->foreignId('physician_id')->nullable()->constrained('physicians');
             $table->string('license')->unique();
             $table->string('institution');
             $table->timestamps();
