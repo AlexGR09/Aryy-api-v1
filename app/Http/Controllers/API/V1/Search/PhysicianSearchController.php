@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Physician\PhysicianSearchRequest;
 use App\Http\Resources\API\V1\Search\PhysicianSearchResource;
 use App\Models\Physician;
+use Illuminate\Support\Facades\DB;
+
 // use App\Models\PhysicianSpecialty;
 // use App\Models\Specialty;
 // use Illuminate\Http\Request;
@@ -23,14 +25,21 @@ class PhysicianSearchController extends Controller
             switch ($request->search) {
                 // BÚSQUEDA POR NOMBRE DEL MÉDICO
                 case 'physician':
-                    $physicians = Physician::where('professional_name', 'like', '%'.$value.'%')
-                        ->where('is_verified', 'verified')
-                        ->paginate(10);
-                    if ($physicians->isEmpty()) {
+
+                    if ($city_id) {
+                        $physicians = DB::select('CALL getPhysicianByIdAndCityIdOfFacilities(?, ?)', [$request->value, $request->city_id]);
+                    } else {
+                        $physicians = DB::select('CALL getPhysicianById(?)', [$request->value]);
+                    }
+                    if (empty($physicians)) {
                         return response()->json(['message' =>'Ningún resultado en la búsqueda'], 404);
                     }
                     return (PhysicianSearchResource::collection($physicians))->additional(['message' => 'Médico(s) encontrado(s).']);
                     break;
+
+                    /* HASTA AQUÍ FUNCIONA */
+
+
                 // BÚSQUEDA POR ESPECIALIDAD
                 case 'specialty':
                     // BÚSQUEDA CON CIUDAD

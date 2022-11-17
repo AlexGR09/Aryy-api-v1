@@ -3,7 +3,8 @@
 use App\Http\Controllers\API\V1\AuthController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\RoleController;
-use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
+// use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
+// use App\Http\Controllers\API\V1\Search\SearchController;
 use App\Http\Controllers\TestJoseController;
 use Illuminate\Support\Facades\Route;
 
@@ -69,10 +70,12 @@ Route::prefix('v1')->group(function () {
     
     });
 
-
-// BÚSQUEDAS
-    // DEL PACIENTE
-    Route::get('/searchphy', [PhysicianSearchController::class, 'index']);
+    $search = "App\\Http\\Controllers\\API\\V1\\Search\\";
+    /* BÚSQUEDAS */
+    // BUSQUEDA MÉDICO MOBILE
+    Route::get('/search', [$search.SearchController::class, 'index']);
+    // BUSQUEDA DEFINIDA DE MÉDICO
+    Route::get('/searchphy', [$search.PhysicianSearchController::class, 'index']);
 
 });
 

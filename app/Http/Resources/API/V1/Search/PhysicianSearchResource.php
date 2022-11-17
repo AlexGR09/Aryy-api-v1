@@ -15,21 +15,9 @@ class PhysicianSearchResource extends JsonResource
     {
         
         if (isset($this->city_id)) {
-            // $facilities = Facility::where('city_id', $this->city)
-            //     ->join('facility_physician', 'facilities.id', '=', 'facility_physician.facility_id')
-            //     ->join('physicians', 'facility_physician.physician_id', '=', 'physicians.id')
-            //     ->select('facilities.*')
-            //     ->where('physicians.id', $this->id)
-            //     ->get();
             $facilities = DB::select('CALL searchFacilitiesByPhysicianIdAndCityId(?, ?)', [$this->id, $this->city_id]);
         } else {
-            // $facilities = DB::table('facilities')
-            //     ->join('facility_physician', 'facilities.id', '=', 'facility_physician.facility_id')
-            //     ->select('facilities.*')
-            //     ->where('facility_physician.physician_id', $this->id)
-            //     ->get();
             $facilities = DB::select('CALL searchFacilitiesByPhysicianId(?)', [$this->id]);
-
         }
         
         return [
@@ -39,9 +27,8 @@ class PhysicianSearchResource extends JsonResource
             'social_networks' => json_decode($this->social_networks),
             'biography' => $this->biography,
             'is_verified' => $this->is_verified,
-            // 'physician_specialties' => PhysicianSpecialtyResource::collection($this->physician_specialty),
-            // 'facilities' => $this->__isset('facilities') ? FacilityResource::collection($facilities) : NULL,
             'facilities' => empty($facilities) ? NULL : FacilityResource::collection($facilities) 
+            // 'physician_specialties' => PhysicianSpecialtyResource::collection($this->physician_specialty),
         ];
 
     }

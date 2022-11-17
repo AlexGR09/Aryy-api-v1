@@ -12,25 +12,55 @@ class SearchProcedureSeeder extends Seeder
     {
         /* PROCEDIMIENTOS ALMACENADOS */
 
-        // BÚSQUEDA DE MÉDICO POR NOMBRE
-        $searchPhysiciansByName = "
-        DROP PROCEDURE IF EXISTS searchPhysiciansByName;
-        CREATE PROCEDURE searchPhysiciansByName(IN physician_name VARCHAR(200))
+        // BÚSQUEDA DE MÉDICOS CON SUS ESPECIALIDADES POR NOMBRE DEL MÉDICO
+        $getPhysiciansByNameWithSpecialties = "
+        DROP PROCEDURE IF EXISTS getPhysiciansByNameWithSpecialties;
+        CREATE PROCEDURE getPhysiciansByNameWithSpecialties(IN physician_name VARCHAR(150))
         BEGIN
-            SELECT *
+            SELECT physicians.id as physician_id, physicians.professional_name, GROUP_CONCAT(specialties.name) as specialties
             FROM physicians
-            WHERE professional_name LIKE CONCAT('%',physician_name,'%')
-            AND is_verified = 'verified'
+            JOIN physician_specialty
+            ON physicians.id = physician_specialty.physician_id
+            JOIN specialties
+            ON physician_specialty.specialty_id = specialties.id
+            WHERE physicians.is_verified = 'verified'   
+            AND physicians.professional_name LIKE CONCAT('%',physician_name,'%')
             GROUP BY physicians.id
             ORDER BY professional_name ASC;
         END;
         ";
-        DB::unprepared($searchPhysiciansByName);
+        DB::unprepared($getPhysiciansByNameWithSpecialties);
 
-        // BÚSQUEDA DE MÉDICO POR NOMBRE Y CITY_ID DE INSTALACIONES
-        $searchPhysiciansByNameAndCityId = "
-        DROP PROCEDURE IF EXISTS searchPhysiciansByNameAndCityId;
-        CREATE PROCEDURE searchPhysiciansByNameAndCityId(IN physician_name VARCHAR(200),  IN city_id BIGINT)
+        // BÚSQUEDA DE ESPECIALIDADES POR NOMBRE DE LA ESPECIALIDAD
+        $getSpecialtiesByName = "
+        DROP PROCEDURE IF EXISTS getSpecialtiesByName;
+        CREATE PROCEDURE getSpecialtiesByName(IN specialty_name VARCHAR(150))
+        BEGIN
+            SELECT id as specialty_id, name
+            FROM specialties
+            WHERE name LIKE CONCAT('%',specialty_name,'%')
+            ORDER BY name ASC;
+        END;
+        ";
+        DB::unprepared($getSpecialtiesByName);
+
+        // BÚSQUEDA DE MÉDICO POR ID
+        $getPhysicianById = "
+        DROP PROCEDURE IF EXISTS getPhysicianById;
+        CREATE PROCEDURE getPhysicianById(IN physician_id BIGINT)
+        BEGIN
+            SELECT *
+            FROM physicians
+            WHERE id = physician_id
+            AND is_verified = 'verified';
+        END;
+        ";
+        DB::unprepared($getPhysicianById);
+
+        // BÚSQUEDA DE MÉDICO POR ID Y CITY_ID DE INSTALACIONES
+        $getPhysicianByIdAndCityIdOfFacilities = "
+        DROP PROCEDURE IF EXISTS getPhysicianByIdAndCityIdOfFacilities;
+        CREATE PROCEDURE getPhysicianByIdAndCityIdOfFacilities(IN physician_id BIGINT,  IN city_id BIGINT)
         BEGIN
             SELECT physicians.*, facilities.city_id
             FROM physicians
@@ -38,23 +68,17 @@ class SearchProcedureSeeder extends Seeder
             ON physicians.id = facility_physician.physician_id
             JOIN facilities
             ON facility_physician.facility_id = facilities.id 
-            WHERE physicians.professional_name LIKE CONCAT('%',physician_name,'%')
+            WHERE physicians.id = physician_id
             AND physicians.is_verified = 'verified'
             AND  facilities.city_id = city_id
             GROUP BY physicians.id, facilities.city_id
             ORDER BY professional_name ASC;
         END;
         ";
-        DB::unprepared($searchPhysiciansByNameAndCityId);
+        DB::unprepared($getPhysicianByIdAndCityIdOfFacilities);
 
-        // $physicians = DB::table('physicians')
-        //         ->join('facility_physician', 'physicians.id', '=', 'facility_physician.physician_id')
-        //         ->join('facilities', 'facility_physician.facility_id', '=', 'facilities.id')
-        //         ->where('physicians.professional_name', 'like', '%'.$request->value.'%')
-        //         ->where('facilities.city_id', '=', $request->city_id)
-        //         ->select('physicians.*', 'facilities.city_id as city_id')
-        //         ->groupBy('physicians.id', 'city_id')
-        //         ->get();
+
+
 
         // BÚSQUEDA DE INSTALACIONES POR EL ID DEL MÉDICO
         $searchFacilitiesByPhysicianId = "

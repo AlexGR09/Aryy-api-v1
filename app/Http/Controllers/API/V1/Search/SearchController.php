@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1\Search;
 
-use App\Http\Resources\API\V1\Search\PhysicianSearchResource;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class TestJoseController extends Controller
+class SearchController extends Controller
 {
     public function index(Request $request)
     {
@@ -20,10 +20,10 @@ class TestJoseController extends Controller
             $message = 'Resultados de la búsqueda.';
 
             // OBTIENE MÉDICOS CON ESPECIALIDADES POR NOMBRE DEL MÉDICO
-            $physicians = DB::select('CALL getPhysiciansWithSpecialtiesByPhysicianName(?)', [$value]);
+            $physicians = DB::select('CALL getPhysiciansByNameWithSpecialties(?)', [$value]);
 
             // COINCIDENCIA DE NOMBRES DE MÉDICOS
-            $specialties = DB::select('CALL getSpecialtiesBySpecialtyName(?)', [$value]);
+            $specialties = DB::select('CALL getSpecialtiesByName(?)', [$value]);
 
             // AGREGA AL ARRAY LOS RESULTADOS DE LA CONSULTAS
             $resSearch['specialties'] = $specialties;
@@ -40,12 +40,4 @@ class TestJoseController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-      
-    // if ($request->city_id) {
-    //     $physicians = DB::select('CALL searchPhysiciansByNameAndCityId(?, ?)', [$request->value, $request->city_id]);
-    // } else {
-    //     $physicians = DB::select('CALL searchPhysiciansByName(?)', [$request->value]);
-    // }
-
-    // return (PhysicianSearchResource::collection($physicians))->additional(['message' => 'Médico(s) encontrado(s).']);
 }
