@@ -15,9 +15,9 @@ class PhysicianSearchResource extends JsonResource
     {
         
         if (isset($this->city_id)) {
-            $facilities = DB::select('CALL searchFacilitiesByPhysicianIdAndCityId(?, ?)', [$this->id, $this->city_id]);
+            $facilities = DB::select('CALL getFacilitiesByPhysicianIdAndCityId(?, ?)', [$this->id, $this->city_id]);
         } else {
-            $facilities = DB::select('CALL searchFacilitiesByPhysicianId(?)', [$this->id]);
+            $facilities = DB::select('CALL getFacilitiesByPhysicianId(?)', [$this->id]);
         }
         
         return [

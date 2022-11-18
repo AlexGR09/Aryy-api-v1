@@ -26,8 +26,9 @@ class AuthRequest extends FormRequest
             return [
                 'email' => 'required|email|max:35|unique:users',
                 'password' => 'required|confirmed|min:8|max:16',
-                'country_code' => (!$request->mobile) ? 'required|max:6' : '',
-                'phone_number' => (!$request->mobile) ? 'required|unique:users|regex:/^([0-9\s\-\+\(\)]*)$/|min:10' : '' 
+                'type_user' => 'required|in:Patient,Physician', 
+                'country_code' => ($request->type_user == 'Physician') ? 'required|max:6' : '',
+                'phone_number' =>  ($request->type_user == 'Physician') ? 'required|unique:users|regex:/^([0-9\s\-\+\(\)]*)$/|min:10' : '' 
             ];
         }
 
@@ -51,7 +52,8 @@ class AuthRequest extends FormRequest
         return [
             'country_code' => 'código del país',
             'phone_number' => 'número de teléfono',
-            'birthday' => 'fecha de nacimiento'
+            'birthday' => 'fecha de nacimiento',
+            'type_user' => 'tipo de usuario'
         ];
     }
 

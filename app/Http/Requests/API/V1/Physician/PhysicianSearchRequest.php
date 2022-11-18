@@ -16,7 +16,7 @@ class PhysicianSearchRequest extends FormRequest
     {
         return [
             'search' => 'required|string',
-            'value' => 'required|string',
+            'value' => 'required|numeric',
             'city_id' => 'numeric'
         ];
     }

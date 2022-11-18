@@ -43,12 +43,18 @@ class AuthController extends Controller
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
             $user->assignRole('User');
-            if ($request->mobile) { // SI ES MOBILE SERÁ UN USUARIO PACIENTE, DE LO CONTRARIO SERÁ UN USUARIO MÉDICO
-                $user->assignRole('NewPatient');
-            } else {
-                $user->country_code = $request->country_code;
-                $user->phone_number = $request->phone_number;
-                $user->assignRole('NewPhysician');
+            // ASIGNAR ROL DE ACUERDO AL TIPO DE USUARIO
+            switch ($request->type_user) {
+                case 'Patient':
+                    $user->assignRole('NewPatient');
+                    break;
+                case 'Physician':
+                    $user->country_code = $request->country_code;
+                    $user->phone_number = $request->phone_number;
+                    $user->assignRole('NewPhysician');
+                    break;
+                default:
+                    break;
             }
             $user->save();
             return (new UserResource($user))->additional(['message' => 'Usuario registrado con éxito']);
@@ -84,9 +90,9 @@ class AuthController extends Controller
                 // Si se recibe una imagen
                 if ($request->photo) {
                     // Si existe una foto previa asociada al usuario, esta se elimina
-                    if ($this->user->photo != NULL && file_exists(public_path('profile-photos/'.$this->user->photo) ) ){
-                        unlink(public_path("profile-photos/". $this->user->photo)); 
-                    } 
+                    if ($this->user->photo != null && file_exists(public_path('profile-photos/'.$this->user->photo))) {
+                        unlink(public_path("profile-photos/". $this->user->photo));
+                    }
                     $this->user->photo = $photoName = time()."_". $request->file('photo')->getClientOriginalName();
                     // Mueve la imagen cargada de temporal a la carpeta pública
                     $request->file('photo')->move(public_path("profile-photos"), $photoName);
@@ -101,7 +107,7 @@ class AuthController extends Controller
                 return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
-         } catch (\Throwable $th) {
+        } catch (\Throwable $th) {
             DB::rollBack();
             // FALTA REGRESAR LA IMAGEN BORRADA
             return response()->json(['error' => $th->getMessage()], 503);
@@ -129,8 +135,7 @@ class AuthController extends Controller
             $this->user->save();
             return (new UserResource($this->user))->additional(['message' => 'Cierre de sesión exitoso, adiós']);
         } catch (\Throwable $th) {
-             return response()->json(['error' => $th->getMessage()], 503);
+            return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-
 }

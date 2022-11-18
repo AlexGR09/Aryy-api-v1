@@ -58,9 +58,9 @@ class SearchProcedureSeeder extends Seeder
         DB::unprepared($getPhysicianById);
 
         // BÚSQUEDA DE MÉDICO POR ID Y CITY_ID DE INSTALACIONES
-        $getPhysicianByIdAndCityIdOfFacilities = "
-        DROP PROCEDURE IF EXISTS getPhysicianByIdAndCityIdOfFacilities;
-        CREATE PROCEDURE getPhysicianByIdAndCityIdOfFacilities(IN physician_id BIGINT,  IN city_id BIGINT)
+        $getPhysicianByIdAndCityIdOfFacility = "
+        DROP PROCEDURE IF EXISTS getPhysicianByIdAndCityIdOfFacility;
+        CREATE PROCEDURE getPhysicianByIdAndCityIdOfFacility(IN physician_id BIGINT,  IN city_id BIGINT)
         BEGIN
             SELECT physicians.*, facilities.city_id
             FROM physicians
@@ -75,15 +75,138 @@ class SearchProcedureSeeder extends Seeder
             ORDER BY professional_name ASC;
         END;
         ";
-        DB::unprepared($getPhysicianByIdAndCityIdOfFacilities);
+        DB::unprepared($getPhysicianByIdAndCityIdOfFacility);
 
+        // BÚSQUEDA DE MÉDICOS POR ID DE ESPECIALIDAD
+        $getPhysiciansByIdOfSpecialty = "
+        DROP PROCEDURE IF EXISTS getPhysiciansByIdOfSpecialty;
+        CREATE PROCEDURE getPhysiciansByIdOfSpecialty(IN specialty_id BIGINT)
+        BEGIN
+            SELECT physicians.*
+            FROM physicians
+            JOIN physician_specialty
+            ON physicians.id = physician_specialty.physician_id
+            JOIN specialties
+            ON physician_specialty.specialty_id = specialties.id
+            WHERE physicians.is_verified = 'verified'
+            AND specialties.id = specialty_id
+            ORDER BY physicians.professional_name ASC;
+        END;
+        ";
+        DB::unprepared($getPhysiciansByIdOfSpecialty);
 
+        // BÚSQUEDA DE MÉDICOS POR ID DE LA ESPECIALIDAD Y CITY_ID DE INSTALACIONES
+        $getPhysiciansByIdOfSpecialtyAndCityIdOfFacility = "
+        DROP PROCEDURE IF EXISTS getPhysiciansByIdOfSpecialtyAndCityIdOfFacility;
+        CREATE PROCEDURE getPhysiciansByIdOfSpecialtyAndCityIdOfFacility(IN specialty_id BIGINT,  IN city_id BIGINT)
+        BEGIN
+            SELECT physicians.*, facilities.city_id
+            FROM physicians
+            JOIN physician_specialty
+            ON physicians.id = physician_specialty.physician_id
+            JOIN specialties
+            ON physician_specialty.specialty_id = specialties.id
+            JOIN facility_physician
+            ON physicians.id = facility_physician.physician_id
+            JOIN facilities
+            ON facility_physician.facility_id = facilities.id
+            WHERE physicians.is_verified = 'verified'
+            AND specialties.id = specialty_id
+            AND facilities.city_id = city_id
+            GROUP BY physicians.id, facilities.city_id
+            ORDER BY professional_name ASC;
+        END;
+        ";
+        DB::unprepared($getPhysiciansByIdOfSpecialtyAndCityIdOfFacility);
 
+        // BÚSQUEDA DE MÉDICOS POR ID DE LA ENFERMEDAD
+        $getPhysiciansByIdOfDisease = "
+        DROP PROCEDURE IF EXISTS getPhysiciansByIdOfDisease;
+        CREATE PROCEDURE getPhysiciansByIdOfDisease(IN disease_id BIGINT)
+        BEGIN
+            SELECT physicians.*
+            FROM physicians
+            JOIN disease_physician
+            ON physicians.id = disease_physician.physician_id
+            JOIN diseases
+            ON disease_physician.disease_id = diseases.id
+            WHERE physicians.is_verified = 'verified'
+            AND diseases.id = disease_id
+            ORDER BY physicians.professional_name ASC;
+        END;
+        ";
+        DB::unprepared($getPhysiciansByIdOfDisease);
 
+        // BÚSQUEDA DE MÉDICOS POR ID DE LA ENFERMEDAD Y CITY_ID DE INSTALACIONES
+        $getPhysiciansByIdOfDiseaseAndCityIdOfFacility = "
+        DROP PROCEDURE IF EXISTS getPhysiciansByIdOfDiseaseAndCityIdOfFacility;
+        CREATE PROCEDURE getPhysiciansByIdOfDiseaseAndCityIdOfFacility(IN disease_id BIGINT,  IN city_id BIGINT)
+        BEGIN
+            SELECT physicians.*, facilities.city_id
+            FROM physicians
+            JOIN disease_physician
+            ON physicians.id = disease_physician.physician_id
+            JOIN diseases
+            ON disease_physician.disease_id = diseases.id
+            JOIN facility_physician
+            ON physicians.id = facility_physician.physician_id
+            JOIN facilities
+            ON facility_physician.facility_id = facilities.id
+            WHERE physicians.is_verified = 'verified'
+            AND diseases.id = disease_id
+            AND facilities.city_id = city_id
+            GROUP BY physicians.id, facilities.city_id
+            ORDER BY professional_name ASC;
+        END;
+        ";
+        DB::unprepared($getPhysiciansByIdOfDiseaseAndCityIdOfFacility);
+
+        // BÚSQUEDA DE MÉDICOS POR ID DEL SERVICIO
+        $getPhysiciansByIdOfService = "
+        DROP PROCEDURE IF EXISTS getPhysiciansByIdOfService;
+        CREATE PROCEDURE getPhysiciansByIdOfService(IN medical_service_id BIGINT)
+        BEGIN
+            SELECT physicians.*
+            FROM physicians
+            JOIN medical_service_physician
+            ON physicians.id = medical_service_physician.physician_id
+            JOIN medical_services
+            ON medical_service_physician.medical_service_id = medical_services.id
+            WHERE physicians.is_verified = 'verified'
+            AND medical_services.id = medical_service_id
+            ORDER BY physicians.professional_name ASC;
+        END;
+        ";
+        DB::unprepared($getPhysiciansByIdOfService);
+
+        // BÚSQUEDA DE MÉDICOS POR ID DEL SERVICIO Y CITY_ID DE INSTALACIONES
+        $getPhysiciansByIdOfServiceAndCityIdOfFacility = "
+        DROP PROCEDURE IF EXISTS getPhysiciansByIdOfServiceAndCityIdOfFacility;
+        CREATE PROCEDURE getPhysiciansByIdOfServiceAndCityIdOfFacility(IN medical_service_id BIGINT,  IN city_id BIGINT)
+        BEGIN
+            SELECT physicians.*, facilities.city_id
+            FROM physicians
+            JOIN medical_service_physician
+            ON physicians.id = medical_service_physician.physician_id
+            JOIN medical_services
+            ON medical_service_physician.medical_service_id = medical_services.id
+            JOIN facility_physician
+            ON physicians.id = facility_physician.physician_id
+            JOIN facilities
+            ON facility_physician.facility_id = facilities.id
+            WHERE physicians.is_verified = 'verified'
+            AND medical_services.id = medical_service_id
+            AND facilities.city_id = city_id
+            GROUP BY physicians.id, facilities.city_id
+            ORDER BY professional_name ASC;
+        END;
+        ";
+        DB::unprepared($getPhysiciansByIdOfServiceAndCityIdOfFacility);
+        
         // BÚSQUEDA DE INSTALACIONES POR EL ID DEL MÉDICO
-        $searchFacilitiesByPhysicianId = "
-        DROP PROCEDURE IF EXISTS searchFacilitiesByPhysicianId;
-        CREATE PROCEDURE searchFacilitiesByPhysicianId(IN physician_id BIGINT)
+        $getFacilitiesByPhysicianId = "
+        DROP PROCEDURE IF EXISTS getFacilitiesByPhysicianId;
+        CREATE PROCEDURE getFacilitiesByPhysicianId(IN physician_id BIGINT)
         BEGIN
             SELECT facilities.*
             FROM facilities
@@ -92,12 +215,12 @@ class SearchProcedureSeeder extends Seeder
             WHERE facility_physician.physician_id = physician_id;
         END;
         ";
-        DB::unprepared($searchFacilitiesByPhysicianId);
+        DB::unprepared($getFacilitiesByPhysicianId);
 
         // BÚSQUEDA DE INSTALACIONES POR ID DEL MÉDICO Y ID DE LA CIUDAD
-        $searchFacilitiesByPhysicianIdAndCityId = "
-        DROP PROCEDURE IF EXISTS searchFacilitiesByPhysicianIdAndCityId;
-        CREATE PROCEDURE searchFacilitiesByPhysicianIdAndCityId(IN physician_id BIGINT, IN city_id BIGINT)
+        $getFacilitiesByPhysicianIdAndCityId = "
+        DROP PROCEDURE IF EXISTS getFacilitiesByPhysicianIdAndCityId;
+        CREATE PROCEDURE getFacilitiesByPhysicianIdAndCityId(IN physician_id BIGINT, IN city_id BIGINT)
         BEGIN
             SELECT facilities.*
             FROM facilities
@@ -109,6 +232,6 @@ class SearchProcedureSeeder extends Seeder
             AND physicians.id = physician_id;
         END;
         ";
-        DB::unprepared($searchFacilitiesByPhysicianIdAndCityId);
+        DB::unprepared($getFacilitiesByPhysicianIdAndCityId);
     }
 }
