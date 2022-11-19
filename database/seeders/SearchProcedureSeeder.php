@@ -17,7 +17,7 @@ class SearchProcedureSeeder extends Seeder
         DROP PROCEDURE IF EXISTS getPhysiciansByNameWithSpecialties;
         CREATE PROCEDURE getPhysiciansByNameWithSpecialties(IN physician_name VARCHAR(150))
         BEGIN
-            SELECT physicians.id as physician_id, physicians.professional_name, GROUP_CONCAT(specialties.name) as specialties
+            SELECT physicians.id as physician_id, physicians.professional_name, GROUP_CONCAT(specialties.name) as specialties, 'physician' AS model
             FROM physicians
             JOIN physician_specialty
             ON physicians.id = physician_specialty.physician_id
@@ -36,7 +36,7 @@ class SearchProcedureSeeder extends Seeder
         DROP PROCEDURE IF EXISTS getSpecialtiesByName;
         CREATE PROCEDURE getSpecialtiesByName(IN specialty_name VARCHAR(150))
         BEGIN
-            SELECT id as specialty_id, name
+            SELECT id as specialty_id, name as specialty_name, 'specialty' AS model
             FROM specialties
             WHERE name LIKE CONCAT('%',specialty_name,'%')
             ORDER BY name ASC;
