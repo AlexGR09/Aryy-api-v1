@@ -43,6 +43,7 @@ class AuthController extends Controller
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
             $user->assignRole('User');
+            $user->save();
             // ASIGNAR ROL DE ACUERDO AL TIPO DE USUARIO
             switch ($request->type_user) {
                 case 'Patient':
@@ -56,8 +57,13 @@ class AuthController extends Controller
                 default:
                     break;
             }
-            $user->save();
-            return (new UserResource($user))->additional(['message' => 'Usuario registrado con éxito']);
+            // GENERA UN TOKEN PARA EL USUARIO Y LO GUARDA EN LA DB
+            $token = $user->createToken('authToken')->plainTextToken;
+            $user->remember_token = $token; 
+            $user->update();
+            return (new UserResource($user))->additional([
+                'message' => 'Usuario registrado con éxito',
+                'access_token' => $token ]);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

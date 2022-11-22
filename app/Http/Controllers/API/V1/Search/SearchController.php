@@ -36,16 +36,24 @@ class SearchController extends Controller
 
     public function arrayPaginator($array, $request)
     {
-        $page = request('page') ? request('page') - 1 : 0;
+        $currentPage = 1;
         $perPage = 10;
-        $offset = ($page * $perPage) - $perPage;
-
-        return new LengthAwarePaginator(
-            array_slice($array, $offset, $perPage, true),
-            count($array),
-            $perPage,
-            $page,
-            ['path' => $request->url(), 'query' => $request->query()]
-        );
+        $currentElements = array_slice($array, $perPage * ($currentPage - 1), $perPage);
+        return new LengthAwarePaginator($currentElements, count($array), $perPage, $currentPage, ['path' => $request->url()]);
     }
+
+    // public function arrayPaginator($array, $request)
+    // {
+    //     $page = request('page') ? request('page') - 1 : 0;
+    //     $perPage = 10;
+    //     $offset = ($page * $perPage) - $perPage;
+
+    //     return new LengthAwarePaginator(
+    //         array_slice($array, $offset, $perPage, true),
+    //         count($array),
+    //         $perPage,
+    //         $page,
+    //         ['path' => $request->url(), 'query' => $request->query()]
+    //     );
+    // }
 }
