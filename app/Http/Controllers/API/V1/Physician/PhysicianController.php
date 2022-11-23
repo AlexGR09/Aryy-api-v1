@@ -31,7 +31,7 @@ class PhysicianController extends Controller
                 $physician->recipe_template = $request->recipe_template;
                 $physician->social_networks = json_encode($request->social_networks);
                 $physician->is_verified = 'in_verification';
-                $physician->save();
+                $physician->save(); 
                 // CREA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVOTE
                 foreach ($request->specialties as $specialty) {
                     $physician->specialties()->attach([
@@ -41,7 +41,8 @@ class PhysicianController extends Controller
                             'institution' => $specialty['institution']
                         ]
                     ]);
-                }     
+                }    
+                
                 $this->user->syncRoles(['User', 'PhysicianInVerification']);
                 DB::commit();
                 return (new PhysicianResource($physician))->additional(['message' => 'Perfil médico creado con éxito.']);
