@@ -15,7 +15,7 @@ class MedicalServicesPhysicianSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('medical_service_physician')->insert([
+        DB::table('medical_service_physicians')->insert([
             //alergologo
             [
                 'medical_service_id'  => 12,

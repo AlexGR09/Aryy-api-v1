@@ -12,10 +12,10 @@ return new class () extends Migration {
      */
     public function up()
     {
-        Schema::create('medical_service_physician', function (Blueprint $table) {
+        Schema::create('diseases_physicians', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('medical_service_id')->constrained('medical_services')->onDelete('cascade');
-            $table->foreignId('physician_id')->constrained('physicians')->onDelete('cascade');
+            $table->foreignId('disease_id')->onDelete('cascade')->constrained('diseases');
+            $table->foreignId('physician_id')->onDelete('physicians')->constrained('diseases');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +28,6 @@ return new class () extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('medical_service_physician');
+        Schema::dropIfExists('diseases_physicians');
     }
 };
