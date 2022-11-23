@@ -15,7 +15,7 @@ class DiseasesPhysicianSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('diseases_physicians')->insert([
+        DB::table('disease_physician')->insert([
             //alergologo
             [
                 'disease_id'  => 315,
