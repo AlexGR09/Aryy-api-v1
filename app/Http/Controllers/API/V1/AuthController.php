@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\V1\AuthRequest;
+use App\Http\Requests\API\V1\Auth\LoginRequest;
+use App\Http\Requests\API\V1\Auth\RegisterRequest;
+use App\Http\Requests\API\V1\Auth\UpdateProfileRequest;
 use App\Http\Resources\API\V1\UserResource;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +20,7 @@ class AuthController extends Controller
         $this->user = auth()->user();
     }
 
-    public function login(AuthRequest $request)
+    public function login(LoginRequest $request)
     {
         try {
             $user = User::where('email', $request->email)->first();
@@ -36,7 +38,7 @@ class AuthController extends Controller
         }
     }
 
-    public function register(AuthRequest $request)
+    public function register(RegisterRequest $request)
     {
         try {
             $user = new User();
@@ -62,7 +64,7 @@ class AuthController extends Controller
             $user->remember_token = $token; 
             $user->update();
             return (new UserResource($user))->additional([
-                'message' => 'Usuario registrado con éxito',
+                'message' => 'Usuario registrado con éxito.',
                 'access_token' => $token ]);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -81,7 +83,7 @@ class AuthController extends Controller
         }
     }
 
-    public function update(AuthRequest $request)
+    public function update(UpdateProfileRequest $request)
     {
         try {
             if ($this->user->hasPermissionTo('edit profile')) {
@@ -93,16 +95,6 @@ class AuthController extends Controller
                 $this->user->country_code = $request->country_code;
                 $this->user->phone_number = $request->phone_number;
                 $this->user->email = $request->email;
-                // Si se recibe una imagen
-                if ($request->photo) {
-                    // Si existe una foto previa asociada al usuario, esta se elimina
-                    if ($this->user->photo != null && file_exists(public_path('profile-photos/'.$this->user->photo))) {
-                        unlink(public_path("profile-photos/". $this->user->photo));
-                    }
-                    $this->user->photo = $photoName = time()."_". $request->file('photo')->getClientOriginalName();
-                    // Mueve la imagen cargada de temporal a la carpeta pública
-                    $request->file('photo')->move(public_path("profile-photos"), $photoName);
-                }
                 // Si se recibe una contraseña
                 if ($request->password) {
                     $this->user->password = bcrypt($request->password);
@@ -136,11 +128,14 @@ class AuthController extends Controller
     public function logout()
     {
         try {
+            DB::beginTransaction();
             $this->user->tokens()->delete();
             $this->user->remember_token = null;
             $this->user->save();
+            DB::commit();
             return (new UserResource($this->user))->additional(['message' => 'Cierre de sesión exitoso, adiós']);
         } catch (\Throwable $th) {
+            DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
