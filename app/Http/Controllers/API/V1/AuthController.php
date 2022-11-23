@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\V1\AuthRequest;
+use App\Http\Requests\API\V1\Auth\LoginRequest;
+use App\Http\Requests\API\V1\Auth\RegisterRequest;
+use App\Http\Requests\API\V1\Auth\UpdateProfileRequest;
 use App\Http\Resources\API\V1\UserResource;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +20,7 @@ class AuthController extends Controller
         $this->user = auth()->user();
     }
 
-    public function login(AuthRequest $request)
+    public function login(LoginRequest $request)
     {
         try {
             $user = User::where('email', $request->email)->first();
@@ -36,7 +38,7 @@ class AuthController extends Controller
         }
     }
 
-    public function register(AuthRequest $request)
+    public function register(RegisterRequest $request)
     {
         try {
             $user = new User();
@@ -62,7 +64,7 @@ class AuthController extends Controller
             $user->remember_token = $token; 
             $user->update();
             return (new UserResource($user))->additional([
-                'message' => 'Usuario registrado con éxito',
+                'message' => 'Usuario registrado con éxito.',
                 'access_token' => $token ]);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -81,7 +83,7 @@ class AuthController extends Controller
         }
     }
 
-    public function update(AuthRequest $request)
+    public function update(UpdateProfileRequest $request)
     {
         try {
             if ($this->user->hasPermissionTo('edit profile')) {
