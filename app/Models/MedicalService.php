@@ -17,6 +17,6 @@ class MedicalService extends Model
     // RELACIÓN MUCHOS A MUCHOS CON EL MODELO ESPECIALIDADES
     public function physicians()
     {
-        return $this->belongsToMany('App\Models\Physician', 'medical_service_physicians');
+        return $this->belongsToMany('App\Models\Physician', 'medical_service_physician');
     }
 }
