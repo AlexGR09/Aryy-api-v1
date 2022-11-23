@@ -15,17 +15,16 @@ class PhysicianSearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'search' => 'required|string',
-            'value' => 'required|numeric',
-            'city_id' => 'numeric'
+            'search' => 'nullable|string',
+            'city' => 'nullable'
         ];
     }
 
     public function attributes()
     {
         return [
-            'value' => 'valor de la búsqueda',
-            'city_id' => 'el ID de la ciudad'
+            'search' => 'valor de la búsqueda',
+            'city' => 'el ID de la ciudad'
         ];
     }
 }
