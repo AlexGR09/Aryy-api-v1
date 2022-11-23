@@ -75,7 +75,7 @@ Route::prefix('v1')->group(function () {
     // BUSQUEDA MÉDICO MOBILE
     Route::get('/search', [$search.SearchController::class, 'index']);
     // BUSQUEDA DEFINIDA DE MÉDICO
-    Route::get('/searchphy', [$search.PhysicianSearchController::class, 'index']);
+    Route::post('/searchphy', [$search.PhysicianSearchController::class, 'index']);
 
 });
 
