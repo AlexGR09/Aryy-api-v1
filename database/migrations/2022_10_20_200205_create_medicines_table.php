@@ -15,7 +15,9 @@ return new class () extends Migration {
         Schema::create('medicines', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            //$table->string('');
+            $table->string('formula');
+            $table->string('Presentation');
+            $table->string('brand');
             $table->timestamps();
             $table->softDeletes();
         });
