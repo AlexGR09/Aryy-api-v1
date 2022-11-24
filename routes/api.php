@@ -54,6 +54,9 @@ Route::prefix('v1')->group(function () {
         //INSURANCE
         Route::resource('insurance', $catalogues.InsuranceController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
+        // ESPECIALIDADES
+        Route::resource('/specialties', $catalogues.SpecialtyController::class)
+        ->only(['index', 'store', 'show', 'update', 'destroy']);
             
         // SÓLO 2 TIPOS DE USUARIOS (MÉDICO O PACIENTE)
         // MÉDICO
@@ -62,17 +65,19 @@ Route::prefix('v1')->group(function () {
             Route::post('/physician', 'store');
             Route::put('/physician', 'update');
         });
+        Route::controller($v1.'Physician\\'.FacilityOfPhysicianController::class)->group(function() {
+            Route::get('/facilityofphysician', 'show');
+            Route::post('/facilityofphysician', 'store');
+            Route::put('/facilityofphysician', 'update');
+        });
         // PACIENTE
         Route::controller($v1.'Patient\\'.PatientController::class)->group(function() {
             Route::get('/patient', 'show');
             Route::post('/patient', 'store');
             Route::put('/patient', 'update');
         });
-
-        Route::controller($v1.'Patient\\'.MedicalHistoryController::class)->group(function() {
-            Route::post('/patient/medical-history', 'basic_information');
-
-        });
+        // VERIFICAR EL MÉDICO
+        Route::post('/checkphysician', [$v1.'admin\\'.PhysicianController::class, 'check']);
     
     });
 
