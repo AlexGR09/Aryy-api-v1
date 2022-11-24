@@ -11,15 +11,24 @@ class MedicalHistory extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'current_medication',
+        'patient_id',
+        'height',
+        'weight',
+        'imc',
+        'bloody_type',
+        'active_medication',
         'previous_medication',
-        'family_history',
-        'habits'
+        'vaccination_history',
+        'allergi_patient_id'
     ];
 
     public function patient()
     {
         return $this->hasOne('App\Models\Patient');
+    }
+    public function allergypatient()
+    {
+        return $this->hasOne('App\Models\AllergiePatient');
     }
 
     public function alergy()

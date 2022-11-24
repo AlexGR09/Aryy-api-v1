@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\V1\AuthController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\RoleController;
+
 // use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
 // use App\Http\Controllers\API\V1\Search\SearchController;
 use App\Http\Controllers\TestJoseController;
@@ -66,6 +67,11 @@ Route::prefix('v1')->group(function () {
             Route::get('/patient', 'show');
             Route::post('/patient', 'store');
             Route::put('/patient', 'update');
+        });
+
+        Route::controller($v1.'Patient\\'.MedicalHistoryController::class)->group(function() {
+            Route::post('/patient/medical-history', 'basic_information');
+
         });
     
     });

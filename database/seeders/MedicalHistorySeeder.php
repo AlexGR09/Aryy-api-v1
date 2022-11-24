@@ -22,11 +22,11 @@ class MedicalHistorySeeder extends Seeder
 
         DB::table('medical_histories')->insert([
             [
-                'alergies_id' => 1,
+                
                 'family_history' => json_encode($history1) 
             ],
             [
-                'alergies_id' => 2,
+                
                 'family_history' => json_encode($history2) 
             ]
         ]);

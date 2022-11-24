@@ -14,11 +14,12 @@ return new class () extends Migration {
     {
         Schema::create('medical_histories', function (Blueprint $table) {
             $table->id();
-            $table->string('current_medication')->nullable();
-            $table->string('previous_medication')->nullable();
-            $table->json('family_history')->nullable();
-            $table->json('habits')->nullable();
-            $table->foreignId('alergies_id')->constrained('alergies')->onDelete('cascade');
+            $table->foreignId('patient_id')->constrained('patients');
+            $table->double('height')->nullable();
+            $table->double('weight')->nullable();
+            $table->double('imc')->nullable();
+            $table->string('blood_type')->nullable();
+            $table->foreignId('allergie_patient_id')->nullable()->constrained('allergie_patients')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

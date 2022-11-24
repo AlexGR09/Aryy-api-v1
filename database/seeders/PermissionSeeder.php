@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class PermissionSeeder extends Seeder
 {
-    
+
     public function run()
     {
         DB::table('permissions')->insert([
@@ -84,6 +84,7 @@ class PermissionSeeder extends Seeder
             // PACIENTES
             ['name' => 'show patient', 'guard_name' => 'sanctum'],
             ['name' => 'edit patient', 'guard_name' => 'sanctum'],
+            ['name' => 'basic-information', 'guard_name' => 'sanctum'],
             // MÉDICOS
             ['name' => 'show physician', 'guard_name' => 'sanctum'],
             ['name' => 'edit physician', 'guard_name' => 'sanctum'],

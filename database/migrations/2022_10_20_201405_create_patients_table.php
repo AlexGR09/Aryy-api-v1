@@ -17,9 +17,9 @@ return new class () extends Migration {
             $table->string('emergency_number')->nullable();
             $table->json('id_card')->nullable();
             $table->foreignId('city_id')->references('id')->on('cities');
-            $table->foreignId('health_insurance_id')->nullable()->constrained('health_insurances');
+            /* $table->foreignId('health_insurance_id')->nullable()->constrained('health_insurances');
             $table->foreignId('medical_history_id')->nullable()->constrained('medical_histories'); 
-            $table->foreignId('medical_record_id')->nullable()->constrained('medical_records');
+            $table->foreignId('medical_record_id')->nullable()->constrained('medical_records'); */
             $table->timestamps();
             $table->softDeletes();
         });

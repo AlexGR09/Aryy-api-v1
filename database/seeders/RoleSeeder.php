@@ -62,7 +62,8 @@ class RoleSeeder extends Seeder
         // PACIENTE
         Role::findByName('Patient')->givePermissionTo([
             'show patient', 
-            'edit patient'
+            'edit patient',
+            'basic-information'
         ]);
         // MÉDICO
         Role::findByName('Physician')->givePermissionTo([
