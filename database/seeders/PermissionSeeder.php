@@ -87,6 +87,11 @@ class PermissionSeeder extends Seeder
             // MÉDICOS
             ['name' => 'show physician', 'guard_name' => 'sanctum'],
             ['name' => 'edit physician', 'guard_name' => 'sanctum'],
+            // Ocupaciones
+            ['name' => 'show occupations','guard_name' => 'sanctum'],
+            ['name' => 'create occupations','guard_name' => 'sanctum'],
+            ['name' => 'edit occupations','guard_name' => 'sanctum'],
+            ['name' => 'delete occupations','guard_name' => 'sanctum'],
         ]);
     }
 }

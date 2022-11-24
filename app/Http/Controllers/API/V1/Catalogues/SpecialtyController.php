@@ -11,6 +11,22 @@ use Illuminate\Http\Request;
 
 class SpecialtyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:show specialties')->only([
+            'index',
+            'show',
+        ]);
+        $this->middleware('permission:create specialties')->only([
+            'store'
+        ]);
+        $this->middleware('permission:edit specialties')->only([
+            'update'
+        ]);
+        $this->middleware('permission:delete specialties')->only([
+            'destroy'
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,11 +35,8 @@ class SpecialtyController extends Controller
     public function index()
     {
         try {
-            if ($this->user->hasPermissionTo('show specialties')) {
-                $specialties = Specialty::paginate(5);
-                return (SpecialtyResource::collection($specialties))->additional(['message' => 'Estados encontrados.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $specialties = Specialty::paginate(5);
+            return (SpecialtyResource::collection($specialties))->additional(['message' => 'Estados encontrados.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -38,11 +51,8 @@ class SpecialtyController extends Controller
     public function store(SpecialtyRequest $request)
     {
         try {
-            if ($this->user->hasPermissionTo('create specialties')) {
-                $state = Specialty::create(['name' => $request->name]);
-                return (new SpecialtyResource($state))->additional(['message' => 'Especialidad creada con éxito.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $state = Specialty::create(['name' => $request->name]);
+            return (new SpecialtyResource($state))->additional(['message' => 'Especialidad creada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -61,10 +71,7 @@ class SpecialtyController extends Controller
     public function show(Specialty $specialty)
     {
         try {
-            if ($this->user->hasPermissionTo('show specialties')) {
-                return (new SpecialtyResource($specialty))->additional(['message' => 'Especialidad encontrada.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            return (new SpecialtyResource($specialty))->additional(['message' => 'Especialidad encontrada.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -80,12 +87,9 @@ class SpecialtyController extends Controller
     public function update(SpecialtyRequest $request, Specialty $specialty)
     {
         try {
-            if ($this->user->hasPermissionTo('edit specialties')) {
-                $specialty->name = $request->name;
-                $specialty->save();
-                return (new SpecialtyResource($specialty))->additional(['message' => 'Especialidad actualizada exitosamente.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $specialty->name = $request->name;
+            $specialty->save();
+            return (new SpecialtyResource($specialty))->additional(['message' => 'Especialidad actualizada exitosamente.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -97,14 +101,11 @@ class SpecialtyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Specialty$specialty)
+    public function destroy(Specialty $specialty)
     {
         try {
-            if ($this->user->hasPermissionTo('delete specialties')) {
-                $specialty->delete();
-                return (new SpecialtyResource($specialty))->additional(['message' => 'La especialidad se eliminó de forma exitosa']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $specialty->delete();
+            return (new SpecialtyResource($specialty))->additional(['message' => 'La especialidad se eliminó de forma exitosa']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

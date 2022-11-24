@@ -9,21 +9,27 @@ use App\Models\State;
 
 class StateController extends Controller
 {
-    protected $user;
-
     public function __construct()
     {
-        $this->user = auth()->user();
+        $this->middleware('permission:show states')->only([
+            'index',
+            'show',
+        ]);
+        $this->middleware('permission:create states')->only([
+            'store'
+        ]);
+        $this->middleware('permission:edit states')->only([
+            'update'
+        ]);
+        $this->middleware('permission:delete states')->only([
+            'destroy'
+        ]);
     }
-
     public function index()
     {
         try {
-            if ($this->user->hasPermissionTo('show states')) {
-                $states = State::paginate(5);
-                return (StateResource::collection($states))->additional(['message' => 'Estados encontrados.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $states = State::paginate(5);
+            return (StateResource::collection($states))->additional(['message' => 'Estados encontrados.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -32,10 +38,7 @@ class StateController extends Controller
     public function show(State $state)
     {
         try {
-            if ($this->user->hasPermissionTo('show states')) {
-                return (new StateResource($state))->additional(['message' => 'Estado encontrado.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            return (new StateResource($state))->additional(['message' => 'Estado encontrado.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -44,14 +47,11 @@ class StateController extends Controller
     public function store(StateRequest $request)
     {
         try {
-            if ($this->user->hasPermissionTo('create states')) {
-                $state = State::create([
-                    'name' => $request->name,
-                    'country_id' => $request->country_id
-                ]);
-                return (new StateResource($state))->additional(['message' => 'Estado creado con éxito.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $state = State::create([
+                'name' => $request->name,
+                'country_id' => $request->country_id
+            ]);
+            return (new StateResource($state))->additional(['message' => 'Estado creado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -60,13 +60,10 @@ class StateController extends Controller
     public function update(StateRequest $request, State $state)
     {
         try {
-            if ($this->user->hasPermissionTo('edit states')) {
-                $state->name = $request->name;
-                $state->country_id = $request->country_id;
-                $state->save();
-                return (new StateResource($state))->additional(['message' => 'Estado actualizado con éxito.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $state->name = $request->name;
+            $state->country_id = $request->country_id;
+            $state->save();
+            return (new StateResource($state))->additional(['message' => 'Estado actualizado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -75,11 +72,8 @@ class StateController extends Controller
     public function destroy(State $state)
     {
         try {
-            if ($this->user->hasPermissionTo('delete states')) {
-                $state->delete();
-                return (new StateResource($state))->additional(['message' => 'Estado eliminado con éxito.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $state->delete();
+            return (new StateResource($state))->additional(['message' => 'Estado eliminado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

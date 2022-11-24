@@ -10,31 +10,28 @@ use Illuminate\Support\Facades\DB;
 
 class PatientController extends Controller
 {
-    protected $user;
-
     public function __construct()
     {
-        $this->user = auth()->user();
+        $this->middleware('permission:show patient')->only(['show']);
+        $this->middleware('role:NewPatient')->only(['store']);
+        $this->middleware('permission:edit patient')->only(['update']);
     }
 
     public function store(PatientRequest $request)
     {
         try {
-            if ($this->user->hasRole('NewPatient')) {
-                DB::beginTransaction();
-                $patient = new Patient();
-                $patient->user_id = $this->user->id;
-                $patient->address = json_encode($request->address);
-                $patient->zip_code = $request->zip_code;
-                $patient->emergency_number = $request->emergency_number;
-                $patient->city_id = $request->city_id;
-                $patient->id_card = json_encode($request->id_card);
-                $patient->save();
-                $this->user->syncRoles(['User', 'Patient']);
-                DB::commit();
-                return (new PatientResource($patient))->additional(['message' => 'Perfil de paciente creado con éxito.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            DB::beginTransaction();
+            $patient = new Patient();
+            $patient->user_id = auth()->id();
+            $patient->address = json_encode($request->address);
+            $patient->zip_code = $request->zip_code;
+            $patient->emergency_number = $request->emergency_number;
+            $patient->city_id = $request->city_id;
+            $patient->id_card = json_encode($request->id_card);
+            $patient->save();
+            $this->user->syncRoles(['User', 'Patient']);
+            DB::commit();
+            return (new PatientResource($patient))->additional(['message' => 'Perfil de paciente creado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
@@ -44,11 +41,8 @@ class PatientController extends Controller
     public function show()
     {
         try {
-            if ($this->user->hasPermissionTo('show patient')) {
-                $patient = Patient::where('user_id', $this->user->id)->get();
-                return (PatientResource::collection($patient))->additional(['message' => 'Mi perfil de paciente.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $patient = Patient::where('user_id', auth()->id())->get();
+            return (PatientResource::collection($patient))->additional(['message' => 'Mi perfil de paciente.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -56,33 +50,26 @@ class PatientController extends Controller
 
     public function update(PatientRequest $request)
     {
+        try {
 
-        /* return response()->json("FUNCIONALIDAD EN CREACIÓN"); */
-         try {
-             if ($this->user->hasPermissionTo('edit patient')) {
-                
-                DB::beginTransaction();
+            DB::beginTransaction();
 
-                 $patient = Patient::where('user_id',$this->user->id)->first();
-                 
-                 $patient->address = json_encode($request->address);
-                 $patient->zip_code = $request->zip_code;
-                 $patient->emergency_number = $request->emergency_number;
-                 $patient->city_id = $request->city_id;
-                 $patient->country_code = $request->country_code;
-                 $patient->id_card = json_encode($request->id_card);
+            $patient = Patient::where('user_id', auth()->id())->first();
 
-                 $patient->save();
+            $patient->address = json_encode($request->address);
+            $patient->zip_code = $request->zip_code;
+            $patient->emergency_number = $request->emergency_number;
+            $patient->city_id = $request->city_id;
+            $patient->country_code = $request->country_code;
+            $patient->id_card = json_encode($request->id_card);
 
-                 DB::commit();
-                 return (new PatientResource($patient))->additional(['message' => 'paciente actualizado con éxito.']);
-             }
-             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
-         } catch (\Throwable $th) {
-             DB::rollBack();
-             return response()->json(['error' => $th->getMessage()], 503);
-         }
+            $patient->save();
+
+            DB::commit();
+            return (new PatientResource($patient))->additional(['message' => 'paciente actualizado con éxito.']);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
-
-
 }

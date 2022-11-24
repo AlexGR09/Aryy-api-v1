@@ -16,6 +16,9 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
+        $this->middleware('permission:show profile')->only(['show']);
+        $this->middleware('permission:edit profile')->only(['update']);
+        $this->middleware('permission:delete profile')->only(['destroy']);
     }
 
     public function login(AuthRequest $request)
@@ -30,7 +33,8 @@ class AuthController extends Controller
             $user->save();
             return (new UserResource($user))->additional([
                 'message' => 'Bienvenido a Aryy.',
-                'access_token' => $token ]);
+                'access_token' => $token
+            ]);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -59,11 +63,12 @@ class AuthController extends Controller
             }
             // GENERA UN TOKEN PARA EL USUARIO Y LO GUARDA EN LA DB
             $token = $user->createToken('authToken')->plainTextToken;
-            $user->remember_token = $token; 
+            $user->remember_token = $token;
             $user->update();
             return (new UserResource($user))->additional([
                 'message' => 'Usuario registrado con éxito',
-                'access_token' => $token ]);
+                'access_token' => $token
+            ]);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -72,10 +77,7 @@ class AuthController extends Controller
     public function show()
     {
         try {
-            if ($this->user->hasPermissionTo('show profile')) {
-                return (new UserResource($this->user))->additional(['message' => 'My profile']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            return (new UserResource($this->user))->additional(['message' => 'My profile']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -84,35 +86,32 @@ class AuthController extends Controller
     public function update(AuthRequest $request)
     {
         try {
-            if ($this->user->hasPermissionTo('edit profile')) {
-                DB::beginTransaction();
-                $this->user->name = $request->name;
-                $this->user->last_name = $request->last_name;
-                $this->user->gender = $request->gender;
-                $this->user->birthday = $request->birthday;
-                $this->user->country_code = $request->country_code;
-                $this->user->phone_number = $request->phone_number;
-                $this->user->email = $request->email;
-                // Si se recibe una imagen
-                if ($request->photo) {
-                    // Si existe una foto previa asociada al usuario, esta se elimina
-                    if ($this->user->photo != null && file_exists(public_path('profile-photos/'.$this->user->photo))) {
-                        unlink(public_path("profile-photos/". $this->user->photo));
-                    }
-                    $this->user->photo = $photoName = time()."_". $request->file('photo')->getClientOriginalName();
-                    // Mueve la imagen cargada de temporal a la carpeta pública
-                    $request->file('photo')->move(public_path("profile-photos"), $photoName);
+            DB::beginTransaction();
+            $this->user->name = $request->name;
+            $this->user->last_name = $request->last_name;
+            $this->user->gender = $request->gender;
+            $this->user->birthday = $request->birthday;
+            $this->user->country_code = $request->country_code;
+            $this->user->phone_number = $request->phone_number;
+            $this->user->email = $request->email;
+            // Si se recibe una imagen
+            if ($request->photo) {
+                // Si existe una foto previa asociada al usuario, esta se elimina
+                if ($this->user->photo != null && file_exists(public_path('profile-photos/' . $this->user->photo))) {
+                    unlink(public_path("profile-photos/" . $this->user->photo));
                 }
-                // Si se recibe una contraseña
-                if ($request->password) {
-                    $this->user->password = bcrypt($request->password);
-                    $this->logout(); // Invocación del método logout
-                }
-                $this->user->save();
-                DB::commit();
-                return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
+                $this->user->photo = $photoName = time() . "_" . $request->file('photo')->getClientOriginalName();
+                // Mueve la imagen cargada de temporal a la carpeta pública
+                $request->file('photo')->move(public_path("profile-photos"), $photoName);
             }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            // Si se recibe una contraseña
+            if ($request->password) {
+                $this->user->password = bcrypt($request->password);
+                $this->logout(); // Invocación del método logout
+            }
+            $this->user->save();
+            DB::commit();
+            return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
             // FALTA REGRESAR LA IMAGEN BORRADA
@@ -123,11 +122,8 @@ class AuthController extends Controller
     public function destroy()
     {
         try {
-            if ($this->user->hasPermissionTo('delete profile')) {
-                $this->user->delete();
-                return (new UserResource($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $this->user->delete();
+            return (new UserResource($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
