@@ -11,19 +11,11 @@ use Illuminate\Http\Request;
 
 class SpecialtyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         try {
-            if ($this->user->hasPermissionTo('show specialties')) {
-                $specialties = Specialty::paginate(5);
-                return (SpecialtyResource::collection($specialties))->additional(['message' => 'Estados encontrados.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            return (SpecialtyResource::collection(Specialty::all()));
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

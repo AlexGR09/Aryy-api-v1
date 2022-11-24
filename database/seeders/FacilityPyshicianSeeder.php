@@ -15,7 +15,7 @@ class FacilityPyshicianSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('facility_physicians')->insert([
+        DB::table('facility_physician')->insert([
             [
                 'facility_id'  => 1,
                 'physician_id' => 1

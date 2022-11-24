@@ -26,12 +26,8 @@ class PhysicianController extends Controller
                 $physician = new Physician();
                 $physician->user_id = $this->user->id; // SE PASARÁ COMO PARAMETRO
                 $physician->professional_name = $request->professional_name;
-                $physician->certificates = json_encode($request->certificates);
-                $physician->biography = $request->biography;
-                $physician->recipe_template = $request->recipe_template;
-                $physician->social_networks = json_encode($request->social_networks);
                 $physician->is_verified = 'in_verification';
-                $physician->save();
+                $physician->save();        
                 // CREA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVOTE
                 foreach ($request->specialties as $specialty) {
                     $physician->specialties()->attach([
