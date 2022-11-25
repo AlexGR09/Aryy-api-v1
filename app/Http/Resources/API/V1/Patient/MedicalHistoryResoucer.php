@@ -3,6 +3,8 @@
 namespace App\Http\Resources\API\V1\Patient;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\API\V1\Patient\AllergyPatientResoucer;
+use App\Http\Resources\API\V1\UserResource;
 
 class MedicalHistoryResoucer extends JsonResource
 {
@@ -19,8 +21,9 @@ class MedicalHistoryResoucer extends JsonResource
             'height' => $this->height,
             'weight' => $this->weight,
             'imc' => $this->imc,
-            'allergy_patient_id' => $this->id,
-            'allergy_patient' => new AllergyPatientResoucer($this->allergy_patient)
+            'allergy_patient_id' => $this->allergy_patient_id,
+            'allergy_patients' => new AllergyPatientResoucer($this->allergy_patients)
+            
             
         ];
     }

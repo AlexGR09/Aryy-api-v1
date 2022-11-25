@@ -28,7 +28,7 @@ class MedicalHistory extends Model
     }
     public function allergypatient()
     {
-        return $this->hasOne('App\Models\AllergiePatient');
+        return $this->belongsTo('App\Models\AllergyPatient','id');
     }
 
     public function alergy()

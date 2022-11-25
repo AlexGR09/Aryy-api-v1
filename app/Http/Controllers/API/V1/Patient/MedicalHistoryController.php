@@ -80,4 +80,22 @@ class MedicalHistoryController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
+
+    public function show(Request $request){
+        try {
+            if ($this->user->hasRole('Patient')) {
+                $patient = Patient::where('user_id',$this->user->id)->first();
+                $medical_history = MedicalHistory::where('patient_id',$patient->id)->with('allergypatient')->first();
+                return $medical_history;
+                
+                //return (MedicalHistoryResoucer::collection($medical_history))->additional(['message' => 'Mi perfil de paciente.']);
+                //return (new MedicalHistoryResoucer($medical_history))->additional(['message' => 'La informacion basica se actualizo con exito.']);
+            }
+                return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        
+            } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
 }
