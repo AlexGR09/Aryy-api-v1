@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PathologicalBackgorund extends Model
+class PathologicalBackground extends Model
 {
     use HasFactory,SoftDeletes;
 
@@ -25,4 +25,9 @@ class PathologicalBackgorund extends Model
         'ets',
         'gastrointestinal_pathologies'
     ];
+
+    public function medical_history()
+    {
+        return $this->hasOne('App\Models\MedicalHistory');
+    }
 }

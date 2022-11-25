@@ -19,20 +19,25 @@ class MedicalHistory extends Model
         'active_medication',
         'previous_medication',
         'vaccination_history',
-        'allergi_patient_id'
+        'allergi_patient_id',
+        'pathological_backgorund_id'
     ];
 
     public function patient()
     {
         return $this->hasOne('App\Models\Patient');
     }
+
     public function allergypatient()
     {
         return $this->belongsTo('App\Models\AllergyPatient','id');
     }
 
-    public function alergy()
-    {
-        return $this->belongsTo('App\Models\Alergy');
+    public function pathologicalbackground(){
+        return $this->belongsTo('App\Models\PathologicalBackground','id');
+    }
+
+    public function nonpathologicalbackground(){
+        return $this->belongsTo('App\Models\NonPathologicalBackground','id');
     }
 }

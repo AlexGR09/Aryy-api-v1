@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pathological_backgorunds', function (Blueprint $table) {
+        Schema::create('pathological_backgrounds', function (Blueprint $table) {
             $table->id();
             $table->string('previous_surgeries')->nullable();
             $table->string('blood_transfusions')->nullable();
@@ -40,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pathological_backgorunds');
+        Schema::dropIfExists('pathological_backgrounds');
     }
 };

@@ -20,6 +20,8 @@ return new class () extends Migration {
             $table->double('imc')->nullable();
             $table->string('blood_type')->nullable();
             $table->foreignId('allergy_patient_id')->nullable()->constrained('allergy_patients')->onDelete('cascade');
+            $table->foreignId('pathological_background_id')->nullable()->constrained('pathological_backgrounds')->onDelete('cascade');
+            $table->foreignId('non_pathological_background_id')->nullable()->constrained('non_pathological_backgrounds')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

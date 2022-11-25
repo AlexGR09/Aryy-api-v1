@@ -4,7 +4,7 @@ namespace App\Http\Requests\API\V1\Patient;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MedicalHistoryRequest extends FormRequest
+class BasicImformationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
