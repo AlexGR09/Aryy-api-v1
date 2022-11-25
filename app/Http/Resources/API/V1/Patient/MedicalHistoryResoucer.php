@@ -17,7 +17,7 @@ class MedicalHistoryResoucer extends JsonResource
     public function toArray($request)
     {
         return [
-            'patient_id'=>$this->id,
+            'patient_id'=>$this->patient_id,
             'height' => $this->height,
             'weight' => $this->weight,
             'imc' => $this->imc,
