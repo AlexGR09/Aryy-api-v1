@@ -19,7 +19,7 @@ return new class () extends Migration {
             $table->double('weight')->nullable();
             $table->double('imc')->nullable();
             $table->string('blood_type')->nullable();
-            $table->foreignId('allergie_patient_id')->nullable()->constrained('allergie_patients')->onDelete('cascade');
+            $table->foreignId('allergy_patient_id')->nullable()->constrained('allergy_patients')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('allergie_patients', function (Blueprint $table) {
+        Schema::create('allergy_patients', function (Blueprint $table) {
             $table->id();
-            $table->string('food_allergy');
-            $table->string('drug_allergy');
-            $table->string('environmental_allergy');
+            $table->string('food_allergy')->nullable();
+            $table->string('drug_allergy')->nullable();
+            $table->string('environmental_allergy')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
