@@ -8,8 +8,18 @@ use App\Http\Controllers\API\V1\RoleController;
 use App\Http\Controllers\TestJoseController;
 use Illuminate\Support\Facades\Route;
 
+ /* RUTAS API VERSIÓN 1 */
+global $physician, $admin;
+// MÉDICO
+$this->physician = "App\\Http\\Controllers\\API\\V1\\Physician\\";
+// MÉDICO
+$this->admin = "App\\Http\\Controllers\\API\\V1\\Admin\\";
+
+
 
 Route::prefix('v1')->group(function () {
+
+    
 
     // RUTAS REGISTRO, LOGIN, PERFIL DE USUARIO
     Route::controller(AuthController::class)->group(function () {
@@ -23,12 +33,13 @@ Route::prefix('v1')->group(function () {
 
     Route::group(['middleware' => ['auth:sanctum']], function () {
 
-        // RUTA API VERSIÓN 1
+        
         $v1 = "App\\Http\\Controllers\\API\\V1\\";
         // CATALOGOS
         $catalogues = "App\\Http\\Controllers\\API\\V1\\Catalogues\\";
+        
 
-        // SÓLO ADMIN
+  
         // ROLES
         Route::resource('roles', RoleController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
@@ -59,15 +70,18 @@ Route::prefix('v1')->group(function () {
             
         // SÓLO 2 TIPOS DE USUARIOS (MÉDICO O PACIENTE)
         // MÉDICO
-        Route::controller($v1.'Physician\\'.PhysicianController::class)->group(function() {
+        Route::controller($this->physician.PhysicianController::class)->group(function() {
             Route::get('/physician', 'show');
             Route::post('/physician', 'store');
             Route::put('/physician', 'update');
         });
-        Route::controller($v1.'Physician\\'.FacilityOfPhysicianController::class)->group(function() {
-            Route::get('/facilityofphysician', 'show');
-            Route::post('/facilityofphysician', 'store');
-            Route::put('/facilityofphysician', 'update');
+        // INSTALACIONES DEL MÉDICO
+        Route::prefix('physician')->group(function () {
+            Route::controller($this->physician.FacilityController::class)->group(function() {
+                Route::get('/facility', 'show');
+                Route::post('/facility', 'store');
+                Route::put('/facility', 'update');
+            });
         });
         // PACIENTE
         Route::controller($v1.'Patient\\'.PatientController::class)->group(function() {
@@ -75,8 +89,13 @@ Route::prefix('v1')->group(function () {
             Route::post('/patient', 'store');
             Route::put('/patient', 'update');
         });
-        // VERIFICAR EL MÉDICO
-        Route::post('/checkphysician', [$v1.'admin\\'.PhysicianController::class, 'check']);
+
+
+        // RUTAS ADMINISTRATIVAS
+        Route::prefix('admin')->group(function () {
+            // VERIFICAR EL MÉDICO
+            Route::post('/checkphysician', [$this->admin.PhysicianController::class, 'check']);
+        });
     
     });
 
