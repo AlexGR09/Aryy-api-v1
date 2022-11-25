@@ -22,7 +22,7 @@ class MedicalHistoryResoucer extends JsonResource
             'weight' => $this->weight,
             'imc' => $this->imc,
             'allergy_patient_id' => $this->allergy_patient_id,
-            'allergy_patients' => new AllergyPatientResoucer($this->allergy_patients)
+            'allergypatient' => new AllergyPatientResoucer($this->allergypatient)
             
             
         ];
