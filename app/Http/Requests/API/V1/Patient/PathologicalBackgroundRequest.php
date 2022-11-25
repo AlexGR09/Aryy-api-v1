@@ -4,7 +4,7 @@ namespace App\Http\Requests\API\V1\Patient;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PathologicalBackgorundRequest extends FormRequest
+class PathologicalBackgroundRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

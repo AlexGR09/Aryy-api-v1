@@ -27,7 +27,7 @@ class BasicImformationResoucer extends JsonResource
             'allergy_patient_id' => $this->allergy_patient_id,
             'allergypatient' => new AllergyPatientResoucer($this->allergypatient),
             'pathological_background_id' => $this->pathological_background_id,
-            'pathological_background' => new PathologicalBackgorundResoucer($this->pathologicalbackground),
+            'pathological_background' => new PathologicalBackgroundResoucer($this->pathologicalbackground),
             'non_pathological_background_id' => $this->non_pathological_background_id,
             'non_pathological_background' => new NonPathologicalBackgroundResoucer($this->nonpathologicalbackground),
 

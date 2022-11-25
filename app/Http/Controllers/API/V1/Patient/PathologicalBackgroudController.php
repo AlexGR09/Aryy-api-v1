@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\V1\Patient\PathologicalBackgorundRequest;
+use App\Http\Requests\API\V1\Patient\PathologicalBackgroundRequest;
 use App\Http\Resources\API\V1\Patient\BasicImformationResoucer;
-use App\Http\Resources\API\V1\Patient\PathologicalBackgorundResoucer;
+use App\Http\Resources\API\V1\Patient\PathologicalBackgroundResoucer;
 use App\Models\MedicalHistory;
 use App\Models\PathologicalBackground;
 use App\Models\Patient;
@@ -24,7 +24,7 @@ class PathologicalBackgroudController extends Controller
         //
     }
 
-    public function store(PathologicalBackgorundRequest $request)
+    public function store(PathologicalBackgroundRequest $request)
     {
         try {
             if ($this->user->hasRole('Patient')) {
@@ -51,7 +51,7 @@ class PathologicalBackgroudController extends Controller
                 $medical_history->save();
 
                 DB::commit();
-                return (new PathologicalBackgorundResoucer($medical_history))->additional(['message' => 'Informacion guardada con exito.']);
+                return (new PathologicalBackgroundResoucer($pathological_background))->additional(['message' => 'Informacion guardada con exito.']);
             }
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -65,10 +65,11 @@ class PathologicalBackgroudController extends Controller
             if ($this->user->hasRole('Patient')) {
                 $patient = Patient::where('user_id',$this->user->id)->first();
                 $medical_history = MedicalHistory::where('patient_id',$patient->id)->first();
+                $pathological = PathologicalBackground::where('id', $medical_history->pathological_background_id)->first();
                 //return $medical_history;
                 
                 //return (BasicImformationResoucer::collection($medical_history))->additional(['message' => 'Mi perfil de paciente.']);
-                return (new PathologicalBackgorundResoucer($medical_history))->additional(['message' => '..']);
+                return (new PathologicalBackgroundResoucer($pathological))->additional(['message' => '..']);
             }
                 return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         
@@ -78,7 +79,7 @@ class PathologicalBackgroudController extends Controller
         }
     }
 
-    public function update(PathologicalBackgorundRequest $request)
+    public function update(PathologicalBackgroundRequest $request)
     {
         try {
             if ($this->user->hasRole('Patient')) {
@@ -102,7 +103,7 @@ class PathologicalBackgroudController extends Controller
                 $pathological_background->gastrointestinal_pathologies = $request->gastrointestinal_pathologies;
                 $pathological_background->save();
                 DB::commit();
-                return (new BasicImformationResoucer($medical_history))->additional(['message' => 'Informacion actualizada con exito.']);
+                return (new PathologicalBackgroundResoucer($pathological_background))->additional(['message' => 'Informacion actualizada con exito.']);
             }
         } catch (\Throwable $th) {
             DB::rollBack();

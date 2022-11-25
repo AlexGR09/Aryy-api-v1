@@ -88,7 +88,7 @@ class BasicImformationController extends Controller
                 $medical_history = MedicalHistory::where('patient_id',$patient->id)->with('allergypatient')->get();
                 //return $medical_history;
                 
-                return (BasicImformationResoucer::collection($medical_history))->additional(['message' => 'Mi perfil de paciente.']);
+                return (BasicImformationResoucer::collection($medical_history))->additional(['message' => '..']);
                 //return (new MedicalHistoryResoucer($medical_history))->additional(['message' => 'La informacion basica se actualizo con exito.']);
             }
                 return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
