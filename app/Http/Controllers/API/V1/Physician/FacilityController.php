@@ -34,7 +34,7 @@ class FacilityController extends Controller
                 $facility->clues = $request->clues;
                 $facility->city_id = $request->city_id;
                 $facility->save();
-                // RELACIOÓN CON LA TABLA PIVOTE FACILITY_PHYSICIAN
+                // RELACIÓN CON LA TABLA PIVOTE FACILITY_PHYSICIAN
                 $physician = Physician::where('user_id', $this->user->id)->first();
                 $physician->facilities()->attach($facility->id);
                 DB::commit();
