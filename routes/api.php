@@ -78,6 +78,7 @@ Route::prefix('v1')->group(function () {
         });
         Route::post('/basic-information', [$v1.'Patient\\'.MedicalHistoryController::class, 'basic_information']);
         Route::put('/update-basic-information', [$v1.'Patient\\'.MedicalHistoryController::class, 'update_basic_information']);
+        Route::get('/show-basic-information', [$v1.'Patient\\'.MedicalHistoryController::class, 'show_basic_information']);
         // VERIFICAR EL MÉDICO
         Route::post('/checkphysician', [$v1.'admin\\'.PhysicianController::class, 'check']);
     
