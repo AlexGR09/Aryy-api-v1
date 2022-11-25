@@ -58,7 +58,10 @@ class RoleSeeder extends Seeder
         // NUEVO MÉDICO
         Role::findByName('NewPhysician')->givePermissionTo(['complete physician profile']);
         // MÉDICO EN VERIFICACIÓN 
-        Role::findByName('PhysicianInVerification')->givePermissionTo(['show physician']);
+        Role::findByName('PhysicianInVerification')->givePermissionTo([
+            'show physician',
+            'create facilities'
+        ]);
         // PACIENTE
         Role::findByName('Patient')->givePermissionTo([
             'show patient', 
@@ -68,7 +71,11 @@ class RoleSeeder extends Seeder
         // MÉDICO
         Role::findByName('Physician')->givePermissionTo([
             'show physician', 
-            'edit physician'
+            'edit physician',
+            'show facilities',
+            'create facilities',
+            'edit facilities',
+            'delete facilities'
         ]);
     }
 }
