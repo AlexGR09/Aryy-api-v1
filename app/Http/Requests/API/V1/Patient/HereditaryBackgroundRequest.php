@@ -13,7 +13,7 @@ class HereditaryBackgroundRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -24,7 +24,12 @@ class HereditaryBackgroundRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            /* 'diabetes'=>'string',
+            'heart_diseases'=>'string',
+            'blood_pressure'=>'string',
+            'thyroid_diseases'=>'string',
+            'cancer'=>'string',
+            'kidney_stones'=>'string' */
         ];
     }
 }

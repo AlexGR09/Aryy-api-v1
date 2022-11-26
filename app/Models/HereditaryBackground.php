@@ -4,8 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class HereditaryBackground extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+    protected $fillable = [
+        'diabetes',
+        'heart_diseases',
+        'blood_pressure',
+        'thyroid_diseases',
+        'cancer',
+        'kidney_stones'
+    ];
 }

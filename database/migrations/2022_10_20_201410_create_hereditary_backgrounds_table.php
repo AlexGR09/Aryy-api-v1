@@ -15,7 +15,14 @@ return new class extends Migration
     {
         Schema::create('hereditary_backgrounds', function (Blueprint $table) {
             $table->id();
+            $table->json('diabetes')->nullable();
+            $table->json('heart_diseases')->nullable();
+            $table->json('blood_pressure')->nullable();
+            $table->json('thyroid_diseases')->nullable();
+            $table->json('cancer')->nullable();
+            $table->json('kidney_stones')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
