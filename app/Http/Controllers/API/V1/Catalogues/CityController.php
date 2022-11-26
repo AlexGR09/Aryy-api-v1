@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Catalogues\CityRequest;
 use App\Http\Resources\API\V1\Catalogues\CityResource;
 use App\Models\City;
+use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
@@ -19,15 +20,27 @@ class CityController extends Controller
     public function index()
     {
         try {
-            if ($this->user->hasPermissionTo('show cities')) {
-                $cities = City::paginate(5);
-                return (CityResource::collection($cities))->additional(['message' => 'Ciudades encontradas.']);
+            if ($this->user->hasRole('User')) {
+                return (CityResource::collection(City::orderBy('name')->get()));
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
+
+    public function citiesOfState(Request $request)
+    {
+        try {
+            if ($this->user->hasRole('User')) {
+                return (CityResource::collection(City::orderBy('name')->where('state_id', $request->state_id)->get()));
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
+    
 
     public function show(City $city)
     {

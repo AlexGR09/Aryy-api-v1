@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\V1\Physician\FacilityRequest;
 use App\Http\Resources\API\V1\Physician\FacilityResource;
 use App\Models\Facility;
 use App\Models\Physician;
@@ -18,10 +19,13 @@ class FacilityController extends Controller
         $this->user = auth()->user();
     }
     
-    public function store(Request $request) 
+    public function store(FacilityRequest $request) 
     {
         try {
             if ($this->user->hasPermissionTo('create facilities')) {
+
+                return $request;
+
                 DB::beginTransaction();
                 $facility = new Facility();
                 $facility->facility_name = $request->facility_name;
@@ -30,7 +34,7 @@ class FacilityController extends Controller
                 $facility->zip_code = $request->zip_code;
                 $facility->schedule = json_encode($request->schedule);
                 $facility->consultation_length = $request->consultation_length;
-                $facility->accessibility = json_encode($request->accessibility);
+                $facility->accessibility_and_others = json_encode($request->accessibility_and_others);
                 $facility->clues = $request->clues;
                 $facility->city_id = $request->city_id;
                 $facility->save();

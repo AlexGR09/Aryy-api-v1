@@ -45,11 +45,17 @@ Route::prefix('v1')->group(function () {
             Route::resource('countries', $this->catalogues.CountryController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
             // ESTADOS
-            Route::resource('states', $this->catalogues.StateController::class)
+            Route::resource('/states', $this->catalogues.StateController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
             // CIUDADES
-            Route::resource('cities', $this->catalogues.CityController::class)
-                ->only(['index', 'store', 'show', 'update', 'destroy']);
+            Route::controller($this->catalogues.CityController::class)->group(function() {
+                Route::get('/cities', 'index');
+                Route::get('/citiesofstate', 'citiesofState');
+                Route::get('/cities/{city}', 'show');
+                Route::post('/cities', 'store');
+                Route::put('/cities/{city}', 'update');
+                Route::delete('/cities/{city}', 'destroy');
+            });
             //OCUPACIONES
             Route::resource('ocupations', $this->catalogues.OccupationController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
@@ -92,8 +98,10 @@ Route::prefix('v1')->group(function () {
 
         /* RUTAS ADMINISTRATIVAS */
         Route::prefix('admin')->group(function () {
-            // VERIFICAR EL MÉDICO
-            Route::post('/checkphysician', [$this->admin.PhysicianController::class, 'check']);
+            //  MÉDICOS
+            Route::controller($this->admin.PhysicianController::class)->group(function() {
+                Route::post('/checkphysician', 'check');
+            });
             // ROLES (FALTA MOVER A CARPETA ADMIN)
             Route::resource('roles', RoleController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);

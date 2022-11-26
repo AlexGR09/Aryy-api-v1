@@ -19,9 +19,8 @@ class StateController extends Controller
     public function index()
     {
         try {
-            if ($this->user->hasPermissionTo('show states')) {
-                $states = State::paginate(5);
-                return (StateResource::collection($states))->additional(['message' => 'Estados encontrados.']);
+            if ($this->user->hasRole('User')) {
+                return (StateResource::collection(State::orderBy('name')->get()));
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
