@@ -8,7 +8,7 @@ use App\Http\Resources\API\V1\UserResource;
 use App\Http\Resources\API\V1\Patient\PathologicalBackgorundResoucer;
 
 
-class BasicImformationResoucer extends JsonResource
+class MedicalHistoryResoucer extends JsonResource
 {
     /**
      * Transform the resource into an array.

@@ -3,22 +3,22 @@
 namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\V1\Patient\BasicImformationRequest;
-use App\Http\Resources\API\V1\Patient\BasicImformationResoucer;
+use App\Http\Requests\API\V1\Patient\MedicalHistoryRequest;
+use App\Http\Resources\API\V1\Patient\MedicalHistoryResoucer;
 use App\Models\AllergyPatient;
 use Illuminate\Http\Request;
 use App\Models\MedicalHistory;
 use App\Models\Patient;
 use Illuminate\Support\Facades\DB;
 
-class BasicImformationController extends Controller
+class MedicalHistoryController extends Controller
 {
     public function __construct()
     {
         $this->user = auth()->user();
     }
 
-    public function store(BasicImformationRequest $request)
+    public function store(MedicalHistoryRequest $request)
     {
         try {
             if ($this->user->hasRole('Patient')) {
@@ -41,7 +41,7 @@ class BasicImformationController extends Controller
                 
                 $basic_information->save();
                 DB::commit();
-                return (new BasicImformationResoucer($basic_information))->additional(['message' => 'Informacion basica guardada con exito.']);
+                return (new MedicalHistoryResoucer($basic_information))->additional(['message' => 'Informacion basica guardada con exito.']);
             }
                 return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         
@@ -71,7 +71,7 @@ class BasicImformationController extends Controller
                 $allergy_patient->environmental_allergy = $request->environmental_allergy;
                 $allergy_patient->save();
                
-                return (new BasicImformationResoucer($basic_information))->additional(['message' => 'La informacion basica se actualizo con exito.']);
+                return (new MedicalHistoryResoucer($basic_information))->additional(['message' => 'La informacion basica se actualizo con exito.']);
             }
                 return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         
@@ -88,7 +88,7 @@ class BasicImformationController extends Controller
                 $medical_history = MedicalHistory::where('patient_id',$patient->id)->with('allergypatient')->get();
                 //return $medical_history;
                 
-                return (BasicImformationResoucer::collection($medical_history))->additional(['message' => '..']);
+                return (MedicalHistoryResoucer::collection($medical_history))->additional(['message' => '..']);
                 //return (new MedicalHistoryResoucer($medical_history))->additional(['message' => 'La informacion basica se actualizo con exito.']);
             }
                 return response()->json(['message' => 'No puedes realizar esta acción.'], 403);

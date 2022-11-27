@@ -96,7 +96,7 @@ Route::prefix('v1')->group(function () {
             });
             /* Historial medico del paciente */
             //Datos basicos
-            Route::controller($this->patient . BasicImformationController::class)->group(function () {
+            Route::controller($this->patient . MedicalHistoryController::class)->group(function () {
                 Route::get('/basic-information', 'show');
                 Route::post('/basic-information', 'store');
                 Route::put('/basic-information', 'update');
