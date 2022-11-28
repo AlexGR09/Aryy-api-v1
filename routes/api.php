@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\API\V1\AuthController;
+use App\Http\Controllers\API\V1\ConsultingRoomController;
+use App\Http\Controllers\API\V1\FacilityController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\RoleController;
+use App\Http\Controllers\API\V1\ScheduleFacilityController;
 // use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
 // use App\Http\Controllers\API\V1\Search\SearchController;
 use App\Http\Controllers\TestJoseController;
@@ -67,8 +70,9 @@ Route::prefix('v1')->group(function () {
             Route::post('/patient', 'store');
             Route::put('/patient', 'update');
         });
-    
-    });
+        Route::post('facilities',[FacilityController::class, 'store']);
+        Route::post('facilities/schedule/{facility}',ScheduleFacilityController::class);
+    }); 
 
     $search = "App\\Http\\Controllers\\API\\V1\\Search\\";
     /* BÚSQUEDAS */

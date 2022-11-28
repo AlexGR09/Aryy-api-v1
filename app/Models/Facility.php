@@ -11,15 +11,19 @@ class Facility extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'facility_name',
-        'address',
-        'phone_number',
-        'clues',
-        'zip_code',
+        'name',
+        'phone',
+        'extension',
         'schedule',
-        'consultation_length',
-        'accessibility',
-
+        'zicode',
+        'street',
+        'exterior_no',
+        'interior_no',
+        'references',
+        'public_target',
+        'services',
+        'city_id',
+        'user_id'
     ];
 
     public function physicians()
