@@ -96,21 +96,21 @@ Route::prefix('v1')->group(function () {
             /* Historial medico del paciente */
             //Datos basicos
             Route::controller($this->patient . MedicalHistoryController::class)->group(function () {
-                Route::get('medical_history/basic_information', 'show');
+                Route::get('/medical_history/basic_information', 'show');
                 Route::post('medical_history/basic_information', 'store');
                 Route::put('medical_history/basic_information', 'update');
             });
             //Antecedentes patologicos
             Route::controller($this->patient . PathologicalBackgroudController::class)->group(function () {
-                Route::post('medical_history/pathological_backgroud', 'store');
-                Route::get('medical_history/pathological_backgroud', 'show');
-                Route::put('medical_history/pathological_backgroud', 'update');
+                Route::post('medical_history/pathological_background', 'store');
+                Route::get('medical_history/pathological_background', 'show');
+                Route::put('medical_history/pathological_background', 'update');
             });
             //Antecedentes no patologicos
             Route::controller($this->patient.NonPathologicalBackgroundController::class)->group(function(){
-                Route::post('medical_history/non_pathological_backgroud', 'store');
-                Route::get('medical_history/non_pathological_backgroud', 'show');
-                Route::put('medical_history/non_pathological_backgroud', 'update');
+                Route::post('medical_history/non_pathological_background', 'store');
+                Route::get('medical_history/non_pathological_background', 'show');
+                Route::put('medical_history/non_pathological_background', 'update');
             });
             //Antecedentes Heredofamiliares
             Route::controller($this->patient.HereditaryBackgroundController::class)->group(function(){

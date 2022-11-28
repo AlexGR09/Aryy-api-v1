@@ -90,7 +90,7 @@ class NonPathologicalBackgroundController extends Controller
                 $no_pathological->rest_time = json_encode($request->rest_time);
                 $no_pathological->alcoholim = json_encode($request->alcoholim);
                 $no_pathological->smoking = json_encode($request->smoking);
-                $no_pathological->other_substances = json_encode($request->other_substances);
+                $no_pathological->other_substances = $request->other_substances;
                 $no_pathological->diet = $request->diet;
                 $no_pathological->drug_active = $request->drug_active;
                 $no_pathological->previous_medication = $request->previous_medication;
