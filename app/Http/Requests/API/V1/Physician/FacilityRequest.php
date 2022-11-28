@@ -17,7 +17,8 @@ class FacilityRequest extends FormRequest
         return [
             'facility_name' => 'required|max:100',
             'location' => 'required|array',
-            'phone_number' => 'min:10|regex:/^([0-9\s\-\+\(\)]*)$/|',
+            'phone_number' => ($this->getMethod() == 'POST') ? 'min:10|regex:/^([0-9\s\-\+\(\)]*)$/|unique:facilities' : 
+                'min:10|regex:/^([0-9\s\-\+\(\)]*)$/|unique:facilities,phone_number,'.$this->id,
             'zip_code' => 'required|digits:5',
             'schedule' => 'array',
             'type_schedule' => 'in:permanente,temporal',

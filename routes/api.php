@@ -82,9 +82,11 @@ Route::prefix('v1')->group(function () {
             });
             // INSTALACIONES DEL MÉDICO
             Route::controller($this->physician.FacilityController::class)->group(function() {
-                Route::get('/facility', 'show');
+                Route::get('/facility', 'index');
+                Route::get('/facility/{id}', 'show');
                 Route::post('/facility', 'store');
-                Route::put('/facility', 'update');
+                Route::put('/facility/{id}', 'update');
+                Route::delete('/facility/{id}', 'destroy');
             });
         });
 

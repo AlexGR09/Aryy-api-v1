@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use ErrorException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
@@ -37,6 +38,14 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $e)
     {
         switch ($e) {
+
+            case ($e instanceof ErrorException):
+                return response()->json([
+                    "message" => "Ha ocurrido un error inesperado.",
+                    "error" => $e->getMessage()
+                ], 500);
+                break;
+
             case ($e instanceof ModelNotFoundException):
                 return response()->json([
                     "message" => "El modelo al que quiere acceder no existe.",

@@ -52,7 +52,7 @@ class PhysicianController extends Controller
     public function show()
     {
         try {
-            if ($this->user->hasPermissionTo('show physician')) {
+            if ($this->user->hasPermissionTo('show physician profile')) {
                 $message = 'Mi perfil médico.';
                 $physician = Physician::where('user_id', $this->user->id)->first();
                 if ($this->user->hasRole('PhysicianInVerification')) {

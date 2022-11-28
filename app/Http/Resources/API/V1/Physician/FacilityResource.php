@@ -16,8 +16,9 @@ class FacilityResource extends JsonResource
             'phone_number' => $this->phone_number,
             'zip_code' => $this->zip_code,
             'schedule' => json_decode($this->schedule),
+            'type_schedule' => $this->type_schedule,
             'consultation_length' => $this->consultation_length,
-            'accessibility' => json_decode($this->accessibility),
+            'accessibility_and_others' => json_decode($this->accessibility_and_others),
             'clues' => $this->clues,
             'city_id' => $this->city_id,
         ];
