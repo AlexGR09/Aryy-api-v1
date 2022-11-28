@@ -263,18 +263,18 @@ class UserSeeder extends Seeder
         $patient6->assignRole(['User', 'NewPatient']);
 
         $patient7 = User::where('id', 18)->first();
-        $patient7->assignRole(['User', 'NewPatient']);
+        $patient7->assignRole(['User', 'Patient']);
 
         $patient8 = User::where('id', 19)->first();
-        $patient8->assignRole(['User', 'NewPatient']);
+        $patient8->assignRole(['User', 'Patient']);
 
         $patient9 = User::where('id', 20)->first();
-        $patient9->assignRole(['User', 'NewPatient']);
+        $patient9->assignRole(['User', 'Patient']);
 
         $patient10 = User::where('id', 21)->first();
-        $patient10->assignRole(['User', 'NewPatient']);
+        $patient10->assignRole(['User', 'Patient']);
 
         $patient11 = User::where('id', 22)->first();
-        $patient11->assignRole(['User', 'NewPatient']);
+        $patient11->assignRole(['User', 'Patient']);
     }
 }

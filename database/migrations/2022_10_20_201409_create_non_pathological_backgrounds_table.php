@@ -19,7 +19,7 @@ return new class extends Migration
             $table->json('rest_time')->nullable();
             $table->json('smoking')->nullable();
             $table->json('alcoholim')->nullable();
-            $table->json('other_substances')->nullable();
+            $table->string('other_substances')->nullable();
             $table->string('diet')->nullable();
             $table->string('drug_active')->nullable();
             $table->string('previous_medication')->nullable();

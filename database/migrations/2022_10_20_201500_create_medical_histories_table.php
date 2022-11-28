@@ -22,6 +22,8 @@ return new class () extends Migration {
             $table->foreignId('allergy_patient_id')->nullable()->constrained('allergy_patients')->onDelete('cascade');
             $table->foreignId('pathological_background_id')->nullable()->constrained('pathological_backgrounds')->onDelete('cascade');
             $table->foreignId('non_pathological_background_id')->nullable()->constrained('non_pathological_backgrounds')->onDelete('cascade');
+            $table->foreignId('hereditary_background_id')->nullable()->constrained('hereditary_backgrounds')->onDelete('cascade');
+            $table->foreignId('vaccination_history_id')->nullable()->constrained('vaccination_histories')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

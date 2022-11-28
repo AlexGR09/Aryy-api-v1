@@ -7,22 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
-class NonPathologicalBackground extends Model
+class VaccinationHistory extends Model
 {
     use HasFactory, SoftDeletes;
+
     protected $fillable = [
-        'physical_activity',
-        'rest_time',
-        'smoking',
-        'alcoholim',
-        'other_substances',
-        'diet',
-        'drug_active',
-        'previous_medication'
+        'vaccine',
+        'dose',
+        'lot_number',
+        'application_date'
     ];
 
     public function medical_history()
     {
         return $this->hasOne('App\Models\MedicalHistory');
     }
+
 }

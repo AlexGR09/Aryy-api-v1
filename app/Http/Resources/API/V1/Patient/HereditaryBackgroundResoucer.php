@@ -15,12 +15,12 @@ class HereditaryBackgroundResoucer extends JsonResource
     public function toArray($request)
     {
         return [
-            'diabetes'=>$this->diabetes,
-            'heart_diseases'=>$this->heart_diseases,
-            'blood_pressure'=>$this->blood_pressure,
-            'thyroid_diseases'=>$this->thyroid_diseases,
-            'cancer'=>$this->cancer,
-            'kidney_stones'=>$this->kidney_stones
+            'diabetes'=>json_decode($this->diabetes),
+            'heart_diseases'=>json_decode($this->heart_diseases),
+            'blood_pressure'=>json_decode($this->blood_pressure),
+            'thyroid_diseases'=>json_decode($this->thyroid_diseases),
+            'cancer'=>json_decode($this->cancer),
+            'kidney_stones'=>json_decode($this->kidney_stones)
         ];
     }
 }
