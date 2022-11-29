@@ -34,8 +34,8 @@ class AuthRequest extends FormRequest
 
         if (request()->is('api/v1/profile')) {
             return [
-                'name' => 'required|max:40',
-                'last_name' => 'required|max:40',
+                'full_name' => 'required|max:40',
+                /* 'last_name' => 'required|max:40', */
                 'gender' => 'required|'. Rule::in(['Masculino','Femenino']),
                 'birthday' => 'required|date',
                 'email' => 'required|email|max:35|'. Rule::unique('users')->ignore(auth()->user()),

@@ -65,11 +65,11 @@ class PathologicalBackgroudController extends Controller
             if ($this->user->hasRole('Patient')) {
                 $patient = Patient::where('user_id',$this->user->id)->first();
                 $medical_history = MedicalHistory::where('patient_id',$patient->id)->first();
-                $pathological = PathologicalBackground::where('id', $medical_history->pathological_background_id)->first();
+                $pathological = PathologicalBackground::where('id', $medical_history->pathological_background_id)->get();
                 //return $medical_history;
                 
-                //return (BasicImformationResoucer::collection($medical_history))->additional(['message' => 'Mi perfil de paciente.']);
-                return (new PathologicalBackgroundResoucer($pathological))->additional(['message' => '..']);
+                return (PathologicalBackgroundResoucer::collection($pathological))->additional(['message' => 'Mi perfil de paciente.']);
+                //return (new PathologicalBackgroundResoucer($pathological))->additional(['message' => '..']);
             }
                 return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         
@@ -111,8 +111,22 @@ class PathologicalBackgroudController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        try {
+            if ($this->user->hasRole('Patient')) {
+                $patient = Patient::where('user_id', $this->user->id)->first();
+                $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
+
+                $pathological = PathologicalBackground::where('id', $medical_history->non_pathological_background_id)->first();
+                $pathological->delete();
+                //return (MedicalHistoryResoucer::collection($medical_history))->additional(['message' => 'Mi perfil de paciente.']);
+                return (new PathologicalBackgroundResoucer($pathological))->additional(['message' => 'Informacion Borrada con exito']);
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 }

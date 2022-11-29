@@ -32,10 +32,13 @@ class MedicalHistoryController extends Controller
                 $allergy_patient->save();
 
                 $basic_information = new MedicalHistory();
+                $weight=json_decode($basic_information->weight);
+                $height=json_decode($basic_information->height);
+                
                 $basic_information->patient_id = $patient->id;
-                $basic_information->weight = $request->weight;
-                $basic_information->height = $request->height;
-                $basic_information->imc = round((float)$request->weight/pow((float)$request->height,2));
+                $basic_information->weight =json_encode($request->weight);
+                $basic_information->height = json_encode($request->height);
+                $basic_information->imc = round((float)$weight->weight/pow((float)$height->height,2));
                 $basic_information->blood_type = $request->blood_type;
                 $basic_information->allergy_patient_id = $allergy_patient->id;
                 
@@ -58,10 +61,13 @@ class MedicalHistoryController extends Controller
             
                
                 $basic_information = MedicalHistory::where('patient_id',$patient->id)->first();
+                $weight=json_decode($basic_information->weight);
+                $height=json_decode($basic_information->height);
+                
                 $basic_information->patient_id = $patient->id;
-                $basic_information->weight = $request->weight;
-                $basic_information->height = $request->height;
-                $basic_information->imc = round((float)$request->weight/pow((float)$request->height,2));
+                $basic_information->weight = json_encode($request->weight);
+                $basic_information->height = json_encode($request->height);
+                $basic_information->imc = round((float)$weight->weight/pow((float)$height->height,2));
                 $basic_information->blood_type = $request->blood_type;
                 $basic_information->save();
 
@@ -95,6 +101,26 @@ class MedicalHistoryController extends Controller
         
             } catch (\Throwable $th) {
             DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
+
+    public function destroy(){
+        try {
+            if ($this->user->hasRole('Patient')) {
+                $patient = Patient::where('user_id',$this->user->id)->first();
+                $medical_history = MedicalHistory::where('patient_id',$patient->id)->with('allergypatient')->first();
+                 
+                $medical_history->height = json_encode(NULL);
+                $medical_history->weight = json_encode(NULL);
+                $medical_history->imc = NULL;
+                $medical_history->blood_type = NULL;
+                $medical_history->save();
+                return$medical_history;
+                //return (new ($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\PatientRequest;
+use App\Http\Requests\API\V1\Patient\UserRequest;
 use App\Http\Resources\API\V1\Patient\PatientResource;
 use App\Models\Patient;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class PatientController extends Controller
@@ -44,7 +46,7 @@ class PatientController extends Controller
     public function show()
     {
         try {
-            if ($this->user->hasPermissionTo('show patient')) {
+            if ($this->user->hasRole('Patient')) {
                 $patient = Patient::where('user_id', $this->user->id)->get();
                 return (PatientResource::collection($patient))->additional(['message' => 'Mi perfil de paciente.']);
             }
@@ -59,7 +61,7 @@ class PatientController extends Controller
 
         /* return response()->json("FUNCIONALIDAD EN CREACIÓN"); */
          try {
-             if ($this->user->hasPermissionTo('edit patient')) {
+             if ($this->user->hasRole('Patient')) {
                 
                 DB::beginTransaction();
 
@@ -71,8 +73,15 @@ class PatientController extends Controller
                  $patient->city_id = $request->city_id;
                  $patient->country_code = $request->country_code;
                  $patient->id_card = json_encode($request->id_card);
-
                  $patient->save();
+
+                 $user = User::where('id',$this->user->id)->first();
+                 $user->full_name = $request->full_name;
+                 $user->gender = $request->gender;
+                 $user->birthday = $request->birthday;
+                 $user->country_code = $request->country_code;
+                 $user->phone_number = $request->phone_number;
+                 $user->save();
 
                  DB::commit();
                  return (new PatientResource($patient))->additional(['message' => 'paciente actualizado con éxito.']);
