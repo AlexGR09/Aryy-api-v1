@@ -74,7 +74,7 @@ class AuthController extends Controller
     public function show()
     {
         try {
-            if ($this->user->hasPermissionTo('show profile')) {
+            if ($this->user->hasPermissionTo('show user profile')) {
                 return (new UserResource($this->user))->additional(['message' => 'My profile']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
@@ -86,7 +86,7 @@ class AuthController extends Controller
     public function update(UpdateProfileRequest $request)
     {
         try {
-            if ($this->user->hasPermissionTo('edit profile')) {
+            if ($this->user->hasPermissionTo('edit user profile')) {
                 DB::beginTransaction();
                 $this->user->name = $request->name;
                 $this->user->last_name = $request->last_name;
@@ -115,7 +115,7 @@ class AuthController extends Controller
     public function destroy()
     {
         try {
-            if ($this->user->hasPermissionTo('delete profile')) {
+            if ($this->user->hasPermissionTo('delete user profile')) {
                 $this->user->delete();
                 return (new UserResource($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
             }

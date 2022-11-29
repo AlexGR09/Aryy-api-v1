@@ -49,4 +49,5 @@ class Physician extends Model
     {
         return $this->belongsToMany('App\Models\Facility', 'facility_physician');
     }
+
 }

@@ -18,7 +18,7 @@ class UpdateProfileRequest extends FormRequest
         return [
             'name' => 'required|max:40',
             'last_name' => 'required|max:40',
-            'gender' => 'required|in:Masculino,Femenino',
+            'gender' => 'required|in:masculino,femenino',
             'birthday' => 'required|date',
             'email' => 'required|email|max:35|'. Rule::unique('users')->ignore(auth()->user()),
             'password' => 'confirmed|min:8|max:16',

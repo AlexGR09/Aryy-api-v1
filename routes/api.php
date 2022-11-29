@@ -48,11 +48,17 @@ Route::prefix('v1')->group(function () {
             Route::resource('countries', $this->catalogues . CountryController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
             // ESTADOS
-            Route::resource('states', $this->catalogues . StateController::class)
+            Route::resource('/states', $this->catalogues.StateController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
             // CIUDADES
-            Route::resource('cities', $this->catalogues . CityController::class)
-                ->only(['index', 'store', 'show', 'update', 'destroy']);
+            Route::controller($this->catalogues.CityController::class)->group(function() {
+                Route::get('/cities', 'index');
+                Route::get('/citiesofstate', 'citiesOfState');
+                Route::get('/cities/{city}', 'show');
+                Route::post('/cities', 'store');
+                Route::put('/cities/{city}', 'update');
+                Route::delete('/cities/{city}', 'destroy');
+            });
             //OCUPACIONES
             Route::resource('ocupations', $this->catalogues . OccupationController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
@@ -63,8 +69,13 @@ Route::prefix('v1')->group(function () {
             Route::resource('insurance', $this->catalogues . InsuranceController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
             // ESPECIALIDADES
-            Route::resource('/specialties', $this->catalogues . SpecialtyController::class)
-                ->only(['index', 'store', 'show', 'update', 'destroy']);
+            Route::resource('/specialties', $this->catalogues.SpecialtyController::class)
+            ->only(['index', 'store', 'show', 'update', 'destroy']);
+            // SUB ESPECIALIDADES
+            Route::controller($this->catalogues.SubSpecialtyController::class)->group(function() {
+                Route::get('/subspecialties', 'index');
+                Route::get('/subspecialtiesofspecialty', 'subSpecialtiesOfSpecialty');
+            });
         });
 
 
@@ -78,10 +89,12 @@ Route::prefix('v1')->group(function () {
                 Route::put('/profile', 'update');
             });
             // INSTALACIONES DEL MÉDICO
-            Route::controller($this->physician . FacilityController::class)->group(function () {
-                Route::get('/facility', 'show');
+            Route::controller($this->physician.FacilityController::class)->group(function() {
+                Route::get('/facility', 'index');
+                Route::get('/facility/{id}', 'show');
                 Route::post('/facility', 'store');
-                Route::put('/facility', 'update');
+                Route::put('/facility/{id}', 'update');
+                Route::delete('/facility/{id}', 'destroy');
             });
         });
 
@@ -130,8 +143,10 @@ Route::prefix('v1')->group(function () {
 
         /* RUTAS ADMINISTRATIVAS */
         Route::prefix('admin')->group(function () {
-            // VERIFICAR EL MÉDICO
-            Route::post('/checkphysician', [$this->admin . PhysicianController::class, 'check']);
+            //  MÉDICOS
+            Route::controller($this->admin.PhysicianController::class)->group(function() {
+                Route::post('/checkphysician', 'check');
+            });
             // ROLES (FALTA MOVER A CARPETA ADMIN)
             Route::resource('roles', RoleController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);

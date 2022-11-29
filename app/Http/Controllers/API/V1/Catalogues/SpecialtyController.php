@@ -11,22 +11,26 @@ use Illuminate\Http\Request;
 
 class SpecialtyController extends Controller
 {
+    protected $user;
+
+    public function __construct()
+    {
+        $this->user = auth()->user();
+    }
     
     public function index()
     {
         try {
-            return (SpecialtyResource::collection(Specialty::all()));
+            if ($this->user->hasRole('User')) {
+                return (SpecialtyResource::collection(Specialty::orderBy('name')->get()));
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(SpecialtyRequest $request)
     {
         try {
