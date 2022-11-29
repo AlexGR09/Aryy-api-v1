@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class PhysicianController extends Controller
 {
-    protected $user;
+    protected $user, $physician;
 
     public function __construct()
     {

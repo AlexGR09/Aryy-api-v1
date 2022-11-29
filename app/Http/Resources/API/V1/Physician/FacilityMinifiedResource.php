@@ -12,6 +12,7 @@ class FacilityMinifiedResource extends JsonResource
         return [
             'facility_id' => $this->id,
             'facility_name' => $this->facility_name,
+            'address' => json_decode($this->location, true)['address'] ,
         ];
     }
 }

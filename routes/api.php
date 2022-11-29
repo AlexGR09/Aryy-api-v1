@@ -50,7 +50,7 @@ Route::prefix('v1')->group(function () {
             // CIUDADES
             Route::controller($this->catalogues.CityController::class)->group(function() {
                 Route::get('/cities', 'index');
-                Route::get('/citiesofstate', 'citiesofState');
+                Route::get('/citiesofstate', 'citiesOfState');
                 Route::get('/cities/{city}', 'show');
                 Route::post('/cities', 'store');
                 Route::put('/cities/{city}', 'update');
@@ -68,6 +68,11 @@ Route::prefix('v1')->group(function () {
             // ESPECIALIDADES
             Route::resource('/specialties', $this->catalogues.SpecialtyController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
+            // SUB ESPECIALIDADES
+            Route::controller($this->catalogues.SubSpecialtyController::class)->group(function() {
+                Route::get('/subspecialties', 'index');
+                Route::get('/subspecialtiesofspecialty', 'subSpecialtiesOfSpecialty');
+            });
         });
         
             
