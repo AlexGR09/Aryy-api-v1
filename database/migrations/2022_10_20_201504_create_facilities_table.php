@@ -10,20 +10,19 @@ return new class extends Migration
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
             $table->string('name')->index();
             $table->string('phone');
             $table->string('extension')->nullable();
-            $table->string('attetion_time');
+            $table->json('schedule')->nullable();
             $table->string('zipcode');
-            $table->string('town');
             $table->string('street');
             $table->string('exterior_no');
             $table->string('interior_no')->nullable();
-            $table->string('references');
-            $table->string('accesibility');
-            $table->string('public_target');
-            $table->string('services');
+            $table->string('suburb')->nullable();
+            $table->string('references')->nullable();
+            $table->string('public_target')->nullable();
+            $table->string('accesibility')->nullable();
+            $table->json('services')->nullable();
             $table->foreignId('city_id')->constrained('cities');
             $table->timestamps();
             $table->softDeletes();

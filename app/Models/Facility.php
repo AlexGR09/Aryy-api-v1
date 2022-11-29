@@ -15,17 +15,25 @@ class Facility extends Model
         'phone',
         'extension',
         'schedule',
-        'zicode',
+        'zipcode',
         'street',
         'exterior_no',
         'interior_no',
+        'suburb',
         'references',
         'public_target',
+        'accesibility',
         'services',
-        'city_id',
-        'user_id'
     ];
-
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'schedule' => 'array',
+        'services' => 'array',
+    ];
     public function physicians()
     {
         return $this->belongsToMany('App\Models\Physician', 'facility_physician');
