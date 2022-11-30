@@ -12,21 +12,28 @@ use Illuminate\Support\Facades\DB;
 
 class OccupationController extends Controller
 {
-    protected $user;
-
     public function __construct()
     {
-        $this->user = auth()->user();
+        $this->middleware('permission:show occupations')->only([
+            'index',
+            'show',
+        ]);
+        $this->middleware('permission:create occupations')->only([
+            'create',
+        ]);
+        $this->middleware('permission:edit occupations')->only([
+            'update'
+        ]);
+        $this->middleware('permission:delete occupations')->only([
+            'destroy'
+        ]);
     }
 
     public function index()
     {
         try {
-            if ($this->user->hasPermissionTo('show occupations')) {
-                $occupation = Occupation::paginate(5);
-                return (OccupationResource::collection($occupation))->additional(['message' => 'ocupaciones encontradas']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $occupation = Occupation::paginate(5);
+            return (OccupationResource::collection($occupation))->additional(['message' => 'ocupaciones encontradas']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -35,15 +42,9 @@ class OccupationController extends Controller
     public function store(Request $request)
     {
         try {
-            if ($this->user->hasPermissionTo('create occupations')) {
-                $occupation = Occupation::create(['name' => $request->name]);
-
-                DB::commit();
-                return (new OccupationResource($occupation))->additional(['message' => 'Ocupacion creada correctamente']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $occupation = Occupation::create(['name' => $request->name]);
+            return (new OccupationResource($occupation))->additional(['message' => 'Ocupacion creada correctamente']);
         } catch (\Throwable $th) {
-            DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -51,10 +52,7 @@ class OccupationController extends Controller
     public function show(Occupation $occupation)
     {
         try {
-            if ($this->user->hasPermissionTo('show occupations')) {
-                return (new OccupationResource($occupation))->additional(['message' => 'Ocupaciones encontradas']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            return (new OccupationResource($occupation))->additional(['message' => 'Ocupaciones encontradas']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -63,16 +61,10 @@ class OccupationController extends Controller
     public function update(Request $request, Occupation $occupation)
     {
         try {
-            if ($this->user->hasPermissionTo('edit occupations')) {
-                $occupation->name = $request->name;
-                $occupation->save();
-
-                DB::commit();
-                return (new OccupationResource($occupation))->additional(['message' => 'Ocupacion actualizada con éxito.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $occupation->name = $request->name;
+            $occupation->save();
+            return (new OccupationResource($occupation))->additional(['message' => 'Ocupacion actualizada con éxito.']);
         } catch (\Throwable $th) {
-            DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -80,11 +72,8 @@ class OccupationController extends Controller
     public function destroy(Occupation $occupation)
     {
         try {
-            if ($this->user->hasPermissionTo('delete occupations')) {
-                $occupation->delete();
-                return response()->json(['message' => 'Ocupacion eliminada con éxito.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $occupation->delete();
+            return response()->json(['message' => 'Ocupacion eliminada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

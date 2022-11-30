@@ -11,17 +11,29 @@ class Facility extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'facility_name',
-        'address',
-        'phone_number',
-        'clues',
-        'zip_code',
+        'name',
+        'phone',
+        'extension',
         'schedule',
-        'consultation_length',
-        'accessibility',
-
+        'zipcode',
+        'street',
+        'exterior_no',
+        'interior_no',
+        'suburb',
+        'references',
+        'public_target',
+        'accesibility',
+        'services',
     ];
-
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'schedule' => 'array',
+        'services' => 'array',
+    ];
     public function physicians()
     {
         return $this->belongsToMany('App\Models\Physician', 'facility_physician');

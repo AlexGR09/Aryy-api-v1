@@ -1,9 +1,13 @@
 <?php
 
-// use App\Http\Controllers\API\V1\AuthController;
-
+use App\Http\Controllers\API\V1\AuthController;
+use App\Http\Controllers\API\V1\ConsultingRoomController;
+use App\Http\Controllers\API\V1\FacilityController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\RoleController;
+use App\Http\Controllers\API\V1\ScheduleFacilityController;
+// use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
+// use App\Http\Controllers\API\V1\Search\SearchController;
 use App\Http\Controllers\TestJoseController;
 use Illuminate\Support\Facades\Route;
 
@@ -111,18 +115,17 @@ Route::prefix('v1')->group(function () {
             /* Historial medico del paciente */
             //Datos basicos
             Route::controller($this->patient . MedicalHistoryController::class)->group(function () {
-                Route::get('medical_history','index');
-                Route::get('medical_history/basic_information', 'show');
+                Route::get('/medical_history/basic_information', 'show');
                 Route::post('medical_history/basic_information', 'store');
                 Route::put('medical_history/basic_information', 'update');
-                /* Route::delete('medical_history/basic_information','destroy');//->encaso de ser necesario */
+                Route::delete('medical_history/basic_information','destroy');//->encaso de ser necesario
             });
             //Antecedentes patologicos
             Route::controller($this->patient . PathologicalBackgroudController::class)->group(function () {
                 Route::post('medical_history/pathological_background', 'store');
                 Route::get('medical_history/pathological_background', 'show');
                 Route::put('medical_history/pathological_background', 'update');
-                /* Route::delete('medical_history/pathological_background','destroy');//->encaso de ser necesario */
+                Route::delete('medical_history/pathological_background','destroy');//->encaso de ser necesario
 
             });
             //Antecedentes no patologicos
@@ -130,25 +133,19 @@ Route::prefix('v1')->group(function () {
                 Route::post('medical_history/non_pathological_background', 'store');
                 Route::get('medical_history/non_pathological_background', 'show');
                 Route::put('medical_history/non_pathological_background', 'update');
-                /* Route::delete('medical_history/non_pathological_background','destroy');//->encaso de ser necesario */
+                Route::delete('medical_history/non_pathological_background','destroy');//->encaso de ser necesario
             });
             //Antecedentes Heredofamiliares
             Route::controller($this->patient.HereditaryBackgroundController::class)->group(function(){
                 Route::post('medical_history/hereditary_background', 'store');
                 Route::get('medical_history/hereditary_background', 'show');
                 Route::put('medical_history/hereditary_background', 'update');
-                /*  Route::delete('medical_history/hereditary_background','destroy');//->encaso de ser necesario*/
             });
             //Historial de vacunacion
             Route::controller($this->patient.VaccinationHistoryController::class)->group(function(){
                 Route::post('medical_history/vaccination_history', 'store');
                 Route::get('medical_history/vaccination_history', 'show');
                 Route::put('medical_history/vaccination_history', 'update');
-                /* Route::delete('medical_history/vaccination_history','destroy');//->encaso de ser necesario */
-
-            });
-            Route::controller($this->patient.OccupationPatientController::class)->group(function(){
-                Route::post('occupation_patient', 'store');
             });
         });
 
@@ -167,7 +164,9 @@ Route::prefix('v1')->group(function () {
             Route::resource('permissions', PermissionController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
         });
-    });
+        Route::post('facilities',[FacilityController::class, 'store']);
+        Route::post('facilities/schedule/{facility}',ScheduleFacilityController::class);
+    }); 
 
 
     /* BÚSQUEDAS */
