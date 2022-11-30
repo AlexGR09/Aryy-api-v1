@@ -99,23 +99,4 @@ class VaccinationHistoryController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-
-    public function destroy()
-    {
-        try {
-            if ($this->user->hasRole('Patient')) {
-                $patient = Patient::where('user_id', $this->user->id)->first();
-                $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
-                $vaccination_history = VaccinationHistory::where('id', $medical_history->vaccination_history_id)->first();
-
-                $vaccination_history->delete();
-                //return (MedicalHistoryResource::collection($medical_history))->additional(['message' => 'Mi perfil de paciente.']);
-                return (new VaccinationHistoryResource($vaccination_history))->additional(['message' => 'Informacion elimidada con exito']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            return response()->json(['error' => $th->getMessage()], 503);
-        }
-    }
 }

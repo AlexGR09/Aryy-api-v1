@@ -128,25 +128,4 @@ class MedicalHistoryController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-
-    public function destroy()
-    {
-        try {
-            if ($this->user->hasRole('Patient')) {
-                $patient = Patient::where('user_id', $this->user->id)->first();
-                $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergypatient')->first();
-
-                $medical_history->height = json_encode(NULL);
-                $medical_history->weight = json_encode(NULL);
-                $medical_history->imc = NULL;
-                $medical_history->blood_type = NULL;
-                $medical_history->save();
-                return $medical_history;
-                //return (new ($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
-        } catch (\Throwable $th) {
-            return response()->json(['error' => $th->getMessage()], 503);
-        }
-    }
 }
