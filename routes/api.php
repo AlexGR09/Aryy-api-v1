@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\API\V1\AuthController;
 use App\Http\Controllers\API\V1\ConsultingRoomController;
 use App\Http\Controllers\API\V1\FacilityController;
 use App\Http\Controllers\API\V1\PermissionController;
