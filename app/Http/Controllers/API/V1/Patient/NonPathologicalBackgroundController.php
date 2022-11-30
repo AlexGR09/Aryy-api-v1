@@ -107,23 +107,4 @@ class NonPathologicalBackgroundController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-
-    public function destroy()
-    {
-        try {
-            if ($this->user->hasRole('Patient')) {
-                $patient = Patient::where('user_id', $this->user->id)->first();
-                $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
-
-                $no_pathological = NonPathologicalBackground::where('id', $medical_history->non_pathological_background_id)->first();
-                $no_pathological->delete();
-                //return (MedicalHistoryResource::collection($medical_history))->additional(['message' => 'Mi perfil de paciente.']);
-                return (new NonPathologicalBackgroundResource($no_pathological))->additional(['message' => '..']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            return response()->json(['error' => $th->getMessage()], 503);
-        }
-    }
 }

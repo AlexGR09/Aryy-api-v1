@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -202,9 +201,9 @@ class SearchProcedureSeeder extends Seeder
         END;
         ";
         DB::unprepared($getPhysiciansByIdOfServiceAndCityIdOfFacility);
-        
+
         // BÚSQUEDA DE INSTALACIONES POR EL ID DEL MÉDICO
-        $getFacilitiesByPhysicianId = "
+        $getFacilitiesByPhysicianId = '
         DROP PROCEDURE IF EXISTS getFacilitiesByPhysicianId;
         CREATE PROCEDURE getFacilitiesByPhysicianId(IN physician_id BIGINT)
         BEGIN
@@ -214,11 +213,11 @@ class SearchProcedureSeeder extends Seeder
             ON facilities.id = facility_physician.facility_id
             WHERE facility_physician.physician_id = physician_id;
         END;
-        ";
+        ';
         DB::unprepared($getFacilitiesByPhysicianId);
 
         // BÚSQUEDA DE INSTALACIONES POR ID DEL MÉDICO Y ID DE LA CIUDAD
-        $getFacilitiesByPhysicianIdAndCityId = "
+        $getFacilitiesByPhysicianIdAndCityId = '
         DROP PROCEDURE IF EXISTS getFacilitiesByPhysicianIdAndCityId;
         CREATE PROCEDURE getFacilitiesByPhysicianIdAndCityId(IN physician_id BIGINT, IN city_id BIGINT)
         BEGIN
@@ -231,7 +230,7 @@ class SearchProcedureSeeder extends Seeder
             WHERE facilities.city_id = city_id
             AND physicians.id = physician_id;
         END;
-        ";
+        ';
         DB::unprepared($getFacilitiesByPhysicianIdAndCityId);
     }
 }

@@ -10,6 +10,33 @@ use Illuminate\Http\Request;
 
 class AlergyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:show alergies')->only(
+            [
+                'index',
+                'show',
+            ]
+        );
+        $this->middleware('permission:create alergies')->only(
+            [
+                'store',
+
+            ]
+        );
+        $this->middleware('permission:edit alergies')->only(
+            [
+                'update',
+
+            ]
+        );
+        $this->middleware('permission:delete alergies')->only(
+            [
+                'destroy',
+
+            ]
+        );
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,11 +45,8 @@ class AlergyController extends Controller
     public function index()
     {
         try {
-            if ($this->user->hasPermissionTo('show alergies')) {
-                $alergies = Alergy::paginate(5);
-                return (AlergyResource::collection($alergies))->additional(['message' => 'Alergias existentes']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $alergies = Alergy::paginate(5);
+            return (AlergyResource::collection($alergies))->additional(['message' => 'Alergias existentes']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -37,11 +61,8 @@ class AlergyController extends Controller
     public function store(AlergyRequest $request)
     {
         try {
-            if ($this->user->hasPermissionTo('create alergies')) {
-                $state = Alergy::create(['name' => $request->name]);
-                return (new AlergyResource($state))->additional(['message' => 'Alergia creada con éxito.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $state = Alergy::create(['name' => $request->name]);
+            return (new AlergyResource($state))->additional(['message' => 'Alergia creada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -61,10 +82,7 @@ class AlergyController extends Controller
     public function show(Alergy $alergy)
     {
         try {
-            if ($this->user->hasPermissionTo('show alergies')) {
-                return (new AlergyResource($alergy))->additional(['message' => 'Alergia encontrada.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            return (new AlergyResource($alergy))->additional(['message' => 'Alergia encontrada.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -80,12 +98,9 @@ class AlergyController extends Controller
     public function update(AlergyRequest $request, Alergy $alergy)
     {
         try {
-            if ($this->user->hasPermissionTo('edit alergies')) {
-                $alergy->name = $request->name;
-                $alergy->save();
-                return (new AlergyResource($alergy))->additional(['message' => 'Alergia actualizada con éxito.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $alergy->name = $request->name;
+            $alergy->save();
+            return (new AlergyResource($alergy))->additional(['message' => 'Alergia actualizada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -100,11 +115,8 @@ class AlergyController extends Controller
     public function destroy(Alergy $alergy)
     {
         try {
-            if ($this->user->hasPermissionTo('delete alergies')) {
-                $alergy->delete();
-                return (new AlergyResource($alergy))->additional(['message' => 'Alergia eliminada con éxito.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $alergy->delete();
+            return (new AlergyResource($alergy))->additional(['message' => 'Alergia eliminada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

@@ -14,17 +14,26 @@ class RoleController extends Controller
 
     public function __construct()
     {
-        $this->user = auth()->user();
+        $this->middleware('permission:show roles')->only([
+            'index',
+            'show'        
+        ]);
+        $this->middleware('permission:create roles')->only([
+            'store',
+        ]);
+        $this->middleware('permission:edit roles')->only([
+            'update'
+        ]);
+        $this->middleware('permission:delete roles')->only([
+            'destroy'
+        ]);
     }
 
     public function index()
     {
         try {
-            if ($this->user->hasPermissionTo('show roles')) {
-                $roles = Role::with('permissions')->paginate(5);
-                return (RoleResource::collection($roles))->additional(['message' => 'Rol encontrado.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $roles = Role::with('permissions')->paginate(5);
+            return (RoleResource::collection($roles))->additional(['message' => 'Rol encontrado.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -33,10 +42,7 @@ class RoleController extends Controller
     public function show(Role $role)
     {
         try {
-            if ($this->user->hasPermissionTo('show roles')) {
-                return (new RoleResource($role))->additional(['message' => 'Roles encontrados']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            return (new RoleResource($role))->additional(['message' => 'Roles encontrados']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -45,16 +51,13 @@ class RoleController extends Controller
     public function store(RoleRequest $request)
     {
         try {
-            if ($this->user->hasPermissionTo('create roles')) {
-                DB::beginTransaction();
-                $role = Role::create(['name' => $request->name]);
-                if ($request->permissions) {
-                    $role->givePermissionTo($request->permissions);
-                }
-                DB::commit();
-                return (new RoleResource($role))->additional(['message' => 'Rol creado con éxito']);
+            DB::beginTransaction();
+            $role = Role::create(['name' => $request->name]);
+            if ($request->permissions) {
+                $role->givePermissionTo($request->permissions);
             }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            DB::commit();
+            return (new RoleResource($role))->additional(['message' => 'Rol creado con éxito']);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
@@ -64,17 +67,14 @@ class RoleController extends Controller
     public function update(RoleRequest $request, Role $role)
     {
         try {
-            if ($this->user->hasPermissionTo('edit roles')) {
-                DB::beginTransaction();
-                $role->name = $request->name;
-                $role->save();
-                if ($request->permissions) {
-                    $role->syncPermissions($request->permissions);
-                }
-                DB::commit();
-                return (new RoleResource($role))->additional(['message' => 'Rol actualizado con éxito.']);
+            DB::beginTransaction();
+            $role->name = $request->name;
+            $role->save();
+            if ($request->permissions) {
+                $role->syncPermissions($request->permissions);
             }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            DB::commit();
+            return (new RoleResource($role))->additional(['message' => 'Rol actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
@@ -84,11 +84,8 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         try {
-            if ($this->user->hasPermissionTo('delete roles')) {
-                $role->delete();
-                return (new RoleResource($role))->additional(['message' => 'Rol eliminado con éxito.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $role->delete();
+            return (new RoleResource($role))->additional(['message' => 'Rol eliminado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

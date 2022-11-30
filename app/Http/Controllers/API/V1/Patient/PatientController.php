@@ -36,7 +36,6 @@ class PatientController extends Controller
                 $patient = new Patient();
                 $patient->user_id = $this->user->id;
                 $patient->emergency_number = $request->emergency_number;
-                $country = $request->country;
                 $patient->city_id = $request->city_id;
                 $patient->save();
                 $this->user->syncRoles(['User', 'Patient']);
@@ -119,6 +118,4 @@ class PatientController extends Controller
              return response()->json(['error' => $th->getMessage()], 503);
          }
     }
-
-
 }
