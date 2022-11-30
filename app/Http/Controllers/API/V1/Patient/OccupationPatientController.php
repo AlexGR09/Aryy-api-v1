@@ -27,9 +27,10 @@ class OccupationPatientController extends Controller
                 $patient = Patient::where('user_id', $this->user->id)->first();
                 DB::beginTransaction();
                 $patient_occupation = new PatientOccupation ();
-                $patient_occupation->occupations_id = $request->occupations_id;
-                $patient->patients_id = $patient->id;
-                return $patient;
+                $patient_occupation->occupation_id = $request->occupations_id;
+                $patient_occupation->patient_id = $patient->id;
+                $patient_occupation->save();
+                return $patient_occupation;
                 DB::commit();
                 //return (new PathologicalBackgroundResoucer($pathological_background))->additional(['message' => 'Informacion guardada con exito.']);
             }

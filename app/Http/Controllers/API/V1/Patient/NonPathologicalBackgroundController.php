@@ -63,7 +63,7 @@ class NonPathologicalBackgroundController extends Controller
 
                 $no_pathological = NonPathologicalBackground::where('id', $medical_history->non_pathological_background_id)->get();
 
-                return (NonPathologicalBackgroundResoucer::collection($no_pathological))->additional(['message' => 'Mi perfil de paciente.']);
+                return (NonPathologicalBackgroundResoucer::collection($no_pathological))->additional(['message' => '..']);
                 //return (new NonPathologicalBackgroundResoucer($no_pathological))->additional(['message' => '..']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);

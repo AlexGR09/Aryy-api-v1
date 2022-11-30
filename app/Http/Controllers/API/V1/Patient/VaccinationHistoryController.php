@@ -57,10 +57,12 @@ class VaccinationHistoryController extends Controller
                 DB::beginTransaction();                
                 $patient = Patient::where('user_id', $this->user->id)->first();
                 $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
-                $vaccination_history = VaccinationHistory::where('id', $medical_history->vaccination_history_id)->first();
+                $vaccination_history = VaccinationHistory::where('id', $medical_history->vaccination_history_id)->get();
 
                 DB::commit();
-                return (new VaccinationHistoryResoucer($vaccination_history))->additional(['message' => '..']);
+                return (VaccinationHistoryResoucer::collection($vaccination_history))->additional(['message' => '..']);
+
+                //return (new VaccinationHistoryResoucer($vaccination_history))->additional(['message' => '..']);
             }
                 return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         
@@ -95,8 +97,22 @@ class VaccinationHistoryController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        try {
+            if ($this->user->hasRole('Patient')) {
+                $patient = Patient::where('user_id', $this->user->id)->first();
+                $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
+                $vaccination_history = VaccinationHistory::where('id', $medical_history->vaccination_history_id)->first();
+
+                $vaccination_history->delete();
+                //return (MedicalHistoryResoucer::collection($medical_history))->additional(['message' => 'Mi perfil de paciente.']);
+                return (new VaccinationHistoryResoucer($vaccination_history))->additional(['message' => 'Informacion elimidada con exito']);
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 }
