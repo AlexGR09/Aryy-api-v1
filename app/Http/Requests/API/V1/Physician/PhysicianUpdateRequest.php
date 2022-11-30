@@ -20,14 +20,15 @@ class PhysicianUpdateRequest extends FormRequest
         return [
             'professional_name' => 'required|max:60',
             'biography' => 'max:255',
-            'certificates' => 'array',
+            // 'certificates' => 'array',
             'social_networks' => 'array',
             'specialties' => 'required|array',
             'specialties.*.specialty_id' => 'required|numeric',
             'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty')->whereNot('physician_id', $request->physician_id),
             'specialties.*.institution' => 'required',
-            'certificates.*.route' => 'required|url',
-            'photo' => 'image|mimes:jpg,jpeg,png|max:2000|dimensions:max_width=512,max_height=512'
+            'social_networks.*' => 'required'
+            // 'certificates.*.filename' => 'required',
+            // 'photo' => 'image|mimes:jpg,jpeg,png|max:2000|dimensions:max_width=512,max_height=512'
         ];
     }
 
@@ -42,7 +43,8 @@ class PhysicianUpdateRequest extends FormRequest
             'specialties.*.specialty_id' => 'id de la especialidad',
             'specialties.*.license' => 'licencia de la especialidad',
             'specialties.*.institution' => 'institución de la especialidad',
-            'certificates.*.route' => 'ruta del certificado',
+            'certificates.*.filename' => 'nombre del archivo certificado',
         ];
     }
+
 }

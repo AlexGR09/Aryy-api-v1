@@ -71,7 +71,7 @@ class PhysicianController extends Controller
             DB::beginTransaction();
             $physician = Physician::findOrFail($request->physician_id);
             $physician->professional_name = $request->professional_name;
-            $physician->certificates = json_encode($request->certificates);
+            // $physician->certificates = json_encode($request->certificates);
             $physician->biography = $request->biography;
             $physician->recipe_template = $request->recipe_template;
             $physician->social_networks = json_encode($request->social_networks);
