@@ -20,7 +20,7 @@ class RegisterRequest extends FormRequest
             'password' => 'required|confirmed|min:8|max:16',
             'type_user' => 'required|in:Patient,Physician', 
             'country_code'=> 'required_if:type_user,==,Physician|max:6',
-            'phone_number'=> 'required_if:type_user,==,Physician|unique:users|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
+            'phone_number'=> 'required_if:type_user,==,Physician|unique:users|regex:/^([0-9\s\-\+\(\)]*)$/|min:10' 
         ];
     }
 

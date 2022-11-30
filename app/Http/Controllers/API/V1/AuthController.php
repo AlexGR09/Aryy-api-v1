@@ -10,6 +10,7 @@ use App\Http\Resources\API\V1\UserResource;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -18,6 +19,9 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
+        $this->middleware('permission:show user profile')->only(['show']);
+        $this->middleware('permission:edit user profile')->only(['update']);
+        $this->middleware('permission:delete user profile')->only(['destroy']);
     }
 
     public function login(LoginRequest $request)
@@ -41,32 +45,42 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
         try {
+            DB::beginTransaction();
             $user = new User();
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
             $user->assignRole('User');
             $user->save();
+            $user_folder = 'id'.$user->id.'_'.substr(sha1(time()), 0, 16);
             // ASIGNAR ROL DE ACUERDO AL TIPO DE USUARIO
             switch ($request->type_user) {
                 case 'Patient':
                     $user->assignRole('NewPatient');
+                    $directory = 'users/patients/';
                     break;
                 case 'Physician':
                     $user->country_code = $request->country_code;
                     $user->phone_number = $request->phone_number;
                     $user->assignRole('NewPhysician');
+                    $directory = 'users/physicians/';
                     break;
                 default:
                     break;
             }
+            // CREA LA CARPETA CORRESPONDIENTE DEL USUARIO-MÉDICO
+            Storage::makeDirectory($directory.$user_folder);
             // GENERA UN TOKEN PARA EL USUARIO Y LO GUARDA EN LA DB
             $token = $user->createToken('authToken')->plainTextToken;
             $user->remember_token = $token; 
+            $user->user_folder = $directory.$user_folder;
             $user->update();
+            DB::commit();
             return (new UserResource($user))->additional([
                 'message' => 'Usuario registrado con éxito.',
                 'access_token' => $token ]);
         } catch (\Throwable $th) {
+            Storage::deleteDirectory($directory.$user_folder);
+            DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -74,10 +88,10 @@ class AuthController extends Controller
     public function show()
     {
         try {
-            if ($this->user->hasPermissionTo('show user profile')) {
+            // if ($this->user->hasPermissionTo('show user profile')) {
                 return (new UserResource($this->user))->additional(['message' => 'My profile']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            // }
+            // return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -86,7 +100,7 @@ class AuthController extends Controller
     public function update(UpdateProfileRequest $request)
     {
         try {
-            if ($this->user->hasPermissionTo('edit user profile')) {
+            // if ($this->user->hasPermissionTo('edit user profile')) {
                 DB::beginTransaction();
                 $this->user->name = $request->name;
                 $this->user->last_name = $request->last_name;
@@ -103,8 +117,8 @@ class AuthController extends Controller
                 $this->user->save();
                 DB::commit();
                 return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            // }
+            // return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             DB::rollBack();
             // FALTA REGRESAR LA IMAGEN BORRADA
@@ -115,11 +129,11 @@ class AuthController extends Controller
     public function destroy()
     {
         try {
-            if ($this->user->hasPermissionTo('delete user profile')) {
+            // if ($this->user->hasPermissionTo('delete user profile')) {
                 $this->user->delete();
                 return (new UserResource($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            // }
+            // return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
