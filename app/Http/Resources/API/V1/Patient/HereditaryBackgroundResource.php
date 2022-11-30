@@ -4,7 +4,7 @@ namespace App\Http\Resources\API\V1\Patient;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class HereditaryBackgroundResoucer extends JsonResource
+class HereditaryBackgroundResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

@@ -11,8 +11,8 @@ return new class () extends Migration {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->json('address');
-            $table->string('zip_code');
+            $table->json('address')->nullable();
+            $table->string('zip_code')->nullable();
             $table->string('country_code')->nullable();
             $table->string('emergency_number')->nullable();
             $table->json('id_card')->nullable();

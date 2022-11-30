@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\NonPathologicalBackgroundRequest;
-use App\Http\Resources\API\V1\Patient\NonPathologicalBackgroundResoucer;
+use App\Http\Resources\API\V1\Patient\NonPathologicalBackgroundResource;
 use App\Models\MedicalHistory;
 use App\Models\NonPathologicalBackground;
 use Illuminate\Http\Request;
@@ -16,6 +16,9 @@ class NonPathologicalBackgroundController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
+        $this->middleware('permission:show non pathological background')->only(['show']);
+        $this->middleware('role:Patient')->only(['store']);
+        $this->middleware('permission:edit non pathological background')->only(['update']);
     }
 
     public function index()
@@ -46,7 +49,7 @@ class NonPathologicalBackgroundController extends Controller
                 $medical_history->save();
 
                 DB::commit();
-                return (new NonPathologicalBackgroundResoucer($no_pathological))->additional(['message' => 'Informacion guardada con exito.']);
+                return (new NonPathologicalBackgroundResource($no_pathological))->additional(['message' => 'Informacion guardada con exito.']);
             }
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -63,8 +66,8 @@ class NonPathologicalBackgroundController extends Controller
 
                 $no_pathological = NonPathologicalBackground::where('id', $medical_history->non_pathological_background_id)->get();
 
-                return (NonPathologicalBackgroundResoucer::collection($no_pathological))->additional(['message' => '..']);
-                //return (new NonPathologicalBackgroundResoucer($no_pathological))->additional(['message' => '..']);
+                return (NonPathologicalBackgroundResource::collection($no_pathological))->additional(['message' => '..']);
+                //return (new NonPathologicalBackgroundResource($no_pathological))->additional(['message' => '..']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
@@ -97,7 +100,7 @@ class NonPathologicalBackgroundController extends Controller
                 $no_pathological->save();
 
                 DB::commit();
-                return (new NonPathologicalBackgroundResoucer($no_pathological))->additional(['message' => 'Informacion actualizada con exito.']);
+                return (new NonPathologicalBackgroundResource($no_pathological))->additional(['message' => 'Informacion actualizada con exito.']);
             }
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -114,8 +117,8 @@ class NonPathologicalBackgroundController extends Controller
 
                 $no_pathological = NonPathologicalBackground::where('id', $medical_history->non_pathological_background_id)->first();
                 $no_pathological->delete();
-                //return (MedicalHistoryResoucer::collection($medical_history))->additional(['message' => 'Mi perfil de paciente.']);
-                return (new NonPathologicalBackgroundResoucer($no_pathological))->additional(['message' => '..']);
+                //return (MedicalHistoryResource::collection($medical_history))->additional(['message' => 'Mi perfil de paciente.']);
+                return (new NonPathologicalBackgroundResource($no_pathological))->additional(['message' => '..']);
             }
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {

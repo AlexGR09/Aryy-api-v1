@@ -15,31 +15,31 @@ class RoleSeeder extends Seeder
     {
         DB::table('roles')->insert([
             [
-                'name' => 'Administrator', 
+                'name' => 'Administrator',
                 'guard_name' => 'sanctum'
             ],
             [
-                'name' => 'User', 
+                'name' => 'User',
                 'guard_name' => 'sanctum'
             ],
             [
-                'name' => 'NewPatient', 
-                'guard_name' => 'sanctum'
-            ],    
-            [
-                'name' => 'NewPhysician', 
+                'name' => 'NewPatient',
                 'guard_name' => 'sanctum'
             ],
             [
-                'name' => 'PhysicianInVerification', 
+                'name' => 'NewPhysician',
                 'guard_name' => 'sanctum'
             ],
             [
-                'name' => 'Patient', 
+                'name' => 'PhysicianInVerification',
                 'guard_name' => 'sanctum'
             ],
             [
-                'name' => 'Physician', 
+                'name' => 'Patient',
+                'guard_name' => 'sanctum'
+            ],
+            [
+                'name' => 'Physician',
                 'guard_name' => 'sanctum'
             ]
         ]);
@@ -49,8 +49,8 @@ class RoleSeeder extends Seeder
         Role::findByName('Administrator')->givePermissionTo(Permission::all());
         // USER
         Role::findByName('User')->givePermissionTo([
-            'show user profile', 
-            'edit user profile', 
+            'show user profile',
+            'edit user profile',
             'delete user profile'
         ]);
         // NUEVO PACIENTE
@@ -64,12 +64,23 @@ class RoleSeeder extends Seeder
         ]);
         // PACIENTE
         Role::findByName('Patient')->givePermissionTo([
-            'show patient profile', 
-            'edit patient profile'
+            'show patient profile',
+            'edit patient profile',
+            'show basic information',
+            'show medical history',
+            'edit basic information',
+            'show pathological background',
+            'edit pathological background',
+            'show non pathological background',
+            'edit non pathological background',
+            'show hereditary background',
+            'edit hereditary background',
+            'show patient vaccination History',
+            'edit patient vaccination History',
         ]);
         // MÉDICO
         Role::findByName('Physician')->givePermissionTo([
-            'show physician profile', 
+            'show physician profile',
             'edit physician profile',
             'show physician facility',
             'create physician facility',
