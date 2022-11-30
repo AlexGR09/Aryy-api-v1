@@ -13,17 +13,26 @@ class PermissionController extends Controller
 
     public function __construct()
     {
-        $this->user = auth()->user();
+        $this->middleware('permission:show permissions')->only([
+            'index',
+            'show'
+        ]);
+        $this->middleware('permission:create permissions')->only([
+            'store'
+        ]);
+        $this->middleware('permission:edit permissions')->only([
+            'update'
+        ]);
+        $this->middleware('permission:delete permissions')->only([
+            'destroy'
+        ]);
     }
 
     public function index()
     {
         try {
-            if ($this->user->hasPermissionTo('show permissions')) {
-                $permissions = Permission::paginate(5);
-                return (PermissionResource::collection($permissions))->additional(['message' => 'Permisos encontrados.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $permissions = Permission::paginate(5);
+            return (PermissionResource::collection($permissions))->additional(['message' => 'Permisos encontrados.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -32,10 +41,7 @@ class PermissionController extends Controller
     public function show(Permission $permission)
     {
         try {
-            if ($this->user->hasPermissionTo('show permissions')) {
-                return (new PermissionResource($permission))->additional(['message' => 'Permiso encontrado.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            return (new PermissionResource($permission))->additional(['message' => 'Permiso encontrado.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -44,11 +50,7 @@ class PermissionController extends Controller
     public function store(PermissionRequest $request)
     {
         try {
-            if ($this->user->hasPermissionTo('create permissions')) {
-                $permission = Permission::create(['name' => $request->name]);
-                return (new PermissionResource($permission))->additional(['message' => 'Permiso creado con éxito.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $permission = Permission::create(['name' => $request->name]);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -57,12 +59,9 @@ class PermissionController extends Controller
     public function update(PermissionRequest $request, Permission $permission)
     {
         try {
-            if ($this->user->hasPermissionTo('edit permissions')) {
-                $permission->name = $request->name;
-                $permission->save();
-                return (new PermissionResource($permission))->additional(['message' => 'Permiso actualizado con éxito.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $permission->name = $request->name;
+            $permission->save();
+            return (new PermissionResource($permission))->additional(['message' => 'Permiso actualizado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -71,11 +70,8 @@ class PermissionController extends Controller
     public function destroy(Permission $permission)
     {
         try {
-            if ($this->user->hasPermissionTo('delete permissions')) {
-                $permission->delete();
-                return (new PermissionResource($permission))->additional(['message' => 'Permiso eliminado con éxito.']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $permission->delete();
+            return (new PermissionResource($permission))->additional(['message' => 'Permiso eliminado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

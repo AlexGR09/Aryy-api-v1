@@ -18,7 +18,7 @@ class PatientRequest extends FormRequest
         return [
             'address' => 'required|max:255',
             'zip_code' => 'required|digits:5',
-            'emergency_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|'.  Rule::unique('patients'),
+            'emergency_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|'/* .  Rule::unique('patients') */,
             'city_id' => 'required|numeric',
             'id_card' => 'required_array_keys:type,image',
             'id_card.type' => 'max:50',

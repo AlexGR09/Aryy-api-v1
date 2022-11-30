@@ -39,8 +39,11 @@ class Patient extends Model
 
     public function medical_history(){
         return $this->belongsTo('App\Models\MedicalHistory');
-    }
+    }  
 
+    public function occupationpatient(){
+        return $this->hasMany('App\Models\OccupationPatient')->with('Occupation');
+    }
 
     // public function ocupations()
     // {

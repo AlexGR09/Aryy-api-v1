@@ -5,7 +5,7 @@ namespace App\Http\Resources\API\V1\Patient;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AllergyPatientResoucer extends JsonResource
+class AllergyPatientResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

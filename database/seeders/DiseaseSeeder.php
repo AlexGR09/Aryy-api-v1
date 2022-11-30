@@ -2,11674 +2,11670 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class DiseaseSeeder extends Seeder
 {
-
     public function run()
     {
-
         DB::table('diseases')->insert([
 
             [
-                "name" => "Fibromialgia"
+                'name' => 'Fibromialgia',
             ],
             [
-                "name" => "Dolores de cabeza"
+                'name' => 'Dolores de cabeza',
             ],
             [
-                "name" => "Artrosis"
+                'name' => 'Artrosis',
             ],
             [
-                "name" => "Codo de tenista"
+                'name' => 'Codo de tenista',
             ],
             [
-                "name" => "Dolor de cuello"
+                'name' => 'Dolor de cuello',
             ],
             [
-                "name" => "Condromalacia patelar"
+                'name' => 'Condromalacia patelar',
             ],
             [
-                "name" => "Ácaros de cosecha"
+                'name' => 'Ácaros de cosecha',
             ],
             [
-                "name" => "Ácaros rojos"
+                'name' => 'Ácaros rojos',
             ],
             [
-                "name" => "Alergia a las proteínas de la leche (niño pequeño)"
+                'name' => 'Alergia a las proteínas de la leche (niño pequeño)',
             ],
             [
-                "name" => "Alergia al moho, la caspa y el polvo"
+                'name' => 'Alergia al moho, la caspa y el polvo',
             ],
             [
-                "name" => "Alergia alimentaria"
+                'name' => 'Alergia alimentaria',
             ],
             [
-                "name" => "Alergia de insectos"
+                'name' => 'Alergia de insectos',
             ],
             [
-                "name" => "Alergias"
+                'name' => 'Alergias',
             ],
             [
-                "name" => "Alergias a fármacos"
+                'name' => 'Alergias a fármacos',
             ],
             [
-                "name" => "Alergias a las mascotas"
+                'name' => 'Alergias a las mascotas',
             ],
             [
-                "name" => "Alergias en ambientes interiores"
+                'name' => 'Alergias en ambientes interiores',
             ],
             [
-                "name" => "Asma"
+                'name' => 'Asma',
             ],
             [
-                "name" => "Asma bronquial"
+                'name' => 'Asma bronquial',
             ],
             [
-                "name" => "Asma inducido por el ejercicio"
+                'name' => 'Asma inducido por el ejercicio',
             ],
             [
-                "name" => "Asma ocupacional"
+                'name' => 'Asma ocupacional',
             ],
             [
-                "name" => "Asma pediátrico"
+                'name' => 'Asma pediátrico',
             ],
             [
-                "name" => "Aspergilosis broncopulmonar alérgica"
+                'name' => 'Aspergilosis broncopulmonar alérgica',
             ],
             [
-                "name" => "Bisinosis"
+                'name' => 'Bisinosis',
             ],
             [
-                "name" => "Bronquitis ocupacional"
+                'name' => 'Bronquitis ocupacional',
             ],
             [
-                "name" => "Conjuntivitis"
+                'name' => 'Conjuntivitis',
             ],
             [
-                "name" => "Conjuntivitis alérgica"
+                'name' => 'Conjuntivitis alérgica',
             ],
             [
-                "name" => "Coronavirus COVID-19"
+                'name' => 'Coronavirus COVID-19',
             ],
             [
-                "name" => "Dermatitis alérgica"
+                'name' => 'Dermatitis alérgica',
             ],
             [
-                "name" => "Dermatitis atópica"
+                'name' => 'Dermatitis atópica',
             ],
             [
-                "name" => "Dermatitis del pañal"
+                'name' => 'Dermatitis del pañal',
             ],
             [
-                "name" => "Dermatitis por contacto"
+                'name' => 'Dermatitis por contacto',
             ],
             [
-                "name" => "Encina venenosa"
+                'name' => 'Encina venenosa',
             ],
             [
-                "name" => "Enfermedad causada por las brácteas del algodón"
+                'name' => 'Enfermedad causada por las brácteas del algodón',
             ],
             [
-                "name" => "Enfermedad de los recolectores de hongos"
+                'name' => 'Enfermedad de los recolectores de hongos',
             ],
             [
-                "name" => "Enfermedad reactiva de las vías respiratorias inducida por irritantes"
+                'name' => 'Enfermedad reactiva de las vías respiratorias inducida por irritantes',
             ],
             [
-                "name" => "Eritema multiforme"
+                'name' => 'Eritema multiforme',
             ],
             [
-                "name" => "Erupción polimórfica leve"
+                'name' => 'Erupción polimórfica leve',
             ],
             [
-                "name" => "Fiebre de los molinos"
+                'name' => 'Fiebre de los molinos',
             ],
             [
-                "name" => "Fiebre del heno"
+                'name' => 'Fiebre del heno',
             ],
             [
-                "name" => "Hipoacusia en bebés"
+                'name' => 'Hipoacusia en bebés',
             ],
             [
-                "name" => "Hipoacusia relacionada con la edad"
+                'name' => 'Hipoacusia relacionada con la edad',
             ],
             [
-                "name" => "Infecciones de vías respiratorias de repetición (o recurrentes)"
+                'name' => 'Infecciones de vías respiratorias de repetición (o recurrentes)',
             ],
             [
-                "name" => "Infecciones frecuentes de garganta"
+                'name' => 'Infecciones frecuentes de garganta',
             ],
             [
-                "name" => "Inflamación lingual"
+                'name' => 'Inflamación lingual',
             ],
             [
-                "name" => "Mordeduras de araña"
+                'name' => 'Mordeduras de araña',
             ],
             [
-                "name" => "Picaduras de alacrán"
+                'name' => 'Picaduras de alacrán',
             ],
             [
-                "name" => "Reacción alérgica a una droga (medicamento)"
+                'name' => 'Reacción alérgica a una droga (medicamento)',
             ],
             [
-                "name" => "Reacción anafiláctica"
+                'name' => 'Reacción anafiláctica',
             ],
             [
-                "name" => "Rinitis alérgica"
+                'name' => 'Rinitis alérgica',
             ],
             [
-                "name" => "Ronchas"
+                'name' => 'Ronchas',
             ],
             [
-                "name" => "Ronchas o habones"
+                'name' => 'Ronchas o habones',
             ],
             [
-                "name" => "Shock anafiláctico"
+                'name' => 'Shock anafiláctico',
             ],
             [
-                "name" => "Trastornos por inmunodeficiencia"
+                'name' => 'Trastornos por inmunodeficiencia',
             ],
             [
-                "name" => "Urticaria"
+                'name' => 'Urticaria',
             ],
             [
-                "name" => "Urticaria pigmentosa"
+                'name' => 'Urticaria pigmentosa',
             ],
             [
-                "name" => "Vasculitis alérgica"
+                'name' => 'Vasculitis alérgica',
             ],
             [
-                "name" => "Abetalipoproteinemia"
+                'name' => 'Abetalipoproteinemia',
             ],
             [
-                "name" => "Androblastoma"
+                'name' => 'Androblastoma',
             ],
             [
-                "name" => "Enfermedad de Batten"
+                'name' => 'Enfermedad de Batten',
             ],
             [
-                "name" => "Enfermedad de Kufs"
+                'name' => 'Enfermedad de Kufs',
             ],
             [
-                "name" => "Enfermedad de los depósitos densos"
+                'name' => 'Enfermedad de los depósitos densos',
             ],
             [
-                "name" => "Envenenamiento por hongos"
+                'name' => 'Envenenamiento por hongos',
             ],
             [
-                "name" => "Envenenamiento por plantas tóxicas"
+                'name' => 'Envenenamiento por plantas tóxicas',
             ],
             [
-                "name" => "Exceso de hormona del crecimiento"
+                'name' => 'Exceso de hormona del crecimiento',
             ],
             [
-                "name" => "Familia de tumores de Ewing"
+                'name' => 'Familia de tumores de Ewing',
             ],
             [
-                "name" => "Intoxicación por cáusticos"
+                'name' => 'Intoxicación por cáusticos',
             ],
             [
-                "name" => "Intoxicación por gas"
+                'name' => 'Intoxicación por gas',
             ],
             [
-                "name" => "Intoxicación por metanol"
+                'name' => 'Intoxicación por metanol',
             ],
             [
-                "name" => "Intoxicación por monóxido de carbono"
+                'name' => 'Intoxicación por monóxido de carbono',
             ],
             [
-                "name" => "Intoxicación por plomo"
+                'name' => 'Intoxicación por plomo',
             ],
             [
-                "name" => "Intoxicación por químicos del hogar"
+                'name' => 'Intoxicación por químicos del hogar',
             ],
             [
-                "name" => "Intoxicación por talio"
+                'name' => 'Intoxicación por talio',
             ],
             [
-                "name" => "Leucoplasia vellosa"
+                'name' => 'Leucoplasia vellosa',
             ],
             [
-                "name" => "Lipofuscinosis neuronal ceroidea"
+                'name' => 'Lipofuscinosis neuronal ceroidea',
             ],
             [
-                "name" => "Mordeduras de serpiente"
+                'name' => 'Mordeduras de serpiente',
             ],
             [
-                "name" => "Queratosis=> tumores benignos de la piel"
+                'name' => 'Queratosis=> tumores benignos de la piel',
             ],
             [
-                "name" => "Quiste o tumor benigno de oído"
+                'name' => 'Quiste o tumor benigno de oído',
             ],
             [
-                "name" => "Rabdomiosarcoma alveolar"
+                'name' => 'Rabdomiosarcoma alveolar',
             ],
             [
-                "name" => "Rabdomiosarcoma embrionario"
+                'name' => 'Rabdomiosarcoma embrionario',
             ],
             [
-                "name" => "Sobredosis de medicamentos"
+                'name' => 'Sobredosis de medicamentos',
             ],
             [
-                "name" => "Teratoma=> tumor de células germinales no seminomatosas"
+                'name' => 'Teratoma=> tumor de células germinales no seminomatosas',
             ],
             [
-                "name" => "Trombocitosis esencial"
+                'name' => 'Trombocitosis esencial',
             ],
             [
-                "name" => "Tumor testicular"
+                'name' => 'Tumor testicular',
             ],
             [
-                "name" => "Algodistrofia del miembro superior"
+                'name' => 'Algodistrofia del miembro superior',
             ],
             [
-                "name" => "Dolor de nervio o dolor nervioso"
+                'name' => 'Dolor de nervio o dolor nervioso',
             ],
             [
-                "name" => "Dolor oncológico"
+                'name' => 'Dolor oncológico',
             ],
             [
-                "name" => "Dolor somático"
+                'name' => 'Dolor somático',
             ],
             [
-                "name" => "Edema por insuficiencia venosa crónica"
+                'name' => 'Edema por insuficiencia venosa crónica',
             ],
             [
-                "name" => "Dolor terminal"
+                'name' => 'Dolor terminal',
             ],
             [
-                "name" => "Falla cardíaca"
+                'name' => 'Falla cardíaca',
             ],
             [
-                "name" => "Fracturas de dientes"
+                'name' => 'Fracturas de dientes',
             ],
             [
-                "name" => "Fracturas por compresión o aplastamiento vertebral"
+                'name' => 'Fracturas por compresión o aplastamiento vertebral',
             ],
             [
-                "name" => "Hiperpirexia maligna"
+                'name' => 'Hiperpirexia maligna',
             ],
             [
-                "name" => "Hipertermia maligna"
+                'name' => 'Hipertermia maligna',
             ],
             [
-                "name" => "Insuficiencia cardíaca congestiva"
+                'name' => 'Insuficiencia cardíaca congestiva',
             ],
             [
-                "name" => "Insuficiencia cardíaca izquierda"
+                'name' => 'Insuficiencia cardíaca izquierda',
             ],
             [
-                "name" => "Neuralgia glosofaríngea"
+                'name' => 'Neuralgia glosofaríngea',
             ],
             [
-                "name" => "Síndrome de dolor pélvico"
+                'name' => 'Síndrome de dolor pélvico',
             ],
             [
-                "name" => "Síndrome de dolor regional complejo"
+                'name' => 'Síndrome de dolor regional complejo',
             ],
             [
-                "name" => "Varicosis"
+                'name' => 'Varicosis',
             ],
             [
-                "name" => "Accidente cerebrovascular secundario a disección carotídea"
+                'name' => 'Accidente cerebrovascular secundario a disección carotídea',
             ],
             [
-                "name" => "Accidente cerebrovascular secundario a displasia fibromuscular"
+                'name' => 'Accidente cerebrovascular secundario a displasia fibromuscular',
             ],
             [
-                "name" => "Accidente cerebrovascular sifilítico"
+                'name' => 'Accidente cerebrovascular sifilítico',
             ],
             [
-                "name" => "Acumulación de placa en las arterias"
+                'name' => 'Acumulación de placa en las arterias',
             ],
             [
-                "name" => "Aneurisma"
+                'name' => 'Aneurisma',
             ],
             [
-                "name" => "Aneurisma aórtico"
+                'name' => 'Aneurisma aórtico',
             ],
             [
-                "name" => "Aneurisma aórtico abdominal"
+                'name' => 'Aneurisma aórtico abdominal',
             ],
             [
-                "name" => "Aneurisma aórtico disecante"
+                'name' => 'Aneurisma aórtico disecante',
             ],
             [
-                "name" => "Aneurisma de la aorta torácica"
+                'name' => 'Aneurisma de la aorta torácica',
             ],
             [
-                "name" => "Aneurisma sifilítico"
+                'name' => 'Aneurisma sifilítico',
             ],
             [
-                "name" => "Angioedema"
+                'name' => 'Angioedema',
             ],
             [
-                "name" => "Angiomas del colon"
+                'name' => 'Angiomas del colon',
             ],
             [
-                "name" => "Arterioesclerosis"
+                'name' => 'Arterioesclerosis',
             ],
             [
-                "name" => "Arterioesclerosis de las extremidades"
+                'name' => 'Arterioesclerosis de las extremidades',
             ],
             [
-                "name" => "Arterioesclerosis obliterante"
+                'name' => 'Arterioesclerosis obliterante',
             ],
             [
-                "name" => "Arteriopatía periférica"
+                'name' => 'Arteriopatía periférica',
             ],
             [
-                "name" => "Arteriosclerosis"
+                'name' => 'Arteriosclerosis',
             ],
             [
-                "name" => "Ateroembolia renal"
+                'name' => 'Ateroembolia renal',
             ],
             [
-                "name" => "Ateroesclerosis"
+                'name' => 'Ateroesclerosis',
             ],
             [
-                "name" => "Bloqueo de la vena cava superior"
+                'name' => 'Bloqueo de la vena cava superior',
             ],
             [
-                "name" => "BRAO"
+                'name' => 'BRAO',
             ],
             [
-                "name" => "BRVO"
+                'name' => 'BRVO',
             ],
             [
-                "name" => "CAA"
+                'name' => 'CAA',
             ],
             [
-                "name" => "Cambios vasculares de la piel"
+                'name' => 'Cambios vasculares de la piel',
             ],
             [
-                "name" => "Cáncer de pulmón"
+                'name' => 'Cáncer de pulmón',
             ],
             [
-                "name" => "Coágulo en la vena renal"
+                'name' => 'Coágulo en la vena renal',
             ],
             [
-                "name" => "Coágulo en las piernas"
+                'name' => 'Coágulo en las piernas',
             ],
             [
-                "name" => "Coartación de la aorta"
+                'name' => 'Coartación de la aorta',
             ],
             [
-                "name" => "Crioglobulinemia"
+                'name' => 'Crioglobulinemia',
             ],
             [
-                "name" => "Displasia fibromuscular (DFM)"
+                'name' => 'Displasia fibromuscular (DFM)',
             ],
             [
-                "name" => "Disección aórtica"
+                'name' => 'Disección aórtica',
             ],
             [
-                "name" => "DVT"
+                'name' => 'DVT',
             ],
             [
-                "name" => "Embolia arterial"
+                'name' => 'Embolia arterial',
             ],
             [
-                "name" => "Embolia arterial renal"
+                'name' => 'Embolia arterial renal',
             ],
             [
-                "name" => "Émbolo"
+                'name' => 'Émbolo',
             ],
             [
-                "name" => "Émbolo tumoral"
+                'name' => 'Émbolo tumoral',
             ],
             [
-                "name" => "Endurecimiento de las arterias"
+                'name' => 'Endurecimiento de las arterias',
             ],
             [
-                "name" => "Enfermedad ateroembólica de los riñones"
+                'name' => 'Enfermedad ateroembólica de los riñones',
             ],
             [
-                "name" => "Enfermedad cerebrovascular"
+                'name' => 'Enfermedad cerebrovascular',
             ],
             [
-                "name" => "Enfermedad de Buerger"
+                'name' => 'Enfermedad de Buerger',
             ],
             [
-                "name" => "Enfermedad de las arterias coronarias o coronariopatía"
+                'name' => 'Enfermedad de las arterias coronarias o coronariopatía',
             ],
             [
-                "name" => "Enfermedad renal ateroembólica"
+                'name' => 'Enfermedad renal ateroembólica',
             ],
             [
-                "name" => "Enfermedad renal ateroesclerótica"
+                'name' => 'Enfermedad renal ateroesclerótica',
             ],
             [
-                "name" => "Enfermedad vascular periférica"
+                'name' => 'Enfermedad vascular periférica',
             ],
             [
-                "name" => "Enfermedad venooclusiva hepática"
+                'name' => 'Enfermedad venooclusiva hepática',
             ],
             [
-                "name" => "Enfermedad venooclusiva pulmonar"
+                'name' => 'Enfermedad venooclusiva pulmonar',
             ],
             [
-                "name" => "Espasmo vascular"
+                'name' => 'Espasmo vascular',
             ],
             [
-                "name" => "Estados hipercoagulables"
+                'name' => 'Estados hipercoagulables',
             ],
             [
-                "name" => "Estados tromboembólicos"
+                'name' => 'Estados tromboembólicos',
             ],
             [
-                "name" => "Estenosis arterial renal"
+                'name' => 'Estenosis arterial renal',
             ],
             [
-                "name" => "EVP"
+                'name' => 'EVP',
             ],
             [
-                "name" => "Factor V de Leiden"
+                'name' => 'Factor V de Leiden',
             ],
             [
-                "name" => "Fibrinólisis"
+                'name' => 'Fibrinólisis',
             ],
             [
-                "name" => "Fisiología de Eisenmenger"
+                'name' => 'Fisiología de Eisenmenger',
             ],
             [
-                "name" => "Fístula arteriovenosa pulmonar"
+                'name' => 'Fístula arteriovenosa pulmonar',
             ],
             [
-                "name" => "Fístula de la arteria coronaria"
+                'name' => 'Fístula de la arteria coronaria',
             ],
             [
-                "name" => "Flebitis"
+                'name' => 'Flebitis',
             ],
             [
-                "name" => "Flegmasía alba dolorosa"
+                'name' => 'Flegmasía alba dolorosa',
             ],
             [
-                "name" => "Flegmasía cerúlea dolorosa"
+                'name' => 'Flegmasía cerúlea dolorosa',
             ],
             [
-                "name" => "Gangrena"
+                'name' => 'Gangrena',
             ],
             [
-                "name" => "Gangrena de tejidos blandos"
+                'name' => 'Gangrena de tejidos blandos',
             ],
             [
-                "name" => "Granulomatosis de la mediana edad"
+                'name' => 'Granulomatosis de la mediana edad',
             ],
             [
-                "name" => "Hemangiectasia hipertrófica"
+                'name' => 'Hemangiectasia hipertrófica',
             ],
             [
-                "name" => "Hemangioma"
+                'name' => 'Hemangioma',
             ],
             [
-                "name" => "Hemangioma aracniforme"
+                'name' => 'Hemangioma aracniforme',
             ],
             [
-                "name" => "Hemangioma capilar"
+                'name' => 'Hemangioma capilar',
             ],
             [
-                "name" => "Hemangioma capilar congénito o nevo flamígero"
+                'name' => 'Hemangioma capilar congénito o nevo flamígero',
             ],
             [
-                "name" => "Hemangioma hepático"
+                'name' => 'Hemangioma hepático',
             ],
             [
-                "name" => "Hemangioma senil"
+                'name' => 'Hemangioma senil',
             ],
             [
-                "name" => "Hemangiomatosis hepática multinodular"
+                'name' => 'Hemangiomatosis hepática multinodular',
             ],
             [
-                "name" => "Hemorragia en el espacio subaracnoideo"
+                'name' => 'Hemorragia en el espacio subaracnoideo',
             ],
             [
-                "name" => "Hemorragia hipertensiva"
+                'name' => 'Hemorragia hipertensiva',
             ],
             [
-                "name" => "Hemorragia intraparenquimal"
+                'name' => 'Hemorragia intraparenquimal',
             ],
             [
-                "name" => "Hemorragia subconjuntival"
+                'name' => 'Hemorragia subconjuntival',
             ],
             [
-                "name" => "Hepatitis isquémica"
+                'name' => 'Hepatitis isquémica',
             ],
             [
-                "name" => "Hifema"
+                'name' => 'Hifema',
             ],
             [
-                "name" => "Hipercolesterolemia familiar"
+                'name' => 'Hipercolesterolemia familiar',
             ],
             [
-                "name" => "Hiperlipoproteinemia tipo I"
+                'name' => 'Hiperlipoproteinemia tipo I',
             ],
             [
-                "name" => "Hiperlipoproteinemia tipo II"
+                'name' => 'Hiperlipoproteinemia tipo II',
             ],
             [
-                "name" => "Hiperlipoproteinemia tipo III"
+                'name' => 'Hiperlipoproteinemia tipo III',
             ],
             [
-                "name" => "Hiperreflexia autónoma"
+                'name' => 'Hiperreflexia autónoma',
             ],
             [
-                "name" => "Hipertensión acelerada"
+                'name' => 'Hipertensión acelerada',
             ],
             [
-                "name" => "Hipertensión arterial pulmonar idiopática"
+                'name' => 'Hipertensión arterial pulmonar idiopática',
             ],
             [
-                "name" => "Hipertensión intracraneal benigna"
+                'name' => 'Hipertensión intracraneal benigna',
             ],
             [
-                "name" => "Hipertensión intracraneal idiopática"
+                'name' => 'Hipertensión intracraneal idiopática',
             ],
             [
-                "name" => "Hipertensión pulmonar primaria"
+                'name' => 'Hipertensión pulmonar primaria',
             ],
             [
-                "name" => "Hipertensión pulmonar primaria esporádica"
+                'name' => 'Hipertensión pulmonar primaria esporádica',
             ],
             [
-                "name" => "Hipertensión pulmonar primaria familiar"
+                'name' => 'Hipertensión pulmonar primaria familiar',
             ],
             [
-                "name" => "Hipertensión pulmonar secundaria"
+                'name' => 'Hipertensión pulmonar secundaria',
             ],
             [
-                "name" => "Hipertensión renal"
+                'name' => 'Hipertensión renal',
             ],
             [
-                "name" => "Hipertensión renovascular"
+                'name' => 'Hipertensión renovascular',
             ],
             [
-                "name" => "Hipotensión mediada neuralmente"
+                'name' => 'Hipotensión mediada neuralmente',
             ],
             [
-                "name" => "Hipotensión ortostática neurológica"
+                'name' => 'Hipotensión ortostática neurológica',
             ],
             [
-                "name" => "Hipoxia cerebral"
+                'name' => 'Hipoxia cerebral',
             ],
             [
-                "name" => "HPP"
+                'name' => 'HPP',
             ],
             [
-                "name" => "Infarto cerebral"
+                'name' => 'Infarto cerebral',
             ],
             [
-                "name" => "Infarto esplénico"
+                'name' => 'Infarto esplénico',
             ],
             [
-                "name" => "Infección necrosante de tejidos blandos"
+                'name' => 'Infección necrosante de tejidos blandos',
             ],
             [
-                "name" => "Inflamación de pies"
+                'name' => 'Inflamación de pies',
             ],
             [
-                "name" => "Insuficiencia aórtica"
+                'name' => 'Insuficiencia aórtica',
             ],
             [
-                "name" => "Insuficiencia arterial"
+                'name' => 'Insuficiencia arterial',
             ],
             [
-                "name" => "Insuficiencia venosa"
+                'name' => 'Insuficiencia venosa',
             ],
             [
-                "name" => "Insuficiencia venosa crónica"
+                'name' => 'Insuficiencia venosa crónica',
             ],
             [
-                "name" => "Insuficiencia vertebrobasilar"
+                'name' => 'Insuficiencia vertebrobasilar',
             ],
             [
-                "name" => "Isquemia de las arterias mesentéricas"
+                'name' => 'Isquemia de las arterias mesentéricas',
             ],
             [
-                "name" => "Isquemia del colon"
+                'name' => 'Isquemia del colon',
             ],
             [
-                "name" => "Isquemia e infarto intestinal"
+                'name' => 'Isquemia e infarto intestinal',
             ],
             [
-                "name" => "Isquemia hepática"
+                'name' => 'Isquemia hepática',
             ],
             [
-                "name" => "Isquemia intestinal"
+                'name' => 'Isquemia intestinal',
             ],
             [
-                "name" => "KTS"
+                'name' => 'KTS',
             ],
             [
-                "name" => "Lesión renal"
+                'name' => 'Lesión renal',
             ],
             [
-                "name" => "Lesión renal aguda"
+                'name' => 'Lesión renal aguda',
             ],
             [
-                "name" => "Lesión traumática del riñón"
+                'name' => 'Lesión traumática del riñón',
             ],
             [
-                "name" => "Lesión ureteral"
+                'name' => 'Lesión ureteral',
             ],
             [
-                "name" => "Linfedema"
+                'name' => 'Linfedema',
             ],
             [
-                "name" => "Livedo reticularis"
+                'name' => 'Livedo reticularis',
             ],
             [
-                "name" => "Livedo reticularis primaria o idiopática"
+                'name' => 'Livedo reticularis primaria o idiopática',
             ],
             [
-                "name" => "Malformaciones arteriovenosas"
+                'name' => 'Malformaciones arteriovenosas',
             ],
             [
-                "name" => "MAV cerebral"
+                'name' => 'MAV cerebral',
             ],
             [
-                "name" => "Mini derrame cerebral"
+                'name' => 'Mini derrame cerebral',
             ],
             [
-                "name" => "Mutación 20210A de la protrombina"
+                'name' => 'Mutación 20210A de la protrombina',
             ],
             [
-                "name" => "Mutación en el receptor de lipoproteína de baja densidad"
+                'name' => 'Mutación en el receptor de lipoproteína de baja densidad',
             ],
             [
-                "name" => "Necrosis intestinal"
+                'name' => 'Necrosis intestinal',
             ],
             [
-                "name" => "Nevo verrugoso hipertrófico"
+                'name' => 'Nevo verrugoso hipertrófico',
             ],
             [
-                "name" => "Oclusión de la arteria renal"
+                'name' => 'Oclusión de la arteria renal',
             ],
             [
-                "name" => "Oclusión de la arteria retiniana central"
+                'name' => 'Oclusión de la arteria retiniana central',
             ],
             [
-                "name" => "Oclusión de la ramificación de la arteria retiniana"
+                'name' => 'Oclusión de la ramificación de la arteria retiniana',
             ],
             [
-                "name" => "Oclusión de la ramificación de la vena retiniana"
+                'name' => 'Oclusión de la ramificación de la vena retiniana',
             ],
             [
-                "name" => "Oclusión de la vena retiniana central"
+                'name' => 'Oclusión de la vena retiniana central',
             ],
             [
-                "name" => "Oclusión de las arterias retinianas"
+                'name' => 'Oclusión de las arterias retinianas',
             ],
             [
-                "name" => "PAD"
+                'name' => 'PAD',
             ],
             [
-                "name" => "Periarteritis nudosa"
+                'name' => 'Periarteritis nudosa',
             ],
             [
-                "name" => "Pie Diabético"
+                'name' => 'Pie Diabético',
             ],
             [
-                "name" => "Presión arterial baja"
+                'name' => 'Presión arterial baja',
             ],
             [
-                "name" => "Presión sanguínea baja"
+                'name' => 'Presión sanguínea baja',
             ],
             [
-                "name" => "Prolapso de la válvula aórtica"
+                'name' => 'Prolapso de la válvula aórtica',
             ],
             [
-                "name" => "Prolapso de la válvula mitral"
+                'name' => 'Prolapso de la válvula mitral',
             ],
             [
-                "name" => "PTT"
+                'name' => 'PTT',
             ],
             [
-                "name" => "Púrpura trombocitopénica trombótica"
+                'name' => 'Púrpura trombocitopénica trombótica',
             ],
             [
-                "name" => "Quilomicronemia familiar"
+                'name' => 'Quilomicronemia familiar',
             ],
             [
-                "name" => "Reacción de Eisenmenger"
+                'name' => 'Reacción de Eisenmenger',
             ],
             [
-                "name" => "Regurgitación aórtica"
+                'name' => 'Regurgitación aórtica',
             ],
             [
-                "name" => "Shock bacteriémico"
+                'name' => 'Shock bacteriémico',
             ],
             [
-                "name" => "Shock del hígado"
+                'name' => 'Shock del hígado',
             ],
             [
-                "name" => "Shock endotóxico"
+                'name' => 'Shock endotóxico',
             ],
             [
-                "name" => "Síndrome de Barlow"
+                'name' => 'Síndrome de Barlow',
             ],
             [
-                "name" => "Síndrome de Ehlers-Danlos"
+                'name' => 'Síndrome de Ehlers-Danlos',
             ],
             [
-                "name" => "Síndrome de Eisenmenger"
+                'name' => 'Síndrome de Eisenmenger',
             ],
             [
-                "name" => "Síndrome de Klippel-Trenaunay"
+                'name' => 'Síndrome de Klippel-Trenaunay',
             ],
             [
-                "name" => "Síndrome de Klippel-Trenaunay-Weber"
+                'name' => 'Síndrome de Klippel-Trenaunay-Weber',
             ],
             [
-                "name" => "Síndrome de la abertura torácica superior"
+                'name' => 'Síndrome de la abertura torácica superior',
             ],
             [
-                "name" => "Síndrome de Louis-Bar"
+                'name' => 'Síndrome de Louis-Bar',
             ],
             [
-                "name" => "Síndrome de Nonne"
+                'name' => 'Síndrome de Nonne',
             ],
             [
-                "name" => "Síndrome de oclusión de la arteria carótida"
+                'name' => 'Síndrome de oclusión de la arteria carótida',
             ],
             [
-                "name" => "Síndrome de oclusión de la arteria subclavia"
+                'name' => 'Síndrome de oclusión de la arteria subclavia',
             ],
             [
-                "name" => "Síndrome de oclusión de la arteria vertebrobasilar"
+                'name' => 'Síndrome de oclusión de la arteria vertebrobasilar',
             ],
             [
-                "name" => "Síndrome de Osler-Weber-Rendu"
+                'name' => 'Síndrome de Osler-Weber-Rendu',
             ],
             [
-                "name" => "Sindrome de salida torácica"
+                'name' => 'Sindrome de salida torácica',
             ],
             [
-                "name" => "Síndrome de Shy-McGee-Drager"
+                'name' => 'Síndrome de Shy-McGee-Drager',
             ],
             [
-                "name" => "Síndrome del prolapso de la valva mitral"
+                'name' => 'Síndrome del prolapso de la valva mitral',
             ],
             [
-                "name" => "Síndrome del robo de la subclavia"
+                'name' => 'Síndrome del robo de la subclavia',
             ],
             [
-                "name" => "Telangiectasia"
+                'name' => 'Telangiectasia',
             ],
             [
-                "name" => "Telangiectasia hemorrágica hereditaria"
+                'name' => 'Telangiectasia hemorrágica hereditaria',
             ],
             [
-                "name" => "Toxemia"
+                'name' => 'Toxemia',
             ],
             [
-                "name" => "Toxemia con convulsiones"
+                'name' => 'Toxemia con convulsiones',
             ],
             [
-                "name" => "Tromboangeítis obliterante"
+                'name' => 'Tromboangeítis obliterante',
             ],
             [
-                "name" => "Trombocitemia esencial"
+                'name' => 'Trombocitemia esencial',
             ],
             [
-                "name" => "Trombocitemia primaria"
+                'name' => 'Trombocitemia primaria',
             ],
             [
-                "name" => "Tromboembolia"
+                'name' => 'Tromboembolia',
             ],
             [
-                "name" => "Tromboembolia venosa"
+                'name' => 'Tromboembolia venosa',
             ],
             [
-                "name" => "Tromboflebitis"
+                'name' => 'Tromboflebitis',
             ],
             [
-                "name" => "Trombos"
+                'name' => 'Trombos',
             ],
             [
-                "name" => "Trombosis aguda de la arteria renal"
+                'name' => 'Trombosis aguda de la arteria renal',
             ],
             [
-                "name" => "Trombosis de la vena renal"
+                'name' => 'Trombosis de la vena renal',
             ],
             [
-                "name" => "Trombosis del seno cavernoso"
+                'name' => 'Trombosis del seno cavernoso',
             ],
             [
-                "name" => "Trombosis venosa profunda"
+                'name' => 'Trombosis venosa profunda',
             ],
             [
-                "name" => "Úlceras flevostáticas"
+                'name' => 'Úlceras flevostáticas',
             ],
             [
-                "name" => "Úlceras linfáticas"
+                'name' => 'Úlceras linfáticas',
             ],
             [
-                "name" => "Úlceras por presión"
+                'name' => 'Úlceras por presión',
             ],
             [
-                "name" => "Válvula mitral floja"
+                'name' => 'Válvula mitral floja',
             ],
             [
-                "name" => "Válvula mitral mixomatosa"
+                'name' => 'Válvula mitral mixomatosa',
             ],
             [
-                "name" => "Varices"
+                'name' => 'Varices',
             ],
             [
-                "name" => "Varicosidad"
+                'name' => 'Varicosidad',
             ],
             [
-                "name" => "Vasculitis de tipo necrosante"
+                'name' => 'Vasculitis de tipo necrosante',
             ],
             [
-                "name" => "Vasculitis leucocitoclástica cutánea"
+                'name' => 'Vasculitis leucocitoclástica cutánea',
             ],
             [
-                "name" => "Vasculitis sistémica"
+                'name' => 'Vasculitis sistémica',
             ],
             [
-                "name" => "Vasculopatía mesentérica"
+                'name' => 'Vasculopatía mesentérica',
             ],
             [
-                "name" => "Venas de araña"
+                'name' => 'Venas de araña',
             ],
             [
-                "name" => "Venas varicosas"
+                'name' => 'Venas varicosas',
             ],
             [
-                "name" => "Vénulas"
+                'name' => 'Vénulas',
             ],
             [
-                "name" => "Xantomatosis hipercolesterolémica"
+                'name' => 'Xantomatosis hipercolesterolémica',
             ],
             [
-                "name" => "Dislalia"
+                'name' => 'Dislalia',
             ],
             [
-                "name" => "Enfermedad de Meniere"
+                'name' => 'Enfermedad de Meniere',
             ],
             [
-                "name" => "Hiperacusia"
+                'name' => 'Hiperacusia',
             ],
             [
-                "name" => "Laberíntitis"
+                'name' => 'Laberíntitis',
             ],
             [
-                "name" => "Neuronitis vestibular"
+                'name' => 'Neuronitis vestibular',
             ],
             [
-                "name" => "Pérdida auditiva relacionada con la edad"
+                'name' => 'Pérdida auditiva relacionada con la edad',
             ],
             [
-                "name" => "Procesamiento Central Auditivo"
+                'name' => 'Procesamiento Central Auditivo',
             ],
             [
-                "name" => "Sordera"
+                'name' => 'Sordera',
             ],
             [
-                "name" => "Tartamudeo"
+                'name' => 'Tartamudeo',
             ],
             [
-                "name" => "Trastorno del espectro autista (TEA)"
+                'name' => 'Trastorno del espectro autista (TEA)',
             ],
             [
-                "name" => "Trastornos de la deglución"
+                'name' => 'Trastornos de la deglución',
             ],
             [
-                "name" => "Trastornos de la voz"
+                'name' => 'Trastornos de la voz',
             ],
             [
-                "name" => "Trastornos de lenguaje"
+                'name' => 'Trastornos de lenguaje',
             ],
             [
-                "name" => "Trastornos del aprendizaje"
+                'name' => 'Trastornos del aprendizaje',
             ],
             [
-                "name" => "Trastornos del habla"
+                'name' => 'Trastornos del habla',
             ],
             [
-                "name" => "Vértigo Central"
+                'name' => 'Vértigo Central',
             ],
             [
-                "name" => "Vértigo postural benigno"
+                'name' => 'Vértigo postural benigno',
             ],
             [
-                "name" => "Abuso del alcohol"
+                'name' => 'Abuso del alcohol',
             ],
             [
-                "name" => "Accidente cardiovascular"
+                'name' => 'Accidente cardiovascular',
             ],
             [
-                "name" => "Accidente cerebrovascular cardioembólico"
+                'name' => 'Accidente cerebrovascular cardioembólico',
             ],
             [
-                "name" => "Accidente cerebrovascular secundario a embolia cardiógena"
+                'name' => 'Accidente cerebrovascular secundario a embolia cardiógena',
             ],
             [
-                "name" => "Accidente cerebrovascular secundario a fibrilación auricular"
+                'name' => 'Accidente cerebrovascular secundario a fibrilación auricular',
             ],
             [
-                "name" => "AF"
+                'name' => 'AF',
             ],
             [
-                "name" => "Agenesia de la válvula pulmonar"
+                'name' => 'Agenesia de la válvula pulmonar',
             ],
             [
-                "name" => "Síndrome de ALCAPA"
+                'name' => 'Síndrome de ALCAPA',
             ],
             [
-                "name" => "Amaurosis fugaz"
+                'name' => 'Amaurosis fugaz',
             ],
             [
-                "name" => "Amilidosis cardíaca primaria de tipo AL"
+                'name' => 'Amilidosis cardíaca primaria de tipo AL',
             ],
             [
-                "name" => "Amilidosis cardíaca secundaria de tipo AA"
+                'name' => 'Amilidosis cardíaca secundaria de tipo AA',
             ],
             [
-                "name" => "Angina"
+                'name' => 'Angina',
             ],
             [
-                "name" => "Angina acelerante"
+                'name' => 'Angina acelerante',
             ],
             [
-                "name" => "Angina crónica"
+                'name' => 'Angina crónica',
             ],
             [
-                "name" => "Angina de aparición reciente"
+                'name' => 'Angina de aparición reciente',
             ],
             [
-                "name" => "Angina de Prinzmetal"
+                'name' => 'Angina de Prinzmetal',
             ],
             [
-                "name" => "Angina estable"
+                'name' => 'Angina estable',
             ],
             [
-                "name" => "Angina inestable"
+                'name' => 'Angina inestable',
             ],
             [
-                "name" => "Angina pectoral"
+                'name' => 'Angina pectoral',
             ],
             [
-                "name" => "Angina progresiva"
+                'name' => 'Angina progresiva',
             ],
             [
-                "name" => "Angina variante"
+                'name' => 'Angina variante',
             ],
             [
-                "name" => "Anillo vascular"
+                'name' => 'Anillo vascular',
             ],
             [
-                "name" => "Anomalía de Ebstein"
+                'name' => 'Anomalía de Ebstein',
             ],
             [
-                "name" => "Anomalía de Taussig-Bing"
+                'name' => 'Anomalía de Taussig-Bing',
             ],
             [
-                "name" => "Anomalía del cayado aórtico"
+                'name' => 'Anomalía del cayado aórtico',
             ],
             [
-                "name" => "Anomalías congénitas"
+                'name' => 'Anomalías congénitas',
             ],
             [
-                "name" => "Arco aórtico derecho con subclavia y ligamento izquierdo anómalos"
+                'name' => 'Arco aórtico derecho con subclavia y ligamento izquierdo anómalos',
             ],
             [
-                "name" => "Arco aórtico doble"
+                'name' => 'Arco aórtico doble',
             ],
             [
-                "name" => "Arritmias"
+                'name' => 'Arritmias',
             ],
             [
-                "name" => "Arteria coronaria izquierda anómala"
+                'name' => 'Arteria coronaria izquierda anómala',
             ],
             [
-                "name" => "Arteriopatía coronaria (CAD)"
+                'name' => 'Arteriopatía coronaria (CAD)',
             ],
             [
-                "name" => "ASH"
+                'name' => 'ASH',
             ],
             [
-                "name" => "Ataque cardíaco"
+                'name' => 'Ataque cardíaco',
             ],
             [
-                "name" => "Atresia tricuspídea"
+                'name' => 'Atresia tricuspídea',
             ],
             [
-                "name" => "Ausencia congénita de la válvula pulmonar"
+                'name' => 'Ausencia congénita de la válvula pulmonar',
             ],
             [
-                "name" => "Ausencia de la válvula pulmonar"
+                'name' => 'Ausencia de la válvula pulmonar',
             ],
             [
-                "name" => "AVSD"
+                'name' => 'AVSD',
             ],
             [
-                "name" => "Bradicardia"
+                'name' => 'Bradicardia',
             ],
             [
-                "name" => "Cardiomiopatía alcohólica"
+                'name' => 'Cardiomiopatía alcohólica',
             ],
             [
-                "name" => "Cardiomiopatía del periparto"
+                'name' => 'Cardiomiopatía del periparto',
             ],
             [
-                "name" => "Cardiomiopatía dilatada"
+                'name' => 'Cardiomiopatía dilatada',
             ],
             [
-                "name" => "Cardiomiopatía hipertrófica (CMH)"
+                'name' => 'Cardiomiopatía hipertrófica (CMH)',
             ],
             [
-                "name" => "Cardiomiopatía isquémica"
+                'name' => 'Cardiomiopatía isquémica',
             ],
             [
-                "name" => "Cardiopatía cianótica"
+                'name' => 'Cardiopatía cianótica',
             ],
             [
-                "name" => "Cardiopatía congénita"
+                'name' => 'Cardiopatía congénita',
             ],
             [
-                "name" => "Cardiopatía coronaria"
+                'name' => 'Cardiopatía coronaria',
             ],
             [
-                "name" => "Cardiopatía hipertensiva"
+                'name' => 'Cardiopatía hipertensiva',
             ],
             [
-                "name" => "Cardiopatías"
+                'name' => 'Cardiopatías',
             ],
             [
-                "name" => "Cayado aórtico doble"
+                'name' => 'Cayado aórtico doble',
             ],
             [
-                "name" => "Complejo de Eisenmenger"
+                'name' => 'Complejo de Eisenmenger',
             ],
             [
-                "name" => "Comunicación auriculoventricular"
+                'name' => 'Comunicación auriculoventricular',
             ],
             [
-                "name" => "Comunicación interauricular"
+                'name' => 'Comunicación interauricular',
             ],
             [
-                "name" => "Comunicación interauricular alta"
+                'name' => 'Comunicación interauricular alta',
             ],
             [
-                "name" => "Comunicación interventricular"
+                'name' => 'Comunicación interventricular',
             ],
             [
-                "name" => "Conducto arterial persistente"
+                'name' => 'Conducto arterial persistente',
             ],
             [
-                "name" => "Contracción ventricular prematura"
+                'name' => 'Contracción ventricular prematura',
             ],
             [
-                "name" => "Contusión miocárdica"
+                'name' => 'Contusión miocárdica',
             ],
             [
-                "name" => "Cor pulmonale"
+                'name' => 'Cor pulmonale',
             ],
             [
-                "name" => "CPV"
+                'name' => 'CPV',
             ],
             [
-                "name" => "Defecto del canal auriculoventricular"
+                'name' => 'Defecto del canal auriculoventricular',
             ],
             [
-                "name" => "Defecto del relieve endocárdico"
+                'name' => 'Defecto del relieve endocárdico',
             ],
             [
-                "name" => "Defecto del tabique aortopulmonar"
+                'name' => 'Defecto del tabique aortopulmonar',
             ],
             [
-                "name" => "Defecto del tabique auricular (ASD)"
+                'name' => 'Defecto del tabique auricular (ASD)',
             ],
             [
-                "name" => "Defecto del tabique ventricular"
+                'name' => 'Defecto del tabique ventricular',
             ],
             [
-                "name" => "Defecto septal interventricular"
+                'name' => 'Defecto septal interventricular',
             ],
             [
-                "name" => "Derivación cardíaca de derecha a izquierda"
+                'name' => 'Derivación cardíaca de derecha a izquierda',
             ],
             [
-                "name" => "Derivación circulatoria de derecha a izquierda"
+                'name' => 'Derivación circulatoria de derecha a izquierda',
             ],
             [
-                "name" => "Dextrocardia"
+                'name' => 'Dextrocardia',
             ],
             [
-                "name" => "Dextroposición"
+                'name' => 'Dextroposición',
             ],
             [
-                "name" => "Dextrorrotación"
+                'name' => 'Dextrorrotación',
             ],
             [
-                "name" => "Dextroversión"
+                'name' => 'Dextroversión',
             ],
             [
-                "name" => "DILV (ventrículo izquierdo con doble entrada)"
+                'name' => 'DILV (ventrículo izquierdo con doble entrada)',
             ],
             [
-                "name" => "Disrritmias"
+                'name' => 'Disrritmias',
             ],
             [
-                "name" => "Doble entrada ventricular izquierda"
+                'name' => 'Doble entrada ventricular izquierda',
             ],
             [
-                "name" => "Doble salida ventricular derecha"
+                'name' => 'Doble salida ventricular derecha',
             ],
             [
-                "name" => "DORV"
+                'name' => 'DORV',
             ],
             [
-                "name" => "DORV con comunicación interventricular doblemente comprometida"
+                'name' => 'DORV con comunicación interventricular doblemente comprometida',
             ],
             [
-                "name" => "DORV con comunicación interventricular no comprometida"
+                'name' => 'DORV con comunicación interventricular no comprometida',
             ],
             [
-                "name" => "DORV con comunicación interventricular subaórtica"
+                'name' => 'DORV con comunicación interventricular subaórtica',
             ],
             [
-                "name" => "Drenaje venoso pulmonar anómalo total"
+                'name' => 'Drenaje venoso pulmonar anómalo total',
             ],
             [
-                "name" => "Endocarditis"
+                'name' => 'Endocarditis',
             ],
             [
-                "name" => "Endocarditis de cultivo negativo"
+                'name' => 'Endocarditis de cultivo negativo',
             ],
             [
-                "name" => "Endocarditis infecciosa"
+                'name' => 'Endocarditis infecciosa',
             ],
             [
-                "name" => "Enfermedad cardíaca arterioesclerótica"
+                'name' => 'Enfermedad cardíaca arterioesclerótica',
             ],
             [
-                "name" => "Enfermedad cardíaca isquémica"
+                'name' => 'Enfermedad cardíaca isquémica',
             ],
             [
-                "name" => "Enfermedad coronaria (CHD)"
+                'name' => 'Enfermedad coronaria (CHD)',
             ],
             [
-                "name" => "Enfermedad de Eisenmenger"
+                'name' => 'Enfermedad de Eisenmenger',
             ],
             [
-                "name" => "Enfermedad sin pulso"
+                'name' => 'Enfermedad sin pulso',
             ],
             [
-                "name" => "Espasmo de las arterias coronarias"
+                'name' => 'Espasmo de las arterias coronarias',
             ],
             [
-                "name" => "Estenosis aórtica"
+                'name' => 'Estenosis aórtica',
             ],
             [
-                "name" => "Estenosis de la válvula aórtica"
+                'name' => 'Estenosis de la válvula aórtica',
             ],
             [
-                "name" => "Estenosis de la válvula pulmonar"
+                'name' => 'Estenosis de la válvula pulmonar',
             ],
             [
-                "name" => "Estenosis mitral"
+                'name' => 'Estenosis mitral',
             ],
             [
-                "name" => "Estenosis subaórtica hipertrófica e idiopática"
+                'name' => 'Estenosis subaórtica hipertrófica e idiopática',
             ],
             [
-                "name" => "Estenosis valvular pulmonar"
+                'name' => 'Estenosis valvular pulmonar',
             ],
             [
-                "name" => "Extrasístole"
+                'name' => 'Extrasístole',
             ],
             [
-                "name" => "Fibrilación auricular"
+                'name' => 'Fibrilación auricular',
             ],
             [
-                "name" => "Fibrilación ventricular"
+                'name' => 'Fibrilación ventricular',
             ],
             [
-                "name" => "Fibriloaleteo auricular"
+                'name' => 'Fibriloaleteo auricular',
             ],
             [
-                "name" => "Fiebre amarilla"
+                'name' => 'Fiebre amarilla',
             ],
             [
-                "name" => "Fiebre reumática aguda"
+                'name' => 'Fiebre reumática aguda',
             ],
             [
-                "name" => "FV"
+                'name' => 'FV',
             ],
             [
-                "name" => "HCM"
+                'name' => 'HCM',
             ],
             [
-                "name" => "Hipertensión"
+                'name' => 'Hipertensión',
             ],
             [
-                "name" => "Hipertensión arterial en bebés"
+                'name' => 'Hipertensión arterial en bebés',
             ],
             [
-                "name" => "Hipertensión inducida por fármacos"
+                'name' => 'Hipertensión inducida por fármacos',
             ],
             [
-                "name" => "Hipertensión pulmonar"
+                'name' => 'Hipertensión pulmonar',
             ],
             [
-                "name" => "Hipotensión"
+                'name' => 'Hipotensión',
             ],
             [
-                "name" => "Hipotensión posprandial"
+                'name' => 'Hipotensión posprandial',
             ],
             [
-                "name" => "HMD"
+                'name' => 'HMD',
             ],
             [
-                "name" => "HOCM"
+                'name' => 'HOCM',
             ],
             [
-                "name" => "IHSS"
+                'name' => 'IHSS',
             ],
             [
-                "name" => "Infarto agudo de miocardio"
+                'name' => 'Infarto agudo de miocardio',
             ],
             [
-                "name" => "Infarto de miocardio"
+                'name' => 'Infarto de miocardio',
             ],
             [
-                "name" => "Infección de válvulas"
+                'name' => 'Infección de válvulas',
             ],
             [
-                "name" => "Infección por nocardia"
+                'name' => 'Infección por nocardia',
             ],
             [
-                "name" => "Inflamación del músculo cardíaco"
+                'name' => 'Inflamación del músculo cardíaco',
             ],
             [
-                "name" => "Insuficiencia cardíaca"
+                'name' => 'Insuficiencia cardíaca',
             ],
             [
-                "name" => "Insuficiencia cardíaca congestiva derecha (insuficiencia ventricular derecha)"
+                'name' => 'Insuficiencia cardíaca congestiva derecha (insuficiencia ventricular derecha)',
             ],
             [
-                "name" => "Insuficiencia cardíaca congestiva izquierda (insuficiencia ventricular izquierda)"
+                'name' => 'Insuficiencia cardíaca congestiva izquierda (insuficiencia ventricular izquierda)',
             ],
             [
-                "name" => "Insuficiencia mitral"
+                'name' => 'Insuficiencia mitral',
             ],
             [
-                "name" => "Insuficiencia mitral aguda"
+                'name' => 'Insuficiencia mitral aguda',
             ],
             [
-                "name" => "Insuficiencia tricuspídea"
+                'name' => 'Insuficiencia tricuspídea',
             ],
             [
-                "name" => "Intoxicación por digitálicos"
+                'name' => 'Intoxicación por digitálicos',
             ],
             [
-                "name" => "Intoxicación simpaticomimética"
+                'name' => 'Intoxicación simpaticomimética',
             ],
             [
-                "name" => "Latido ventricular prematuro, PVB"
+                'name' => 'Latido ventricular prematuro, PVB',
             ],
             [
-                "name" => "Latidos cardíacos ectópicos"
+                'name' => 'Latidos cardíacos ectópicos',
             ],
             [
-                "name" => "Latidos prematuros"
+                'name' => 'Latidos prematuros',
             ],
             [
-                "name" => "Leucomalacia periventricular"
+                'name' => 'Leucomalacia periventricular',
             ],
             [
-                "name" => "Malformación de Ebstein"
+                'name' => 'Malformación de Ebstein',
             ],
             [
-                "name" => "Miocardiopatía alcohólica"
+                'name' => 'Miocardiopatía alcohólica',
             ],
             [
-                "name" => "Miocardiopatía del periparto"
+                'name' => 'Miocardiopatía del periparto',
             ],
             [
-                "name" => "Miocardiopatía dilatada"
+                'name' => 'Miocardiopatía dilatada',
             ],
             [
-                "name" => "Miocardiopatía hipertrófica"
+                'name' => 'Miocardiopatía hipertrófica',
             ],
             [
-                "name" => "Miocardiopatía infiltrativa"
+                'name' => 'Miocardiopatía infiltrativa',
             ],
             [
-                "name" => "Miocardiopatía isquémica"
+                'name' => 'Miocardiopatía isquémica',
             ],
             [
-                "name" => "Miocardiopatía obstructiva hipertrófica"
+                'name' => 'Miocardiopatía obstructiva hipertrófica',
             ],
             [
-                "name" => "Miocardiopatía restrictiva"
+                'name' => 'Miocardiopatía restrictiva',
             ],
             [
-                "name" => "Miocardiopatías"
+                'name' => 'Miocardiopatías',
             ],
             [
-                "name" => "Miocarditis"
+                'name' => 'Miocarditis',
             ],
             [
-                "name" => "Miocarditis pediátrica"
+                'name' => 'Miocarditis pediátrica',
             ],
             [
-                "name" => "Mixoma auricular"
+                'name' => 'Mixoma auricular',
             ],
             [
-                "name" => "Niveles elevados de colesterol y triglicéridos"
+                'name' => 'Niveles elevados de colesterol y triglicéridos',
             ],
             [
-                "name" => "Nocardiosis"
+                'name' => 'Nocardiosis',
             ],
             [
-                "name" => "Obstrucción de la válvula mitral"
+                'name' => 'Obstrucción de la válvula mitral',
             ],
             [
-                "name" => "Obstrucción de la vena cava superior"
+                'name' => 'Obstrucción de la vena cava superior',
             ],
             [
-                "name" => "Obstrucción de la vena hepática (Budd-Chiari)"
+                'name' => 'Obstrucción de la vena hepática (Budd-Chiari)',
             ],
             [
-                "name" => "Obstrucción del conducto de salida ventricular izquierdo"
+                'name' => 'Obstrucción del conducto de salida ventricular izquierdo',
             ],
             [
-                "name" => "Oclusión en la vena renal"
+                'name' => 'Oclusión en la vena renal',
             ],
             [
-                "name" => "Origen anómalo de la arteria coronaria izquierda que sale de la arteria pulmonar"
+                'name' => 'Origen anómalo de la arteria coronaria izquierda que sale de la arteria pulmonar',
             ],
             [
-                "name" => "PA/IVS"
+                'name' => 'PA/IVS',
             ],
             [
-                "name" => "Pericarditis"
+                'name' => 'Pericarditis',
             ],
             [
-                "name" => "Pericarditis bacteriana"
+                'name' => 'Pericarditis bacteriana',
             ],
             [
-                "name" => "Pericarditis constrictiva"
+                'name' => 'Pericarditis constrictiva',
             ],
             [
-                "name" => "Pericarditis después de un ataque cardíaco"
+                'name' => 'Pericarditis después de un ataque cardíaco',
             ],
             [
-                "name" => "Pericarditis por constricción cardíaca"
+                'name' => 'Pericarditis por constricción cardíaca',
             ],
             [
-                "name" => "Pericarditis poscardiotomía"
+                'name' => 'Pericarditis poscardiotomía',
             ],
             [
-                "name" => "Pericarditis purulenta"
+                'name' => 'Pericarditis purulenta',
             ],
             [
-                "name" => "Persistencia del agujero oval"
+                'name' => 'Persistencia del agujero oval',
             ],
             [
-                "name" => "Presión arterial alta (Hipertensión)"
+                'name' => 'Presión arterial alta (Hipertensión)',
             ],
             [
-                "name" => "PVB"
+                'name' => 'PVB',
             ],
             [
-                "name" => "PVC"
+                'name' => 'PVC',
             ],
             [
-                "name" => "Regurgitación mitral aguda"
+                'name' => 'Regurgitación mitral aguda',
             ],
             [
-                "name" => "Regurgitación tricuspídea"
+                'name' => 'Regurgitación tricuspídea',
             ],
             [
-                "name" => "Retorno venoso pulmonar anómalo total (TAPVR)"
+                'name' => 'Retorno venoso pulmonar anómalo total (TAPVR)',
             ],
             [
-                "name" => "Ritmos cardíacos anormales"
+                'name' => 'Ritmos cardíacos anormales',
             ],
             [
-                "name" => "SCIH"
+                'name' => 'SCIH',
             ],
             [
-                "name" => "Shock cardiógeno"
+                'name' => 'Shock cardiógeno',
             ],
             [
-                "name" => "Shock hipovolémico"
+                'name' => 'Shock hipovolémico',
             ],
             [
-                "name" => "Síncope"
+                'name' => 'Síncope',
             ],
             [
-                "name" => "Síndrome de Bland-White-Garland"
+                'name' => 'Síndrome de Bland-White-Garland',
             ],
             [
-                "name" => "Síndrome de clic-soplo sistólico"
+                'name' => 'Síndrome de clic-soplo sistólico',
             ],
             [
-                "name" => "Síndrome de disfunción sinusal o disfunción del nódulo sinusal"
+                'name' => 'Síndrome de disfunción sinusal o disfunción del nódulo sinusal',
             ],
             [
-                "name" => "Síndrome de Dressler"
+                'name' => 'Síndrome de Dressler',
             ],
             [
-                "name" => "Síndrome de Hutchinson-Gilford"
+                'name' => 'Síndrome de Hutchinson-Gilford',
             ],
             [
-                "name" => "Síndrome de la válvula pulmonar ausente"
+                'name' => 'Síndrome de la válvula pulmonar ausente',
             ],
             [
-                "name" => "Síndrome de la vena cava superior"
+                'name' => 'Síndrome de la vena cava superior',
             ],
             [
-                "name" => "Síndrome de lesión cardíaca posterior"
+                'name' => 'Síndrome de lesión cardíaca posterior',
             ],
             [
-                "name" => "Síndrome de Marfan"
+                'name' => 'Síndrome de Marfan',
             ],
             [
-                "name" => "Síndrome de Patau"
+                'name' => 'Síndrome de Patau',
             ],
             [
-                "name" => "Síndrome de preexcitación"
+                'name' => 'Síndrome de preexcitación',
             ],
             [
-                "name" => "Síndrome de transfusión entre gemelos"
+                'name' => 'Síndrome de transfusión entre gemelos',
             ],
             [
-                "name" => "Síndrome de transfusión fetal"
+                'name' => 'Síndrome de transfusión fetal',
             ],
             [
-                "name" => "Síndrome de Wolff-Parkinson-White"
+                'name' => 'Síndrome de Wolff-Parkinson-White',
             ],
             [
-                "name" => "Síndrome del corazón izquierdo hipoplásico"
+                'name' => 'Síndrome del corazón izquierdo hipoplásico',
             ],
             [
-                "name" => "Síndrome del corazón rígido"
+                'name' => 'Síndrome del corazón rígido',
             ],
             [
-                "name" => "Síndrome del seno enfermo"
+                'name' => 'Síndrome del seno enfermo',
             ],
             [
-                "name" => "Soplo cardíaco"
+                'name' => 'Soplo cardíaco',
             ],
             [
-                "name" => "Taponamiento"
+                'name' => 'Taponamiento',
             ],
             [
-                "name" => "Taponamiento cardíaco"
+                'name' => 'Taponamiento cardíaco',
             ],
             [
-                "name" => "Taponamiento pericárdico"
+                'name' => 'Taponamiento pericárdico',
             ],
             [
-                "name" => "Taquicardia"
+                'name' => 'Taquicardia',
             ],
             [
-                "name" => "Taquicardia auricular multifocal"
+                'name' => 'Taquicardia auricular multifocal',
             ],
             [
-                "name" => "Taquicardia de complejo amplio"
+                'name' => 'Taquicardia de complejo amplio',
             ],
             [
-                "name" => "Taquicardia supraventricular"
+                'name' => 'Taquicardia supraventricular',
             ],
             [
-                "name" => "Taquicardia supraventricular paroxística (TSVP)"
+                'name' => 'Taquicardia supraventricular paroxística (TSVP)',
             ],
             [
-                "name" => "Taquicardia ventricular"
+                'name' => 'Taquicardia ventricular',
             ],
             [
-                "name" => "TET"
+                'name' => 'TET',
             ],
             [
-                "name" => "Tetralogía de Fallot"
+                'name' => 'Tetralogía de Fallot',
             ],
             [
-                "name" => "Transposición de las grandes arterias"
+                'name' => 'Transposición de las grandes arterias',
             ],
             [
-                "name" => "Transposición de los grandes vasos"
+                'name' => 'Transposición de los grandes vasos',
             ],
             [
-                "name" => "Trastornos cardiovasculares"
+                'name' => 'Trastornos cardiovasculares',
             ],
             [
-                "name" => "Tronco"
+                'name' => 'Tronco',
             ],
             [
-                "name" => "Tronco arterial"
+                'name' => 'Tronco arterial',
             ],
             [
-                "name" => "TSVP"
+                'name' => 'TSVP',
             ],
             [
-                "name" => "Válvula aórtica bicomisural"
+                'name' => 'Válvula aórtica bicomisural',
             ],
             [
-                "name" => "Válvula aórtica bicúspide"
+                'name' => 'Válvula aórtica bicúspide',
             ],
             [
-                "name" => "Ventana aortopulmonar"
+                'name' => 'Ventana aortopulmonar',
             ],
             [
-                "name" => "Ventrículo común"
+                'name' => 'Ventrículo común',
             ],
             [
-                "name" => "Ventrículo único (corazón univentricular)"
+                'name' => 'Ventrículo único (corazón univentricular)',
             ],
             [
-                "name" => "WPW"
+                'name' => 'WPW',
             ],
             [
-                "name" => "Accidente cerebrovascular secundario a la aterosclerosis"
+                'name' => 'Accidente cerebrovascular secundario a la aterosclerosis',
             ],
             [
-                "name" => "Accidente cerebrovascular secundario a la estenosis de la carótida"
+                'name' => 'Accidente cerebrovascular secundario a la estenosis de la carótida',
             ],
             [
-                "name" => "Atresia pulmonar"
+                'name' => 'Atresia pulmonar',
             ],
             [
-                "name" => "Cáncer de pulmón de células no pequeñas"
+                'name' => 'Cáncer de pulmón de células no pequeñas',
             ],
             [
-                "name" => "Cáncer de pulmón de células pequeñas"
+                'name' => 'Cáncer de pulmón de células pequeñas',
             ],
             [
-                "name" => "Cáncer metastásico al pulmón"
+                'name' => 'Cáncer metastásico al pulmón',
             ],
             [
-                "name" => "Carcinoma broncopulmonar"
+                'name' => 'Carcinoma broncopulmonar',
             ],
             [
-                "name" => "Carcinoma microcítico de pulmón"
+                'name' => 'Carcinoma microcítico de pulmón',
             ],
             [
-                "name" => "Carcinomas amicrocíticos de pulmón"
+                'name' => 'Carcinomas amicrocíticos de pulmón',
             ],
             [
-                "name" => "Carcinomas broncopulmonares no microcíticos"
+                'name' => 'Carcinomas broncopulmonares no microcíticos',
             ],
             [
-                "name" => "Derrame pleural"
+                'name' => 'Derrame pleural',
             ],
             [
-                "name" => "Empiema"
+                'name' => 'Empiema',
             ],
             [
-                "name" => "Enfisema mediastínico"
+                'name' => 'Enfisema mediastínico',
             ],
             [
-                "name" => "Estenosis traqueal"
+                'name' => 'Estenosis traqueal',
             ],
             [
-                "name" => "Fibroma pleural"
+                'name' => 'Fibroma pleural',
             ],
             [
-                "name" => "Hemorragia intraventricular en neonatos"
+                'name' => 'Hemorragia intraventricular en neonatos',
             ],
             [
-                "name" => "Hemotórax"
+                'name' => 'Hemotórax',
             ],
             [
-                "name" => "Hiperhidrosis"
+                'name' => 'Hiperhidrosis',
             ],
             [
-                "name" => "Líquido en el pulmón"
+                'name' => 'Líquido en el pulmón',
             ],
             [
-                "name" => "Líquido en el tórax"
+                'name' => 'Líquido en el tórax',
             ],
             [
-                "name" => "Líquido pleural"
+                'name' => 'Líquido pleural',
             ],
             [
-                "name" => "Malformaciones del tórax y esternón"
+                'name' => 'Malformaciones del tórax y esternón',
             ],
             [
-                "name" => "Mediastinitis"
+                'name' => 'Mediastinitis',
             ],
             [
-                "name" => "Mesotelioma (benigno-fibroso)"
+                'name' => 'Mesotelioma (benigno-fibroso)',
             ],
             [
-                "name" => "Mesotelioma benigno"
+                'name' => 'Mesotelioma benigno',
             ],
             [
-                "name" => "Mesotelioma fibroso"
+                'name' => 'Mesotelioma fibroso',
             ],
             [
-                "name" => "Metástasis a los pulmones"
+                'name' => 'Metástasis a los pulmones',
             ],
             [
-                "name" => "Mucosa traqueal desgarrada"
+                'name' => 'Mucosa traqueal desgarrada',
             ],
             [
-                "name" => "Neumomediastino"
+                'name' => 'Neumomediastino',
             ],
             [
-                "name" => "Neumotórax"
+                'name' => 'Neumotórax',
             ],
             [
-                "name" => "Neumotórax a tensión"
+                'name' => 'Neumotórax a tensión',
             ],
             [
-                "name" => "Neumotórax espontáneo"
+                'name' => 'Neumotórax espontáneo',
             ],
             [
-                "name" => "Neumotórax traumático"
+                'name' => 'Neumotórax traumático',
             ],
             [
-                "name" => "Pleuritis"
+                'name' => 'Pleuritis',
             ],
             [
-                "name" => "Ruptura bronquial o traqueal"
+                'name' => 'Ruptura bronquial o traqueal',
             ],
             [
-                "name" => "Teratoma inmaduro"
+                'name' => 'Teratoma inmaduro',
             ],
             [
-                "name" => "Teratoma maligno"
+                'name' => 'Teratoma maligno',
             ],
             [
-                "name" => "Hemoptisis"
+                'name' => 'Hemoptisis',
             ],
             [
-                "name" => "Traqueomalacia adquirida"
+                'name' => 'Traqueomalacia adquirida',
             ],
             [
-                "name" => "Tumor fibroso localizado de la pleura"
+                'name' => 'Tumor fibroso localizado de la pleura',
             ],
             [
-                "name" => "Tumor glómico yugular"
+                'name' => 'Tumor glómico yugular',
             ],
             [
-                "name" => "Tumor mediastinal"
+                'name' => 'Tumor mediastinal',
             ],
             [
-                "name" => "Tumor productor de péptido intestinal vasoactivo"
+                'name' => 'Tumor productor de péptido intestinal vasoactivo',
             ],
             [
-                "name" => "Tumores cardíacos"
+                'name' => 'Tumores cardíacos',
             ],
             [
-                "name" => "Hombro congelado"
+                'name' => 'Hombro congelado',
             ],
             [
-                "name" => "Lesion de Plexo Braquial"
+                'name' => 'Lesion de Plexo Braquial',
             ],
             [
-                "name" => "Lesión facial"
+                'name' => 'Lesión facial',
             ],
             [
-                "name" => "Luxación Acromioclavicular"
+                'name' => 'Luxación Acromioclavicular',
             ],
             [
-                "name" => "Mano Reumática"
+                'name' => 'Mano Reumática',
             ],
             [
-                "name" => "Neuropatía del nervio radial"
+                'name' => 'Neuropatía del nervio radial',
             ],
             [
-                "name" => "Neuropatias Compresivas"
+                'name' => 'Neuropatias Compresivas',
             ],
             [
-                "name" => "Síndrome de pinzamiento del hombro"
+                'name' => 'Síndrome de pinzamiento del hombro',
             ],
             [
-                "name" => "Adenoides agrandadas"
+                'name' => 'Adenoides agrandadas',
             ],
             [
-                "name" => "Apnea del sueño de tipo obstructivo"
+                'name' => 'Apnea del sueño de tipo obstructivo',
             ],
             [
-                "name" => "Blefaroespasmo"
+                'name' => 'Blefaroespasmo',
             ],
             [
-                "name" => "Celulitis"
+                'name' => 'Celulitis',
             ],
             [
-                "name" => "Cicatriz hipertrófica"
+                'name' => 'Cicatriz hipertrófica',
             ],
             [
-                "name" => "Enfermedad benigna de las mamas"
+                'name' => 'Enfermedad benigna de las mamas',
             ],
             [
-                "name" => "Gigantomastia"
+                'name' => 'Gigantomastia',
             ],
             [
-                "name" => "Hipertrofia del tabique asimétrico"
+                'name' => 'Hipertrofia del tabique asimétrico',
             ],
             [
-                "name" => "Infección aguda del oído"
+                'name' => 'Infección aguda del oído',
             ],
             [
-                "name" => "Infección crónica de los senos paranasales"
+                'name' => 'Infección crónica de los senos paranasales',
             ],
             [
-                "name" => "Labio leporino y paladar hendido"
+                'name' => 'Labio leporino y paladar hendido',
             ],
             [
-                "name" => "Melanoma"
+                'name' => 'Melanoma',
             ],
             [
-                "name" => "Obstrucción del conducto lagrimal"
+                'name' => 'Obstrucción del conducto lagrimal',
             ],
             [
-                "name" => "Oclusión dental defectuosa"
+                'name' => 'Oclusión dental defectuosa',
             ],
             [
-                "name" => "Otitis media crónica"
+                'name' => 'Otitis media crónica',
             ],
             [
-                "name" => "Polidactilia"
+                'name' => 'Polidactilia',
             ],
             [
-                "name" => "Prolapso uterino"
+                'name' => 'Prolapso uterino',
             ],
             [
-                "name" => "Rinofima"
+                'name' => 'Rinofima',
             ],
             [
-                "name" => "Sindactilia"
+                'name' => 'Sindactilia',
             ],
             [
-                "name" => "Síndrome de Treacher-Collins"
+                'name' => 'Síndrome de Treacher-Collins',
             ],
             [
-                "name" => "Tumor nasal"
+                'name' => 'Tumor nasal',
             ],
             [
-                "name" => "Abdomen agudo"
+                'name' => 'Abdomen agudo',
             ],
             [
-                "name" => "Absceso anal"
+                'name' => 'Absceso anal',
             ],
             [
-                "name" => "Absceso hepático bacteriano"
+                'name' => 'Absceso hepático bacteriano',
             ],
             [
-                "name" => "Absceso intraabdominal"
+                'name' => 'Absceso intraabdominal',
             ],
             [
-                "name" => "Absceso pancreático"
+                'name' => 'Absceso pancreático',
             ],
             [
-                "name" => "Acalasia"
+                'name' => 'Acalasia',
             ],
             [
-                "name" => "Acalasia esofágica"
+                'name' => 'Acalasia esofágica',
             ],
             [
-                "name" => "Acidez"
+                'name' => 'Acidez',
             ],
             [
-                "name" => "Adenoma de células insulares"
+                'name' => 'Adenoma de células insulares',
             ],
             [
-                "name" => "Adenoma de tiroides"
+                'name' => 'Adenoma de tiroides',
             ],
             [
-                "name" => "Adenoma hepático"
+                'name' => 'Adenoma hepático',
             ],
             [
-                "name" => "Adherencia intraperitoneal"
+                'name' => 'Adherencia intraperitoneal',
             ],
             [
-                "name" => "Adherencias"
+                'name' => 'Adherencias',
             ],
             [
-                "name" => "Afecciones asociadas con la ictericia"
+                'name' => 'Afecciones asociadas con la ictericia',
             ],
             [
-                "name" => "Almorranas"
+                'name' => 'Almorranas',
             ],
             [
-                "name" => "Amebiasis extraintestinal"
+                'name' => 'Amebiasis extraintestinal',
             ],
             [
-                "name" => "Amebiasis hepática"
+                'name' => 'Amebiasis hepática',
             ],
             [
-                "name" => "Anemia por deficiencia de vitamina B12"
+                'name' => 'Anemia por deficiencia de vitamina B12',
             ],
             [
-                "name" => "Angiodisplasia del colon"
+                'name' => 'Angiodisplasia del colon',
             ],
             [
-                "name" => "Anillo de Schatzki"
+                'name' => 'Anillo de Schatzki',
             ],
             [
-                "name" => "Anillo esofágico inferior"
+                'name' => 'Anillo esofágico inferior',
             ],
             [
-                "name" => "Anillo esofagogástrico"
+                'name' => 'Anillo esofagogástrico',
             ],
             [
-                "name" => "Ano imperforado"
+                'name' => 'Ano imperforado',
             ],
             [
-                "name" => "Apendicitis"
+                'name' => 'Apendicitis',
             ],
             [
-                "name" => "Atresia anal"
+                'name' => 'Atresia anal',
             ],
             [
-                "name" => "Atresia duodenal"
+                'name' => 'Atresia duodenal',
             ],
             [
-                "name" => "Atresia esofágica"
+                'name' => 'Atresia esofágica',
             ],
             [
-                "name" => "Bocio"
+                'name' => 'Bocio',
             ],
             [
-                "name" => "Bocio multinodular tóxico"
+                'name' => 'Bocio multinodular tóxico',
             ],
             [
-                "name" => "Cálculo en el conducto biliar"
+                'name' => 'Cálculo en el conducto biliar',
             ],
             [
-                "name" => "Cálculos biliares"
+                'name' => 'Cálculos biliares',
             ],
             [
-                "name" => "Cálculos vesicales"
+                'name' => 'Cálculos vesicales',
             ],
             [
-                "name" => "Cambios precancerosos del cuello uterino"
+                'name' => 'Cambios precancerosos del cuello uterino',
             ],
             [
-                "name" => "Cáncer de esófago"
+                'name' => 'Cáncer de esófago',
             ],
             [
-                "name" => "Cáncer de mama"
+                'name' => 'Cáncer de mama',
             ],
             [
-                "name" => "Cáncer de paratiroides"
+                'name' => 'Cáncer de paratiroides',
             ],
             [
-                "name" => "Cáncer de tiroides"
+                'name' => 'Cáncer de tiroides',
             ],
             [
-                "name" => "Cáncer de vejiga"
+                'name' => 'Cáncer de vejiga',
             ],
             [
-                "name" => "Cáncer del colon"
+                'name' => 'Cáncer del colon',
             ],
             [
-                "name" => "Cáncer del estómago"
+                'name' => 'Cáncer del estómago',
             ],
             [
-                "name" => "Cáncer del páncreas"
+                'name' => 'Cáncer del páncreas',
             ],
             [
-                "name" => "Cáncer laríngeo"
+                'name' => 'Cáncer laríngeo',
             ],
             [
-                "name" => "Cáncer renal"
+                'name' => 'Cáncer renal',
             ],
             [
-                "name" => "Carcinoma corticosuprarrenal"
+                'name' => 'Carcinoma corticosuprarrenal',
             ],
             [
-                "name" => "Carcinoma ductal o canalicular"
+                'name' => 'Carcinoma ductal o canalicular',
             ],
             [
-                "name" => "Carcinoma hepatocelular"
+                'name' => 'Carcinoma hepatocelular',
             ],
             [
-                "name" => "Carcinoma medular de tiroides"
+                'name' => 'Carcinoma medular de tiroides',
             ],
             [
-                "name" => "Carcinoma papilar de la tiroides"
+                'name' => 'Carcinoma papilar de la tiroides',
             ],
             [
-                "name" => "Carcinoma primario de las células del hígado"
+                'name' => 'Carcinoma primario de las células del hígado',
             ],
             [
-                "name" => "Celulitis estreptocócica perianal"
+                'name' => 'Celulitis estreptocócica perianal',
             ],
             [
-                "name" => "Colangitis"
+                'name' => 'Colangitis',
             ],
             [
-                "name" => "Colangitis esclerosante"
+                'name' => 'Colangitis esclerosante',
             ],
             [
-                "name" => "Colecistitis aguda"
+                'name' => 'Colecistitis aguda',
             ],
             [
-                "name" => "Colecistitis crónica"
+                'name' => 'Colecistitis crónica',
             ],
             [
-                "name" => "Colecistopatía"
+                'name' => 'Colecistopatía',
             ],
             [
-                "name" => "Coledocolitiasis"
+                'name' => 'Coledocolitiasis',
             ],
             [
-                "name" => "Colelitiasis"
+                'name' => 'Colelitiasis',
             ],
             [
-                "name" => "Colestasis extrahepática"
+                'name' => 'Colestasis extrahepática',
             ],
             [
-                "name" => "Colitis"
+                'name' => 'Colitis',
             ],
             [
-                "name" => "Colitis isquémica"
+                'name' => 'Colitis isquémica',
             ],
             [
-                "name" => "Colitis necrosante"
+                'name' => 'Colitis necrosante',
             ],
             [
-                "name" => "Colon irritable"
+                'name' => 'Colon irritable',
             ],
             [
-                "name" => "Colon redundante"
+                'name' => 'Colon redundante',
             ],
             [
-                "name" => "Congestión mamaria"
+                'name' => 'Congestión mamaria',
             ],
             [
-                "name" => "Criptorquidia"
+                'name' => 'Criptorquidia',
             ],
             [
-                "name" => "Dedos en garra"
+                'name' => 'Dedos en garra',
             ],
             [
-                "name" => "Desgarro de Mallory-Weiss"
+                'name' => 'Desgarro de Mallory-Weiss',
             ],
             [
-                "name" => "Diástasis de rectos"
+                'name' => 'Diástasis de rectos',
             ],
             [
-                "name" => "Dilatación tóxica del colon"
+                'name' => 'Dilatación tóxica del colon',
             ],
             [
-                "name" => "Diverticulitis"
+                'name' => 'Diverticulitis',
             ],
             [
-                "name" => "Divertículo de Meckel"
+                'name' => 'Divertículo de Meckel',
             ],
             [
-                "name" => "ECN"
+                'name' => 'ECN',
             ],
             [
-                "name" => "Ectasia vascular del colon"
+                'name' => 'Ectasia vascular del colon',
             ],
             [
-                "name" => "Embarazo cervical"
+                'name' => 'Embarazo cervical',
             ],
             [
-                "name" => "Embolia cerebral"
+                'name' => 'Embolia cerebral',
             ],
             [
-                "name" => "Enfermedad de Crohn"
+                'name' => 'Enfermedad de Crohn',
             ],
             [
-                "name" => "Enfermedad de Hirschsprung"
+                'name' => 'Enfermedad de Hirschsprung',
             ],
             [
-                "name" => "Enterocolitis necrosante"
+                'name' => 'Enterocolitis necrosante',
             ],
             [
-                "name" => "Enfermedad de la vesícula biliar"
+                'name' => 'Enfermedad de la vesícula biliar',
             ],
             [
-                "name" => "Enfermedad del quiste hidatídico"
+                'name' => 'Enfermedad del quiste hidatídico',
             ],
             [
-                "name" => "Enfermedad inflamatoria intestinal"
+                'name' => 'Enfermedad inflamatoria intestinal',
             ],
             [
-                "name" => "Enteritis regional"
+                'name' => 'Enteritis regional',
             ],
             [
-                "name" => "Esofagitis"
+                'name' => 'Esofagitis',
             ],
             [
-                "name" => "Esofagitis péptica"
+                'name' => 'Esofagitis péptica',
             ],
             [
-                "name" => "Esofagitis por reflujo"
+                'name' => 'Esofagitis por reflujo',
             ],
             [
-                "name" => "Esplenectomía - síndrome posoperatorio"
+                'name' => 'Esplenectomía - síndrome posoperatorio',
             ],
             [
-                "name" => "Espolón calcáneo"
+                'name' => 'Espolón calcáneo',
             ],
             [
-                "name" => "Estenosis biliar"
+                'name' => 'Estenosis biliar',
             ],
             [
-                "name" => "Estenosis esofágica benigna"
+                'name' => 'Estenosis esofágica benigna',
             ],
             [
-                "name" => "Estenosis pilórica"
+                'name' => 'Estenosis pilórica',
             ],
             [
-                "name" => "Exostosis"
+                'name' => 'Exostosis',
             ],
             [
-                "name" => "Fascitis necrosante"
+                'name' => 'Fascitis necrosante',
             ],
             [
-                "name" => "Fascitis plantar"
+                'name' => 'Fascitis plantar',
             ],
             [
-                "name" => "Feocromocitoma"
+                'name' => 'Feocromocitoma',
             ],
             [
-                "name" => "Fibroadenoma de mama"
+                'name' => 'Fibroadenoma de mama',
             ],
             [
-                "name" => "Fístula gastrointestinal"
+                'name' => 'Fístula gastrointestinal',
             ],
             [
-                "name" => "Fístula gastroyeyunocólica"
+                'name' => 'Fístula gastroyeyunocólica',
             ],
             [
-                "name" => "Fístula traqueoesofágica"
+                'name' => 'Fístula traqueoesofágica',
             ],
             [
-                "name" => "Fisura anal"
+                'name' => 'Fisura anal',
             ],
             [
-                "name" => "Gastritis"
+                'name' => 'Gastritis',
             ],
             [
-                "name" => "Gastritis crónica"
+                'name' => 'Gastritis crónica',
             ],
             [
-                "name" => "Gastroenteritis bacteriana con diarrea infecciosa"
+                'name' => 'Gastroenteritis bacteriana con diarrea infecciosa',
             ],
             [
-                "name" => "Gastroparesia del diabético"
+                'name' => 'Gastroparesia del diabético',
             ],
             [
-                "name" => "GERD"
+                'name' => 'GERD',
             ],
             [
-                "name" => "Glucagonoma"
+                'name' => 'Glucagonoma',
             ],
             [
-                "name" => "Glucogenosis tipo I"
+                'name' => 'Glucogenosis tipo I',
             ],
             [
-                "name" => "Goma"
+                'name' => 'Goma',
             ],
             [
-                "name" => "Granuloma inguinal"
+                'name' => 'Granuloma inguinal',
             ],
             [
-                "name" => "Hemangioma cavernoso"
+                'name' => 'Hemangioma cavernoso',
             ],
             [
-                "name" => "Hematocele"
+                'name' => 'Hematocele',
             ],
             [
-                "name" => "Hemorroides"
+                'name' => 'Hemorroides',
             ],
             [
-                "name" => "Hernia"
+                'name' => 'Hernia',
             ],
             [
-                "name" => "Hernia crural"
+                'name' => 'Hernia crural',
             ],
             [
-                "name" => "Hernia diafragmática"
+                'name' => 'Hernia diafragmática',
             ],
             [
-                "name" => "Hernia inguinal"
+                'name' => 'Hernia inguinal',
             ],
             [
-                "name" => "Hernia umbilical"
+                'name' => 'Hernia umbilical',
             ],
             [
-                "name" => "Hernia hiatal"
+                'name' => 'Hernia hiatal',
             ],
             [
-                "name" => "Hidrocele de la túnica vaginal del testículo (proceso vaginal)"
+                'name' => 'Hidrocele de la túnica vaginal del testículo (proceso vaginal)',
             ],
             [
-                "name" => "Hiperparatiroidismo"
+                'name' => 'Hiperparatiroidismo',
             ],
             [
-                "name" => "Hiperparatiroidismo primario"
+                'name' => 'Hiperparatiroidismo primario',
             ],
             [
-                "name" => "Hiperparatiroidismo secundario"
+                'name' => 'Hiperparatiroidismo secundario',
             ],
             [
-                "name" => "Hiperplasia paratiroidea"
+                'name' => 'Hiperplasia paratiroidea',
             ],
             [
-                "name" => "Hipertrofia (hiperplasia) prostática benigna"
+                'name' => 'Hipertrofia (hiperplasia) prostática benigna',
             ],
             [
-                "name" => "Hiponatremia hipervolémica"
+                'name' => 'Hiponatremia hipervolémica',
             ],
             [
-                "name" => "HPB"
+                'name' => 'HPB',
             ],
             [
-                "name" => "Ileítis"
+                'name' => 'Ileítis',
             ],
             [
-                "name" => "Íleo"
+                'name' => 'Íleo',
             ],
             [
-                "name" => "Íleo colónico agudo"
+                'name' => 'Íleo colónico agudo',
             ],
             [
-                "name" => "Íleo del colon"
+                'name' => 'Íleo del colon',
             ],
             [
-                "name" => "Íleo paralítico"
+                'name' => 'Íleo paralítico',
             ],
             [
-                "name" => "Ileocolitis granulomatosa"
+                'name' => 'Ileocolitis granulomatosa',
             ],
             [
-                "name" => "Incontinencia fecal"
+                'name' => 'Incontinencia fecal',
             ],
             [
-                "name" => "Insulinoma"
+                'name' => 'Insulinoma',
             ],
             [
-                "name" => "Insuloma"
+                'name' => 'Insuloma',
             ],
             [
-                "name" => "Intestino muerto"
+                'name' => 'Intestino muerto',
             ],
             [
-                "name" => "Juanetes"
+                'name' => 'Juanetes',
             ],
             [
-                "name" => "Lipoma cervical"
+                'name' => 'Lipoma cervical',
             ],
             [
-                "name" => "Malformación anorrectal"
+                'name' => 'Malformación anorrectal',
             ],
             [
-                "name" => "Mastalgia"
+                'name' => 'Mastalgia',
             ],
             [
-                "name" => "Mastitis"
+                'name' => 'Mastitis',
             ],
             [
-                "name" => "Megacolon tóxico"
+                'name' => 'Megacolon tóxico',
             ],
             [
-                "name" => "Megarrecto"
+                'name' => 'Megarrecto',
             ],
             [
-                "name" => "MTC"
+                'name' => 'MTC',
             ],
             [
-                "name" => "Neoplasia endocrina múltiple (NEM) I"
+                'name' => 'Neoplasia endocrina múltiple (NEM) I',
             ],
             [
-                "name" => "Neoplasia endocrina múltiple (NEM) II"
+                'name' => 'Neoplasia endocrina múltiple (NEM) II',
             ],
             [
-                "name" => "Nódulo tiroideo"
+                'name' => 'Nódulo tiroideo',
             ],
             [
-                "name" => "Obesidad mórbida"
+                'name' => 'Obesidad mórbida',
             ],
             [
-                "name" => "Obstrucción aguda de las vías aéreas superiores"
+                'name' => 'Obstrucción aguda de las vías aéreas superiores',
             ],
             [
-                "name" => "Obstrucción del orificio gástrico"
+                'name' => 'Obstrucción del orificio gástrico',
             ],
             [
-                "name" => "Obstrucción intestinal"
+                'name' => 'Obstrucción intestinal',
             ],
             [
-                "name" => "Onicocriptosis"
+                'name' => 'Onicocriptosis',
             ],
             [
-                "name" => "Onicomicosis"
+                'name' => 'Onicomicosis',
             ],
             [
-                "name" => "Otospongiosis"
+                'name' => 'Otospongiosis',
             ],
             [
-                "name" => "Páncreas anular"
+                'name' => 'Páncreas anular',
             ],
             [
-                "name" => "Páncreas divisum"
+                'name' => 'Páncreas divisum',
             ],
             [
-                "name" => "Pancreatitis"
+                'name' => 'Pancreatitis',
             ],
             [
-                "name" => "Pancreatitis aguda"
+                'name' => 'Pancreatitis aguda',
             ],
             [
-                "name" => "Paraganglionoma"
+                'name' => 'Paraganglionoma',
             ],
             [
-                "name" => "Perforación gastrointestinal"
+                'name' => 'Perforación gastrointestinal',
             ],
             [
-                "name" => "Peritonitis"
+                'name' => 'Peritonitis',
             ],
             [
-                "name" => "Peritonitis asociada con diálisis"
+                'name' => 'Peritonitis asociada con diálisis',
             ],
             [
-                "name" => "Peritonitis bacteriana espontánea (PBE)"
+                'name' => 'Peritonitis bacteriana espontánea (PBE)',
             ],
             [
-                "name" => "Peritonitis de tipo secundario"
+                'name' => 'Peritonitis de tipo secundario',
             ],
             [
-                "name" => "Peritonitis espontánea"
+                'name' => 'Peritonitis espontánea',
             ],
             [
-                "name" => "Pólipos colorrectales"
+                'name' => 'Pólipos colorrectales',
             ],
             [
-                "name" => "Pólipos intestinales"
+                'name' => 'Pólipos intestinales',
             ],
             [
-                "name" => "Problemas del pezón"
+                'name' => 'Problemas del pezón',
             ],
             [
-                "name" => "Proceso vaginal persistente"
+                'name' => 'Proceso vaginal persistente',
             ],
             [
-                "name" => "Prolapso rectal"
+                'name' => 'Prolapso rectal',
             ],
             [
-                "name" => "Quiste epidermoide"
+                'name' => 'Quiste epidermoide',
             ],
             [
-                "name" => "Quiste mucoso"
+                'name' => 'Quiste mucoso',
             ],
             [
-                "name" => "Quiste pilonidal"
+                'name' => 'Quiste pilonidal',
             ],
             [
-                "name" => "Quiste queratínico"
+                'name' => 'Quiste queratínico',
             ],
             [
-                "name" => "Quiste sebáceo"
+                'name' => 'Quiste sebáceo',
             ],
             [
-                "name" => "Quistes vaginales"
+                'name' => 'Quistes vaginales',
             ],
             [
-                "name" => "Reflujo gastroesofágico"
+                'name' => 'Reflujo gastroesofágico',
             ],
             [
-                "name" => "Sarcoma del tejido blando"
+                'name' => 'Sarcoma del tejido blando',
             ],
             [
-                "name" => "Seudoobstrucción colónica"
+                'name' => 'Seudoobstrucción colónica',
             ],
             [
-                "name" => "Seudoobstrucción intestinal crónica"
+                'name' => 'Seudoobstrucción intestinal crónica',
             ],
             [
-                "name" => "Seudoobstrucción intestinal"
+                'name' => 'Seudoobstrucción intestinal',
             ],
             [
-                "name" => "Seudoobstrucción intestinal idiopática"
+                'name' => 'Seudoobstrucción intestinal idiopática',
             ],
             [
-                "name" => "Seudoobstrucción intestinal primaria"
+                'name' => 'Seudoobstrucción intestinal primaria',
             ],
             [
-                "name" => "Síndrome compartimental"
+                'name' => 'Síndrome compartimental',
             ],
             [
-                "name" => "Síndrome de Barrett"
+                'name' => 'Síndrome de Barrett',
             ],
             [
-                "name" => "Síndrome de Ogilvie"
+                'name' => 'Síndrome de Ogilvie',
             ],
             [
-                "name" => "Síndrome de Paterson-Kelly"
+                'name' => 'Síndrome de Paterson-Kelly',
             ],
             [
-                "name" => "Síndrome de Peutz-Jeghers"
+                'name' => 'Síndrome de Peutz-Jeghers',
             ],
             [
-                "name" => "Síndrome de Sipple"
+                'name' => 'Síndrome de Sipple',
             ],
             [
-                "name" => "Síndrome de Stein-Leventhal"
+                'name' => 'Síndrome de Stein-Leventhal',
             ],
             [
-                "name" => "Síndrome de Wermer"
+                'name' => 'Síndrome de Wermer',
             ],
             [
-                "name" => "Síndrome del colon irritable (IBS)"
+                'name' => 'Síndrome del colon irritable (IBS)',
             ],
             [
-                "name" => "SPJ"
+                'name' => 'SPJ',
             ],
             [
-                "name" => "Tiroides retroesternal"
+                'name' => 'Tiroides retroesternal',
             ],
             [
-                "name" => "Trombosis venosa mesentérica"
+                'name' => 'Trombosis venosa mesentérica',
             ],
             [
-                "name" => "Tumor de los islotes de Langerhans"
+                'name' => 'Tumor de los islotes de Langerhans',
             ],
             [
-                "name" => "Tumor del hígado"
+                'name' => 'Tumor del hígado',
             ],
             [
-                "name" => "Tumor del hueso temporal"
+                'name' => 'Tumor del hueso temporal',
             ],
             [
-                "name" => "Tumor endocrino pancreático"
+                'name' => 'Tumor endocrino pancreático',
             ],
             [
-                "name" => "Tumor medular"
+                'name' => 'Tumor medular',
             ],
             [
-                "name" => "Tumor suprarrenal"
+                'name' => 'Tumor suprarrenal',
             ],
             [
-                "name" => "Tumor tiroideo"
+                'name' => 'Tumor tiroideo',
             ],
             [
-                "name" => "Tumor trofoblástico"
+                'name' => 'Tumor trofoblástico',
             ],
             [
-                "name" => "Tumores o protuberancias en las mamas"
+                'name' => 'Tumores o protuberancias en las mamas',
             ],
             [
-                "name" => "Úlcera duodenal"
+                'name' => 'Úlcera duodenal',
             ],
             [
-                "name" => "Úlcera gastroduodenal aguda"
+                'name' => 'Úlcera gastroduodenal aguda',
             ],
             [
-                "name" => "Úlcera péptica"
+                'name' => 'Úlcera péptica',
             ],
             [
-                "name" => "Úlceras venosas"
+                'name' => 'Úlceras venosas',
             ],
             [
-                "name" => "Uña del pie encarnada"
+                'name' => 'Uña del pie encarnada',
             ],
             [
-                "name" => "Ureterocele"
+                'name' => 'Ureterocele',
             ],
             [
-                "name" => "Vaciamiento gástrico retardado"
+                'name' => 'Vaciamiento gástrico retardado',
             ],
             [
-                "name" => "Verrugas plantares"
+                'name' => 'Verrugas plantares',
             ],
             [
-                "name" => "Vibrio"
+                'name' => 'Vibrio',
             ],
             [
-                "name" => "Vipoma"
+                'name' => 'Vipoma',
             ],
             [
-                "name" => "Vómito persistente"
+                'name' => 'Vómito persistente',
             ],
             [
-                "name" => "Absceso del espacio faringomaxilar"
+                'name' => 'Absceso del espacio faringomaxilar',
             ],
             [
-                "name" => "Absceso periamigdalino"
+                'name' => 'Absceso periamigdalino',
             ],
             [
-                "name" => "Absceso retrofaríngeo"
+                'name' => 'Absceso retrofaríngeo',
             ],
             [
-                "name" => "Actinomicosis"
+                'name' => 'Actinomicosis',
             ],
             [
-                "name" => "Angina de Ludwig"
+                'name' => 'Angina de Ludwig',
             ],
             [
-                "name" => "Anquiloglosia"
+                'name' => 'Anquiloglosia',
             ],
             [
-                "name" => "Bruxismo"
+                'name' => 'Bruxismo',
             ],
             [
-                "name" => "Cáncer de piel en célula basal"
+                'name' => 'Cáncer de piel en célula basal',
             ],
             [
-                "name" => "Cáncer oral"
+                'name' => 'Cáncer oral',
             ],
             [
-                "name" => "Carcinoma anaplásico de tiroides"
+                'name' => 'Carcinoma anaplásico de tiroides',
             ],
             [
-                "name" => "Carcinoma bucal de células escamosas"
+                'name' => 'Carcinoma bucal de células escamosas',
             ],
             [
-                "name" => "Carcinoma paratiroideo"
+                'name' => 'Carcinoma paratiroideo',
             ],
             [
-                "name" => "Carcinoma posterior de la lengua"
+                'name' => 'Carcinoma posterior de la lengua',
             ],
             [
-                "name" => "Caries"
+                'name' => 'Caries',
             ],
             [
-                "name" => "Cigomicosis"
+                'name' => 'Cigomicosis',
             ],
             [
-                "name" => "Cortedad anormal del frenillo lingual"
+                'name' => 'Cortedad anormal del frenillo lingual',
             ],
             [
-                "name" => "Diente retenido"
+                'name' => 'Diente retenido',
             ],
             [
-                "name" => "Disoclusión de los dientes"
+                'name' => 'Disoclusión de los dientes',
             ],
             [
-                "name" => "Disostosis cleidocraneal"
+                'name' => 'Disostosis cleidocraneal',
             ],
             [
-                "name" => "Disostosis mandibulofacial"
+                'name' => 'Disostosis mandibulofacial',
             ],
             [
-                "name" => "Enfermedad periodontal - piorrea"
+                'name' => 'Enfermedad periodontal - piorrea',
             ],
             [
-                "name" => "Estomatitis gangrenosa"
+                'name' => 'Estomatitis gangrenosa',
             ],
             [
-                "name" => "Glositis benigna migratoria"
+                'name' => 'Glositis benigna migratoria',
             ],
             [
-                "name" => "Impactación dental"
+                'name' => 'Impactación dental',
             ],
             [
-                "name" => "Infección de los senos paranasales"
+                'name' => 'Infección de los senos paranasales',
             ],
             [
-                "name" => "Infección dental"
+                'name' => 'Infección dental',
             ],
             [
-                "name" => "Infecciones de la glándula salival"
+                'name' => 'Infecciones de la glándula salival',
             ],
             [
-                "name" => "Lesión maxilofacial"
+                'name' => 'Lesión maxilofacial',
             ],
             [
-                "name" => "Lesiones de Lefort"
+                'name' => 'Lesiones de Lefort',
             ],
             [
-                "name" => "Llagas orales (cáncrum oris)"
+                'name' => 'Llagas orales (cáncrum oris)',
             ],
             [
-                "name" => "Mordida abierta"
+                'name' => 'Mordida abierta',
             ],
             [
-                "name" => "Mucocele"
+                'name' => 'Mucocele',
             ],
             [
-                "name" => "Muelas del juicio"
+                'name' => 'Muelas del juicio',
             ],
             [
-                "name" => "Nariz bulbosa"
+                'name' => 'Nariz bulbosa',
             ],
             [
-                "name" => "Noma"
+                'name' => 'Noma',
             ],
             [
-                "name" => "Parálisis del nervio facial"
+                'name' => 'Parálisis del nervio facial',
             ],
             [
-                "name" => "Periodontitis"
+                'name' => 'Periodontitis',
             ],
             [
-                "name" => "Prognatismo"
+                'name' => 'Prognatismo',
             ],
             [
-                "name" => "Quiste de retención mucosa"
+                'name' => 'Quiste de retención mucosa',
             ],
             [
-                "name" => "Secuencia de Robin"
+                'name' => 'Secuencia de Robin',
             ],
             [
-                "name" => "Seno o fístula de la hendidura branquial"
+                'name' => 'Seno o fístula de la hendidura branquial',
             ],
             [
-                "name" => "Síndrome de Apert"
+                'name' => 'Síndrome de Apert',
             ],
             [
-                "name" => "Síndrome de Pierre Robin"
+                'name' => 'Síndrome de Pierre Robin',
             ],
             [
-                "name" => "Sobremordida"
+                'name' => 'Sobremordida',
             ],
             [
-                "name" => "Submordida"
+                'name' => 'Submordida',
             ],
             [
-                "name" => "TMD"
+                'name' => 'TMD',
             ],
             [
-                "name" => "Trastornos de la articulación temporomandibular"
+                'name' => 'Trastornos de la articulación temporomandibular',
             ],
             [
-                "name" => "Trastornos de la ATM"
+                'name' => 'Trastornos de la ATM',
             ],
             [
-                "name" => "Trastornos de las glándulas salivales"
+                'name' => 'Trastornos de las glándulas salivales',
             ],
             [
-                "name" => "Traumatismo facial"
+                'name' => 'Traumatismo facial',
             ],
             [
-                "name" => "Tumor de la glándula lagrimal"
+                'name' => 'Tumor de la glándula lagrimal',
             ],
             [
-                "name" => "Cáncer de endometrio"
+                'name' => 'Cáncer de endometrio',
             ],
             [
-                "name" => "Cáncer de los ovarios"
+                'name' => 'Cáncer de los ovarios',
             ],
             [
-                "name" => "Cáncer de piel"
+                'name' => 'Cáncer de piel',
             ],
             [
-                "name" => "Cáncer de testículos"
+                'name' => 'Cáncer de testículos',
             ],
             [
-                "name" => "Cáncer del cuello uterino"
+                'name' => 'Cáncer del cuello uterino',
             ],
             [
-                "name" => "Cáncer tiroideo (carcinoma medular)"
+                'name' => 'Cáncer tiroideo (carcinoma medular)',
             ],
             [
-                "name" => "Quistes ováricos"
+                'name' => 'Quistes ováricos',
             ],
             [
-                "name" => "Craneosinostosis"
+                'name' => 'Craneosinostosis',
             ],
             [
-                "name" => "DDH"
+                'name' => 'DDH',
             ],
             [
-                "name" => "Dedo supernumerario"
+                'name' => 'Dedo supernumerario',
             ],
             [
-                "name" => "Fibroplasia retrolenticular o retrocristaliniana"
+                'name' => 'Fibroplasia retrolenticular o retrocristaliniana',
             ],
             [
-                "name" => "Fístula pre-auricular"
+                'name' => 'Fístula pre-auricular',
             ],
             [
-                "name" => "Gastrosquisis"
+                'name' => 'Gastrosquisis',
             ],
             [
-                "name" => "Hidrocele"
+                'name' => 'Hidrocele',
             ],
             [
-                "name" => "Higroma quístico"
+                'name' => 'Higroma quístico',
             ],
             [
-                "name" => "Hipospadias"
+                'name' => 'Hipospadias',
             ],
             [
-                "name" => "Isquemia testicular"
+                'name' => 'Isquemia testicular',
             ],
             [
-                "name" => "Megacolon congénito"
+                'name' => 'Megacolon congénito',
             ],
             [
-                "name" => "Onfalocele"
+                'name' => 'Onfalocele',
             ],
             [
-                "name" => "Pseudo-ainhum"
+                'name' => 'Pseudo-ainhum',
             ],
             [
-                "name" => "Quiste branquiógeno"
+                'name' => 'Quiste branquiógeno',
             ],
             [
-                "name" => "Reflujo vesicoureteral"
+                'name' => 'Reflujo vesicoureteral',
             ],
             [
-                "name" => "Retinopatía de la prematuridad"
+                'name' => 'Retinopatía de la prematuridad',
             ],
             [
-                "name" => "ROP"
+                'name' => 'ROP',
             ],
             [
-                "name" => "Secuencia de bandas amnióticas"
+                'name' => 'Secuencia de bandas amnióticas',
             ],
             [
-                "name" => "Sindrome de Eagle-Barrett"
+                'name' => 'Sindrome de Eagle-Barrett',
             ],
             [
-                "name" => "Síndrome del abdomen en ciruela pasa"
+                'name' => 'Síndrome del abdomen en ciruela pasa',
             ],
             [
-                "name" => "Tumor de Wilms"
+                'name' => 'Tumor de Wilms',
             ],
             [
-                "name" => "Tumor del ángulo"
+                'name' => 'Tumor del ángulo',
             ],
             [
-                "name" => "Absceso subcutáneo"
+                'name' => 'Absceso subcutáneo',
             ],
             [
-                "name" => "Acné quístico"
+                'name' => 'Acné quístico',
             ],
             [
-                "name" => "Cáncer de piel escamocelular"
+                'name' => 'Cáncer de piel escamocelular',
             ],
             [
-                "name" => "Cicatriz queloide"
+                'name' => 'Cicatriz queloide',
             ],
             [
-                "name" => "Contractura de Dupuytren"
+                'name' => 'Contractura de Dupuytren',
             ],
             [
-                "name" => "Displasia de Streeter"
+                'name' => 'Displasia de Streeter',
             ],
             [
-                "name" => "Feminización testicular"
+                'name' => 'Feminización testicular',
             ],
             [
-                "name" => "Inflamación de las encías con compromiso del hueso"
+                'name' => 'Inflamación de las encías con compromiso del hueso',
             ],
             [
-                "name" => "Lunar"
+                'name' => 'Lunar',
             ],
             [
-                "name" => "Masas cutáneas de grasa"
+                'name' => 'Masas cutáneas de grasa',
             ],
             [
-                "name" => "Microtia"
+                'name' => 'Microtia',
             ],
             [
-                "name" => "Necrosis avascular"
+                'name' => 'Necrosis avascular',
             ],
             [
-                "name" => "Quemaduras"
+                'name' => 'Quemaduras',
             ],
             [
-                "name" => "Quiste poplíteo"
+                'name' => 'Quiste poplíteo',
             ],
             [
-                "name" => "Seudohermafroditismo"
+                'name' => 'Seudohermafroditismo',
             ],
             [
-                "name" => "Seudohermafroditismo masculino incompleto"
+                'name' => 'Seudohermafroditismo masculino incompleto',
             ],
             [
-                "name" => "Síndrome de insensibilidad a los andrógenos"
+                'name' => 'Síndrome de insensibilidad a los andrógenos',
             ],
             [
-                "name" => "Síndrome de insensibilidad parcial a los andrógenos"
+                'name' => 'Síndrome de insensibilidad parcial a los andrógenos',
             ],
             [
-                "name" => "Talipes"
+                'name' => 'Talipes',
             ],
             [
-                "name" => "Transexualismo"
+                'name' => 'Transexualismo',
             ],
             [
-                "name" => "Xantelasma"
+                'name' => 'Xantelasma',
             ],
             [
-                "name" => "Absceso"
+                'name' => 'Absceso',
             ],
             [
-                "name" => "Absceso de la piel"
+                'name' => 'Absceso de la piel',
             ],
             [
-                "name" => "Acantosis pigmentaria"
+                'name' => 'Acantosis pigmentaria',
             ],
             [
-                "name" => "Acné"
+                'name' => 'Acné',
             ],
             [
-                "name" => "Acné rosácea"
+                'name' => 'Acné rosácea',
             ],
             [
-                "name" => "Acné vulgar"
+                'name' => 'Acné vulgar',
             ],
             [
-                "name" => "Acrocordones"
+                'name' => 'Acrocordones',
             ],
             [
-                "name" => "Acrodermatitis"
+                'name' => 'Acrodermatitis',
             ],
             [
-                "name" => "Acrodermatitis liquenoide infantil"
+                'name' => 'Acrodermatitis liquenoide infantil',
             ],
             [
-                "name" => "Acrodermatitis papular de la niñez"
+                'name' => 'Acrodermatitis papular de la niñez',
             ],
             [
-                "name" => "Adenoma sebáceo"
+                'name' => 'Adenoma sebáceo',
             ],
             [
-                "name" => "Adrenoleucodistrofia cerebral infantil"
+                'name' => 'Adrenoleucodistrofia cerebral infantil',
             ],
             [
-                "name" => "Aftas"
+                'name' => 'Aftas',
             ],
             [
-                "name" => "Albinismo"
+                'name' => 'Albinismo',
             ],
             [
-                "name" => "Albinismo oculocutáneo"
+                'name' => 'Albinismo oculocutáneo',
             ],
             [
-                "name" => "Alopecia androgénica"
+                'name' => 'Alopecia androgénica',
             ],
             [
-                "name" => "Alopecia areata"
+                'name' => 'Alopecia areata',
             ],
             [
-                "name" => "Alopecia en hombres"
+                'name' => 'Alopecia en hombres',
             ],
             [
-                "name" => "Alopecia universal"
+                'name' => 'Alopecia universal',
             ],
             [
-                "name" => "Ancylostoma braziliense"
+                'name' => 'Ancylostoma braziliense',
             ],
             [
-                "name" => "Angioma aracniforme"
+                'name' => 'Angioma aracniforme',
             ],
             [
-                "name" => "Angioma en cereza"
+                'name' => 'Angioma en cereza',
             ],
             [
-                "name" => "Angiomatosis encefalotrigeminal"
+                'name' => 'Angiomatosis encefalotrigeminal',
             ],
             [
-                "name" => "Angioosteohipertrofia"
+                'name' => 'Angioosteohipertrofia',
             ],
             [
-                "name" => "Artritis psoriásica"
+                'name' => 'Artritis psoriásica',
             ],
             [
-                "name" => "Ataxia-telangiectasia"
+                'name' => 'Ataxia-telangiectasia',
             ],
             [
-                "name" => "Barros"
+                'name' => 'Barros',
             ],
             [
-                "name" => "Blastomicosis norteamericana"
+                'name' => 'Blastomicosis norteamericana',
             ],
             [
-                "name" => "Bromhidrosis (mal olor corporal)"
+                'name' => 'Bromhidrosis (mal olor corporal)',
             ],
             [
-                "name" => "Cacosmia"
+                'name' => 'Cacosmia',
             ],
             [
-                "name" => "Calvicie de patrón femenino"
+                'name' => 'Calvicie de patrón femenino',
             ],
             [
-                "name" => "Calvicie de patrón masculino"
+                'name' => 'Calvicie de patrón masculino',
             ],
             [
-                "name" => "Cambios en la piel inducidos por el sol"
+                'name' => 'Cambios en la piel inducidos por el sol',
             ],
             [
-                "name" => "Cambios queratósicos en la piel inducidos por el sol"
+                'name' => 'Cambios queratósicos en la piel inducidos por el sol',
             ],
             [
-                "name" => "Cáncer de células escamosas de la piel"
+                'name' => 'Cáncer de células escamosas de la piel',
             ],
             [
-                "name" => "Candidiasis cutánea"
+                'name' => 'Candidiasis cutánea',
             ],
             [
-                "name" => "Candidiasis intertriginosa"
+                'name' => 'Candidiasis intertriginosa',
             ],
             [
-                "name" => "Carbunco cutáneo"
+                'name' => 'Carbunco cutáneo',
             ],
             [
-                "name" => "Carcinoma escamocelular de la piel"
+                'name' => 'Carcinoma escamocelular de la piel',
             ],
             [
-                "name" => "Caspa"
+                'name' => 'Caspa',
             ],
             [
-                "name" => "Cercariosis cutánea"
+                'name' => 'Cercariosis cutánea',
             ],
             [
-                "name" => "Cicatrices de acné"
+                'name' => 'Cicatrices de acné',
             ],
             [
-                "name" => "Cloasma"
+                'name' => 'Cloasma',
             ],
             [
-                "name" => "Condiloma acuminado"
+                'name' => 'Condiloma acuminado',
             ],
             [
-                "name" => "Costra láctea"
+                'name' => 'Costra láctea',
             ],
             [
-                "name" => "Dermatitis asteatótica (eccema craquelé)"
+                'name' => 'Dermatitis asteatótica (eccema craquelé)',
             ],
             [
-                "name" => "Dermatitis Cenicienta"
+                'name' => 'Dermatitis Cenicienta',
             ],
             [
-                "name" => "Dermatitis exfoliativa"
+                'name' => 'Dermatitis exfoliativa',
             ],
             [
-                "name" => "Dermatitis herpetiforme"
+                'name' => 'Dermatitis herpetiforme',
             ],
             [
-                "name" => "Dermatitis numular"
+                'name' => 'Dermatitis numular',
             ],
             [
-                "name" => "Dermatitis perioral"
+                'name' => 'Dermatitis perioral',
             ],
             [
-                "name" => "Dermatitis seborreica"
+                'name' => 'Dermatitis seborreica',
             ],
             [
-                "name" => "Dermatitis y úlceras por estasis"
+                'name' => 'Dermatitis y úlceras por estasis',
             ],
             [
-                "name" => "Dermatofítide"
+                'name' => 'Dermatofítide',
             ],
             [
-                "name" => "Dermatofitosis de la ingle"
+                'name' => 'Dermatofitosis de la ingle',
             ],
             [
-                "name" => "Dermatofitosis del pie"
+                'name' => 'Dermatofitosis del pie',
             ],
             [
-                "name" => "Dermatomiositis"
+                'name' => 'Dermatomiositis',
             ],
             [
-                "name" => "Dermatosis (sistémica)"
+                'name' => 'Dermatosis (sistémica)',
             ],
             [
-                "name" => "Dishidrosis"
+                'name' => 'Dishidrosis',
             ],
             [
-                "name" => "Displasia ectodérmica"
+                'name' => 'Displasia ectodérmica',
             ],
             [
-                "name" => "Displasia ectodérmica anhidrótica"
+                'name' => 'Displasia ectodérmica anhidrótica',
             ],
             [
-                "name" => "Diviesos"
+                'name' => 'Diviesos',
             ],
             [
-                "name" => "Eccema"
+                'name' => 'Eccema',
             ],
             [
-                "name" => "Eccema asteatótico"
+                'name' => 'Eccema asteatótico',
             ],
             [
-                "name" => "Eccema dishidrótico"
+                'name' => 'Eccema dishidrótico',
             ],
             [
-                "name" => "Eccema infantil"
+                'name' => 'Eccema infantil',
             ],
             [
-                "name" => "Eccema numular"
+                'name' => 'Eccema numular',
             ],
             [
-                "name" => "Eccema seborreico"
+                'name' => 'Eccema seborreico',
             ],
             [
-                "name" => "Ectima"
+                'name' => 'Ectima',
             ],
             [
-                "name" => "Enfermedad de Addison"
+                'name' => 'Enfermedad de Addison',
             ],
             [
-                "name" => "Enfermedad de Duhring"
+                'name' => 'Enfermedad de Duhring',
             ],
             [
-                "name" => "Enfermedad de Ritter"
+                'name' => 'Enfermedad de Ritter',
             ],
             [
-                "name" => "Enfermedad del cabello ensortijado"
+                'name' => 'Enfermedad del cabello ensortijado',
             ],
             [
-                "name" => "Epidermólisis ampollar"
+                'name' => 'Epidermólisis ampollar',
             ],
             [
-                "name" => "Epidermólisis ampollar de unión"
+                'name' => 'Epidermólisis ampollar de unión',
             ],
             [
-                "name" => "Epidermólisis bullosa"
+                'name' => 'Epidermólisis bullosa',
             ],
             [
-                "name" => "Epidermólisis bulosa distrófica"
+                'name' => 'Epidermólisis bulosa distrófica',
             ],
             [
-                "name" => "Epidermólisis bulosa hemidesmosomal"
+                'name' => 'Epidermólisis bulosa hemidesmosomal',
             ],
             [
-                "name" => "Equimosis"
+                'name' => 'Equimosis',
             ],
             [
-                "name" => "Erisipela"
+                'name' => 'Erisipela',
             ],
             [
-                "name" => "Eritema nodoso"
+                'name' => 'Eritema nodoso',
             ],
             [
-                "name" => "Eritema tóxico del neonato"
+                'name' => 'Eritema tóxico del neonato',
             ],
             [
-                "name" => "Eritrasma"
+                'name' => 'Eritrasma',
             ],
             [
-                "name" => "Eritrodermia"
+                'name' => 'Eritrodermia',
             ],
             [
-                "name" => "Erupción serpiginosa"
+                'name' => 'Erupción serpiginosa',
             ],
             [
-                "name" => "Esclerodermia"
+                'name' => 'Esclerodermia',
             ],
             [
-                "name" => "Escleroma"
+                'name' => 'Escleroma',
             ],
             [
-                "name" => "Esclerosis tuberosa"
+                'name' => 'Esclerosis tuberosa',
             ],
             [
-                "name" => "Esporotricosis"
+                'name' => 'Esporotricosis',
             ],
             [
-                "name" => "Esquistosoma"
+                'name' => 'Esquistosoma',
             ],
             [
-                "name" => "Esquistosomiasis"
+                'name' => 'Esquistosomiasis',
             ],
             [
-                "name" => "Esquistosomosis"
+                'name' => 'Esquistosomosis',
             ],
             [
-                "name" => "Estomatitis herpética"
+                'name' => 'Estomatitis herpética',
             ],
             [
-                "name" => "Estrés"
+                'name' => 'Estrés',
             ],
             [
-                "name" => "Fascitis eosinofílica"
+                'name' => 'Fascitis eosinofílica',
             ],
             [
-                "name" => "Fiebre de Katayama"
+                'name' => 'Fiebre de Katayama',
             ],
             [
-                "name" => "Fiebre de montaña"
+                'name' => 'Fiebre de montaña',
             ],
             [
-                "name" => "Fiebre de O´nyon-nyong"
+                'name' => 'Fiebre de O´nyon-nyong',
             ],
             [
-                "name" => "Fiebre del dengue hemorrágico"
+                'name' => 'Fiebre del dengue hemorrágico',
             ],
             [
-                "name" => "Fiebre del valle del río Ohio"
+                'name' => 'Fiebre del valle del río Ohio',
             ],
             [
-                "name" => "Fiebre entérica"
+                'name' => 'Fiebre entérica',
             ],
             [
-                "name" => "Fiebre hemorrágica de Filipinas"
+                'name' => 'Fiebre hemorrágica de Filipinas',
             ],
             [
-                "name" => "Fiebre hemorrágica de Singapur"
+                'name' => 'Fiebre hemorrágica de Singapur',
             ],
             [
-                "name" => "Fiebre hemorrágica tailandesa"
+                'name' => 'Fiebre hemorrágica tailandesa',
             ],
             [
-                "name" => "Fiebre maculosa de las Montañas Rocosas"
+                'name' => 'Fiebre maculosa de las Montañas Rocosas',
             ],
             [
-                "name" => "Fiebre periódica"
+                'name' => 'Fiebre periódica',
             ],
             [
-                "name" => "Fiebre por dengue hemorrágico"
+                'name' => 'Fiebre por dengue hemorrágico',
             ],
             [
-                "name" => "Fiebre quebrantahuesos"
+                'name' => 'Fiebre quebrantahuesos',
             ],
             [
-                "name" => "Foliculitis"
+                'name' => 'Foliculitis',
             ],
             [
-                "name" => "Foliculitis de la tina"
+                'name' => 'Foliculitis de la tina',
             ],
             [
-                "name" => "Forúnculo"
+                'name' => 'Forúnculo',
             ],
             [
-                "name" => "Fotosensibilidad"
+                'name' => 'Fotosensibilidad',
             ],
             [
-                "name" => "Gastrinoma"
+                'name' => 'Gastrinoma',
             ],
             [
-                "name" => "Glositis"
+                'name' => 'Glositis',
             ],
             [
-                "name" => "Golondrino"
+                'name' => 'Golondrino',
             ],
             [
-                "name" => "Gonococemia diseminada"
+                'name' => 'Gonococemia diseminada',
             ],
             [
-                "name" => "Granos"
+                'name' => 'Granos',
             ],
             [
-                "name" => "Granuloma anular"
+                'name' => 'Granuloma anular',
             ],
             [
-                "name" => "Granuloma de las piscinas"
+                'name' => 'Granuloma de las piscinas',
             ],
             [
-                "name" => "Granuloma eosinofílico"
+                'name' => 'Granuloma eosinofílico',
             ],
             [
-                "name" => "Granuloma necrosante"
+                'name' => 'Granuloma necrosante',
             ],
             [
-                "name" => "Granuloma piógeno"
+                'name' => 'Granuloma piógeno',
             ],
             [
-                "name" => "Granulomatosis mortal de la infancia"
+                'name' => 'Granulomatosis mortal de la infancia',
             ],
             [
-                "name" => "Granulomatosis pulmonar de las células de Langerhans"
+                'name' => 'Granulomatosis pulmonar de las células de Langerhans',
             ],
             [
-                "name" => "Granulomatosis séptica progresiva"
+                'name' => 'Granulomatosis séptica progresiva',
             ],
             [
-                "name" => "Hemangioma capilar lobular"
+                'name' => 'Hemangioma capilar lobular',
             ],
             [
-                "name" => "Hemangioma fresa"
+                'name' => 'Hemangioma fresa',
             ],
             [
-                "name" => "Hemangioma plano"
+                'name' => 'Hemangioma plano',
             ],
             [
-                "name" => "Hemangioma simple"
+                'name' => 'Hemangioma simple',
             ],
             [
-                "name" => "Herpes adquirido al nacer"
+                'name' => 'Herpes adquirido al nacer',
             ],
             [
-                "name" => "Herpes labial"
+                'name' => 'Herpes labial',
             ],
             [
-                "name" => "Herpes zóster (culebrilla)"
+                'name' => 'Herpes zóster (culebrilla)',
             ],
             [
-                "name" => "Hidradenitis supurativa"
+                'name' => 'Hidradenitis supurativa',
             ],
             [
-                "name" => "Hiedra venenosa"
+                'name' => 'Hiedra venenosa',
             ],
             [
-                "name" => "Hipertricosis"
+                'name' => 'Hipertricosis',
             ],
             [
-                "name" => "Hipofunción corticosuprarrenal"
+                'name' => 'Hipofunción corticosuprarrenal',
             ],
             [
-                "name" => "Hipofunción ovárica"
+                'name' => 'Hipofunción ovárica',
             ],
             [
-                "name" => "Hipoglucemia inducida por fármacos"
+                'name' => 'Hipoglucemia inducida por fármacos',
             ],
             [
-                "name" => "Hipogonadismo hipogonadotrópico"
+                'name' => 'Hipogonadismo hipogonadotrópico',
             ],
             [
-                "name" => "Hipomelanosis de Ito"
+                'name' => 'Hipomelanosis de Ito',
             ],
             [
-                "name" => "Hipopituitarismo puerperal"
+                'name' => 'Hipopituitarismo puerperal',
             ],
             [
-                "name" => "Histoplasmosis"
+                'name' => 'Histoplasmosis',
             ],
             [
-                "name" => "Histoplasmosis cavitaria crónica"
+                'name' => 'Histoplasmosis cavitaria crónica',
             ],
             [
-                "name" => "Histoplasmosis diseminada"
+                'name' => 'Histoplasmosis diseminada',
             ],
             [
-                "name" => "Histoplasmosis pulmonar aguda (primaria)"
+                'name' => 'Histoplasmosis pulmonar aguda (primaria)',
             ],
             [
-                "name" => "Histoplasmosis pulmonar crónica"
+                'name' => 'Histoplasmosis pulmonar crónica',
             ],
             [
-                "name" => "Histoplasmosis sistémica"
+                'name' => 'Histoplasmosis sistémica',
             ],
             [
-                "name" => "HSV"
+                'name' => 'HSV',
             ],
             [
-                "name" => "Ictiosis común"
+                'name' => 'Ictiosis común',
             ],
             [
-                "name" => "Ictiosis laminar"
+                'name' => 'Ictiosis laminar',
             ],
             [
-                "name" => "Impétigo"
+                'name' => 'Impétigo',
             ],
             [
-                "name" => "Incontinencia pigmentaria"
+                'name' => 'Incontinencia pigmentaria',
             ],
             [
-                "name" => "Incontinencia pigmentaria acrómica"
+                'name' => 'Incontinencia pigmentaria acrómica',
             ],
             [
-                "name" => "Induración"
+                'name' => 'Induración',
             ],
             [
-                "name" => "Infección de la ingle por hongos"
+                'name' => 'Infección de la ingle por hongos',
             ],
             [
-                "name" => "Infección de la piel por hongos levaduriformes"
+                'name' => 'Infección de la piel por hongos levaduriformes',
             ],
             [
-                "name" => "Infección de Lyme temprana y localizada"
+                'name' => 'Infección de Lyme temprana y localizada',
             ],
             [
-                "name" => "Infección de piel por estafilococo"
+                'name' => 'Infección de piel por estafilococo',
             ],
             [
-                "name" => "Infección de un folículo piloso"
+                'name' => 'Infección de un folículo piloso',
             ],
             [
-                "name" => "Infección del cuero cabelludo"
+                'name' => 'Infección del cuero cabelludo',
             ],
             [
-                "name" => "Infección del pie por hongos"
+                'name' => 'Infección del pie por hongos',
             ],
             [
-                "name" => "Infección en el cuero cabelludo por hongos"
+                'name' => 'Infección en el cuero cabelludo por hongos',
             ],
             [
-                "name" => "Infección estafilocócica de piel"
+                'name' => 'Infección estafilocócica de piel',
             ],
             [
-                "name" => "Infección gonocócica diseminada (IGD)"
+                'name' => 'Infección gonocócica diseminada (IGD)',
             ],
             [
-                "name" => "Infección micótica de la uña"
+                'name' => 'Infección micótica de la uña',
             ],
             [
-                "name" => "Infección micótica de piel"
+                'name' => 'Infección micótica de piel',
             ],
             [
-                "name" => "Infección micótica del cuero cabelludo"
+                'name' => 'Infección micótica del cuero cabelludo',
             ],
             [
-                "name" => "Infección tisular por clostridio"
+                'name' => 'Infección tisular por clostridio',
             ],
             [
-                "name" => "Insuficiencia hipofisaria después del parto"
+                'name' => 'Insuficiencia hipofisaria después del parto',
             ],
             [
-                "name" => "Insuficiencia ovárica prematura"
+                'name' => 'Insuficiencia ovárica prematura',
             ],
             [
-                "name" => "Kala-azar"
+                'name' => 'Kala-azar',
             ],
             [
-                "name" => "Larva migratoria"
+                'name' => 'Larva migratoria',
             ],
             [
-                "name" => "Larva migratoria cutánea"
+                'name' => 'Larva migratoria cutánea',
             ],
             [
-                "name" => "Leishmaniasis"
+                'name' => 'Leishmaniasis',
             ],
             [
-                "name" => "Lengua geográfica"
+                'name' => 'Lengua geográfica',
             ],
             [
-                "name" => "Léntigos solares o seniles"
+                'name' => 'Léntigos solares o seniles',
             ],
             [
-                "name" => "Lepra"
+                'name' => 'Lepra',
             ],
             [
-                "name" => "Leptospirosis"
+                'name' => 'Leptospirosis',
             ],
             [
-                "name" => "Lesión cutánea de blastomicosis"
+                'name' => 'Lesión cutánea de blastomicosis',
             ],
             [
-                "name" => "Lesión cutánea de coccidioidomicosis"
+                'name' => 'Lesión cutánea de coccidioidomicosis',
             ],
             [
-                "name" => "Lesión cutánea de histoplasmosis"
+                'name' => 'Lesión cutánea de histoplasmosis',
             ],
             [
-                "name" => "Lesión de la médula espinal"
+                'name' => 'Lesión de la médula espinal',
             ],
             [
-                "name" => "Linfangitis"
+                'name' => 'Linfangitis',
             ],
             [
-                "name" => "Liquen plano"
+                'name' => 'Liquen plano',
             ],
             [
-                "name" => "Liquen simple crónico"
+                'name' => 'Liquen simple crónico',
             ],
             [
-                "name" => "Manchas de color café con leche"
+                'name' => 'Manchas de color café con leche',
             ],
             [
-                "name" => "Manchas de grasa"
+                'name' => 'Manchas de grasa',
             ],
             [
-                "name" => "Manchas de la edad"
+                'name' => 'Manchas de la edad',
             ],
             [
-                "name" => "Mandíbula hinchada o abultada"
+                'name' => 'Mandíbula hinchada o abultada',
             ],
             [
-                "name" => "Marca de la cigüeña"
+                'name' => 'Marca de la cigüeña',
             ],
             [
-                "name" => "Marcas de nacimiento pigmentadas"
+                'name' => 'Marcas de nacimiento pigmentadas',
             ],
             [
-                "name" => "Marcas de nacimiento rojas"
+                'name' => 'Marcas de nacimiento rojas',
             ],
             [
-                "name" => "Marcas en la piel"
+                'name' => 'Marcas en la piel',
             ],
             [
-                "name" => "Masas escrotales"
+                'name' => 'Masas escrotales',
             ],
             [
-                "name" => "Mastocitoma"
+                'name' => 'Mastocitoma',
             ],
             [
-                "name" => "Mastocitosis"
+                'name' => 'Mastocitosis',
             ],
             [
-                "name" => "Melanocitosis dérmica"
+                'name' => 'Melanocitosis dérmica',
             ],
             [
-                "name" => "Melanocitosis dérmica congénita"
+                'name' => 'Melanocitosis dérmica congénita',
             ],
             [
-                "name" => "Melanoma del ojo"
+                'name' => 'Melanoma del ojo',
             ],
             [
-                "name" => "Melanoma maligno de la coroides"
+                'name' => 'Melanoma maligno de la coroides',
             ],
             [
-                "name" => "Melanoma metastásico"
+                'name' => 'Melanoma metastásico',
             ],
             [
-                "name" => "Melanosis por fricción"
+                'name' => 'Melanosis por fricción',
             ],
             [
-                "name" => "Melasma"
+                'name' => 'Melasma',
             ],
             [
-                "name" => "Micetoma"
+                'name' => 'Micetoma',
             ],
             [
-                "name" => "Micosis"
+                'name' => 'Micosis',
             ],
             [
-                "name" => "Milios"
+                'name' => 'Milios',
             ],
             [
-                "name" => "Mionecrosis"
+                'name' => 'Mionecrosis',
             ],
             [
-                "name" => "Molusco contagioso"
+                'name' => 'Molusco contagioso',
             ],
             [
-                "name" => "Neurofibromatosis 2"
+                'name' => 'Neurofibromatosis 2',
             ],
             [
-                "name" => "Neurofibromatosis de von Recklinghausen"
+                'name' => 'Neurofibromatosis de von Recklinghausen',
             ],
             [
-                "name" => "Neurofibromatosis-1"
+                'name' => 'Neurofibromatosis-1',
             ],
             [
-                "name" => "Nevo en calzón de baño"
+                'name' => 'Nevo en calzón de baño',
             ],
             [
-                "name" => "Nevo piloso"
+                'name' => 'Nevo piloso',
             ],
             [
-                "name" => "Nevo piloso gigante"
+                'name' => 'Nevo piloso gigante',
             ],
             [
-                "name" => "Nevo sebáceo"
+                'name' => 'Nevo sebáceo',
             ],
             [
-                "name" => "Nevo simple"
+                'name' => 'Nevo simple',
             ],
             [
-                "name" => "Nevos"
+                'name' => 'Nevos',
             ],
             [
-                "name" => "NF acústica bilateral central"
+                'name' => 'NF acústica bilateral central',
             ],
             [
-                "name" => "NF1"
+                'name' => 'NF1',
             ],
             [
-                "name" => "NF2"
+                'name' => 'NF2',
             ],
             [
-                "name" => "Niguas"
+                'name' => 'Niguas',
             ],
             [
-                "name" => "Nivel de glucemia alto en bebés"
+                'name' => 'Nivel de glucemia alto en bebés',
             ],
             [
-                "name" => "Ooforitis"
+                'name' => 'Ooforitis',
             ],
             [
-                "name" => "Orzuelo"
+                'name' => 'Orzuelo',
             ],
             [
-                "name" => "Papilomas cutáneos"
+                'name' => 'Papilomas cutáneos',
             ],
             [
-                "name" => "Pápulas perladas"
+                'name' => 'Pápulas perladas',
             ],
             [
-                "name" => "Parafimosis"
+                'name' => 'Parafimosis',
             ],
             [
-                "name" => "Parches en la lengua"
+                'name' => 'Parches en la lengua',
             ],
             [
-                "name" => "Paroniquia"
+                'name' => 'Paroniquia',
             ],
             [
-                "name" => "Parvovirus B19"
+                'name' => 'Parvovirus B19',
             ],
             [
-                "name" => "Patología ungueal"
+                'name' => 'Patología ungueal',
             ],
             [
-                "name" => "Pediculosis"
+                'name' => 'Pediculosis',
             ],
             [
-                "name" => "Pelagra"
+                'name' => 'Pelagra',
             ],
             [
-                "name" => "Pénfigo seborreico"
+                'name' => 'Pénfigo seborreico',
             ],
             [
-                "name" => "Pénfigo vulgar"
+                'name' => 'Pénfigo vulgar',
             ],
             [
-                "name" => "Penfigoide ampolloso"
+                'name' => 'Penfigoide ampolloso',
             ],
             [
-                "name" => "Pérdida del cabello en hombres"
+                'name' => 'Pérdida del cabello en hombres',
             ],
             [
-                "name" => "Pérdida del cabello en mujeres"
+                'name' => 'Pérdida del cabello en mujeres',
             ],
             [
-                "name" => "Pericondritis"
+                'name' => 'Pericondritis',
             ],
             [
-                "name" => "Pian"
+                'name' => 'Pian',
             ],
             [
-                "name" => "Pie de atleta"
+                'name' => 'Pie de atleta',
             ],
             [
-                "name" => "Piel grasa"
+                'name' => 'Piel grasa',
             ],
             [
-                "name" => "Piel sensible"
+                'name' => 'Piel sensible',
             ],
             [
-                "name" => "Piojos de la cabeza"
+                'name' => 'Piojos de la cabeza',
             ],
             [
-                "name" => "Piojos púbicos"
+                'name' => 'Piojos púbicos',
             ],
             [
-                "name" => "Pitiriasis alba"
+                'name' => 'Pitiriasis alba',
             ],
             [
-                "name" => "Pitiriasis roja"
+                'name' => 'Pitiriasis roja',
             ],
             [
-                "name" => "Pitiriasis rosada"
+                'name' => 'Pitiriasis rosada',
             ],
             [
-                "name" => "Pitiriasis rubra"
+                'name' => 'Pitiriasis rubra',
             ],
             [
-                "name" => "Pitiriasis versicolor"
+                'name' => 'Pitiriasis versicolor',
             ],
             [
-                "name" => "Pólipos auriculares"
+                'name' => 'Pólipos auriculares',
             ],
             [
-                "name" => "Poliserositis familiar recurrente"
+                'name' => 'Poliserositis familiar recurrente',
             ],
             [
-                "name" => "Ponfólix (ponfólice)"
+                'name' => 'Ponfólix (ponfólice)',
             ],
             [
-                "name" => "Porfiria"
+                'name' => 'Porfiria',
             ],
             [
-                "name" => "Porfiria aguda intermitente"
+                'name' => 'Porfiria aguda intermitente',
             ],
             [
-                "name" => "Porfiria eritropoyética congénita"
+                'name' => 'Porfiria eritropoyética congénita',
             ],
             [
-                "name" => "Protoporfiria eritropoyética"
+                'name' => 'Protoporfiria eritropoyética',
             ],
             [
-                "name" => "Prurito en la ingle"
+                'name' => 'Prurito en la ingle',
             ],
             [
-                "name" => "Psoriasis"
+                'name' => 'Psoriasis',
             ],
             [
-                "name" => "Psoriasis en gotas"
+                'name' => 'Psoriasis en gotas',
             ],
             [
-                "name" => "Psoriasis en placa"
+                'name' => 'Psoriasis en placa',
             ],
             [
-                "name" => "Psoriasis guttata"
+                'name' => 'Psoriasis guttata',
             ],
             [
-                "name" => "Pulgas"
+                'name' => 'Pulgas',
             ],
             [
-                "name" => "Púrpura anafilactoide"
+                'name' => 'Púrpura anafilactoide',
             ],
             [
-                "name" => "Queratosis actínica"
+                'name' => 'Queratosis actínica',
             ],
             [
-                "name" => "Queratosis actínica solar"
+                'name' => 'Queratosis actínica solar',
             ],
             [
-                "name" => "Queratosis obturante"
+                'name' => 'Queratosis obturante',
             ],
             [
-                "name" => "Queratosis pilar"
+                'name' => 'Queratosis pilar',
             ],
             [
-                "name" => "Queratosis seborreica"
+                'name' => 'Queratosis seborreica',
             ],
             [
-                "name" => "Queratosis senil"
+                'name' => 'Queratosis senil',
             ],
             [
-                "name" => "Queratosis solar"
+                'name' => 'Queratosis solar',
             ],
             [
-                "name" => "Quinta enfermedad"
+                'name' => 'Quinta enfermedad',
             ],
             [
-                "name" => "Quiste dermoide maligno"
+                'name' => 'Quiste dermoide maligno',
             ],
             [
-                "name" => "Rosácea"
+                'name' => 'Rosácea',
             ],
             [
-                "name" => "Rosácea fimatosa"
+                'name' => 'Rosácea fimatosa',
             ],
             [
-                "name" => "Roséola"
+                'name' => 'Roséola',
             ],
             [
-                "name" => "Sarampión"
+                'name' => 'Sarampión',
             ],
             [
-                "name" => "Sarampión alemán"
+                'name' => 'Sarampión alemán',
             ],
             [
-                "name" => "Sarampión de tres días"
+                'name' => 'Sarampión de tres días',
             ],
             [
-                "name" => "Sarcoidosis"
+                'name' => 'Sarcoidosis',
             ],
             [
-                "name" => "Sarna"
+                'name' => 'Sarna',
             ],
             [
-                "name" => "Sífilis congénita"
+                'name' => 'Sífilis congénita',
             ],
             [
-                "name" => "Sífilis primaria"
+                'name' => 'Sífilis primaria',
             ],
             [
-                "name" => "Síndrome de Bloch-Sulzberger"
+                'name' => 'Síndrome de Bloch-Sulzberger',
             ],
             [
-                "name" => "Síndrome de CREST"
+                'name' => 'Síndrome de CREST',
             ],
             [
-                "name" => "Síndrome de Cushing exógeno"
+                'name' => 'Síndrome de Cushing exógeno',
             ],
             [
-                "name" => "Síndrome de Gianotti-Crosti"
+                'name' => 'Síndrome de Gianotti-Crosti',
             ],
             [
-                "name" => "Síndrome de Gorlin"
+                'name' => 'Síndrome de Gorlin',
             ],
             [
-                "name" => "Síndrome de Hermansky-Pudlak"
+                'name' => 'Síndrome de Hermansky-Pudlak',
             ],
             [
-                "name" => "Síndrome de hiperinmunoglobulina E"
+                'name' => 'Síndrome de hiperinmunoglobulina E',
             ],
             [
-                "name" => "Síndrome de hipopituitarismo"
+                'name' => 'Síndrome de hipopituitarismo',
             ],
             [
-                "name" => "Síndrome de Hunt"
+                'name' => 'Síndrome de Hunt',
             ],
             [
-                "name" => "Síndrome de Job"
+                'name' => 'Síndrome de Job',
             ],
             [
-                "name" => "Síndrome de Kallmann"
+                'name' => 'Síndrome de Kallmann',
             ],
             [
-                "name" => "Síndrome de la piel escaldada"
+                'name' => 'Síndrome de la piel escaldada',
             ],
             [
-                "name" => "Síndrome de lentigos múltiples"
+                'name' => 'Síndrome de lentigos múltiples',
             ],
             [
-                "name" => "Síndrome de McCune-Albright"
+                'name' => 'Síndrome de McCune-Albright',
             ],
             [
-                "name" => "Síndrome de Reiter"
+                'name' => 'Síndrome de Reiter',
             ],
             [
-                "name" => "Síndrome de Sheehan"
+                'name' => 'Síndrome de Sheehan',
             ],
             [
-                "name" => "Síndrome de shock por dengue"
+                'name' => 'Síndrome de shock por dengue',
             ],
             [
-                "name" => "Síndrome de Weber-Cockayne"
+                'name' => 'Síndrome de Weber-Cockayne',
             ],
             [
-                "name" => "Síndrome del cabello acerado"
+                'name' => 'Síndrome del cabello acerado',
             ],
             [
-                "name" => "Síndrome del leopardo"
+                'name' => 'Síndrome del leopardo',
             ],
             [
-                "name" => "Síndrome del nevo de células basales"
+                'name' => 'Síndrome del nevo de células basales',
             ],
             [
-                "name" => "Síndrome estafilocócico de la piel escaldada (SSS)"
+                'name' => 'Síndrome estafilocócico de la piel escaldada (SSS)',
             ],
             [
-                "name" => "Tiña"
+                'name' => 'Tiña',
             ],
             [
-                "name" => "Tiña circinada"
+                'name' => 'Tiña circinada',
             ],
             [
-                "name" => "Tiña corporal"
+                'name' => 'Tiña corporal',
             ],
             [
-                "name" => "Tiña crural"
+                'name' => 'Tiña crural',
             ],
             [
-                "name" => "Tiña de la cabeza"
+                'name' => 'Tiña de la cabeza',
             ],
             [
-                "name" => "Tiña de los pies"
+                'name' => 'Tiña de los pies',
             ],
             [
-                "name" => "Tiña del cuerpo"
+                'name' => 'Tiña del cuerpo',
             ],
             [
-                "name" => "Tiña inguinal"
+                'name' => 'Tiña inguinal',
             ],
             [
-                "name" => "Tiña tonsurante"
+                'name' => 'Tiña tonsurante',
             ],
             [
-                "name" => "Tiña versicolor"
+                'name' => 'Tiña versicolor',
             ],
             [
-                "name" => "Transpiración excesiva"
+                'name' => 'Transpiración excesiva',
             ],
             [
-                "name" => "Trastorno de Hartnup"
+                'name' => 'Trastorno de Hartnup',
             ],
             [
-                "name" => "Tricoclasia"
+                'name' => 'Tricoclasia',
             ],
             [
-                "name" => "Úlcera roedora"
+                'name' => 'Úlcera roedora',
             ],
             [
-                "name" => "Vaginitis por tricomonas"
+                'name' => 'Vaginitis por tricomonas',
             ],
             [
-                "name" => "Verruga vulgar"
+                'name' => 'Verruga vulgar',
             ],
             [
-                "name" => "Verrugas"
+                'name' => 'Verrugas',
             ],
             [
-                "name" => "Verrugas del pene"
+                'name' => 'Verrugas del pene',
             ],
             [
-                "name" => "Verrugas filiformes"
+                'name' => 'Verrugas filiformes',
             ],
             [
-                "name" => "Verrugas genitales"
+                'name' => 'Verrugas genitales',
             ],
             [
-                "name" => "Verrugas periungueales"
+                'name' => 'Verrugas periungueales',
             ],
             [
-                "name" => "Verrugas planas juveniles"
+                'name' => 'Verrugas planas juveniles',
             ],
             [
-                "name" => "Verrugas subungueales"
+                'name' => 'Verrugas subungueales',
             ],
             [
-                "name" => "Verrugas venéreas"
+                'name' => 'Verrugas venéreas',
             ],
             [
-                "name" => "Virus del papiloma humano (VPH)"
+                'name' => 'Virus del papiloma humano (VPH)',
             ],
             [
-                "name" => "Virus ECHO"
+                'name' => 'Virus ECHO',
             ],
             [
-                "name" => "Vitiligo"
+                'name' => 'Vitiligo',
             ],
             [
-                "name" => "Xantoma"
+                'name' => 'Xantoma',
             ],
             [
-                "name" => "Xerodermia pigmentosa"
+                'name' => 'Xerodermia pigmentosa',
             ],
             [
-                "name" => "Xerosis"
+                'name' => 'Xerosis',
             ],
             [
-                "name" => "Yatobyo (Japón)"
+                'name' => 'Yatobyo (Japón)',
             ],
             [
-                "name" => "Zumaque venenoso"
+                'name' => 'Zumaque venenoso',
             ],
             [
-                "name" => "Anorexia"
+                'name' => 'Anorexia',
             ],
             [
-                "name" => "Ansiedad"
+                'name' => 'Ansiedad',
             ],
             [
-                "name" => "Bulímia"
+                'name' => 'Bulímia',
             ],
             [
-                "name" => "Depresión en los ancianos"
+                'name' => 'Depresión en los ancianos',
             ],
             [
-                "name" => "Diabetes"
+                'name' => 'Diabetes',
             ],
             [
-                "name" => "Diabetes tipo 1"
+                'name' => 'Diabetes tipo 1',
             ],
             [
-                "name" => "Enfermedades de la tiroides"
+                'name' => 'Enfermedades de la tiroides',
             ],
             [
-                "name" => "Hígado graso"
+                'name' => 'Hígado graso',
             ],
             [
-                "name" => "Hipoglucemia"
+                'name' => 'Hipoglucemia',
             ],
             [
-                "name" => "Hipotiroidismo"
+                'name' => 'Hipotiroidismo',
             ],
             [
-                "name" => "Nefropatía diabética"
+                'name' => 'Nefropatía diabética',
             ],
             [
-                "name" => "Obesidad"
+                'name' => 'Obesidad',
             ],
             [
-                "name" => "Síndrome de resistencia a la insulina"
+                'name' => 'Síndrome de resistencia a la insulina',
             ],
             [
-                "name" => "Síndrome metabólico"
+                'name' => 'Síndrome metabólico',
             ],
             [
-                "name" => "Tumor pituitario (tumor de la hipófisis)"
+                'name' => 'Tumor pituitario (tumor de la hipófisis)',
             ],
             [
-                "name" => "Acidosis láctica"
+                'name' => 'Acidosis láctica',
             ],
             [
-                "name" => "Acidosis metabólica"
+                'name' => 'Acidosis metabólica',
             ],
             [
-                "name" => "Acondrogénesis"
+                'name' => 'Acondrogénesis',
             ],
             [
-                "name" => "Acromegalia"
+                'name' => 'Acromegalia',
             ],
             [
-                "name" => "Adenoma hipofisario secretor de prolactina"
+                'name' => 'Adenoma hipofisario secretor de prolactina',
             ],
             [
-                "name" => "Adenoma paratiroideo"
+                'name' => 'Adenoma paratiroideo',
             ],
             [
-                "name" => "Adenoma secretante"
+                'name' => 'Adenoma secretante',
             ],
             [
-                "name" => "Adenoma somatotrófico"
+                'name' => 'Adenoma somatotrófico',
             ],
             [
-                "name" => "Adrenoleucodistrofia"
+                'name' => 'Adrenoleucodistrofia',
             ],
             [
-                "name" => "Adrenoleucodistrofia ligada al cromosoma X"
+                'name' => 'Adrenoleucodistrofia ligada al cromosoma X',
             ],
             [
-                "name" => "Adrenomieloneuropatía"
+                'name' => 'Adrenomieloneuropatía',
             ],
             [
-                "name" => "ALD"
+                'name' => 'ALD',
             ],
             [
-                "name" => "Amenorrea primaria"
+                'name' => 'Amenorrea primaria',
             ],
             [
-                "name" => "Andropausia"
+                'name' => 'Andropausia',
             ],
             [
-                "name" => "Apolipoproteína E deficiente o defectuosa"
+                'name' => 'Apolipoproteína E deficiente o defectuosa',
             ],
             [
-                "name" => "Bebé de madre diabética"
+                'name' => 'Bebé de madre diabética',
             ],
             [
-                "name" => "Bocio nodular"
+                'name' => 'Bocio nodular',
             ],
             [
-                "name" => "Bocio tirotóxico difuso"
+                'name' => 'Bocio tirotóxico difuso',
             ],
             [
-                "name" => "Celiaquía"
+                'name' => 'Celiaquía',
             ],
             [
-                "name" => "Cetoacidosis"
+                'name' => 'Cetoacidosis',
             ],
             [
-                "name" => "Cetoacidosis diabética"
+                'name' => 'Cetoacidosis diabética',
             ],
             [
-                "name" => "Coma diabético hiperosmolar hiperglucémico"
+                'name' => 'Coma diabético hiperosmolar hiperglucémico',
             ],
             [
-                "name" => "Coma hiperosmolar hiperglucémico no cetónico"
+                'name' => 'Coma hiperosmolar hiperglucémico no cetónico',
             ],
             [
-                "name" => "Complejo de Schilder-Addison"
+                'name' => 'Complejo de Schilder-Addison',
             ],
             [
-                "name" => "Craneofaringioma"
+                'name' => 'Craneofaringioma',
             ],
             [
-                "name" => "Cretinismo"
+                'name' => 'Cretinismo',
             ],
             [
-                "name" => "Crisis addisoniana"
+                'name' => 'Crisis addisoniana',
             ],
             [
-                "name" => "Crisis hipertiroidea"
+                'name' => 'Crisis hipertiroidea',
             ],
             [
-                "name" => "Crisis suprarrenal"
+                'name' => 'Crisis suprarrenal',
             ],
             [
-                "name" => "Crisis suprarrenal aguda"
+                'name' => 'Crisis suprarrenal aguda',
             ],
             [
-                "name" => "Crisis tiroidea"
+                'name' => 'Crisis tiroidea',
             ],
             [
-                "name" => "Crisis tirotóxica"
+                'name' => 'Crisis tirotóxica',
             ],
             [
-                "name" => "Daño nervioso diabético"
+                'name' => 'Daño nervioso diabético',
             ],
             [
-                "name" => "Defensas bajas"
+                'name' => 'Defensas bajas',
             ],
             [
-                "name" => "Deficiencia de 21-hidroxilasa"
+                'name' => 'Deficiencia de 21-hidroxilasa',
             ],
             [
-                "name" => "Deficiencia de alfa-L-iduronidasa"
+                'name' => 'Deficiencia de alfa-L-iduronidasa',
             ],
             [
-                "name" => "Deficiencia de apolipoproteína B"
+                'name' => 'Deficiencia de apolipoproteína B',
             ],
             [
-                "name" => "Deficiencia de esfingomielinasa"
+                'name' => 'Deficiencia de esfingomielinasa',
             ],
             [
-                "name" => "Deficiencia de glucosa -6- fosfato deshidrogenasa"
+                'name' => 'Deficiencia de glucosa -6- fosfato deshidrogenasa',
             ],
             [
-                "name" => "Deficiencia de la hormona del crecimiento"
+                'name' => 'Deficiencia de la hormona del crecimiento',
             ],
             [
-                "name" => "Deficiencia familiar de lipoproteinlipasa"
+                'name' => 'Deficiencia familiar de lipoproteinlipasa',
             ],
             [
-                "name" => "Desnutrición maligna"
+                'name' => 'Desnutrición maligna',
             ],
             [
-                "name" => "Desnutrición proteica"
+                'name' => 'Desnutrición proteica',
             ],
             [
-                "name" => "Diabetes gestacional"
+                'name' => 'Diabetes gestacional',
             ],
             [
-                "name" => "Diabetes insípida central"
+                'name' => 'Diabetes insípida central',
             ],
             [
-                "name" => "Diabetes insípida nefrogénica"
+                'name' => 'Diabetes insípida nefrogénica',
             ],
             [
-                "name" => "Diabetes tipo 2"
+                'name' => 'Diabetes tipo 2',
             ],
             [
-                "name" => "Diaforesis"
+                'name' => 'Diaforesis',
             ],
             [
-                "name" => "Disbetalipoproteinemia familiar"
+                'name' => 'Disbetalipoproteinemia familiar',
             ],
             [
-                "name" => "Disfunción hipotalámica"
+                'name' => 'Disfunción hipotalámica',
             ],
             [
-                "name" => "DKA"
+                'name' => 'DKA',
             ],
             [
-                "name" => "DM"
+                'name' => 'DM',
             ],
             [
-                "name" => "Enanismo"
+                'name' => 'Enanismo',
             ],
             [
-                "name" => "Enanismo hipofisario"
+                'name' => 'Enanismo hipofisario',
             ],
             [
-                "name" => "Enfermedad de Cushing"
+                'name' => 'Enfermedad de Cushing',
             ],
             [
-                "name" => "Enfermedad de Cushing hipofisaria"
+                'name' => 'Enfermedad de Cushing hipofisaria',
             ],
             [
-                "name" => "Enfermedad de Gaucher"
+                'name' => 'Enfermedad de Gaucher',
             ],
             [
-                "name" => "Enfermedad de Graves"
+                'name' => 'Enfermedad de Graves',
             ],
             [
-                "name" => "Enfermedad de los ovarios poliquísticos"
+                'name' => 'Enfermedad de los ovarios poliquísticos',
             ],
             [
-                "name" => "Enfermedad de Von Gierke"
+                'name' => 'Enfermedad de Von Gierke',
             ],
             [
-                "name" => "Enfermedad ovárica poliquística"
+                'name' => 'Enfermedad ovárica poliquística',
             ],
             [
-                "name" => "Gigante hipofisario"
+                'name' => 'Gigante hipofisario',
             ],
             [
-                "name" => "Gigantismo"
+                'name' => 'Gigantismo',
             ],
             [
-                "name" => "Hiperaldosteronismo primario y secundario"
+                'name' => 'Hiperaldosteronismo primario y secundario',
             ],
             [
-                "name" => "Hiperandrogenismo"
+                'name' => 'Hiperandrogenismo',
             ],
             [
-                "name" => "Hipercalciemia relacionada con las paratiroides"
+                'name' => 'Hipercalciemia relacionada con las paratiroides',
             ],
             [
-                "name" => "Hipercaliemia"
+                'name' => 'Hipercaliemia',
             ],
             [
-                "name" => "Hipercortisolismo"
+                'name' => 'Hipercortisolismo',
             ],
             [
-                "name" => "Hiperlipidemia"
+                'name' => 'Hiperlipidemia',
             ],
             [
-                "name" => "Hiperlipoproteinemia"
+                'name' => 'Hiperlipoproteinemia',
             ],
             [
-                "name" => "Hiperplasia suprarrenal congénita"
+                'name' => 'Hiperplasia suprarrenal congénita',
             ],
             [
-                "name" => "Hipertiroidismo"
+                'name' => 'Hipertiroidismo',
             ],
             [
-                "name" => "Hipertiroidismo congénito"
+                'name' => 'Hipertiroidismo congénito',
             ],
             [
-                "name" => "Hipertiroidismo provocado"
+                'name' => 'Hipertiroidismo provocado',
             ],
             [
-                "name" => "Hipertrigliceridemia familiar"
+                'name' => 'Hipertrigliceridemia familiar',
             ],
             [
-                "name" => "Hipocaliemia"
+                'name' => 'Hipocaliemia',
             ],
             [
-                "name" => "Hipogonadismo primario en hombres"
+                'name' => 'Hipogonadismo primario en hombres',
             ],
             [
-                "name" => "Hiponatremia euvolémica"
+                'name' => 'Hiponatremia euvolémica',
             ],
             [
-                "name" => "Hipoparatiroidismo"
+                'name' => 'Hipoparatiroidismo',
             ],
             [
-                "name" => "Hipopituitarismo"
+                'name' => 'Hipopituitarismo',
             ],
             [
-                "name" => "Hipotiroidismo central"
+                'name' => 'Hipotiroidismo central',
             ],
             [
-                "name" => "Hipotiroidismo congénito"
+                'name' => 'Hipotiroidismo congénito',
             ],
             [
-                "name" => "Hipotiroidismo en adultos"
+                'name' => 'Hipotiroidismo en adultos',
             ],
             [
-                "name" => "Hipotiroidismo en bebés"
+                'name' => 'Hipotiroidismo en bebés',
             ],
             [
-                "name" => "Hipotiroidismo inducido por medicamentos"
+                'name' => 'Hipotiroidismo inducido por medicamentos',
             ],
             [
-                "name" => "Hipotiroidismo secundario"
+                'name' => 'Hipotiroidismo secundario',
             ],
             [
-                "name" => "HONK=> coma hiperosmolar no cetónico"
+                'name' => 'HONK=> coma hiperosmolar no cetónico',
             ],
             [
-                "name" => "Incidentaloma de tiroides"
+                'name' => 'Incidentaloma de tiroides',
             ],
             [
-                "name" => "Insuficiencia Adrenal"
+                'name' => 'Insuficiencia Adrenal',
             ],
             [
-                "name" => "Insuficiencia corticosuprarrenal crónica"
+                'name' => 'Insuficiencia corticosuprarrenal crónica',
             ],
             [
-                "name" => "Insuficiencia en el crecimiento"
+                'name' => 'Insuficiencia en el crecimiento',
             ],
             [
-                "name" => "Insuficiencia hipofisaria"
+                'name' => 'Insuficiencia hipofisaria',
             ],
             [
-                "name" => "Insuficiencia suprarrenal aguda"
+                'name' => 'Insuficiencia suprarrenal aguda',
             ],
             [
-                "name" => "Insuficiencia suprarrenal exógena"
+                'name' => 'Insuficiencia suprarrenal exógena',
             ],
             [
-                "name" => "Insuficiencia suprarrenal inducida por fármacos"
+                'name' => 'Insuficiencia suprarrenal inducida por fármacos',
             ],
             [
-                "name" => "Insuficiencia suprarrenal primaria"
+                'name' => 'Insuficiencia suprarrenal primaria',
             ],
             [
-                "name" => "Menopausia"
+                'name' => 'Menopausia',
             ],
             [
-                "name" => "Mixedema"
+                'name' => 'Mixedema',
             ],
             [
-                "name" => "Mononeuropatía del III par craneal de tipo diabético"
+                'name' => 'Mononeuropatía del III par craneal de tipo diabético',
             ],
             [
-                "name" => "Monosomía X"
+                'name' => 'Monosomía X',
             ],
             [
-                "name" => "Neuropatía diabética"
+                'name' => 'Neuropatía diabética',
             ],
             [
-                "name" => "NKKKC"
+                'name' => 'NKKKC',
             ],
             [
-                "name" => "Nutrición inadecuada"
+                'name' => 'Nutrición inadecuada',
             ],
             [
-                "name" => "Osteítis fibroquística"
+                'name' => 'Osteítis fibroquística',
             ],
             [
-                "name" => "Osteítis fibrosa"
+                'name' => 'Osteítis fibrosa',
             ],
             [
-                "name" => "Osteodistrofia hereditaria de Albright"
+                'name' => 'Osteodistrofia hereditaria de Albright',
             ],
             [
-                "name" => "Osteoporosis"
+                'name' => 'Osteoporosis',
             ],
             [
-                "name" => "Panhipopituitarismo"
+                'name' => 'Panhipopituitarismo',
             ],
             [
-                "name" => "Parálisis del tercer nervio craneal"
+                'name' => 'Parálisis del tercer nervio craneal',
             ],
             [
-                "name" => "Parálisis del tercer nervio craneal en diabéticos"
+                'name' => 'Parálisis del tercer nervio craneal en diabéticos',
             ],
             [
-                "name" => "Parálisis del tercer nervio craneal preservador de la pupila"
+                'name' => 'Parálisis del tercer nervio craneal preservador de la pupila',
             ],
             [
-                "name" => "Parálisis oculomotora"
+                'name' => 'Parálisis oculomotora',
             ],
             [
-                "name" => "Parálisis periódica tirotóxica"
+                'name' => 'Parálisis periódica tirotóxica',
             ],
             [
-                "name" => "Parálisis tirotóxica periódica"
+                'name' => 'Parálisis tirotóxica periódica',
             ],
             [
-                "name" => "Patologías del crecimiento"
+                'name' => 'Patologías del crecimiento',
             ],
             [
-                "name" => "Perimenopausia"
+                'name' => 'Perimenopausia',
             ],
             [
-                "name" => "Posmenopausia"
+                'name' => 'Posmenopausia',
             ],
             [
-                "name" => "Prolactinoma"
+                'name' => 'Prolactinoma',
             ],
             [
-                "name" => "Prolactinoma en las mujeres"
+                'name' => 'Prolactinoma en las mujeres',
             ],
             [
-                "name" => "Prolactinoma en los hombres"
+                'name' => 'Prolactinoma en los hombres',
             ],
             [
-                "name" => "Pubertad precoz"
+                'name' => 'Pubertad precoz',
             ],
             [
-                "name" => "Reticuloendoteliosis leucémica"
+                'name' => 'Reticuloendoteliosis leucémica',
             ],
             [
-                "name" => "Sangrado anovulatorio"
+                'name' => 'Sangrado anovulatorio',
             ],
             [
-                "name" => "Secreción ectópica de hormona antidiurética"
+                'name' => 'Secreción ectópica de hormona antidiurética',
             ],
             [
-                "name" => "Seudohipoparatiroidismo"
+                'name' => 'Seudohipoparatiroidismo',
             ],
             [
-                "name" => "Seudoquiste pancreático"
+                'name' => 'Seudoquiste pancreático',
             ],
             [
-                "name" => "Shock insulínico"
+                'name' => 'Shock insulínico',
             ],
             [
-                "name" => "Síndrome de Alström"
+                'name' => 'Síndrome de Alström',
             ],
             [
-                "name" => "Síndrome de Bonnevie-Ullrich"
+                'name' => 'Síndrome de Bonnevie-Ullrich',
             ],
             [
-                "name" => "Síndrome de Conn"
+                'name' => 'Síndrome de Conn',
             ],
             [
-                "name" => "Síndrome de Cushing"
+                'name' => 'Síndrome de Cushing',
             ],
             [
-                "name" => "Síndrome de Cushing debido a un tumor suprarrenal"
+                'name' => 'Síndrome de Cushing debido a un tumor suprarrenal',
             ],
             [
-                "name" => "Síndrome de Cushing ectópico"
+                'name' => 'Síndrome de Cushing ectópico',
             ],
             [
-                "name" => "Síndrome de Cushing inducido por corticosteroides"
+                'name' => 'Síndrome de Cushing inducido por corticosteroides',
             ],
             [
-                "name" => "Síndrome de Cushing yatrógeno"
+                'name' => 'Síndrome de Cushing yatrógeno',
             ],
             [
-                "name" => "Síndrome de Ellis-van Creveld"
+                'name' => 'Síndrome de Ellis-van Creveld',
             ],
             [
-                "name" => "Síndrome de la silla turca vacía"
+                'name' => 'Síndrome de la silla turca vacía',
             ],
             [
-                "name" => "Síndrome de los ovarios poliquísticos (PCOS)"
+                'name' => 'Síndrome de los ovarios poliquísticos (PCOS)',
             ],
             [
-                "name" => "Síndrome de McArdle"
+                'name' => 'Síndrome de McArdle',
             ],
             [
-                "name" => "Síndrome de Prader-Willi"
+                'name' => 'Síndrome de Prader-Willi',
             ],
             [
-                "name" => "Síndrome de Reifenstein"
+                'name' => 'Síndrome de Reifenstein',
             ],
             [
-                "name" => "Síndrome de Silver"
+                'name' => 'Síndrome de Silver',
             ],
             [
-                "name" => "Síndrome de Waterhouse-Friderichsen"
+                'name' => 'Síndrome de Waterhouse-Friderichsen',
             ],
             [
-                "name" => "Síndrome genitosuprarrenal"
+                'name' => 'Síndrome genitosuprarrenal',
             ],
             [
-                "name" => "Síndrome premenstrual (SPM)"
+                'name' => 'Síndrome premenstrual (SPM)',
             ],
             [
-                "name" => "Sobrepeso"
+                'name' => 'Sobrepeso',
             ],
             [
-                "name" => "Sobreproducción ovárica de andrógenos"
+                'name' => 'Sobreproducción ovárica de andrógenos',
             ],
             [
-                "name" => "Tiroides subesternal"
+                'name' => 'Tiroides subesternal',
             ],
             [
-                "name" => "Tiroiditis autoinmunitaria"
+                'name' => 'Tiroiditis autoinmunitaria',
             ],
             [
-                "name" => "Tiroiditis crónica (Enfermedad de Hashimoto)"
+                'name' => 'Tiroiditis crónica (Enfermedad de Hashimoto)',
             ],
             [
-                "name" => "Tiroiditis de células gigantes"
+                'name' => 'Tiroiditis de células gigantes',
             ],
             [
-                "name" => "Tiroiditis de DeQuervain"
+                'name' => 'Tiroiditis de DeQuervain',
             ],
             [
-                "name" => "Tiroiditis de Hashimoto"
+                'name' => 'Tiroiditis de Hashimoto',
             ],
             [
-                "name" => "Tiroiditis granulomatosa subaguda"
+                'name' => 'Tiroiditis granulomatosa subaguda',
             ],
             [
-                "name" => "Tiroiditis indolora"
+                'name' => 'Tiroiditis indolora',
             ],
             [
-                "name" => "Tiroiditis linfocítica"
+                'name' => 'Tiroiditis linfocítica',
             ],
             [
-                "name" => "Tiroiditis linfocítica subaguda"
+                'name' => 'Tiroiditis linfocítica subaguda',
             ],
             [
-                "name" => "Tiroiditis no supurativa subaguda"
+                'name' => 'Tiroiditis no supurativa subaguda',
             ],
             [
-                "name" => "Tiroiditis silenciosa"
+                'name' => 'Tiroiditis silenciosa',
             ],
             [
-                "name" => "Tiroiditis subaguda"
+                'name' => 'Tiroiditis subaguda',
             ],
             [
-                "name" => "Tirotoxicosis"
+                'name' => 'Tirotoxicosis',
             ],
             [
-                "name" => "Tirotoxicosis medicamentosa"
+                'name' => 'Tirotoxicosis medicamentosa',
             ],
             [
-                "name" => "Tirotoxicosis provocada"
+                'name' => 'Tirotoxicosis provocada',
             ],
             [
-                "name" => "Tirotoxicosis simulada"
+                'name' => 'Tirotoxicosis simulada',
             ],
             [
-                "name" => "Transtornos de las suprarrenales"
+                'name' => 'Transtornos de las suprarrenales',
             ],
             [
-                "name" => "Trastorno disfórico premenstrual (TDPM)"
+                'name' => 'Trastorno disfórico premenstrual (TDPM)',
             ],
             [
-                "name" => "Trastornos hormonales"
+                'name' => 'Trastornos hormonales',
             ],
             [
-                "name" => "Tumor hipofisario"
+                'name' => 'Tumor hipofisario',
             ],
             [
-                "name" => "Cirrosis biliar primaria"
+                'name' => 'Cirrosis biliar primaria',
             ],
             [
-                "name" => "Colangitis biliar"
+                'name' => 'Colangitis biliar',
             ],
             [
-                "name" => "Colitits ulcerativa"
+                'name' => 'Colitits ulcerativa',
             ],
             [
-                "name" => "Diarrea crónica"
+                'name' => 'Diarrea crónica',
             ],
             [
-                "name" => "Gastroparesia"
+                'name' => 'Gastroparesia',
             ],
             [
-                "name" => "Hepatitis autoinmunitaria"
+                'name' => 'Hepatitis autoinmunitaria',
             ],
             [
-                "name" => "Intolerancia a la lactosa"
+                'name' => 'Intolerancia a la lactosa',
             ],
             [
-                "name" => "Síndrome de Zollinger-Ellison"
+                'name' => 'Síndrome de Zollinger-Ellison',
             ],
             [
-                "name" => "Autismo"
+                'name' => 'Autismo',
             ],
             [
-                "name" => "Bullying (acoso escolar)"
+                'name' => 'Bullying (acoso escolar)',
             ],
             [
-                "name" => "Callos y callosidades"
+                'name' => 'Callos y callosidades',
             ],
             [
-                "name" => "Cáncer del hígado"
+                'name' => 'Cáncer del hígado',
             ],
             [
-                "name" => "Candidiasis oral (Algodoncillo)"
+                'name' => 'Candidiasis oral (Algodoncillo)',
             ],
             [
-                "name" => "Cólico infantil"
+                'name' => 'Cólico infantil',
             ],
             [
-                "name" => "Demencia senil"
+                'name' => 'Demencia senil',
             ],
             [
-                "name" => "Dentición"
+                'name' => 'Dentición',
             ],
             [
-                "name" => "Displasia congénita de la cadera"
+                'name' => 'Displasia congénita de la cadera',
             ],
             [
-                "name" => "Distrofia muscular"
+                'name' => 'Distrofia muscular',
             ],
             [
-                "name" => "Diverticulosis"
+                'name' => 'Diverticulosis',
             ],
             [
-                "name" => "Enfermedad de Alzheimer"
+                'name' => 'Enfermedad de Alzheimer',
             ],
             [
-                "name" => "Enfermedad mano-pie-boca"
+                'name' => 'Enfermedad mano-pie-boca',
             ],
             [
-                "name" => "Enfermedades terminales"
+                'name' => 'Enfermedades terminales',
             ],
             [
-                "name" => "Enfisema pulmonar"
+                'name' => 'Enfisema pulmonar',
             ],
             [
-                "name" => "Espina bífida"
+                'name' => 'Espina bífida',
             ],
             [
-                "name" => "Fibrosis quística"
+                'name' => 'Fibrosis quística',
             ],
             [
-                "name" => "Gastroenteritis"
+                'name' => 'Gastroenteritis',
             ],
             [
-                "name" => "Glándula de Bartolino"
+                'name' => 'Glándula de Bartolino',
             ],
             [
-                "name" => "Hemiplejía"
+                'name' => 'Hemiplejía',
             ],
             [
-                "name" => "Hemofilia"
+                'name' => 'Hemofilia',
             ],
             [
-                "name" => "Heridas"
+                'name' => 'Heridas',
             ],
             [
-                "name" => "Infección de la piel por bacterias"
+                'name' => 'Infección de la piel por bacterias',
             ],
             [
-                "name" => "Intubación nasogástrica o endotraqueal traumática"
+                'name' => 'Intubación nasogástrica o endotraqueal traumática',
             ],
             [
-                "name" => "Lesión de la vejiga y la uretra"
+                'name' => 'Lesión de la vejiga y la uretra',
             ],
             [
-                "name" => "Parálisis espástica"
+                'name' => 'Parálisis espástica',
             ],
             [
-                "name" => "Parto prematuro"
+                'name' => 'Parto prematuro',
             ],
             [
-                "name" => "Resfriado común"
+                'name' => 'Resfriado común',
             ],
             [
-                "name" => "Síndrome de Asperger"
+                'name' => 'Síndrome de Asperger',
             ],
             [
-                "name" => "Síndrome de Edwards"
+                'name' => 'Síndrome de Edwards',
             ],
             [
-                "name" => "Síndrome de muerte súbita del lactante"
+                'name' => 'Síndrome de muerte súbita del lactante',
             ],
             [
-                "name" => "Síndrome de Turner"
+                'name' => 'Síndrome de Turner',
             ],
             [
-                "name" => "Tendinitis"
+                'name' => 'Tendinitis',
             ],
             [
-                "name" => "Tensión arterial baja"
+                'name' => 'Tensión arterial baja',
             ],
             [
-                "name" => "Trastorno de conducta del sueño en fase REM"
+                'name' => 'Trastorno de conducta del sueño en fase REM',
             ],
             [
-                "name" => "Tumor"
+                'name' => 'Tumor',
             ],
             [
-                "name" => "Atrofia muscular espinal"
+                'name' => 'Atrofia muscular espinal',
             ],
             [
-                "name" => "AVN"
+                'name' => 'AVN',
             ],
             [
-                "name" => "Bursitis"
+                'name' => 'Bursitis',
             ],
             [
-                "name" => "Bursitis epitroclear"
+                'name' => 'Bursitis epitroclear',
             ],
             [
-                "name" => "Bursitis retrocalcánea"
+                'name' => 'Bursitis retrocalcánea',
             ],
             [
-                "name" => "Causalgia"
+                'name' => 'Causalgia',
             ],
             [
-                "name" => "Ciática"
+                'name' => 'Ciática',
             ],
             [
-                "name" => "Clavícula fracturada en un recién nacido"
+                'name' => 'Clavícula fracturada en un recién nacido',
             ],
             [
-                "name" => "Contractura cervical"
+                'name' => 'Contractura cervical',
             ],
             [
-                "name" => "Cuello torcido"
+                'name' => 'Cuello torcido',
             ],
             [
-                "name" => "Curvatura de la columna"
+                'name' => 'Curvatura de la columna',
             ],
             [
-                "name" => "Dolor de cabeza por contracción muscular"
+                'name' => 'Dolor de cabeza por contracción muscular',
             ],
             [
-                "name" => "Dolor de espalda inespecífico"
+                'name' => 'Dolor de espalda inespecífico',
             ],
             [
-                "name" => "Dolor en la inserción del talón"
+                'name' => 'Dolor en la inserción del talón',
             ],
             [
-                "name" => "Dolor muscular"
+                'name' => 'Dolor muscular',
             ],
             [
-                "name" => "Enfermedad de Parkinson"
+                'name' => 'Enfermedad de Parkinson',
             ],
             [
-                "name" => "Epicondilitis humeral"
+                'name' => 'Epicondilitis humeral',
             ],
             [
-                "name" => "Espasticidad"
+                'name' => 'Espasticidad',
             ],
             [
-                "name" => "Espondiloartropatía"
+                'name' => 'Espondiloartropatía',
             ],
             [
-                "name" => "Fatiga crónica"
+                'name' => 'Fatiga crónica',
             ],
             [
-                "name" => "Fibromiositis"
+                'name' => 'Fibromiositis',
             ],
             [
-                "name" => "Hernia de disco"
+                'name' => 'Hernia de disco',
             ],
             [
-                "name" => "LDM"
+                'name' => 'LDM',
             ],
             [
-                "name" => "Lesión cerebral en bebés"
+                'name' => 'Lesión cerebral en bebés',
             ],
             [
-                "name" => "Lesiones deportivas"
+                'name' => 'Lesiones deportivas',
             ],
             [
-                "name" => "Leucodistrofia metacromática"
+                'name' => 'Leucodistrofia metacromática',
             ],
             [
-                "name" => "Miopatía hereditaria"
+                'name' => 'Miopatía hereditaria',
             ],
             [
-                "name" => "OPCA"
+                'name' => 'OPCA',
             ],
             [
-                "name" => "Osteopenia de la prematuridad"
+                'name' => 'Osteopenia de la prematuridad',
             ],
             [
-                "name" => "Parálisis cerebral"
+                'name' => 'Parálisis cerebral',
             ],
             [
-                "name" => "Parálisis de Erb-Duchenne"
+                'name' => 'Parálisis de Erb-Duchenne',
             ],
             [
-                "name" => "Parálisis facial"
+                'name' => 'Parálisis facial',
             ],
             [
-                "name" => "Postura jorobada"
+                'name' => 'Postura jorobada',
             ],
             [
-                "name" => "Radiculopatía cervical"
+                'name' => 'Radiculopatía cervical',
             ],
             [
-                "name" => "Radiculopatía lumbar"
+                'name' => 'Radiculopatía lumbar',
             ],
             [
-                "name" => "SDRC"
+                'name' => 'SDRC',
             ],
             [
-                "name" => "SDSR"
+                'name' => 'SDSR',
             ],
             [
-                "name" => "Síndrome de distrofia simpática refleja"
+                'name' => 'Síndrome de distrofia simpática refleja',
             ],
             [
-                "name" => "Síndrome de dolor miofascial"
+                'name' => 'Síndrome de dolor miofascial',
             ],
             [
-                "name" => "Síndrome de Down"
+                'name' => 'Síndrome de Down',
             ],
             [
-                "name" => "Síndrome de fatiga crónica"
+                'name' => 'Síndrome de fatiga crónica',
             ],
             [
-                "name" => "Síndrome de Williams"
+                'name' => 'Síndrome de Williams',
             ],
             [
-                "name" => "Síndrome de Williams-Beuren"
+                'name' => 'Síndrome de Williams-Beuren',
             ],
             [
-                "name" => "Syrinx"
+                'name' => 'Syrinx',
             ],
             [
-                "name" => "Tendinitis del manguito de los rotadores"
+                'name' => 'Tendinitis del manguito de los rotadores',
             ],
             [
-                "name" => "Tendinitis, esguinces articulares"
+                'name' => 'Tendinitis, esguinces articulares',
             ],
             [
-                "name" => "Absceso del ano y el recto"
+                'name' => 'Absceso del ano y el recto',
             ],
             [
-                "name" => "Adenocarcinoma del estómago"
+                'name' => 'Adenocarcinoma del estómago',
             ],
             [
-                "name" => "Agente delta (hepatitis D)"
+                'name' => 'Agente delta (hepatitis D)',
             ],
             [
-                "name" => "Amebiasis"
+                'name' => 'Amebiasis',
             ],
             [
-                "name" => "Amebiasis intestinal"
+                'name' => 'Amebiasis intestinal',
             ],
             [
-                "name" => "Anisakiasis"
+                'name' => 'Anisakiasis',
             ],
             [
-                "name" => "Anorexia nerviosa"
+                'name' => 'Anorexia nerviosa',
             ],
             [
-                "name" => "Anquilostomosis"
+                'name' => 'Anquilostomosis',
             ],
             [
-                "name" => "Ascariasis"
+                'name' => 'Ascariasis',
             ],
             [
-                "name" => "Ascitis"
+                'name' => 'Ascitis',
             ],
             [
-                "name" => "Atresia biliar"
+                'name' => 'Atresia biliar',
             ],
             [
-                "name" => "Atrofia multisistémica"
+                'name' => 'Atrofia multisistémica',
             ],
             [
-                "name" => "Ausencia del factor intrínseco"
+                'name' => 'Ausencia del factor intrínseco',
             ],
             [
-                "name" => "Bilirrubinemia benigna no conjugada"
+                'name' => 'Bilirrubinemia benigna no conjugada',
             ],
             [
-                "name" => "Botulismo"
+                'name' => 'Botulismo',
             ],
             [
-                "name" => "Cáncer colorrectal"
+                'name' => 'Cáncer colorrectal',
             ],
             [
-                "name" => "Cáncer de las vías biliares"
+                'name' => 'Cáncer de las vías biliares',
             ],
             [
-                "name" => "Carencia del factor intrínseco"
+                'name' => 'Carencia del factor intrínseco',
             ],
             [
-                "name" => "CBP"
+                'name' => 'CBP',
             ],
             [
-                "name" => "Cirrosis"
+                'name' => 'Cirrosis',
             ],
             [
-                "name" => "Cirrosis de Laennec"
+                'name' => 'Cirrosis de Laennec',
             ],
             [
-                "name" => "Cirrosis o hepatitis alcohólica"
+                'name' => 'Cirrosis o hepatitis alcohólica',
             ],
             [
-                "name" => "Cisticercosis"
+                'name' => 'Cisticercosis',
             ],
             [
-                "name" => "Colangiocarcinoma"
+                'name' => 'Colangiocarcinoma',
             ],
             [
-                "name" => "Colangitis esclerosante primaria"
+                'name' => 'Colangitis esclerosante primaria',
             ],
             [
-                "name" => "Cólera"
+                'name' => 'Cólera',
             ],
             [
-                "name" => "Colestasis"
+                'name' => 'Colestasis',
             ],
             [
-                "name" => "Colestasis inducida por fármacos"
+                'name' => 'Colestasis inducida por fármacos',
             ],
             [
-                "name" => "Colestasis intrahepática"
+                'name' => 'Colestasis intrahepática',
             ],
             [
-                "name" => "Cólico biliar"
+                'name' => 'Cólico biliar',
             ],
             [
-                "name" => "Colitis asociada con antibióticos"
+                'name' => 'Colitis asociada con antibióticos',
             ],
             [
-                "name" => "Colitis funcional"
+                'name' => 'Colitis funcional',
             ],
             [
-                "name" => "Colitis mucosa"
+                'name' => 'Colitis mucosa',
             ],
             [
-                "name" => "Colitis por citomegalovirus"
+                'name' => 'Colitis por citomegalovirus',
             ],
             [
-                "name" => "Colitis por laxantes"
+                'name' => 'Colitis por laxantes',
             ],
             [
-                "name" => "Colitis seudomembranosa"
+                'name' => 'Colitis seudomembranosa',
             ],
             [
-                "name" => "Colitis ulcerosa"
+                'name' => 'Colitis ulcerosa',
             ],
             [
-                "name" => "Colon espástico"
+                'name' => 'Colon espástico',
             ],
             [
-                "name" => "Coma hepático"
+                'name' => 'Coma hepático',
             ],
             [
-                "name" => "Condiciones relacionadas con ictericia"
+                'name' => 'Condiciones relacionadas con ictericia',
             ],
             [
-                "name" => "Crecimiento excesivo de bacterias en el intestino"
+                'name' => 'Crecimiento excesivo de bacterias en el intestino',
             ],
             [
-                "name" => "Cryptosporidiosis"
+                'name' => 'Cryptosporidiosis',
             ],
             [
-                "name" => "Deficiencia de beta galactosidasa"
+                'name' => 'Deficiencia de beta galactosidasa',
             ],
             [
-                "name" => "Deficiencia de disacaridasa"
+                'name' => 'Deficiencia de disacaridasa',
             ],
             [
-                "name" => "Deficiencia de Fructosa 1,6 bifosfato aldolasa"
+                'name' => 'Deficiencia de Fructosa 1,6 bifosfato aldolasa',
             ],
             [
-                "name" => "Deficiencia de galactosa-1-fosfatouridil transferasa"
+                'name' => 'Deficiencia de galactosa-1-fosfatouridil transferasa',
             ],
             [
-                "name" => "Deficiencia de galactosa-6-fosfato epimerasa"
+                'name' => 'Deficiencia de galactosa-6-fosfato epimerasa',
             ],
             [
-                "name" => "Deficiencia de glucuronil transferasa (Crigler-Najjar tipo I)"
+                'name' => 'Deficiencia de glucuronil transferasa (Crigler-Najjar tipo I)',
             ],
             [
-                "name" => "Deficiencia de iduronato sulfatasa"
+                'name' => 'Deficiencia de iduronato sulfatasa',
             ],
             [
-                "name" => "Deficiencia de lactasa"
+                'name' => 'Deficiencia de lactasa',
             ],
             [
-                "name" => "Deficiencia de vitamina B12 (malabsorción)"
+                'name' => 'Deficiencia de vitamina B12 (malabsorción)',
             ],
             [
-                "name" => "Degeneración hepatocerebral"
+                'name' => 'Degeneración hepatocerebral',
             ],
             [
-                "name" => "Degeneración hepatocerebral crónica adquirida (no Wilsoniana)"
+                'name' => 'Degeneración hepatocerebral crónica adquirida (no Wilsoniana)',
             ],
             [
-                "name" => "Degeneración hepatolenticular"
+                'name' => 'Degeneración hepatolenticular',
             ],
             [
-                "name" => "Delgadez"
+                'name' => 'Delgadez',
             ],
             [
-                "name" => "Diarrea"
+                'name' => 'Diarrea',
             ],
             [
-                "name" => "Diarrea bacteriana"
+                'name' => 'Diarrea bacteriana',
             ],
             [
-                "name" => "Diarrea inducida por medicamentos"
+                'name' => 'Diarrea inducida por medicamentos',
             ],
             [
-                "name" => "Diarrea infecciosa por Campylobacter"
+                'name' => 'Diarrea infecciosa por Campylobacter',
             ],
             [
-                "name" => "Diarrea por E. coli"
+                'name' => 'Diarrea por E. coli',
             ],
             [
-                "name" => "Difilobotriasis"
+                'name' => 'Difilobotriasis',
             ],
             [
-                "name" => "Discinesia biliar"
+                'name' => 'Discinesia biliar',
             ],
             [
-                "name" => "Disentería amebiana"
+                'name' => 'Disentería amebiana',
             ],
             [
-                "name" => "Disfagia"
+                'name' => 'Disfagia',
             ],
             [
-                "name" => "Disfagia sideropénica"
+                'name' => 'Disfagia sideropénica',
             ],
             [
-                "name" => "Disfunción hepática constitucional"
+                'name' => 'Disfunción hepática constitucional',
             ],
             [
-                "name" => "Dolor abdominal"
+                'name' => 'Dolor abdominal',
             ],
             [
-                "name" => "Duodenitis"
+                'name' => 'Duodenitis',
             ],
             [
-                "name" => "E. Vermacularis"
+                'name' => 'E. Vermacularis',
             ],
             [
-                "name" => "Encefalopatía bilirrubínica"
+                'name' => 'Encefalopatía bilirrubínica',
             ],
             [
-                "name" => "Encefalopatía hepática"
+                'name' => 'Encefalopatía hepática',
             ],
             [
-                "name" => "Enfermedad biliar"
+                'name' => 'Enfermedad biliar',
             ],
             [
-                "name" => "Enfermedad celíaca (esprúe)"
+                'name' => 'Enfermedad celíaca (esprúe)',
             ],
             [
-                "name" => "Enfermedad de la hamburguesa"
+                'name' => 'Enfermedad de la hamburguesa',
             ],
             [
-                "name" => "Enfermedad de Whipple"
+                'name' => 'Enfermedad de Whipple',
             ],
             [
-                "name" => "Enfermedad de Wilson"
+                'name' => 'Enfermedad de Wilson',
             ],
             [
-                "name" => "Enfermedad gastrointestinal por CMV"
+                'name' => 'Enfermedad gastrointestinal por CMV',
             ],
             [
-                "name" => "Enfermedad hepática"
+                'name' => 'Enfermedad hepática',
             ],
             [
-                "name" => "Enfermedad hepática alcohólica"
+                'name' => 'Enfermedad hepática alcohólica',
             ],
             [
-                "name" => "Enteritis"
+                'name' => 'Enteritis',
             ],
             [
-                "name" => "Enteritis por Campylobacter"
+                'name' => 'Enteritis por Campylobacter',
             ],
             [
-                "name" => "Enteritis por Campylobacter a causa de intoxicación por alimentos"
+                'name' => 'Enteritis por Campylobacter a causa de intoxicación por alimentos',
             ],
             [
-                "name" => "Enteritis por criptosporidio"
+                'name' => 'Enteritis por criptosporidio',
             ],
             [
-                "name" => "Enteritis por radiación"
+                'name' => 'Enteritis por radiación',
             ],
             [
-                "name" => "Enteritis por Shigella"
+                'name' => 'Enteritis por Shigella',
             ],
             [
-                "name" => "Enterobius vermacularis"
+                'name' => 'Enterobius vermacularis',
             ],
             [
-                "name" => "Enterocolitis por salmonela"
+                'name' => 'Enterocolitis por salmonela',
             ],
             [
-                "name" => "Enteromerocele"
+                'name' => 'Enteromerocele',
             ],
             [
-                "name" => "Enteropatía perdedora de proteínas"
+                'name' => 'Enteropatía perdedora de proteínas',
             ],
             [
-                "name" => "Enteropatía por radiación"
+                'name' => 'Enteropatía por radiación',
             ],
             [
-                "name" => "Enteropatía por sensibilidad al gluten"
+                'name' => 'Enteropatía por sensibilidad al gluten',
             ],
             [
-                "name" => "Esofagitis por cándida"
+                'name' => 'Esofagitis por cándida',
             ],
             [
-                "name" => "Esofagitis por citomegalovirus"
+                'name' => 'Esofagitis por citomegalovirus',
             ],
             [
-                "name" => "Esofagitis por herpes"
+                'name' => 'Esofagitis por herpes',
             ],
             [
-                "name" => "Espasmos del esófago"
+                'name' => 'Espasmos del esófago',
             ],
             [
-                "name" => "Espasmos esofágicos difusos"
+                'name' => 'Espasmos esofágicos difusos',
             ],
             [
-                "name" => "Estenosis pilórica hipertrófica congénita"
+                'name' => 'Estenosis pilórica hipertrófica congénita',
             ],
             [
-                "name" => "Estomatitis candidósica"
+                'name' => 'Estomatitis candidósica',
             ],
             [
-                "name" => "Estomatitis de Vincent"
+                'name' => 'Estomatitis de Vincent',
             ],
             [
-                "name" => "Estreñimiento"
+                'name' => 'Estreñimiento',
             ],
             [
-                "name" => "Estreñimiento en embarazadas"
+                'name' => 'Estreñimiento en embarazadas',
             ],
             [
-                "name" => "Estrongiloidiasis"
+                'name' => 'Estrongiloidiasis',
             ],
             [
-                "name" => "Faringitis estreptocócica"
+                'name' => 'Faringitis estreptocócica',
             ],
             [
-                "name" => "Femorocele"
+                'name' => 'Femorocele',
             ],
             [
-                "name" => "Fibrosis hepática"
+                'name' => 'Fibrosis hepática',
             ],
             [
-                "name" => "Fibrosis retroperitoneal"
+                'name' => 'Fibrosis retroperitoneal',
             ],
             [
-                "name" => "Fibrosis retroperitoneal idiopática"
+                'name' => 'Fibrosis retroperitoneal idiopática',
             ],
             [
-                "name" => "Fiebre de Chipre"
+                'name' => 'Fiebre de Chipre',
             ],
             [
-                "name" => "Fiebre de Gibraltar"
+                'name' => 'Fiebre de Gibraltar',
             ],
             [
-                "name" => "Fiebre de los arrozales"
+                'name' => 'Fiebre de los arrozales',
             ],
             [
-                "name" => "Fiebre de Query"
+                'name' => 'Fiebre de Query',
             ],
             [
-                "name" => "Fiebre del fango"
+                'name' => 'Fiebre del fango',
             ],
             [
-                "name" => "Fiebre icterohemorrágica"
+                'name' => 'Fiebre icterohemorrágica',
             ],
             [
-                "name" => "Fiebre ondulante"
+                'name' => 'Fiebre ondulante',
             ],
             [
-                "name" => "Fiebre por Leptospira canicola"
+                'name' => 'Fiebre por Leptospira canicola',
             ],
             [
-                "name" => "Fiebre Q"
+                'name' => 'Fiebre Q',
             ],
             [
-                "name" => "Fiebre Q temprana"
+                'name' => 'Fiebre Q temprana',
             ],
             [
-                "name" => "Fiebre viral hemorrágica"
+                'name' => 'Fiebre viral hemorrágica',
             ],
             [
-                "name" => "Galactosemia"
+                'name' => 'Galactosemia',
             ],
             [
-                "name" => "Gastritis aguda"
+                'name' => 'Gastritis aguda',
             ],
             [
-                "name" => "Gastritis por estrés"
+                'name' => 'Gastritis por estrés',
             ],
             [
-                "name" => "Gastritis por Helicobacter pylori"
+                'name' => 'Gastritis por Helicobacter pylori',
             ],
             [
-                "name" => "Gastroenteritis aguda"
+                'name' => 'Gastroenteritis aguda',
             ],
             [
-                "name" => "Gastroenteritis bacteriana"
+                'name' => 'Gastroenteritis bacteriana',
             ],
             [
-                "name" => "Gastroenteritis por citomegalovirus"
+                'name' => 'Gastroenteritis por citomegalovirus',
             ],
             [
-                "name" => "Giardia"
+                'name' => 'Giardia',
             ],
             [
-                "name" => "Gripe de tipo B"
+                'name' => 'Gripe de tipo B',
             ],
             [
-                "name" => "Gripe de tipo A"
+                'name' => 'Gripe de tipo A',
             ],
             [
-                "name" => "Gripe estomacal"
+                'name' => 'Gripe estomacal',
             ],
             [
-                "name" => "Helicobacter pylori"
+                'name' => 'Helicobacter pylori',
             ],
             [
-                "name" => "Helmintosis"
+                'name' => 'Helmintosis',
             ],
             [
-                "name" => "Hepatitis"
+                'name' => 'Hepatitis',
             ],
             [
-                "name" => "Hepatitis A"
+                'name' => 'Hepatitis A',
             ],
             [
-                "name" => "Hepatitis B"
+                'name' => 'Hepatitis B',
             ],
             [
-                "name" => "Hepatitis C"
+                'name' => 'Hepatitis C',
             ],
             [
-                "name" => "Hepatitis crónica leve"
+                'name' => 'Hepatitis crónica leve',
             ],
             [
-                "name" => "Hepatitis crónica y persistente"
+                'name' => 'Hepatitis crónica y persistente',
             ],
             [
-                "name" => "Hepatitis inducida por medicamentos"
+                'name' => 'Hepatitis inducida por medicamentos',
             ],
             [
-                "name" => "Hepatitis lobular crónica"
+                'name' => 'Hepatitis lobular crónica',
             ],
             [
-                "name" => "Hepatitis lupoide"
+                'name' => 'Hepatitis lupoide',
             ],
             [
-                "name" => "Hepatitis no A o no B"
+                'name' => 'Hepatitis no A o no B',
             ],
             [
-                "name" => "Hepatitis tóxica"
+                'name' => 'Hepatitis tóxica',
             ],
             [
-                "name" => "Hepatitis viral"
+                'name' => 'Hepatitis viral',
             ],
             [
-                "name" => "Hepatopatía alcohólica"
+                'name' => 'Hepatopatía alcohólica',
             ],
             [
-                "name" => "Hernia femoral"
+                'name' => 'Hernia femoral',
             ],
             [
-                "name" => "Hidropesía"
+                'name' => 'Hidropesía',
             ],
             [
-                "name" => "Himenolepiasis"
+                'name' => 'Himenolepiasis',
             ],
             [
-                "name" => "Hiperemesis gravídica"
+                'name' => 'Hiperemesis gravídica',
             ],
             [
-                "name" => "HUS"
+                'name' => 'HUS',
             ],
             [
-                "name" => "Ictericia hemorrágica"
+                'name' => 'Ictericia hemorrágica',
             ],
             [
-                "name" => "Impactación fecal o intestinal"
+                'name' => 'Impactación fecal o intestinal',
             ],
             [
-                "name" => "Indigestión nerviosa"
+                'name' => 'Indigestión nerviosa',
             ],
             [
-                "name" => "Infección del esófago por cándida"
+                'name' => 'Infección del esófago por cándida',
             ],
             [
-                "name" => "Infección del esófago por hongos levaduriformes"
+                'name' => 'Infección del esófago por hongos levaduriformes',
             ],
             [
-                "name" => "Infección por el virus del Ébola"
+                'name' => 'Infección por el virus del Ébola',
             ],
             [
-                "name" => "Infección por enterovirus que no causa polio"
+                'name' => 'Infección por enterovirus que no causa polio',
             ],
             [
-                "name" => "Infección por hongos"
+                'name' => 'Infección por hongos',
             ],
             [
-                "name" => "Infección por la tenia enana (Hymenolepis nana )"
+                'name' => 'Infección por la tenia enana (Hymenolepis nana )',
             ],
             [
-                "name" => "Infección por oxiuros"
+                'name' => 'Infección por oxiuros',
             ],
             [
-                "name" => "Infección por T. trichiura"
+                'name' => 'Infección por T. trichiura',
             ],
             [
-                "name" => "Infección por tenia"
+                'name' => 'Infección por tenia',
             ],
             [
-                "name" => "Infección por tenia de los peces (Diphyllobothrium latum )"
+                'name' => 'Infección por tenia de los peces (Diphyllobothrium latum )',
             ],
             [
-                "name" => "Inflamación del esófago"
+                'name' => 'Inflamación del esófago',
             ],
             [
-                "name" => "Inflamación del recto"
+                'name' => 'Inflamación del recto',
             ],
             [
-                "name" => "Inflamación rectal"
+                'name' => 'Inflamación rectal',
             ],
             [
-                "name" => "Inflamación retroperitoneal"
+                'name' => 'Inflamación retroperitoneal',
             ],
             [
-                "name" => "Insomnio primario"
+                'name' => 'Insomnio primario',
             ],
             [
-                "name" => "Intolerancia a la fructosa"
+                'name' => 'Intolerancia a la fructosa',
             ],
             [
-                "name" => "Intolerancia al gluten"
+                'name' => 'Intolerancia al gluten',
             ],
             [
-                "name" => "Intoxicación alimentaria por E. coli"
+                'name' => 'Intoxicación alimentaria por E. coli',
             ],
             [
-                "name" => "Intoxicación alimentaria por estafilococo dorado"
+                'name' => 'Intoxicación alimentaria por estafilococo dorado',
             ],
             [
-                "name" => "Intoxicación por etilenglicol"
+                'name' => 'Intoxicación por etilenglicol',
             ],
             [
-                "name" => "Laceraciones mucosas de la unión cardioesofágica"
+                'name' => 'Laceraciones mucosas de la unión cardioesofágica',
             ],
             [
-                "name" => "Larva migratoria visceral"
+                'name' => 'Larva migratoria visceral',
             ],
             [
-                "name" => "Leiomioma en el intestino"
+                'name' => 'Leiomioma en el intestino',
             ],
             [
-                "name" => "Lesión en el intestino delgado inducida por radiación"
+                'name' => 'Lesión en el intestino delgado inducida por radiación',
             ],
             [
-                "name" => "Lipodistrofia intestinal"
+                'name' => 'Lipodistrofia intestinal',
             ],
             [
-                "name" => "Listeriosis"
+                'name' => 'Listeriosis',
             ],
             [
-                "name" => "Mericismo"
+                'name' => 'Mericismo',
             ],
             [
-                "name" => "MPS 1 H"
+                'name' => 'MPS 1 H',
             ],
             [
-                "name" => "MPS I S"
+                'name' => 'MPS I S',
             ],
             [
-                "name" => "MPS III"
+                'name' => 'MPS III',
             ],
             [
-                "name" => "MPS IV"
+                'name' => 'MPS IV',
             ],
             [
-                "name" => "Mucopolisacaridosis tipo I"
+                'name' => 'Mucopolisacaridosis tipo I',
             ],
             [
-                "name" => "Mucopolisacaridosis tipo I S"
+                'name' => 'Mucopolisacaridosis tipo I S',
             ],
             [
-                "name" => "Mucopolisacaridosis tipo II"
+                'name' => 'Mucopolisacaridosis tipo II',
             ],
             [
-                "name" => "Mucopolisacaridosis tipo IVA"
+                'name' => 'Mucopolisacaridosis tipo IVA',
             ],
             [
-                "name" => "Mucopolisacaridosis tipo IVB"
+                'name' => 'Mucopolisacaridosis tipo IVB',
             ],
             [
-                "name" => "Multiplicación excesiva de bacterias intestinales"
+                'name' => 'Multiplicación excesiva de bacterias intestinales',
             ],
             [
-                "name" => "Neumonía por Legionela"
+                'name' => 'Neumonía por Legionela',
             ],
             [
-                "name" => "Neuropatía autónoma"
+                'name' => 'Neuropatía autónoma',
             ],
             [
-                "name" => "Neurosis intestinal"
+                'name' => 'Neurosis intestinal',
             ],
             [
-                "name" => "OHSS"
+                'name' => 'OHSS',
             ],
             [
-                "name" => "Oxiuriasis"
+                'name' => 'Oxiuriasis',
             ],
             [
-                "name" => "Oxiuros"
+                'name' => 'Oxiuros',
             ],
             [
-                "name" => "Pancreatitis crónica"
+                'name' => 'Pancreatitis crónica',
             ],
             [
-                "name" => "Perforación intestinal"
+                'name' => 'Perforación intestinal',
             ],
             [
-                "name" => "Peritonitis paroxística benigna"
+                'name' => 'Peritonitis paroxística benigna',
             ],
             [
-                "name" => "Peritonitis periódica"
+                'name' => 'Peritonitis periódica',
             ],
             [
-                "name" => "Polineuropatía alcohólica"
+                'name' => 'Polineuropatía alcohólica',
             ],
             [
-                "name" => "Proctitis"
+                'name' => 'Proctitis',
             ],
             [
-                "name" => "Proliferación excesiva de bacterias en el intestino delgado"
+                'name' => 'Proliferación excesiva de bacterias en el intestino delgado',
             ],
             [
-                "name" => "Reflujo gastroesofágico en bebés"
+                'name' => 'Reflujo gastroesofágico en bebés',
             ],
             [
-                "name" => "Retención fecal"
+                'name' => 'Retención fecal',
             ],
             [
-                "name" => "Retroperitonitis"
+                'name' => 'Retroperitonitis',
             ],
             [
-                "name" => "Salmonelosis"
+                'name' => 'Salmonelosis',
             ],
             [
-                "name" => "Shigelosis"
+                'name' => 'Shigelosis',
             ],
             [
-                "name" => "Sialorrea"
+                'name' => 'Sialorrea',
             ],
             [
-                "name" => "Síndrome de asa ciega"
+                'name' => 'Síndrome de asa ciega',
             ],
             [
-                "name" => "Síndrome de Bassen-Kornzweig"
+                'name' => 'Síndrome de Bassen-Kornzweig',
             ],
             [
-                "name" => "Síndrome de Dubin-Johnson"
+                'name' => 'Síndrome de Dubin-Johnson',
             ],
             [
-                "name" => "Síndrome de hiperestimulación ovárica"
+                'name' => 'Síndrome de hiperestimulación ovárica',
             ],
             [
-                "name" => "Síndrome de Hunter"
+                'name' => 'Síndrome de Hunter',
             ],
             [
-                "name" => "Síndrome de Hurler"
+                'name' => 'Síndrome de Hurler',
             ],
             [
-                "name" => "Síndrome de Sanfilippo"
+                'name' => 'Síndrome de Sanfilippo',
             ],
             [
-                "name" => "Síndrome de Scheie"
+                'name' => 'Síndrome de Scheie',
             ],
             [
-                "name" => "Síndrome del intestino corto"
+                'name' => 'Síndrome del intestino corto',
             ],
             [
-                "name" => "Síndrome del intestino irritable"
+                'name' => 'Síndrome del intestino irritable',
             ],
             [
-                "name" => "Síndrome urémico hemolítico"
+                'name' => 'Síndrome urémico hemolítico',
             ],
             [
-                "name" => "Sobredosis e intoxicación con barbitúricos"
+                'name' => 'Sobredosis e intoxicación con barbitúricos',
             ],
             [
-                "name" => "Tenia"
+                'name' => 'Tenia',
             ],
             [
-                "name" => "Tenia de la rata"
+                'name' => 'Tenia de la rata',
             ],
             [
-                "name" => "Tenia del ganado vacuno (T. saginata )"
+                'name' => 'Tenia del ganado vacuno (T. saginata )',
             ],
             [
-                "name" => "Tenia solitaria"
+                'name' => 'Tenia solitaria',
             ],
             [
-                "name" => "Tos crónica"
+                'name' => 'Tos crónica',
             ],
             [
-                "name" => "Toxocariasis"
+                'name' => 'Toxocariasis',
             ],
             [
-                "name" => "Toxocarosis ocular"
+                'name' => 'Toxocarosis ocular',
             ],
             [
-                "name" => "Toxocarosis visceral"
+                'name' => 'Toxocarosis visceral',
             ],
             [
-                "name" => "Tricurosis o tricuriasis"
+                'name' => 'Tricurosis o tricuriasis',
             ],
             [
-                "name" => "Triquinelosis"
+                'name' => 'Triquinelosis',
             ],
             [
-                "name" => "Triquiniasis"
+                'name' => 'Triquiniasis',
             ],
             [
-                "name" => "Triquinosis"
+                'name' => 'Triquinosis',
             ],
             [
-                "name" => "Tumor de células de Leydig"
+                'name' => 'Tumor de células de Leydig',
             ],
             [
-                "name" => "Tumor de células de los islotes o tumor de células insulares"
+                'name' => 'Tumor de células de los islotes o tumor de células insulares',
             ],
             [
-                "name" => "Tumor de células de los islotes pancreáticos"
+                'name' => 'Tumor de células de los islotes pancreáticos',
             ],
             [
-                "name" => "Úlcera gástrica"
+                'name' => 'Úlcera gástrica',
             ],
             [
-                "name" => "V. cholerae"
+                'name' => 'V. cholerae',
             ],
             [
-                "name" => "Várices esofágicas sangrantes"
+                'name' => 'Várices esofágicas sangrantes',
             ],
             [
-                "name" => "Virus de Norwalk"
+                'name' => 'Virus de Norwalk',
             ],
             [
-                "name" => "Vómitos persistentes en el embarazo"
+                'name' => 'Vómitos persistentes en el embarazo',
             ],
             [
-                "name" => "Anencefalia"
+                'name' => 'Anencefalia',
             ],
             [
-                "name" => "Coproporfiria hereditaria"
+                'name' => 'Coproporfiria hereditaria',
             ],
             [
-                "name" => "Corea de Huntington"
+                'name' => 'Corea de Huntington',
             ],
             [
-                "name" => "Disautonomía familiar"
+                'name' => 'Disautonomía familiar',
             ],
             [
-                "name" => "Displasia fibrosa poliostótica"
+                'name' => 'Displasia fibrosa poliostótica',
             ],
             [
-                "name" => "Enfermedad de Charcot-Marie-Tooth"
+                'name' => 'Enfermedad de Charcot-Marie-Tooth',
             ],
             [
-                "name" => "Enfermedad de Krabbe"
+                'name' => 'Enfermedad de Krabbe',
             ],
             [
-                "name" => "Enfermedad de Niemann-Pick"
+                'name' => 'Enfermedad de Niemann-Pick',
             ],
             [
-                "name" => "Esquizofrenia paranoide"
+                'name' => 'Esquizofrenia paranoide',
             ],
             [
-                "name" => "Hermafroditismo"
+                'name' => 'Hermafroditismo',
             ],
             [
-                "name" => "Malformaciones congénitas"
+                'name' => 'Malformaciones congénitas',
             ],
             [
-                "name" => "Paramiotomía congénita"
+                'name' => 'Paramiotomía congénita',
             ],
             [
-                "name" => "Progeria"
+                'name' => 'Progeria',
             ],
             [
-                "name" => "Síndrome de Aase-Smith"
+                'name' => 'Síndrome de Aase-Smith',
             ],
             [
-                "name" => "Síndrome de Morquio"
+                'name' => 'Síndrome de Morquio',
             ],
             [
-                "name" => "Síndrome de Sturge-Weber"
+                'name' => 'Síndrome de Sturge-Weber',
             ],
             [
-                "name" => "ACV"
+                'name' => 'ACV',
             ],
             [
-                "name" => "Cataratas"
+                'name' => 'Cataratas',
             ],
             [
-                "name" => "CJD"
+                'name' => 'CJD',
             ],
             [
-                "name" => "Delirium"
+                'name' => 'Delirium',
             ],
             [
-                "name" => "Demencia"
+                'name' => 'Demencia',
             ],
             [
-                "name" => "Demencia vascular"
+                'name' => 'Demencia vascular',
             ],
             [
-                "name" => "Demencia con los cuerpos de Lewy"
+                'name' => 'Demencia con los cuerpos de Lewy',
             ],
             [
-                "name" => "Deshidratación"
+                'name' => 'Deshidratación',
             ],
             [
-                "name" => "Dislipidemia"
+                'name' => 'Dislipidemia',
             ],
             [
-                "name" => "Enfermedad articular degenerativa"
+                'name' => 'Enfermedad articular degenerativa',
             ],
             [
-                "name" => "Parálisis progresiva supranuclear"
+                'name' => 'Parálisis progresiva supranuclear',
             ],
             [
-                "name" => "Presbiacusia"
+                'name' => 'Presbiacusia',
             ],
             [
-                "name" => "Síndrome de caídas"
+                'name' => 'Síndrome de caídas',
             ],
             [
-                "name" => "Temblor inducido por fármacos"
+                'name' => 'Temblor inducido por fármacos',
             ],
             [
-                "name" => "Trastorno depresivo grave"
+                'name' => 'Trastorno depresivo grave',
             ],
             [
-                "name" => "Trastornos de la marcha"
+                'name' => 'Trastornos de la marcha',
             ],
             [
-                "name" => "Trastornos del sueño en personas mayores"
+                'name' => 'Trastornos del sueño en personas mayores',
             ],
             [
-                "name" => "Trastornos en la alimentación del anciano"
+                'name' => 'Trastornos en la alimentación del anciano',
             ],
             [
-                "name" => "Ablación de la placenta"
+                'name' => 'Ablación de la placenta',
             ],
             [
-                "name" => "Aborto consumado"
+                'name' => 'Aborto consumado',
             ],
             [
-                "name" => "Aborto electivo o terapéutico"
+                'name' => 'Aborto electivo o terapéutico',
             ],
             [
-                "name" => "Aborto espontáneo"
+                'name' => 'Aborto espontáneo',
             ],
             [
-                "name" => "Aborto incompleto"
+                'name' => 'Aborto incompleto',
             ],
             [
-                "name" => "Aborto inevitable"
+                'name' => 'Aborto inevitable',
             ],
             [
-                "name" => "Aborto séptico"
+                'name' => 'Aborto séptico',
             ],
             [
-                "name" => "Aborto terapéutico"
+                'name' => 'Aborto terapéutico',
             ],
             [
-                "name" => "Abrupción placentaria"
+                'name' => 'Abrupción placentaria',
             ],
             [
-                "name" => "Absceso de Bartolino"
+                'name' => 'Absceso de Bartolino',
             ],
             [
-                "name" => "Absceso en la glándula areolar"
+                'name' => 'Absceso en la glándula areolar',
             ],
             [
-                "name" => "Absceso mamario"
+                'name' => 'Absceso mamario',
             ],
             [
-                "name" => "Adenocarcinoma del útero"
+                'name' => 'Adenocarcinoma del útero',
             ],
             [
-                "name" => "Adenomioma"
+                'name' => 'Adenomioma',
             ],
             [
-                "name" => "Adenomiosis"
+                'name' => 'Adenomiosis',
             ],
             [
-                "name" => "Adherencia intrauterina"
+                'name' => 'Adherencia intrauterina',
             ],
             [
-                "name" => "Adherencia pélvica"
+                'name' => 'Adherencia pélvica',
             ],
             [
-                "name" => "Alcohol en el embarazo"
+                'name' => 'Alcohol en el embarazo',
             ],
             [
-                "name" => "Alteración seminal"
+                'name' => 'Alteración seminal',
             ],
             [
-                "name" => "Amenaza de aborto"
+                'name' => 'Amenaza de aborto',
             ],
             [
-                "name" => "Amenaza de aborto espontáneo"
+                'name' => 'Amenaza de aborto espontáneo',
             ],
             [
-                "name" => "Amenorrea secundaria"
+                'name' => 'Amenorrea secundaria',
             ],
             [
-                "name" => "Apatía sexual"
+                'name' => 'Apatía sexual',
             ],
             [
-                "name" => "Arrenoblastoma"
+                'name' => 'Arrenoblastoma',
             ],
             [
-                "name" => "Arrenoblastoma del ovario"
+                'name' => 'Arrenoblastoma del ovario',
             ],
             [
-                "name" => "Ausencia de la menstruación"
+                'name' => 'Ausencia de la menstruación',
             ],
             [
-                "name" => "Bacteriuria asintomática"
+                'name' => 'Bacteriuria asintomática',
             ],
             [
-                "name" => "Bridas amnióticas"
+                'name' => 'Bridas amnióticas',
             ],
             [
-                "name" => "Cáncer de la vulva"
+                'name' => 'Cáncer de la vulva',
             ],
             [
-                "name" => "Cáncer de útero"
+                'name' => 'Cáncer de útero',
             ],
             [
-                "name" => "Cáncer de vagina"
+                'name' => 'Cáncer de vagina',
             ],
             [
-                "name" => "Cáncer endometrial"
+                'name' => 'Cáncer endometrial',
             ],
             [
-                "name" => "Cáncer vaginal"
+                'name' => 'Cáncer vaginal',
             ],
             [
-                "name" => "Candidiasis vaginal"
+                'name' => 'Candidiasis vaginal',
             ],
             [
-                "name" => "Carcinoma lobulillar"
+                'name' => 'Carcinoma lobulillar',
             ],
             [
-                "name" => "Cervicitis"
+                'name' => 'Cervicitis',
             ],
             [
-                "name" => "Chancroide"
+                'name' => 'Chancroide',
             ],
             [
-                "name" => "Chikungunya"
+                'name' => 'Chikungunya',
             ],
             [
-                "name" => "Cistitis"
+                'name' => 'Cistitis',
             ],
             [
-                "name" => "Citomegalovirus (CMV)"
+                'name' => 'Citomegalovirus (CMV)',
             ],
             [
-                "name" => "Clamidia"
+                'name' => 'Clamidia',
             ],
             [
-                "name" => "Corioblastoma"
+                'name' => 'Corioblastoma',
             ],
             [
-                "name" => "Coriocarcinoma"
+                'name' => 'Coriocarcinoma',
             ],
             [
-                "name" => "Corioepitelioma"
+                'name' => 'Corioepitelioma',
             ],
             [
-                "name" => "Deficiencia de gonadotropina"
+                'name' => 'Deficiencia de gonadotropina',
             ],
             [
-                "name" => "Deficiencia gonadal"
+                'name' => 'Deficiencia gonadal',
             ],
             [
-                "name" => "Desprendimiento placentario"
+                'name' => 'Desprendimiento placentario',
             ],
             [
-                "name" => "Desprendimiento prematuro de placenta"
+                'name' => 'Desprendimiento prematuro de placenta',
             ],
             [
-                "name" => "Disfunción placentaria"
+                'name' => 'Disfunción placentaria',
             ],
             [
-                "name" => "Disgenesia gonadal"
+                'name' => 'Disgenesia gonadal',
             ],
             [
-                "name" => "Displasia cervical"
+                'name' => 'Displasia cervical',
             ],
             [
-                "name" => "Displasia mamaria"
+                'name' => 'Displasia mamaria',
             ],
             [
-                "name" => "Dolor asociado con la ovulación"
+                'name' => 'Dolor asociado con la ovulación',
             ],
             [
-                "name" => "Dolor en mitad del ciclo menstrual"
+                'name' => 'Dolor en mitad del ciclo menstrual',
             ],
             [
-                "name" => "Donovanosis"
+                'name' => 'Donovanosis',
             ],
             [
-                "name" => "DSD"
+                'name' => 'DSD',
             ],
             [
-                "name" => "DUB"
+                'name' => 'DUB',
             ],
             [
-                "name" => "Eclampsia"
+                'name' => 'Eclampsia',
             ],
             [
-                "name" => "Ectropión"
+                'name' => 'Ectropión',
             ],
             [
-                "name" => "EIP (infección genital femenina)"
+                'name' => 'EIP (infección genital femenina)',
             ],
             [
-                "name" => "Embarazo"
+                'name' => 'Embarazo',
             ],
             [
-                "name" => "Embarazo abdominal"
+                'name' => 'Embarazo abdominal',
             ],
             [
-                "name" => "Embarazo anembrionario (Huevo huero)"
+                'name' => 'Embarazo anembrionario (Huevo huero)',
             ],
             [
-                "name" => "Embarazo de alto riesgo"
+                'name' => 'Embarazo de alto riesgo',
             ],
             [
-                "name" => "Embarazo de bajo riesgo"
+                'name' => 'Embarazo de bajo riesgo',
             ],
             [
-                "name" => "Embarazo ectópico"
+                'name' => 'Embarazo ectópico',
             ],
             [
-                "name" => "Embarazo en la adolescencia"
+                'name' => 'Embarazo en la adolescencia',
             ],
             [
-                "name" => "Embarazo molar"
+                'name' => 'Embarazo molar',
             ],
             [
-                "name" => "Embarazo múltiple"
+                'name' => 'Embarazo múltiple',
             ],
             [
-                "name" => "Embarazo tubárico"
+                'name' => 'Embarazo tubárico',
             ],
             [
-                "name" => "Endometriosis"
+                'name' => 'Endometriosis',
             ],
             [
-                "name" => "Endometriosis interna"
+                'name' => 'Endometriosis interna',
             ],
             [
-                "name" => "Endometritis"
+                'name' => 'Endometritis',
             ],
             [
-                "name" => "Enfermedad de transmisión sexual (ETS)"
+                'name' => 'Enfermedad de transmisión sexual (ETS)',
             ],
             [
-                "name" => "Enfermedad fibroquística de las mamas"
+                'name' => 'Enfermedad fibroquística de las mamas',
             ],
             [
-                "name" => "Enfermedad inflamatoria pélvica (EIP)"
+                'name' => 'Enfermedad inflamatoria pélvica (EIP)',
             ],
             [
-                "name" => "Enfermedad ovárica polifolicular"
+                'name' => 'Enfermedad ovárica polifolicular',
             ],
             [
-                "name" => "Enfermedad trofoblástica gestacional"
+                'name' => 'Enfermedad trofoblástica gestacional',
             ],
             [
-                "name" => "Épulis"
+                'name' => 'Épulis',
             ],
             [
-                "name" => "Estenosis meatal"
+                'name' => 'Estenosis meatal',
             ],
             [
-                "name" => "Estenosis meatal uretral"
+                'name' => 'Estenosis meatal uretral',
             ],
             [
-                "name" => "Esterilidad"
+                'name' => 'Esterilidad',
             ],
             [
-                "name" => "Exceso de flujo vaginal - leucorrea"
+                'name' => 'Exceso de flujo vaginal - leucorrea',
             ],
             [
-                "name" => "Faringitis gonocócica"
+                'name' => 'Faringitis gonocócica',
             ],
             [
-                "name" => "Fibroides"
+                'name' => 'Fibroides',
             ],
             [
-                "name" => "Fibromioma"
+                'name' => 'Fibromioma',
             ],
             [
-                "name" => "Fisura vaginal"
+                'name' => 'Fisura vaginal',
             ],
             [
-                "name" => "Hematoma retroplacentario"
+                'name' => 'Hematoma retroplacentario',
             ],
             [
-                "name" => "Hernia del piso pélvico"
+                'name' => 'Hernia del piso pélvico',
             ],
             [
-                "name" => "Herpes genital"
+                'name' => 'Herpes genital',
             ],
             [
-                "name" => "Hidropesía fetal"
+                'name' => 'Hidropesía fetal',
             ],
             [
-                "name" => "Hiperplasia endometrial benigna"
+                'name' => 'Hiperplasia endometrial benigna',
             ],
             [
-                "name" => "Hipertensión inducida por el embarazo"
+                'name' => 'Hipertensión inducida por el embarazo',
             ],
             [
-                "name" => "Hipogonadismo"
+                'name' => 'Hipogonadismo',
             ],
             [
-                "name" => "Hipogonadismo secundario"
+                'name' => 'Hipogonadismo secundario',
             ],
             [
-                "name" => "Huevo de Naboth"
+                'name' => 'Huevo de Naboth',
             ],
             [
-                "name" => "Incapacidad para concebir"
+                'name' => 'Incapacidad para concebir',
             ],
             [
-                "name" => "Incontinencia urinaria de esfuerzo"
+                'name' => 'Incontinencia urinaria de esfuerzo',
             ],
             [
-                "name" => "Infección de la vagina por levaduras"
+                'name' => 'Infección de la vagina por levaduras',
             ],
             [
-                "name" => "Infección del tejido mamario"
+                'name' => 'Infección del tejido mamario',
             ],
             [
-                "name" => "Infección del tórax"
+                'name' => 'Infección del tórax',
             ],
             [
-                "name" => "Infección mamaria"
+                'name' => 'Infección mamaria',
             ],
             [
-                "name" => "Infección por VIH asintomática"
+                'name' => 'Infección por VIH asintomática',
             ],
             [
-                "name" => "Infección por VIH primaria"
+                'name' => 'Infección por VIH primaria',
             ],
             [
-                "name" => "Infección urinaria en adultos"
+                'name' => 'Infección urinaria en adultos',
             ],
             [
-                "name" => "Infección urinaria recurrente"
+                'name' => 'Infección urinaria recurrente',
             ],
             [
-                "name" => "Infección vaginal por levaduras"
+                'name' => 'Infección vaginal por levaduras',
             ],
             [
-                "name" => "Infección vaginal por tricomonas"
+                'name' => 'Infección vaginal por tricomonas',
             ],
             [
-                "name" => "Infecciones por clamidia en mujeres"
+                'name' => 'Infecciones por clamidia en mujeres',
             ],
             [
-                "name" => "Infertilidad"
+                'name' => 'Infertilidad',
             ],
             [
-                "name" => "Infertilidad masculina"
+                'name' => 'Infertilidad masculina',
             ],
             [
-                "name" => "Inflamación cervical"
+                'name' => 'Inflamación cervical',
             ],
             [
-                "name" => "Inflamación del cuello uterino"
+                'name' => 'Inflamación del cuello uterino',
             ],
             [
-                "name" => "Inflamación vaginal"
+                'name' => 'Inflamación vaginal',
             ],
             [
-                "name" => "Insuficiencia placentaria"
+                'name' => 'Insuficiencia placentaria',
             ],
             [
-                "name" => "Intersexualidad"
+                'name' => 'Intersexualidad',
             ],
             [
-                "name" => "Intolerancia a la glucosa durante el embarazo"
+                'name' => 'Intolerancia a la glucosa durante el embarazo',
             ],
             [
-                "name" => "IUGR"
+                'name' => 'IUGR',
             ],
             [
-                "name" => "Leiomioma"
+                'name' => 'Leiomioma',
             ],
             [
-                "name" => "LGV"
+                'name' => 'LGV',
             ],
             [
-                "name" => "Linfogranuloma inguinal"
+                'name' => 'Linfogranuloma inguinal',
             ],
             [
-                "name" => "Linfogranuloma venéreo"
+                'name' => 'Linfogranuloma venéreo',
             ],
             [
-                "name" => "Linfopatía venérea"
+                'name' => 'Linfopatía venérea',
             ],
             [
-                "name" => "Mala posición del útero"
+                'name' => 'Mala posición del útero',
             ],
             [
-                "name" => "Mastopatia fibroquística"
+                'name' => 'Mastopatia fibroquística',
             ],
             [
-                "name" => "Meningitis sifilítica"
+                'name' => 'Meningitis sifilítica',
             ],
             [
-                "name" => "Mioma"
+                'name' => 'Mioma',
             ],
             [
-                "name" => "Miomas uterinos"
+                'name' => 'Miomas uterinos',
             ],
             [
-                "name" => "Náuseas persistentes en el embarazo"
+                'name' => 'Náuseas persistentes en el embarazo',
             ],
             [
-                "name" => "Neoplasia intraepitelial cervical"
+                'name' => 'Neoplasia intraepitelial cervical',
             ],
             [
-                "name" => "Neoplasia trofoblástica gestacional"
+                'name' => 'Neoplasia trofoblástica gestacional',
             ],
             [
-                "name" => "Neurosífilis"
+                'name' => 'Neurosífilis',
             ],
             [
-                "name" => "NIC"
+                'name' => 'NIC',
             ],
             [
-                "name" => "Obesidad en el embarazo"
+                'name' => 'Obesidad en el embarazo',
             ],
             [
-                "name" => "Ovarios poliquísticos"
+                'name' => 'Ovarios poliquísticos',
             ],
             [
-                "name" => "Ovulación dolorosa"
+                'name' => 'Ovulación dolorosa',
             ],
             [
-                "name" => "Papiloma intraductal"
+                'name' => 'Papiloma intraductal',
             ],
             [
-                "name" => "Pérdida gestacional recurrente"
+                'name' => 'Pérdida gestacional recurrente',
             ],
             [
-                "name" => "Placenta previa"
+                'name' => 'Placenta previa',
             ],
             [
-                "name" => "Polaquiuria"
+                'name' => 'Polaquiuria',
             ],
             [
-                "name" => "Pólipos cervicales"
+                'name' => 'Pólipos cervicales',
             ],
             [
-                "name" => "Poliquistosis ovárica"
+                'name' => 'Poliquistosis ovárica',
             ],
             [
-                "name" => "Preeclampsia"
+                'name' => 'Preeclampsia',
             ],
             [
-                "name" => "Puerperio"
+                'name' => 'Puerperio',
             ],
             [
-                "name" => "Quiste del conducto de Gartner"
+                'name' => 'Quiste del conducto de Gartner',
             ],
             [
-                "name" => "Quistes ováricos fisiológicos"
+                'name' => 'Quistes ováricos fisiológicos',
             ],
             [
-                "name" => "Quistes ováricos funcionales"
+                'name' => 'Quistes ováricos funcionales',
             ],
             [
-                "name" => "Relajación pélvica"
+                'name' => 'Relajación pélvica',
             ],
             [
-                "name" => "Restricción del crecimiento intrauterino"
+                'name' => 'Restricción del crecimiento intrauterino',
             ],
             [
-                "name" => "Retención de líquido pulmonar fetal"
+                'name' => 'Retención de líquido pulmonar fetal',
             ],
             [
-                "name" => "Retraso en el crecimiento intrauterino"
+                'name' => 'Retraso en el crecimiento intrauterino',
             ],
             [
-                "name" => "Retrodesviación uterina"
+                'name' => 'Retrodesviación uterina',
             ],
             [
-                "name" => "Retroversión del útero"
+                'name' => 'Retroversión del útero',
             ],
             [
-                "name" => "Rubéola"
+                'name' => 'Rubéola',
             ],
             [
-                "name" => "Salpingitis"
+                'name' => 'Salpingitis',
             ],
             [
-                "name" => "Salpingo ooforitis"
+                'name' => 'Salpingo ooforitis',
             ],
             [
-                "name" => "Salpingo peritonitis"
+                'name' => 'Salpingo peritonitis',
             ],
             [
-                "name" => "Sangrado uterino anormal"
+                'name' => 'Sangrado uterino anormal',
             ],
             [
-                "name" => "Sangrado uterino disfuncional"
+                'name' => 'Sangrado uterino disfuncional',
             ],
             [
-                "name" => "Separación prematura de la placenta"
+                'name' => 'Separación prematura de la placenta',
             ],
             [
-                "name" => "Sífilis fetal"
+                'name' => 'Sífilis fetal',
             ],
             [
-                "name" => "Síndrome 47 X-X-Y"
+                'name' => 'Síndrome 47 X-X-Y',
             ],
             [
-                "name" => "Síndrome antifosfolípido"
+                'name' => 'Síndrome antifosfolípido',
             ],
             [
-                "name" => "Síndrome de alcoholismo fetal"
+                'name' => 'Síndrome de alcoholismo fetal',
             ],
             [
-                "name" => "Síndrome de Asherman"
+                'name' => 'Síndrome de Asherman',
             ],
             [
-                "name" => "Síndrome de dolor pélvico crónico"
+                'name' => 'Síndrome de dolor pélvico crónico',
             ],
             [
-                "name" => "Síndrome de Klinefelter"
+                'name' => 'Síndrome de Klinefelter',
             ],
             [
-                "name" => "Síndrome de shock tóxico"
+                'name' => 'Síndrome de shock tóxico',
             ],
             [
-                "name" => "Síndrome del shock tóxico por estafilococos"
+                'name' => 'Síndrome del shock tóxico por estafilococos',
             ],
             [
-                "name" => "Síndrome HELLP"
+                'name' => 'Síndrome HELLP',
             ],
             [
-                "name" => "Tabes dorsal"
+                'name' => 'Tabes dorsal',
             ],
             [
-                "name" => "Toxoplasmosis congénita"
+                'name' => 'Toxoplasmosis congénita',
             ],
             [
-                "name" => "Trastornos de la menstruación"
+                'name' => 'Trastornos de la menstruación',
             ],
             [
-                "name" => "Trastornos del desarrollo sexual"
+                'name' => 'Trastornos del desarrollo sexual',
             ],
             [
-                "name" => "Trastornos en el desarrollo de la vagina y vulva"
+                'name' => 'Trastornos en el desarrollo de la vagina y vulva',
             ],
             [
-                "name" => "Trastornos en el desarrollo del aparato reproductor femenino"
+                'name' => 'Trastornos en el desarrollo del aparato reproductor femenino',
             ],
             [
-                "name" => "Tricomoniasis"
+                'name' => 'Tricomoniasis',
             ],
             [
-                "name" => "Tumor vaginal"
+                'name' => 'Tumor vaginal',
             ],
             [
-                "name" => "TVP"
+                'name' => 'TVP',
             ],
             [
-                "name" => "Uretritis masculina por clamidia"
+                'name' => 'Uretritis masculina por clamidia',
             ],
             [
-                "name" => "Útero ladeado"
+                'name' => 'Útero ladeado',
             ],
             [
-                "name" => "Vaginismo"
+                'name' => 'Vaginismo',
             ],
             [
-                "name" => "Vaginitis"
+                'name' => 'Vaginitis',
             ],
             [
-                "name" => "Vaginitis atrófica"
+                'name' => 'Vaginitis atrófica',
             ],
             [
-                "name" => "Vaginitis moniliásica"
+                'name' => 'Vaginitis moniliásica',
             ],
             [
-                "name" => "Vejiga irritable"
+                'name' => 'Vejiga irritable',
             ],
             [
-                "name" => "Virus del Zika"
+                'name' => 'Virus del Zika',
             ],
             [
-                "name" => "Vulvitis"
+                'name' => 'Vulvitis',
             ],
             [
-                "name" => "Vulvovaginitis"
+                'name' => 'Vulvovaginitis',
             ],
             [
-                "name" => "Acantocitosis"
+                'name' => 'Acantocitosis',
             ],
             [
-                "name" => "Afibrinogenemia congénita"
+                'name' => 'Afibrinogenemia congénita',
             ],
             [
-                "name" => "Agranulocitosis"
+                'name' => 'Agranulocitosis',
             ],
             [
-                "name" => "Anemia"
+                'name' => 'Anemia',
             ],
             [
-                "name" => "Anemia aplásica adquirida"
+                'name' => 'Anemia aplásica adquirida',
             ],
             [
-                "name" => "Anemia aplásica secundaria"
+                'name' => 'Anemia aplásica secundaria',
             ],
             [
-                "name" => "Anemia aquílica macrocítica"
+                'name' => 'Anemia aquílica macrocítica',
             ],
             [
-                "name" => "Anemia de Fanconi"
+                'name' => 'Anemia de Fanconi',
             ],
             [
-                "name" => "Anemia drepanocítica"
+                'name' => 'Anemia drepanocítica',
             ],
             [
-                "name" => "Anemia ferropénica"
+                'name' => 'Anemia ferropénica',
             ],
             [
-                "name" => "Anemia ferropénica en niños"
+                'name' => 'Anemia ferropénica en niños',
             ],
             [
-                "name" => "Anemia hemolítica"
+                'name' => 'Anemia hemolítica',
             ],
             [
-                "name" => "Anemia hemolítica a causa de deficiencia de G-6-PD"
+                'name' => 'Anemia hemolítica a causa de deficiencia de G-6-PD',
             ],
             [
-                "name" => "Anemia hemolítica autoinmunitaria idiopática"
+                'name' => 'Anemia hemolítica autoinmunitaria idiopática',
             ],
             [
-                "name" => "Anemia hemolítica autoinmunológica"
+                'name' => 'Anemia hemolítica autoinmunológica',
             ],
             [
-                "name" => "Anemia hemolítica causada por químicos o toxinas"
+                'name' => 'Anemia hemolítica causada por químicos o toxinas',
             ],
             [
-                "name" => "Anemia hemolítica inmunitaria inducida por medicamentos"
+                'name' => 'Anemia hemolítica inmunitaria inducida por medicamentos',
             ],
             [
-                "name" => "Anemia idiopática aplásica"
+                'name' => 'Anemia idiopática aplásica',
             ],
             [
-                "name" => "Anemia macrocítica"
+                'name' => 'Anemia macrocítica',
             ],
             [
-                "name" => "Anemia mediterránea"
+                'name' => 'Anemia mediterránea',
             ],
             [
-                "name" => "Anemia megaloblástica"
+                'name' => 'Anemia megaloblástica',
             ],
             [
-                "name" => "Anemia perniciosa"
+                'name' => 'Anemia perniciosa',
             ],
             [
-                "name" => "Anemia perniciosa congénita"
+                'name' => 'Anemia perniciosa congénita',
             ],
             [
-                "name" => "Anemia perniciosa juvenil"
+                'name' => 'Anemia perniciosa juvenil',
             ],
             [
-                "name" => "Anemia por deficiencia de folato"
+                'name' => 'Anemia por deficiencia de folato',
             ],
             [
-                "name" => "Anemia por deficiencia de hierro"
+                'name' => 'Anemia por deficiencia de hierro',
             ],
             [
-                "name" => "Anemia por deficiencia de hierro en los niños"
+                'name' => 'Anemia por deficiencia de hierro en los niños',
             ],
             [
-                "name" => "Anemia por enfermedad crónica"
+                'name' => 'Anemia por enfermedad crónica',
             ],
             [
-                "name" => "Anemia por inflamación"
+                'name' => 'Anemia por inflamación',
             ],
             [
-                "name" => "Anomalías congénitas de la función plaquetaria"
+                'name' => 'Anomalías congénitas de la función plaquetaria',
             ],
             [
-                "name" => "AOP"
+                'name' => 'AOP',
             ],
             [
-                "name" => "Cáncer no Hodgkin"
+                'name' => 'Cáncer no Hodgkin',
             ],
             [
-                "name" => "Cáncer=> leucemia infantil aguda (LLA)"
+                'name' => 'Cáncer=> leucemia infantil aguda (LLA)',
             ],
             [
-                "name" => "CML"
+                'name' => 'CML',
             ],
             [
-                "name" => "Coagulación intravascular diseminada (CID)"
+                'name' => 'Coagulación intravascular diseminada (CID)',
             ],
             [
-                "name" => "Coagulopatía"
+                'name' => 'Coagulopatía',
             ],
             [
-                "name" => "Coagulopatía de consumo"
+                'name' => 'Coagulopatía de consumo',
             ],
             [
-                "name" => "Defecto adquirido de la función plaquetaria"
+                'name' => 'Defecto adquirido de la función plaquetaria',
             ],
             [
-                "name" => "Defectos congénitos de la función plaquetaria"
+                'name' => 'Defectos congénitos de la función plaquetaria',
             ],
             [
-                "name" => "Deficiencia congénita de proteína C o S"
+                'name' => 'Deficiencia congénita de proteína C o S',
             ],
             [
-                "name" => "Deficiencia de ácido fólico"
+                'name' => 'Deficiencia de ácido fólico',
             ],
             [
-                "name" => "Deficiencia de antitrombina III congénita"
+                'name' => 'Deficiencia de antitrombina III congénita',
             ],
             [
-                "name" => "Deficiencia de factor X"
+                'name' => 'Deficiencia de factor X',
             ],
             [
-                "name" => "Deficiencia de folato"
+                'name' => 'Deficiencia de folato',
             ],
             [
-                "name" => "Deficiencia de G-6-PD"
+                'name' => 'Deficiencia de G-6-PD',
             ],
             [
-                "name" => "Deficiencia de piruvatocinasa"
+                'name' => 'Deficiencia de piruvatocinasa',
             ],
             [
-                "name" => "Deficiencia de protrombina"
+                'name' => 'Deficiencia de protrombina',
             ],
             [
-                "name" => "Deficiencia de reductasa en eritrocitos"
+                'name' => 'Deficiencia de reductasa en eritrocitos',
             ],
             [
-                "name" => "Deficiencia de Stuart-Prower"
+                'name' => 'Deficiencia de Stuart-Prower',
             ],
             [
-                "name" => "Deficiencia del factor extrínseco"
+                'name' => 'Deficiencia del factor extrínseco',
             ],
             [
-                "name" => "Deficiencia del factor II"
+                'name' => 'Deficiencia del factor II',
             ],
             [
-                "name" => "Deficiencia del factor V"
+                'name' => 'Deficiencia del factor V',
             ],
             [
-                "name" => "Deficiencia del factor VII"
+                'name' => 'Deficiencia del factor VII',
             ],
             [
-                "name" => "Deficiencia del factor XII (factor de Hageman)"
+                'name' => 'Deficiencia del factor XII (factor de Hageman)',
             ],
             [
-                "name" => "Discrasia de células plasmáticas"
+                'name' => 'Discrasia de células plasmáticas',
             ],
             [
-                "name" => "Discrasias"
+                'name' => 'Discrasias',
             ],
             [
-                "name" => "Eliptocitosis de tipo hereditario"
+                'name' => 'Eliptocitosis de tipo hereditario',
             ],
             [
-                "name" => "Eliptocitosis hereditaria"
+                'name' => 'Eliptocitosis hereditaria',
             ],
             [
-                "name" => "Enfermedad de Christmas"
+                'name' => 'Enfermedad de Christmas',
             ],
             [
-                "name" => "Enfermedad de Glanzmann"
+                'name' => 'Enfermedad de Glanzmann',
             ],
             [
-                "name" => "Enfermedad de la hemoglobina C"
+                'name' => 'Enfermedad de la hemoglobina C',
             ],
             [
-                "name" => "Enfermedad de la hemoglobina M"
+                'name' => 'Enfermedad de la hemoglobina M',
             ],
             [
-                "name" => "Enfermedad de la hemoglobina SS (Hb SS)"
+                'name' => 'Enfermedad de la hemoglobina SS (Hb SS)',
             ],
             [
-                "name" => "Enfermedad de von Willebrand"
+                'name' => 'Enfermedad de von Willebrand',
             ],
             [
-                "name" => "Enfermedad hemolítica del neonato inducida por Rh"
+                'name' => 'Enfermedad hemolítica del neonato inducida por Rh',
             ],
             [
-                "name" => "Enfermedad hemolítica del recién nacido"
+                'name' => 'Enfermedad hemolítica del recién nacido',
             ],
             [
-                "name" => "Enfermedad hemorrágica del recién nacido"
+                'name' => 'Enfermedad hemorrágica del recién nacido',
             ],
             [
-                "name" => "Enfermedad por defecto de almacenamiento intraplaquetario"
+                'name' => 'Enfermedad por defecto de almacenamiento intraplaquetario',
             ],
             [
-                "name" => "Eritremia"
+                'name' => 'Eritremia',
             ],
             [
-                "name" => "Eritroblastosis fetal"
+                'name' => 'Eritroblastosis fetal',
             ],
             [
-                "name" => "Eritrocitosis megaloesplénica"
+                'name' => 'Eritrocitosis megaloesplénica',
             ],
             [
-                "name" => "Esferocitosis"
+                'name' => 'Esferocitosis',
             ],
             [
-                "name" => "Fibrinólisis primaria o secundaria"
+                'name' => 'Fibrinólisis primaria o secundaria',
             ],
             [
-                "name" => "Fiebre biduoterciana"
+                'name' => 'Fiebre biduoterciana',
             ],
             [
-                "name" => "Fiebre cuartana"
+                'name' => 'Fiebre cuartana',
             ],
             [
-                "name" => "Fiebre de las aguas negras o de los pantanos"
+                'name' => 'Fiebre de las aguas negras o de los pantanos',
             ],
             [
-                "name" => "Fosfato bajo en sangre"
+                'name' => 'Fosfato bajo en sangre',
             ],
             [
-                "name" => "Granulocitopenia"
+                'name' => 'Granulocitopenia',
             ],
             [
-                "name" => "Granulopenia"
+                'name' => 'Granulopenia',
             ],
             [
-                "name" => "HCL"
+                'name' => 'HCL',
             ],
             [
-                "name" => "Hemacromatosis"
+                'name' => 'Hemacromatosis',
             ],
             [
-                "name" => "Hematocromatosis"
+                'name' => 'Hematocromatosis',
             ],
             [
-                "name" => "Hemocromatosis"
+                'name' => 'Hemocromatosis',
             ],
             [
-                "name" => "Hemofilia A"
+                'name' => 'Hemofilia A',
             ],
             [
-                "name" => "Hemofilia B"
+                'name' => 'Hemofilia B',
             ],
             [
-                "name" => "Hemofilia por el factor IX"
+                'name' => 'Hemofilia por el factor IX',
             ],
             [
-                "name" => "Hemoglobina clínica C"
+                'name' => 'Hemoglobina clínica C',
             ],
             [
-                "name" => "Hemoglobinopatía"
+                'name' => 'Hemoglobinopatía',
             ],
             [
-                "name" => "Hemoglobinopatías raras"
+                'name' => 'Hemoglobinopatías raras',
             ],
             [
-                "name" => "Hemoglobinuria paroxística nocturna"
+                'name' => 'Hemoglobinuria paroxística nocturna',
             ],
             [
-                "name" => "Hiperesplenismo"
+                'name' => 'Hiperesplenismo',
             ],
             [
-                "name" => "Hiperplasia linfofolicular"
+                'name' => 'Hiperplasia linfofolicular',
             ],
             [
-                "name" => "Hiperplasia linfoide"
+                'name' => 'Hiperplasia linfoide',
             ],
             [
-                "name" => "Hipertrofia linfofolicular"
+                'name' => 'Hipertrofia linfofolicular',
             ],
             [
-                "name" => "Hipertrofia linfoide"
+                'name' => 'Hipertrofia linfoide',
             ],
             [
-                "name" => "Hipofosfatemia"
+                'name' => 'Hipofosfatemia',
             ],
             [
-                "name" => "Hipomagnesemia"
+                'name' => 'Hipomagnesemia',
             ],
             [
-                "name" => "Hiponatremia hipovolémica"
+                'name' => 'Hiponatremia hipovolémica',
             ],
             [
-                "name" => "Hiponatremia por dilución"
+                'name' => 'Hiponatremia por dilución',
             ],
             [
-                "name" => "Hipoprotrombinemia"
+                'name' => 'Hipoprotrombinemia',
             ],
             [
-                "name" => "HPN"
+                'name' => 'HPN',
             ],
             [
-                "name" => "Incompatibilidad ABO"
+                'name' => 'Incompatibilidad ABO',
             ],
             [
-                "name" => "Incompatibilidad RH"
+                'name' => 'Incompatibilidad RH',
             ],
             [
-                "name" => "Infección de los ganglios linfáticos"
+                'name' => 'Infección de los ganglios linfáticos',
             ],
             [
-                "name" => "Leucemia"
+                'name' => 'Leucemia',
             ],
             [
-                "name" => "Leucemia aguda de la infancia"
+                'name' => 'Leucemia aguda de la infancia',
             ],
             [
-                "name" => "Leucemia aguda granulocítica"
+                'name' => 'Leucemia aguda granulocítica',
             ],
             [
-                "name" => "Leucemia aguda mieloide"
+                'name' => 'Leucemia aguda mieloide',
             ],
             [
-                "name" => "Leucemia crónica granulocítica"
+                'name' => 'Leucemia crónica granulocítica',
             ],
             [
-                "name" => "Leucemia mielógena crónica (LMC)"
+                'name' => 'Leucemia mielógena crónica (LMC)',
             ],
             [
-                "name" => "Leucemia no linfocítica aguda"
+                'name' => 'Leucemia no linfocítica aguda',
             ],
             [
-                "name" => "Linfadenopatía"
+                'name' => 'Linfadenopatía',
             ],
             [
-                "name" => "Linfoma cerebral"
+                'name' => 'Linfoma cerebral',
             ],
             [
-                "name" => "Linfoma de alto grado de células B"
+                'name' => 'Linfoma de alto grado de células B',
             ],
             [
-                "name" => "Linfoma de Hodgkin"
+                'name' => 'Linfoma de Hodgkin',
             ],
             [
-                "name" => "Linfoma de las células B"
+                'name' => 'Linfoma de las células B',
             ],
             [
-                "name" => "Linfoma histiocítico"
+                'name' => 'Linfoma histiocítico',
             ],
             [
-                "name" => "Linfoma linfoblástico"
+                'name' => 'Linfoma linfoblástico',
             ],
             [
-                "name" => "Linfoma linfocítico"
+                'name' => 'Linfoma linfocítico',
             ],
             [
-                "name" => "Linfoma linfoplasmacítico"
+                'name' => 'Linfoma linfoplasmacítico',
             ],
             [
-                "name" => "Linfoma no Hodgkin"
+                'name' => 'Linfoma no Hodgkin',
             ],
             [
-                "name" => "LLA"
+                'name' => 'LLA',
             ],
             [
-                "name" => "LLC"
+                'name' => 'LLC',
             ],
             [
-                "name" => "LMA"
+                'name' => 'LMA',
             ],
             [
-                "name" => "LMC"
+                'name' => 'LMC',
             ],
             [
-                "name" => "Macroglobulinemia de Waldenstrom"
+                'name' => 'Macroglobulinemia de Waldenstrom',
             ],
             [
-                "name" => "Macroglobulinemia primaria"
+                'name' => 'Macroglobulinemia primaria',
             ],
             [
-                "name" => "Magnesio bajo en la sangre"
+                'name' => 'Magnesio bajo en la sangre',
             ],
             [
-                "name" => "Meningococemia"
+                'name' => 'Meningococemia',
             ],
             [
-                "name" => "Metahemoglobinemia"
+                'name' => 'Metahemoglobinemia',
             ],
             [
-                "name" => "Metahemoglobinemia adquirida"
+                'name' => 'Metahemoglobinemia adquirida',
             ],
             [
-                "name" => "Metaplasia mielocitoide agnógena"
+                'name' => 'Metaplasia mielocitoide agnógena',
             ],
             [
-                "name" => "Metaplasia mieloide"
+                'name' => 'Metaplasia mieloide',
             ],
             [
-                "name" => "Mielofibrosis"
+                'name' => 'Mielofibrosis',
             ],
             [
-                "name" => "Mielofibrosis idiopática"
+                'name' => 'Mielofibrosis idiopática',
             ],
             [
-                "name" => "Mielofibrosis primaria"
+                'name' => 'Mielofibrosis primaria',
             ],
             [
-                "name" => "Mieloma de células plasmáticas"
+                'name' => 'Mieloma de células plasmáticas',
             ],
             [
-                "name" => "Mieloma múltiple"
+                'name' => 'Mieloma múltiple',
             ],
             [
-                "name" => "Neutropenia"
+                'name' => 'Neutropenia',
             ],
             [
-                "name" => "Neutropenia en los bebés"
+                'name' => 'Neutropenia en los bebés',
             ],
             [
-                "name" => "Niveles bajos de magnesio"
+                'name' => 'Niveles bajos de magnesio',
             ],
             [
-                "name" => "Obstrucción linfática"
+                'name' => 'Obstrucción linfática',
             ],
             [
-                "name" => "Paludismo terciano"
+                'name' => 'Paludismo terciano',
             ],
             [
-                "name" => "PCH"
+                'name' => 'PCH',
             ],
             [
-                "name" => "Pérdida de potasio"
+                'name' => 'Pérdida de potasio',
             ],
             [
-                "name" => "Peste de Pahvant Valley"
+                'name' => 'Peste de Pahvant Valley',
             ],
             [
-                "name" => "Peste pulmonar"
+                'name' => 'Peste pulmonar',
             ],
             [
-                "name" => "Peste septicémica"
+                'name' => 'Peste septicémica',
             ],
             [
-                "name" => "Plasmacitoma del hueso"
+                'name' => 'Plasmacitoma del hueso',
             ],
             [
-                "name" => "Plasmacitoma maligno"
+                'name' => 'Plasmacitoma maligno',
             ],
             [
-                "name" => "Plasmodio"
+                'name' => 'Plasmodio',
             ],
             [
-                "name" => "Policitemia con cianosis crónica=> policitemia mielopática"
+                'name' => 'Policitemia con cianosis crónica=> policitemia mielopática',
             ],
             [
-                "name" => "Policitemia criptógena"
+                'name' => 'Policitemia criptógena',
             ],
             [
-                "name" => "Policitemia esplenomegálica"
+                'name' => 'Policitemia esplenomegálica',
             ],
             [
-                "name" => "Policitemia primaria"
+                'name' => 'Policitemia primaria',
             ],
             [
-                "name" => "Policromatofilia"
+                'name' => 'Policromatofilia',
             ],
             [
-                "name" => "PTI"
+                'name' => 'PTI',
             ],
             [
-                "name" => "Púrpura trombocitopénica idiopática (ITP)"
+                'name' => 'Púrpura trombocitopénica idiopática (ITP)',
             ],
             [
-                "name" => "Púrpura trombocitopénica inmunitaria"
+                'name' => 'Púrpura trombocitopénica inmunitaria',
             ],
             [
-                "name" => "Púrpura vascular"
+                'name' => 'Púrpura vascular',
             ],
             [
-                "name" => "Reacción a una transfusión"
+                'name' => 'Reacción a una transfusión',
             ],
             [
-                "name" => "Reacción a una transfusión de sangre"
+                'name' => 'Reacción a una transfusión de sangre',
             ],
             [
-                "name" => "Reacción leucemoide"
+                'name' => 'Reacción leucemoide',
             ],
             [
-                "name" => "Sangrado por deficiencia de vitamina K"
+                'name' => 'Sangrado por deficiencia de vitamina K',
             ],
             [
-                "name" => "SCD"
+                'name' => 'SCD',
             ],
             [
-                "name" => "Sensibilidad autoeritrocítica"
+                'name' => 'Sensibilidad autoeritrocítica',
             ],
             [
-                "name" => "Septicemia meningocócica"
+                'name' => 'Septicemia meningocócica',
             ],
             [
-                "name" => "Síndrome de Arias (Crigler-Najjar tipo II)"
+                'name' => 'Síndrome de Arias (Crigler-Najjar tipo II)',
             ],
             [
-                "name" => "Síndrome de Bernard-Soulier"
+                'name' => 'Síndrome de Bernard-Soulier',
             ],
             [
-                "name" => "Síndrome de Crigler-Najjar"
+                'name' => 'Síndrome de Crigler-Najjar',
             ],
             [
-                "name" => "Síndrome de Felty"
+                'name' => 'Síndrome de Felty',
             ],
             [
-                "name" => "Síndrome de Loeffler"
+                'name' => 'Síndrome de Loeffler',
             ],
             [
-                "name" => "Síndrome de los ganglios linfáticos mucocutáneos"
+                'name' => 'Síndrome de los ganglios linfáticos mucocutáneos',
             ],
             [
-                "name" => "Síndrome de quilomicronemia"
+                'name' => 'Síndrome de quilomicronemia',
             ],
             [
-                "name" => "Síndrome pos-esplenectomía"
+                'name' => 'Síndrome pos-esplenectomía',
             ],
             [
-                "name" => "Talasemia"
+                'name' => 'Talasemia',
             ],
             [
-                "name" => "Toxemia menigocócica"
+                'name' => 'Toxemia menigocócica',
             ],
             [
-                "name" => "Trastorno mieloproliferativo"
+                'name' => 'Trastorno mieloproliferativo',
             ],
             [
-                "name" => "Trastornos adquiridos de la función plaquetaria"
+                'name' => 'Trastornos adquiridos de la función plaquetaria',
             ],
             [
-                "name" => "Trastornos hemorrágicos"
+                'name' => 'Trastornos hemorrágicos',
             ],
             [
-                "name" => "Trastornos plaquetarios cualitativos adquiridos"
+                'name' => 'Trastornos plaquetarios cualitativos adquiridos',
             ],
             [
-                "name" => "Trombastenia"
+                'name' => 'Trombastenia',
             ],
             [
-                "name" => "Trombastenia de Glanzmann"
+                'name' => 'Trombastenia de Glanzmann',
             ],
             [
-                "name" => "Trombocitopenia"
+                'name' => 'Trombocitopenia',
             ],
             [
-                "name" => "Trombocitopenia inmunitaria inducida por medicamentos"
+                'name' => 'Trombocitopenia inmunitaria inducida por medicamentos',
             ],
             [
-                "name" => "Trombocitopenia no inmunitaria inducida por fármacos"
+                'name' => 'Trombocitopenia no inmunitaria inducida por fármacos',
             ],
             [
-                "name" => "VKDB"
+                'name' => 'VKDB',
             ],
             [
-                "name" => "Angustia"
+                'name' => 'Angustia',
             ],
             [
-                "name" => "Drogadicción"
+                'name' => 'Drogadicción',
             ],
             [
-                "name" => "Migraña"
+                'name' => 'Migraña',
             ],
             [
-                "name" => "Amigdalitis"
+                'name' => 'Amigdalitis',
             ],
             [
-                "name" => "Aspergilosis"
+                'name' => 'Aspergilosis',
             ],
             [
-                "name" => "Balanopostitis"
+                'name' => 'Balanopostitis',
             ],
             [
-                "name" => "Brucelosis"
+                'name' => 'Brucelosis',
             ],
             [
-                "name" => "Cistitis en niños"
+                'name' => 'Cistitis en niños',
             ],
             [
-                "name" => "Criptococosis"
+                'name' => 'Criptococosis',
             ],
             [
-                "name" => "Dengue"
+                'name' => 'Dengue',
             ],
             [
-                "name" => "Enfermedad de Chagas"
+                'name' => 'Enfermedad de Chagas',
             ],
             [
-                "name" => "Enfermedad de Lyme"
+                'name' => 'Enfermedad de Lyme',
             ],
             [
-                "name" => "Enfermedad de Lyme en etapa 2"
+                'name' => 'Enfermedad de Lyme en etapa 2',
             ],
             [
-                "name" => "Enfermedad de Lyme persistente y tardía"
+                'name' => 'Enfermedad de Lyme persistente y tardía',
             ],
             [
-                "name" => "Enfermedad de Lyme terciaria"
+                'name' => 'Enfermedad de Lyme terciaria',
             ],
             [
-                "name" => "Enfermedad similar al dengue"
+                'name' => 'Enfermedad similar al dengue',
             ],
             [
-                "name" => "Escarlatina"
+                'name' => 'Escarlatina',
             ],
             [
-                "name" => "Faringitis"
+                'name' => 'Faringitis',
             ],
             [
-                "name" => "Fiebre por mordedura de rata"
+                'name' => 'Fiebre por mordedura de rata',
             ],
             [
-                "name" => "Fiebre reumática"
+                'name' => 'Fiebre reumática',
             ],
             [
-                "name" => "Fiebre tifoidea"
+                'name' => 'Fiebre tifoidea',
             ],
             [
-                "name" => "Giardiasis"
+                'name' => 'Giardiasis',
             ],
             [
-                "name" => "Gonorrea"
+                'name' => 'Gonorrea',
             ],
             [
-                "name" => "Hidatidosis"
+                'name' => 'Hidatidosis',
             ],
             [
-                "name" => "HIV/SIDA"
+                'name' => 'HIV/SIDA',
             ],
             [
-                "name" => "Infección aguda de las vías urinarias (IVU aguda)"
+                'name' => 'Infección aguda de las vías urinarias (IVU aguda)',
             ],
             [
-                "name" => "Infección aguda por VIH"
+                'name' => 'Infección aguda por VIH',
             ],
             [
-                "name" => "Infección complicada de las vías urinarias"
+                'name' => 'Infección complicada de las vías urinarias',
             ],
             [
-                "name" => "Infección de garganta por estreptococos"
+                'name' => 'Infección de garganta por estreptococos',
             ],
             [
-                "name" => "Infección de las vías urinarias (IVU) en adultos"
+                'name' => 'Infección de las vías urinarias (IVU) en adultos',
             ],
             [
-                "name" => "Infección del Tracto Urinario (ITU)"
+                'name' => 'Infección del Tracto Urinario (ITU)',
             ],
             [
-                "name" => "Infección por rotavirus"
+                'name' => 'Infección por rotavirus',
             ],
             [
-                "name" => "Infección por VIH"
+                'name' => 'Infección por VIH',
             ],
             [
-                "name" => "Influenza"
+                'name' => 'Influenza',
             ],
             [
-                "name" => "Intoxicación alimentaria"
+                'name' => 'Intoxicación alimentaria',
             ],
             [
-                "name" => "Linfadenitis"
+                'name' => 'Linfadenitis',
             ],
             [
-                "name" => "Meningitis"
+                'name' => 'Meningitis',
             ],
             [
-                "name" => "Meningitis tuberculosa"
+                'name' => 'Meningitis tuberculosa',
             ],
             [
-                "name" => "Mononucleosis"
+                'name' => 'Mononucleosis',
             ],
             [
-                "name" => "Neumonía"
+                'name' => 'Neumonía',
             ],
             [
-                "name" => "Neumonía por citomegalovirus"
+                'name' => 'Neumonía por citomegalovirus',
             ],
             [
-                "name" => "Osteomielitis"
+                'name' => 'Osteomielitis',
             ],
             [
-                "name" => "Paludismo o malaria por Falciparum"
+                'name' => 'Paludismo o malaria por Falciparum',
             ],
             [
-                "name" => "Paperas"
+                'name' => 'Paperas',
             ],
             [
-                "name" => "Parasitosis"
+                'name' => 'Parasitosis',
             ],
             [
-                "name" => "Peste"
+                'name' => 'Peste',
             ],
             [
-                "name" => "Poliomielitis"
+                'name' => 'Poliomielitis',
             ],
             [
-                "name" => "Rickettsiosis exantemática"
+                'name' => 'Rickettsiosis exantemática',
             ],
             [
-                "name" => "Sepsis"
+                'name' => 'Sepsis',
             ],
             [
-                "name" => "Sífilis"
+                'name' => 'Sífilis',
             ],
             [
-                "name" => "Sífilis terciaria"
+                'name' => 'Sífilis terciaria',
             ],
             [
-                "name" => "Síndrome de seroconversión por VIH"
+                'name' => 'Síndrome de seroconversión por VIH',
             ],
             [
-                "name" => "Staphylococcus aureus resistente a meticilina"
+                'name' => 'Staphylococcus aureus resistente a meticilina',
             ],
             [
-                "name" => "Tétanos"
+                'name' => 'Tétanos',
             ],
             [
-                "name" => "Tifus"
+                'name' => 'Tifus',
             ],
             [
-                "name" => "Tuberculosis"
+                'name' => 'Tuberculosis',
             ],
             [
-                "name" => "Tuberculosis diseminada"
+                'name' => 'Tuberculosis diseminada',
             ],
             [
-                "name" => "Tuberculosis pulmonar"
+                'name' => 'Tuberculosis pulmonar',
             ],
             [
-                "name" => "Úlcera aftosa"
+                'name' => 'Úlcera aftosa',
             ],
             [
-                "name" => "Varicela"
+                'name' => 'Varicela',
             ],
             [
-                "name" => "Viruela"
+                'name' => 'Viruela',
             ],
             [
-                "name" => "Virus del Nilo Occidental"
+                'name' => 'Virus del Nilo Occidental',
             ],
             [
-                "name" => "Agammaglobulinemia"
+                'name' => 'Agammaglobulinemia',
             ],
             [
-                "name" => "Agammaglobulinemia de Bruton"
+                'name' => 'Agammaglobulinemia de Bruton',
             ],
             [
-                "name" => "Agammaglobulinemia ligada al cromosoma X"
+                'name' => 'Agammaglobulinemia ligada al cromosoma X',
             ],
             [
-                "name" => "Angioedema hereditario"
+                'name' => 'Angioedema hereditario',
             ],
             [
-                "name" => "Artritis séptica"
+                'name' => 'Artritis séptica',
             ],
             [
-                "name" => "CIDP"
+                'name' => 'CIDP',
             ],
             [
-                "name" => "Citomegalovirus congénito"
+                'name' => 'Citomegalovirus congénito',
             ],
             [
-                "name" => "Deficiencia de IgA"
+                'name' => 'Deficiencia de IgA',
             ],
             [
-                "name" => "Deficiencia selectiva de lgA"
+                'name' => 'Deficiencia selectiva de lgA',
             ],
             [
-                "name" => "Edema angioneurótico"
+                'name' => 'Edema angioneurótico',
             ],
             [
-                "name" => "ELA"
+                'name' => 'ELA',
             ],
             [
-                "name" => "Enfermedad de Quincke"
+                'name' => 'Enfermedad de Quincke',
             ],
             [
-                "name" => "Enfermedad de Still del adulto"
+                'name' => 'Enfermedad de Still del adulto',
             ],
             [
-                "name" => "Enfermedad del suero"
+                'name' => 'Enfermedad del suero',
             ],
             [
-                "name" => "Enfermedad granulomatosa crónica"
+                'name' => 'Enfermedad granulomatosa crónica',
             ],
             [
-                "name" => "Enfermedad granulomatosa crónica de la infancia"
+                'name' => 'Enfermedad granulomatosa crónica de la infancia',
             ],
             [
-                "name" => "Enfermedad por anticuerpos contra la membrana basal glomerular"
+                'name' => 'Enfermedad por anticuerpos contra la membrana basal glomerular',
             ],
             [
-                "name" => "Glomerulonefritis membranoproliferativa (tipo I)"
+                'name' => 'Glomerulonefritis membranoproliferativa (tipo I)',
             ],
             [
-                "name" => "Glomerulonefritis membranoproliferativa (tipo II)"
+                'name' => 'Glomerulonefritis membranoproliferativa (tipo II)',
             ],
             [
-                "name" => "Glomerulonefritis rápidamente progresiva"
+                'name' => 'Glomerulonefritis rápidamente progresiva',
             ],
             [
-                "name" => "Glomerulonefritis rápidamente progresiva con hemorragia pulmonar"
+                'name' => 'Glomerulonefritis rápidamente progresiva con hemorragia pulmonar',
             ],
             [
-                "name" => "Granulomatosis de Wegener"
+                'name' => 'Granulomatosis de Wegener',
             ],
             [
-                "name" => "Hemorragia pulmonar por glomerulonefritis"
+                'name' => 'Hemorragia pulmonar por glomerulonefritis',
             ],
             [
-                "name" => "Hiperinmunización"
+                'name' => 'Hiperinmunización',
             ],
             [
-                "name" => "Infección por VIH sintomática y crónica"
+                'name' => 'Infección por VIH sintomática y crónica',
             ],
             [
-                "name" => "Infección por VIH sintomática y temprana"
+                'name' => 'Infección por VIH sintomática y temprana',
             ],
             [
-                "name" => "Inmunodepresión"
+                'name' => 'Inmunodepresión',
             ],
             [
-                "name" => "Leucemia linfocítica aguda"
+                'name' => 'Leucemia linfocítica aguda',
             ],
             [
-                "name" => "Leucoencefalopatía multifocal progresiva"
+                'name' => 'Leucoencefalopatía multifocal progresiva',
             ],
             [
-                "name" => "LMP"
+                'name' => 'LMP',
             ],
             [
-                "name" => "Miastenia grave"
+                'name' => 'Miastenia grave',
             ],
             [
-                "name" => "Mononucleosis por CMV"
+                'name' => 'Mononucleosis por CMV',
             ],
             [
-                "name" => "Neumocistosis"
+                'name' => 'Neumocistosis',
             ],
             [
-                "name" => "Neumonía por Pneumocystis carinii"
+                'name' => 'Neumonía por Pneumocystis carinii',
             ],
             [
-                "name" => "Neumonía viral"
+                'name' => 'Neumonía viral',
             ],
             [
-                "name" => "Nocardiosis del pulmón"
+                'name' => 'Nocardiosis del pulmón',
             ],
             [
-                "name" => "Pars planitis"
+                'name' => 'Pars planitis',
             ],
             [
-                "name" => "PCP"
+                'name' => 'PCP',
             ],
             [
-                "name" => "PML"
+                'name' => 'PML',
             ],
             [
-                "name" => "Poliartritis crónica juvenil"
+                'name' => 'Poliartritis crónica juvenil',
             ],
             [
-                "name" => "Polineuritis infecciosa"
+                'name' => 'Polineuritis infecciosa',
             ],
             [
-                "name" => "Polineuropatía desmielinizante inflamatoria crónica"
+                'name' => 'Polineuropatía desmielinizante inflamatoria crónica',
             ],
             [
-                "name" => "Polineuropatía inflamatoria aguda"
+                'name' => 'Polineuropatía inflamatoria aguda',
             ],
             [
-                "name" => "Rechazo a un órgano o tejido"
+                'name' => 'Rechazo a un órgano o tejido',
             ],
             [
-                "name" => "Rechazo al injerto"
+                'name' => 'Rechazo al injerto',
             ],
             [
-                "name" => "Rubéola congénita"
+                'name' => 'Rubéola congénita',
             ],
             [
-                "name" => "Sífilis secundaria"
+                'name' => 'Sífilis secundaria',
             ],
             [
-                "name" => "Síndome de Eaton-Lambert"
+                'name' => 'Síndome de Eaton-Lambert',
             ],
             [
-                "name" => "Síndrome de Chediak-Higashi"
+                'name' => 'Síndrome de Chediak-Higashi',
             ],
             [
-                "name" => "Síndrome de Goodpasture"
+                'name' => 'Síndrome de Goodpasture',
             ],
             [
-                "name" => "Síndrome de hiper IgE"
+                'name' => 'Síndrome de hiper IgE',
             ],
             [
-                "name" => "Síndrome de Lambert-Eaton"
+                'name' => 'Síndrome de Lambert-Eaton',
             ],
             [
-                "name" => "Síndrome de respuesta inflamatoria sistémica (SRIS)"
+                'name' => 'Síndrome de respuesta inflamatoria sistémica (SRIS)',
             ],
             [
-                "name" => "Síndrome miasténico"
+                'name' => 'Síndrome miasténico',
             ],
             [
-                "name" => "Síndrome renal pulmonar"
+                'name' => 'Síndrome renal pulmonar',
             ],
             [
-                "name" => "Síndrome retroviral agudo"
+                'name' => 'Síndrome retroviral agudo',
             ],
             [
-                "name" => "Toxoplasmosis"
+                'name' => 'Toxoplasmosis',
             ],
             [
-                "name" => "Trastornos autoinmunitarios"
+                'name' => 'Trastornos autoinmunitarios',
             ],
             [
-                "name" => "Uveítis anterior"
+                'name' => 'Uveítis anterior',
             ],
             [
-                "name" => "Uveítis posterior"
+                'name' => 'Uveítis posterior',
             ],
             [
-                "name" => "Virus de la hepatitis D"
+                'name' => 'Virus de la hepatitis D',
             ],
             [
-                "name" => "Acidemia metilmalónica"
+                'name' => 'Acidemia metilmalónica',
             ],
             [
-                "name" => "Adenitis tuberculosa"
+                'name' => 'Adenitis tuberculosa',
             ],
             [
-                "name" => "Deficiencia de vitamina D"
+                'name' => 'Deficiencia de vitamina D',
             ],
             [
-                "name" => "Enfermedad del arañazo de gato"
+                'name' => 'Enfermedad del arañazo de gato',
             ],
             [
-                "name" => "Estreptobacilosis"
+                'name' => 'Estreptobacilosis',
             ],
             [
-                "name" => "Estudios de laboratorio general"
+                'name' => 'Estudios de laboratorio general',
             ],
             [
-                "name" => "Fibrosis pulmonar intersticial difusa idiopática"
+                'name' => 'Fibrosis pulmonar intersticial difusa idiopática',
             ],
             [
-                "name" => "Fiebre causada por una variedad de tábano"
+                'name' => 'Fiebre causada por una variedad de tábano',
             ],
             [
-                "name" => "Fiebre de Haverhill"
+                'name' => 'Fiebre de Haverhill',
             ],
             [
-                "name" => "Fiebre de los conejos"
+                'name' => 'Fiebre de los conejos',
             ],
             [
-                "name" => "Fiebre de los lemming o ratones de Noruega"
+                'name' => 'Fiebre de los lemming o ratones de Noruega',
             ],
             [
-                "name" => "Fiebre espirilar"
+                'name' => 'Fiebre espirilar',
             ],
             [
-                "name" => "Fiebre estreptobacilar"
+                'name' => 'Fiebre estreptobacilar',
             ],
             [
-                "name" => "FPI"
+                'name' => 'FPI',
             ],
             [
-                "name" => "Glomeruloesclerosis diabética"
+                'name' => 'Glomeruloesclerosis diabética',
             ],
             [
-                "name" => "Glomeruloesclerosis segmentaria"
+                'name' => 'Glomeruloesclerosis segmentaria',
             ],
             [
-                "name" => "Glomerulonefritis (GN) posestreptocócica"
+                'name' => 'Glomerulonefritis (GN) posestreptocócica',
             ],
             [
-                "name" => "Glomerulonefritis (GN) postinfecciosa"
+                'name' => 'Glomerulonefritis (GN) postinfecciosa',
             ],
             [
-                "name" => "Glomerulonefritis extramembranosa"
+                'name' => 'Glomerulonefritis extramembranosa',
             ],
             [
-                "name" => "Glomerulonefritis lobular"
+                'name' => 'Glomerulonefritis lobular',
             ],
             [
-                "name" => "Glomerulonefritis membranosa"
+                'name' => 'Glomerulonefritis membranosa',
             ],
             [
-                "name" => "Glomerulonefritis postestreptocócica"
+                'name' => 'Glomerulonefritis postestreptocócica',
             ],
             [
-                "name" => "Hiperbilirrubinemia crónica leve"
+                'name' => 'Hiperbilirrubinemia crónica leve',
             ],
             [
-                "name" => "Hiperbilirrubinemia familiar transitoria"
+                'name' => 'Hiperbilirrubinemia familiar transitoria',
             ],
             [
-                "name" => "Hiperlipidemia combinada familiar"
+                'name' => 'Hiperlipidemia combinada familiar',
             ],
             [
-                "name" => "Hiperlipidemia tipo lipoproteína múltiple"
+                'name' => 'Hiperlipidemia tipo lipoproteína múltiple',
             ],
             [
-                "name" => "Hipervitaminosis D"
+                'name' => 'Hipervitaminosis D',
             ],
             [
-                "name" => "Histiocitosis"
+                'name' => 'Histiocitosis',
             ],
             [
-                "name" => "Histiocitosis de las células de Langerhans"
+                'name' => 'Histiocitosis de las células de Langerhans',
             ],
             [
-                "name" => "Histiocitosis X"
+                'name' => 'Histiocitosis X',
             ],
             [
-                "name" => "Histiocitosis X pulmonar"
+                'name' => 'Histiocitosis X pulmonar',
             ],
             [
-                "name" => "Ictericia juvenil intermitente"
+                'name' => 'Ictericia juvenil intermitente',
             ],
             [
-                "name" => "Infección del riñón"
+                'name' => 'Infección del riñón',
             ],
             [
-                "name" => "Infección recurrente de las vías urinarias"
+                'name' => 'Infección recurrente de las vías urinarias',
             ],
             [
-                "name" => "Intoxicación por mercurio"
+                'name' => 'Intoxicación por mercurio',
             ],
             [
-                "name" => "Mosaicismo"
+                'name' => 'Mosaicismo',
             ],
             [
-                "name" => "Mosaicismo cromosómico"
+                'name' => 'Mosaicismo cromosómico',
             ],
             [
-                "name" => "Mosaicismo gonadal"
+                'name' => 'Mosaicismo gonadal',
             ],
             [
-                "name" => "MRSA extrahospitalaria (CA-MRSA)"
+                'name' => 'MRSA extrahospitalaria (CA-MRSA)',
             ],
             [
-                "name" => "MRSA intrahospitalaria (HA-MRSA)"
+                'name' => 'MRSA intrahospitalaria (HA-MRSA)',
             ],
             [
-                "name" => "MSUD"
+                'name' => 'MSUD',
             ],
             [
-                "name" => "Nefritis intersticial aguda no relacionada con AINES"
+                'name' => 'Nefritis intersticial aguda no relacionada con AINES',
             ],
             [
-                "name" => "Nefritis tubulointersticial"
+                'name' => 'Nefritis tubulointersticial',
             ],
             [
-                "name" => "Obstrucción de las vías urinarias bajas"
+                'name' => 'Obstrucción de las vías urinarias bajas',
             ],
             [
-                "name" => "Parálisis hipercaliémica periódica"
+                'name' => 'Parálisis hipercaliémica periódica',
             ],
             [
-                "name" => "Potasio bajo en la sangre"
+                'name' => 'Potasio bajo en la sangre',
             ],
             [
-                "name" => "Potasio elevado"
+                'name' => 'Potasio elevado',
             ],
             [
-                "name" => "Reticuloendoteliosis no lipídica"
+                'name' => 'Reticuloendoteliosis no lipídica',
             ],
             [
-                "name" => "Síndrome de Gilbert"
+                'name' => 'Síndrome de Gilbert',
             ],
             [
-                "name" => "Síndrome de Lucey-Driscol"
+                'name' => 'Síndrome de Lucey-Driscol',
             ],
             [
-                "name" => "Síndrome de nefritis aguda"
+                'name' => 'Síndrome de nefritis aguda',
             ],
             [
-                "name" => "Síndrome del cabello ensortijado de Menkes"
+                'name' => 'Síndrome del cabello ensortijado de Menkes',
             ],
             [
-                "name" => "Síndrome nefrítico agudo"
+                'name' => 'Síndrome nefrítico agudo',
             ],
             [
-                "name" => "Sodoku"
+                'name' => 'Sodoku',
             ],
             [
-                "name" => "Toxicidad de la vitamina A"
+                'name' => 'Toxicidad de la vitamina A',
             ],
             [
-                "name" => "Toxicidad por vitamina D"
+                'name' => 'Toxicidad por vitamina D',
             ],
             [
-                "name" => "Tularemia"
+                'name' => 'Tularemia',
             ],
             [
-                "name" => "Afasia"
+                'name' => 'Afasia',
             ],
             [
-                "name" => "Deficiencia articulatoria"
+                'name' => 'Deficiencia articulatoria',
             ],
             [
-                "name" => "Dislexia"
+                'name' => 'Dislexia',
             ],
             [
-                "name" => "Dispraxia"
+                'name' => 'Dispraxia',
             ],
             [
-                "name" => "El tartamudeo y los niños"
+                'name' => 'El tartamudeo y los niños',
             ],
             [
-                "name" => "Falta de fluidez en el lenguaje"
+                'name' => 'Falta de fluidez en el lenguaje',
             ],
             [
-                "name" => "Pérdida de la audición a causa del trabajo"
+                'name' => 'Pérdida de la audición a causa del trabajo',
             ],
             [
-                "name" => "Síndrome de 5p menos"
+                'name' => 'Síndrome de 5p menos',
             ],
             [
-                "name" => "Síndrome de Heller"
+                'name' => 'Síndrome de Heller',
             ],
             [
-                "name" => "Síndrome de Martin-Bell"
+                'name' => 'Síndrome de Martin-Bell',
             ],
             [
-                "name" => "Síndrome de Rett"
+                'name' => 'Síndrome de Rett',
             ],
             [
-                "name" => "Síndrome de Rubinstein"
+                'name' => 'Síndrome de Rubinstein',
             ],
             [
-                "name" => "Síndrome de Rubinstein-Taybi"
+                'name' => 'Síndrome de Rubinstein-Taybi',
             ],
             [
-                "name" => "Síndrome de supresión del cromosoma 5p"
+                'name' => 'Síndrome de supresión del cromosoma 5p',
             ],
             [
-                "name" => "Síndrome del cromosoma X frágil"
+                'name' => 'Síndrome del cromosoma X frágil',
             ],
             [
-                "name" => "Síndrome del marcador X"
+                'name' => 'Síndrome del marcador X',
             ],
             [
-                "name" => "Trastorno del desarrollo de la lectura"
+                'name' => 'Trastorno del desarrollo de la lectura',
             ],
             [
-                "name" => "Trastorno del desarrollo del lenguaje expresivo"
+                'name' => 'Trastorno del desarrollo del lenguaje expresivo',
             ],
             [
-                "name" => "Trastorno disociativo de la infancia"
+                'name' => 'Trastorno disociativo de la infancia',
             ],
             [
-                "name" => "Trastorno fonológico"
+                'name' => 'Trastorno fonológico',
             ],
             [
-                "name" => "Artritis"
+                'name' => 'Artritis',
             ],
             [
-                "name" => "Celotipia"
+                'name' => 'Celotipia',
             ],
             [
-                "name" => "Condromalacia rotuliana"
+                'name' => 'Condromalacia rotuliana',
             ],
             [
-                "name" => "Depresión"
+                'name' => 'Depresión',
             ],
             [
-                "name" => "Disfunción eréctil"
+                'name' => 'Disfunción eréctil',
             ],
             [
-                "name" => "Duelo"
+                'name' => 'Duelo',
             ],
             [
-                "name" => "Espondilolistesis"
+                'name' => 'Espondilolistesis',
             ],
             [
-                "name" => "Estrés postraumático"
+                'name' => 'Estrés postraumático',
             ],
             [
-                "name" => "Lesión de Manguito Rotador"
+                'name' => 'Lesión de Manguito Rotador',
             ],
             [
-                "name" => "Lumbalgia"
+                'name' => 'Lumbalgia',
             ],
             [
-                "name" => "Pesadillas constantes"
+                'name' => 'Pesadillas constantes',
             ],
             [
-                "name" => "Síndrome de burnout"
+                'name' => 'Síndrome de burnout',
             ],
             [
-                "name" => "Síndrome del túnel carpiano"
+                'name' => 'Síndrome del túnel carpiano',
             ],
             [
-                "name" => "Trastorno de ansiedad generalizada"
+                'name' => 'Trastorno de ansiedad generalizada',
             ],
             [
-                "name" => "Trastorno obsesivo compulsivo (TOC)"
+                'name' => 'Trastorno obsesivo compulsivo (TOC)',
             ],
             [
-                "name" => "Trastornos del sueño"
+                'name' => 'Trastornos del sueño',
             ],
             [
-                "name" => "Acidosis respiratoria"
+                'name' => 'Acidosis respiratoria',
             ],
             [
-                "name" => "Aprosencefalia con cráneo abierto"
+                'name' => 'Aprosencefalia con cráneo abierto',
             ],
             [
-                "name" => "Beriberi"
+                'name' => 'Beriberi',
             ],
             [
-                "name" => "Botulismo infantil"
+                'name' => 'Botulismo infantil',
             ],
             [
-                "name" => "Cetoacidosis alcohólica"
+                'name' => 'Cetoacidosis alcohólica',
             ],
             [
-                "name" => "Dengue hemorrágico"
+                'name' => 'Dengue hemorrágico',
             ],
             [
-                "name" => "Dolor de cabeza"
+                'name' => 'Dolor de cabeza',
             ],
             [
-                "name" => "Encefalopatía hipóxica"
+                'name' => 'Encefalopatía hipóxica',
             ],
             [
-                "name" => "Envenenamiento con etilenglicol"
+                'name' => 'Envenenamiento con etilenglicol',
             ],
             [
-                "name" => "Fenotipo de Potter"
+                'name' => 'Fenotipo de Potter',
             ],
             [
-                "name" => "Incremento de la presión intracraneal"
+                'name' => 'Incremento de la presión intracraneal',
             ],
             [
-                "name" => "Lesión pulmonar aguda"
+                'name' => 'Lesión pulmonar aguda',
             ],
             [
-                "name" => "Lesión tóxica del riñón"
+                'name' => 'Lesión tóxica del riñón',
             ],
             [
-                "name" => "Muerte cerebral"
+                'name' => 'Muerte cerebral',
             ],
             [
-                "name" => "Neumonía asociada con el uso de un respirador"
+                'name' => 'Neumonía asociada con el uso de un respirador',
             ],
             [
-                "name" => "Parálisis general"
+                'name' => 'Parálisis general',
             ],
             [
-                "name" => "PIC"
+                'name' => 'PIC',
             ],
             [
-                "name" => "Pielonefritis"
+                'name' => 'Pielonefritis',
             ],
             [
-                "name" => "Prematuro"
+                'name' => 'Prematuro',
             ],
             [
-                "name" => "Pulmón en shock"
+                'name' => 'Pulmón en shock',
             ],
             [
-                "name" => "SAM"
+                'name' => 'SAM',
             ],
             [
-                "name" => "SDR transitorio"
+                'name' => 'SDR transitorio',
             ],
             [
-                "name" => "SDRA"
+                'name' => 'SDRA',
             ],
             [
-                "name" => "Shock séptico"
+                'name' => 'Shock séptico',
             ],
             [
-                "name" => "Síndrome carcinoide"
+                'name' => 'Síndrome carcinoide',
             ],
             [
-                "name" => "Síndrome de aspiracion de meconio"
+                'name' => 'Síndrome de aspiracion de meconio',
             ],
             [
-                "name" => "Síndrome de dificultad respiratoria aguda"
+                'name' => 'Síndrome de dificultad respiratoria aguda',
             ],
             [
-                "name" => "Síndrome de Potter"
+                'name' => 'Síndrome de Potter',
             ],
             [
-                "name" => "Síndrome de Reye"
+                'name' => 'Síndrome de Reye',
             ],
             [
-                "name" => "Síndrome respiratorio agudo severo (SARS)"
+                'name' => 'Síndrome respiratorio agudo severo (SARS)',
             ],
             [
-                "name" => "Traqueomalacia congénita"
+                'name' => 'Traqueomalacia congénita',
             ],
             [
-                "name" => "Traqueomalacia tipo 1"
+                'name' => 'Traqueomalacia tipo 1',
             ],
             [
-                "name" => "Traqueomalacia tipo 2"
+                'name' => 'Traqueomalacia tipo 2',
             ],
             [
-                "name" => "Traqueomalacia tipo 3"
+                'name' => 'Traqueomalacia tipo 3',
             ],
             [
-                "name" => "Contracturas musculares"
+                'name' => 'Contracturas musculares',
             ],
             [
-                "name" => "Dolor en la espalda"
+                'name' => 'Dolor en la espalda',
             ],
             [
-                "name" => "Fractura de antebrazo"
+                'name' => 'Fractura de antebrazo',
             ],
             [
-                "name" => "Fractura de clavícula"
+                'name' => 'Fractura de clavícula',
             ],
             [
-                "name" => "Fractura de fémur"
+                'name' => 'Fractura de fémur',
             ],
             [
-                "name" => "Fractura de mano"
+                'name' => 'Fractura de mano',
             ],
             [
-                "name" => "Fractura de muñeca"
+                'name' => 'Fractura de muñeca',
             ],
             [
-                "name" => "Fractura de tobillo y pie"
+                'name' => 'Fractura de tobillo y pie',
             ],
             [
-                "name" => "Hematoma septal"
+                'name' => 'Hematoma septal',
             ],
             [
-                "name" => "Hombro de nadador"
+                'name' => 'Hombro de nadador',
             ],
             [
-                "name" => "Hombro de tenista"
+                'name' => 'Hombro de tenista',
             ],
             [
-                "name" => "Lesiones ligamentarias en mano y muñeca"
+                'name' => 'Lesiones ligamentarias en mano y muñeca',
             ],
             [
-                "name" => "Mal de la montaña"
+                'name' => 'Mal de la montaña',
             ],
             [
-                "name" => "Miítis"
+                'name' => 'Miítis',
             ],
             [
-                "name" => "Pie equino varo"
+                'name' => 'Pie equino varo',
             ],
             [
-                "name" => "Pie plano"
+                'name' => 'Pie plano',
             ],
             [
-                "name" => "Síndrome femororrotuliano"
+                'name' => 'Síndrome femororrotuliano',
             ],
             [
-                "name" => "Tenosinovitis"
+                'name' => 'Tenosinovitis',
             ],
             [
-                "name" => "Derrame pleural relacionado con el asbesto"
+                'name' => 'Derrame pleural relacionado con el asbesto',
             ],
             [
-                "name" => "Fibrosis pulmonar por exposición al asbesto"
+                'name' => 'Fibrosis pulmonar por exposición al asbesto',
             ],
             [
-                "name" => "Fiebre de los pantanos"
+                'name' => 'Fiebre de los pantanos',
             ],
             [
-                "name" => "Hematoma epidural"
+                'name' => 'Hematoma epidural',
             ],
             [
-                "name" => "Hematoma extradural"
+                'name' => 'Hematoma extradural',
             ],
             [
-                "name" => "Hematoma subdural crónico"
+                'name' => 'Hematoma subdural crónico',
             ],
             [
-                "name" => "Hemorragia extradural"
+                'name' => 'Hemorragia extradural',
             ],
             [
-                "name" => "Hemorragia subdural"
+                'name' => 'Hemorragia subdural',
             ],
             [
-                "name" => "Hemorragia subdural crónica"
+                'name' => 'Hemorragia subdural crónica',
             ],
             [
-                "name" => "Lesión de oído"
+                'name' => 'Lesión de oído',
             ],
             [
-                "name" => "Neumoconiosis de los mineros del carbón"
+                'name' => 'Neumoconiosis de los mineros del carbón',
             ],
             [
-                "name" => "Neumoconiosis reumatoidea"
+                'name' => 'Neumoconiosis reumatoidea',
             ],
             [
-                "name" => "Neumonía por hidrocarburos"
+                'name' => 'Neumonía por hidrocarburos',
             ],
             [
-                "name" => "Neumonitis intersticial por exposición al asbesto"
+                'name' => 'Neumonitis intersticial por exposición al asbesto',
             ],
             [
-                "name" => "Neumonitis por hipersensibilidad"
+                'name' => 'Neumonitis por hipersensibilidad',
             ],
             [
-                "name" => "Neumopatía por humidificador o aire acondicionado"
+                'name' => 'Neumopatía por humidificador o aire acondicionado',
             ],
             [
-                "name" => "Pneumoconiosis"
+                'name' => 'Pneumoconiosis',
             ],
             [
-                "name" => "Psitacosis"
+                'name' => 'Psitacosis',
             ],
             [
-                "name" => "Silicoproteinosis"
+                'name' => 'Silicoproteinosis',
             ],
             [
-                "name" => "Silicosis acelerada"
+                'name' => 'Silicosis acelerada',
             ],
             [
-                "name" => "Silicosis aguda"
+                'name' => 'Silicosis aguda',
             ],
             [
-                "name" => "Silicosis conglomerada"
+                'name' => 'Silicosis conglomerada',
             ],
             [
-                "name" => "Silicosis crónica"
+                'name' => 'Silicosis crónica',
             ],
             [
-                "name" => "Síndrome de Caplan"
+                'name' => 'Síndrome de Caplan',
             ],
             [
-                "name" => "Asimetría facial"
+                'name' => 'Asimetría facial',
             ],
             [
-                "name" => "Envejecimiento cutáneo"
+                'name' => 'Envejecimiento cutáneo',
             ],
             [
-                "name" => "Fiebre mediterránea familiar"
+                'name' => 'Fiebre mediterránea familiar',
             ],
             [
-                "name" => "Gripe aviar o aviaria"
+                'name' => 'Gripe aviar o aviaria',
             ],
             [
-                "name" => "H5N1"
+                'name' => 'H5N1',
             ],
             [
-                "name" => "Hidrocefalia comunicante"
+                'name' => 'Hidrocefalia comunicante',
             ],
             [
-                "name" => "Hidrocefalia obstructiva extraventricular"
+                'name' => 'Hidrocefalia obstructiva extraventricular',
             ],
             [
-                "name" => "Hipercinesia en la niñez"
+                'name' => 'Hipercinesia en la niñez',
             ],
             [
-                "name" => "Hipocondría"
+                'name' => 'Hipocondría',
             ],
             [
-                "name" => "Hipoventilación alveolar primaria"
+                'name' => 'Hipoventilación alveolar primaria',
             ],
             [
-                "name" => "Influenza aviaria"
+                'name' => 'Influenza aviaria',
             ],
             [
-                "name" => "Kuru"
+                'name' => 'Kuru',
             ],
             [
-                "name" => "Nefritis hereditaria"
+                'name' => 'Nefritis hereditaria',
             ],
             [
-                "name" => "Nefritis intersticial aguda (alérgica)"
+                'name' => 'Nefritis intersticial aguda (alérgica)',
             ],
             [
-                "name" => "Piojos del cuerpo"
+                'name' => 'Piojos del cuerpo',
             ],
             [
-                "name" => "Reducción de grasa (adiposidades)"
+                'name' => 'Reducción de grasa (adiposidades)',
             ],
             [
-                "name" => "Retraso del desarrollo inorgánico"
+                'name' => 'Retraso del desarrollo inorgánico',
             ],
             [
-                "name" => "Rigidez"
+                'name' => 'Rigidez',
             ],
             [
-                "name" => "Rítides facial"
+                'name' => 'Rítides facial',
             ],
             [
-                "name" => "Secuelas de parálisis facial"
+                'name' => 'Secuelas de parálisis facial',
             ],
             [
-                "name" => "Síndrome de Aarskog"
+                'name' => 'Síndrome de Aarskog',
             ],
             [
-                "name" => "Síndrome de Alport"
+                'name' => 'Síndrome de Alport',
             ],
             [
-                "name" => "Síndrome de Beckwith-Wiedemann"
+                'name' => 'Síndrome de Beckwith-Wiedemann',
             ],
             [
-                "name" => "Síndrome de Munchausen por poderes"
+                'name' => 'Síndrome de Munchausen por poderes',
             ],
             [
-                "name" => "Síndrome de Noonan"
+                'name' => 'Síndrome de Noonan',
             ],
             [
-                "name" => "Síndrome uretral"
+                'name' => 'Síndrome uretral',
             ],
             [
-                "name" => "Síndrome uretral agudo"
+                'name' => 'Síndrome uretral agudo',
             ],
             [
-                "name" => "TEPT"
+                'name' => 'TEPT',
             ],
             [
-                "name" => "Terror nocturno"
+                'name' => 'Terror nocturno',
             ],
             [
-                "name" => "Tiña ungueal"
+                'name' => 'Tiña ungueal',
             ],
             [
-                "name" => "Trastorno crónico de tic motor"
+                'name' => 'Trastorno crónico de tic motor',
             ],
             [
-                "name" => "Trastorno crónico de tic vocal"
+                'name' => 'Trastorno crónico de tic vocal',
             ],
             [
-                "name" => "Trastorno de terror durante el sueño"
+                'name' => 'Trastorno de terror durante el sueño',
             ],
             [
-                "name" => "Trastorno del desarrollo de la coordinación"
+                'name' => 'Trastorno del desarrollo de la coordinación',
             ],
             [
-                "name" => "Balanitis"
+                'name' => 'Balanitis',
             ],
             [
-                "name" => "Deseo sexual hiperactivo"
+                'name' => 'Deseo sexual hiperactivo',
             ],
             [
-                "name" => "Hipercolesterolemia"
+                'name' => 'Hipercolesterolemia',
             ],
             [
-                "name" => "Infección urinaria complicada"
+                'name' => 'Infección urinaria complicada',
             ],
             [
-                "name" => "Liendres"
+                'name' => 'Liendres',
             ],
             [
-                "name" => "Linfadenopatía localizada"
+                'name' => 'Linfadenopatía localizada',
             ],
             [
-                "name" => "Nefropatía debida al reflujo"
+                'name' => 'Nefropatía debida al reflujo',
             ],
             [
-                "name" => "Pérdida de memoria"
+                'name' => 'Pérdida de memoria',
             ],
             [
-                "name" => "Piernas en O"
+                'name' => 'Piernas en O',
             ],
             [
-                "name" => "Polineuropatía sensitivomotora"
+                'name' => 'Polineuropatía sensitivomotora',
             ],
             [
-                "name" => "Síndrome de sueño y vigilia irregulares"
+                'name' => 'Síndrome de sueño y vigilia irregulares',
             ],
             [
-                "name" => "Sinusitis aguda"
+                'name' => 'Sinusitis aguda',
             ],
             [
-                "name" => "Abstinencia de nicotina"
+                'name' => 'Abstinencia de nicotina',
             ],
             [
-                "name" => "Adicciones"
+                'name' => 'Adicciones',
             ],
             [
-                "name" => "Agorafobia"
+                'name' => 'Agorafobia',
             ],
             [
-                "name" => "Alcalosis respiratoria"
+                'name' => 'Alcalosis respiratoria',
             ],
             [
-                "name" => "Anafilaxia"
+                'name' => 'Anafilaxia',
             ],
             [
-                "name" => "Anomalía hereditaria del ciclo de la urea"
+                'name' => 'Anomalía hereditaria del ciclo de la urea',
             ],
             [
-                "name" => "Anoxia por altitud"
+                'name' => 'Anoxia por altitud',
             ],
             [
-                "name" => "Artritis gotosa aguda"
+                'name' => 'Artritis gotosa aguda',
             ],
             [
-                "name" => "Artritis reactiva"
+                'name' => 'Artritis reactiva',
             ],
             [
-                "name" => "Artritis reumatoide"
+                'name' => 'Artritis reumatoide',
             ],
             [
-                "name" => "Baja producción de leche materna"
+                'name' => 'Baja producción de leche materna',
             ],
             [
-                "name" => "Bajo nivel de calcio en los bebés"
+                'name' => 'Bajo nivel de calcio en los bebés',
             ],
             [
-                "name" => "Bronquitis obstructiva"
+                'name' => 'Bronquitis obstructiva',
             ],
             [
-                "name" => "Calambres"
+                'name' => 'Calambres',
             ],
             [
-                "name" => "Cáncer de cabeza y cuello"
+                'name' => 'Cáncer de cabeza y cuello',
             ],
             [
-                "name" => "Candidiasis en pezones"
+                'name' => 'Candidiasis en pezones',
             ],
             [
-                "name" => "Cefalea en brotes"
+                'name' => 'Cefalea en brotes',
             ],
             [
-                "name" => "Cefalea tensional"
+                'name' => 'Cefalea tensional',
             ],
             [
-                "name" => "Cistitis aguda"
+                'name' => 'Cistitis aguda',
             ],
             [
-                "name" => "Cistitis recurrente"
+                'name' => 'Cistitis recurrente',
             ],
             [
-                "name" => "Conductos lactíferos obstruidos"
+                'name' => 'Conductos lactíferos obstruidos',
             ],
             [
-                "name" => "Dehiscencia quirúrgica"
+                'name' => 'Dehiscencia quirúrgica',
             ],
             [
-                "name" => "Desequilibrio hormonal"
+                'name' => 'Desequilibrio hormonal',
             ],
             [
-                "name" => "Desgaste de cadera"
+                'name' => 'Desgaste de cadera',
             ],
             [
-                "name" => "Desgaste de rodilla"
+                'name' => 'Desgaste de rodilla',
             ],
             [
-                "name" => "Desnutrición"
+                'name' => 'Desnutrición',
             ],
             [
-                "name" => "Diarrea aguda con deshidratación"
+                'name' => 'Diarrea aguda con deshidratación',
             ],
             [
-                "name" => "Discinesia tardía"
+                'name' => 'Discinesia tardía',
             ],
             [
-                "name" => "Disfonía espasmódica"
+                'name' => 'Disfonía espasmódica',
             ],
             [
-                "name" => "Disfunción de la trompa de Eustaquio"
+                'name' => 'Disfunción de la trompa de Eustaquio',
             ],
             [
-                "name" => "Dolor al amamantar"
+                'name' => 'Dolor al amamantar',
             ],
             [
-                "name" => "Dolor de cabeza benigno"
+                'name' => 'Dolor de cabeza benigno',
             ],
             [
-                "name" => "Dolor de muelas"
+                'name' => 'Dolor de muelas',
             ],
             [
-                "name" => "Elangiectasia"
+                'name' => 'Elangiectasia',
             ],
             [
-                "name" => "Enfermedad del sueño"
+                'name' => 'Enfermedad del sueño',
             ],
             [
-                "name" => "Enfermedad pulmonar parenquimatosa difusa"
+                'name' => 'Enfermedad pulmonar parenquimatosa difusa',
             ],
             [
-                "name" => "Esclerosis sistémica"
+                'name' => 'Esclerosis sistémica',
             ],
             [
-                "name" => "Escoliosis"
+                'name' => 'Escoliosis',
             ],
             [
-                "name" => "Escorbuto"
+                'name' => 'Escorbuto',
             ],
             [
-                "name" => "Espasmo muscular"
+                'name' => 'Espasmo muscular',
             ],
             [
-                "name" => "Esquizofrenia"
+                'name' => 'Esquizofrenia',
             ],
             [
-                "name" => "Estado de abstinencia alcohólica"
+                'name' => 'Estado de abstinencia alcohólica',
             ],
             [
-                "name" => "Estallido del oído"
+                'name' => 'Estallido del oído',
             ],
             [
-                "name" => "Estomatitis ulcerativa"
+                'name' => 'Estomatitis ulcerativa',
             ],
             [
-                "name" => "Etmoiditis"
+                'name' => 'Etmoiditis',
             ],
             [
-                "name" => "Eyaculación retrógrada"
+                'name' => 'Eyaculación retrógrada',
             ],
             [
-                "name" => "Faringitis bacteriana"
+                'name' => 'Faringitis bacteriana',
             ],
             [
-                "name" => "Fenómeno de Raynaud"
+                'name' => 'Fenómeno de Raynaud',
             ],
             [
-                "name" => "Fibrosis pulmonar idiopática"
+                'name' => 'Fibrosis pulmonar idiopática',
             ],
             [
-                "name" => "Fiebre de Malta"
+                'name' => 'Fiebre de Malta',
             ],
             [
-                "name" => "Fiebre de origen desconocido"
+                'name' => 'Fiebre de origen desconocido',
             ],
             [
-                "name" => "Fiebre recurrente"
+                'name' => 'Fiebre recurrente',
             ],
             [
-                "name" => "Fobia social"
+                'name' => 'Fobia social',
             ],
             [
-                "name" => "Gota crónica"
+                'name' => 'Gota crónica',
             ],
             [
-                "name" => "Herpangina"
+                'name' => 'Herpangina',
             ],
             [
-                "name" => "Hiperreflexia del detrusor"
+                'name' => 'Hiperreflexia del detrusor',
             ],
             [
-                "name" => "Hipersomnia idiopática"
+                'name' => 'Hipersomnia idiopática',
             ],
             [
-                "name" => "Hipoacusia ocupacional"
+                'name' => 'Hipoacusia ocupacional',
             ],
             [
-                "name" => "Hiponatremia"
+                'name' => 'Hiponatremia',
             ],
             [
-                "name" => "Hipotensión ortostática"
+                'name' => 'Hipotensión ortostática',
             ],
             [
-                "name" => "Hipotermia"
+                'name' => 'Hipotermia',
             ],
             [
-                "name" => "Ictericia por la leche materna"
+                'name' => 'Ictericia por la leche materna',
             ],
             [
-                "name" => "Impactación del oído"
+                'name' => 'Impactación del oído',
             ],
             [
-                "name" => "Inclusión dentaria"
+                'name' => 'Inclusión dentaria',
             ],
             [
-                "name" => "Incontinencia imperiosa"
+                'name' => 'Incontinencia imperiosa',
             ],
             [
-                "name" => "Inestabilidad del detrusor"
+                'name' => 'Inestabilidad del detrusor',
             ],
             [
-                "name" => "Infección asintomática del oído"
+                'name' => 'Infección asintomática del oído',
             ],
             [
-                "name" => "Infección de las vías urinarias asociada con el uso de catéteres"
+                'name' => 'Infección de las vías urinarias asociada con el uso de catéteres',
             ],
             [
-                "name" => "Infección de los testículos"
+                'name' => 'Infección de los testículos',
             ],
             [
-                "name" => "Infección del espacio sublingual"
+                'name' => 'Infección del espacio sublingual',
             ],
             [
-                "name" => "Infección del espacio submandibular"
+                'name' => 'Infección del espacio submandibular',
             ],
             [
-                "name" => "Infección del oído"
+                'name' => 'Infección del oído',
             ],
             [
-                "name" => "Infección lingual"
+                'name' => 'Infección lingual',
             ],
             [
-                "name" => "Infección no complicada de las vías urinarias"
+                'name' => 'Infección no complicada de las vías urinarias',
             ],
             [
-                "name" => "Infección renal"
+                'name' => 'Infección renal',
             ],
             [
-                "name" => "Infección sinusal"
+                'name' => 'Infección sinusal',
             ],
             [
-                "name" => "Infección sinusal crónica"
+                'name' => 'Infección sinusal crónica',
             ],
             [
-                "name" => "Infección urinaria baja"
+                'name' => 'Infección urinaria baja',
             ],
             [
-                "name" => "Infección vesical en adultos"
+                'name' => 'Infección vesical en adultos',
             ],
             [
-                "name" => "Infección viral de las vías respiratorias altas"
+                'name' => 'Infección viral de las vías respiratorias altas',
             ],
             [
-                "name" => "Infiltrados pulmonares con eosinofilia"
+                'name' => 'Infiltrados pulmonares con eosinofilia',
             ],
             [
-                "name" => "Inflamación de la conjuntiva"
+                'name' => 'Inflamación de la conjuntiva',
             ],
             [
-                "name" => "Inflamación de la esclerótica"
+                'name' => 'Inflamación de la esclerótica',
             ],
             [
-                "name" => "Inflamación de las articulaciones"
+                'name' => 'Inflamación de las articulaciones',
             ],
             [
-                "name" => "Inflamación de los bronquios"
+                'name' => 'Inflamación de los bronquios',
             ],
             [
-                "name" => "Ingurgitación mamaria"
+                'name' => 'Ingurgitación mamaria',
             ],
             [
-                "name" => "Insuficiencia crónica del riñón"
+                'name' => 'Insuficiencia crónica del riñón',
             ],
             [
-                "name" => "Insuficiencia respiratoria"
+                'name' => 'Insuficiencia respiratoria',
             ],
             [
-                "name" => "Insuficiencia ventilatoria"
+                'name' => 'Insuficiencia ventilatoria',
             ],
             [
-                "name" => "Intoxicación por arsénico"
+                'name' => 'Intoxicación por arsénico',
             ],
             [
-                "name" => "Intoxicación por opiáceos"
+                'name' => 'Intoxicación por opiáceos',
             ],
             [
-                "name" => "Intoxicación por plaguicidas"
+                'name' => 'Intoxicación por plaguicidas',
             ],
             [
-                "name" => "ITU asociada con el uso de catéter"
+                'name' => 'ITU asociada con el uso de catéter',
             ],
             [
-                "name" => "Jaqueca"
+                'name' => 'Jaqueca',
             ],
             [
-                "name" => "Laberintitis bacteriana"
+                'name' => 'Laberintitis bacteriana',
             ],
             [
-                "name" => "Laringitis"
+                'name' => 'Laringitis',
             ],
             [
-                "name" => "Lesión en el oído interno"
+                'name' => 'Lesión en el oído interno',
             ],
             [
-                "name" => "Lesión traumática de la vejiga y la uretra"
+                'name' => 'Lesión traumática de la vejiga y la uretra',
             ],
             [
-                "name" => "Linfangioma"
+                'name' => 'Linfangioma',
             ],
             [
-                "name" => "Lipogranuloma de la glándula de Meibomio"
+                'name' => 'Lipogranuloma de la glándula de Meibomio',
             ],
             [
-                "name" => "Litiasis renal"
+                'name' => 'Litiasis renal',
             ],
             [
-                "name" => "Loxia"
+                'name' => 'Loxia',
             ],
             [
-                "name" => "Lupus"
+                'name' => 'Lupus',
             ],
             [
-                "name" => "Macroamilasemia"
+                'name' => 'Macroamilasemia',
             ],
             [
-                "name" => "Maneto"
+                'name' => 'Maneto',
             ],
             [
-                "name" => "Masa"
+                'name' => 'Masa',
             ],
             [
-                "name" => "Metatarso aducido"
+                'name' => 'Metatarso aducido',
             ],
             [
-                "name" => "Metatarso varo"
+                'name' => 'Metatarso varo',
             ],
             [
-                "name" => "Mioclonía nocturna"
+                'name' => 'Mioclonía nocturna',
             ],
             [
-                "name" => "Mioclono palatino"
+                'name' => 'Mioclono palatino',
             ],
             [
-                "name" => "Miotonía congénita"
+                'name' => 'Miotonía congénita',
             ],
             [
-                "name" => "Miringitis ampollar"
+                'name' => 'Miringitis ampollar',
             ],
             [
-                "name" => "Miringitis infecciosa"
+                'name' => 'Miringitis infecciosa',
             ],
             [
-                "name" => "Mononeurapatía por compresión del III par craneal"
+                'name' => 'Mononeurapatía por compresión del III par craneal',
             ],
             [
-                "name" => "Mononeuritis múltiple"
+                'name' => 'Mononeuritis múltiple',
             ],
             [
-                "name" => "Mononeuropatía"
+                'name' => 'Mononeuropatía',
             ],
             [
-                "name" => "Mononeuropatía del IX par craneal o nervio glosofaríngeo"
+                'name' => 'Mononeuropatía del IX par craneal o nervio glosofaríngeo',
             ],
             [
-                "name" => "Mononeuropatía del VI par craneal"
+                'name' => 'Mononeuropatía del VI par craneal',
             ],
             [
-                "name" => "Mononeuropatía del VII par craneal"
+                'name' => 'Mononeuropatía del VII par craneal',
             ],
             [
-                "name" => "Mononeuropatía múltiple"
+                'name' => 'Mononeuropatía múltiple',
             ],
             [
-                "name" => "Monorquidia"
+                'name' => 'Monorquidia',
             ],
             [
-                "name" => "Neuralgia"
+                'name' => 'Neuralgia',
             ],
             [
-                "name" => "Neuralgia del trigémino"
+                'name' => 'Neuralgia del trigémino',
             ],
             [
-                "name" => "Neuritis de tipo periférico"
+                'name' => 'Neuritis de tipo periférico',
             ],
             [
-                "name" => "Neuropatía (Diabética,Herpes y Zoster)"
+                'name' => 'Neuropatía (Diabética,Herpes y Zoster)',
             ],
             [
-                "name" => "Neuropatía alcohólica"
+                'name' => 'Neuropatía alcohólica',
             ],
             [
-                "name" => "Neuropatía del nervio axilar"
+                'name' => 'Neuropatía del nervio axilar',
             ],
             [
-                "name" => "Neuropatía del nervio cubital"
+                'name' => 'Neuropatía del nervio cubital',
             ],
             [
-                "name" => "Neuropatía del nervio femoral"
+                'name' => 'Neuropatía del nervio femoral',
             ],
             [
-                "name" => "Neuropatía del nervio peroneo común"
+                'name' => 'Neuropatía del nervio peroneo común',
             ],
             [
-                "name" => "Neuropatía del nervio tibial"
+                'name' => 'Neuropatía del nervio tibial',
             ],
             [
-                "name" => "Neuropatía del plexo braquial"
+                'name' => 'Neuropatía del plexo braquial',
             ],
             [
-                "name" => "Neuropatía facial"
+                'name' => 'Neuropatía facial',
             ],
             [
-                "name" => "Neuropatía hereditaria del peroneo"
+                'name' => 'Neuropatía hereditaria del peroneo',
             ],
             [
-                "name" => "Neuropatía secundaria a medicamentos"
+                'name' => 'Neuropatía secundaria a medicamentos',
             ],
             [
-                "name" => "Neuropatía sensorial y autónoma hereditaria tipo III (HSAN III)"
+                'name' => 'Neuropatía sensorial y autónoma hereditaria tipo III (HSAN III)',
             ],
             [
-                "name" => "Next Tabletas"
+                'name' => 'Next Tabletas',
             ],
             [
-                "name" => "Nivel bajo de fósforo"
+                'name' => 'Nivel bajo de fósforo',
             ],
             [
-                "name" => "Nivel bajo de potasio"
+                'name' => 'Nivel bajo de potasio',
             ],
             [
-                "name" => "Nódulo pulmonar solitario"
+                'name' => 'Nódulo pulmonar solitario',
             ],
             [
-                "name" => "Obstrucción de la salida de la vejiga"
+                'name' => 'Obstrucción de la salida de la vejiga',
             ],
             [
-                "name" => "Ocena"
+                'name' => 'Ocena',
             ],
             [
-                "name" => "Oído de nadador"
+                'name' => 'Oído de nadador',
             ],
             [
-                "name" => "Osteoartritis"
+                'name' => 'Osteoartritis',
             ],
             [
-                "name" => "Osteoartrosis"
+                'name' => 'Osteoartrosis',
             ],
             [
-                "name" => "Osteoma"
+                'name' => 'Osteoma',
             ],
             [
-                "name" => "Osteomielitis del cráneo"
+                'name' => 'Osteomielitis del cráneo',
             ],
             [
-                "name" => "Otitis externa crónica"
+                'name' => 'Otitis externa crónica',
             ],
             [
-                "name" => "Otitis externa maligna"
+                'name' => 'Otitis externa maligna',
             ],
             [
-                "name" => "Otitis media adhesiva"
+                'name' => 'Otitis media adhesiva',
             ],
             [
-                "name" => "Parainfluenza"
+                'name' => 'Parainfluenza',
             ],
             [
-                "name" => "Parálisis del nervio peroneo"
+                'name' => 'Parálisis del nervio peroneo',
             ],
             [
-                "name" => "Parálisis del nervio radial"
+                'name' => 'Parálisis del nervio radial',
             ],
             [
-                "name" => "Parálisis del recto lateral"
+                'name' => 'Parálisis del recto lateral',
             ],
             [
-                "name" => "Permeabilidad de la trompa de Eustaquio"
+                'name' => 'Permeabilidad de la trompa de Eustaquio',
             ],
             [
-                "name" => "Pica"
+                'name' => 'Pica',
             ],
             [
-                "name" => "Pielonefritis atrófica crónica"
+                'name' => 'Pielonefritis atrófica crónica',
             ],
             [
-                "name" => "Plexopatía braquial"
+                'name' => 'Plexopatía braquial',
             ],
             [
-                "name" => "Prostatitis crónica"
+                'name' => 'Prostatitis crónica',
             ],
             [
-                "name" => "Proteinosis alveolar pulmonar"
+                'name' => 'Proteinosis alveolar pulmonar',
             ],
             [
-                "name" => "Queilitis angular"
+                'name' => 'Queilitis angular',
             ],
             [
-                "name" => "Queratitis seca"
+                'name' => 'Queratitis seca',
             ],
             [
-                "name" => "Queratoconjuntivitis seca"
+                'name' => 'Queratoconjuntivitis seca',
             ],
             [
-                "name" => "Queratosis del fumador"
+                'name' => 'Queratosis del fumador',
             ],
             [
-                "name" => "Rabia"
+                'name' => 'Rabia',
             ],
             [
-                "name" => "Reflujo uretral"
+                'name' => 'Reflujo uretral',
             ],
             [
-                "name" => "Rinitis idiopática"
+                'name' => 'Rinitis idiopática',
             ],
             [
-                "name" => "Ruptura del tímpano"
+                'name' => 'Ruptura del tímpano',
             ],
             [
-                "name" => "Sialoadenitis"
+                'name' => 'Sialoadenitis',
             ],
             [
-                "name" => "Sialolitiasis"
+                'name' => 'Sialolitiasis',
             ],
             [
-                "name" => "Síndrome de apnea obstructiva del sueño"
+                'name' => 'Síndrome de apnea obstructiva del sueño',
             ],
             [
-                "name" => "Síndrome de las piernas inquietas"
+                'name' => 'Síndrome de las piernas inquietas',
             ],
             [
-                "name" => "Síndrome de Parinaud"
+                'name' => 'Síndrome de Parinaud',
             ],
             [
-                "name" => "Síndrome de Parkinson plus"
+                'name' => 'Síndrome de Parkinson plus',
             ],
             [
-                "name" => "Síndrome de Parsonage-Turner"
+                'name' => 'Síndrome de Parsonage-Turner',
             ],
             [
-                "name" => "Síndrome de Richardson-Steele-Olszewski"
+                'name' => 'Síndrome de Richardson-Steele-Olszewski',
             ],
             [
-                "name" => "Síndrome de Riley-Day"
+                'name' => 'Síndrome de Riley-Day',
             ],
             [
-                "name" => "Síndrome inflamatorio orbital idiopático (IOIS, por sus siglas en inglés)"
+                'name' => 'Síndrome inflamatorio orbital idiopático (IOIS, por sus siglas en inglés)',
             ],
             [
-                "name" => "Síndrome oculoglandular"
+                'name' => 'Síndrome oculoglandular',
             ],
             [
-                "name" => "Sinusitis"
+                'name' => 'Sinusitis',
             ],
             [
-                "name" => "Sonambulismo"
+                'name' => 'Sonambulismo',
             ],
             [
-                "name" => "Tabaquismo"
+                'name' => 'Tabaquismo',
             ],
             [
-                "name" => "Tapón de cerumen"
+                'name' => 'Tapón de cerumen',
             ],
             [
-                "name" => "Tendinitis aquílea"
+                'name' => 'Tendinitis aquílea',
             ],
             [
-                "name" => "Tendinitis calcificada"
+                'name' => 'Tendinitis calcificada',
             ],
             [
-                "name" => "Tendinitis del talón"
+                'name' => 'Tendinitis del talón',
             ],
             [
-                "name" => "Tic doloroso"
+                'name' => 'Tic doloroso',
             ],
             [
-                "name" => "Tifus endémico"
+                'name' => 'Tifus endémico',
             ],
             [
-                "name" => "Tifus epidémico"
+                'name' => 'Tifus epidémico',
             ],
             [
-                "name" => "Tifus exantemático"
+                'name' => 'Tifus exantemático',
             ],
             [
-                "name" => "Tifus murino"
+                'name' => 'Tifus murino',
             ],
             [
-                "name" => "Tímpano perforado"
+                'name' => 'Tímpano perforado',
             ],
             [
-                "name" => "Tirón en el codo"
+                'name' => 'Tirón en el codo',
             ],
             [
-                "name" => "Tortícolis"
+                'name' => 'Tortícolis',
             ],
             [
-                "name" => "Traqueítis bacteriana"
+                'name' => 'Traqueítis bacteriana',
             ],
             [
-                "name" => "Trastorno de dolor"
+                'name' => 'Trastorno de dolor',
             ],
             [
-                "name" => "Trastorno de dolor somatomorfo"
+                'name' => 'Trastorno de dolor somatomorfo',
             ],
             [
-                "name" => "Trastorno de hiperactividad y déficit de atención (TDAH)"
+                'name' => 'Trastorno de hiperactividad y déficit de atención (TDAH)',
             ],
             [
-                "name" => "Trastorno de tic transitorio"
+                'name' => 'Trastorno de tic transitorio',
             ],
             [
-                "name" => "Trastornos del metabolismo de los minerales"
+                'name' => 'Trastornos del metabolismo de los minerales',
             ],
             [
-                "name" => "Trastornos renales y urológicos"
+                'name' => 'Trastornos renales y urológicos',
             ],
             [
-                "name" => "Trauma acústico"
+                'name' => 'Trauma acústico',
             ],
             [
-                "name" => "Trauma en el oído interno"
+                'name' => 'Trauma en el oído interno',
             ],
             [
-                "name" => "Traumatismo medio de la cara"
+                'name' => 'Traumatismo medio de la cara',
             ],
             [
-                "name" => "Trismo"
+                'name' => 'Trismo',
             ],
             [
-                "name" => "Úlcera labial"
+                'name' => 'Úlcera labial',
             ],
             [
-                "name" => "Úlceras venosas por estasis"
+                'name' => 'Úlceras venosas por estasis',
             ],
             [
-                "name" => "Uvulitis"
+                'name' => 'Uvulitis',
             ],
             [
-                "name" => "Varicocele"
+                'name' => 'Varicocele',
             ],
             [
-                "name" => "Variola"
+                'name' => 'Variola',
             ],
             [
-                "name" => "Vejiga espasmódica"
+                'name' => 'Vejiga espasmódica',
             ],
             [
-                "name" => "Vejiga hiperreactiva"
+                'name' => 'Vejiga hiperreactiva',
             ],
             [
-                "name" => "Vejiga neurógena"
+                'name' => 'Vejiga neurógena',
             ],
             [
-                "name" => "Viruela mayor y menor"
+                'name' => 'Viruela mayor y menor',
             ],
             [
-                "name" => "Xeroftalmia"
+                'name' => 'Xeroftalmia',
             ],
             [
-                "name" => "Enfermedad sistémica relacionada con inmunoglobulina G4 (IgG4)"
+                'name' => 'Enfermedad sistémica relacionada con inmunoglobulina G4 (IgG4)',
             ],
             [
-                "name" => "Absceso cerebral"
+                'name' => 'Absceso cerebral',
             ],
             [
-                "name" => "Accidente cerebrovascular isquémico"
+                'name' => 'Accidente cerebrovascular isquémico',
             ],
             [
-                "name" => "Acidosis"
+                'name' => 'Acidosis',
             ],
             [
-                "name" => "Adenovirus"
+                'name' => 'Adenovirus',
             ],
             [
-                "name" => "AGH"
+                'name' => 'AGH',
             ],
             [
-                "name" => "Agua en el pulmón"
+                'name' => 'Agua en el pulmón',
             ],
             [
-                "name" => "Alcoholismo"
+                'name' => 'Alcoholismo',
             ],
             [
-                "name" => "Amiloidosis cardíaca"
+                'name' => 'Amiloidosis cardíaca',
             ],
             [
-                "name" => "Amiloidosis cerebral"
+                'name' => 'Amiloidosis cerebral',
             ],
             [
-                "name" => "Amiloidosis hereditaria"
+                'name' => 'Amiloidosis hereditaria',
             ],
             [
-                "name" => "Amiloidosis primaria"
+                'name' => 'Amiloidosis primaria',
             ],
             [
-                "name" => "Amiloidosis senil"
+                'name' => 'Amiloidosis senil',
             ],
             [
-                "name" => "Anaplasmosis granulocítica humana"
+                'name' => 'Anaplasmosis granulocítica humana',
             ],
             [
-                "name" => "Ántrax"
+                'name' => 'Ántrax',
             ],
             [
-                "name" => "Ántrax múltiple"
+                'name' => 'Ántrax múltiple',
             ],
             [
-                "name" => "Apnea del sueño"
+                'name' => 'Apnea del sueño',
             ],
             [
-                "name" => "Arteritis craneal"
+                'name' => 'Arteritis craneal',
             ],
             [
-                "name" => "Arteritis de células gigantes"
+                'name' => 'Arteritis de células gigantes',
             ],
             [
-                "name" => "Arteritis de Takayasu"
+                'name' => 'Arteritis de Takayasu',
             ],
             [
-                "name" => "Artritis por gota crónica"
+                'name' => 'Artritis por gota crónica',
             ],
             [
-                "name" => "Aumento de la presión intracraneal"
+                'name' => 'Aumento de la presión intracraneal',
             ],
             [
-                "name" => "Bacterias necrosantes"
+                'name' => 'Bacterias necrosantes',
             ],
             [
-                "name" => "Bacteriemia con sepsis"
+                'name' => 'Bacteriemia con sepsis',
             ],
             [
-                "name" => "Bacteriemia gonocócica"
+                'name' => 'Bacteriemia gonocócica',
             ],
             [
-                "name" => "Bacteriemia meningocócica"
+                'name' => 'Bacteriemia meningocócica',
             ],
             [
-                "name" => "Bartonellosis"
+                'name' => 'Bartonellosis',
             ],
             [
-                "name" => "Blastomicosis"
+                'name' => 'Blastomicosis',
             ],
             [
-                "name" => "Bronquitis crónica"
+                'name' => 'Bronquitis crónica',
             ],
             [
-                "name" => "Cálculos en el tracto urinario"
+                'name' => 'Cálculos en el tracto urinario',
             ],
             [
-                "name" => "Cáncer testicular seminoma"
+                'name' => 'Cáncer testicular seminoma',
             ],
             [
-                "name" => "Carbunco"
+                'name' => 'Carbunco',
             ],
             [
-                "name" => "Choque hipovolémico"
+                'name' => 'Choque hipovolémico',
             ],
             [
-                "name" => "Coccidioidomicosis"
+                'name' => 'Coccidioidomicosis',
             ],
             [
-                "name" => "Coccidioidomicosis diseminada"
+                'name' => 'Coccidioidomicosis diseminada',
             ],
             [
-                "name" => "Coccidioidomicosis pulmonar aguda"
+                'name' => 'Coccidioidomicosis pulmonar aguda',
             ],
             [
-                "name" => "Coccidioidomicosis pulmonar crónica"
+                'name' => 'Coccidioidomicosis pulmonar crónica',
             ],
             [
-                "name" => "Coccidioidomicosis sistémica"
+                'name' => 'Coccidioidomicosis sistémica',
             ],
             [
-                "name" => "Complejo relacionado con el SIDA (CRS)"
+                'name' => 'Complejo relacionado con el SIDA (CRS)',
             ],
             [
-                "name" => "Criohemoglobinuria paroxística"
+                'name' => 'Criohemoglobinuria paroxística',
             ],
             [
-                "name" => "Derrame cerebral hemorrágico"
+                'name' => 'Derrame cerebral hemorrágico',
             ],
             [
-                "name" => "Desequilibrio de líquidos"
+                'name' => 'Desequilibrio de líquidos',
             ],
             [
-                "name" => "Dolor mixto"
+                'name' => 'Dolor mixto',
             ],
             [
-                "name" => "Dolor torácico pleurítico"
+                'name' => 'Dolor torácico pleurítico',
             ],
             [
-                "name" => "EAG"
+                'name' => 'EAG',
             ],
             [
-                "name" => "EGC"
+                'name' => 'EGC',
             ],
             [
-                "name" => "EGH"
+                'name' => 'EGH',
             ],
             [
-                "name" => "Ehrlichiosis"
+                'name' => 'Ehrlichiosis',
             ],
             [
-                "name" => "Ehrlichiosis granulocítica humana"
+                'name' => 'Ehrlichiosis granulocítica humana',
             ],
             [
-                "name" => "Ehrlichiosis monocítica humana"
+                'name' => 'Ehrlichiosis monocítica humana',
             ],
             [
-                "name" => "Elevación de potasio"
+                'name' => 'Elevación de potasio',
             ],
             [
-                "name" => "EMH"
+                'name' => 'EMH',
             ],
             [
-                "name" => "Encefalopatía Alcohólica"
+                'name' => 'Encefalopatía Alcohólica',
             ],
             [
-                "name" => "Enfermedad de Brill-Zinsser"
+                'name' => 'Enfermedad de Brill-Zinsser',
             ],
             [
-                "name" => "Enfermedad de Gilchrist"
+                'name' => 'Enfermedad de Gilchrist',
             ],
             [
-                "name" => "Enfermedad de Hansen"
+                'name' => 'Enfermedad de Hansen',
             ],
             [
-                "name" => "Enfermedad de la Bahía de Minamata"
+                'name' => 'Enfermedad de la Bahía de Minamata',
             ],
             [
-                "name" => "Enfermedad de Lyme crónica y persistente"
+                'name' => 'Enfermedad de Lyme crónica y persistente',
             ],
             [
-                "name" => "Enfermedad de Lyme de diseminación temprana"
+                'name' => 'Enfermedad de Lyme de diseminación temprana',
             ],
             [
-                "name" => "Enfermedad de Lyme primaria"
+                'name' => 'Enfermedad de Lyme primaria',
             ],
             [
-                "name" => "Enfermedad de Ohara"
+                'name' => 'Enfermedad de Ohara',
             ],
             [
-                "name" => "Enfermedad hidatídica"
+                'name' => 'Enfermedad hidatídica',
             ],
             [
-                "name" => "Equinococo"
+                'name' => 'Equinococo',
             ],
             [
-                "name" => "Eritema artrítico epidémico"
+                'name' => 'Eritema artrítico epidémico',
             ],
             [
-                "name" => "Esclerosis lateral amiotrófica"
+                'name' => 'Esclerosis lateral amiotrófica',
             ],
             [
-                "name" => "Escrófula"
+                'name' => 'Escrófula',
             ],
             [
-                "name" => "Espondilitis anquilosante"
+                'name' => 'Espondilitis anquilosante',
             ],
             [
-                "name" => "Espondilosis cervical"
+                'name' => 'Espondilosis cervical',
             ],
             [
-                "name" => "Estado de confusión aguda"
+                'name' => 'Estado de confusión aguda',
             ],
             [
-                "name" => "Gangrena gaseosa"
+                'name' => 'Gangrena gaseosa',
             ],
             [
-                "name" => "Glomerulonefritis"
+                'name' => 'Glomerulonefritis',
             ],
             [
-                "name" => "Gota aguda"
+                'name' => 'Gota aguda',
             ],
             [
-                "name" => "Hematoma del riñón"
+                'name' => 'Hematoma del riñón',
             ],
             [
-                "name" => "Hidrocefalia idiopática"
+                'name' => 'Hidrocefalia idiopática',
             ],
             [
-                "name" => "Hipercalcemia"
+                'name' => 'Hipercalcemia',
             ],
             [
-                "name" => "Hipervitaminosis A"
+                'name' => 'Hipervitaminosis A',
             ],
             [
-                "name" => "Infección aguda de la vejiga"
+                'name' => 'Infección aguda de la vejiga',
             ],
             [
-                "name" => "Infección urinaria asociada al uso de catéteres"
+                'name' => 'Infección urinaria asociada al uso de catéteres',
             ],
             [
-                "name" => "Insuficiencia renal aguda"
+                'name' => 'Insuficiencia renal aguda',
             ],
             [
-                "name" => "Lesión del nervio peroneo"
+                'name' => 'Lesión del nervio peroneo',
             ],
             [
-                "name" => "Mareos"
+                'name' => 'Mareos',
             ],
             [
-                "name" => "Mielomeningocele"
+                'name' => 'Mielomeningocele',
             ],
             [
-                "name" => "Nefritis lúpica"
+                'name' => 'Nefritis lúpica',
             ],
             [
-                "name" => "Nefrolitiasis"
+                'name' => 'Nefrolitiasis',
             ],
             [
-                "name" => "Neumonía nosocomial o intrahospitalaria"
+                'name' => 'Neumonía nosocomial o intrahospitalaria',
             ],
             [
-                "name" => "Neuropatía periférica"
+                'name' => 'Neuropatía periférica',
             ],
             [
-                "name" => "Parálisis del sueño aislada"
+                'name' => 'Parálisis del sueño aislada',
             ],
             [
-                "name" => "Parestesia"
+                'name' => 'Parestesia',
             ],
             [
-                "name" => "Polimiositis del adulto"
+                'name' => 'Polimiositis del adulto',
             ],
             [
-                "name" => "Poliquistosis renal"
+                'name' => 'Poliquistosis renal',
             ],
             [
-                "name" => "Rechazo al trasplante"
+                'name' => 'Rechazo al trasplante',
             ],
             [
-                "name" => "Riñones poliquísticos"
+                'name' => 'Riñones poliquísticos',
             ],
             [
-                "name" => "Sarcoma de Ewing"
+                'name' => 'Sarcoma de Ewing',
             ],
             [
-                "name" => "Silicosis"
+                'name' => 'Silicosis',
             ],
             [
-                "name" => "Síndrome de bradicardia-taquicardia"
+                'name' => 'Síndrome de bradicardia-taquicardia',
             ],
             [
-                "name" => "Sindrome de DiGeorge"
+                'name' => 'Sindrome de DiGeorge',
             ],
             [
-                "name" => "Síndrome de Guillain-Barré"
+                'name' => 'Síndrome de Guillain-Barré',
             ],
             [
-                "name" => "Síndrome nefrótico"
+                'name' => 'Síndrome nefrótico',
             ],
             [
-                "name" => "Tos convulsiva"
+                'name' => 'Tos convulsiva',
             ],
             [
-                "name" => "Trastorno de identidad de género"
+                'name' => 'Trastorno de identidad de género',
             ],
             [
-                "name" => "Trastorno del sueño durante el día"
+                'name' => 'Trastorno del sueño durante el día',
             ],
             [
-                "name" => "Uremia"
+                'name' => 'Uremia',
             ],
             [
-                "name" => "Vasculitis necrosante"
+                'name' => 'Vasculitis necrosante',
             ],
             [
-                "name" => "Sarcoma de Kaposi"
+                'name' => 'Sarcoma de Kaposi',
             ],
             [
-                "name" => "Absceso alrededor del riñón (perinéfrico)"
+                'name' => 'Absceso alrededor del riñón (perinéfrico)',
             ],
             [
-                "name" => "Absceso perirrenal"
+                'name' => 'Absceso perirrenal',
             ],
             [
-                "name" => "Acidosis tubular distal renal"
+                'name' => 'Acidosis tubular distal renal',
             ],
             [
-                "name" => "Acidosis tubular renal proximal"
+                'name' => 'Acidosis tubular renal proximal',
             ],
             [
-                "name" => "Acidosis tubular renal tipo I"
+                'name' => 'Acidosis tubular renal tipo I',
             ],
             [
-                "name" => "Acidosis tubular renal tipo II"
+                'name' => 'Acidosis tubular renal tipo II',
             ],
             [
-                "name" => "Alcalosis"
+                'name' => 'Alcalosis',
             ],
             [
-                "name" => "ATR clásica"
+                'name' => 'ATR clásica',
             ],
             [
-                "name" => "ATR distal"
+                'name' => 'ATR distal',
             ],
             [
-                "name" => "ATR proximal"
+                'name' => 'ATR proximal',
             ],
             [
-                "name" => "ATR tipo I"
+                'name' => 'ATR tipo I',
             ],
             [
-                "name" => "ATR tipo II"
+                'name' => 'ATR tipo II',
             ],
             [
-                "name" => "Azotemia prerrenal"
+                'name' => 'Azotemia prerrenal',
             ],
             [
-                "name" => "Cálculos de cistina"
+                'name' => 'Cálculos de cistina',
             ],
             [
-                "name" => "Cálculos renales"
+                'name' => 'Cálculos renales',
             ],
             [
-                "name" => "Cáncer"
+                'name' => 'Cáncer',
             ],
             [
-                "name" => "Cistinuria"
+                'name' => 'Cistinuria',
             ],
             [
-                "name" => "Daño renal"
+                'name' => 'Daño renal',
             ],
             [
-                "name" => "Disminución de la perfusión renal"
+                'name' => 'Disminución de la perfusión renal',
             ],
             [
-                "name" => "Disuria"
+                'name' => 'Disuria',
             ],
             [
-                "name" => "Diuresis osmótica"
+                'name' => 'Diuresis osmótica',
             ],
             [
-                "name" => "Edema pulmonar"
+                'name' => 'Edema pulmonar',
             ],
             [
-                "name" => "Enfermedad con cambios mínimos"
+                'name' => 'Enfermedad con cambios mínimos',
             ],
             [
-                "name" => "Enfermedad de Berger"
+                'name' => 'Enfermedad de Berger',
             ],
             [
-                "name" => "Enfermedad de Kawasaki"
+                'name' => 'Enfermedad de Kawasaki',
             ],
             [
-                "name" => "Enfermedad de Kimmelstiel-Wilson"
+                'name' => 'Enfermedad de Kimmelstiel-Wilson',
             ],
             [
-                "name" => "Enfermedad de Nil"
+                'name' => 'Enfermedad de Nil',
             ],
             [
-                "name" => "Enfermedad glomerular lúpica"
+                'name' => 'Enfermedad glomerular lúpica',
             ],
             [
-                "name" => "Enfermedad renal"
+                'name' => 'Enfermedad renal',
             ],
             [
-                "name" => "Enfermedad renal poliquística autosómica dominante"
+                'name' => 'Enfermedad renal poliquística autosómica dominante',
             ],
             [
-                "name" => "Enfermedad renal terminal"
+                'name' => 'Enfermedad renal terminal',
             ],
             [
-                "name" => "Esclerosis focal con hialinosis"
+                'name' => 'Esclerosis focal con hialinosis',
             ],
             [
-                "name" => "Falla crónica de los riñones"
+                'name' => 'Falla crónica de los riñones',
             ],
             [
-                "name" => "Falla renal crónica"
+                'name' => 'Falla renal crónica',
             ],
             [
-                "name" => "Glomerulonefritis necrosante"
+                'name' => 'Glomerulonefritis necrosante',
             ],
             [
-                "name" => "Hidronefrosis"
+                'name' => 'Hidronefrosis',
             ],
             [
-                "name" => "Hidronefrosis bilateral"
+                'name' => 'Hidronefrosis bilateral',
             ],
             [
-                "name" => "Hidronefrosis unilateral"
+                'name' => 'Hidronefrosis unilateral',
             ],
             [
-                "name" => "Hipercalciuria idiopática"
+                'name' => 'Hipercalciuria idiopática',
             ],
             [
-                "name" => "Hipernefroma"
+                'name' => 'Hipernefroma',
             ],
             [
-                "name" => "Hipertensión arterial sistémica"
+                'name' => 'Hipertensión arterial sistémica',
             ],
             [
-                "name" => "Hipertensión de tipo renovascular"
+                'name' => 'Hipertensión de tipo renovascular',
             ],
             [
-                "name" => "Insuficiencia aguda del riñón"
+                'name' => 'Insuficiencia aguda del riñón',
             ],
             [
-                "name" => "Insuficiencia del intestino delgado"
+                'name' => 'Insuficiencia del intestino delgado',
             ],
             [
-                "name" => "Insuficiencia renal"
+                'name' => 'Insuficiencia renal',
             ],
             [
-                "name" => "Insuficiencia renal en estado terminal"
+                'name' => 'Insuficiencia renal en estado terminal',
             ],
             [
-                "name" => "Insuficiencia renal por obstrucción crónica"
+                'name' => 'Insuficiencia renal por obstrucción crónica',
             ],
             [
-                "name" => "Insuficiencia renal terminal"
+                'name' => 'Insuficiencia renal terminal',
             ],
             [
-                "name" => "Lesión del riñón y uréter"
+                'name' => 'Lesión del riñón y uréter',
             ],
             [
-                "name" => "Lesión inflamatoria del riñón"
+                'name' => 'Lesión inflamatoria del riñón',
             ],
             [
-                "name" => "Necrosis de las papilas renales"
+                'name' => 'Necrosis de las papilas renales',
             ],
             [
-                "name" => "Necrosis renal medular"
+                'name' => 'Necrosis renal medular',
             ],
             [
-                "name" => "Necrosis renal tubular"
+                'name' => 'Necrosis renal tubular',
             ],
             [
-                "name" => "Necrosis tubular aguda"
+                'name' => 'Necrosis tubular aguda',
             ],
             [
-                "name" => "Nefritis crónica"
+                'name' => 'Nefritis crónica',
             ],
             [
-                "name" => "Nefritis intersticial"
+                'name' => 'Nefritis intersticial',
             ],
             [
-                "name" => "Nefritis por fenacetina"
+                'name' => 'Nefritis por fenacetina',
             ],
             [
-                "name" => "Nefroblastoma"
+                'name' => 'Nefroblastoma',
             ],
             [
-                "name" => "Nefrocalcinosis"
+                'name' => 'Nefrocalcinosis',
             ],
             [
-                "name" => "Nefropatía lùpica"
+                'name' => 'Nefropatía lùpica',
             ],
             [
-                "name" => "Nefropatía membranosa"
+                'name' => 'Nefropatía membranosa',
             ],
             [
-                "name" => "Nefropatía por analgésicos"
+                'name' => 'Nefropatía por analgésicos',
             ],
             [
-                "name" => "Nefropatía por IgA"
+                'name' => 'Nefropatía por IgA',
             ],
             [
-                "name" => "Nefropatía quística medular"
+                'name' => 'Nefropatía quística medular',
             ],
             [
-                "name" => "Nefropatía terminal"
+                'name' => 'Nefropatía terminal',
             ],
             [
-                "name" => "Nefrosis"
+                'name' => 'Nefrosis',
             ],
             [
-                "name" => "Nefrosis lipoide"
+                'name' => 'Nefrosis lipoide',
             ],
             [
-                "name" => "Obstrucción de la unión U-P"
+                'name' => 'Obstrucción de la unión U-P',
             ],
             [
-                "name" => "Obstrucción de la unión ureteropélvica"
+                'name' => 'Obstrucción de la unión ureteropélvica',
             ],
             [
-                "name" => "Obstrucción de la UUP"
+                'name' => 'Obstrucción de la UUP',
             ],
             [
-                "name" => "Obstrucción ureteral crónica"
+                'name' => 'Obstrucción ureteral crónica',
             ],
             [
-                "name" => "Obstrucción uretral"
+                'name' => 'Obstrucción uretral',
             ],
             [
-                "name" => "Obstrucción uretral aguda"
+                'name' => 'Obstrucción uretral aguda',
             ],
             [
-                "name" => "Poliarteritis nodosa"
+                'name' => 'Poliarteritis nodosa',
             ],
             [
-                "name" => "Proteinuria"
+                'name' => 'Proteinuria',
             ],
             [
-                "name" => "Púrpura de Henoch-Schoenlein"
+                'name' => 'Púrpura de Henoch-Schoenlein',
             ],
             [
-                "name" => "Rabdomiólisis"
+                'name' => 'Rabdomiólisis',
             ],
             [
-                "name" => "Riñón fracturado"
+                'name' => 'Riñón fracturado',
             ],
             [
-                "name" => "Riñones quísticos"
+                'name' => 'Riñones quísticos',
             ],
             [
-                "name" => "Síndrome de Bartter"
+                'name' => 'Síndrome de Bartter',
             ],
             [
-                "name" => "Síndrome de embolización por colesterol"
+                'name' => 'Síndrome de embolización por colesterol',
             ],
             [
-                "name" => "Síndrome de Fanconi"
+                'name' => 'Síndrome de Fanconi',
             ],
             [
-                "name" => "Síndrome de Lesch-Nyhan"
+                'name' => 'Síndrome de Lesch-Nyhan',
             ],
             [
-                "name" => "Síndrome de Russell-Silver"
+                'name' => 'Síndrome de Russell-Silver',
             ],
             [
-                "name" => "Síndrome de Senior-Loken"
+                'name' => 'Síndrome de Senior-Loken',
             ],
             [
-                "name" => "Síndrome nefrótico congénito"
+                'name' => 'Síndrome nefrótico congénito',
             ],
             [
-                "name" => "Síndrome nefrótico de cambio mínimo"
+                'name' => 'Síndrome nefrótico de cambio mínimo',
             ],
             [
-                "name" => "Síndrome nefrótico idiopático de la niñez"
+                'name' => 'Síndrome nefrótico idiopático de la niñez',
             ],
             [
-                "name" => "Uropatía obstructiva bilateral crónica"
+                'name' => 'Uropatía obstructiva bilateral crónica',
             ],
             [
-                "name" => "Uropatía obstructiva unilateral crónica"
+                'name' => 'Uropatía obstructiva unilateral crónica',
             ],
             [
-                "name" => "Crisis respiratoria en recién nacidos"
+                'name' => 'Crisis respiratoria en recién nacidos',
             ],
             [
-                "name" => "Ictericia del recién nacido"
+                'name' => 'Ictericia del recién nacido',
             ],
             [
-                "name" => "Parálisis del VII par craneal debido a un traumatismo al nacer"
+                'name' => 'Parálisis del VII par craneal debido a un traumatismo al nacer',
             ],
             [
-                "name" => "Síndrome de dificultad respiratoria en neonatos"
+                'name' => 'Síndrome de dificultad respiratoria en neonatos',
             ],
             [
-                "name" => "Tusilexil"
+                'name' => 'Tusilexil',
             ],
             [
-                "name" => "AFC"
+                'name' => 'AFC',
             ],
             [
-                "name" => "Aire alrededor de los pulmones"
+                'name' => 'Aire alrededor de los pulmones',
             ],
             [
-                "name" => "Alveolitis alérgica extrínseca"
+                'name' => 'Alveolitis alérgica extrínseca',
             ],
             [
-                "name" => "Alveolitis fibrosante"
+                'name' => 'Alveolitis fibrosante',
             ],
             [
-                "name" => "Alveolitis fibrosante criptógena"
+                'name' => 'Alveolitis fibrosante criptógena',
             ],
             [
-                "name" => "Anomalías alveolares"
+                'name' => 'Anomalías alveolares',
             ],
             [
-                "name" => "Antrosilicosis"
+                'name' => 'Antrosilicosis',
             ],
             [
-                "name" => "Asbestosis"
+                'name' => 'Asbestosis',
             ],
             [
-                "name" => "Aspergilosis aguda invasiva"
+                'name' => 'Aspergilosis aguda invasiva',
             ],
             [
-                "name" => "Aspergilosis pulmonar invasiva"
+                'name' => 'Aspergilosis pulmonar invasiva',
             ],
             [
-                "name" => "Atelectasia"
+                'name' => 'Atelectasia',
             ],
             [
-                "name" => "Bronconeumonía"
+                'name' => 'Bronconeumonía',
             ],
             [
-                "name" => "Bronquiectasia"
+                'name' => 'Bronquiectasia',
             ],
             [
-                "name" => "Bronquiectasia adquirida"
+                'name' => 'Bronquiectasia adquirida',
             ],
             [
-                "name" => "Bronquiectasia congénita"
+                'name' => 'Bronquiectasia congénita',
             ],
             [
-                "name" => "Bronquiolitis"
+                'name' => 'Bronquiolitis',
             ],
             [
-                "name" => "Bronquitis"
+                'name' => 'Bronquitis',
             ],
             [
-                "name" => "Bronquitis aguda"
+                'name' => 'Bronquitis aguda',
             ],
             [
-                "name" => "Bronquitis industrial"
+                'name' => 'Bronquitis industrial',
             ],
             [
-                "name" => "Carbunco por inhalación"
+                'name' => 'Carbunco por inhalación',
             ],
             [
-                "name" => "Carbuncosis pulmonar"
+                'name' => 'Carbuncosis pulmonar',
             ],
             [
-                "name" => "Chlamydia psittaci"
+                'name' => 'Chlamydia psittaci',
             ],
             [
-                "name" => "Chlamydophila pneumoniae"
+                'name' => 'Chlamydophila pneumoniae',
             ],
             [
-                "name" => "Colapso pulmonar espontáneo"
+                'name' => 'Colapso pulmonar espontáneo',
             ],
             [
-                "name" => "Congestión pulmonar/de pulmón"
+                'name' => 'Congestión pulmonar/de pulmón',
             ],
             [
-                "name" => "Crup"
+                'name' => 'Crup',
             ],
             [
-                "name" => "Crup espasmódico"
+                'name' => 'Crup espasmódico',
             ],
             [
-                "name" => "Crup viral"
+                'name' => 'Crup viral',
             ],
             [
-                "name" => "DBP"
+                'name' => 'DBP',
             ],
             [
-                "name" => "Deficiencia de AAT"
+                'name' => 'Deficiencia de AAT',
             ],
             [
-                "name" => "Deficiencia de alfa-1 antitripsina"
+                'name' => 'Deficiencia de alfa-1 antitripsina',
             ],
             [
-                "name" => "Derrame pleural tuberculoso"
+                'name' => 'Derrame pleural tuberculoso',
             ],
             [
-                "name" => "Derrame pulmonar paraneumónico"
+                'name' => 'Derrame pulmonar paraneumónico',
             ],
             [
-                "name" => "Difteria"
+                'name' => 'Difteria',
             ],
             [
-                "name" => "Displasia broncopulmonar"
+                'name' => 'Displasia broncopulmonar',
             ],
             [
-                "name" => "Edema pulmonar a grandes alturas"
+                'name' => 'Edema pulmonar a grandes alturas',
             ],
             [
-                "name" => "Edema pulmonar con aumento de la permeabilidad"
+                'name' => 'Edema pulmonar con aumento de la permeabilidad',
             ],
             [
-                "name" => "Edema pulmonar no cardiógeno"
+                'name' => 'Edema pulmonar no cardiógeno',
             ],
             [
-                "name" => "Émbolo pulmonar"
+                'name' => 'Émbolo pulmonar',
             ],
             [
-                "name" => "Enfermedad de la membrana hialina"
+                'name' => 'Enfermedad de la membrana hialina',
             ],
             [
-                "name" => "Enfermedad obstructiva crónica de las vías respiratorias"
+                'name' => 'Enfermedad obstructiva crónica de las vías respiratorias',
             ],
             [
-                "name" => "Enfermedad pulmonar"
+                'name' => 'Enfermedad pulmonar',
             ],
             [
-                "name" => "Enfermedad pulmonar asociada a artritis reumatoidea"
+                'name' => 'Enfermedad pulmonar asociada a artritis reumatoidea',
             ],
             [
-                "name" => "Enfermedad pulmonar inducida por medicamentos"
+                'name' => 'Enfermedad pulmonar inducida por medicamentos',
             ],
             [
-                "name" => "Enfermedad pulmonar intersticial difusa"
+                'name' => 'Enfermedad pulmonar intersticial difusa',
             ],
             [
-                "name" => "Enfermedad pulmonar reumatoidea"
+                'name' => 'Enfermedad pulmonar reumatoidea',
             ],
             [
-                "name" => "Enfermedad pulmonar vaso-oclusiva"
+                'name' => 'Enfermedad pulmonar vaso-oclusiva',
             ],
             [
-                "name" => "Enfisema"
+                'name' => 'Enfisema',
             ],
             [
-                "name" => "Eosinofilia pulmonar simple"
+                'name' => 'Eosinofilia pulmonar simple',
             ],
             [
-                "name" => "EPOC"
+                'name' => 'EPOC',
             ],
             [
-                "name" => "Fibrosis pulmonar"
+                'name' => 'Fibrosis pulmonar',
             ],
             [
-                "name" => "Gripe"
+                'name' => 'Gripe',
             ],
             [
-                "name" => "Hantavirus"
+                'name' => 'Hantavirus',
             ],
             [
-                "name" => "Hernia congénita del diafragma"
+                'name' => 'Hernia congénita del diafragma',
             ],
             [
-                "name" => "Hipertensión arterial pulmonar"
+                'name' => 'Hipertensión arterial pulmonar',
             ],
             [
-                "name" => "Infección del pecho"
+                'name' => 'Infección del pecho',
             ],
             [
-                "name" => "Infección viral de las vías respiratorias bajas"
+                'name' => 'Infección viral de las vías respiratorias bajas',
             ],
             [
-                "name" => "Insomnio crónico"
+                'name' => 'Insomnio crónico',
             ],
             [
-                "name" => "Linfoma mediastinal"
+                'name' => 'Linfoma mediastinal',
             ],
             [
-                "name" => "Mesotelioma maligno"
+                'name' => 'Mesotelioma maligno',
             ],
             [
-                "name" => "Mucormicosis"
+                'name' => 'Mucormicosis',
             ],
             [
-                "name" => "Neumonía atípica"
+                'name' => 'Neumonía atípica',
             ],
             [
-                "name" => "Neumonía extrahospitalaria"
+                'name' => 'Neumonía extrahospitalaria',
             ],
             [
-                "name" => "Neumonía necrosante"
+                'name' => 'Neumonía necrosante',
             ],
             [
-                "name" => "Neumonía por aspiración"
+                'name' => 'Neumonía por aspiración',
             ],
             [
-                "name" => "Neumonía por micoplasma"
+                'name' => 'Neumonía por micoplasma',
             ],
             [
-                "name" => "Neumonitis intersticial común"
+                'name' => 'Neumonitis intersticial común',
             ],
             [
-                "name" => "Neumonitis pulmonar idiopática (NPI)"
+                'name' => 'Neumonitis pulmonar idiopática (NPI)',
             ],
             [
-                "name" => "Nódulos reumatoideos"
+                'name' => 'Nódulos reumatoideos',
             ],
             [
-                "name" => "Pneumocystis jiroveci"
+                'name' => 'Pneumocystis jiroveci',
             ],
             [
-                "name" => "Pneumonía anaeróbica"
+                'name' => 'Pneumonía anaeróbica',
             ],
             [
-                "name" => "Pulmón rígido"
+                'name' => 'Pulmón rígido',
             ],
             [
-                "name" => "Ronquido"
+                'name' => 'Ronquido',
             ],
             [
-                "name" => "Sarcoidosis del sistema nervioso"
+                'name' => 'Sarcoidosis del sistema nervioso',
             ],
             [
-                "name" => "SARS"
+                'name' => 'SARS',
             ],
             [
-                "name" => "SCLC"
+                'name' => 'SCLC',
             ],
             [
-                "name" => "Síndrome de hipoventilación por obesidad"
+                'name' => 'Síndrome de hipoventilación por obesidad',
             ],
             [
-                "name" => "Síndrome de Pickwick"
+                'name' => 'Síndrome de Pickwick',
             ],
             [
-                "name" => "Síndrome pulmonar por hantavirus (virus hanta)"
+                'name' => 'Síndrome pulmonar por hantavirus (virus hanta)',
             ],
             [
-                "name" => "TB"
+                'name' => 'TB',
             ],
             [
-                "name" => "Timoma mediastinal"
+                'name' => 'Timoma mediastinal',
             ],
             [
-                "name" => "Tos ferina"
+                'name' => 'Tos ferina',
             ],
             [
-                "name" => "Traqueítis"
+                'name' => 'Traqueítis',
             ],
             [
-                "name" => "Traqueítis bacteriana aguda"
+                'name' => 'Traqueítis bacteriana aguda',
             ],
             [
-                "name" => "Tuberculosis extrapulmonar"
+                'name' => 'Tuberculosis extrapulmonar',
             ],
             [
-                "name" => "Tuberculosis miliar"
+                'name' => 'Tuberculosis miliar',
             ],
             [
-                "name" => "VSR"
+                'name' => 'VSR',
             ],
             [
-                "name" => "Absceso de la médula espinal"
+                'name' => 'Absceso de la médula espinal',
             ],
             [
-                "name" => "Absceso en el SNC"
+                'name' => 'Absceso en el SNC',
             ],
             [
-                "name" => "Absceso epidural"
+                'name' => 'Absceso epidural',
             ],
             [
-                "name" => "Accidente cerebrovascular hemorrágico"
+                'name' => 'Accidente cerebrovascular hemorrágico',
             ],
             [
-                "name" => "Aneurisma cerebral"
+                'name' => 'Aneurisma cerebral',
             ],
             [
-                "name" => "Angiopatía amiloide cerebral"
+                'name' => 'Angiopatía amiloide cerebral',
             ],
             [
-                "name" => "Apoplejía"
+                'name' => 'Apoplejía',
             ],
             [
-                "name" => "Apoplejía hipofisaria"
+                'name' => 'Apoplejía hipofisaria',
             ],
             [
-                "name" => "Apoplejía secundaria a la displasia fibromuscular"
+                'name' => 'Apoplejía secundaria a la displasia fibromuscular',
             ],
             [
-                "name" => "Astrocitoma en niños"
+                'name' => 'Astrocitoma en niños',
             ],
             [
-                "name" => "Cefalea en racimo"
+                'name' => 'Cefalea en racimo',
             ],
             [
-                "name" => "Cierre prematuro de las suturas"
+                'name' => 'Cierre prematuro de las suturas',
             ],
             [
-                "name" => "Compresión de la médula espinal"
+                'name' => 'Compresión de la médula espinal',
             ],
             [
-                "name" => "Derrame cerebral"
+                'name' => 'Derrame cerebral',
             ],
             [
-                "name" => "Derrame subdural"
+                'name' => 'Derrame subdural',
             ],
             [
-                "name" => "Disco roto"
+                'name' => 'Disco roto',
             ],
             [
-                "name" => "DFM"
+                'name' => 'DFM',
             ],
             [
-                "name" => "Ependimoma en adultos"
+                'name' => 'Ependimoma en adultos',
             ],
             [
-                "name" => "Ependimoma en niños"
+                'name' => 'Ependimoma en niños',
             ],
             [
-                "name" => "Epilepsia"
+                'name' => 'Epilepsia',
             ],
             [
-                "name" => "Estrabismo divergente"
+                'name' => 'Estrabismo divergente',
             ],
             [
-                "name" => "Exotropía"
+                'name' => 'Exotropía',
             ],
             [
-                "name" => "Ganglioneuroma"
+                'name' => 'Ganglioneuroma',
             ],
             [
-                "name" => "Glioma en adultos"
+                'name' => 'Glioma en adultos',
             ],
             [
-                "name" => "Hemorragia cerebral"
+                'name' => 'Hemorragia cerebral',
             ],
             [
-                "name" => "Hemorragia intracerebral lobular"
+                'name' => 'Hemorragia intracerebral lobular',
             ],
             [
-                "name" => "Hemorragia intracerebral profunda"
+                'name' => 'Hemorragia intracerebral profunda',
             ],
             [
-                "name" => "Hemorragia subaracnoidea"
+                'name' => 'Hemorragia subaracnoidea',
             ],
             [
-                "name" => "Hernia amigdalina"
+                'name' => 'Hernia amigdalina',
             ],
             [
-                "name" => "Hernia subfalcial"
+                'name' => 'Hernia subfalcial',
             ],
             [
-                "name" => "Hernia transtentorial"
+                'name' => 'Hernia transtentorial',
             ],
             [
-                "name" => "Hidrocefalia"
+                'name' => 'Hidrocefalia',
             ],
             [
-                "name" => "Hidrocefalia en adultos"
+                'name' => 'Hidrocefalia en adultos',
             ],
             [
-                "name" => "Malformación arteriovenosa cerebral"
+                'name' => 'Malformación arteriovenosa cerebral',
             ],
             [
-                "name" => "Meduloblastoma en adultos"
+                'name' => 'Meduloblastoma en adultos',
             ],
             [
-                "name" => "Meningioma en adultos"
+                'name' => 'Meningioma en adultos',
             ],
             [
-                "name" => "Neuroglioma en adultos"
+                'name' => 'Neuroglioma en adultos',
             ],
             [
-                "name" => "Neuroma acústico"
+                'name' => 'Neuroma acústico',
             ],
             [
-                "name" => "Oligodendroglioma en adultos"
+                'name' => 'Oligodendroglioma en adultos',
             ],
             [
-                "name" => "Parálisis ocular por lesión del nervio motor ocular externo"
+                'name' => 'Parálisis ocular por lesión del nervio motor ocular externo',
             ],
             [
-                "name" => "Pseudotumor cerebral"
+                'name' => 'Pseudotumor cerebral',
             ],
             [
-                "name" => "Quiste aracnoideo"
+                'name' => 'Quiste aracnoideo',
             ],
             [
-                "name" => "Seudotumor orbital"
+                'name' => 'Seudotumor orbital',
             ],
             [
-                "name" => "Síndrome de herniación"
+                'name' => 'Síndrome de herniación',
             ],
             [
-                "name" => "Síndrome del mesencéfalo dorsal"
+                'name' => 'Síndrome del mesencéfalo dorsal',
             ],
             [
-                "name" => "Trastorno convulsivo"
+                'name' => 'Trastorno convulsivo',
             ],
             [
-                "name" => "Tumor cerebral en adultos"
+                'name' => 'Tumor cerebral en adultos',
             ],
             [
-                "name" => "Tumor cerebral infratentorial"
+                'name' => 'Tumor cerebral infratentorial',
             ],
             [
-                "name" => "Tumor cerebral metastásico (secundario)"
+                'name' => 'Tumor cerebral metastásico (secundario)',
             ],
             [
-                "name" => "Tumor de la médula espinal"
+                'name' => 'Tumor de la médula espinal',
             ],
             [
-                "name" => "Tumor del ángulo pontocerebeloso"
+                'name' => 'Tumor del ángulo pontocerebeloso',
             ],
             [
-                "name" => "Tumor del glomo timpánico"
+                'name' => 'Tumor del glomo timpánico',
             ],
             [
-                "name" => "Tumor hipotalámico"
+                'name' => 'Tumor hipotalámico',
             ],
             [
-                "name" => "Tumor maligno"
+                'name' => 'Tumor maligno',
             ],
             [
-                "name" => "Accidente cerebrovascular"
+                'name' => 'Accidente cerebrovascular',
             ],
             [
-                "name" => "ALS"
+                'name' => 'ALS',
             ],
             [
-                "name" => "Alteraciones del sueño"
+                'name' => 'Alteraciones del sueño',
             ],
             [
-                "name" => "Deficiencia de arilsulfatasa A"
+                'name' => 'Deficiencia de arilsulfatasa A',
             ],
             [
-                "name" => "Deficiencia de miofosforilasa"
+                'name' => 'Deficiencia de miofosforilasa',
             ],
             [
-                "name" => "Deficiencia de PGYM"
+                'name' => 'Deficiencia de PGYM',
             ],
             [
-                "name" => "Disfunción de los ganglios basales"
+                'name' => 'Disfunción de los ganglios basales',
             ],
             [
-                "name" => "Disfunción del nervio axilar"
+                'name' => 'Disfunción del nervio axilar',
             ],
             [
-                "name" => "Disfunción del nervio ciático"
+                'name' => 'Disfunción del nervio ciático',
             ],
             [
-                "name" => "Disfunción del nervio cubital"
+                'name' => 'Disfunción del nervio cubital',
             ],
             [
-                "name" => "Disfunción del nervio femoral"
+                'name' => 'Disfunción del nervio femoral',
             ],
             [
-                "name" => "Disfunción del nervio mediano"
+                'name' => 'Disfunción del nervio mediano',
             ],
             [
-                "name" => "Disfunción del nervio mediano distal"
+                'name' => 'Disfunción del nervio mediano distal',
             ],
             [
-                "name" => "Disfunción del nervio peroneo común"
+                'name' => 'Disfunción del nervio peroneo común',
             ],
             [
-                "name" => "Disfunción del nervio radial"
+                'name' => 'Disfunción del nervio radial',
             ],
             [
-                "name" => "Disfunción del nervio tibial"
+                'name' => 'Disfunción del nervio tibial',
             ],
             [
-                "name" => "Disfunción del plexo braquial"
+                'name' => 'Disfunción del plexo braquial',
             ],
             [
-                "name" => "Disfunción hereditaria del nervio peroneo"
+                'name' => 'Disfunción hereditaria del nervio peroneo',
             ],
             [
-                "name" => "Distrofia muscular de Becker"
+                'name' => 'Distrofia muscular de Becker',
             ],
             [
-                "name" => "Distrofia muscular de cintura escapulohumeral o pélvica (LGMD)"
+                'name' => 'Distrofia muscular de cintura escapulohumeral o pélvica (LGMD)',
             ],
             [
-                "name" => "Distrofia muscular de Duchenne"
+                'name' => 'Distrofia muscular de Duchenne',
             ],
             [
-                "name" => "Distrofia muscular de Landouzy-Dejerine"
+                'name' => 'Distrofia muscular de Landouzy-Dejerine',
             ],
             [
-                "name" => "Distrofia muscular facioescapulohumeral"
+                'name' => 'Distrofia muscular facioescapulohumeral',
             ],
             [
-                "name" => "Distrofia muscular seudohipertrófica"
+                'name' => 'Distrofia muscular seudohipertrófica',
             ],
             [
-                "name" => "Distrofia muscular seudohipertrófica benigna"
+                'name' => 'Distrofia muscular seudohipertrófica benigna',
             ],
             [
-                "name" => "Distrofias musculares de la cintura y extremidades"
+                'name' => 'Distrofias musculares de la cintura y extremidades',
             ],
             [
-                "name" => "Edema cerebral por grandes alturas"
+                'name' => 'Edema cerebral por grandes alturas',
             ],
             [
-                "name" => "Enfermedad del almacenamiento de glucógeno tipo V (GSDV)"
+                'name' => 'Enfermedad del almacenamiento de glucógeno tipo V (GSDV)',
             ],
             [
-                "name" => "Esclerosis múltiple"
+                'name' => 'Esclerosis múltiple',
             ],
             [
-                "name" => "Glioma del nervio óptico"
+                'name' => 'Glioma del nervio óptico',
             ],
             [
-                "name" => "Glioma del tronco encefálico"
+                'name' => 'Glioma del tronco encefálico',
             ],
             [
-                "name" => "Glioma hipotalámico"
+                'name' => 'Glioma hipotalámico',
             ],
             [
-                "name" => "Hiperserotoninemia"
+                'name' => 'Hiperserotoninemia',
             ],
             [
-                "name" => "Lesion de Nervios Perifericos"
+                'name' => 'Lesion de Nervios Perifericos',
             ],
             [
-                "name" => "Leucodistrofia de las células globoides"
+                'name' => 'Leucodistrofia de las células globoides',
             ],
             [
-                "name" => "Neuralgia migrañosa"
+                'name' => 'Neuralgia migrañosa',
             ],
             [
-                "name" => "Neuropatía aislada"
+                'name' => 'Neuropatía aislada',
             ],
             [
-                "name" => "Neuropatías metabólicas"
+                'name' => 'Neuropatías metabólicas',
             ],
             [
-                "name" => "Retardo mental"
+                'name' => 'Retardo mental',
             ],
             [
-                "name" => "Síndrome de Horner"
+                'name' => 'Síndrome de Horner',
             ],
             [
-                "name" => "Síndrome de la serotonina"
+                'name' => 'Síndrome de la serotonina',
             ],
             [
-                "name" => "Síndrome de Shy-Drager"
+                'name' => 'Síndrome de Shy-Drager',
             ],
             [
-                "name" => "Tumor cerebral en niños"
+                'name' => 'Tumor cerebral en niños',
             ],
             [
-                "name" => "Accidente cerebrovascular pequeño"
+                'name' => 'Accidente cerebrovascular pequeño',
             ],
             [
-                "name" => "Accidente cerebrovascular relacionado con el consumo de cocaína"
+                'name' => 'Accidente cerebrovascular relacionado con el consumo de cocaína',
             ],
             [
-                "name" => "Accidente isquémico transitorio (AIT)"
+                'name' => 'Accidente isquémico transitorio (AIT)',
             ],
             [
-                "name" => "Acondroplasia"
+                'name' => 'Acondroplasia',
             ],
             [
-                "name" => "AIT"
+                'name' => 'AIT',
             ],
             [
-                "name" => "Anomalías congénitas relacionadas con el alcohol"
+                'name' => 'Anomalías congénitas relacionadas con el alcohol',
             ],
             [
-                "name" => "Anosmia"
+                'name' => 'Anosmia',
             ],
             [
-                "name" => "Astrocitoma en adultos"
+                'name' => 'Astrocitoma en adultos',
             ],
             [
-                "name" => "Ataxia cerebelosa"
+                'name' => 'Ataxia cerebelosa',
             ],
             [
-                "name" => "Ataxia cerebelosa aguda"
+                'name' => 'Ataxia cerebelosa aguda',
             ],
             [
-                "name" => "Ataxia de Friedreich"
+                'name' => 'Ataxia de Friedreich',
             ],
             [
-                "name" => "Atrofia de Sudeck"
+                'name' => 'Atrofia de Sudeck',
             ],
             [
-                "name" => "Atrofia del nervio óptico"
+                'name' => 'Atrofia del nervio óptico',
             ],
             [
-                "name" => "Atrofia del segundo par craneal"
+                'name' => 'Atrofia del segundo par craneal',
             ],
             [
-                "name" => "Atrofia muscular neuropática progresiva del peroneo"
+                'name' => 'Atrofia muscular neuropática progresiva del peroneo',
             ],
             [
-                "name" => "Atrofia olivopontocerebelosa"
+                'name' => 'Atrofia olivopontocerebelosa',
             ],
             [
-                "name" => "Ausencias típicas"
+                'name' => 'Ausencias típicas',
             ],
             [
-                "name" => "Baile o mal de San Vito"
+                'name' => 'Baile o mal de San Vito',
             ],
             [
-                "name" => "Cabeceo"
+                'name' => 'Cabeceo',
             ],
             [
-                "name" => "Cambios miopáticos"
+                'name' => 'Cambios miopáticos',
             ],
             [
-                "name" => "Cefalea histamínica"
+                'name' => 'Cefalea histamínica',
             ],
             [
-                "name" => "Cerebelitis"
+                'name' => 'Cerebelitis',
             ],
             [
-                "name" => "Conmoción cerebral"
+                'name' => 'Conmoción cerebral',
             ],
             [
-                "name" => "Convulsión de tipo gran mal"
+                'name' => 'Convulsión de tipo gran mal',
             ],
             [
-                "name" => "Convulsión del lóbulo temporal"
+                'name' => 'Convulsión del lóbulo temporal',
             ],
             [
-                "name" => "Convulsión generalizada"
+                'name' => 'Convulsión generalizada',
             ],
             [
-                "name" => "Convulsión inducida por fiebre"
+                'name' => 'Convulsión inducida por fiebre',
             ],
             [
-                "name" => "Convulsión parcial (focal)"
+                'name' => 'Convulsión parcial (focal)',
             ],
             [
-                "name" => "Convulsión tónico-clónica"
+                'name' => 'Convulsión tónico-clónica',
             ],
             [
-                "name" => "Convulsiones febriles"
+                'name' => 'Convulsiones febriles',
             ],
             [
-                "name" => "Corea de Sydenham"
+                'name' => 'Corea de Sydenham',
             ],
             [
-                "name" => "Crisis de gran mal"
+                'name' => 'Crisis de gran mal',
             ],
             [
-                "name" => "Crisis epiléptica en el lóbulo temporal"
+                'name' => 'Crisis epiléptica en el lóbulo temporal',
             ],
             [
-                "name" => "Crisis epiléptica focal"
+                'name' => 'Crisis epiléptica focal',
             ],
             [
-                "name" => "Crisis epiléptica Jacksoniana"
+                'name' => 'Crisis epiléptica Jacksoniana',
             ],
             [
-                "name" => "Daño a los nervios laríngeos"
+                'name' => 'Daño a los nervios laríngeos',
             ],
             [
-                "name" => "DBL"
+                'name' => 'DBL',
             ],
             [
-                "name" => "Deficiencia de aspartoacilasa"
+                'name' => 'Deficiencia de aspartoacilasa',
             ],
             [
-                "name" => "Deficiencia de galactosilceramidasa"
+                'name' => 'Deficiencia de galactosilceramidasa',
             ],
             [
-                "name" => "Deficiencia de galactosilcerebrosidasa"
+                'name' => 'Deficiencia de galactosilcerebrosidasa',
             ],
             [
-                "name" => "Deficiencia de glucocerebrosidasa"
+                'name' => 'Deficiencia de glucocerebrosidasa',
             ],
             [
-                "name" => "Deficiencia de glucosilceramidasa"
+                'name' => 'Deficiencia de glucosilceramidasa',
             ],
             [
-                "name" => "Deficiencia de tiamina"
+                'name' => 'Deficiencia de tiamina',
             ],
             [
-                "name" => "Degeneración combinada subaguda"
+                'name' => 'Degeneración combinada subaguda',
             ],
             [
-                "name" => "Degeneración espinocerebelosa"
+                'name' => 'Degeneración espinocerebelosa',
             ],
             [
-                "name" => "Degeneración esponjosa del cerebro"
+                'name' => 'Degeneración esponjosa del cerebro',
             ],
             [
-                "name" => "Degeneración olivopontocerebelosa"
+                'name' => 'Degeneración olivopontocerebelosa',
             ],
             [
-                "name" => "Degeneración subaguda combinada de la médula espinal"
+                'name' => 'Degeneración subaguda combinada de la médula espinal',
             ],
             [
-                "name" => "Demencia con distonía de la nuca"
+                'name' => 'Demencia con distonía de la nuca',
             ],
             [
-                "name" => "Demencia de origen metabólico"
+                'name' => 'Demencia de origen metabólico',
             ],
             [
-                "name" => "Demencia de tipo semántica"
+                'name' => 'Demencia de tipo semántica',
             ],
             [
-                "name" => "Demencia semántica"
+                'name' => 'Demencia semántica',
             ],
             [
-                "name" => "Disfluencia (falta de fluidez)"
+                'name' => 'Disfluencia (falta de fluidez)',
             ],
             [
-                "name" => "Dolor de cabeza histamínico"
+                'name' => 'Dolor de cabeza histamínico',
             ],
             [
-                "name" => "ELT"
+                'name' => 'ELT',
             ],
             [
-                "name" => "EM"
+                'name' => 'EM',
             ],
             [
-                "name" => "Encefalitis"
+                'name' => 'Encefalitis',
             ],
             [
-                "name" => "Encefalitis de Dawson"
+                'name' => 'Encefalitis de Dawson',
             ],
             [
-                "name" => "Encefalopatía espongiforme transmisible"
+                'name' => 'Encefalopatía espongiforme transmisible',
             ],
             [
-                "name" => "Enfermedad cerebrovascular hemorrágica"
+                'name' => 'Enfermedad cerebrovascular hemorrágica',
             ],
             [
-                "name" => "Enfermedad de Arnold Pick"
+                'name' => 'Enfermedad de Arnold Pick',
             ],
             [
-                "name" => "Enfermedad de Canavan"
+                'name' => 'Enfermedad de Canavan',
             ],
             [
-                "name" => "Enfermedad de Creutzfeldt-Jakob"
+                'name' => 'Enfermedad de Creutzfeldt-Jakob',
             ],
             [
-                "name" => "Enfermedad de Fahr"
+                'name' => 'Enfermedad de Fahr',
             ],
             [
-                "name" => "Enfermedad de Hallervorden-Spatz"
+                'name' => 'Enfermedad de Hallervorden-Spatz',
             ],
             [
-                "name" => "Enfermedad de Jacob-Creutzfeldt"
+                'name' => 'Enfermedad de Jacob-Creutzfeldt',
             ],
             [
-                "name" => "Enfermedad de Jansky-Bielschowsky"
+                'name' => 'Enfermedad de Jansky-Bielschowsky',
             ],
             [
-                "name" => "Enfermedad de las motoneuronas"
+                'name' => 'Enfermedad de las motoneuronas',
             ],
             [
-                "name" => "Enfermedad de las motoneuronas altas y bajas"
+                'name' => 'Enfermedad de las motoneuronas altas y bajas',
             ],
             [
-                "name" => "Enfermedad de Lou Gehrig"
+                'name' => 'Enfermedad de Lou Gehrig',
             ],
             [
-                "name" => "Enfermedad de Pick"
+                'name' => 'Enfermedad de Pick',
             ],
             [
-                "name" => "Enfermedad de Spielmeyer-Vogt"
+                'name' => 'Enfermedad de Spielmeyer-Vogt',
             ],
             [
-                "name" => "Enfermedad de Tay-Sachs"
+                'name' => 'Enfermedad de Tay-Sachs',
             ],
             [
-                "name" => "Enfermedad de Werdnig-Hoffmann"
+                'name' => 'Enfermedad de Werdnig-Hoffmann',
             ],
             [
-                "name" => "Enfermedad de Wernicke"
+                'name' => 'Enfermedad de Wernicke',
             ],
             [
-                "name" => "Enuresis"
+                'name' => 'Enuresis',
             ],
             [
-                "name" => "Espasmo hemifacial"
+                'name' => 'Espasmo hemifacial',
             ],
             [
-                "name" => "Espasmo mímico"
+                'name' => 'Espasmo mímico',
             ],
             [
-                "name" => "EVC"
+                'name' => 'EVC',
             ],
             [
-                "name" => "Fiebre recurrente transmitida por garrapatas"
+                'name' => 'Fiebre recurrente transmitida por garrapatas',
             ],
             [
-                "name" => "Fiebre recurrente transmitida por piojos"
+                'name' => 'Fiebre recurrente transmitida por piojos',
             ],
             [
-                "name" => "Fuga del LCR"
+                'name' => 'Fuga del LCR',
             ],
             [
-                "name" => "Glioblastoma multiforme en adultos"
+                'name' => 'Glioblastoma multiforme en adultos',
             ],
             [
-                "name" => "Hematoma subdural"
+                'name' => 'Hematoma subdural',
             ],
             [
-                "name" => "Hemorragia intracerebral hipertensiva"
+                'name' => 'Hemorragia intracerebral hipertensiva',
             ],
             [
-                "name" => "Hernia tentorial"
+                'name' => 'Hernia tentorial',
             ],
             [
-                "name" => "Higroma subdural"
+                'name' => 'Higroma subdural',
             ],
             [
-                "name" => "Hipotensión intracraneal"
+                'name' => 'Hipotensión intracraneal',
             ],
             [
-                "name" => "Histeria clásica"
+                'name' => 'Histeria clásica',
             ],
             [
-                "name" => "Infarto de la hipófisis"
+                'name' => 'Infarto de la hipófisis',
             ],
             [
-                "name" => "Intoxicación con metilmercurio"
+                'name' => 'Intoxicación con metilmercurio',
             ],
             [
-                "name" => "Intoxicación con semillas envenenadas en Basora"
+                'name' => 'Intoxicación con semillas envenenadas en Basora',
             ],
             [
-                "name" => "Isquemia de circulación posterior"
+                'name' => 'Isquemia de circulación posterior',
             ],
             [
-                "name" => "Jaqueca tensional mixta"
+                'name' => 'Jaqueca tensional mixta',
             ],
             [
-                "name" => "Kernicterus"
+                'name' => 'Kernicterus',
             ],
             [
-                "name" => "Leucoencefalitis esclerosante subaguda"
+                'name' => 'Leucoencefalitis esclerosante subaguda',
             ],
             [
-                "name" => "Malformación arteriovenosa pulmonar"
+                'name' => 'Malformación arteriovenosa pulmonar',
             ],
             [
-                "name" => "Malformación de Arnold Chiari"
+                'name' => 'Malformación de Arnold Chiari',
             ],
             [
-                "name" => "MCP"
+                'name' => 'MCP',
             ],
             [
-                "name" => "Meningitis meningocócica"
+                'name' => 'Meningitis meningocócica',
             ],
             [
-                "name" => "Meningitis por bacterias gramnegativas"
+                'name' => 'Meningitis por bacterias gramnegativas',
             ],
             [
-                "name" => "Mielinólisis central pontina"
+                'name' => 'Mielinólisis central pontina',
             ],
             [
-                "name" => "Mielopatía sifilítica"
+                'name' => 'Mielopatía sifilítica',
             ],
             [
-                "name" => "Migraña tensional mixta"
+                'name' => 'Migraña tensional mixta',
             ],
             [
-                "name" => "Narcolepsia"
+                'name' => 'Narcolepsia',
             ],
             [
-                "name" => "Neuritis óptica"
+                'name' => 'Neuritis óptica',
             ],
             [
-                "name" => "Neuritis vestibular"
+                'name' => 'Neuritis vestibular',
             ],
             [
-                "name" => "Neurofibromatosis acústica bilateral"
+                'name' => 'Neurofibromatosis acústica bilateral',
             ],
             [
-                "name" => "Neurolaberintitis viral"
+                'name' => 'Neurolaberintitis viral',
             ],
             [
-                "name" => "Neuroma de Morton"
+                'name' => 'Neuroma de Morton',
             ],
             [
-                "name" => "Neuropatía del nervio mediano distal"
+                'name' => 'Neuropatía del nervio mediano distal',
             ],
             [
-                "name" => "Neuropatía hereditaria sensoriomotora"
+                'name' => 'Neuropatía hereditaria sensoriomotora',
             ],
             [
-                "name" => "Neuropatía multifocal"
+                'name' => 'Neuropatía multifocal',
             ],
             [
-                "name" => "Neurosarcoidosis"
+                'name' => 'Neurosarcoidosis',
             ],
             [
-                "name" => "OBS"
+                'name' => 'OBS',
             ],
             [
-                "name" => "Panencefalitis esclerosante subaguda"
+                'name' => 'Panencefalitis esclerosante subaguda',
             ],
             [
-                "name" => "Parálisis agitante"
+                'name' => 'Parálisis agitante',
             ],
             [
-                "name" => "Parálisis con temblor"
+                'name' => 'Parálisis con temblor',
             ],
             [
-                "name" => "Parálisis del nervio cubital"
+                'name' => 'Parálisis del nervio cubital',
             ],
             [
-                "name" => "Parálisis del nervio facial debido a un traumatismo durante el nacimiento"
+                'name' => 'Parálisis del nervio facial debido a un traumatismo durante el nacimiento',
             ],
             [
-                "name" => "Parálisis del VII nervio craneal"
+                'name' => 'Parálisis del VII nervio craneal',
             ],
             [
-                "name" => "Parkinsonismo de tipo secundario"
+                'name' => 'Parkinsonismo de tipo secundario',
             ],
             [
-                "name" => "Pequeño mal (petit mal)"
+                'name' => 'Pequeño mal (petit mal)',
             ],
             [
-                "name" => "Polineuritis idiopática aguda"
+                'name' => 'Polineuritis idiopática aguda',
             ],
             [
-                "name" => "Prolapso de disco intervertebral"
+                'name' => 'Prolapso de disco intervertebral',
             ],
             [
-                "name" => "Psicosis de Korsakoff"
+                'name' => 'Psicosis de Korsakoff',
             ],
             [
-                "name" => "PVL"
+                'name' => 'PVL',
             ],
             [
-                "name" => "Retraso del desarrollo"
+                'name' => 'Retraso del desarrollo',
             ],
             [
-                "name" => "Retraso en el desarrollo psicomotor"
+                'name' => 'Retraso en el desarrollo psicomotor',
             ],
             [
-                "name" => "Schwannoma vestibular"
+                'name' => 'Schwannoma vestibular',
             ],
             [
-                "name" => "Síndrome cerebral crónico"
+                'name' => 'Síndrome cerebral crónico',
             ],
             [
-                "name" => "Síndrome cerebral orgánico crónico"
+                'name' => 'Síndrome cerebral orgánico crónico',
             ],
             [
-                "name" => "Síndrome de Briquet"
+                'name' => 'Síndrome de Briquet',
             ],
             [
-                "name" => "Síndrome de Budd-Chiari"
+                'name' => 'Síndrome de Budd-Chiari',
             ],
             [
-                "name" => "Síndrome de Tourette"
+                'name' => 'Síndrome de Tourette',
             ],
             [
-                "name" => "Síndrome de Wernicke-Korsakoff"
+                'name' => 'Síndrome de Wernicke-Korsakoff',
             ],
             [
-                "name" => "Sindrome de West"
+                'name' => 'Sindrome de West',
             ],
             [
-                "name" => "Síndrome orgánico cerebral"
+                'name' => 'Síndrome orgánico cerebral',
             ],
             [
-                "name" => "Síndrome papulovesicular acro-localizado"
+                'name' => 'Síndrome papulovesicular acro-localizado',
             ],
             [
-                "name" => "Síndrome Psicorgánico"
+                'name' => 'Síndrome Psicorgánico',
             ],
             [
-                "name" => "Síndrome psiquiátrico de causa orgánica"
+                'name' => 'Síndrome psiquiátrico de causa orgánica',
             ],
             [
-                "name" => "Siringomielia"
+                'name' => 'Siringomielia',
             ],
             [
-                "name" => "SSPE"
+                'name' => 'SSPE',
             ],
             [
-                "name" => "Temblor"
+                'name' => 'Temblor',
             ],
             [
-                "name" => "Temblor esencial"
+                'name' => 'Temblor esencial',
             ],
             [
-                "name" => "Tic facial"
+                'name' => 'Tic facial',
             ],
             [
-                "name" => "Tics faciales"
+                'name' => 'Tics faciales',
             ],
             [
-                "name" => "Trastorno de conversión"
+                'name' => 'Trastorno de conversión',
             ],
             [
-                "name" => "Trastorno del sueño por ansiedad"
+                'name' => 'Trastorno del sueño por ansiedad',
             ],
             [
-                "name" => "Trastornos asociados con el vértigo"
+                'name' => 'Trastornos asociados con el vértigo',
             ],
             [
-                "name" => "Trastornos circulatorios vertebrobasilares"
+                'name' => 'Trastornos circulatorios vertebrobasilares',
             ],
             [
-                "name" => "Trastornos neurológicos"
+                'name' => 'Trastornos neurológicos',
             ],
             [
-                "name" => "Traumatismo de la médula espinal"
+                'name' => 'Traumatismo de la médula espinal',
             ],
             [
-                "name" => "Tumor cerebral cancerígeno primario en adultos"
+                'name' => 'Tumor cerebral cancerígeno primario en adultos',
             ],
             [
-                "name" => "Tumor cerebral cancerígeno primario en niños"
+                'name' => 'Tumor cerebral cancerígeno primario en niños',
             ],
             [
-                "name" => "Tumor cerebral metastásico"
+                'name' => 'Tumor cerebral metastásico',
             ],
             [
-                "name" => "Tumores neuroendocrinos"
+                'name' => 'Tumores neuroendocrinos',
             ],
             [
-                "name" => "VCJD"
+                'name' => 'VCJD',
             ],
             [
-                "name" => "Enfermedades renales"
+                'name' => 'Enfermedades renales',
             ],
             [
-                "name" => "Síntomas gastrointestinales"
+                'name' => 'Síntomas gastrointestinales',
             ],
             [
-                "name" => "Trastorno por atracón"
+                'name' => 'Trastorno por atracón',
             ],
             [
-                "name" => "Bulimia nerviosa"
+                'name' => 'Bulimia nerviosa',
             ],
             [
-                "name" => "Fenilcetonuria"
+                'name' => 'Fenilcetonuria',
             ],
             [
-                "name" => "Fructosemia"
+                'name' => 'Fructosemia',
             ],
             [
-                "name" => "Intolerancia hereditaria a la fructosa"
+                'name' => 'Intolerancia hereditaria a la fructosa',
             ],
             [
-                "name" => "Kwashiorkor"
+                'name' => 'Kwashiorkor',
             ],
             [
-                "name" => "Malabsorción"
+                'name' => 'Malabsorción',
             ],
             [
-                "name" => "Osteomalacia"
+                'name' => 'Osteomalacia',
             ],
             [
-                "name" => "Síndrome de leche y alcalinos"
+                'name' => 'Síndrome de leche y alcalinos',
             ],
             [
-                "name" => "Trastorno de alimentación en la lactancia y en la primera infancia"
+                'name' => 'Trastorno de alimentación en la lactancia y en la primera infancia',
             ],
             [
-                "name" => "Obesidad infantil"
+                'name' => 'Obesidad infantil',
             ],
             [
-                "name" => "Absceso dental"
+                'name' => 'Absceso dental',
             ],
             [
-                "name" => "Alveolitis"
+                'name' => 'Alveolitis',
             ],
             [
-                "name" => "Amelogénesis imperfecta"
+                'name' => 'Amelogénesis imperfecta',
             ],
             [
-                "name" => "Anomalía dentaria"
+                'name' => 'Anomalía dentaria',
             ],
             [
-                "name" => "Atrición dental"
+                'name' => 'Atrición dental',
             ],
             [
-                "name" => "Ausencia dentaria"
+                'name' => 'Ausencia dentaria',
             ],
             [
-                "name" => "Avulsión dental"
+                'name' => 'Avulsión dental',
             ],
             [
-                "name" => "Boca de trinchera"
+                'name' => 'Boca de trinchera',
             ],
             [
-                "name" => "Cáncer bucal"
+                'name' => 'Cáncer bucal',
             ],
             [
-                "name" => "Criptodoncia"
+                'name' => 'Criptodoncia',
             ],
             [
-                "name" => "Desgaste dental"
+                'name' => 'Desgaste dental',
             ],
             [
-                "name" => "Diente impactado"
+                'name' => 'Diente impactado',
             ],
             [
-                "name" => "Dientes apiñados"
+                'name' => 'Dientes apiñados',
             ],
             [
-                "name" => "Dientes desalineados"
+                'name' => 'Dientes desalineados',
             ],
             [
-                "name" => "Dolor post endodoncia"
+                'name' => 'Dolor post endodoncia',
             ],
             [
-                "name" => "Erosión Dental"
+                'name' => 'Erosión Dental',
             ],
             [
-                "name" => "Fistula dental o en encía"
+                'name' => 'Fistula dental o en encía',
             ],
             [
-                "name" => "Fluorosis"
+                'name' => 'Fluorosis',
             ],
             [
-                "name" => "Fractura coronal"
+                'name' => 'Fractura coronal',
             ],
             [
-                "name" => "Gingivitis"
+                'name' => 'Gingivitis',
             ],
             [
-                "name" => "Gingivitis ulceronecrosante aguda"
+                'name' => 'Gingivitis ulceronecrosante aguda',
             ],
             [
-                "name" => "Gingivoestomatitis"
+                'name' => 'Gingivoestomatitis',
             ],
             [
-                "name" => "Halitosis"
+                'name' => 'Halitosis',
             ],
             [
-                "name" => "Malformaciones craneofaciales"
+                'name' => 'Malformaciones craneofaciales',
             ],
             [
-                "name" => "Manchas en dientes"
+                'name' => 'Manchas en dientes',
             ],
             [
-                "name" => "Movilidad dentaria"
+                'name' => 'Movilidad dentaria',
             ],
             [
-                "name" => "Osteonecrosis"
+                'name' => 'Osteonecrosis',
             ],
             [
-                "name" => "Pérdida de dientes"
+                'name' => 'Pérdida de dientes',
             ],
             [
-                "name" => "Perlas de Epstein"
+                'name' => 'Perlas de Epstein',
             ],
             [
-                "name" => "Pigmentación severa dental"
+                'name' => 'Pigmentación severa dental',
             ],
             [
-                "name" => "Sensibilidad dentaria"
+                'name' => 'Sensibilidad dentaria',
             ],
             [
-                "name" => "Síndrome de Sjogren"
+                'name' => 'Síndrome de Sjogren',
             ],
             [
-                "name" => "Traumatismo dental"
+                'name' => 'Traumatismo dental',
             ],
             [
-                "name" => "Úlceras bucales"
+                'name' => 'Úlceras bucales',
             ],
             [
-                "name" => "Acromatopsia"
+                'name' => 'Acromatopsia',
             ],
             [
-                "name" => "Agujero macular"
+                'name' => 'Agujero macular',
             ],
             [
-                "name" => "Albinismo ocular"
+                'name' => 'Albinismo ocular',
             ],
             [
-                "name" => "Alta miopía"
+                'name' => 'Alta miopía',
             ],
             [
-                "name" => "Ambliopía"
+                'name' => 'Ambliopía',
             ],
             [
-                "name" => "AMD"
+                'name' => 'AMD',
             ],
             [
-                "name" => "Astigmatismo"
+                'name' => 'Astigmatismo',
             ],
             [
-                "name" => "Blefaritis"
+                'name' => 'Blefaritis',
             ],
             [
-                "name" => "Cáncer de ojo"
+                'name' => 'Cáncer de ojo',
             ],
             [
-                "name" => "Cáncer de retina"
+                'name' => 'Cáncer de retina',
             ],
             [
-                "name" => "Cataratas congénitas"
+                'name' => 'Cataratas congénitas',
             ],
             [
-                "name" => "Ceguera monocular transitoria"
+                'name' => 'Ceguera monocular transitoria',
             ],
             [
-                "name" => "Celulitis orbitaria"
+                'name' => 'Celulitis orbitaria',
             ],
             [
-                "name" => "Celulitis periorbitaria"
+                'name' => 'Celulitis periorbitaria',
             ],
             [
-                "name" => "Celulitis preseptal"
+                'name' => 'Celulitis preseptal',
             ],
             [
-                "name" => "Conducto nasolagrimal obstruido"
+                'name' => 'Conducto nasolagrimal obstruido',
             ],
             [
-                "name" => "Conjuntivitis aguda"
+                'name' => 'Conjuntivitis aguda',
             ],
             [
-                "name" => "Conjuntivitis del neonato"
+                'name' => 'Conjuntivitis del neonato',
             ],
             [
-                "name" => "Conjuntivitis granular"
+                'name' => 'Conjuntivitis granular',
             ],
             [
-                "name" => "Conjuntivitis primaveral"
+                'name' => 'Conjuntivitis primaveral',
             ],
             [
-                "name" => "Contracción del ojo"
+                'name' => 'Contracción del ojo',
             ],
             [
-                "name" => "Coriorretinitis"
+                'name' => 'Coriorretinitis',
             ],
             [
-                "name" => "Coroidopatía serosa central"
+                'name' => 'Coroidopatía serosa central',
             ],
             [
-                "name" => "CRAO"
+                'name' => 'CRAO',
             ],
             [
-                "name" => "CRVO"
+                'name' => 'CRVO',
             ],
             [
-                "name" => "Dacrioadenitis"
+                'name' => 'Dacrioadenitis',
             ],
             [
-                "name" => "Dacriostenosis"
+                'name' => 'Dacriostenosis',
             ],
             [
-                "name" => "Daltonismo"
+                'name' => 'Daltonismo',
             ],
             [
-                "name" => "Defectos de refracción"
+                'name' => 'Defectos de refracción',
             ],
             [
-                "name" => "Deficiencia de cistationina beta-sintasa"
+                'name' => 'Deficiencia de cistationina beta-sintasa',
             ],
             [
-                "name" => "Deficiencia de galactocinasa"
+                'name' => 'Deficiencia de galactocinasa',
             ],
             [
-                "name" => "Deficiencia para ver los colores"
+                'name' => 'Deficiencia para ver los colores',
             ],
             [
-                "name" => "Degeneración macular"
+                'name' => 'Degeneración macular',
             ],
             [
-                "name" => "Degeneración macular relacionada con la edad (AMD)"
+                'name' => 'Degeneración macular relacionada con la edad (AMD)',
             ],
             [
-                "name" => "Degeneración macular senil (SMD)"
+                'name' => 'Degeneración macular senil (SMD)',
             ],
             [
-                "name" => "Degeneración marginal pelúcida"
+                'name' => 'Degeneración marginal pelúcida',
             ],
             [
-                "name" => "Derrame ocular"
+                'name' => 'Derrame ocular',
             ],
             [
-                "name" => "Desprendimiento de retina"
+                'name' => 'Desprendimiento de retina',
             ],
             [
-                "name" => "Diplopía (visión doble)"
+                'name' => 'Diplopía (visión doble)',
             ],
             [
-                "name" => "Distrofia corneal"
+                'name' => 'Distrofia corneal',
             ],
             [
-                "name" => "Distrofia de Fuchs"
+                'name' => 'Distrofia de Fuchs',
             ],
             [
-                "name" => "Distrofias coroidales"
+                'name' => 'Distrofias coroidales',
             ],
             [
-                "name" => "Edema macular"
+                'name' => 'Edema macular',
             ],
             [
-                "name" => "Endoftalmitis"
+                'name' => 'Endoftalmitis',
             ],
             [
-                "name" => "Endotropía"
+                'name' => 'Endotropía',
             ],
             [
-                "name" => "Enfermedad externa ocular"
+                'name' => 'Enfermedad externa ocular',
             ],
             [
-                "name" => "Entropión"
+                'name' => 'Entropión',
             ],
             [
-                "name" => "Epiescleritis"
+                'name' => 'Epiescleritis',
             ],
             [
-                "name" => "Escleritis"
+                'name' => 'Escleritis',
             ],
             [
-                "name" => "Escotoma"
+                'name' => 'Escotoma',
             ],
             [
-                "name" => "Esotropía"
+                'name' => 'Esotropía',
             ],
             [
-                "name" => "Estrabismo"
+                'name' => 'Estrabismo',
             ],
             [
-                "name" => "Estrabismo convergente (ojos bizcos)"
+                'name' => 'Estrabismo convergente (ojos bizcos)',
             ],
             [
-                "name" => "Fosfeno"
+                'name' => 'Fosfeno',
             ],
             [
-                "name" => "Fracturas de la órbita"
+                'name' => 'Fracturas de la órbita',
             ],
             [
-                "name" => "Glaucoma"
+                'name' => 'Glaucoma',
             ],
             [
-                "name" => "Glaucoma congénito"
+                'name' => 'Glaucoma congénito',
             ],
             [
-                "name" => "Glaucoma crónico"
+                'name' => 'Glaucoma crónico',
             ],
             [
-                "name" => "Glaucoma de ángulo abierto"
+                'name' => 'Glaucoma de ángulo abierto',
             ],
             [
-                "name" => "Glaucoma de ángulo cerrado"
+                'name' => 'Glaucoma de ángulo cerrado',
             ],
             [
-                "name" => "Hipermetropía"
+                'name' => 'Hipermetropía',
             ],
             [
-                "name" => "Inchaço do Nervo Óptico"
+                'name' => 'Inchaço do Nervo Óptico',
             ],
             [
-                "name" => "Larva migratoria ocular"
+                'name' => 'Larva migratoria ocular',
             ],
             [
-                "name" => "Lesión corneal"
+                'name' => 'Lesión corneal',
             ],
             [
-                "name" => "Meibomianitis"
+                'name' => 'Meibomianitis',
             ],
             [
-                "name" => "Melanoma maligno del ojo"
+                'name' => 'Melanoma maligno del ojo',
             ],
             [
-                "name" => "Membrana epirretiniana macular"
+                'name' => 'Membrana epirretiniana macular',
             ],
             [
-                "name" => "Miopía"
+                'name' => 'Miopía',
             ],
             [
-                "name" => "Oclusión de las venas retinianas"
+                'name' => 'Oclusión de las venas retinianas',
             ],
             [
-                "name" => "Oftalmia egipcia"
+                'name' => 'Oftalmia egipcia',
             ],
             [
-                "name" => "Ojo perezoso"
+                'name' => 'Ojo perezoso',
             ],
             [
-                "name" => "Ojo rojo"
+                'name' => 'Ojo rojo',
             ],
             [
-                "name" => "Opacidad del cristalino"
+                'name' => 'Opacidad del cristalino',
             ],
             [
-                "name" => "Párpados caídos"
+                'name' => 'Párpados caídos',
             ],
             [
-                "name" => "Pinguécula"
+                'name' => 'Pinguécula',
             ],
             [
-                "name" => "Presbicia"
+                'name' => 'Presbicia',
             ],
             [
-                "name" => "Procesos inflamatorios del segmento posterior"
+                'name' => 'Procesos inflamatorios del segmento posterior',
             ],
             [
-                "name" => "Protuberancia en el párpado"
+                'name' => 'Protuberancia en el párpado',
             ],
             [
-                "name" => "Pterigión"
+                'name' => 'Pterigión',
             ],
             [
-                "name" => "Ptosis"
+                'name' => 'Ptosis',
             ],
             [
-                "name" => "Queratitis bacteriana"
+                'name' => 'Queratitis bacteriana',
             ],
             [
-                "name" => "Queratitis micótica"
+                'name' => 'Queratitis micótica',
             ],
             [
-                "name" => "Queratitis por Acanthamoeba"
+                'name' => 'Queratitis por Acanthamoeba',
             ],
             [
-                "name" => "Queratitis por herpes simple"
+                'name' => 'Queratitis por herpes simple',
             ],
             [
-                "name" => "Queratocono"
+                'name' => 'Queratocono',
             ],
             [
-                "name" => "Queratoglobo"
+                'name' => 'Queratoglobo',
             ],
             [
-                "name" => "Retinitis pigmentaria"
+                'name' => 'Retinitis pigmentaria',
             ],
             [
-                "name" => "Retinitis por citomegalovirus"
+                'name' => 'Retinitis por citomegalovirus',
             ],
             [
-                "name" => "Retinopatía diabética"
+                'name' => 'Retinopatía diabética',
             ],
             [
-                "name" => "Retinopatía hipertensiva"
+                'name' => 'Retinopatía hipertensiva',
             ],
             [
-                "name" => "Retinopatía serosa central"
+                'name' => 'Retinopatía serosa central',
             ],
             [
-                "name" => "RP"
+                'name' => 'RP',
             ],
             [
-                "name" => "Síndrome del ojo seco"
+                'name' => 'Síndrome del ojo seco',
             ],
             [
-                "name" => "Síndrome VKH"
+                'name' => 'Síndrome VKH',
             ],
             [
-                "name" => "Tracoma"
+                'name' => 'Tracoma',
             ],
             [
-                "name" => "Trauma ocular"
+                'name' => 'Trauma ocular',
             ],
             [
-                "name" => "Tumor de retina"
+                'name' => 'Tumor de retina',
             ],
             [
-                "name" => "Tumor ocular"
+                'name' => 'Tumor ocular',
             ],
             [
-                "name" => "Úlceras e infecciones corneales"
+                'name' => 'Úlceras e infecciones corneales',
             ],
             [
-                "name" => "Uveítis"
+                'name' => 'Uveítis',
             ],
             [
-                "name" => "Visión baja"
+                'name' => 'Visión baja',
             ],
             [
-                "name" => "Vitreoretinopatía proliferativa"
+                'name' => 'Vitreoretinopatía proliferativa',
             ],
             [
-                "name" => "Adenocarcinoma de las células renales"
+                'name' => 'Adenocarcinoma de las células renales',
             ],
             [
-                "name" => "Cáncer de células transicionales de la pelvis renal o del uréter"
+                'name' => 'Cáncer de células transicionales de la pelvis renal o del uréter',
             ],
             [
-                "name" => "Cáncer de garganta"
+                'name' => 'Cáncer de garganta',
             ],
             [
-                "name" => "Cáncer de pene"
+                'name' => 'Cáncer de pene',
             ],
             [
-                "name" => "Cáncer de próstata"
+                'name' => 'Cáncer de próstata',
             ],
             [
-                "name" => "Cáncer escamocelular del pene"
+                'name' => 'Cáncer escamocelular del pene',
             ],
             [
-                "name" => "Cáncer peniano"
+                'name' => 'Cáncer peniano',
             ],
             [
-                "name" => "Cáncer testicular"
+                'name' => 'Cáncer testicular',
             ],
             [
-                "name" => "CAP"
+                'name' => 'CAP',
             ],
             [
-                "name" => "Carcinoma"
+                'name' => 'Carcinoma',
             ],
             [
-                "name" => "Carcinoma de células renales"
+                'name' => 'Carcinoma de células renales',
             ],
             [
-                "name" => "Carcinoma de células transicionales de la vejiga"
+                'name' => 'Carcinoma de células transicionales de la vejiga',
             ],
             [
-                "name" => "EICH"
+                'name' => 'EICH',
             ],
             [
-                "name" => "Enfermedad injerto contra huésped"
+                'name' => 'Enfermedad injerto contra huésped',
             ],
             [
-                "name" => "Eritroplasia de Queyrat"
+                'name' => 'Eritroplasia de Queyrat',
             ],
             [
-                "name" => "Ganglioneuroblastoma"
+                'name' => 'Ganglioneuroblastoma',
             ],
             [
-                "name" => "Leiomiosarcoma"
+                'name' => 'Leiomiosarcoma',
             ],
             [
-                "name" => "Metástasis cerebral"
+                'name' => 'Metástasis cerebral',
             ],
             [
-                "name" => "Metástasis de hígado"
+                'name' => 'Metástasis de hígado',
             ],
             [
-                "name" => "Metástasis ósea"
+                'name' => 'Metástasis ósea',
             ],
             [
-                "name" => "Neoplasia"
+                'name' => 'Neoplasia',
             ],
             [
-                "name" => "Osteosarcoma"
+                'name' => 'Osteosarcoma',
             ],
             [
-                "name" => "Rabdomiosarcoma"
+                'name' => 'Rabdomiosarcoma',
             ],
             [
-                "name" => "Sarcoma botrioides"
+                'name' => 'Sarcoma botrioides',
             ],
             [
-                "name" => "Sarcoma de partes blandas"
+                'name' => 'Sarcoma de partes blandas',
             ],
             [
-                "name" => "Sarcoma osteógeno"
+                'name' => 'Sarcoma osteógeno',
             ],
             [
-                "name" => "Síndrome del carcinoma basocelular nevoide"
+                'name' => 'Síndrome del carcinoma basocelular nevoide',
             ],
             [
-                "name" => "Síndrome del cayado aórtico"
+                'name' => 'Síndrome del cayado aórtico',
             ],
             [
-                "name" => "Tumor de células germinativas"
+                'name' => 'Tumor de células germinativas',
             ],
             [
-                "name" => "Tumor de la fosa posterior"
+                'name' => 'Tumor de la fosa posterior',
             ],
             [
-                "name" => "Tumor de los cordones sexuales"
+                'name' => 'Tumor de los cordones sexuales',
             ],
             [
-                "name" => "Tumor del nervio de Jacobson"
+                'name' => 'Tumor del nervio de Jacobson',
             ],
             [
-                "name" => "Tumor del parto"
+                'name' => 'Tumor del parto',
             ],
             [
-                "name" => "Tumor en el conducto salival"
+                'name' => 'Tumor en el conducto salival',
             ],
             [
-                "name" => "Tumor estromático"
+                'name' => 'Tumor estromático',
             ],
             [
-                "name" => "Tumor estromático gonadal"
+                'name' => 'Tumor estromático gonadal',
             ],
             [
-                "name" => "Tumor metastásico de la pleura"
+                'name' => 'Tumor metastásico de la pleura',
             ],
             [
-                "name" => "Tumor nasal benigno"
+                'name' => 'Tumor nasal benigno',
             ],
             [
-                "name" => "Tumores neuroectodérmicos primitivos"
+                'name' => 'Tumores neuroectodérmicos primitivos',
             ],
             [
-                "name" => "Visión corta"
+                'name' => 'Visión corta',
             ],
             [
-                "name" => "Acrodisostosis"
+                'name' => 'Acrodisostosis',
             ],
             [
-                "name" => "Acrodisplasia"
+                'name' => 'Acrodisplasia',
             ],
             [
-                "name" => "Antepié varo"
+                'name' => 'Antepié varo',
             ],
             [
-                "name" => "Arco alto"
+                'name' => 'Arco alto',
             ],
             [
-                "name" => "Arcos caídos"
+                'name' => 'Arcos caídos',
             ],
             [
-                "name" => "Arkless-Graham"
+                'name' => 'Arkless-Graham',
             ],
             [
-                "name" => "Artritis bacteriana"
+                'name' => 'Artritis bacteriana',
             ],
             [
-                "name" => "Artritis bacteriana no gonocócica"
+                'name' => 'Artritis bacteriana no gonocócica',
             ],
             [
-                "name" => "Artritis granulomatosa"
+                'name' => 'Artritis granulomatosa',
             ],
             [
-                "name" => "Cifoescoliosis"
+                'name' => 'Cifoescoliosis',
             ],
             [
-                "name" => "Cifosis"
+                'name' => 'Cifosis',
             ],
             [
-                "name" => "Codo de niñera"
+                'name' => 'Codo de niñera',
             ],
             [
-                "name" => "Codo dislocado en niños"
+                'name' => 'Codo dislocado en niños',
             ],
             [
-                "name" => "Contractura isquémica"
+                'name' => 'Contractura isquémica',
             ],
             [
-                "name" => "Contractura isquémica de Volkmann"
+                'name' => 'Contractura isquémica de Volkmann',
             ],
             [
-                "name" => "DDC"
+                'name' => 'DDC',
             ],
             [
-                "name" => "Dedo del pie en martillo"
+                'name' => 'Dedo del pie en martillo',
             ],
             [
-                "name" => "Deficiencia de glucógeno fosforilasa en los músculos"
+                'name' => 'Deficiencia de glucógeno fosforilasa en los músculos',
             ],
             [
-                "name" => "Deformidad en valgo del dedo gordo"
+                'name' => 'Deformidad en valgo del dedo gordo',
             ],
             [
-                "name" => "Deslizamiento de la epífisis capital femoral"
+                'name' => 'Deslizamiento de la epífisis capital femoral',
             ],
             [
-                "name" => "Desplazamiento"
+                'name' => 'Desplazamiento',
             ],
             [
-                "name" => "Desplazamiento de la cabeza del fémur"
+                'name' => 'Desplazamiento de la cabeza del fémur',
             ],
             [
-                "name" => "Desplazamiento de la epífisis femoral"
+                'name' => 'Desplazamiento de la epífisis femoral',
             ],
             [
-                "name" => "Dislocación de la cabeza radial"
+                'name' => 'Dislocación de la cabeza radial',
             ],
             [
-                "name" => "Dislocación en el desarrollo de la cadera"
+                'name' => 'Dislocación en el desarrollo de la cadera',
             ],
             [
-                "name" => "Displasia del desarrollo de la articulación de la cadera"
+                'name' => 'Displasia del desarrollo de la articulación de la cadera',
             ],
             [
-                "name" => "Displasia del desarrollo de la cadera"
+                'name' => 'Displasia del desarrollo de la cadera',
             ],
             [
-                "name" => "Encorvadura de la espalda"
+                'name' => 'Encorvadura de la espalda',
             ],
             [
-                "name" => "Enfermedad de Blount"
+                'name' => 'Enfermedad de Blount',
             ],
             [
-                "name" => "Enfermedad de Legg-Calve-Perthes"
+                'name' => 'Enfermedad de Legg-Calve-Perthes',
             ],
             [
-                "name" => "Enfermedad de los huesos frágiles"
+                'name' => 'Enfermedad de los huesos frágiles',
             ],
             [
-                "name" => "Enfermedad de Osgood-Schlatter"
+                'name' => 'Enfermedad de Osgood-Schlatter',
             ],
             [
-                "name" => "Enfermedad de Perthes"
+                'name' => 'Enfermedad de Perthes',
             ],
             [
-                "name" => "Enfermedad de Scheuermann"
+                'name' => 'Enfermedad de Scheuermann',
             ],
             [
-                "name" => "Espondilitis"
+                'name' => 'Espondilitis',
             ],
             [
-                "name" => "Estenosis raquídea"
+                'name' => 'Estenosis raquídea',
             ],
             [
-                "name" => "Fractura de la basa del metatarso"
+                'name' => 'Fractura de la basa del metatarso',
             ],
             [
-                "name" => "Fractura de la pelvis"
+                'name' => 'Fractura de la pelvis',
             ],
             [
-                "name" => "Fracturas"
+                'name' => 'Fracturas',
             ],
             [
-                "name" => "Fracturas de cadera"
+                'name' => 'Fracturas de cadera',
             ],
             [
-                "name" => "Hombro de lanzador"
+                'name' => 'Hombro de lanzador',
             ],
             [
-                "name" => "Hombro rígido"
+                'name' => 'Hombro rígido',
             ],
             [
-                "name" => "Huesos delgados"
+                'name' => 'Huesos delgados',
             ],
             [
-                "name" => "Inestabilidad Glenohumeral"
+                'name' => 'Inestabilidad Glenohumeral',
             ],
             [
-                "name" => "Inflamación discal"
+                'name' => 'Inflamación discal',
             ],
             [
-                "name" => "Lesión de Ligamentarias de Rodilla"
+                'name' => 'Lesión de Ligamentarias de Rodilla',
             ],
             [
-                "name" => "Lesiones de cartílago articular"
+                'name' => 'Lesiones de cartílago articular',
             ],
             [
-                "name" => "Lesiones de Menisco"
+                'name' => 'Lesiones de Menisco',
             ],
             [
-                "name" => "Lesiones del tendón rotuliano"
+                'name' => 'Lesiones del tendón rotuliano',
             ],
             [
-                "name" => "Lesiones ligamentarias de rodillas"
+                'name' => 'Lesiones ligamentarias de rodillas',
             ],
             [
-                "name" => "Luxación de la cabeza del radio"
+                'name' => 'Luxación de la cabeza del radio',
             ],
             [
-                "name" => "Luxación parcial del codo"
+                'name' => 'Luxación parcial del codo',
             ],
             [
-                "name" => "Necrosis ósea isquémica"
+                'name' => 'Necrosis ósea isquémica',
             ],
             [
-                "name" => "Necrosis papilar renal"
+                'name' => 'Necrosis papilar renal',
             ],
             [
-                "name" => "Neuropatía del nervio ciático"
+                'name' => 'Neuropatía del nervio ciático',
             ],
             [
-                "name" => "Osteítis deformante"
+                'name' => 'Osteítis deformante',
             ],
             [
-                "name" => "Osteoporosis craneal congénita"
+                'name' => 'Osteoporosis craneal congénita',
             ],
             [
-                "name" => "Pie cavo"
+                'name' => 'Pie cavo',
             ],
             [
-                "name" => "Pinzamiento Subacromial"
+                'name' => 'Pinzamiento Subacromial',
             ],
             [
-                "name" => "Polimialgia reumática"
+                'name' => 'Polimialgia reumática',
             ],
             [
-                "name" => "Pronación del pie"
+                'name' => 'Pronación del pie',
             ],
             [
-                "name" => "Pseudoartrosis"
+                'name' => 'Pseudoartrosis',
             ],
             [
-                "name" => "Quiste de Baker"
+                'name' => 'Quiste de Baker',
             ],
             [
-                "name" => "Rodilla vara"
+                'name' => 'Rodilla vara',
             ],
             [
-                "name" => "Subluxación de la cabeza del radio"
+                'name' => 'Subluxación de la cabeza del radio',
             ],
             [
-                "name" => "Subluxación del codo"
+                'name' => 'Subluxación del codo',
             ],
             [
-                "name" => "Tendinitis bicipital"
+                'name' => 'Tendinitis bicipital',
             ],
             [
-                "name" => "Tibia vara"
+                'name' => 'Tibia vara',
             ],
             [
-                "name" => "Absceso de las amígdalas"
+                'name' => 'Absceso de las amígdalas',
             ],
             [
-                "name" => "Agrandamiento de adenoides"
+                'name' => 'Agrandamiento de adenoides',
             ],
             [
-                "name" => "Alergias nasales"
+                'name' => 'Alergias nasales',
             ],
             [
-                "name" => "Angiofibroma juvenil"
+                'name' => 'Angiofibroma juvenil',
             ],
             [
-                "name" => "Anomalías del olfato"
+                'name' => 'Anomalías del olfato',
             ],
             [
-                "name" => "Atresia coanal"
+                'name' => 'Atresia coanal',
             ],
             [
-                "name" => "Barotitis media"
+                'name' => 'Barotitis media',
             ],
             [
-                "name" => "Barotrauma"
+                'name' => 'Barotrauma',
             ],
             [
-                "name" => "Barotrauma del oído"
+                'name' => 'Barotrauma del oído',
             ],
             [
-                "name" => "Bloqueo del oído"
+                'name' => 'Bloqueo del oído',
             ],
             [
-                "name" => "Cáncer de las cuerdas vocales"
+                'name' => 'Cáncer de las cuerdas vocales',
             ],
             [
-                "name" => "Cerumen (cera del oído)"
+                'name' => 'Cerumen (cera del oído)',
             ],
             [
-                "name" => "Colesteatoma"
+                'name' => 'Colesteatoma',
             ],
             [
-                "name" => "Deterioro de la audición en los bebés"
+                'name' => 'Deterioro de la audición en los bebés',
             ],
             [
-                "name" => "Dolor de oído relacionado con la presión"
+                'name' => 'Dolor de oído relacionado con la presión',
             ],
             [
-                "name" => "Epiglotitis"
+                'name' => 'Epiglotitis',
             ],
             [
-                "name" => "Estapedectomía"
+                'name' => 'Estapedectomía',
             ],
             [
-                "name" => "Fusión de los huesos del oído"
+                'name' => 'Fusión de los huesos del oído',
             ],
             [
-                "name" => "Hidropesía endolinfática"
+                'name' => 'Hidropesía endolinfática',
             ],
             [
-                "name" => "Hipoacusia central en bebés"
+                'name' => 'Hipoacusia central en bebés',
             ],
             [
-                "name" => "Hipoacusia conductiva en los bebés"
+                'name' => 'Hipoacusia conductiva en los bebés',
             ],
             [
-                "name" => "Hipoacusia neurosensorial en los bebés"
+                'name' => 'Hipoacusia neurosensorial en los bebés',
             ],
             [
-                "name" => "Infección aguda del oído medio"
+                'name' => 'Infección aguda del oído medio',
             ],
             [
-                "name" => "Infección aguda en el oído externo"
+                'name' => 'Infección aguda en el oído externo',
             ],
             [
-                "name" => "Infección aguda por citomegalovirus"
+                'name' => 'Infección aguda por citomegalovirus',
             ],
             [
-                "name" => "Infección crónica del oído"
+                'name' => 'Infección crónica del oído',
             ],
             [
-                "name" => "Infección crónica del oído externo"
+                'name' => 'Infección crónica del oído externo',
             ],
             [
-                "name" => "Infección crónica del oído medio"
+                'name' => 'Infección crónica del oído medio',
             ],
             [
-                "name" => "Infección cutánea por estafilococos"
+                'name' => 'Infección cutánea por estafilococos',
             ],
             [
-                "name" => "Infección de los tejidos por clostridio"
+                'name' => 'Infección de los tejidos por clostridio',
             ],
             [
-                "name" => "Infección del oído interno"
+                'name' => 'Infección del oído interno',
             ],
             [
-                "name" => "Laberintitis serosa"
+                'name' => 'Laberintitis serosa',
             ],
             [
-                "name" => "Mastoiditis"
+                'name' => 'Mastoiditis',
             ],
             [
-                "name" => "Misofonía"
+                'name' => 'Misofonía',
             ],
             [
-                "name" => "Oído de nadador crónico"
+                'name' => 'Oído de nadador crónico',
             ],
             [
-                "name" => "Otitis"
+                'name' => 'Otitis',
             ],
             [
-                "name" => "Otitis externa aguda"
+                'name' => 'Otitis externa aguda',
             ],
             [
-                "name" => "Otitis media aguda"
+                'name' => 'Otitis media aguda',
             ],
             [
-                "name" => "Otitis media asintomática"
+                'name' => 'Otitis media asintomática',
             ],
             [
-                "name" => "Otitis media con derrame"
+                'name' => 'Otitis media con derrame',
             ],
             [
-                "name" => "Otitis media secretora"
+                'name' => 'Otitis media secretora',
             ],
             [
-                "name" => "Otitis media serosa"
+                'name' => 'Otitis media serosa',
             ],
             [
-                "name" => "Otosclerosis"
+                'name' => 'Otosclerosis',
             ],
             [
-                "name" => "Parálisis de las cuerdas vocales"
+                'name' => 'Parálisis de las cuerdas vocales',
             ],
             [
-                "name" => "Perforación de la membrana timpánica"
+                'name' => 'Perforación de la membrana timpánica',
             ],
             [
-                "name" => "Perforación o ruptura del tímpano"
+                'name' => 'Perforación o ruptura del tímpano',
             ],
             [
-                "name" => "Petrositis"
+                'name' => 'Petrositis',
             ],
             [
-                "name" => "Pólipos nasales"
+                'name' => 'Pólipos nasales',
             ],
             [
-                "name" => "Quinsy"
+                'name' => 'Quinsy',
             ],
             [
-                "name" => "Quistes gingivales del neonato"
+                'name' => 'Quistes gingivales del neonato',
             ],
             [
-                "name" => "Ránula"
+                'name' => 'Ránula',
             ],
             [
-                "name" => "Rinitis no alérgica"
+                'name' => 'Rinitis no alérgica',
             ],
             [
-                "name" => "Rinitis vasomotora"
+                'name' => 'Rinitis vasomotora',
             ],
             [
-                "name" => "Sangrado nasal"
+                'name' => 'Sangrado nasal',
             ],
             [
-                "name" => "Síndrome de Klein-Waardenburg"
+                'name' => 'Síndrome de Klein-Waardenburg',
             ],
             [
-                "name" => "Síndrome de Waardenburg"
+                'name' => 'Síndrome de Waardenburg',
             ],
             [
-                "name" => "Síndrome de Waardenburg-Shah"
+                'name' => 'Síndrome de Waardenburg-Shah',
             ],
             [
-                "name" => "Sinusitis crónica"
+                'name' => 'Sinusitis crónica',
             ],
             [
-                "name" => "Sordera parcial en bebés"
+                'name' => 'Sordera parcial en bebés',
             ],
             [
-                "name" => "SPI"
+                'name' => 'SPI',
             ],
             [
-                "name" => "Supraglotitis"
+                'name' => 'Supraglotitis',
             ],
             [
-                "name" => "Tinnitus"
+                'name' => 'Tinnitus',
             ],
             [
-                "name" => "Tumores de las glándulas salivales"
+                'name' => 'Tumores de las glándulas salivales',
             ],
             [
-                "name" => "Abuso sexual infantil"
+                'name' => 'Abuso sexual infantil',
             ],
             [
-                "name" => "ACU"
+                'name' => 'ACU',
             ],
             [
-                "name" => "ADD"
+                'name' => 'ADD',
             ],
             [
-                "name" => "Alcaptonuria"
+                'name' => 'Alcaptonuria',
             ],
             [
-                "name" => "Anorquia"
+                'name' => 'Anorquia',
             ],
             [
-                "name" => "Apnea de la prematuridad"
+                'name' => 'Apnea de la prematuridad',
             ],
             [
-                "name" => "Apnea en recién nacidos"
+                'name' => 'Apnea en recién nacidos',
             ],
             [
-                "name" => "ARJ"
+                'name' => 'ARJ',
             ],
             [
-                "name" => "Artritis idiopática juvenil"
+                'name' => 'Artritis idiopática juvenil',
             ],
             [
-                "name" => "Asfixia o ahogamiento"
+                'name' => 'Asfixia o ahogamiento',
             ],
             [
-                "name" => "Bebé prematuro"
+                'name' => 'Bebé prematuro',
             ],
             [
-                "name" => "Caput succedaneum"
+                'name' => 'Caput succedaneum',
             ],
             [
-                "name" => "Comunicación aortopulmonar"
+                'name' => 'Comunicación aortopulmonar',
             ],
             [
-                "name" => "Craneotabes"
+                'name' => 'Craneotabes',
             ],
             [
-                "name" => "Deficiencia de galactosamina-6-sulfatasa"
+                'name' => 'Deficiencia de galactosamina-6-sulfatasa',
             ],
             [
-                "name" => "Deficiencia de la oxidasa del ácido homogentísico"
+                'name' => 'Deficiencia de la oxidasa del ácido homogentísico',
             ],
             [
-                "name" => "Deficiencia generalizada de reductasa"
+                'name' => 'Deficiencia generalizada de reductasa',
             ],
             [
-                "name" => "Displasia condroectodérmica"
+                'name' => 'Displasia condroectodérmica',
             ],
             [
-                "name" => "Disquitis"
+                'name' => 'Disquitis',
             ],
             [
-                "name" => "Dolor de crecimiento"
+                'name' => 'Dolor de crecimiento',
             ],
             [
-                "name" => "Efectos del alcohol en el feto"
+                'name' => 'Efectos del alcohol en el feto',
             ],
             [
-                "name" => "Encopresis"
+                'name' => 'Encopresis',
             ],
             [
-                "name" => "Enfermedad de Hand-Schuller-Christian"
+                'name' => 'Enfermedad de Hand-Schuller-Christian',
             ],
             [
-                "name" => "Enfermedad de la orina con olor a jarabe de arce"
+                'name' => 'Enfermedad de la orina con olor a jarabe de arce',
             ],
             [
-                "name" => "Enfermedad de Still"
+                'name' => 'Enfermedad de Still',
             ],
             [
-                "name" => "Enfermedades del sistema nervioso central"
+                'name' => 'Enfermedades del sistema nervioso central',
             ],
             [
-                "name" => "Ensuciarse en la ropa"
+                'name' => 'Ensuciarse en la ropa',
             ],
             [
-                "name" => "Episodios cianóticos en recién nacidos"
+                'name' => 'Episodios cianóticos en recién nacidos',
             ],
             [
-                "name" => "Epispadias"
+                'name' => 'Epispadias',
             ],
             [
-                "name" => "Eritema infeccioso"
+                'name' => 'Eritema infeccioso',
             ],
             [
-                "name" => "Escafocefalia"
+                'name' => 'Escafocefalia',
             ],
             [
-                "name" => "Espasmos del llanto"
+                'name' => 'Espasmos del llanto',
             ],
             [
-                "name" => "Estreñimiento en niños"
+                'name' => 'Estreñimiento en niños',
             ],
             [
-                "name" => "Faringitis viral"
+                'name' => 'Faringitis viral',
             ],
             [
-                "name" => "Fenilcetonuria neonatal"
+                'name' => 'Fenilcetonuria neonatal',
             ],
             [
-                "name" => "Fibrodisplasia"
+                'name' => 'Fibrodisplasia',
             ],
             [
-                "name" => "Fiebre en niños"
+                'name' => 'Fiebre en niños',
             ],
             [
-                "name" => "Fractura de clavícula en el recién nacido"
+                'name' => 'Fractura de clavícula en el recién nacido',
             ],
             [
-                "name" => "Glioblastoma multiforme en niños"
+                'name' => 'Glioblastoma multiforme en niños',
             ],
             [
-                "name" => "Glioma en niños"
+                'name' => 'Glioma en niños',
             ],
             [
-                "name" => "Hemangioendotelioma infantil"
+                'name' => 'Hemangioendotelioma infantil',
             ],
             [
-                "name" => "Hiperbilirrubinemia neonatal"
+                'name' => 'Hiperbilirrubinemia neonatal',
             ],
             [
-                "name" => "Hiperplasia fibrosa idiopática"
+                'name' => 'Hiperplasia fibrosa idiopática',
             ],
             [
-                "name" => "Hiperplasia fibrosa inflamatoria"
+                'name' => 'Hiperplasia fibrosa inflamatoria',
             ],
             [
-                "name" => "Hiperviscosidad en los recién nacidos"
+                'name' => 'Hiperviscosidad en los recién nacidos',
             ],
             [
-                "name" => "Hipoglucemia neonatal"
+                'name' => 'Hipoglucemia neonatal',
             ],
             [
-                "name" => "Hipotiroidismo primario"
+                'name' => 'Hipotiroidismo primario',
             ],
             [
-                "name" => "Homocistinuria"
+                'name' => 'Homocistinuria',
             ],
             [
-                "name" => "Ictericia familiar no hemolítica - no obstructiva"
+                'name' => 'Ictericia familiar no hemolítica - no obstructiva',
             ],
             [
-                "name" => "Infección urinaria en niños"
+                'name' => 'Infección urinaria en niños',
             ],
             [
-                "name" => "Infecciones"
+                'name' => 'Infecciones',
             ],
             [
-                "name" => "Intoxicación neonatal por cloranfenicol"
+                'name' => 'Intoxicación neonatal por cloranfenicol',
             ],
             [
-                "name" => "Intususcepción en los niños"
+                'name' => 'Intususcepción en los niños',
             ],
             [
-                "name" => "Iritis"
+                'name' => 'Iritis',
             ],
             [
-                "name" => "Laringomalacia"
+                'name' => 'Laringomalacia',
             ],
             [
-                "name" => "Laringotraqueobronquitis aguda"
+                'name' => 'Laringotraqueobronquitis aguda',
             ],
             [
-                "name" => "Linfoma de Burkitt"
+                'name' => 'Linfoma de Burkitt',
             ],
             [
-                "name" => "Maltrato psicológico y abandono infantil"
+                'name' => 'Maltrato psicológico y abandono infantil',
             ],
             [
-                "name" => "Meduloblastoma en niños"
+                'name' => 'Meduloblastoma en niños',
             ],
             [
-                "name" => "Meningioma en niños"
+                'name' => 'Meningioma en niños',
             ],
             [
-                "name" => "Microcefalia"
+                'name' => 'Microcefalia',
             ],
             [
-                "name" => "Muerte en la cuna"
+                'name' => 'Muerte en la cuna',
             ],
             [
-                "name" => "Neuroblastoma"
+                'name' => 'Neuroblastoma',
             ],
             [
-                "name" => "Neuroglioma en niños"
+                'name' => 'Neuroglioma en niños',
             ],
             [
-                "name" => "Oftalmía neonatal"
+                'name' => 'Oftalmía neonatal',
             ],
             [
-                "name" => "Oftalmoplejía supranuclear"
+                'name' => 'Oftalmoplejía supranuclear',
             ],
             [
-                "name" => "Oligodendroglioma en niños"
+                'name' => 'Oligodendroglioma en niños',
             ],
             [
-                "name" => "OME"
+                'name' => 'OME',
             ],
             [
-                "name" => "Osteogénesis imperfecta"
+                'name' => 'Osteogénesis imperfecta',
             ],
             [
-                "name" => "Osteomalacia en niños"
+                'name' => 'Osteomalacia en niños',
             ],
             [
-                "name" => "Parálisis infantil"
+                'name' => 'Parálisis infantil',
             ],
             [
-                "name" => "Parálisis por garrapata"
+                'name' => 'Parálisis por garrapata',
             ],
             [
-                "name" => "Poliarteritis infantil"
+                'name' => 'Poliarteritis infantil',
             ],
             [
-                "name" => "Policitemia neonatal"
+                'name' => 'Policitemia neonatal',
             ],
             [
-                "name" => "Purgaciones"
+                'name' => 'Purgaciones',
             ],
             [
-                "name" => "Raquitismo en neonatos"
+                'name' => 'Raquitismo en neonatos',
             ],
             [
-                "name" => "Raquitismo renal"
+                'name' => 'Raquitismo renal',
             ],
             [
-                "name" => "Retinoblastoma"
+                'name' => 'Retinoblastoma',
             ],
             [
-                "name" => "SAN"
+                'name' => 'SAN',
             ],
             [
-                "name" => "Septicemia"
+                'name' => 'Septicemia',
             ],
             [
-                "name" => "Septicemia neonatal por estreptococos del grupo B"
+                'name' => 'Septicemia neonatal por estreptococos del grupo B',
             ],
             [
-                "name" => "Seudogota"
+                'name' => 'Seudogota',
             ],
             [
-                "name" => "Síndrome de abstinencia neonatal"
+                'name' => 'Síndrome de abstinencia neonatal',
             ],
             [
-                "name" => "Síndrome de Aicardi"
+                'name' => 'Síndrome de Aicardi',
             ],
             [
-                "name" => "Síndrome de carencia materna"
+                'name' => 'Síndrome de carencia materna',
             ],
             [
-                "name" => "Síndrome de disfunción inmunitaria"
+                'name' => 'Síndrome de disfunción inmunitaria',
             ],
             [
-                "name" => "Síndrome de Gilles de la Tourette"
+                'name' => 'Síndrome de Gilles de la Tourette',
             ],
             [
-                "name" => "Sindrome del niño golpeado"
+                'name' => 'Sindrome del niño golpeado',
             ],
             [
-                "name" => "Síndrome del recién nacido gris"
+                'name' => 'Síndrome del recién nacido gris',
             ],
             [
-                "name" => "Sinovitis tóxica"
+                'name' => 'Sinovitis tóxica',
             ],
             [
-                "name" => "Sinovitis transitoria"
+                'name' => 'Sinovitis transitoria',
             ],
             [
-                "name" => "SMSL"
+                'name' => 'SMSL',
             ],
             [
-                "name" => "Trastorno de conducta"
+                'name' => 'Trastorno de conducta',
             ],
             [
-                "name" => "Trastorno de las matemáticas"
+                'name' => 'Trastorno de las matemáticas',
             ],
             [
-                "name" => "Trastorno de movimientos estereotípicos"
+                'name' => 'Trastorno de movimientos estereotípicos',
             ],
             [
-                "name" => "Trastorno de vinculación reactiva de la lactancia o la primera infancia"
+                'name' => 'Trastorno de vinculación reactiva de la lactancia o la primera infancia',
             ],
             [
-                "name" => "TTN"
+                'name' => 'TTN',
             ],
             [
-                "name" => "Tuberculosis renal juvenil familiar"
+                'name' => 'Tuberculosis renal juvenil familiar',
             ],
             [
-                "name" => "Tumor cerebral canceroso (metastásico)"
+                'name' => 'Tumor cerebral canceroso (metastásico)',
             ],
             [
-                "name" => "Tumor en los huesos"
+                'name' => 'Tumor en los huesos',
             ],
             [
-                "name" => "Virus sincicial respiratorio (VSR)"
+                'name' => 'Virus sincicial respiratorio (VSR)',
             ],
             [
-                "name" => "Vólvulo intestinal"
+                'name' => 'Vólvulo intestinal',
             ],
             [
-                "name" => "Absceso rectal"
+                'name' => 'Absceso rectal',
             ],
             [
-                "name" => "Comportamiento suicida"
+                'name' => 'Comportamiento suicida',
             ],
             [
-                "name" => "Conducta agresiva"
+                'name' => 'Conducta agresiva',
             ],
             [
-                "name" => "Depresión crónica"
+                'name' => 'Depresión crónica',
             ],
             [
-                "name" => "Depresión en adolescentes"
+                'name' => 'Depresión en adolescentes',
             ],
             [
-                "name" => "Depresión grave"
+                'name' => 'Depresión grave',
             ],
             [
-                "name" => "Deseo sexual inhibido"
+                'name' => 'Deseo sexual inhibido',
             ],
             [
-                "name" => "Distimia"
+                'name' => 'Distimia',
             ],
             [
-                "name" => "Estrés laboral"
+                'name' => 'Estrés laboral',
             ],
             [
-                "name" => "Eyaculación retrasada en el sexo"
+                'name' => 'Eyaculación retrasada en el sexo',
             ],
             [
-                "name" => "Fobia específica o simple"
+                'name' => 'Fobia específica o simple',
             ],
             [
-                "name" => "Insomnio psicofisiológico (aprendido)"
+                'name' => 'Insomnio psicofisiológico (aprendido)',
             ],
             [
-                "name" => "Ludopatía"
+                'name' => 'Ludopatía',
             ],
             [
-                "name" => "Mutismo selectivo"
+                'name' => 'Mutismo selectivo',
             ],
             [
-                "name" => "Neurosis histérica"
+                'name' => 'Neurosis histérica',
             ],
             [
-                "name" => "Personalidad psicopática"
+                'name' => 'Personalidad psicopática',
             ],
             [
-                "name" => "Psicosis"
+                'name' => 'Psicosis',
             ],
             [
-                "name" => "Síndrome del Caballero Blanco"
+                'name' => 'Síndrome del Caballero Blanco',
             ],
             [
-                "name" => "Trastorno bipolar afectivo"
+                'name' => 'Trastorno bipolar afectivo',
             ],
             [
-                "name" => "Trastorno de adaptación"
+                'name' => 'Trastorno de adaptación',
             ],
             [
-                "name" => "Trastorno de la personalidad esquizoide"
+                'name' => 'Trastorno de la personalidad esquizoide',
             ],
             [
-                "name" => "Trastorno de la personalidad evasiva"
+                'name' => 'Trastorno de la personalidad evasiva',
             ],
             [
-                "name" => "Trastorno de oposición desafiante"
+                'name' => 'Trastorno de oposición desafiante',
             ],
             [
-                "name" => "Trastorno esquizoafectivo"
+                'name' => 'Trastorno esquizoafectivo',
             ],
             [
-                "name" => "Trastornos de la personalidad"
+                'name' => 'Trastornos de la personalidad',
             ],
             [
-                "name" => "Tricotilomanía"
+                'name' => 'Tricotilomanía',
             ],
             [
-                "name" => "Abstinencia de opiáceos"
+                'name' => 'Abstinencia de opiáceos',
             ],
             [
-                "name" => "Abuso de drogas y farmacodependencia"
+                'name' => 'Abuso de drogas y farmacodependencia',
             ],
             [
-                "name" => "Abuso sexual"
+                'name' => 'Abuso sexual',
             ],
             [
-                "name" => "Aflicción"
+                'name' => 'Aflicción',
             ],
             [
-                "name" => "Arrancamiento compulsivo del cabello"
+                'name' => 'Arrancamiento compulsivo del cabello',
             ],
             [
-                "name" => "Ataques de pánico"
+                'name' => 'Ataques de pánico',
             ],
             [
-                "name" => "Aversión al sexo"
+                'name' => 'Aversión al sexo',
             ],
             [
-                "name" => "Codependencia"
+                'name' => 'Codependencia',
             ],
             [
-                "name" => "Comportamiento psicótico"
+                'name' => 'Comportamiento psicótico',
             ],
             [
-                "name" => "Congoja"
+                'name' => 'Congoja',
             ],
             [
-                "name" => "Delirio"
+                'name' => 'Delirio',
             ],
             [
-                "name" => "Dependencia del alcohol"
+                'name' => 'Dependencia del alcohol',
             ],
             [
-                "name" => "Depresión alucinatoria"
+                'name' => 'Depresión alucinatoria',
             ],
             [
-                "name" => "Depresión neurótica (distimia)"
+                'name' => 'Depresión neurótica (distimia)',
             ],
             [
-                "name" => "Depresión posparto"
+                'name' => 'Depresión posparto',
             ],
             [
-                "name" => "Depresión psicótica"
+                'name' => 'Depresión psicótica',
             ],
             [
-                "name" => "Depresión unipolar"
+                'name' => 'Depresión unipolar',
             ],
             [
-                "name" => "Deseo sexual hipoactivo"
+                'name' => 'Deseo sexual hipoactivo',
             ],
             [
-                "name" => "Desorden de ansiedad por separación"
+                'name' => 'Desorden de ansiedad por separación',
             ],
             [
-                "name" => "Desregulación disruptiva del estado de ánimo"
+                'name' => 'Desregulación disruptiva del estado de ánimo',
             ],
             [
-                "name" => "Discapacidad intelectual"
+                'name' => 'Discapacidad intelectual',
             ],
             [
-                "name" => "Enfermedades y dolor crónico"
+                'name' => 'Enfermedades y dolor crónico',
             ],
             [
-                "name" => "Esquizofrenia desorganizada"
+                'name' => 'Esquizofrenia desorganizada',
             ],
             [
-                "name" => "Esquizofrenia hebefrénica"
+                'name' => 'Esquizofrenia hebefrénica',
             ],
             [
-                "name" => "Eyaculación precoz"
+                'name' => 'Eyaculación precoz',
             ],
             [
-                "name" => "Eyaculación retrasada"
+                'name' => 'Eyaculación retrasada',
             ],
             [
-                "name" => "Fagofobia"
+                'name' => 'Fagofobia',
             ],
             [
-                "name" => "Intoxicación con anfetaminas"
+                'name' => 'Intoxicación con anfetaminas',
             ],
             [
-                "name" => "Intoxicación con barbitúricos"
+                'name' => 'Intoxicación con barbitúricos',
             ],
             [
-                "name" => "Intoxicación con estimulantes"
+                'name' => 'Intoxicación con estimulantes',
             ],
             [
-                "name" => "Intoxicación con marihuana"
+                'name' => 'Intoxicación con marihuana',
             ],
             [
-                "name" => "Luto"
+                'name' => 'Luto',
             ],
             [
-                "name" => "Misofobia"
+                'name' => 'Misofobia',
             ],
             [
-                "name" => "Psicosis reactiva breve"
+                'name' => 'Psicosis reactiva breve',
             ],
             [
-                "name" => "TAG"
+                'name' => 'TAG',
             ],
             [
-                "name" => "Tics transitorios"
+                'name' => 'Tics transitorios',
             ],
             [
-                "name" => "Trastorno ciclotímico"
+                'name' => 'Trastorno ciclotímico',
             ],
             [
-                "name" => "Trastorno de la conducta alimentaria"
+                'name' => 'Trastorno de la conducta alimentaria',
             ],
             [
-                "name" => "Trastorno de la personalidad pasivo-agresiva"
+                'name' => 'Trastorno de la personalidad pasivo-agresiva',
             ],
             [
-                "name" => "Trastorno de pánico con agorafobia"
+                'name' => 'Trastorno de pánico con agorafobia',
             ],
             [
-                "name" => "Trastorno de personalidad histriónica"
+                'name' => 'Trastorno de personalidad histriónica',
             ],
             [
-                "name" => "Trastorno de personalidad narcisista"
+                'name' => 'Trastorno de personalidad narcisista',
             ],
             [
-                "name" => "Trastorno del control de los impulsos"
+                'name' => 'Trastorno del control de los impulsos',
             ],
             [
-                "name" => "Trastorno esquizotípico de la personalidad"
+                'name' => 'Trastorno esquizotípico de la personalidad',
             ],
             [
-                "name" => "Abstinencia de la cocaína"
+                'name' => 'Abstinencia de la cocaína',
             ],
             [
-                "name" => "Alucinosis alcohólica"
+                'name' => 'Alucinosis alcohólica',
             ],
             [
-                "name" => "Ciclotimia"
+                'name' => 'Ciclotimia',
             ],
             [
-                "name" => "Consumo excesivo de alcohol"
+                'name' => 'Consumo excesivo de alcohol',
             ],
             [
-                "name" => "Delirium tremens"
+                'name' => 'Delirium tremens',
             ],
             [
-                "name" => "Demencia frontotemporal"
+                'name' => 'Demencia frontotemporal',
             ],
             [
-                "name" => "Depresión maníaca"
+                'name' => 'Depresión maníaca',
             ],
             [
-                "name" => "Depresión mayor"
+                'name' => 'Depresión mayor',
             ],
             [
-                "name" => "Desorden de personalidad antisocial"
+                'name' => 'Desorden de personalidad antisocial',
             ],
             [
-                "name" => "Enfermedad de Letterer-Siwe"
+                'name' => 'Enfermedad de Letterer-Siwe',
             ],
             [
-                "name" => "Esquizofrenia de tipo paranoide"
+                'name' => 'Esquizofrenia de tipo paranoide',
             ],
             [
-                "name" => "Personalidad sociopática"
+                'name' => 'Personalidad sociopática',
             ],
             [
-                "name" => "Salud mental en el embarazo"
+                'name' => 'Salud mental en el embarazo',
             ],
             [
-                "name" => "Tic=> trastorno de tic motor crónico"
+                'name' => 'Tic=> trastorno de tic motor crónico',
             ],
             [
-                "name" => "Trastorno bipolar"
+                'name' => 'Trastorno bipolar',
             ],
             [
-                "name" => "Trastorno de pánico"
+                'name' => 'Trastorno de pánico',
             ],
             [
-                "name" => "Trastorno de personalidad antisocial"
+                'name' => 'Trastorno de personalidad antisocial',
             ],
             [
-                "name" => "Trastorno de personalidad paranoide"
+                'name' => 'Trastorno de personalidad paranoide',
             ],
             [
-                "name" => "Trastorno depresivo"
+                'name' => 'Trastorno depresivo',
             ],
             [
-                "name" => "Trastorno dismórfico corporal"
+                'name' => 'Trastorno dismórfico corporal',
             ],
             [
-                "name" => "Trastorno fronterizo de la personalidad"
+                'name' => 'Trastorno fronterizo de la personalidad',
             ],
             [
-                "name" => "Trastorno límite de la personalidad"
+                'name' => 'Trastorno límite de la personalidad',
             ],
             [
-                "name" => "Trastorno mental orgánico"
+                'name' => 'Trastorno mental orgánico',
             ],
             [
-                "name" => "Trastornos de síntomas somáticos"
+                'name' => 'Trastornos de síntomas somáticos',
             ],
             [
-                "name" => "Trastornos del espectro"
+                'name' => 'Trastornos del espectro',
             ],
             [
-                "name" => "Cervicalgía"
+                'name' => 'Cervicalgía',
             ],
             [
-                "name" => "Cifosis postural"
+                'name' => 'Cifosis postural',
             ],
             [
-                "name" => "Hiperlordosis"
+                'name' => 'Hiperlordosis',
             ],
             [
-                "name" => "Manos entumidas"
+                'name' => 'Manos entumidas',
             ],
             [
-                "name" => "Síndrome del periforme"
+                'name' => 'Síndrome del periforme',
             ],
             [
-                "name" => "Subluxación"
+                'name' => 'Subluxación',
             ],
             [
-                "name" => "Subluxación vertebral"
+                'name' => 'Subluxación vertebral',
             ],
             [
-                "name" => "Enfermedad articulada"
+                'name' => 'Enfermedad articulada',
             ],
             [
-                "name" => "Hipertensión portal"
+                'name' => 'Hipertensión portal',
             ],
             [
-                "name" => "Inflamación de la vaina del tendón"
+                'name' => 'Inflamación de la vaina del tendón',
             ],
             [
-                "name" => "Carcinoma de células basales"
+                'name' => 'Carcinoma de células basales',
             ],
             [
-                "name" => "Edema por parálisis"
+                'name' => 'Edema por parálisis',
             ],
             [
-                "name" => "Edema postquirúrgico"
+                'name' => 'Edema postquirúrgico',
             ],
             [
-                "name" => "Edema postraumático"
+                'name' => 'Edema postraumático',
             ],
             [
-                "name" => "Epicondilitis lateral"
+                'name' => 'Epicondilitis lateral',
             ],
             [
-                "name" => "Esguince"
+                'name' => 'Esguince',
             ],
             [
-                "name" => "Hombro doloroso"
+                'name' => 'Hombro doloroso',
             ],
             [
-                "name" => "Miositis"
+                'name' => 'Miositis',
             ],
             [
-                "name" => "Alteraciones articulares"
+                'name' => 'Alteraciones articulares',
             ],
             [
-                "name" => "Anticoagulantes lúpicos"
+                'name' => 'Anticoagulantes lúpicos',
             ],
             [
-                "name" => "AOSD"
+                'name' => 'AOSD',
             ],
             [
-                "name" => "AR"
+                'name' => 'AR',
             ],
             [
-                "name" => "Arteritis temporal"
+                'name' => 'Arteritis temporal',
             ],
             [
-                "name" => "Artritis cervical"
+                'name' => 'Artritis cervical',
             ],
             [
-                "name" => "Artritis gonocócica"
+                'name' => 'Artritis gonocócica',
             ],
             [
-                "name" => "Artritis gotosa crónica"
+                'name' => 'Artritis gotosa crónica',
             ],
             [
-                "name" => "Artritis micótica"
+                'name' => 'Artritis micótica',
             ],
             [
-                "name" => "Artritis por hongos"
+                'name' => 'Artritis por hongos',
             ],
             [
-                "name" => "Artritis reumatoide juvenil"
+                'name' => 'Artritis reumatoide juvenil',
             ],
             [
-                "name" => "Artritis tuberculosa"
+                'name' => 'Artritis tuberculosa',
             ],
             [
-                "name" => "Artritis viral"
+                'name' => 'Artritis viral',
             ],
             [
-                "name" => "Costocondritis"
+                'name' => 'Costocondritis',
             ],
             [
-                "name" => "EAD"
+                'name' => 'EAD',
             ],
             [
-                "name" => "Enfermedad CPPD"
+                'name' => 'Enfermedad CPPD',
             ],
             [
-                "name" => "Enfermedad de Paget"
+                'name' => 'Enfermedad de Paget',
             ],
             [
-                "name" => "Enfermedad periódica"
+                'name' => 'Enfermedad periódica',
             ],
             [
-                "name" => "Enfermedad por depósitos de dihidrato de pirofosfato cálcico"
+                'name' => 'Enfermedad por depósitos de dihidrato de pirofosfato cálcico',
             ],
             [
-                "name" => "Enfermedad reumatoidea del colágeno"
+                'name' => 'Enfermedad reumatoidea del colágeno',
             ],
             [
-                "name" => "Enfermedad vascular del colágeno"
+                'name' => 'Enfermedad vascular del colágeno',
             ],
             [
-                "name" => "Esclerosis sistémica progresiva"
+                'name' => 'Esclerosis sistémica progresiva',
             ],
             [
-                "name" => "Espondilitis reumatoidea"
+                'name' => 'Espondilitis reumatoidea',
             ],
             [
-                "name" => "Fibrositis"
+                'name' => 'Fibrositis',
             ],
             [
-                "name" => "Intoxicación con Paraquat"
+                'name' => 'Intoxicación con Paraquat',
             ],
             [
-                "name" => "LES"
+                'name' => 'LES',
             ],
             [
-                "name" => "Osteoartritis cervical"
+                'name' => 'Osteoartritis cervical',
             ],
             [
-                "name" => "Osteoartritis hipertrófica"
+                'name' => 'Osteoartritis hipertrófica',
             ],
             [
-                "name" => "Osteocondritis deformante juvenil"
+                'name' => 'Osteocondritis deformante juvenil',
             ],
             [
-                "name" => "Osteocondrosis"
+                'name' => 'Osteocondrosis',
             ],
             [
-                "name" => "Parálisis aislada del sueño"
+                'name' => 'Parálisis aislada del sueño',
             ],
             [
-                "name" => "Pulmón de Paraquat"
+                'name' => 'Pulmón de Paraquat',
             ],
             [
-                "name" => "Raquitismo"
+                'name' => 'Raquitismo',
             ],
             [
-                "name" => "Síndrome del nevo varicoso osteohipertrófico"
+                'name' => 'Síndrome del nevo varicoso osteohipertrófico',
             ],
             [
-                "name" => "Disfunciones sensoriales"
+                'name' => 'Disfunciones sensoriales',
             ],
             [
-                "name" => "Capsulitis adhesiva"
+                'name' => 'Capsulitis adhesiva',
             ],
             [
-                "name" => "Enfermedad de Quervain"
+                'name' => 'Enfermedad de Quervain',
             ],
             [
-                "name" => "Periostitis"
+                'name' => 'Periostitis',
             ],
             [
-                "name" => "Talalgia"
+                'name' => 'Talalgia',
             ],
             [
-                "name" => "Abstinencia de opioides"
+                'name' => 'Abstinencia de opioides',
             ],
             [
-                "name" => "Aspiración de vómito"
+                'name' => 'Aspiración de vómito',
             ],
             [
-                "name" => "Hematoma vesical"
+                'name' => 'Hematoma vesical',
             ],
             [
-                "name" => "Lesión vesical"
+                'name' => 'Lesión vesical',
             ],
             [
-                "name" => "Agrandamiento de la próstata"
+                'name' => 'Agrandamiento de la próstata',
             ],
             [
-                "name" => "Bloqueo de la unión ureteropélvica"
+                'name' => 'Bloqueo de la unión ureteropélvica',
             ],
             [
-                "name" => "Cálculos en las vías urinarias"
+                'name' => 'Cálculos en las vías urinarias',
             ],
             [
-                "name" => "Cáncer testicular no seminoma"
+                'name' => 'Cáncer testicular no seminoma',
             ],
             [
-                "name" => "Cáncer vesical"
+                'name' => 'Cáncer vesical',
             ],
             [
-                "name" => "CI (cistitis intersticia)"
+                'name' => 'CI (cistitis intersticia)',
             ],
             [
-                "name" => "Cistitis abacteriana"
+                'name' => 'Cistitis abacteriana',
             ],
             [
-                "name" => "Cistitis por radiación"
+                'name' => 'Cistitis por radiación',
             ],
             [
-                "name" => "Cistitis quimica"
+                'name' => 'Cistitis quimica',
             ],
             [
-                "name" => "Cistitis intersticial"
+                'name' => 'Cistitis intersticial',
             ],
             [
-                "name" => "Curvatura del pene"
+                'name' => 'Curvatura del pene',
             ],
             [
-                "name" => "Enfermedad de Ormond"
+                'name' => 'Enfermedad de Ormond',
             ],
             [
-                "name" => "Enfermedad de Peyronie"
+                'name' => 'Enfermedad de Peyronie',
             ],
             [
-                "name" => "Epididimitis"
+                'name' => 'Epididimitis',
             ],
             [
-                "name" => "Espermatocele"
+                'name' => 'Espermatocele',
             ],
             [
-                "name" => "Estenosis uretral"
+                'name' => 'Estenosis uretral',
             ],
             [
-                "name" => "Fimosis"
+                'name' => 'Fimosis',
             ],
             [
-                "name" => "Glándulas de Tyson"
+                'name' => 'Glándulas de Tyson',
             ],
             [
-                "name" => "Hipercalciuria idioptica"
+                'name' => 'Hipercalciuria idioptica',
             ],
             [
-                "name" => "Hiperplasia prostática"
+                'name' => 'Hiperplasia prostática',
             ],
             [
-                "name" => "Incompetencia eyaculatoria"
+                'name' => 'Incompetencia eyaculatoria',
             ],
             [
-                "name" => "Incontinencia con tenesmo"
+                'name' => 'Incontinencia con tenesmo',
             ],
             [
-                "name" => "Infecciones de vías urinarias"
+                'name' => 'Infecciones de vías urinarias',
             ],
             [
-                "name" => "Insuficiencia testicular"
+                'name' => 'Insuficiencia testicular',
             ],
             [
-                "name" => "Lesión uretral"
+                'name' => 'Lesión uretral',
             ],
             [
-                "name" => "Ocronosis alcaptonúrica"
+                'name' => 'Ocronosis alcaptonúrica',
             ],
             [
-                "name" => "Orquitis"
+                'name' => 'Orquitis',
             ],
             [
-                "name" => "Piedras en el riñón"
+                'name' => 'Piedras en el riñón',
             ],
             [
-                "name" => "Prostatitis aguda"
+                'name' => 'Prostatitis aguda',
             ],
             [
-                "name" => "Próstata agrandada"
+                'name' => 'Próstata agrandada',
             ],
             [
-                "name" => "Prostatitis bacteriana crónica"
+                'name' => 'Prostatitis bacteriana crónica',
             ],
             [
-                "name" => "Prostatitis no bacteriana"
+                'name' => 'Prostatitis no bacteriana',
             ],
             [
-                "name" => "Retención aguda de orina (RAO)"
+                'name' => 'Retención aguda de orina (RAO)',
             ],
             [
-                "name" => "Ruptura uretral"
+                'name' => 'Ruptura uretral',
             ],
             [
-                "name" => "Síndrome hepatorrenal"
+                'name' => 'Síndrome hepatorrenal',
             ],
             [
-                "name" => "Testículo no descendido"
+                'name' => 'Testículo no descendido',
             ],
             [
-                "name" => "Torsión testicular"
+                'name' => 'Torsión testicular',
             ],
             [
-                "name" => "Trastornos urológicos"
+                'name' => 'Trastornos urológicos',
             ],
             [
-                "name" => "Tumor del riñón o Tumor renal"
+                'name' => 'Tumor del riñón o Tumor renal',
             ],
             [
-                "name" => "Uropatía obstructiva aguda bilateral"
+                'name' => 'Uropatía obstructiva aguda bilateral',
             ],
             [
-                "name" => "Uretritis crónica"
+                'name' => 'Uretritis crónica',
             ],
             [
-                "name" => "Uropatía obstructiva"
+                'name' => 'Uropatía obstructiva',
             ],
             [
-                "name" => "Uretritis"
+                'name' => 'Uretritis',
             ],
             [
-                "name" => "Vejiga caída"
+                'name' => 'Vejiga caída',
             ],
             [
-                "name" => "Vejiga inestable"
+                'name' => 'Vejiga inestable',
             ],
             [
-                "name" => "Venas varicosas en el escroto"
-            ]
+                'name' => 'Venas varicosas en el escroto',
+            ],
 
         ]);
     }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\VaccinationHistoryRequest;
-use App\Http\Resources\API\V1\Patient\VaccinationHistoryResoucer;
+use App\Http\Resources\API\V1\Patient\VaccinationHistoryResource;
 use App\Models\MedicalHistory;
 use Illuminate\Http\Request;
 use App\Models\Patient;
@@ -16,6 +16,9 @@ class VaccinationHistoryController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
+        $this->middleware('permission:show patient vaccination History')->only(['show']);
+        $this->middleware('role:Patient')->only(['store']);
+        $this->middleware('permission:edit patient vaccination History')->only(['update']);
     }
 
     public function index()
@@ -26,7 +29,7 @@ class VaccinationHistoryController extends Controller
     public function store(VaccinationHistoryRequest $request)
     {
         try {
-            if ($this->user->hasRole('Patient')) {
+            /* if ($this->user->hasRole('Patient')) { */
                 $patient = Patient::where('user_id', $this->user->id)->first();
                 DB::beginTransaction();
                 $vaccination_history = new VaccinationHistory();
@@ -41,8 +44,8 @@ class VaccinationHistoryController extends Controller
                 $medical_history->save();
 
                 DB::commit();
-                return (new VaccinationHistoryResoucer($vaccination_history))->additional(['message' => 'Informacion guardada con exito.']);
-            }
+                return (new VaccinationHistoryResource($vaccination_history))->additional(['message' => 'Informacion guardada con exito.']);
+            /* } */
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
@@ -52,17 +55,19 @@ class VaccinationHistoryController extends Controller
     public function show()
     {
         try {
-            if ($this->user->hasRole('Patient')) {
+            /* if ($this->user->hasRole('Patient')) { */
             
                 DB::beginTransaction();                
                 $patient = Patient::where('user_id', $this->user->id)->first();
                 $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
-                $vaccination_history = VaccinationHistory::where('id', $medical_history->vaccination_history_id)->first();
+                $vaccination_history = VaccinationHistory::where('id', $medical_history->vaccination_history_id)->get();
 
                 DB::commit();
-                return (new VaccinationHistoryResoucer($vaccination_history))->additional(['message' => '..']);
-            }
-                return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+                return (VaccinationHistoryResource::collection($vaccination_history))->additional(['message' => '..']);
+
+                //return (new VaccinationHistoryResource($vaccination_history))->additional(['message' => '..']);
+/*             }
+                return response()->json(['message' => 'No puedes realizar esta acción.'], 403); */
         
             } catch (\Throwable $th) {
             DB::rollBack();
@@ -73,7 +78,7 @@ class VaccinationHistoryController extends Controller
     public function update(VaccinationHistoryRequest $request)
     {
         try {
-            if ($this->user->hasRole('Patient')) {
+            /* if ($this->user->hasRole('Patient')) { */
                 $patient = Patient::where('user_id', $this->user->id)->first();
                 $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
                 $vaccination_history = VaccinationHistory::where('id', $medical_history->vaccination_history_id)->first();
@@ -87,16 +92,30 @@ class VaccinationHistoryController extends Controller
                 $vaccination_history->save();
 
                 DB::commit();
-                return (new VaccinationHistoryResoucer($vaccination_history))->additional(['message' => 'Informacion actualizada con exito.']);
-            }
+                return (new VaccinationHistoryResource($vaccination_history))->additional(['message' => 'Informacion actualizada con exito.']);
+            /* } */
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        try {
+            if ($this->user->hasRole('Patient')) {
+                $patient = Patient::where('user_id', $this->user->id)->first();
+                $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
+                $vaccination_history = VaccinationHistory::where('id', $medical_history->vaccination_history_id)->first();
+
+                $vaccination_history->delete();
+                //return (MedicalHistoryResource::collection($medical_history))->additional(['message' => 'Mi perfil de paciente.']);
+                return (new VaccinationHistoryResource($vaccination_history))->additional(['message' => 'Informacion elimidada con exito']);
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 }

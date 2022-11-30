@@ -6,20 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
     public function up()
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->string('facility_name');
-            $table->json('location');
-            $table->string('phone_number')->unique()->nullable();
-            $table->string('zip_code');
+            $table->string('name')->index();
+            $table->string('phone');
+            $table->string('extension')->nullable();
             $table->json('schedule')->nullable();
-            $table->enum('type_schedule', ['permanente', 'temporal'])->default('permanente');
-            $table->string('consultation_length')->nullable();
-            $table->json('accessibility_and_others')->nullable();
-            $table->string('clues')->nullable();
+            $table->string('zipcode');
+            $table->string('street');
+            $table->string('exterior_no');
+            $table->string('interior_no')->nullable();
+            $table->string('suburb')->nullable();
+            $table->string('references')->nullable();
+            $table->string('public_target')->nullable();
+            $table->string('accesibility')->nullable();
+            $table->json('services')->nullable();
             $table->foreignId('city_id')->constrained('cities');
             $table->timestamps();
             $table->softDeletes();

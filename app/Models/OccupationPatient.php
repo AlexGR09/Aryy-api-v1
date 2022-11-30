@@ -10,6 +10,8 @@ class OccupationPatient extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'occupation_patients';
+
     public function patient()
     {
         return $this->belongsTo('App\Models\Patient');

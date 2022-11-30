@@ -4,7 +4,7 @@ namespace App\Http\Requests\API\V1\Patient;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MedicalHistoryRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class MedicalHistoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check();
+        return false;
     }
 
     /**
@@ -24,9 +24,8 @@ class MedicalHistoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'height.height' => 'numeric',
-            'weight.weight' => 'numeric',
-            'blood_type' => 'string'
+            'full_name'=>'string',
+            'gender' => 'string',
         ];
     }
 }

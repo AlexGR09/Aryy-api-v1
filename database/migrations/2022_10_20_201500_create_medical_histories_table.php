@@ -15,8 +15,8 @@ return new class () extends Migration {
         Schema::create('medical_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('patient_id')->constrained('patients');
-            $table->double('height')->nullable();
-            $table->double('weight')->nullable();
+            $table->json('height')->nullable();
+            $table->json('weight')->nullable();
             $table->double('imc')->nullable();
             $table->string('blood_type')->nullable();
             $table->foreignId('allergy_patient_id')->nullable()->constrained('allergy_patients')->onDelete('cascade');
