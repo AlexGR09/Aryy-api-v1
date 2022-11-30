@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SubSpecialtySeeder::class);
         $this->call(DiseaseSeeder::class);
         $this->call(MedicalServiceSeeder::class);
-        $this->call(MedicalHistorySeeder::class);
+        /* $this->call(MedicalHistorySeeder::class); */
         $this->call(PhysicianSeeder::class);
         $this->call(PhysicianSpecialtySeeder::class);
         $this->call(FacilitySeeder::class);

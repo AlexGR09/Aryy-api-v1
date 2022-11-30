@@ -26,7 +26,7 @@ class FacilityController extends Controller
     {
         return new FacilityResource(
             Facility::create(
-                $request->validated() + ['user_id' => auth()->id()]
+                $request->validated()
             )
         );
     }

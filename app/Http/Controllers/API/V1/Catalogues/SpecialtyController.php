@@ -13,7 +13,7 @@ class SpecialtyController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:show specialties')->only([
+        $this->middleware('role_or_permission:User|show specialties')->only([
             'index',
             'show',
         ]);
@@ -42,12 +42,7 @@ class SpecialtyController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(SpecialtyRequest $request)
     {
         try {

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class PermissionSeeder extends Seeder
 {
-    
+
     public function run()
     {
         DB::table('permissions')->insert([
@@ -29,9 +29,9 @@ class PermissionSeeder extends Seeder
             ['name' => 'edit users', 'guard_name' => 'sanctum'],
             ['name' => 'delete users', 'guard_name' => 'sanctum'],
             //  REGISTRO DE USUARIO (MEDICO O PACIENTE)
-            ['name' => 'show profile', 'guard_name' => 'sanctum'],
-            ['name' => 'edit profile', 'guard_name' => 'sanctum'],
-            ['name' => 'delete profile', 'guard_name' => 'sanctum'],
+            ['name' => 'show user profile', 'guard_name' => 'sanctum'],
+            ['name' => 'edit user profile', 'guard_name' => 'sanctum'],
+            ['name' => 'delete user profile', 'guard_name' => 'sanctum'],
             // CATÁLOGOS    
             // CRUD ESPECIALIDADES
             ['name' => 'show specialties', 'guard_name' => 'sanctum'],
@@ -82,16 +82,16 @@ class PermissionSeeder extends Seeder
             ['name' => 'complete patient profile', 'guard_name' => 'sanctum'],
             ['name' => 'complete physician profile', 'guard_name' => 'sanctum'],
             // PACIENTES
-            ['name' => 'show patient', 'guard_name' => 'sanctum'],
-            ['name' => 'edit patient', 'guard_name' => 'sanctum'],
+            ['name' => 'show patient profile', 'guard_name' => 'sanctum'],
+            ['name' => 'edit patient profile', 'guard_name' => 'sanctum'],
             // MÉDICOS
-            ['name' => 'show physician', 'guard_name' => 'sanctum'],
-            ['name' => 'edit physician', 'guard_name' => 'sanctum'],
-            // Ocupaciones
-            ['name' => 'show occupations','guard_name' => 'sanctum'],
-            ['name' => 'create occupations','guard_name' => 'sanctum'],
-            ['name' => 'edit occupations','guard_name' => 'sanctum'],
-            ['name' => 'delete occupations','guard_name' => 'sanctum'],
+            ['name' => 'show physician profile', 'guard_name' => 'sanctum'],
+            ['name' => 'edit physician profile', 'guard_name' => 'sanctum'],
+            // INSTALACIONES
+            ['name' => 'show physician facility', 'guard_name' => 'sanctum'],
+            ['name' => 'create physician facility', 'guard_name' => 'sanctum'],
+            ['name' => 'edit physician facility', 'guard_name' => 'sanctum'],
+            ['name' => 'delete physician facility', 'guard_name' => 'sanctum'],
         ]);
     }
 }

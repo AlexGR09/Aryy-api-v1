@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class FacilitiesPhysician extends Model
+class FacilityPhysician extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $table = 'facility_physician';
 
     public function physician()
     {

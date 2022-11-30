@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Catalogues\CityRequest;
 use App\Http\Resources\API\V1\Catalogues\CityResource;
 use App\Models\City;
+use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
@@ -13,30 +14,48 @@ class CityController extends Controller
 
     public function __construct()
     {
-        $this->middleware('permission:show cities', [
-            'index',
-            'show',
-        ]);
-        $this->middleware('permission:create cities', [
+        $this->middleware('role_or_permission:User|show cities')->only(
+            [
+                'index',
+                'show',
+            ]
+        );
+        $this->middleware('role_or_permission:User')->only(
+            [
+                'citiesOfState',
+            ]
+        );
+        $this->middleware('permission:create cities')->only([
             'store',
         ]);
-        $this->middleware('permission:edit cities', [
+        $this->middleware('permission:edit cities')->only([
             'update',
         ]);
-        $this->middleware('permission:delete cities', [
-            'destroy',
-        ]);
+        $this->middleware('permission:delete cities')->only(
+            [
+                'destroy',
+            ]
+        );
     }
 
     public function index()
     {
         try {
-            $cities = City::paginate(5);
-            return (CityResource::collection($cities))->additional(['message' => 'Ciudades encontradas.']);
+            return (CityResource::collection(City::orderBy('name')->get()));
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
+
+    public function citiesOfState(Request $request)
+    {
+        try {
+            return (CityResource::collection(City::orderBy('name')->where('state_id', $request->state_id)->get()));
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
+
 
     public function show(City $city)
     {

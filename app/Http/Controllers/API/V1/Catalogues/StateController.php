@@ -11,7 +11,7 @@ class StateController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:show states')->only([
+        $this->middleware('role_or_permission:show states|User')->only([
             'index',
             'show',
         ]);
@@ -28,8 +28,7 @@ class StateController extends Controller
     public function index()
     {
         try {
-            $states = State::paginate(5);
-            return (StateResource::collection($states))->additional(['message' => 'Estados encontrados.']);
+            return (StateResource::collection(State::orderBy('name')->get()));
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

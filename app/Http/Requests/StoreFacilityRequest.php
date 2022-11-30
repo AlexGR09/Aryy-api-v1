@@ -25,9 +25,9 @@ class StoreFacilityRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'phone' => 'required|unique:consulting_rooms|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'extension' => 'required',
-            'attetion_time' => 'required',
+            'schedule' => 'required',
             'zipcode' => 'required|max:5|min:5',
             'state' => 'required|max:255',
             'city' => 'required|max:255',

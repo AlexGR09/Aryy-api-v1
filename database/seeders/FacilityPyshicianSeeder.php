@@ -56,6 +56,27 @@ class FacilityPyshicianSeeder extends Seeder
                 'facility_id' => 10,
                 'physician_id' => 10,
             ],
+            //
+            [
+                'facility_id'  => 6,
+                'physician_id' => 6
+            ],
+            [
+                'facility_id'  => 7,
+                'physician_id' => 7
+            ],
+            [
+                'facility_id'  => 8,
+                'physician_id' => 8
+            ],
+            [
+                'facility_id'  => 9,
+                'physician_id' => 9
+            ],
+            [
+                'facility_id'  => 10,
+                'physician_id' => 10
+            ],
         ]);
     }
 }

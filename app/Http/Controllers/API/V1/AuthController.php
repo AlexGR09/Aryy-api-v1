@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\V1\AuthRequest;
+use App\Http\Requests\API\V1\Auth\LoginRequest;
+use App\Http\Requests\API\V1\Auth\RegisterRequest;
+use App\Http\Requests\API\V1\Auth\UpdateProfileRequest;
 use App\Http\Resources\API\V1\UserResource;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -16,12 +18,12 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
-        $this->middleware('permission:show profile')->only(['show']);
-        $this->middleware('permission:edit profile')->only(['update']);
+        $this->middleware('permission:show user profile')->only(['show']);
+        $this->middleware('permission:edit user profile')->only(['update']);
         $this->middleware('permission:delete profile')->only(['destroy']);
     }
 
-    public function login(AuthRequest $request)
+    public function login(LoginRequest $request)
     {
         try {
             $user = User::where('email', $request->email)->first();
@@ -40,7 +42,7 @@ class AuthController extends Controller
         }
     }
 
-    public function register(AuthRequest $request)
+    public function register(RegisterRequest $request)
     {
         try {
             $user = new User();
@@ -66,7 +68,7 @@ class AuthController extends Controller
             $user->remember_token = $token;
             $user->update();
             return (new UserResource($user))->additional([
-                'message' => 'Usuario registrado con éxito',
+                'message' => 'Usuario registrado con éxito.',
                 'access_token' => $token
             ]);
         } catch (\Throwable $th) {
@@ -83,27 +85,26 @@ class AuthController extends Controller
         }
     }
 
-    public function update(AuthRequest $request)
+    public function update(UpdateProfileRequest $request)
     {
         try {
-            DB::beginTransaction();
-            $this->user->name = $request->name;
-            $this->user->last_name = $request->last_name;
-            $this->user->gender = $request->gender;
-            $this->user->birthday = $request->birthday;
-            $this->user->country_code = $request->country_code;
-            $this->user->phone_number = $request->phone_number;
-            $this->user->email = $request->email;
-            // Si se recibe una imagen
-            if ($request->photo) {
-                // Si existe una foto previa asociada al usuario, esta se elimina
-                if ($this->user->photo != null && file_exists(public_path('profile-photos/' . $this->user->photo))) {
-                    unlink(public_path("profile-photos/" . $this->user->photo));
+                DB::beginTransaction();
+                $this->user->name = $request->name;
+                $this->user->last_name = $request->last_name;
+                $this->user->gender = $request->gender;
+                $this->user->birthday = $request->birthday;
+                $this->user->country_code = $request->country_code;
+                $this->user->phone_number = $request->phone_number;
+                $this->user->email = $request->email;
+                // Si se recibe una contraseña
+                if ($request->password) {
+                    $this->user->password = bcrypt($request->password);
+                    $this->logout(); // Invocación del método logout
                 }
-                $this->user->photo = $photoName = time() . "_" . $request->file('photo')->getClientOriginalName();
-                // Mueve la imagen cargada de temporal a la carpeta pública
-                $request->file('photo')->move(public_path("profile-photos"), $photoName);
-            }
+                $this->user->save();
+                DB::commit();
+                return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
+            
             // Si se recibe una contraseña
             if ($request->password) {
                 $this->user->password = bcrypt($request->password);
@@ -122,8 +123,11 @@ class AuthController extends Controller
     public function destroy()
     {
         try {
-            $this->user->delete();
-            return (new UserResource($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
+            if ($this->user->hasPermissionTo('delete user profile')) {
+                $this->user->delete();
+                return (new UserResource($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
+            }
+            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -132,11 +136,14 @@ class AuthController extends Controller
     public function logout()
     {
         try {
+            DB::beginTransaction();
             $this->user->tokens()->delete();
             $this->user->remember_token = null;
             $this->user->save();
+            DB::commit();
             return (new UserResource($this->user))->additional(['message' => 'Cierre de sesión exitoso, adiós']);
         } catch (\Throwable $th) {
+            DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

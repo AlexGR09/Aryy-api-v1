@@ -15,7 +15,7 @@ class PhysicianController extends Controller
     {
         $this->middleware('permission:show physician')->only(['show']);
         $this->middleware('role:NewPhysician')->only(['store', 'update']);
-        $this->middleware('role:PhysicianInVerification')->only(['show']);
+        $this->middleware('role:PhysicianInVerification|permission:show physician profile')->only(['show']);
     }
 
     public function store(PhysicianRequest $request)
@@ -54,8 +54,8 @@ class PhysicianController extends Controller
     {
         try {
             $message = 'Mi perfil médico.';
-            $physician = Physician::where('user_id', auth()->id())->first();
-            if (auth()->user()->hasRole('PhysicianInVerification')) {
+            $physician = Physician::where('user_id', $this->user->id)->first();
+            if ($this->user->hasRole('PhysicianInVerification')) {
                 $message = 'Su perfil médico está en proceso de verificación, esto puede tomar un par de días. Por favor, tenga paciencia, nosotros le avisaremos.';
             }
             return (new PhysicianResource($physician))->additional(['message' => $message]);

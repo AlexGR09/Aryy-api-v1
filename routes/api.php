@@ -11,79 +11,172 @@ use App\Http\Controllers\API\V1\ScheduleFacilityController;
 use App\Http\Controllers\TestJoseController;
 use Illuminate\Support\Facades\Route;
 
+/* RUTAS API VERSIÓN 1 */
+
+global $v1, $physician, $admin, $search, $catalogues, $patient;
+// V1
+$this->v1 = "App\\Http\\Controllers\\API\\V1\\";
+// MÉDICO
+$this->physician = "App\\Http\\Controllers\\API\\V1\\Physician\\";
+// MÉDICO
+$this->admin = "App\\Http\\Controllers\\API\\V1\\Admin\\";
+// BÚSQUEDA
+$this->search = "App\\Http\\Controllers\\API\\V1\\Search\\";
+// CATALÓGOS
+$this->catalogues = "App\\Http\\Controllers\\API\\V1\\Catalogues\\";
+//PACIENTE
+$this->patient = "App\\Http\\Controllers\\API\\V1\\Patient\\";
+
+
 
 Route::prefix('v1')->group(function () {
 
+
     // RUTAS REGISTRO, LOGIN, PERFIL DE USUARIO
-    Route::controller(AuthController::class)->group(function () {
+    Route::controller($this->v1 . AuthController::class)->group(function () {
         Route::post('/login', 'login');
         Route::post('/register', 'register');
-        Route::get('/profile', 'show')->middleware(['auth:sanctum']);
-        Route::put('/profile', 'update')->middleware(['auth:sanctum']);
-        Route::delete('/profile', 'destroy')->middleware(['auth:sanctum']);
         Route::get('/logout', 'logout')->middleware(['auth:sanctum']);
+        
+        Route::prefix('user')->group(function () {
+            Route::get('/profile', 'show')->middleware(['auth:sanctum']);
+            Route::put('/profile', 'update')->middleware(['auth:sanctum']);
+            Route::delete('/profile', 'destroy')->middleware(['auth:sanctum']);
+        });
     });
 
     Route::group(['middleware' => ['auth:sanctum']], function () {
 
-        // RUTA API VERSIÓN 1
-        $v1 = "App\\Http\\Controllers\\API\\V1\\";
-        // CATALOGOS
-        $catalogues = "App\\Http\\Controllers\\API\\V1\\Catalogues\\";
 
-        // SÓLO ADMIN
-        // ROLES
-        Route::resource('roles', RoleController::class)
+        /* CATALÓGOS */
+        Route::prefix('catalogue')->group(function () {
+            // PAÍSES
+            Route::resource('countries', $this->catalogues . CountryController::class)
+                ->only(['index', 'store', 'show', 'update', 'destroy']);
+            // ESTADOS
+            Route::resource('/states', $this->catalogues.StateController::class)
+                ->only(['index', 'store', 'show', 'update', 'destroy']);
+            // CIUDADES
+            Route::controller($this->catalogues.CityController::class)->group(function() {
+                Route::get('/cities', 'index');
+                Route::get('/citiesofstate', 'citiesOfState');
+                Route::get('/cities/{city}', 'show');
+                Route::post('/cities', 'store');
+                Route::put('/cities/{city}', 'update');
+                Route::delete('/cities/{city}', 'destroy');
+            });
+            //OCUPACIONES
+            Route::resource('ocupations', $this->catalogues . OccupationController::class)
+                ->only(['index', 'store', 'show', 'update', 'destroy']);
+            //MEDICAL SERVICES
+            Route::resource('medicalservice', $this->catalogues . MedicalServiceController::class)
+                ->only(['index', 'store', 'show', 'update', 'destroy']);
+            //INSURANCE
+            Route::resource('insurance', $this->catalogues . InsuranceController::class)
+                ->only(['index', 'store', 'show', 'update', 'destroy']);
+            // ESPECIALIDADES
+            Route::resource('/specialties', $this->catalogues.SpecialtyController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
-        // PERMISOS
-        Route::resource('permissions', PermissionController::class)
-            ->only(['index', 'store', 'show', 'update', 'destroy']);
-        // PAISES
-        Route::resource('countries', $catalogues.CountryController::class)
-        ->only(['index', 'store', 'show', 'update', 'destroy']);
-        // ESTADOS
-        Route::resource('states', $catalogues.StateController::class)
-            ->only(['index', 'store', 'show', 'update', 'destroy']);
-        // CIUDADES
-        Route::resource('cities', $catalogues.CityController::class)
-            ->only(['index', 'store', 'show', 'update', 'destroy']);
-        //OCUPACIONES
-        Route::resource('ocupations', $catalogues.OccupationController::class)
-            ->only(['index', 'store', 'show', 'update', 'destroy']);
-        //MEDICAL SERVICES
-        Route::resource('medicalservice', $catalogues.MedicalServiceController::class)
-            ->only(['index', 'store', 'show', 'update', 'destroy']);
-        //INSURANCE
-        Route::resource('insurance', $catalogues.InsuranceController::class)
-            ->only(['index', 'store', 'show', 'update', 'destroy']);
-            
-        // SÓLO 2 TIPOS DE USUARIOS (MÉDICO O PACIENTE)
-        // MÉDICO
-        Route::controller($v1.'Physician\\'.PhysicianController::class)->group(function() {
-            Route::get('/physician', 'show');
-            Route::post('/physician', 'store');
-            Route::put('/physician', 'update');
+            // SUB ESPECIALIDADES
+            Route::controller($this->catalogues.SubSpecialtyController::class)->group(function() {
+                Route::get('/subspecialties', 'index');
+                Route::get('/subspecialtiesofspecialty', 'subSpecialtiesOfSpecialty');
+            });
         });
-        // PACIENTE
-        Route::controller($v1.'Patient\\'.PatientController::class)->group(function() {
-            Route::get('/patient', 'show');
-            Route::post('/patient', 'store');
-            Route::put('/patient', 'update');
+
+
+
+        /* RUTAS DEL MÉDICO */
+        Route::prefix('physician')->group(function () {
+            // PERFIL DEL MÉDICO
+            Route::controller($this->physician . PhysicianController::class)->group(function () {
+                Route::get('/profile', 'show');
+                Route::post('/profile', 'store');
+                Route::put('/profile', 'update');
+            });
+            // INSTALACIONES DEL MÉDICO
+            Route::controller($this->physician.FacilityController::class)->group(function() {
+                Route::get('/facility', 'index');
+                Route::get('/facility/{id}', 'show');
+                Route::post('/facility', 'store');
+                Route::put('/facility/{id}', 'update');
+                Route::delete('/facility/{id}', 'destroy');
+            });
+        });
+
+        /* RUTAS DEL PACIENTE */
+        Route::prefix('patient')->group(function () {
+            // PACIENTE
+            Route::controller($this->patient . PatientController::class)->group(function () {
+                Route::get('/profile', 'show');
+                Route::post('/profile', 'store');
+                Route::put('/profile', 'update');
+            });
+            /* Historial medico del paciente */
+            //Datos basicos
+            Route::controller($this->patient . MedicalHistoryController::class)->group(function () {
+                Route::get('/medical_history/basic_information', 'show');
+                Route::post('medical_history/basic_information', 'store');
+                Route::put('medical_history/basic_information', 'update');
+                Route::delete('medical_history/basic_information','destroy');//->encaso de ser necesario
+            });
+            //Antecedentes patologicos
+            Route::controller($this->patient . PathologicalBackgroudController::class)->group(function () {
+                Route::post('medical_history/pathological_background', 'store');
+                Route::get('medical_history/pathological_background', 'show');
+                Route::put('medical_history/pathological_background', 'update');
+                Route::delete('medical_history/pathological_background','destroy');//->encaso de ser necesario
+
+            });
+            //Antecedentes no patologicos
+            Route::controller($this->patient.NonPathologicalBackgroundController::class)->group(function(){
+                Route::post('medical_history/non_pathological_background', 'store');
+                Route::get('medical_history/non_pathological_background', 'show');
+                Route::put('medical_history/non_pathological_background', 'update');
+                Route::delete('medical_history/non_pathological_background','destroy');//->encaso de ser necesario
+            });
+            //Antecedentes Heredofamiliares
+            Route::controller($this->patient.HereditaryBackgroundController::class)->group(function(){
+                Route::post('medical_history/hereditary_background', 'store');
+                Route::get('medical_history/hereditary_background', 'show');
+                Route::put('medical_history/hereditary_background', 'update');
+            });
+            //Historial de vacunacion
+            Route::controller($this->patient.VaccinationHistoryController::class)->group(function(){
+                Route::post('medical_history/vaccination_history', 'store');
+                Route::get('medical_history/vaccination_history', 'show');
+                Route::put('medical_history/vaccination_history', 'update');
+            });
+        });
+
+
+
+        /* RUTAS ADMINISTRATIVAS */
+        Route::prefix('admin')->group(function () {
+            //  MÉDICOS
+            Route::controller($this->admin.PhysicianController::class)->group(function() {
+                Route::post('/checkphysician', 'check');
+            });
+            // ROLES (FALTA MOVER A CARPETA ADMIN)
+            Route::resource('roles', RoleController::class)
+                ->only(['index', 'store', 'show', 'update', 'destroy']);
+            // PERMISOS (FALTA MOVER A CARPETA ADMIN)
+            Route::resource('permissions', PermissionController::class)
+                ->only(['index', 'store', 'show', 'update', 'destroy']);
         });
         Route::post('facilities',[FacilityController::class, 'store']);
         Route::post('facilities/schedule/{facility}',ScheduleFacilityController::class);
     }); 
 
-    $search = "App\\Http\\Controllers\\API\\V1\\Search\\";
+
     /* BÚSQUEDAS */
     // BUSQUEDA MÉDICO MOBILE
-    Route::get('/search', [$search.SearchController::class, 'index']);
+    Route::get('/search', [$this->search . SearchController::class, 'index']);
     // BUSQUEDA DEFINIDA DE MÉDICO
-    Route::post('/searchphy', [$search.PhysicianSearchController::class, 'index']);
-
+    Route::get('/searchphy', [$this->search . PhysicianSearchController::class, 'index']);
 });
 
 
-// TESTS
+/* TESTS */
 // JOSÉ
-    Route::get('/testjose', [TestJoseController::class, 'index']);
+Route::get('/testjose', [TestJoseController::class, 'index']);

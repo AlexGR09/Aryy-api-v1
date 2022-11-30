@@ -37,6 +37,10 @@ class Patient extends Model
         return $this->belongsTo('App\Models\City');
     }
 
+    public function medical_history(){
+        return $this->belongsTo('App\Models\MedicalHistory');
+    }
+
 
     // public function ocupations()
     // {
