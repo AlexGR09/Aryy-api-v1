@@ -56,13 +56,13 @@ class AuthController extends Controller
             switch ($request->type_user) {
                 case 'Patient':
                     $user->assignRole('NewPatient');
-                    $directory = 'users/patients/';
+                    $directory = '//users//patients//';
                     break;
                 case 'Physician':
                     $user->country_code = $request->country_code;
                     $user->phone_number = $request->phone_number;
                     $user->assignRole('NewPhysician');
-                    $directory = 'users/physicians/';
+                    $directory = '//users//physicians//';
                     break;
                 default:
                     break;

@@ -14,6 +14,7 @@ return new class() extends Migration
             $table->foreignId('physician_id')->nullable()->constrained('physicians');
             $table->string('license')->unique();
             $table->string('institution');
+            $table->string('license_photo')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

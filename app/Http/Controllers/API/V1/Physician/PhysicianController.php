@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Physician\PhysicianCreateRequest;
-// use App\Http\Requests\API\V1\Physician\PhysicianRequest;
 use App\Http\Requests\API\V1\Physician\PhysicianUpdateRequest;
 use App\Http\Resources\API\V1\Physician\PhysicianResource;
 use App\Models\Physician;
@@ -28,21 +27,17 @@ class PhysicianController extends Controller
     {
         try {
             DB::beginTransaction();
-            $physician = new Physician();
-            $physician->user_id = $this->user->id; 
-            $physician->professional_name = $request->professional_name;
-            $physician->is_verified = 'in_verification';
-            $physician->save();        
+            $physician = Physician::create([
+                'user_id' => $this->user->id,
+                'professional_name' => $request->professional_name,
+                'is_verified' => 'in_verification'
+            ]);       
+
+            // CONSTRUYE UN ARRAY DE ESPECIALIDADES PARA SINCRONIZARLOS CON EL MÉDICO
+            $specialties = $this->specialtiesArrayConstructor($request->specialties, $physician->id);
             // CREA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVOTE
-            foreach ($request->specialties as $specialty) {
-                $physician->specialties()->attach([
-                    $specialty['specialty_id']  => [     
-                        'physician_id' => $physician->id,
-                        'license' => $specialty['license'],
-                        'institution' => $specialty['institution']
-                    ]
-                ]);
-            }    
+            $physician->specialties()->attach($specialties);
+    
             $this->user->syncRoles(['User', 'PhysicianInVerification']);
             DB::commit();
             return (new PhysicianResource($physician))->additional(['message' => 'Perfil médico creado con éxito.']);
@@ -56,7 +51,7 @@ class PhysicianController extends Controller
     {
         try {
             $message = 'Mi perfil médico.';
-            $physician = Physician::where('user_id', $this->user->id)->first();
+            $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
             if ($this->user->hasRole('PhysicianInVerification')) {
                 $message = 'Su perfil médico está en proceso de verificación, esto puede tomar un par de días. Por favor, tenga paciencia, nosotros le avisaremos.';
             }
@@ -66,36 +61,33 @@ class PhysicianController extends Controller
         }
     }
 
-    public function update(PhysicianUpdateRequest $request) {
+    public function update(PhysicianUpdateRequest $request) 
+    {
         try {
             DB::beginTransaction();
-            $physician = Physician::findOrFail($request->physician_id);
+            $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
             $physician->professional_name = $request->professional_name;
-            // $physician->certificates = json_encode($request->certificates);
             $physician->biography = $request->biography;
-            $physician->recipe_template = $request->recipe_template;
-            $physician->social_networks = json_encode($request->social_networks);
-            $physician->is_verified = 'verified';
-
-            return $request;
-            // CONSULTA LOS REGISTROS EXISTENTES DE ESPECIALIDADES-MÉDICO
-            $previousSpecialties = PhysicianSpecialty::where('physician_id', $physician->id)->get()->toArray();
-            if ($previousSpecialties != $request->specialties) {
-                // SINCRONIZA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVOTE
-                $specialties = [];
-                foreach ($request->specialties as $specialty) { 
-                    $specialties += [ 
-                        $specialty['specialty_id'] => [
-                            'physician_id' => $physician->id,
-                            'license' => $specialty['license'],
-                            'institution' => $specialty['institution']
-                        ]
-                    ];
-                }
-                $physician->specialties()->sync($specialties);
+            $physician->social_networks = $request->social_networks;
+            
+            // CONSULTA LOS REGISTROS EXISTENTES DE ESPECIALIDADES-MÉDICO (specialty_id, license)
+            $previousSpecialties = PhysicianSpecialty::where('physician_id', $physician->id)
+                ->select('specialty_id', 'license')
+                ->get()
+                ->toArray();
+            // FORMATEA LA SOLICITUD DE ESPECIALIDADES
+            $currentSpecialties = $this->specialtiesFormat($request->specialties);
+        
+            // SI LAS ESPECIALIDADES DEL MÉDICO(specialty_id, license) DE LA BASE DE DATOS SON DIFERENTES A LA ESPECIALIDADES DE LA SOLICITUD
+            if ($previousSpecialties != $currentSpecialties) {
                 $this->user->syncRoles(['User', 'PhysicianInVerification']);
                 $physician->is_verified = 'in_verification';
             }
+            // CONSTRUYE UN ARRAY DE ESPECIALIDADES PARA SINCRONIZARLOS CON EL MÉDICO
+            $specialties = $this->specialtiesArrayConstructor($request->specialties, $physician->id);
+            // SINCRONIZA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVOTE
+            $physician->specialties()->sync($specialties);
+
             $physician->save();
             DB::commit();
             return (new PhysicianResource($physician))->additional(['message' => 'Perfil médico actualizado con éxito.']);
@@ -103,6 +95,33 @@ class PhysicianController extends Controller
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
-        
     }
+
+    // DEPURA EL ARRAY DE LA SOLICITUD SPECIALTIES (specialty_id, license)
+    public function specialtiesFormat($specialties) 
+    {
+        $currentSpecialties = [];
+        foreach ($specialties as $key => $specialty) {
+            unset($specialty['institution']);
+            $currentSpecialties += [ $key => $specialty];
+        }
+        return $currentSpecialties;
+    }
+
+    // CONSTRUYE EL ARRAY DE ESPECIALIDADES PARA SINCRONIZARLOS CON EL MÉDICO
+    public function specialtiesArrayConstructor($specialties, $physician_id) 
+    {
+        $currentSpecialties = [];
+        foreach ($specialties as $specialty) { 
+            $currentSpecialties += [ 
+                $specialty['specialty_id'] => [
+                    'physician_id' => $physician_id,
+                    'license' => $specialty['license'],
+                    'institution' => $specialty['institution']
+                ]
+            ];
+        }
+        return $currentSpecialties;
+    }
+
 }

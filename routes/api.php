@@ -93,14 +93,21 @@ Route::prefix('v1')->group(function () {
                 Route::post('/profile', 'store');
                 Route::put('/profile', 'update');
             });
-            // INSTALACIONES DEL MÉDICO
-            Route::controller($this->physician.FacilityController::class)->group(function() {
-                Route::get('/facility', 'index');
-                Route::get('/facility/{id}', 'show');
-                Route::post('/facility', 'store');
-                Route::put('/facility/{id}', 'update');
-                Route::delete('/facility/{id}', 'destroy');
+            // ARCHIVOS DEL MÉDICO
+            Route::controller($this->physician . FileController::class)->group(function () {
+                Route::get('/file', 'show');
+                Route::post('/file/uploadeducationalbackground', 'uploadEducationalBackground');
+                Route::post('/file/uploadcertificates', 'uploadCertificates');
+                // Route::put('/profile', 'update');
             });
+            // INSTALACIONES DEL MÉDICO
+            // Route::controller($this->physician.FacilityController::class)->group(function() {
+            //     Route::get('/facility', 'index');
+            //     Route::get('/facility/{id}', 'show');
+            //     Route::post('/facility', 'store');
+            //     Route::put('/facility/{id}', 'update');
+            //     Route::delete('/facility/{id}', 'destroy');
+            // });
         });
 
         /* RUTAS DEL PACIENTE */
