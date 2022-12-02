@@ -34,18 +34,32 @@ class HereditaryBackgroundController extends Controller
             DB::beginTransaction();
             $patient = Patient::where('user_id', $this->user->id)->first();
 
-            $hereditary_background = new HereditaryBackground();
-            $hereditary_background->diabetes = json_encode($request->diabetes);
-            $hereditary_background->heart_diseases = json_encode($request->heart_diseases);
-            $hereditary_background->blood_pressure = json_encode($request->blood_pressure);
-            $hereditary_background->thyroid_diseases = json_encode($request->thyroid_diseases);
-            $hereditary_background->cancer = json_encode($request->cancer);
-            $hereditary_background->kidney_stones = json_encode($request->kidney_stones);
-            $hereditary_background->save();
+            $hereditary_background = HereditaryBackground::create([
+                'diabetes' => $request->diabetes,
+                'heart_diseases' => $request->heart_diseases,
+                'blood_pressure' => $request->blood_pressure,
+                'thyroid_diseases' => $request->thyroid_diseases,
+                'cancer' => $request->cancer,
+                'kidney_stones' => $request->kidney_stones,
+            ]);
 
-            $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
-            $medical_history->hereditary_background_id = $hereditary_background->id;
-            $medical_history->save();
+            /* $hereditary_background = new HereditaryBackground();
+            $hereditary_background->diabetes = $request->diabetes;
+            $hereditary_background->heart_diseases = $request->heart_diseases;
+            $hereditary_background->blood_pressure = $request->blood_pressure;
+            $hereditary_background->thyroid_diseases = $request->thyroid_diseases;
+            $hereditary_background->cancer = $request->cancer;
+            $hereditary_background->kidney_stones = $request->kidney_stones;
+            $hereditary_background->save(); */
+
+            $medical_history = MedicalHistory::where('patient_id', $patient->id)->update([
+                'hereditary_background_id' => $hereditary_background->id,
+            ]);
+            /* $medical_history->hereditary_background_id = $hereditary_background->id;
+            $medical_history->save(); */
+            /*  $medical_history = MedicalHistory::where('patient_id', $patient->id)->update([
+                'non_pathological_background_id' => $no_pathological->id,
+            ]); */
 
             DB::commit();
             return (new HereditaryBackgroundResource($hereditary_background))->additional(['message' => 'Informacion guardada con exito.']);
@@ -84,18 +98,23 @@ class HereditaryBackgroundController extends Controller
 
             $patient = Patient::where('user_id', $this->user->id)->first();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
-            $hereditary_background = HereditaryBackground::where('id', $medical_history->hereditary_background_id)->first();
-
-            /* if ($this->user->hasRole('Patient')) { */
+            $hereditary_background = HereditaryBackground::where('id', $medical_history->hereditary_background_id)->update([
+                'diabetes' => $request->diabetes,
+                'heart_diseases' => $request->heart_diseases,
+                'blood_pressure' => $request->blood_pressure,
+                'thyroid_diseases' => $request->thyroid_diseases,
+                'cancer' => $request->cancer,
+                'kidney_stones' => $request->kidney_stones,
+            ]);
 
             DB::beginTransaction();
-            $hereditary_background->diabetes = json_encode($request->diabetes);
+            /* $hereditary_background->diabetes = json_encode($request->diabetes);
             $hereditary_background->heart_diseases = json_encode($request->heart_diseases);
             $hereditary_background->blood_pressure = json_encode($request->blood_pressure);
             $hereditary_background->thyroid_diseases = json_encode($request->thyroid_diseases);
             $hereditary_background->cancer = json_encode($request->cancer);
             $hereditary_background->kidney_stones = json_encode($request->kidney_stones);
-            $hereditary_background->save();
+            $hereditary_background->save(); */
 
 
             DB::commit();
