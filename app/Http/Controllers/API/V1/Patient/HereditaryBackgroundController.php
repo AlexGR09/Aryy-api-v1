@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\HereditaryBackgroundRequest;
-use App\Http\Resources\API\V1\Patient\HereditaryBackgroundResoucer;
+use App\Http\Resources\API\V1\Patient\HereditaryBackgroundResource;
 use App\Models\HereditaryBackground;
 use App\Models\MedicalHistory;
 use App\Models\Patient;
@@ -18,6 +18,9 @@ class HereditaryBackgroundController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
+        $this->middleware('permission:show hereditary background')->only(['show']);
+        $this->middleware('role:Patient')->only(['store']);
+        $this->middleware('permission:edit hereditary background')->only(['update']);
     }
 
     public function index()
@@ -28,7 +31,7 @@ class HereditaryBackgroundController extends Controller
     public function store(HereditaryBackgroundRequest $request)
     {
         try {
-            if ($this->user->hasRole('Patient')) {
+            /* if ($this->user->hasRole('Patient')) { */
             
                 DB::beginTransaction();     
                 $patient = Patient::where('user_id', $this->user->id)->first();
@@ -47,9 +50,9 @@ class HereditaryBackgroundController extends Controller
                 $medical_history->save();
 
                 DB::commit();
-                return (new HereditaryBackgroundResoucer($hereditary_background))->additional(['message' => 'Informacion guardada con exito.']);
-            }
-                return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+                return (new HereditaryBackgroundResource($hereditary_background))->additional(['message' => 'Informacion guardada con exito.']);
+            /* }
+                return response()->json(['message' => 'No puedes realizar esta acción.'], 403); */
         
             } catch (\Throwable $th) {
             DB::rollBack();
@@ -60,18 +63,20 @@ class HereditaryBackgroundController extends Controller
     public function show()
     {
         try {
-            if ($this->user->hasRole('Patient')) {
+            /* if ($this->user->hasRole('Patient')) { */
             
                 DB::beginTransaction();                
                 $patient = Patient::where('user_id', $this->user->id)->first();
                 $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
 
-                $hereditary_background = HereditaryBackground::where('id', $medical_history->hereditary_background_id)->first();
+                $hereditary_background = HereditaryBackground::where('id', $medical_history->hereditary_background_id)->get();
 
                 DB::commit();
-                return (new HereditaryBackgroundResoucer($hereditary_background))->additional(['message' => '..']);
-            }
-                return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+                return (HereditaryBackgroundResource::collection($hereditary_background))->additional(['message' => 'Mi perfil de paciente.']);
+
+                //return (new HereditaryBackgroundResource($hereditary_background))->additional(['message' => '..']);
+            /* }
+                return response()->json(['message' => 'No puedes realizar esta acción.'], 403); */
         
             } catch (\Throwable $th) {
             DB::rollBack();
@@ -87,7 +92,7 @@ class HereditaryBackgroundController extends Controller
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
             $hereditary_background = HereditaryBackground::where('id', $medical_history->hereditary_background_id)->first();
 
-            if ($this->user->hasRole('Patient')) {
+            /* if ($this->user->hasRole('Patient')) { */
 
                 DB::beginTransaction();
                 $hereditary_background->diabetes = json_encode($request->diabetes);
@@ -100,16 +105,12 @@ class HereditaryBackgroundController extends Controller
                 
 
                 DB::commit();
-                return (new HereditaryBackgroundResoucer($hereditary_background))->additional(['message' => 'Informacion actualizada con exito.']);
-            }
+                return (new HereditaryBackgroundResource($hereditary_background))->additional(['message' => 'Informacion actualizada con exito.']);
+            /* } */
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function destroy($id)
-    {
-        //
-    }
 }

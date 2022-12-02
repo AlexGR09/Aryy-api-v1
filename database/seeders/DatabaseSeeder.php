@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StateSeeder::class);
         $this->call(CitySeeder::class);
         $this->call(PatientSeeder::class);
-        $this->call(AlergiesSeeder::class);
+        $this->call(AllergiesSeeder::class);
         $this->call(OccupationSeeder::class);
         $this->call(InsuranceSeeder::class);
         $this->call(SpecialtySeeder::class);

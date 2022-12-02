@@ -4,8 +4,8 @@ namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\PathologicalBackgroundRequest;
-use App\Http\Resources\API\V1\Patient\BasicImformationResoucer;
-use App\Http\Resources\API\V1\Patient\PathologicalBackgroundResoucer;
+use App\Http\Resources\API\V1\Patient\BasicImformationResource;
+use App\Http\Resources\API\V1\Patient\PathologicalBackgroundResource;
 use App\Models\MedicalHistory;
 use App\Models\PathologicalBackground;
 use App\Models\Patient;
@@ -17,6 +17,9 @@ class PathologicalBackgroudController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
+        $this->middleware('permission:show pathological background')->only(['show']);
+        $this->middleware('role:Patient')->only(['store']);
+        $this->middleware('permission:edit pathological background')->only(['update']);
     }
 
     public function index()
@@ -51,7 +54,7 @@ class PathologicalBackgroudController extends Controller
                 $medical_history->save();
 
                 DB::commit();
-                return (new PathologicalBackgroundResoucer($pathological_background))->additional(['message' => 'Informacion guardada con exito.']);
+                return (new PathologicalBackgroundResource($pathological_background))->additional(['message' => 'Informacion guardada con exito.']);
             }
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -68,8 +71,8 @@ class PathologicalBackgroudController extends Controller
                 $pathological = PathologicalBackground::where('id', $medical_history->pathological_background_id)->get();
                 //return $medical_history;
                 
-                return (PathologicalBackgroundResoucer::collection($pathological))->additional(['message' => 'Mi perfil de paciente.']);
-                //return (new PathologicalBackgroundResoucer($pathological))->additional(['message' => '..']);
+                return (PathologicalBackgroundResource::collection($pathological))->additional(['message' => 'Mi perfil de paciente.']);
+                //return (new PathologicalBackgroundResource($pathological))->additional(['message' => '..']);
             }
                 return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         
@@ -103,27 +106,8 @@ class PathologicalBackgroudController extends Controller
                 $pathological_background->gastrointestinal_pathologies = $request->gastrointestinal_pathologies;
                 $pathological_background->save();
                 DB::commit();
-                return (new PathologicalBackgroundResoucer($pathological_background))->additional(['message' => 'Informacion actualizada con exito.']);
+                return (new PathologicalBackgroundResource($pathological_background))->additional(['message' => 'Informacion actualizada con exito.']);
             }
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            return response()->json(['error' => $th->getMessage()], 503);
-        }
-    }
-
-    public function destroy()
-    {
-        try {
-            if ($this->user->hasRole('Patient')) {
-                $patient = Patient::where('user_id', $this->user->id)->first();
-                $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
-
-                $pathological = PathologicalBackground::where('id', $medical_history->non_pathological_background_id)->first();
-                $pathological->delete();
-                //return (MedicalHistoryResoucer::collection($medical_history))->additional(['message' => 'Mi perfil de paciente.']);
-                return (new PathologicalBackgroundResoucer($pathological))->additional(['message' => 'Informacion Borrada con exito']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);

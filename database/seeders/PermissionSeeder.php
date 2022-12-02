@@ -84,6 +84,24 @@ class PermissionSeeder extends Seeder
             // PACIENTES
             ['name' => 'show patient profile', 'guard_name' => 'sanctum'],
             ['name' => 'edit patient profile', 'guard_name' => 'sanctum'],
+
+            ['name' => 'show basic information', 'guard_name' => 'sanctum'],
+            ['name' => 'show medical history', 'guard_name' => 'sanctum'],
+            ['name' => 'edit basic information', 'guard_name' => 'sanctum'],
+
+            ['name' => 'show non pathological background', 'guard_name' =>'sanctum'],
+            ['name' => 'edit non pathological background', 'guard_name' =>'sanctum'],
+            
+            ['name' => 'show pathological background', 'guard_name' =>'sanctum'],
+            ['name' => 'edit pathological background', 'guard_name' =>'sanctum'],
+
+
+            ['name' => 'show hereditary background', 'guard_name' => 'sanctum'],
+            ['name' => 'edit hereditary background', 'guard_name' => 'sanctum'],
+            
+            ['name' => 'show patient vaccination History', 'guard_name' => 'sanctum'],
+            ['name' => 'edit patient vaccination History', 'guard_name' => 'sanctum'],
+
             // MÉDICOS
             ['name' => 'show physician profile', 'guard_name' => 'sanctum'],
             ['name' => 'edit physician profile', 'guard_name' => 'sanctum'],

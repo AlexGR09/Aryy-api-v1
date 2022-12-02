@@ -13,13 +13,9 @@ return new class() extends Migration
      */
     public function up()
     {
-        Schema::create('medical_histories', function (Blueprint $table) {
+        Schema::create('allergies', function (Blueprint $table) {
             $table->id();
-            $table->string('current_medication')->nullable();
-            $table->string('previous_medication')->nullable();
-            $table->json('family_history')->nullable();
-            $table->json('habits')->nullable();
-            $table->foreignId('alergies_id')->constrained('alergies')->onDelete('cascade');
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +28,6 @@ return new class() extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medical_histories');
+        Schema::dropIfExists('alergies');
     }
 };

@@ -4,7 +4,7 @@ namespace App\Http\Resources\API\V1\Patient;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PathologicalBackgroundResoucer extends JsonResource
+class PathologicalBackgroundResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
