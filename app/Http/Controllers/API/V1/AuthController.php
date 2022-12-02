@@ -20,7 +20,7 @@ class AuthController extends Controller
         $this->user = auth()->user();
         $this->middleware('permission:show user profile')->only(['show']);
         $this->middleware('permission:edit user profile')->only(['update']);
-        $this->middleware('permission:delete profile')->only(['destroy']);
+        $this->middleware('permission:delete user profile')->only(['destroy']);
     }
 
     public function login(LoginRequest $request)
@@ -88,23 +88,23 @@ class AuthController extends Controller
     public function update(UpdateProfileRequest $request)
     {
         try {
-                DB::beginTransaction();
-                $this->user->name = $request->name;
-                $this->user->last_name = $request->last_name;
-                $this->user->gender = $request->gender;
-                $this->user->birthday = $request->birthday;
-                $this->user->country_code = $request->country_code;
-                $this->user->phone_number = $request->phone_number;
-                $this->user->email = $request->email;
-                // Si se recibe una contraseña
-                if ($request->password) {
-                    $this->user->password = bcrypt($request->password);
-                    $this->logout(); // Invocación del método logout
-                }
-                $this->user->save();
-                DB::commit();
-                return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
-            
+            DB::beginTransaction();
+            $this->user->name = $request->name;
+            $this->user->last_name = $request->last_name;
+            $this->user->gender = $request->gender;
+            $this->user->birthday = $request->birthday;
+            $this->user->country_code = $request->country_code;
+            $this->user->phone_number = $request->phone_number;
+            $this->user->email = $request->email;
+            // Si se recibe una contraseña
+            if ($request->password) {
+                $this->user->password = bcrypt($request->password);
+                $this->logout(); // Invocación del método logout
+            }
+            $this->user->save();
+            DB::commit();
+            return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
+
             // Si se recibe una contraseña
             if ($request->password) {
                 $this->user->password = bcrypt($request->password);
