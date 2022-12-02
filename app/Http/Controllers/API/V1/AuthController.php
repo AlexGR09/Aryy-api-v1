@@ -46,11 +46,12 @@ class AuthController extends Controller
     {
         try {
             DB::beginTransaction();
-            $user = new User();
-            $user->email = $request->email;
-            $user->password = bcrypt($request->password);
+            $user = User::create([
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+            ]); 
             $user->assignRole('User');
-            $user->save();
+
             $user_folder = 'id'.$user->id.'_'.substr(sha1(time()), 0, 16);
             // ASIGNAR ROL DE ACUERDO AL TIPO DE USUARIO
             switch ($request->type_user) {
@@ -88,10 +89,7 @@ class AuthController extends Controller
     public function show()
     {
         try {
-            // if ($this->user->hasPermissionTo('show user profile')) {
-                return (new UserResource($this->user))->additional(['message' => 'My profile']);
-            // }
-            // return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            return (new UserResource($this->user))->additional(['message' => 'My profile']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -117,14 +115,6 @@ class AuthController extends Controller
             DB::commit();
             return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
 
-            // Si se recibe una contraseña
-            if ($request->password) {
-                $this->user->password = bcrypt($request->password);
-                $this->logout(); // Invocación del método logout
-            }
-            $this->user->save();
-            DB::commit();
-            return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
             // FALTA REGRESAR LA IMAGEN BORRADA
@@ -135,11 +125,8 @@ class AuthController extends Controller
     public function destroy()
     {
         try {
-            // if ($this->user->hasPermissionTo('delete user profile')) {
-                $this->user->delete();
-                return (new UserResource($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
-            // }
-            // return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            $this->user->delete();
+            return (new UserResource($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
