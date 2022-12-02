@@ -14,7 +14,6 @@ class PhysicianResource extends JsonResource
             'user_id' => $this->user_id,
             'professional_name' => $this->professional_name,
             'certificates' => $this->certificates,
-            // 'social_networks' => json_decode($this->social_networks),
             'social_networks' => $this->social_networks,
             'biography' => $this->biography,
             'recipe_template' => $this->recipe_template,

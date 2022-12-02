@@ -93,12 +93,11 @@ Route::prefix('v1')->group(function () {
                 Route::post('/profile', 'store');
                 Route::put('/profile', 'update');
             });
-            // ARCHIVOS DEL MÉDICO
-            Route::controller($this->physician . FileController::class)->group(function () {
-                Route::get('/file', 'show');
-                Route::post('/file/uploadeducationalbackground', 'uploadEducationalBackground');
-                Route::post('/file/uploadcertificates', 'uploadCertificates');
-                // Route::put('/profile', 'update');
+            // ARCHIVOS DE FORMACIÓN DEL MÉDICO
+            Route::controller($this->physician . EducationalBackgroundController::class)->group(function () {
+                Route::post('/educationalbackground/uploadlicense', 'uploadLicense');
+                Route::post('/educationalbackground/uploadcertificate', 'uploadCertificate');
+                Route::delete('/educationalbackground/deletecertificate', 'deleteCertificate');
             });
             // INSTALACIONES DEL MÉDICO
             // Route::controller($this->physician.FacilityController::class)->group(function() {
