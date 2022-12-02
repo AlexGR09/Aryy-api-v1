@@ -20,6 +20,11 @@ class Physician extends Model
         'is_verified'
     ];
 
+    protected $casts = [
+        'social_networks' => 'array',
+        'certificates' => 'array'
+    ];
+
     // RELACIÓN UNO UNO CON EL MODELO USUARIO
     public function user()
     {

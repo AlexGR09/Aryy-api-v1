@@ -13,6 +13,7 @@ class PhysicianSpecialtyResource extends JsonResource
             'specialty_id' => $this->specialty_id,
             'license' => $this->license,
             'institution' => $this->institution,
+            'license_photo' => $this->license_photo
         ];
     }
 }

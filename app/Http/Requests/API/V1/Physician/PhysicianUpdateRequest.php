@@ -3,7 +3,7 @@
 namespace App\Http\Requests\API\V1\Physician;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class PhysicianUpdateRequest extends FormRequest
@@ -14,20 +14,26 @@ class PhysicianUpdateRequest extends FormRequest
         return auth()->check();
     }
 
-    public function rules(Request $request)
+    public function rules()
     {
-        // throw new \ErrorException($request->physician_id);
+        // SE HACE ESTA CONSULTA YA QUE NO SE INSTANCIA EL MODELO PHYSICIAN EN EL REQUEST DEL CONTROLADOR
+        $physician_id = DB::table('physicians')
+            ->where('user_id', '=', auth()->user()->id)
+            ->pluck('id')
+            ->first();
+
         return [
             'professional_name' => 'required|max:60',
             'biography' => 'max:255',
-            'certificates' => 'array',
-            'social_networks' => 'array',
+            'social_networks' => 'array:facebook,instagram,tiktok,youtube,website',
+            'social_networks.*' => 'url',
             'specialties' => 'required|array',
             'specialties.*.specialty_id' => 'required|numeric',
-            'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty')->whereNot('physician_id', $request->physician_id),
+            'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty')->whereNot('physician_id', $physician_id),
             'specialties.*.institution' => 'required',
-            'certificates.*.route' => 'required|url',
-            'photo' => 'image|mimes:jpg,jpeg,png|max:2000|dimensions:max_width=512,max_height=512'
+            // 'social_networks.*' => 'required'
+            // 'certificates.*.filename' => 'required',
+            // 'photo' => 'image|mimes:jpg,jpeg,png|max:2000|dimensions:max_width=512,max_height=512'
         ];
     }
 
@@ -36,13 +42,13 @@ class PhysicianUpdateRequest extends FormRequest
         return [
             'professional_name' => 'nombre profesional',
             'biography' => 'biografía',
-            'recipe_template' => 'plantilla de receta',
-            'certificates' => 'certificado(s)',
             'social_networks' => 'redes sociales',
+            'social_networks.*' => 'url de la red social',
             'specialties.*.specialty_id' => 'id de la especialidad',
             'specialties.*.license' => 'licencia de la especialidad',
             'specialties.*.institution' => 'institución de la especialidad',
-            'certificates.*.route' => 'ruta del certificado',
+            // 'certificates.*.filename' => 'nombre del archivo certificado',
         ];
     }
+
 }
