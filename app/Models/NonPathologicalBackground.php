@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -25,4 +26,15 @@ class NonPathologicalBackground extends Model
     {
         return $this->hasOne('App\Models\MedicalHistory');
     }
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'physical_activity' => 'object',
+        'rest_time' => 'object',
+        'smoking' => 'object',
+        'alcoholim' => 'object',
+    ];
 }

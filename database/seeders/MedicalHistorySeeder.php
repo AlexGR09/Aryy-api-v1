@@ -20,13 +20,13 @@ class MedicalHistorySeeder extends Seeder
 
         DB::table('medical_histories')->insert([
             [
-                
-                'family_history' => json_encode($history1) 
+
+                'family_history' => json_encode($history1),
             ],
             [
-                
-                'family_history' => json_encode($history2) 
-            ]
+
+                'family_history' => json_encode($history2),
+            ],
         ]);
     }
 }

@@ -64,4 +64,8 @@ class Patient extends Model
     // {
     //     return $this->belongsTo('App\Models\MedicalHistory');
     // }
+    protected $casts = [
+        'address' => 'object',
+        'id_card' => 'object',
+    ];
 }

@@ -23,9 +23,9 @@ return new class extends Migration
             $table->string('diet')->nullable();
             $table->string('current_medication')->nullable();
             $table->string('previous_medication')->nullable();
+            $table->string('drug_active')->nullable();
             $table->timestamps();
             $table->softDeletes();
-
         });
     }
 

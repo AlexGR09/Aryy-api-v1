@@ -31,8 +31,8 @@ class Facility extends Model
      * @var array
      */
     protected $casts = [
-        'schedule' => 'array',
-        'services' => 'array',
+        'schedule' => 'object',
+        'services' => 'object',
     ];
     public function physicians()
     {

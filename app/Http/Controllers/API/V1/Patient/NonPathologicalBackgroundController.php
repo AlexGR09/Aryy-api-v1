@@ -16,7 +16,7 @@ class NonPathologicalBackgroundController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
-        $this->middleware('permission:show non pathological background')->only(['show']);
+        $this->middleware('role:Patient')->only(['show']);
         $this->middleware('role:Patient')->only(['store']);
         $this->middleware('permission:edit non pathological background')->only(['update']);
     }
@@ -29,28 +29,23 @@ class NonPathologicalBackgroundController extends Controller
     public function store(NonPathologicalBackgroundRequest $request)
     {
         try {
-            if ($this->user->hasRole('Patient')) {
-                $patient = Patient::where('user_id', $this->user->id)->first();
-                DB::beginTransaction();
-
-                $no_pathological = new NonPathologicalBackground();
-                $no_pathological->physical_activity = json_encode($request->physical_activity);
-                $no_pathological->rest_time = json_encode($request->rest_time);
-                $no_pathological->smoking = json_encode($request->smoking);
-                $no_pathological->alcoholim = json_encode($request->alcoholim);
-                $no_pathological->other_substances = $request->other_substances;
-                $no_pathological->diet = $request->diet;
-                $no_pathological->drug_active = $request->drug_active;
-                $no_pathological->previous_medication = $request->previous_medication;
-                $no_pathological->save();
-
-                $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
-                $medical_history->non_pathological_background_id = $no_pathological->id;
-                $medical_history->save();
-
-                DB::commit();
-                return (new NonPathologicalBackgroundResource($no_pathological))->additional(['message' => 'Informacion guardada con exito.']);
-            }
+            $patient = Patient::where('user_id', $this->user->id)->first();
+            DB::beginTransaction();
+            $no_pathological = NonPathologicalBackground::create([
+                'physical_activity' => $request->physical_activity,
+                'rest_time' => $request->rest_time,
+                'smoking' => $request->smoking,
+                'alcoholim' => $request->alcoholim,
+                'other_substances' => $request->other_substances,
+                'diet' => $request->diet,
+                'drug_active' => $request->drug_active,
+                'previous_medication' => $request->previous_medication,
+            ]);
+            $medical_history = MedicalHistory::where('patient_id', $patient->id)->update([
+                'non_pathological_background_id' => $no_pathological->id,
+            ]);
+            DB::commit();
+            return (new NonPathologicalBackgroundResource($no_pathological))->additional(['message' => 'Informacion guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
@@ -60,16 +55,12 @@ class NonPathologicalBackgroundController extends Controller
     public function show()
     {
         try {
-            if ($this->user->hasRole('Patient')) {
-                $patient = Patient::where('user_id', $this->user->id)->first();
-                $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
+            $patient = Patient::where('user_id', $this->user->id)->first();
+            $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
 
-                $no_pathological = NonPathologicalBackground::where('id', $medical_history->non_pathological_background_id)->get();
+            $no_pathological = NonPathologicalBackground::where('id', $medical_history->non_pathological_background_id)->get();
 
-                return (NonPathologicalBackgroundResource::collection($no_pathological))->additional(['message' => '..']);
-                //return (new NonPathologicalBackgroundResource($no_pathological))->additional(['message' => '..']);
-            }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
+            return (NonPathologicalBackgroundResource::collection($no_pathological))->additional(['message' => '..']);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
@@ -87,19 +78,16 @@ class NonPathologicalBackgroundController extends Controller
 
             if ($this->user->hasRole('Patient')) {
 
-                DB::beginTransaction();
-
-                $no_pathological->physical_activity = json_encode($request->physical_activity);
-                $no_pathological->rest_time = json_encode($request->rest_time);
-                $no_pathological->alcoholim = json_encode($request->alcoholim);
-                $no_pathological->smoking = json_encode($request->smoking);
-                $no_pathological->other_substances = $request->other_substances;
-                $no_pathological->diet = $request->diet;
-                $no_pathological->drug_active = $request->drug_active;
-                $no_pathological->previous_medication = $request->previous_medication;
-                $no_pathological->save();
-
-                DB::commit();
+                $no_pathological = tap($no_pathological)->update([
+                    'physical_activity' => $request->physical_activity,
+                    'rest_time' => $request->rest_time,
+                    'smoking' => $request->smoking,
+                    'alcoholim' => $request->alcoholim,
+                    'other_substances' => $request->other_substances,
+                    'diet' => $request->diet,
+                    'drug_active' => $request->drug_active,
+                    'previous_medication' => $request->previous_medication,    
+                ]);
                 return (new NonPathologicalBackgroundResource($no_pathological))->additional(['message' => 'Informacion actualizada con exito.']);
             }
         } catch (\Throwable $th) {

@@ -88,12 +88,12 @@ class PatientController extends Controller
 
                  $patient = Patient::where('user_id',$this->user->id)->first();
                  
-                 $patient->address = json_encode($request->address);
+                 $patient->address = $request->address;
                  $patient->zip_code = $request->zip_code;
                  $patient->emergency_number = $request->emergency_number;
                  $patient->city_id = $request->city_id;
                  $patient->country_code = $request->country_code;
-                 $patient->id_card = json_encode($request->id_card);
+                 $patient->id_card = $request->id_card;
                  $patient->save();
 
                  $user = User::where('id',$this->user->id)->first();

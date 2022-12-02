@@ -4,12 +4,10 @@ namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Physician\PhysicianCreateRequest;
-// use App\Http\Requests\API\V1\Physician\PhysicianRequest;
 use App\Http\Requests\API\V1\Physician\PhysicianUpdateRequest;
 use App\Http\Resources\API\V1\Physician\PhysicianResource;
 use App\Models\Physician;
 use App\Models\PhysicianSpecialty;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PhysicianController extends Controller
@@ -28,11 +26,11 @@ class PhysicianController extends Controller
     {
         try {
             DB::beginTransaction();
-            $physician = new Physician();
-            $physician->user_id = $this->user->id; 
-            $physician->professional_name = $request->professional_name;
-            $physician->is_verified = 'in_verification';
-            $physician->save();        
+            $physician = Physician::create([
+                'user_id' => $this->user->id,
+                'professional_name' => $request->professional_name,
+                'is_verified' => 'in_verification'
+            ]);       
             // CREA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVOTE
             foreach ($request->specialties as $specialty) {
                 $physician->specialties()->attach([
