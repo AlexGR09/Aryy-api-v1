@@ -50,11 +50,6 @@ class MedicalHistoryController extends Controller
                 'drug_allergy' => $request->drug_allergy,
                 'environmental_allergy' => $request->environmental_allergy,
             ]);
-            /* $allergy_patient = new AllergyPatient();
-            $allergy_patient->food_allergy = $request->food_allergy;
-            $allergy_patient->drug_allergy = $request->drug_allergy;
-            $allergy_patient->environmental_allergy = $request->environmental_allergy; */
-            $allergy_patient->save();
 
             $basic_information = new MedicalHistory();
             $basic_information->patient_id = $patient->id;
