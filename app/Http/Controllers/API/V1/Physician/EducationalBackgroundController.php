@@ -96,19 +96,30 @@ class EducationalBackgroundController extends Controller
     {
         try {
             $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
+
             $certificates = $physician->certificates;
+            unset($certificates[0]);
+        
+            return json_encode($certificates);
 
-            return $certificates;
+            // return $this->user->user_folder;
 
-            // unset($certificates['dos']);
+            // return $certificates;
 
-            $currentCertificates = [];
+
+            // $currentCertificates = [];
             foreach ($certificates as $key => $certificate) {
                 if ($certificate['certificate_photo'] == $request->certificate_filename ) {
-                    return "lo encontré en".$key;
+
+                    // return "lo encontré en".$key;
+                    unset($certificates[0]);
                 }
-                // $currentSpecialties += [ $key => $specialty];
+
+                // return $certificates;
+                // $currentCertificates = $certificates;
+                
             }
+
 
 
             return $currentCertificates;
