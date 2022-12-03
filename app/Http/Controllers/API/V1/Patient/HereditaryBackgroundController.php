@@ -67,15 +67,13 @@ class HereditaryBackgroundController extends Controller
 
             DB::commit();
             return (HereditaryBackgroundResource::collection($hereditary_background))->additional(['message' => 'Mi perfil de paciente.']);
-
-           
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function update(Request $request)
+    public function update(HereditaryBackgroundRequest $request)
     {
         try {
 
@@ -83,7 +81,7 @@ class HereditaryBackgroundController extends Controller
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
             $hereditary_background = HereditaryBackground::where('id', $medical_history->hereditary_background_id)->first();
 
-            DB::beginTransaction();
+
             $hereditary_background->diabetes = $request->diabetes;
             $hereditary_background->heart_diseases = $request->heart_diseases;
             $hereditary_background->blood_pressure = $request->blood_pressure;
@@ -93,9 +91,8 @@ class HereditaryBackgroundController extends Controller
             $hereditary_background->save();
 
 
-            DB::commit();
+
             return (new HereditaryBackgroundResource($hereditary_background))->additional(['message' => 'Informacion actualizada con exito.']);
-            
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);

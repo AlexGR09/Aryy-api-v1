@@ -72,7 +72,7 @@ class MedicalHistoryController extends Controller
         }
     }
 
-    public function update(Request $request)
+    public function update(MedicalHistoryRequest $request)
     {
         try {
             $patient = Patient::where('user_id', $this->user->id)->first();
