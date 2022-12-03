@@ -15,8 +15,8 @@ class PatientResource extends JsonResource
         return [
             'patient_id'=>$this->id,
             'emergency_number' => $this->emergency_number,
-            'id_card' => json_decode($this->id_card),
-            'address' => json_decode($this->address),
+            'id_card' => $this->id_card,
+            'address' => $this->address,
             'zip_code' => $this->zip_code,
             'city_id' => $this->city_id,
             'code_country' => $this->country_code,

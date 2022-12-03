@@ -21,8 +21,8 @@ class MedicalHistoryResource extends JsonResource
         return [
             'patient_id' => $this->patient_id,
             'patient'=>new PatientResource($this->patient),
-            'height' => json_decode($this->height),
-            'weight' => json_decode($this->weight),
+            'height' => $this->height,
+            'weight' => $this->weight,
             'imc' => $this->imc,
             'blood_type' => $this->blood_type,
             'allergy_patient_id' => $this->allergy_patient_id,
