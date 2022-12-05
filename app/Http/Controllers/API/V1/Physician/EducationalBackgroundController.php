@@ -8,6 +8,7 @@ use App\Http\Requests\API\V1\Physician\UploadLicenseRequest;
 use App\Models\Physician;
 use App\Models\PhysicianSpecialty;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 
 class EducationalBackgroundController extends Controller
@@ -19,7 +20,8 @@ class EducationalBackgroundController extends Controller
         $this->user = auth()->user();
         $this->middleware('role:Physician')->only([
             'uploadEducationalBackground',
-            'uploadCertificates'
+            'uploadCertificates',
+            'deleteCertificate'
         ]);
     }
 
@@ -43,7 +45,7 @@ class EducationalBackgroundController extends Controller
             $specialtyOfPhysician->license_photo = '//licenses//'.$fileName;
             $specialtyOfPhysician->save();
 
-            return response()->json(['message' => 'imagen de cédula guardada correctamente']);
+            return response()->json(['message' => 'Imagen de cédula almacenada correctamente.']);
         } catch (\Throwable $th) {
             Storage::delete($this->user->user_folder.'//licenses//'.$fileName);
             return response()->json(['error' => $th->getMessage()], 503);
@@ -85,7 +87,7 @@ class EducationalBackgroundController extends Controller
             $physician->certificates = $currentCertificates;
             $physician->save();
 
-            return response()->json(['message' => 'imagen de certificado guardada correctamente']);
+            return response()->json(['message' => 'Imagen de certificado almacenada correctamente.']);
         } catch (\Throwable $th) {
             Storage::delete($certificateFileName);
             return response()->json(['error' => $th->getMessage()], 503);
@@ -96,42 +98,43 @@ class EducationalBackgroundController extends Controller
     {
         try {
             $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
+       
+            //  FORMATEA LOS CERTIFICADOS DEL JSON, REMUEVE EL ELEMENTO DEL CERTIFICADO A ELIMINAR
+            $currentCertificates = $this->certificatesFormat($physician->certificates, $request->certificate_path);
 
-            $certificates = $physician->certificates;
-            unset($certificates[0]);
-        
-            return json_encode($certificates);
+            // ELIMINA EL ARCHIVO DEL CERTIFICADO
+            Storage::delete($this->user->user_folder.$request->certificate_path);
 
-            // return $this->user->user_folder;
+            $physician->certificates = $currentCertificates;
+            $physician->save();
 
-            // return $certificates;
-
-
-            // $currentCertificates = [];
-            foreach ($certificates as $key => $certificate) {
-                if ($certificate['certificate_photo'] == $request->certificate_filename ) {
-
-                    // return "lo encontré en".$key;
-                    unset($certificates[0]);
-                }
-
-                // return $certificates;
-                // $currentCertificates = $certificates;
-                
-            }
-
-
-
-            return $currentCertificates;
-
-            // return $certificates;
-
-            // Storage::delete($this->user->user_folder.'//certificates//'.$request->certificate_filename);
-
-            return response()->json(['message' => 'imagen de certificado eliminada correctamente']);
+            return response()->json(['message' => 'Imagen de certificado eliminada correctamente.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
-        
     }
+
+    public function getImage(Request $request)
+    {
+        try {
+            $path = $this->user->user_folder.$request->photo_path;
+            $image = Storage::get($path);
+
+            return response($image, 200)->header('Content-Type', Storage::mimeType($path));
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
+
+    public function certificatesFormat($certificates, $certificate_filename) 
+    {
+        $currentCertificates = [];
+        foreach ($certificates as $key => $certificate) {
+            if ($certificate['certificate_photo'] != $certificate_filename ) {
+                $currentCertificates += [ $key => $certificate];
+            }
+        }
+        return $currentCertificates;
+    }
+
 }

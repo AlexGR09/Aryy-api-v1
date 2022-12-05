@@ -35,8 +35,7 @@ class SpecialtyController extends Controller
     public function index()
     {
         try {
-            $specialties = Specialty::paginate(5);
-            return (SpecialtyResource::collection($specialties))->additional(['message' => 'Estados encontrados.']);
+            return (SpecialtyResource::collection(Specialty::orderBy('name')->get()))->additional(['message' => 'Especialidades encontrados.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

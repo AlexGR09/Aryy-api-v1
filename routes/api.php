@@ -98,7 +98,19 @@ Route::prefix('v1')->group(function () {
                 Route::post('/educationalbackground/uploadlicense', 'uploadLicense');
                 Route::post('/educationalbackground/uploadcertificate', 'uploadCertificate');
                 Route::delete('/educationalbackground/deletecertificate', 'deleteCertificate');
+                Route::get('/educationalbackground/getimage', 'getImage');
             });
+            // ARCHIVOS DE IDENTIDAD MÉDICA
+            Route::controller($this->physician . MedicalIdentityController::class)->group(function () {
+                Route::get('/medicalindentity', 'index');
+                Route::post('/medicalindentity/uploadlogo', 'uploadLogo');
+                Route::post('/medicalindentity/uploadphysicianphoto', 'uploadPhysicianPhoto');
+                Route::post('/medicalindentity/uploadfacilityphoto', 'uploadFacilityPhoto');
+                Route::delete('/medicalindentity/deleteimage', 'deleteImage');
+
+                Route::get('/medicalindentity/getimage', 'getImage');
+            });
+           
             // INSTALACIONES DEL MÉDICO
             // Route::controller($this->physician.FacilityController::class)->group(function() {
             //     Route::get('/facility', 'index');

@@ -28,7 +28,7 @@ class StateController extends Controller
     public function index()
     {
         try {
-            return (StateResource::collection(State::orderBy('name')->get()));
+            return (StateResource::collection(State::orderBy('name')->get()))->additional(['message' => 'Estados encontrados.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

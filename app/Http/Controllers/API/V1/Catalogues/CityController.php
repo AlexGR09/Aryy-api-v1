@@ -20,7 +20,7 @@ class CityController extends Controller
                 'show',
             ]
         );
-        $this->middleware('role_or_permission:User')->only(
+        $this->middleware('role:User')->only(
             [
                 'citiesOfState',
             ]
@@ -50,7 +50,9 @@ class CityController extends Controller
     public function citiesOfState(Request $request)
     {
         try {
-            return (CityResource::collection(City::orderBy('name')->where('state_id', $request->state_id)->get()));
+            return (CityResource::collection(City::orderBy('name')
+                ->where('state_id', $request->state_id)->get()))
+                ->additional(['message' => 'Ciudades encontradas.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
