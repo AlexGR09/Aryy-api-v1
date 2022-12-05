@@ -79,11 +79,11 @@ class MedicalHistoryController extends Controller
             $basic_information = MedicalHistory::where('patient_id', $patient->id)->first();
 
             $basic_information->patient_id = $patient->id;
-            $basic_information->weight = json_encode($request->weight);
-            $basic_information->height = json_encode($request->height);
+            $basic_information->weight = $request->weight;
+            $basic_information->height = $request->height;
 
-            $weight = json_decode($basic_information->weight);
-            $height = json_decode($basic_information->height);
+            $weight = $basic_information->weight;
+            $height = $basic_information->height;
             
             $basic_information->imc = round((float)$weight->weight / pow((float)$height->height, 2));
             $basic_information->blood_type = $request->blood_type;
