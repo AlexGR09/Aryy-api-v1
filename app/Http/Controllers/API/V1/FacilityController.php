@@ -12,6 +12,7 @@ class FacilityController extends Controller
 {
     public function index()
     {
+        
         return FacilityResource::collection(
             Facility::whereHas('users', function($query){
                 $query->where('user_id', auth()->id());
