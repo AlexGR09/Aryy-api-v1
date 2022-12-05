@@ -177,8 +177,11 @@ Route::prefix('v1')->group(function () {
             Route::resource('permissions', PermissionController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
         });
+        
+        Route::get('facilities', [FacilityController::class, 'index']);
         Route::post('facilities', [FacilityController::class, 'store']);
-        Route::post('facilities/schedule/{facility}', ScheduleFacilityController::class);
+        Route::put('facilities/{facility}', [FacilityController::class, 'update']);
+        Route::put('facilities/schedule/{facility}', ScheduleFacilityController::class);
     });
 
 

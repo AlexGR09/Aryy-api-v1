@@ -36,6 +36,10 @@ class Facility extends Model
     {
         return $this->belongsToMany('App\Models\Physician', 'facility_physician');
     }
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 
     public function city()
     {

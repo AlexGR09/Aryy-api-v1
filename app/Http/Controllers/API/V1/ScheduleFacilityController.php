@@ -16,9 +16,12 @@ class ScheduleFacilityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Facility $facility, ScheduleFacilityRequest $request)
-    {
-        return new FacilityResource(
-            tap($facility)->update($request->validated())
-        );
+    {   
+        $facility = Facility::whereHas('users', function($query) use($facility){
+            $query->where('user_id', auth()->id());
+            $query->where('facility_id', $facility->id);
+        })->first();
+        $facility = tap($facility)->update($request->validated());
+        return new FacilityResource($facility);
     }
 }

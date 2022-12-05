@@ -13,7 +13,9 @@ class FacilityController extends Controller
     public function index()
     {
         return FacilityResource::collection(
-            Facility::where('user_id', auth()->id())->get()
+            Facility::whereHas('users', function($query){
+                $query->where('user_id', auth()->id());
+            })->get()
         );
     }
     public function show(Facility $facility)
@@ -24,15 +26,17 @@ class FacilityController extends Controller
     }
     public function store(StoreFacilityRequest $request)
     {
+        $facility = Facility::create(
+            $request->validated()
+        );
+        $facility->users()->attach(['user_id' => auth()->id()]);
         return new FacilityResource(
-            Facility::create(
-                $request->validated()
-            )
+            $facility
         );
     }
     public function update(Facility $facility, UpdateFacilityRequest $request)
     {
-        return new FacilityResource($facility->update($request->validated()));
+        return new FacilityResource(tap($facility)->update($request->validated()));
     }
     public function delete(Facility $facility)
     {

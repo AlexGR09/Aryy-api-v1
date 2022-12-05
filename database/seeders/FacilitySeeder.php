@@ -32,7 +32,7 @@ class FacilitySeeder extends Seeder
         ];
         $facilities = [];
         for ($i=0; $i < 10; $i++) { 
-            Facility::create([
+            $facility = Facility::create([
                 'name' => "Consultorio medico {$i}",
                 'location' => [
                     'address' =>  fake()->streetAddress(),
@@ -78,6 +78,7 @@ class FacilitySeeder extends Seeder
                 ],
                 'city_id' => 1
             ]);
+            $facility->users()->attach(['user_id' => 1]);
         }
     }
 }
