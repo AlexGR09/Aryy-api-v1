@@ -12,18 +12,15 @@ class Facility extends Model
 
     protected $fillable = [
         'name',
+        'location',
         'phone',
         'extension',
-        'schedule',
         'zipcode',
-        'street',
-        'exterior_no',
-        'interior_no',
-        'suburb',
-        'references',
-        'public_target',
-        'accesibility',
-        'services',
+        'schedule',
+        'type_schedule',
+        'consultation_length',
+        'accessibility_and_others',
+        'city_id',
     ];
     /**
      * The attributes that should be cast.
@@ -31,12 +28,17 @@ class Facility extends Model
      * @var array
      */
     protected $casts = [
+        'location' => 'object',
         'schedule' => 'object',
-        'services' => 'object',
+        'accessibility_and_others' => 'object'
     ];
     public function physicians()
     {
         return $this->belongsToMany('App\Models\Physician', 'facility_physician');
+    }
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 
     public function city()

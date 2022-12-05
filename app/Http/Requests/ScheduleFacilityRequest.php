@@ -24,7 +24,8 @@ class ScheduleFacilityRequest extends FormRequest
     public function rules()
     {
         return [
-            'schedule' => 'required'
+            'schedule.*.day' => 'required',
+            'schedule.*.attention_time' => 'required',
         ];
     }
 }
