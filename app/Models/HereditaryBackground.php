@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class HereditaryBackground extends Model
 {
     use HasFactory, SoftDeletes;
-    
+
     protected $fillable = [
         'diabetes',
         'heart_diseases',
@@ -23,4 +23,13 @@ class HereditaryBackground extends Model
     {
         return $this->hasOne('App\Models\MedicalHistory');
     }
+
+    protected $casts = [
+        'diabetes'=>'object',
+        'heart_diseases'=>'object',
+        'blood_pressure'=>'object',
+        'thyroid_diseases'=>'object',
+        'cancer'=>'object',
+        'kidney_stones'=>'object'
+    ];
 }

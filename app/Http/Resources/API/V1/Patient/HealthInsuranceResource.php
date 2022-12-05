@@ -12,7 +12,7 @@ class HealthInsuranceResource extends JsonResource
         return [
             'insurance_number' => $this->insurance_number,
             'insurance_id' => $this->insurance_id,
-            'insurance' => new InsuranceResource($this->insurance)
+            'insurance' => new InsuranceResource($this->insurance),
             // 'user' => new UserResource($this->user),
         ];
     }
