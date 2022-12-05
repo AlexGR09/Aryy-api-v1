@@ -126,10 +126,15 @@ Route::prefix('v1')->group(function () {
             });
 
             //Perfil del paciente - Ubicacion(es)
-            Route::controller($this->patient . LocationController::class)->group(function(){
+            Route::controller($this->patient . LocationController::class)->group(function () {
                 Route::get('/profile/location', 'show');
-                Route::post('/profile/location','store');
-                Route::put('/profile/location','update');
+                Route::post('/profile/location', 'store');
+                Route::put('/profile/location', 'update');
+            });
+            //Perfil del paciente - Identidad
+            Route::controller($this->patient . IdentityController::class)->group(function () {
+                Route::get('/profile/identity', 'show');
+                Route::post('/profile/identity', 'store');
             });
 
             /* Historial medico del paciente */
