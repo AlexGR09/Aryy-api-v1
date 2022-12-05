@@ -126,7 +126,11 @@ Route::prefix('v1')->group(function () {
             });
 
             //Perfil del paciente - Ubicacion(es)
-
+            Route::controller($this->patient . LocationController::class)->group(function(){
+                Route::get('/profile/location', 'show');
+                Route::post('/profile/location','store');
+                Route::put('/profile/location','update');
+            });
 
             /* Historial medico del paciente */
             //Datos basicos

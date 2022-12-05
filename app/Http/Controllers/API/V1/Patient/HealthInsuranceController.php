@@ -46,9 +46,11 @@ class HealthInsuranceController extends Controller
         try {
             $patient = Patient::where('user_id', $this->user->id)->first();
             $health_insurance = HealthInsurance::where('patient_id', $patient->id)->first();
-
-            return (new HealthInsuranceResource($health_insurance))->additional(['message' => '..']);
-        } catch (\Throwable $th) {
+            if ($health_insurance) {
+                return (new HealthInsuranceResource($health_insurance))->additional(['message' => '..']);
+            }
+            return response()->json(['error'=>'La informacion no se encontro'], 503);;
+           } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
