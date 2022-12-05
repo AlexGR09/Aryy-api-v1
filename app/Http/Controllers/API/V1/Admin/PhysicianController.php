@@ -23,7 +23,8 @@ class PhysicianController extends Controller
         try {
             DB::beginTransaction();
             // ACTUALIZA EL STATUS DE VERIFICACIÓN DEL MÉDICO
-            $physician = Physician::find('id', $request->physician_id)->update([
+            $physician = Physician::findOrFail($request->physician_id);
+            $physician->update([
                 'is_verified' => 'verified',
             ]);
             // ACTUALIZA LOS ROLES DEL USUARIO CON PERFIL DE MÉDICO
