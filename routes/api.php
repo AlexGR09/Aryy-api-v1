@@ -36,7 +36,7 @@ Route::prefix('v1')->group(function () {
         Route::post('/login', 'login');
         Route::post('/register', 'register');
         Route::get('/logout', 'logout')->middleware(['auth:sanctum']);
-        
+
         Route::prefix('user')->group(function () {
             Route::get('/profile', 'show')->middleware(['auth:sanctum']);
             Route::put('/profile', 'update')->middleware(['auth:sanctum']);
@@ -53,10 +53,10 @@ Route::prefix('v1')->group(function () {
             Route::resource('countries', $this->catalogues . CountryController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
             // ESTADOS
-            Route::resource('/states', $this->catalogues.StateController::class)
+            Route::resource('/states', $this->catalogues . StateController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
             // CIUDADES
-            Route::controller($this->catalogues.CityController::class)->group(function() {
+            Route::controller($this->catalogues . CityController::class)->group(function () {
                 Route::get('/cities', 'index');
                 Route::get('/citiesofstate', 'citiesOfState');
                 Route::get('/cities/{city}', 'show');
@@ -74,10 +74,10 @@ Route::prefix('v1')->group(function () {
             Route::resource('insurance', $this->catalogues . InsuranceController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
             // ESPECIALIDADES
-            Route::resource('/specialties', $this->catalogues.SpecialtyController::class)
-            ->only(['index', 'store', 'show', 'update', 'destroy']);
+            Route::resource('/specialties', $this->catalogues . SpecialtyController::class)
+                ->only(['index', 'store', 'show', 'update', 'destroy']);
             // SUB ESPECIALIDADES
-            Route::controller($this->catalogues.SubSpecialtyController::class)->group(function() {
+            Route::controller($this->catalogues . SubSpecialtyController::class)->group(function () {
                 Route::get('/subspecialties', 'index');
                 Route::get('/subspecialtiesofspecialty', 'subSpecialtiesOfSpecialty');
             });
@@ -112,15 +112,26 @@ Route::prefix('v1')->group(function () {
         /* RUTAS DEL PACIENTE */
         Route::prefix('patient')->group(function () {
             // PACIENTE
+            //Perfil de paciente - Informacion basica del perfil
             Route::controller($this->patient . PatientController::class)->group(function () {
-                Route::get('/profile', 'show');
-                Route::post('/profile', 'store');
-                Route::put('/profile', 'update');
+                Route::get('/profile/basic_information', 'show');
+                Route::post('/profile/basic_information', 'store');
+                Route::put('/profile/basic_information', 'update');
             });
+            //Perfil del paciente - Seguros de gastos medicos
+            Route::controller($this->patient . HealthInsuranceController::class)->group(function () {
+                Route::post('/profile/health_insurance_data', 'store');
+                Route::get('/profile/health_insurance_data', 'show');
+                Route::put('/profile/health_insurance_data', 'update');
+            });
+
+            //Perfil del paciente - Ubicacion(es)
+
+
             /* Historial medico del paciente */
             //Datos basicos
             Route::controller($this->patient . MedicalHistoryController::class)->group(function () {
-                Route::get('medical_history','index');
+                Route::get('medical_history', 'index');
                 Route::get('medical_history/basic_information', 'show');
                 Route::post('medical_history/basic_information', 'store');
                 Route::put('medical_history/basic_information', 'update');
@@ -130,22 +141,21 @@ Route::prefix('v1')->group(function () {
                 Route::post('medical_history/pathological_background', 'store');
                 Route::get('medical_history/pathological_background', 'show');
                 Route::put('medical_history/pathological_background', 'update');
-
             });
             //Antecedentes no patologicos
-            Route::controller($this->patient.NonPathologicalBackgroundController::class)->group(function(){
+            Route::controller($this->patient . NonPathologicalBackgroundController::class)->group(function () {
                 Route::post('medical_history/non_pathological_background', 'store');
                 Route::get('medical_history/non_pathological_background', 'show');
                 Route::put('medical_history/non_pathological_background', 'update');
             });
             //Antecedentes Heredofamiliares
-            Route::controller($this->patient.HereditaryBackgroundController::class)->group(function(){
+            Route::controller($this->patient . HereditaryBackgroundController::class)->group(function () {
                 Route::post('medical_history/hereditary_background', 'store');
                 Route::get('medical_history/hereditary_background', 'show');
                 Route::put('medical_history/hereditary_background', 'update');
             });
             //Historial de vacunacion
-            Route::controller($this->patient.VaccinationHistoryController::class)->group(function(){
+            Route::controller($this->patient . VaccinationHistoryController::class)->group(function () {
                 Route::post('medical_history/vaccination_history', 'store');
                 Route::get('medical_history/vaccination_history', 'show');
                 Route::put('medical_history/vaccination_history', 'update');
@@ -157,7 +167,7 @@ Route::prefix('v1')->group(function () {
         /* RUTAS ADMINISTRATIVAS */
         Route::prefix('admin')->group(function () {
             //  MÉDICOS
-            Route::controller($this->admin.PhysicianController::class)->group(function() {
+            Route::controller($this->admin . PhysicianController::class)->group(function () {
                 Route::post('/checkphysician', 'check');
             });
             // ROLES (FALTA MOVER A CARPETA ADMIN)
@@ -167,9 +177,9 @@ Route::prefix('v1')->group(function () {
             Route::resource('permissions', PermissionController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
         });
-        Route::post('facilities',[FacilityController::class, 'store']);
-        Route::post('facilities/schedule/{facility}',ScheduleFacilityController::class);
-    }); 
+        Route::post('facilities', [FacilityController::class, 'store']);
+        Route::post('facilities/schedule/{facility}', ScheduleFacilityController::class);
+    });
 
 
     /* BÚSQUEDAS */

@@ -12,7 +12,8 @@ class HealthInsurance extends Model
 
     protected $fillable = [
         'insurance_number',
-        'insurances_id'
+        'insurance_id',
+        'patient_id'
     ];
 
     // RELACIÓN MUCHOS A UNO CON PACIENTE
@@ -25,5 +26,4 @@ class HealthInsurance extends Model
     {
         return $this->belongsTo('App\Models\Insurance');
     }
-
 }

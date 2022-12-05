@@ -28,10 +28,9 @@ class PatientController extends Controller
         $this->middleware('permission:edit patient profile')->only(['update']);
     }
 
-    public function store(Request $request)
+    public function store(PatientRequest $request)
     {
         try {
-            /* if ($this->user->hasRole('NewPatient')) { */
                 DB::beginTransaction();
                 $patient = new Patient();
                 $patient->user_id = $this->user->id;
@@ -53,12 +52,9 @@ class PatientController extends Controller
                 $patient_occupation->patient_id = $patient->id;
                 $patient_occupation->save();
 
-
-
                 DB::commit();
                 return (new PatientResource($patient))->additional(['message' => 'Perfil de paciente creado con éxito.']);
-            /* }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403); */
+            
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
@@ -68,22 +64,16 @@ class PatientController extends Controller
     public function show()
     {
         try {
-            /* if ($this->user->hasPermissionTo('show patient profile')) { */
                 $patient = Patient::where('user_id', $this->user->id)->get();
                 return (PatientResource::collection($patient))->additional(['message' => 'Mi perfil de paciente.']);
-            /* }
-            return response()->json(['message' => 'No puedes realizar esta acción.'], 403); */
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function update(Request $request)
+    public function update(PatientRequest $request)
     {
-
-        /* return response()->json("FUNCIONALIDAD EN CREACIÓN"); */
          try {
-        /*if ($this->user->hasPermissionTo('edit patient profile')) {*/                
                 DB::beginTransaction();
 
                  $patient = Patient::where('user_id',$this->user->id)->first();
@@ -111,8 +101,6 @@ class PatientController extends Controller
 
                  DB::commit();
                  return (new PatientResource($patient))->additional(['message' => 'paciente actualizado con éxito.']);
-             /* }
-             return response()->json(['message' => 'No puedes realizar esta acción.'], 403); */
          } catch (\Throwable $th) {
              DB::rollBack();
              return response()->json(['error' => $th->getMessage()], 503);
