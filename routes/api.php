@@ -126,27 +126,27 @@ Route::prefix('v1')->group(function () {
             // PACIENTE
             //Perfil de paciente - Informacion basica del perfil
             Route::controller($this->patient . PatientController::class)->group(function () {
-                Route::get('/profile/basic_information', 'show');
-                Route::post('/profile/basic_information', 'store');
-                Route::put('/profile/basic_information', 'update');
+                Route::get('profile/basic_information', 'show');
+                Route::post('profile/basic_information', 'store');
+                Route::put('profile/basic_information', 'update');
             });
             //Perfil del paciente - Seguros de gastos medicos
             Route::controller($this->patient . HealthInsuranceController::class)->group(function () {
-                Route::post('/profile/health_insurance_data', 'store');
-                Route::get('/profile/health_insurance_data', 'show');
-                Route::put('/profile/health_insurance_data', 'update');
+                Route::post('profile/health_insurance_data', 'store');
+                Route::get('profile/health_insurance_data', 'show');
+                Route::put('profile/health_insurance_data', 'update');
             });
 
             //Perfil del paciente - Ubicacion(es)
             Route::controller($this->patient . LocationController::class)->group(function () {
-                Route::get('/profile/location', 'show');
-                Route::post('/profile/location', 'store');
-                Route::put('/profile/location', 'update');
+                Route::get('profile/location', 'show');
+                Route::post('profile/location', 'store');
+                Route::put('profile/location', 'update');
             });
             //Perfil del paciente - Identidad
             Route::controller($this->patient . IdentityController::class)->group(function () {
-                Route::get('/profile/identity', 'show');
-                Route::post('/profile/identity', 'store');
+                Route::get('profile/identity', 'show');
+                Route::post('profile/identity', 'store');
             });
 
             /* Historial medico del paciente */
