@@ -12,6 +12,7 @@ return new class() extends Migration
             $table->id();
             $table->string('insurance_number')->unique();
             $table->foreignId('insurance_id')->constrained('insurances')->onDelete('cascade');
+            $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

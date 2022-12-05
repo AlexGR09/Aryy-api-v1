@@ -4,7 +4,7 @@ namespace App\Http\Requests\API\V1\Physician;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EducationalBackgroundRequest extends FormRequest
+class UploadLicenseRequest extends FormRequest
 {
 
     public function authorize()
