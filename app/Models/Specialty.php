@@ -17,7 +17,7 @@ class Specialty extends Model
     // RELACIÓN MUCHOS A MUCHOS CON EL MODELO ESPECIALIDADES
     public function physicians()
     {
-        return $this->belongsToMany('App\Models\Physician', 'physician_specialty');
+        return $this->belongsToMany(\App\Models\Physician::class, 'physician_specialty');
     }
 
     // public function physicians()

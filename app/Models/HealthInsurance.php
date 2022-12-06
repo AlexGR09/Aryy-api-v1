@@ -19,11 +19,11 @@ class HealthInsurance extends Model
     // RELACIÓN MUCHOS A UNO CON PACIENTE
     public function patient()
     {
-        return $this->hasMany('App\Models\Patient');
+        return $this->hasMany(\App\Models\Patient::class);
     }
 
     public function insurance()
     {
-        return $this->belongsTo('App\Models\Insurance');
+        return $this->belongsTo(\App\Models\Insurance::class);
     }
 }

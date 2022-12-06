@@ -17,6 +17,6 @@ class Disease extends Model
     // RELACIÓN MUCHOS A MUCHOS CON EL MODELO ESPECIALIDADES
     public function physicians()
     {
-        return $this->belongsToMany('App\Models\Physician', 'disease_physician');
+        return $this->belongsToMany(\App\Models\Physician::class, 'disease_physician');
     }
 }

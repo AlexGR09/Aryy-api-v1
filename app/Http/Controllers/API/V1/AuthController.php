@@ -45,6 +45,8 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
+        $directory = null;
+        $user_folder = null;
         try {
             DB::beginTransaction();
             $user = User::create([

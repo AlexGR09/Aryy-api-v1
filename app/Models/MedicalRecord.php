@@ -16,6 +16,6 @@ class MedicalRecord extends Model
 
     public function patient()
     {
-        return $this->hasOne('App\Models\Patient');
+        return $this->hasOne(\App\Models\Patient::class);
     }
 }

@@ -16,6 +16,6 @@ class Insurance extends Model
 
     public function health_insurance()
     {
-        return $this->hasOne('App\Models\HealthInsurance');
+        return $this->hasOne(\App\Models\HealthInsurance::class);
     }
 }

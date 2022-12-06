@@ -63,13 +63,13 @@ class FacilityController extends Controller
             DB::beginTransaction();
             $facility = new Facility();
             $facility->facility_name = $request->facility_name;
-            $facility->location = json_encode($request->location);
+            $facility->location = json_encode($request->location, JSON_THROW_ON_ERROR);
             $facility->phone_number = $request->phone_number;
             $facility->zip_code = $request->zip_code;
-            $facility->schedule = json_encode($request->schedule);
+            $facility->schedule = json_encode($request->schedule, JSON_THROW_ON_ERROR);
             $facility->type_schedule = $request->type_schedule;
             $facility->consultation_length = $request->consultation_length;
-            $facility->accessibility_and_others = json_encode($request->accessibility_and_others);
+            $facility->accessibility_and_others = json_encode($request->accessibility_and_others, JSON_THROW_ON_ERROR);
             $facility->clues = $request->clues;
             $facility->city_id = $request->city_id;
             $facility->save();
@@ -91,13 +91,13 @@ class FacilityController extends Controller
             $facility = $this->facilityOfPhysician($id);
 
             $facility->facility_name = $request->facility_name;
-            $facility->location = json_encode($request->location);
+            $facility->location = json_encode($request->location, JSON_THROW_ON_ERROR);
             $facility->phone_number = $request->phone_number;
             $facility->zip_code = $request->zip_code;
-            $facility->schedule = json_encode($request->schedule);
+            $facility->schedule = json_encode($request->schedule, JSON_THROW_ON_ERROR);
             $facility->type_schedule = $request->type_schedule;
             $facility->consultation_length = $request->consultation_length;
-            $facility->accessibility_and_others = json_encode($request->accessibility_and_others);
+            $facility->accessibility_and_others = json_encode($request->accessibility_and_others, JSON_THROW_ON_ERROR);
             $facility->clues = $request->clues;
             $facility->city_id = $request->city_id;
             $facility->save();

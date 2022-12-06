@@ -25,6 +25,7 @@ class EducationalBackgroundController extends Controller
 
     public function uploadLicense(UploadLicenseRequest $request)
     {
+        $fileName = null;
         try {
             // GUARDA LA FOTO DE LA CÉDULA DE LA ESPECIALIDAD EN LA CARPETA CORRESPONDIENTE DEL USUARIO
             $file = $request->file('license_photo');
@@ -98,9 +99,8 @@ class EducationalBackgroundController extends Controller
     {
         try {
             $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
-            $certificates = $physician->certificates;
 
-            return $certificates;
+            return $physician->certificates;
 
             // unset($certificates['dos']);
 

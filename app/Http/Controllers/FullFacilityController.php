@@ -14,7 +14,9 @@ class FullFacilityController extends Controller
             ['id' => optional($facility)->id],
             $request->validated()
         );
-        empty($facility) ? $facilityUpdatedOrCreated->users()->attach(['user_id' => auth()->id()]) : null;
+        if (empty($facility)) {
+            $facilityUpdatedOrCreated->users()->attach(['user_id' => auth()->id()]);
+        }
 
         return new FacilityResource($facilityUpdatedOrCreated);
     }

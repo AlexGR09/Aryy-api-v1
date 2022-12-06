@@ -72,7 +72,7 @@ class MedicalServiceController extends Controller
     public function destroy(MedicalService $medical_service)
     {
         try {
-            $$medical_service->delete();
+            ${$medical_service}->delete();
 
             return response()->json(['message' => 'Servicio medico eliminado con éxito.']);
         } catch (\Throwable $th) {

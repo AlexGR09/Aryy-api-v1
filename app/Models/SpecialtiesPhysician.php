@@ -17,11 +17,11 @@ class SpecialtiesPhysician extends Model
 
     public function physician()
     {
-        return $this->belongsTo('App\Models\Physician');
+        return $this->belongsTo(\App\Models\Physician::class);
     }
 
     public function specialty()
     {
-        return $this->belongsTo('App\Models\Specialty');
+        return $this->belongsTo(\App\Models\Specialty::class);
     }
 }

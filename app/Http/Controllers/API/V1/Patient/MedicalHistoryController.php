@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class MedicalHistoryController extends Controller
 {
+    public ?\Illuminate\Contracts\Auth\Authenticatable $user;
     public function __construct()
     {
         $this->user = auth()->user();
@@ -58,7 +59,7 @@ class MedicalHistoryController extends Controller
             $weight = $basic_information->weight;
             $height = $basic_information->height;
 
-            $basic_information->imc = round((float) $weight->weight / pow((float) $height->height, 2));
+            $basic_information->imc = round((float) $weight->weight / ((float) $height->height) ** 2);
             $basic_information->blood_type = $request->blood_type;
             $basic_information->allergy_patient_id = $allergy_patient->id;
 
@@ -80,13 +81,13 @@ class MedicalHistoryController extends Controller
             $basic_information = MedicalHistory::where('patient_id', $patient->id)->first();
 
             $basic_information->patient_id = $patient->id;
-            $basic_information->weight = json_encode($request->weight);
-            $basic_information->height = json_encode($request->height);
+            $basic_information->weight = json_encode($request->weight, JSON_THROW_ON_ERROR);
+            $basic_information->height = json_encode($request->height, JSON_THROW_ON_ERROR);
 
-            $weight = json_decode($basic_information->weight);
-            $height = json_decode($basic_information->height);
+            $weight = json_decode($basic_information->weight, null, 512, JSON_THROW_ON_ERROR);
+            $height = json_decode($basic_information->height, null, 512, JSON_THROW_ON_ERROR);
 
-            $basic_information->imc = round((float) $weight->weight / pow((float) $height->height, 2));
+            $basic_information->imc = round((float) $weight->weight / ((float) $height->height) ** 2);
             $basic_information->blood_type = $request->blood_type;
             $basic_information->save();
 

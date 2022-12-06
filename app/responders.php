@@ -9,7 +9,8 @@ $arr = [
 
 function getResponse($code, $msg, $data)
 {
-    $arr['status'] = ($code >= 200 && $code <= 399) ? true : false;
+    $arr = [];
+    $arr['status'] = $code >= 200 && $code <= 399;
     $arr['code'] = $code;
     $arr['msg'] = $msg ?? '';
     $arr['data'] = $data ?? [];
@@ -121,6 +122,7 @@ if (! function_exists('server_error')) {
 if (! function_exists('error_validate')) {
     function error_validate($message = 'La informacion enviada es invalida', $errors = [])
     {
+        $arr = [];
         $arr['status'] = false;
         $arr['code'] = 422;
         $arr['msg'] = $message ?? '';

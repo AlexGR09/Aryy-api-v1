@@ -52,16 +52,16 @@ class User extends Authenticatable
 
     public function physician()
     {
-        return $this->hasOne('App\Models\Physician');
+        return $this->hasOne(\App\Models\Physician::class);
     }
 
     public function patient()
     {
-        return $this->hasOne('App\Models\Patient');
+        return $this->hasOne(\App\Models\Patient::class);
     }
 
     public function city()
     {
-        return $this->belongsTo('App\Models\City');
+        return $this->belongsTo(\App\Models\City::class);
     }
 }

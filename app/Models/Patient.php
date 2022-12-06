@@ -24,29 +24,29 @@ class Patient extends Model
     // RELACIÓN UNO UNO CON USUARIO
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(\App\Models\User::class);
     }
 
     // RELACIÓN MUCHOS A UNO CON SEGUROS MÉDICOS
     public function health_insurance()
     {
-        return $this->belongsTo('App\Models\HealthInsurance');
+        return $this->belongsTo(\App\Models\HealthInsurance::class);
     }
 
     // RELACIÓN MUCHOS A UNO CON CIUDADES
     public function city()
     {
-        return $this->belongsTo('App\Models\City');
+        return $this->belongsTo(\App\Models\City::class);
     }
 
     public function medical_history()
     {
-        return $this->belongsTo('App\Models\MedicalHistory');
+        return $this->belongsTo(\App\Models\MedicalHistory::class);
     }
 
     public function occupationpatient()
     {
-        return $this->hasMany('App\Models\OccupationPatient')->with('Occupation');
+        return $this->hasMany(\App\Models\OccupationPatient::class)->with('Occupation');
     }
 
     // public function ocupations()

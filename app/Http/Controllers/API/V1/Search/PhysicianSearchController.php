@@ -21,11 +21,9 @@ class PhysicianSearchController extends Controller
             $search = $request->search;
             $city = $request->city;
             $physicianQuery = Physician::query();
-            $physicianQuery->when(! empty($city), function ($q) use ($city) {
-                return $q->whereHas('facilities.city', function (Builder $query) use ($city) {
-                    $query->where('cities.name', 'LIKE', '%'.$city.'%');
-                });
-            });
+            $physicianQuery->when(! empty($city), fn($q) => $q->whereHas('facilities.city', function (Builder $query) use ($city) {
+                $query->where('cities.name', 'LIKE', '%'.$city.'%');
+            }));
 
             $physicianQuery->select('id', 'professional_name')
             ->where('professional_name', 'LIKE', '%'.$search.'%');
@@ -33,31 +31,25 @@ class PhysicianSearchController extends Controller
             $physician = $physicianQuery->get();
 
             $specialtyQuery = Specialty::query();
-            $specialtyQuery->when(! empty($city), function ($q) use ($city) {
-                return $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
-                    $query->where('name', 'LIKE', '%'.$city.'%');
-                });
-            });
+            $specialtyQuery->when(! empty($city), fn($q) => $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
+                $query->where('name', 'LIKE', '%'.$city.'%');
+            }));
             $specialtyQuery->where('specialties.name', 'LIKE', '%'.$search.'%');
 
             $specialities = $specialtyQuery->get();
 
             $diseaseyQuery = Disease::query();
-            $diseaseyQuery->when(! empty($city), function ($q) use ($city) {
-                return $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
-                    $query->where('name', 'LIKE', '%'.$city.'%');
-                });
-            });
+            $diseaseyQuery->when(! empty($city), fn($q) => $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
+                $query->where('name', 'LIKE', '%'.$city.'%');
+            }));
             $diseaseyQuery->where('diseases.name', 'LIKE', '%'.$search.'%');
 
             $diseases = $diseaseyQuery->get();
 
             $medicalServiceQuery = MedicalService::query();
-            $medicalServiceQuery->when(! empty($city), function ($q) use ($city) {
-                return $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
-                    $query->where('name', 'LIKE', '%'.$city.'%');
-                });
-            });
+            $medicalServiceQuery->when(! empty($city), fn($q) => $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
+                $query->where('name', 'LIKE', '%'.$city.'%');
+            }));
             $medicalServiceQuery->select('id', 'name')
             ->where('name', 'LIKE', '%'.$search.'%');
 

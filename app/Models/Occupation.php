@@ -16,6 +16,6 @@ class Occupation extends Model
 
     public function patients()
     {
-        return $this->hasMany('App\Models\OccupationPatient');
+        return $this->hasMany(\App\Models\OccupationPatient::class);
     }
 }

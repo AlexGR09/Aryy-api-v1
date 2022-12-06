@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\DB;
 
 class NonPathologicalBackgroundController extends Controller
 {
+    /**
+     * @var \Illuminate\Contracts\Auth\Authenticatable|null|mixed
+     */
+    public $user;
     public function __construct()
     {
         $this->user = auth()->user();

@@ -11,7 +11,7 @@ class FacilityMinifiedResource extends JsonResource
         return [
             'facility_id' => $this->id,
             'facility_name' => $this->facility_name,
-            'address' => json_decode($this->location, true)['address'],
+            'address' => json_decode((string) $this->location, true, 512, JSON_THROW_ON_ERROR)['address'],
         ];
     }
 }

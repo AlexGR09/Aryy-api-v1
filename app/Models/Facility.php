@@ -36,7 +36,7 @@ class Facility extends Model
 
     public function physicians()
     {
-        return $this->belongsToMany('App\Models\Physician', 'facility_physician');
+        return $this->belongsToMany(\App\Models\Physician::class, 'facility_physician');
     }
 
     public function users()
@@ -46,6 +46,6 @@ class Facility extends Model
 
     public function city()
     {
-        return $this->belongsTo('App\Models\City');
+        return $this->belongsTo(\App\Models\City::class);
     }
 }
