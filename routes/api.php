@@ -97,18 +97,21 @@ Route::prefix('v1')->group(function () {
             Route::controller($this->physician . EducationalBackgroundController::class)->group(function () {
                 Route::post('/educationalbackground/uploadlicense', 'uploadLicense');
                 Route::post('/educationalbackground/uploadcertificate', 'uploadCertificate');
+                Route::get('/educationalbackground/getcertificate', 'getCertificate');
                 Route::delete('/educationalbackground/deletecertificate', 'deleteCertificate');
-                Route::get('/educationalbackground/getimage', 'getImage');
             });
             // ARCHIVOS DE IDENTIDAD MÉDICA
             Route::controller($this->physician . MedicalIdentityController::class)->group(function () {
                 Route::get('/medicalindentity', 'index');
                 Route::post('/medicalindentity/uploadlogo', 'uploadLogo');
+                Route::get('/medicalindentity/getlogo', 'getLogo');
+                Route::delete('/medicalindentity/deletelogo', 'deleteLogo');
                 Route::post('/medicalindentity/uploadphysicianphoto', 'uploadPhysicianPhoto');
+                Route::get('/medicalindentity/getphysicianphoto', 'getPhysicianPhoto');
+                Route::delete('/medicalindentity/deletephysicianphoto', 'deletePhysicianPhoto');
                 Route::post('/medicalindentity/uploadfacilityphoto', 'uploadFacilityPhoto');
-                Route::delete('/medicalindentity/deleteimage', 'deleteImage');
-
-                Route::get('/medicalindentity/getimage', 'getImage');
+                Route::get('/medicalindentity/getfacilityphoto', 'getFacilityPhoto');
+                Route::delete('/medicalindentity/deletefacilityphoto', 'deleteFacilityPhoto');
             });
            
             // INSTALACIONES DEL MÉDICO
