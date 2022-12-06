@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('type_schedule')->nullable();
             $table->float('consultation_length')->nullable();
             $table->json('accessibility_and_others')->nullable();
-            $table->foreignId('city_id')->constrained('cities');
+            $table->json('coordinates')->nullable();
+            $table->foreignId('city_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
