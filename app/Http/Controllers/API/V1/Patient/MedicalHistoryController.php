@@ -32,7 +32,6 @@ class MedicalHistoryController extends Controller
         try {
             $patient = Patient::where('user_id', $this->user->id)->first();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergypatient')->get();
-
             return (MedicalHistoryResource::collection($medical_history))->additional(['message' => '..']);
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -65,7 +64,7 @@ class MedicalHistoryController extends Controller
 
             $basic_information->save();
             DB::commit();
-            return (new MedicalHistoryResource($basic_information))->additional(['message' => 'Informacion basica guardada con exito.']);
+            return (new BasicInformationResource($basic_information))->additional(['message' => 'Informacion basica guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
@@ -107,7 +106,6 @@ class MedicalHistoryController extends Controller
         try {
             $patient = Patient::where('user_id', $this->user->id)->first();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergypatient')->get();
-
             return (BasicInformationResource::collection($medical_history))->additional(['message' => '..']);
         } catch (\Throwable $th) {
             DB::rollBack();

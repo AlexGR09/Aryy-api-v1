@@ -33,27 +33,27 @@ class MedicalHistory extends Model
 
     public function allergypatient()
     {
-        return $this->hasOne('App\Models\AllergyPatient', 'id');
+        return $this->belongsTo('App\Models\AllergyPatient', 'allergy_patient_id', 'id');
     }
 
     public function pathologicalbackground()
     {
-        return $this->belongsTo('App\Models\PathologicalBackground', 'id');
+        return $this->belongsTo('App\Models\PathologicalBackground', 'pathological_background_id', 'id');
     }
 
     public function nonpathologicalbackground()
     {
-        return $this->belongsTo('App\Models\NonPathologicalBackground', 'id');
+        return $this->belongsTo('App\Models\NonPathologicalBackground', 'non_pathological_background_id', 'id');
     }
 
     public function hereditarybackground()
     {
-        return $this->belongsTo('App\Models\HereditaryBackground', 'id');
+        return $this->belongsTo('App\Models\HereditaryBackground', 'hereditary_background_id', 'id');
     }
 
     public function vaccinationhistory()
     {
-        return $this->belongsTo('App\Models\VaccinationHistory', 'id');
+        return $this->belongsTo('App\Models\VaccinationHistory', 'vaccination_history_id', 'id');
     }
     /**
      * The attributes that should be cast.

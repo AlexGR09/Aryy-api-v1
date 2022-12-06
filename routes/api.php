@@ -129,6 +129,10 @@ Route::prefix('v1')->group(function () {
                 Route::get('profile/basic_information', 'show');
                 Route::post('profile/basic_information', 'store');
                 Route::put('profile/basic_information', 'update');
+
+                Route::get('country','country');
+                Route::get('country_states','country_states');
+                Route::get('cities_states','cities_states');
             });
             //Perfil del paciente - Seguros de gastos medicos
             Route::controller($this->patient . HealthInsuranceController::class)->group(function () {
