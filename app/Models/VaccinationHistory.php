@@ -19,6 +19,6 @@ class VaccinationHistory extends Model
 
     public function medical_history()
     {
-        return $this->hasOne('App\Models\MedicalHistory');
+        return $this->hasOne(\App\Models\MedicalHistory::class);
     }
 }

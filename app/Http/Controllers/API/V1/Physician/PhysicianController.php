@@ -85,6 +85,7 @@ class PhysicianController extends Controller
                 $this->user->syncRoles(['User', 'PhysicianInVerification']);
                 $physician->is_verified = 'in_verification';
             }
+
             // CONSTRUYE UN ARRAY DE ESPECIALIDADES PARA SINCRONIZARLOS CON EL MÉDICO
             $specialties = $this->specialtiesArrayConstructor($request->specialties, $physician->id);
             // SINCRONIZA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVOTE

@@ -109,6 +109,7 @@ class EducationalBackgroundController extends Controller
                 if ($certificate['certificate_photo'] == $request->certificate_filename) {
                     return 'lo encontré en'.$key;
                 }
+
                 // $currentSpecialties += [ $key => $specialty];
             }
 

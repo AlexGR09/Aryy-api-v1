@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 class PathologicalBackgroudController extends Controller
 {
     public ?\Illuminate\Contracts\Auth\Authenticatable $user;
+
     public function __construct()
     {
         $this->user = auth()->user();

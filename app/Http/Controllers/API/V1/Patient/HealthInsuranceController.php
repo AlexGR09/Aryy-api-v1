@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 class HealthInsuranceController extends Controller
 {
     public ?\Illuminate\Contracts\Auth\Authenticatable $user;
+
     public function __construct()
     {
         $this->user = auth()->user();

@@ -31,6 +31,7 @@ class AuthController extends Controller
             if (! $user || ! Hash::check($request->password, $user->password)) {
                 return response()->json(['message' => 'Credenciales no válidas.'], 503);
             }
+
             $token = $user->createToken('authToken')->plainTextToken;
             $user->remember_token = $token;
             $user->save();
@@ -71,6 +72,7 @@ class AuthController extends Controller
                 default:
                     break;
             }
+
             // CREA LA CARPETA CORRESPONDIENTE DEL USUARIO-MÉDICO
             Storage::makeDirectory($directory.$user_folder);
             // GENERA UN TOKEN PARA EL USUARIO Y LO GUARDA EN LA DB
@@ -116,6 +118,7 @@ class AuthController extends Controller
                 $this->user->password = bcrypt($request->password);
                 $this->logout(); // Invocación del método logout
             }
+
             $this->user->save();
             DB::commit();
 

@@ -51,6 +51,7 @@ class SpecialtyController extends Controller
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
+
         /* $specialty = Specialty::create([
             'name' => $request->name,
         ]);

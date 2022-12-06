@@ -57,6 +57,7 @@ class DiseaseController extends Controller
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
+
         /* $disease = Disease::create([
             'name' => $request->name,
         ]);
