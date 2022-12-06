@@ -13,7 +13,7 @@ class HealthInsurance extends Model
     protected $fillable = [
         'insurance_number',
         'insurance_id',
-        'patient_id'
+        'patient_id',
     ];
 
     // RELACIÓN MUCHOS A UNO CON PACIENTE

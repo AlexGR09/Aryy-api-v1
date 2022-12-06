@@ -9,5 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class AccessibilityFacility extends Model
 {
     use HasFactory, SoftDeletes;
+
     protected $table = 'accessibility_facility';
 }

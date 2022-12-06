@@ -5,9 +5,7 @@ namespace App\Http\Controllers\API\V1\Catalogues;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Catalogues\SpecialtyRequest;
 use App\Http\Resources\API\V1\Catalogues\SpecialtyResource;
-use App\Models\Disease;
 use App\Models\Specialty;
-use Illuminate\Http\Request;
 
 class SpecialtyController extends Controller
 {
@@ -18,15 +16,16 @@ class SpecialtyController extends Controller
             'show',
         ]);
         $this->middleware('permission:create specialties')->only([
-            'store'
+            'store',
         ]);
         $this->middleware('permission:edit specialties')->only([
-            'update'
+            'update',
         ]);
         $this->middleware('permission:delete specialties')->only([
-            'destroy'
+            'destroy',
         ]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,17 +35,18 @@ class SpecialtyController extends Controller
     {
         try {
             $specialties = Specialty::paginate(5);
-            return (SpecialtyResource::collection($specialties))->additional(['message' => 'Estados encontrados.']);
+
+            return SpecialtyResource::collection($specialties)->additional(['message' => 'Estados encontrados.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-
     public function store(SpecialtyRequest $request)
     {
         try {
             $state = Specialty::create(['name' => $request->name]);
+
             return (new SpecialtyResource($state))->additional(['message' => 'Especialidad creada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -84,6 +84,7 @@ class SpecialtyController extends Controller
         try {
             $specialty->name = $request->name;
             $specialty->save();
+
             return (new SpecialtyResource($specialty))->additional(['message' => 'Especialidad actualizada exitosamente.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -100,6 +101,7 @@ class SpecialtyController extends Controller
     {
         try {
             $specialty->delete();
+
             return (new SpecialtyResource($specialty))->additional(['message' => 'La especialidad se eliminó de forma exitosa']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

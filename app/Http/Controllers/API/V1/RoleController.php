@@ -16,16 +16,16 @@ class RoleController extends Controller
     {
         $this->middleware('permission:show roles')->only([
             'index',
-            'show'        
+            'show',
         ]);
         $this->middleware('permission:create roles')->only([
             'store',
         ]);
         $this->middleware('permission:edit roles')->only([
-            'update'
+            'update',
         ]);
         $this->middleware('permission:delete roles')->only([
-            'destroy'
+            'destroy',
         ]);
     }
 
@@ -33,7 +33,8 @@ class RoleController extends Controller
     {
         try {
             $roles = Role::with('permissions')->paginate(5);
-            return (RoleResource::collection($roles))->additional(['message' => 'Rol encontrado.']);
+
+            return RoleResource::collection($roles)->additional(['message' => 'Rol encontrado.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -57,9 +58,11 @@ class RoleController extends Controller
                 $role->givePermissionTo($request->permissions);
             }
             DB::commit();
+
             return (new RoleResource($role))->additional(['message' => 'Rol creado con éxito']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -74,9 +77,11 @@ class RoleController extends Controller
                 $role->syncPermissions($request->permissions);
             }
             DB::commit();
+
             return (new RoleResource($role))->additional(['message' => 'Rol actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -85,6 +90,7 @@ class RoleController extends Controller
     {
         try {
             $role->delete();
+
             return (new RoleResource($role))->additional(['message' => 'Rol eliminado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

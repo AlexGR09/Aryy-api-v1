@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Catalogues\DiseaseRequest;
 use App\Http\Resources\API\V1\Catalogues\DiseaseResource;
 use App\Models\Disease;
-use Illuminate\Http\Request;
 
 class DiseaseController extends Controller
 {
@@ -14,18 +13,19 @@ class DiseaseController extends Controller
     {
         $this->middleware('permission:show diseases')->only([
             'index',
-            'show', 
+            'show',
         ]);
         $this->middleware('permission:create diseases')->only([
-            'store'
+            'store',
         ]);
         $this->middleware('permission:edit diseases')->only([
-            'update'
+            'update',
         ]);
         $this->middleware('permission:delete diseases')->only([
-            'destroy'
+            'destroy',
         ]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +35,8 @@ class DiseaseController extends Controller
     {
         try {
             $diseases = Disease::paginate(5);
-            return (DiseaseResource::collection($diseases))->additional(['message' => 'Enfermedades existentes']);
+
+            return DiseaseResource::collection($diseases)->additional(['message' => 'Enfermedades existentes']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -49,9 +50,9 @@ class DiseaseController extends Controller
      */
     public function store(DiseaseRequest $request)
     {
-
         try {
             $disease = Disease::create(['name' => $request->name]);
+
             return (new DiseaseResource($disease))->additional(['message' => 'Enfermedad creada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -90,6 +91,7 @@ class DiseaseController extends Controller
             $disease->name = $request->name;
             $disease->country_id = $request->country_id;
             $disease->save();
+
             return (new DiseaseResource($disease))->additional(['message' => 'Enfermedad actualizada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -106,6 +108,7 @@ class DiseaseController extends Controller
     {
         try {
             $disease->delete();
+
             return (new DiseaseResource($disease))->additional(['message' => 'Enfermedad eliminada exitosamente.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

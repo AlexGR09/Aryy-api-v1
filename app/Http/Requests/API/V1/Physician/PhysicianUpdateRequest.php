@@ -8,7 +8,6 @@ use Illuminate\Validation\Rule;
 
 class PhysicianUpdateRequest extends FormRequest
 {
-
     public function authorize()
     {
         return auth()->check();
@@ -29,7 +28,7 @@ class PhysicianUpdateRequest extends FormRequest
             'social_networks.*' => 'url',
             'specialties' => 'required|array',
             'specialties.*.specialty_id' => 'required|numeric',
-            'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty')->whereNot('physician_id', $physician_id),
+            'specialties.*.license' => 'required|distinct|'.Rule::unique('physician_specialty')->whereNot('physician_id', $physician_id),
             'specialties.*.institution' => 'required',
             // 'social_networks.*' => 'required'
             // 'certificates.*.filename' => 'required',
@@ -50,5 +49,4 @@ class PhysicianUpdateRequest extends FormRequest
             // 'certificates.*.filename' => 'nombre del archivo certificado',
         ];
     }
-
 }

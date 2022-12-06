@@ -30,9 +30,11 @@ class PhysicianController extends Controller
             $user = User::where('id', $physician->user_id)->first();
             $user->syncRoles(['User', 'Physician']);
             DB::commit();
+
             return response()->json(['message' => 'Médico verificado con éxito.'], 200);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

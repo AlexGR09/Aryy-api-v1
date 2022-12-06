@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -23,7 +22,7 @@ class MedicalHistory extends Model
         'allergi_patient_id',
         'pathological_backgorund_id',
         'hereditary_background_id',
-        'vaccination_history_id'
+        'vaccination_history_id',
     ];
 
     public function patient()
@@ -55,6 +54,7 @@ class MedicalHistory extends Model
     {
         return $this->belongsTo('App\Models\VaccinationHistory', 'id');
     }
+
     /**
      * The attributes that should be cast.
      *

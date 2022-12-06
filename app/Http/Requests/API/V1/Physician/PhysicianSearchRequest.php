@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PhysicianSearchRequest extends FormRequest
 {
-    
     public function authorize()
     {
         return true;
@@ -16,7 +15,7 @@ class PhysicianSearchRequest extends FormRequest
     {
         return [
             'search' => 'nullable|string',
-            'city' => 'nullable'
+            'city' => 'nullable',
         ];
     }
 
@@ -24,7 +23,7 @@ class PhysicianSearchRequest extends FormRequest
     {
         return [
             'search' => 'valor de la búsqueda',
-            'city' => 'el ID de la ciudad'
+            'city' => 'el ID de la ciudad',
         ];
     }
 }

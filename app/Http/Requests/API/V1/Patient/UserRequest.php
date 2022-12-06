@@ -24,7 +24,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'full_name'=>'string',
+            'full_name' => 'string',
             'gender' => 'string',
         ];
     }

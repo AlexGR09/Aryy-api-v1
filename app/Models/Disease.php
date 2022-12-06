@@ -11,7 +11,7 @@ class Disease extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 
     // RELACIÓN MUCHOS A MUCHOS CON EL MODELO ESPECIALIDADES

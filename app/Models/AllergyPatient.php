@@ -13,7 +13,7 @@ class AllergyPatient extends Model
     protected $fillable = [
         'food_allergy',
         'drug_allergy',
-        'environmental_allergy'
+        'environmental_allergy',
     ];
 
     public function medical_history()

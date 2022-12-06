@@ -11,7 +11,7 @@ class SpecialtiesPhysician extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'license'=>'unique',
+        'license' => 'unique',
         'institution',
     ];
 

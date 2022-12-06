@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -13,7 +12,7 @@ class AllergiesSeeder extends Seeder
         DB::table('allergies')->insert([
             ['name' => 'Alimentaria'],
             ['name' => 'Fármacos'],
-            ['name' => 'Factores ambientales']
+            ['name' => 'Factores ambientales'],
         ]);
     }
 }

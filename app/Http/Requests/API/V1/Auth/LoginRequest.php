@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
 {
-    
     public function authorize()
     {
         return true;
@@ -16,8 +15,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => 'required|email|max:35',
-            'password' => 'required|min:8|max:16'
+            'password' => 'required|min:8|max:16',
         ];
     }
-    
 }

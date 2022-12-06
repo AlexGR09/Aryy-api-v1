@@ -27,7 +27,7 @@ class VaccinationHistoryRequest extends FormRequest
             'vaccine' => 'string',
             'dose' => 'string',
             'lot_number' => 'string',
-            /*'application_date' => 'date'*/      
+            /*'application_date' => 'date'*/
         ];
     }
 }

@@ -17,7 +17,7 @@ class PhysicianSpecialty extends Model
         'specialty_id',
         'physician_id',
         'license',
-        'institution'
+        'institution',
     ];
 
     protected $hidden = [
@@ -38,5 +38,4 @@ class PhysicianSpecialty extends Model
     {
         return $this->belongsToMany('App\Models\Specialty')->withPivot('specialty_id');
     }
-    
 }

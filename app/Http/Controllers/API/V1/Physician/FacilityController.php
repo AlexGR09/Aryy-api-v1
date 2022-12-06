@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\DB;
 
 class FacilityController extends Controller
 {
-    protected $user, $physician;
+    protected $user;
+
+    protected $physician;
 
     public function __construct()
     {
@@ -38,7 +40,7 @@ class FacilityController extends Controller
     public function index()
     {
         try {
-            return (FacilityMinifiedResource::collection($this->physician->facilities));
+            return FacilityMinifiedResource::collection($this->physician->facilities);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -48,6 +50,7 @@ class FacilityController extends Controller
     {
         try {
             $facility = $this->facilityOfPhysician($id);
+
             return (new FacilityResource($facility))->additional(['message' => 'Instalación encontrada.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -73,9 +76,11 @@ class FacilityController extends Controller
             // RELACIÓN CON LA TABLA PIVOTE FACILITY_PHYSICIAN
             $this->physician->facilities()->attach($facility->id);
             DB::commit();
+
             return (new FacilityResource($facility))->additional(['message' => 'Instalación creada con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -83,7 +88,6 @@ class FacilityController extends Controller
     public function update(FacilityRequest $request, $id)
     {
         try {
-
             $facility = $this->facilityOfPhysician($id);
 
             $facility->facility_name = $request->facility_name;
@@ -104,13 +108,13 @@ class FacilityController extends Controller
         }
     }
 
-    public  function destroy($id)
+    public function destroy($id)
     {
         try {
+            $facility = $this->facilityOfPhysician($id);
+            $facility->delete();
 
-                $facility = $this->facilityOfPhysician($id);
-                $facility->delete();
-                return (new FacilityResource($facility))->additional(['message' => 'Instalación eliminada con éxito.']);
+            return (new FacilityResource($facility))->additional(['message' => 'Instalación eliminada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

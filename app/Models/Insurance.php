@@ -11,7 +11,7 @@ class Insurance extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 
     public function health_insurance()

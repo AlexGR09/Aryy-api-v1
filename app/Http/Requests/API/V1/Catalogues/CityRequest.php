@@ -15,7 +15,7 @@ class CityRequest extends FormRequest
     {
         return [
             'name' => 'required|max:32',
-            'state_id' => 'required'
+            'state_id' => 'required',
         ];
     }
 }

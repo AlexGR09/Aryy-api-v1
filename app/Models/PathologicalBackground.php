@@ -23,7 +23,7 @@ class PathologicalBackground extends Model
         'trauma',
         'respiratory_diseases',
         'ets',
-        'gastrointestinal_pathologies'
+        'gastrointestinal_pathologies',
     ];
 
     public function medical_history()

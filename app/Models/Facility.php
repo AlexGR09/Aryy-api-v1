@@ -22,6 +22,7 @@ class Facility extends Model
         'accessibility_and_others',
         'city_id',
     ];
+
     /**
      * The attributes that should be cast.
      *
@@ -30,12 +31,14 @@ class Facility extends Model
     protected $casts = [
         'location' => 'object',
         'schedule' => 'object',
-        'accessibility_and_others' => 'object'
+        'accessibility_and_others' => 'object',
     ];
+
     public function physicians()
     {
         return $this->belongsToMany('App\Models\Physician', 'facility_physician');
     }
+
     public function users()
     {
         return $this->belongsToMany(User::class);

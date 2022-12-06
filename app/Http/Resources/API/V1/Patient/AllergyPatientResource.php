@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\API\V1\Patient;
 
-
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AllergyPatientResource extends JsonResource

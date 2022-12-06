@@ -24,7 +24,7 @@ class OccupationRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ($this->getMethod() == 'POST') ? 'required' : 'required,name,'
+            'name' => ($this->getMethod() == 'POST') ? 'required' : 'required,name,',
         ];
     }
 }

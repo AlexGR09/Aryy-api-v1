@@ -20,7 +20,7 @@ class BasicInformationResource extends JsonResource
             'imc' => $this->imc,
             'blood_type' => $this->blood_type,
             'allergy_patient_id' => $this->allergy_patient_id,
-            'allergypatient' => new AllergyPatientResource($this->allergypatient)
+            'allergypatient' => new AllergyPatientResource($this->allergypatient),
         ];
     }
 }

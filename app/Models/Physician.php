@@ -17,12 +17,12 @@ class Physician extends Model
         'social_networks',
         'biography',
         'recipe_template',
-        'is_verified'
+        'is_verified',
     ];
 
     protected $casts = [
         'social_networks' => 'array',
-        'certificates' => 'array'
+        'certificates' => 'array',
     ];
 
     // RELACIÓN UNO UNO CON EL MODELO USUARIO
@@ -30,16 +30,19 @@ class Physician extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
     // RELACIÓN MUCHOS A MUCHOS CON EL MODELO ESPECIALIDADES
-    public function specialties() {
+    public function specialties()
+    {
         return $this->belongsToMany('App\Models\Specialty', 'physician_specialty');
     }
+
     //RELACIÓN MUCHOS A MUCHOS CON EL MODELO MÉDICO-ESPECIALIDADES
     public function physician_specialty()
     {
         return $this->hasMany('App\Models\PhysicianSpecialty');
     }
-    
+
     // public function diseases()
     // {
     //     return $this->hasMany('App\Models\DiseasesPhysician');
@@ -54,5 +57,4 @@ class Physician extends Model
     {
         return $this->belongsToMany('App\Models\Facility', 'facility_physician');
     }
-
 }

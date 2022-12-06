@@ -12,13 +12,13 @@ return new class extends Migration
             $table->id();
             $table->string('name')->index();
             $table->json('location');
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->string('extension')->nullable();
             $table->string('zipcode');
-            $table->json('schedule');
-            $table->string('type_schedule');
-            $table->float('consultation_length');
-            $table->json('accessibility_and_others');
+            $table->json('schedule')->nullable();
+            $table->string('type_schedule')->nullable();
+            $table->float('consultation_length')->nullable();
+            $table->json('accessibility_and_others')->nullable();
             $table->foreignId('city_id')->constrained('cities');
             $table->timestamps();
             $table->softDeletes();

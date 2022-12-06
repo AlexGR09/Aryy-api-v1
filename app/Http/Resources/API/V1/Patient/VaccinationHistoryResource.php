@@ -18,7 +18,7 @@ class VaccinationHistoryResource extends JsonResource
             'vaccine' => $this->vaccine,
             'dose' => $this->dose,
             'lot_number' => $this->lot_number,
-            'application_date' => $this->application_date
+            'application_date' => $this->application_date,
         ];
     }
 }

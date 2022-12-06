@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class FacilityRequest extends FormRequest
 {
-
     public function authorize()
     {
         return auth()->check();
@@ -17,7 +16,7 @@ class FacilityRequest extends FormRequest
         return [
             'facility_name' => 'required|max:100',
             'location' => 'required|array',
-            'phone_number' => ($this->getMethod() == 'POST') ? 'min:10|regex:/^([0-9\s\-\+\(\)]*)$/|unique:facilities' : 
+            'phone_number' => ($this->getMethod() == 'POST') ? 'min:10|regex:/^([0-9\s\-\+\(\)]*)$/|unique:facilities' :
                 'min:10|regex:/^([0-9\s\-\+\(\)]*)$/|unique:facilities,phone_number,'.$this->id,
             'zip_code' => 'required|digits:5',
             'schedule' => 'array',
@@ -34,7 +33,7 @@ class FacilityRequest extends FormRequest
             'schedule.*.attention_time' => 'required|max:200',
             'accessibility_and_others.accessibility.*' => 'boolean',
             'accessibility_and_others.usual_audiences.*' => 'boolean',
-            'accessibility_and_others.services.*' => 'boolean'
+            'accessibility_and_others.services.*' => 'boolean',
         ];
     }
 
@@ -53,7 +52,7 @@ class FacilityRequest extends FormRequest
             'location.number_int' => 'número interior',
             'location.number_ext' => 'número exterior',
             'schedule.*.day' => 'día en el conjunto horario',
-            'schedule.*.attention_time' => 'horario de atención en el conjunto horario'
+            'schedule.*.attention_time' => 'horario de atención en el conjunto horario',
         ];
     }
 }

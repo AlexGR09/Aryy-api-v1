@@ -28,6 +28,7 @@ class SearchController extends Controller
             if (empty($specialties) == true && empty($physicians) == true) {
                 return response()->json(['message' => 'Sin resultados para esta búsqueda.']);
             }
+
             return response()->json($data);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -39,6 +40,7 @@ class SearchController extends Controller
         $currentPage = 1;
         $perPage = 10;
         $currentElements = array_slice($array, $perPage * ($currentPage - 1), $perPage);
+
         return new LengthAwarePaginator($currentElements, count($array), $perPage, $currentPage, ['path' => $request->url()]);
     }
 }
