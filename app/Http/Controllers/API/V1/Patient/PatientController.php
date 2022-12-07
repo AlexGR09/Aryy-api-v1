@@ -79,7 +79,7 @@ class PatientController extends Controller
         try {
             DB::beginTransaction();
 
-            $patient = Patient::where('user_id', $this->user->id)->first();    
+            $patient = Patient::where('user_id', $this->user->id)->first();
             $patient->emergency_number = $request->emergency_number;
             $patient->city_id = $request->city_id;
             $patient->country_code = $request->country_code;
@@ -105,7 +105,21 @@ class PatientController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
+    public function destroy_occupation()
+    {
+        try {
+            $patient = Patient::where('user_id', $this->user->id)->first();
+            $patient_occupation = OccupationPatient::where('patient_id', $patient->id)->first();
 
+            $patient_occupation->occupation_id = 1;
+            $patient_occupation->save();
+            return $patient_occupation;
+            //return (new LocationResource($patient))->additional(['message' => 'Informacion basica guardada con exito.']);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 500);
+        }
+    }
     public function country(Request $request)
     {
         try {
@@ -126,7 +140,8 @@ class PatientController extends Controller
         }
     }
 
-    public function cities_states(Request $request){
+    public function cities_states(Request $request)
+    {
         try {
             return (CityResource::collection(City::orderBy('name')
                 ->where('state_id', $request->state_id)->get()))

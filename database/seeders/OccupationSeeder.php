@@ -13,6 +13,9 @@ class OccupationSeeder extends Seeder
     {
         DB::table('occupations')->insert([
             [
+                'name' => ' '
+            ],
+            [
                 'name' => 'Abogado'
             ],
             [

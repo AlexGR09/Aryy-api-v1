@@ -129,6 +129,7 @@ Route::prefix('v1')->group(function () {
                 Route::get('profile/basic_information', 'show');
                 Route::post('profile/basic_information', 'store');
                 Route::put('profile/basic_information', 'update');
+                Route::delete('profile/basic_information', 'destroy_occupation');
 
                 Route::get('country','country');
                 Route::get('country_states','country_states');
@@ -139,6 +140,7 @@ Route::prefix('v1')->group(function () {
                 Route::post('profile/health_insurance_data', 'store');
                 Route::get('profile/health_insurance_data', 'show');
                 Route::put('profile/health_insurance_data', 'update');
+                Route::delete('profile/health_insurance_data', 'destroy');
             });
 
             //Perfil del paciente - Ubicacion(es)
@@ -146,11 +148,13 @@ Route::prefix('v1')->group(function () {
                 Route::get('profile/location', 'show');
                 Route::post('profile/location', 'store');
                 Route::put('profile/location', 'update');
+                Route::delete('profile/location', 'destroy');
             });
             //Perfil del paciente - Identidad
             Route::controller($this->patient . IdentityController::class)->group(function () {
                 Route::get('profile/identity', 'show');
                 Route::post('profile/identity', 'store');
+                Route::delete('profile/identity', 'destroy');
             });
 
             /* Historial medico del paciente */

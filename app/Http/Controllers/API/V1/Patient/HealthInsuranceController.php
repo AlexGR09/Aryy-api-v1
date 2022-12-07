@@ -71,8 +71,18 @@ class HealthInsuranceController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        try {
+            $patient = Patient::where('user_id', $this->user->id)->first();
+            $health_insurance = HealthInsurance::where('patient_id', $patient->id)->first();
+            $health_insurance->delete();
+
+            return (new HealthInsuranceResource($health_insurance))->additional(['message' => 'Informacion eliminada con exito.']);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 }
+

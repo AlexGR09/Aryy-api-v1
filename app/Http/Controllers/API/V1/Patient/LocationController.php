@@ -74,8 +74,21 @@ class LocationController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        try {
+            $patient = Patient::where('user_id', $this->user->id)->first();
+
+            DB::beginTransaction();
+            $patient->address = null;
+            $patient->zip_code = null;
+            $patient->save();
+
+            DB::commit();
+            return (new LocationResource($patient))->additional(['message' => 'Informacion basica guardada con exito.']);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 500);
+        }
     }
 }
