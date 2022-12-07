@@ -94,33 +94,42 @@ class EducationalBackgroundController extends Controller
         }
     }
 
-    public function deleteCertificate(Request $request)
+    public function getCertificate(Request $request)
     {
         try {
-            $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
-       
-            //  FORMATEA LOS CERTIFICADOS DEL JSON, REMUEVE EL ELEMENTO DEL CERTIFICADO A ELIMINAR
-            $currentCertificates = $this->certificatesFormat($physician->certificates, $request->certificate_path);
+            $path = $this->user->user_folder.$request->photo;
+            $image = Storage::get($path);
 
-            // ELIMINA EL ARCHIVO DEL CERTIFICADO
-            Storage::delete($this->user->user_folder.$request->certificate_path);
-
-            $physician->certificates = $currentCertificates;
-            $physician->save();
-
-            return response()->json(['message' => 'Imagen de certificado eliminada correctamente.']);
+            if ($image) {
+                return response($image, 200)->header('Content-Type', Storage::mimeType($path));
+            }
+            return response()->json(['message' => 'La foto del certificado no existe.'], 404);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function getImage(Request $request)
+    public function deleteCertificate(Request $request)
     {
         try {
-            $path = $this->user->user_folder.$request->photo_path;
+            $path = $this->user->user_folder.$request->photo;
             $image = Storage::get($path);
 
-            return response($image, 200)->header('Content-Type', Storage::mimeType($path));
+            if ($image) {
+                $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
+       
+                //  FORMATEA LOS CERTIFICADOS DEL JSON, REMUEVE EL ELEMENTO DEL CERTIFICADO A ELIMINAR
+                $currentCertificates = $this->certificatesFormat($physician->certificates, $request->photo);
+
+                // ELIMINA LA IMAGEN DEL CERTIFICADO
+                Storage::delete($path);
+
+                $physician->certificates = $currentCertificates;
+                $physician->save();
+
+                return response()->json(['message' => 'Foto del certificado eliminada correctamente.']);
+            }
+            return response()->json(['message' => 'La foto del certificado no existe.'], 404);   
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
