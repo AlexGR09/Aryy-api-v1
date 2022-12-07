@@ -18,6 +18,7 @@ return new class() extends Migration
             $table->string('recipe_template')->nullable();
             $table->string('first_time_consultation')->nullable();
             $table->string('subsequent_consultation')->nullable();
+            $table->string('languages')->nullable();
             $table->enum('is_verified', ['not_verified', 'in_verification', 'verified'])->default('not_verified');
             $table->timestamps();
             $table->softDeletes();

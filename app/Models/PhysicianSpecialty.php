@@ -28,7 +28,7 @@ class PhysicianSpecialty extends Model
         'deleted_at',
     ];
 
-    // RELACIONES DE ESTA TABLA PIVOT (M:N) PRUEBAS
+    // RELACIONES DE ESTA TABLA PIVOT (M:N) 
     public function physicians()
     {
         return $this->belongsToMany('App\Models\Physician')->withPivot('physician_id');

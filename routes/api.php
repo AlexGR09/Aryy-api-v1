@@ -113,6 +113,10 @@ Route::prefix('v1')->group(function () {
                 Route::get('/medicalindentity/getfacilityphoto', 'getFacilityPhoto');
                 Route::delete('/medicalindentity/deletefacilityphoto', 'deleteFacilityPhoto');
             });
+            // SERVICIOS DEL MÉDICO
+            Route::controller($this->physician . MedicalServiceController::class)->group(function () {
+                Route::put('/medicalservice', 'update');
+            });
            
             // INSTALACIONES DEL MÉDICO
             // Route::controller($this->physician.FacilityController::class)->group(function() {

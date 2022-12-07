@@ -17,6 +17,7 @@ return new class() extends Migration
             $table->id();
             $table->foreignId('medical_service_id')->constrained('medical_services')->onDelete('cascade');
             $table->foreignId('physician_id')->constrained('physicians')->onDelete('cascade');
+            $table->string('price');
             $table->timestamps();
             $table->softDeletes();
         });
