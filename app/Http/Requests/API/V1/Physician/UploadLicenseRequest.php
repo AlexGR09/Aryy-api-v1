@@ -16,7 +16,7 @@ class UploadLicenseRequest extends FormRequest
     {
         return [
             'license' => 'required|string|max:200|exists:physician_specialty',
-            'license_photo' => 'required|image|mimes:jpg,png|max:2000|dimensions:max_width=1024,max_height=1024',
+            'license_photo' => 'required|image|mimes:jpg,png|max:2000',
         ];
     }
 

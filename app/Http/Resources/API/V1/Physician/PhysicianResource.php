@@ -16,9 +16,12 @@ class PhysicianResource extends JsonResource
             'certificates' => $this->certificates,
             'social_networks' => $this->social_networks,
             'biography' => $this->biography,
-            'recipe_template' => $this->recipe_template,
+            'first_time_consultation' => $this->first_time_consultation,
+            'subsequent_consultation' => $this->subsequent_consultation,
+            'languages' => $this->languages,
             'is_verified' => $this->is_verified,
             'physician_specialties' => PhysicianSpecialtyResource::collection($this->physician_specialty),
+            // 'recipe_template' => $this->recipe_template,
             // 'user' => new UserResource($this->user),
         ];
     }

@@ -39,17 +39,24 @@ class Physician extends Model
     {
         return $this->hasMany('App\Models\PhysicianSpecialty');
     }
+    // RELACIÓN MUCHOS A MUCHOS CON EL MODELO MEDICAL SERVICES
+    public function medical_services()
+    {
+        return $this->belongsToMany('App\Models\MedicalService', 'medical_service_physician');
+    }
+    //RELACIÓN MUCHOS A MUCHOS CON EL MODELO MÉDICO-SERVICIOS
+    public function medical_service_physician()
+    {
+        return $this->hasMany('App\Models\MedicalServicePhysician');
+    }
+
     
     // public function diseases()
     // {
     //     return $this->hasMany('App\Models\DiseasesPhysician');
     // }
 
-    // public function medical_services()
-    // {
-    //     return $this->hasMany('App\Models\MedicalServicesPhysician');
-    // }
-
+    
     public function facilities()
     {
         return $this->belongsToMany('App\Models\Facility', 'facility_physician');
