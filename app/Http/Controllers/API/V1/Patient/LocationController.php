@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\V1\Patient\LocationRequest;
 use App\Http\Resources\API\V1\Patient\LocationResource;
 use App\Models\Patient;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ class LocationController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(LocationRequest $request)
     {
         try {
             $patient = Patient::where('user_id', $this->user->id)->first();
@@ -55,7 +56,7 @@ class LocationController extends Controller
         }
     }
 
-    public function update(Request $request)
+    public function update(LocationRequest $request)
     {
         try {
             $patient = Patient::where('user_id', $this->user->id)->first();
@@ -69,7 +70,7 @@ class LocationController extends Controller
             return (new LocationResource($patient))->additional(['message' => 'Informacion basica guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return response()->json(['error' => $th->getMessage()], 503);
+            return response()->json(['error' => $th->getMessage()], 500);
         }
     }
 

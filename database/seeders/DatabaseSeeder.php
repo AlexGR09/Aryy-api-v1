@@ -39,5 +39,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MedicalHistorySeeder::class);
         $this->call(HealthInsuranceSeeder::class);
         $this->call(OcupationPatientSeeder::class);
+        $this->call(LanguageSeeder::class);
     }
 }

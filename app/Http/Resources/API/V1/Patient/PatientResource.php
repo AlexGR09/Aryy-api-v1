@@ -15,16 +15,12 @@ class PatientResource extends JsonResource
         return [
             'patient_id'=>$this->id,
             'emergency_number' => $this->emergency_number,
-            'id_card' => $this->id_card,
+            /* 'id_card' => $this->id_card,
             'address' => $this->address,
-            'zip_code' => $this->zip_code,
+            'zip_code' => $this->zip_code, */
             'city_id' => $this->city_id,
             'code_country' => $this->country_code,
             'city' => new CityResource($this->city),
-            /* 'health_insurance_id' => $this->health_insurance_id,
-            'health_insurance' => new HealthInsuranceResource($this->health_insurance),
-            'medical_history_id' => $this->medical_history_id,
-            'medical_record_id' => $this->medical_record_id, */
             'user_id' => $this->user_id,
             'user' => new UserResource($this->user),
             'occupation_patient'=> $this->occupationpatient,

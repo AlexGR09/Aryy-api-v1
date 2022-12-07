@@ -13,7 +13,7 @@ class LocationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -26,7 +26,8 @@ class LocationRequest extends FormRequest
         return [
             'address' => 'required|max:255',
             'zip_code' => 'required|digits:5',
-            'address.street' => 'required|max:255'
+            'address.street' => 'required|max:255',
+            'address.colonia' =>'required|max:255',
         ];
     }
 }

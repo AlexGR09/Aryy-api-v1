@@ -16,6 +16,9 @@ class PatientRequest extends FormRequest
     public function rules()
     {
         return [
+            'full_name'=>'required',
+            'gender'=>'required',
+            'birthday'=>'required|date',
 /*             'address' => 'required|max:255',
             'zip_code' => 'required|digits:5', */
             'emergency_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|'/* .  Rule::unique('patients') */,

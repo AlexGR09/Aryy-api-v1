@@ -48,6 +48,7 @@ class IdentityController extends Controller
         try {
             // GUARDA LA FOTO DE LA CÉDULA DE LA ESPECIALIDAD EN LA CARPETA CORRESPONDIENTE DEL USUARIO
             $patient = Patient::where('user_id', $this->user->id)->firstOrFail();
+           
             return (new IdentityResource($patient))->additional(['message' => 'Imagen guardada con exito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -56,21 +57,7 @@ class IdentityController extends Controller
 
     public function update(Request $request)
     {
-        /* try {
-            // GUARDA LA FOTO DE LA CÉDULA DE LA ESPECIALIDAD EN LA CARPETA CORRESPONDIENTE DEL USUARIO
-            $file = $request->file('id_card');
-            return $file;
-            $fileName = $file->getClientOriginalName();
-            $file->storeAs($this->user->user_folder . '//identity//', $fileName);
-            $patient = Patient::where('user_id', $this->user->id)->firstOrFail();
-            $patient->id_card = '//identity//'. $fileName;
-            $patient->save();
-
-            return (new IdentityResource($patient))->additional(['message' => 'Imagen guardada con exito.']);
-        } catch (\Throwable $th) {
-            Storage::delete($this->user->user_folder . '//identity//' . $fileName);
-            return response()->json(['error' => $th->getMessage()], 503);
-        } */
+        //
     }
 
     public function destroy($id)
