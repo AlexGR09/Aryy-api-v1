@@ -46,10 +46,11 @@ class IdentityController extends Controller
     public function show()
     {
         try {
-            // GUARDA LA FOTO DE LA CÉDULA DE LA ESPECIALIDAD EN LA CARPETA CORRESPONDIENTE DEL USUARIO
-            $patient = Patient::where('user_id', $this->user->id)->firstOrFail();
+           $patient = Patient::where('user_id', $this->user->id)->first();
+           $path = $this->user->user_folder.$patient->id_card;
            
-            return (new IdentityResource($patient))->additional(['message' => 'Imagen guardada con exito.']);
+            $image = Storage::get($path);
+            return response($image, 200)->header('Content-Type', Storage::mimeType($path));
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
