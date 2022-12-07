@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\DB;
 
 class FacilityController extends Controller
 {
-    protected $user, $physician;
+    protected $user;
+
+    protected $physician;
 
     public function __construct()
     {
@@ -38,7 +40,7 @@ class FacilityController extends Controller
     public function index()
     {
         try {
-            return (FacilityMinifiedResource::collection($this->physician->facilities));
+            return FacilityMinifiedResource::collection($this->physician->facilities);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -48,6 +50,7 @@ class FacilityController extends Controller
     {
         try {
             $facility = $this->facilityOfPhysician($id);
+
             return (new FacilityResource($facility))->additional(['message' => 'Instalación encontrada.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -60,22 +63,24 @@ class FacilityController extends Controller
             DB::beginTransaction();
             $facility = new Facility();
             $facility->facility_name = $request->facility_name;
-            $facility->location = json_encode($request->location);
+            $facility->location = json_encode($request->location, JSON_THROW_ON_ERROR);
             $facility->phone_number = $request->phone_number;
             $facility->zip_code = $request->zip_code;
-            $facility->schedule = json_encode($request->schedule);
+            $facility->schedule = json_encode($request->schedule, JSON_THROW_ON_ERROR);
             $facility->type_schedule = $request->type_schedule;
             $facility->consultation_length = $request->consultation_length;
-            $facility->accessibility_and_others = json_encode($request->accessibility_and_others);
+            $facility->accessibility_and_others = json_encode($request->accessibility_and_others, JSON_THROW_ON_ERROR);
             $facility->clues = $request->clues;
             $facility->city_id = $request->city_id;
             $facility->save();
             // RELACIÓN CON LA TABLA PIVOTE FACILITY_PHYSICIAN
             $this->physician->facilities()->attach($facility->id);
             DB::commit();
+
             return (new FacilityResource($facility))->additional(['message' => 'Instalación creada con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -83,17 +88,16 @@ class FacilityController extends Controller
     public function update(FacilityRequest $request, $id)
     {
         try {
-
             $facility = $this->facilityOfPhysician($id);
 
             $facility->facility_name = $request->facility_name;
-            $facility->location = json_encode($request->location);
+            $facility->location = json_encode($request->location, JSON_THROW_ON_ERROR);
             $facility->phone_number = $request->phone_number;
             $facility->zip_code = $request->zip_code;
-            $facility->schedule = json_encode($request->schedule);
+            $facility->schedule = json_encode($request->schedule, JSON_THROW_ON_ERROR);
             $facility->type_schedule = $request->type_schedule;
             $facility->consultation_length = $request->consultation_length;
-            $facility->accessibility_and_others = json_encode($request->accessibility_and_others);
+            $facility->accessibility_and_others = json_encode($request->accessibility_and_others, JSON_THROW_ON_ERROR);
             $facility->clues = $request->clues;
             $facility->city_id = $request->city_id;
             $facility->save();
@@ -104,13 +108,13 @@ class FacilityController extends Controller
         }
     }
 
-    public  function destroy($id)
+    public function destroy($id)
     {
         try {
+            $facility = $this->facilityOfPhysician($id);
+            $facility->delete();
 
-                $facility = $this->facilityOfPhysician($id);
-                $facility->delete();
-                return (new FacilityResource($facility))->additional(['message' => 'Instalación eliminada con éxito.']);
+            return (new FacilityResource($facility))->additional(['message' => 'Instalación eliminada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

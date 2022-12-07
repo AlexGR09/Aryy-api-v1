@@ -5,15 +5,13 @@ namespace App\Http\Resources\API\V1\Patient;
 use App\Http\Resources\API\V1\Catalogues\CityResource;
 use App\Http\Resources\API\V1\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\API\V1\Patient\OccupationPatientResource;
 
 class PatientResource extends JsonResource
 {
-   
     public function toArray($request)
     {
         return [
-            'patient_id'=>$this->id,
+            'patient_id' => $this->id,
             'emergency_number' => $this->emergency_number,
             'id_card' => $this->id_card,
             'address' => $this->address,
@@ -27,9 +25,8 @@ class PatientResource extends JsonResource
             'medical_record_id' => $this->medical_record_id, */
             'user_id' => $this->user_id,
             'user' => new UserResource($this->user),
-            'occupation_patient'=> $this->occupationpatient,
-            
+            'occupation_patient' => $this->occupationpatient,
+
         ];
-        
     }
 }

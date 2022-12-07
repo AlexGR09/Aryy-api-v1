@@ -12,11 +12,11 @@ class MedicalServicesPhysician extends Model
 
     public function physician()
     {
-        return $this->belongsTo('App\Models\Physician');
+        return $this->belongsTo(\App\Models\Physician::class);
     }
 
     public function medical_services()
     {
-        return $this->belongsTo('App\Models\MedicalService');
+        return $this->belongsTo(\App\Models\MedicalService::class);
     }
 }

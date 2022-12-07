@@ -4,11 +4,11 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
@@ -52,16 +52,16 @@ class User extends Authenticatable
 
     public function physician()
     {
-        return $this->hasOne('App\Models\Physician');
+        return $this->hasOne(\App\Models\Physician::class);
     }
 
     public function patient()
     {
-        return $this->hasOne('App\Models\Patient');
+        return $this->hasOne(\App\Models\Patient::class);
     }
 
     public function city()
     {
-        return $this->belongsTo('App\Models\City');
+        return $this->belongsTo(\App\Models\City::class);
     }
 }

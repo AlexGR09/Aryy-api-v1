@@ -9,7 +9,7 @@ class CountryObserver
     public function deleted(Country $country)
     {
         $country->update([
-            'name' => time() . '::' . $country->name
+            'name' => time().'::'.$country->name,
         ]);
     }
 }
