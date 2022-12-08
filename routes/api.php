@@ -131,6 +131,7 @@ Route::prefix('v1')->group(function () {
             Route::controller($this->physician . TaxDataController::class)->group(function () {
                 Route::post('/tax_data', 'store');
                 Route::get('/tax_data', 'show');
+                Route::put('/tax_data','update');
             });
         });
 

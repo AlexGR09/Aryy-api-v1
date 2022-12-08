@@ -45,7 +45,7 @@ class TaxDataController extends Controller
             DB::commit();
             return (new TaxDataResource($tax_data))->additional(['message' => 'Informacion guardada con exito.']);
         } catch (\Throwable $th) {
-            DB::rollBack();
+            Storage::delete($this->user->user_folder.'//identity//' . $fileName);
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -56,7 +56,7 @@ class TaxDataController extends Controller
 
             $tax_data = TaxData::where('user_id', $this->user->id)->first();
             $path = $this->user->user_folder.$tax_data->constancy;
-            $image = Storage::get($path);
+            Storage::get($path);
             //return response($image, 200)->header('Content-Type', Storage::mimeType($path));
             return (new TaxDataResource($tax_data))->additional(['message' => 'Informacion guardada con exito.']);
         } catch (\Throwable $th) {
@@ -67,7 +67,32 @@ class TaxDataController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $tax_data = TaxData::where('user_id', $this->user->id)->first();
+            return $tax_data;
+            $tax_data->user_id = $this->user->id;
+            $tax_data->rfc = $request->rfc;
+            $tax_data->taxpayer_name = $request->taxpayer_name;
+            $tax_data->tax_regime = $request->tax_regime;
+            $tax_data->tax_email = $request->tax_email;
+            $tax_data->tax_residence = $request->tax_residence;
+
+            $file = $request->file('constancy');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs($this->user->user_folder . '//tax_data//', $fileName);
+
+            $tax_data->constancy = '//tax_data//' . $fileName;
+            
+            $tax_data->save();
+
+            DB::commit();
+            return (new TaxDataResource($tax_data))->additional(['message' => 'Informacion guardada con exito.']);
+        } catch (\Throwable $th) {
+            Storage::delete($this->user->user_folder.'//identity//' . $fileName);
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 
     public function destroy($id)
