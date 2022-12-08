@@ -8,13 +8,18 @@ use App\Models\Facility;
 
 class FullFacilityController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('facility_user');
+    }
     public function store(Facility $facility, FullFacilityRequest $request)
     {
         $facilityUpdatedOrCreated = Facility::updateOrCreate(
             ['id' => optional($facility)->id],
             $request->validated()
         );
-        if (empty($facility)) {
+        
+        if (!optional($facility)->id) {
             $facilityUpdatedOrCreated->users()->attach(['user_id' => auth()->id()]);
         }
 
