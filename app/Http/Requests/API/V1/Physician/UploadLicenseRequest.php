@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UploadLicenseRequest extends FormRequest
 {
-
     public function authorize()
     {
         return auth()->check();
@@ -16,7 +15,7 @@ class UploadLicenseRequest extends FormRequest
     {
         return [
             'license' => 'required|string|max:200|exists:physician_specialty',
-            'photo' => 'required|image|mimes:jpg,png|max:2000',
+            'license_photo' => 'required|image|mimes:jpg,png|max:2000|dimensions:max_width=1024,max_height=1024',
         ];
     }
 
@@ -24,7 +23,7 @@ class UploadLicenseRequest extends FormRequest
     {
         return [
             'license' => 'campo cédula',
-            'photo' => 'foto de cédula'
+            'license_photo' => 'foto de cédula',
         ];
     }
 }

@@ -15,16 +15,16 @@ class PermissionController extends Controller
     {
         $this->middleware('permission:show permissions')->only([
             'index',
-            'show'
+            'show',
         ]);
         $this->middleware('permission:create permissions')->only([
-            'store'
+            'store',
         ]);
         $this->middleware('permission:edit permissions')->only([
-            'update'
+            'update',
         ]);
         $this->middleware('permission:delete permissions')->only([
-            'destroy'
+            'destroy',
         ]);
     }
 
@@ -32,7 +32,8 @@ class PermissionController extends Controller
     {
         try {
             $permissions = Permission::paginate(5);
-            return (PermissionResource::collection($permissions))->additional(['message' => 'Permisos encontrados.']);
+
+            return PermissionResource::collection($permissions)->additional(['message' => 'Permisos encontrados.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -61,6 +62,7 @@ class PermissionController extends Controller
         try {
             $permission->name = $request->name;
             $permission->save();
+
             return (new PermissionResource($permission))->additional(['message' => 'Permiso actualizado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -71,6 +73,7 @@ class PermissionController extends Controller
     {
         try {
             $permission->delete();
+
             return (new PermissionResource($permission))->additional(['message' => 'Permiso eliminado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

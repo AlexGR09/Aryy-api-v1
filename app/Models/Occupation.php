@@ -11,11 +11,11 @@ class Occupation extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 
     public function patients()
     {
-        return $this->hasMany('App\Models\OccupationPatient');
+        return $this->hasMany(\App\Models\OccupationPatient::class);
     }
 }

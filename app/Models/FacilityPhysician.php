@@ -14,11 +14,11 @@ class FacilityPhysician extends Model
 
     public function physician()
     {
-        return $this->belongsTo('App\Models\Physician');
+        return $this->belongsTo(\App\Models\Physician::class);
     }
 
     public function facility()
     {
-        return $this->belongsTo('App\Models\Facility');
+        return $this->belongsTo(\App\Models\Facility::class);
     }
 }
