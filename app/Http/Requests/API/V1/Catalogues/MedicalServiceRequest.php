@@ -9,8 +9,9 @@ class MedicalServiceRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      *
+     * @return bool
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return false;
     }
@@ -23,7 +24,7 @@ class MedicalServiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ($this->getMethod() == 'POST') ? 'required' : 'required,name,',
+            'name' => ($this->getMethod() == 'POST') ? 'required' : 'required,name,'
         ];
     }
 }

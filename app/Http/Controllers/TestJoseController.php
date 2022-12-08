@@ -15,7 +15,7 @@ class TestJoseController extends Controller
             $value = $request->value;
             $resSearch = [
                 'specialties' => [],
-                'physicians' => [],
+                'physicians' => []
             ];
             $message = 'Resultados de la búsqueda.';
 
@@ -29,19 +29,18 @@ class TestJoseController extends Controller
             $resSearch['specialties'] = $specialties;
             $resSearch['physicians'] = $physicians;
 
-            if (empty($resSearch['specialties']) == true && empty($resSearch['physicians']) == true) {
+            if (empty($resSearch['specialties']) == TRUE && empty($resSearch['physicians']) == TRUE ) {
                 $message = 'Sin resultados para esta búsqueda.';
             }
-
             return response()->json([
-                'data' => $resSearch,
-                'message' => $message,
+                'data' => $resSearch, 
+                'message' => $message 
             ]);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-
+      
     // if ($request->city_id) {
     //     $physicians = DB::select('CALL searchPhysiciansByNameAndCityId(?, ?)', [$request->value, $request->city_id]);
     // } else {
