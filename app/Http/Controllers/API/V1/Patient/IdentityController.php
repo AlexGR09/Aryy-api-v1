@@ -28,7 +28,6 @@ class IdentityController extends Controller
     public function store(Request $request)
     {
         try {
-            // GUARDA LA FOTO DE LA CÉDULA DE LA ESPECIALIDAD EN LA CARPETA CORRESPONDIENTE DEL USUARIO
             $file = $request->file('id_card');
             $fileName = $file->getClientOriginalName();
             $file->storeAs($this->user->user_folder . '//identity//', $fileName);
