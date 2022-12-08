@@ -6,32 +6,31 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\API\V1\Catalogues\MedicalServiceResource;
 use App\Models\MedicalService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MedicalServiceController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:show medical services')->only([
+        $this->middleware('role_or_permission:User|show medical services')->only([
             'index',
             'show',
         ]);
         $this->middleware('permission:create medical services')->only([
-            'store',
+            'store'
         ]);
         $this->middleware('permission:edit medical services')->only([
-            'update',
+            'update'
         ]);
         $this->middleware('permission:delete ocupations')->only([
-            'destroy',
+            'destroy'
         ]);
     }
-
     public function index()
     {
         try {
-            $medical_service = MedicalService::paginate(5);
-
-            return MedicalServiceResource::collection($medical_service)->additional(['message' => 'Servicios medicos encontrados']);
+            return (MedicalServiceResource::collection(MedicalService::orderBy('name')->get()))
+                ->additional(['message' => 'Servicios médicos encontrados.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -41,7 +40,6 @@ class MedicalServiceController extends Controller
     {
         try {
             $medical_service = MedicalService::create(['name' => $request->name]);
-
             return (new MedicalServiceResource($medical_service))->additional(['message' => 'Servicio medico creada correctamente']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -62,7 +60,6 @@ class MedicalServiceController extends Controller
         try {
             $medical_service->name = $request->name;
             $medical_service->save();
-
             return (new MedicalServiceResource($medical_service))->additional(['message' => 'Servicio medico actualizado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -72,8 +69,7 @@ class MedicalServiceController extends Controller
     public function destroy(MedicalService $medical_service)
     {
         try {
-            ${$medical_service}->delete();
-
+            $$medical_service->delete();
             return response()->json(['message' => 'Servicio medico eliminado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

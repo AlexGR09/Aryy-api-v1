@@ -17,13 +17,13 @@ class InsuranceController extends Controller
             'show',
         ]);
         $this->middleware('permission:create insurances')->only([
-            'store',
+            'store'
         ]);
         $this->middleware('permission:edit medical services')->only([ // ?
-            'update',
+            'update'
         ]);
         $this->middleware('permission:delete ocupations')->only([ //?
-            'destroy',
+            'destroy'
         ]);
     }
 
@@ -31,8 +31,7 @@ class InsuranceController extends Controller
     {
         try {
             $insurance = Insurance::paginate(5);
-
-            return InsuranceResource::collection($insurance)->additional(['message' => 'Seguros medicos encontrados']);
+            return (InsuranceResource::collection($insurance))->additional(['message' => 'Seguros medicos encontrados']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -42,11 +41,9 @@ class InsuranceController extends Controller
     {
         try {
             $insurance = Insurance::create(['name' => $request->name]);
-
             return (new InsuranceResource($insurance))->additional(['message' => 'Seguros medicos creado correctamente']);
         } catch (\Throwable $th) {
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -65,7 +62,6 @@ class InsuranceController extends Controller
         try {
             $insurance->name = $request->name;
             $insurance->save();
-
             return (new InsuranceResource($insurance))->additional(['message' => 'Servicio medico actualizado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -76,7 +72,6 @@ class InsuranceController extends Controller
     {
         try {
             $insurance->delete();
-
             return response()->json(['message' => 'Seguro medico eliminado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
