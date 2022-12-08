@@ -2,15 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 class NonPathologicalBackground extends Model
 {
     use HasFactory, SoftDeletes;
+
     protected $fillable = [
         'physical_activity',
         'rest_time',
@@ -19,13 +18,14 @@ class NonPathologicalBackground extends Model
         'other_substances',
         'diet',
         'drug_active',
-        'previous_medication'
+        'previous_medication',
     ];
 
     public function medical_history()
     {
-        return $this->hasOne('App\Models\MedicalHistory');
+        return $this->hasOne(\App\Models\MedicalHistory::class);
     }
+
     /**
      * The attributes that should be cast.
      *

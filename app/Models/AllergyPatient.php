@@ -13,11 +13,11 @@ class AllergyPatient extends Model
     protected $fillable = [
         'food_allergy',
         'drug_allergy',
-        'environmental_allergy'
+        'environmental_allergy',
     ];
 
     public function medical_history()
     {
-        return $this->hasOne('App\Models\MedicalHistory');
+        return $this->hasOne(\App\Models\MedicalHistory::class);
     }
 }

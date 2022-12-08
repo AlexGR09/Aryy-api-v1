@@ -18,6 +18,7 @@ class FacilityFactory extends Factory
     public function definition()
     {
         $user = User::whereHas('Physician')->inRandomOrder()->first();
+
         return [
             'user_id' => $user->id,
             'name' => fake()->name(),

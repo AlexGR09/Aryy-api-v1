@@ -11,6 +11,6 @@ class MedicalAppointment extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        
+
     ];
 }
