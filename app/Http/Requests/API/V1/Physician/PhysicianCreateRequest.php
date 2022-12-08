@@ -18,7 +18,7 @@ class PhysicianCreateRequest extends FormRequest
         return [
             'professional_name' => 'required|max:60',
             'specialties' => 'required|array',
-            'specialties.*.specialty_id' => 'required|numeric',
+            'specialties.*.specialty_id' => 'required|numeric|distinct',
             'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty'),
             'specialties.*.institution' => 'required',
         ];
