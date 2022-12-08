@@ -12,9 +12,9 @@ class DiseaseController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role_or_permission:User|show diseases')->only([
+        $this->middleware('permission:show diseases')->only([
             'index',
-            'show',
+            'show', 
         ]);
         $this->middleware('permission:create diseases')->only([
             'store'
@@ -34,8 +34,8 @@ class DiseaseController extends Controller
     public function index()
     {
         try {
-            return (DiseaseResource::collection(Disease::orderBy('name')->get()))
-                ->additional(['message' => 'Enfermedades encontradas.']);
+            $diseases = Disease::paginate(5);
+            return (DiseaseResource::collection($diseases))->additional(['message' => 'Enfermedades existentes']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

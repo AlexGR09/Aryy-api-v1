@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\V1\Physician\PhotoNameRequest;
 use App\Http\Requests\API\V1\Physician\UploadFacilityPhotoRequest;
 use App\Http\Requests\API\V1\Physician\UploadLogoRequest;
 use App\Http\Requests\API\V1\Physician\UploadPhysicianPhotoRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class MedicalIdentityController extends Controller
@@ -24,7 +24,7 @@ class MedicalIdentityController extends Controller
         try {
             // LOGO DE LA IDENTIDAD MÉDICA
             $logo_all = Storage::files($this->user->user_folder . '//logos//');
-            $logo = empty($logo_all) ? NULL : basename($logo_all[0]);
+            $logo = basename($logo_all[0]);
 
             // FOTOS DEL MÉDICO
             $physician_photos = array();
@@ -72,7 +72,7 @@ class MedicalIdentityController extends Controller
         }
     }
 
-    public function getLogo(PhotoNameRequest $request)
+    public function getLogo(Request $request)
     {
         try {
             $path =  $this->user->user_folder . '//logos//' . $request->photo;
@@ -81,14 +81,13 @@ class MedicalIdentityController extends Controller
             if ($image) {
                 return response($image, 200)->header('Content-Type', Storage::mimeType($path));
             }
-
             return response()->json(['message' => 'El logo no existe.'], 404);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function deleteLogo(PhotoNameRequest $request)
+    public function deleteLogo(Request $request)
     {
         try {
             $path = $this->user->user_folder . '//logos//' . $request->photo;
@@ -98,7 +97,6 @@ class MedicalIdentityController extends Controller
                 Storage::delete($path);
                 return response()->json(['message' => 'Logo eliminado correctamente.']);
             }
-
             return response()->json(['message' => 'El logo no existe.'], 404);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -114,14 +112,13 @@ class MedicalIdentityController extends Controller
                 $file->storeAs($this->user->user_folder . '//physician_photos//', $fileName);
     
             }
-
             return response()->json(['message' => 'Imagen del médico almacenada correctamente.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function getPhysicianPhoto(PhotoNameRequest $request)
+    public function getPhysicianPhoto(Request $request)
     {
         try {
             $path =  $this->user->user_folder . '//physician_photos//' . $request->photo;
@@ -130,14 +127,13 @@ class MedicalIdentityController extends Controller
             if ($image) {
                 return response($image, 200)->header('Content-Type', Storage::mimeType($path));
             }
-
             return response()->json(['message' => 'La foto del médico no existe.'], 404);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function deletePhysicianPhoto(PhotoNameRequest $request)
+    public function deletePhysicianPhoto(Request $request)
     {
         try {
             $path = $this->user->user_folder . '//physician_photos//' . $request->photo;
@@ -147,7 +143,6 @@ class MedicalIdentityController extends Controller
                 Storage::delete($path);
                 return response()->json(['message' => 'Foto del médico  eliminada correctamente.']);
             }
-
             return response()->json(['message' => 'La foto del médico no existe.'], 404);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -161,15 +156,15 @@ class MedicalIdentityController extends Controller
                 // GUARDA LAS FOTOS DE LA INSTALACIÓN EN LA CARPETA CORRESPONDIENTE DEL USUARIO
                 $fileName = time()  .'_' . $file->getClientOriginalName();
                 $file->storeAs($this->user->user_folder . '//facility_photos//', $fileName);
+    
             }
-
             return response()->json(['message' => 'Imagen de la instalación almacenada correctamente.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function getFacilityPhoto(PhotoNameRequest $request)
+    public function getFacilityPhoto(Request $request)
     {
         try {
             $path =  $this->user->user_folder . '//facility_photos//' . $request->photo;
@@ -178,14 +173,13 @@ class MedicalIdentityController extends Controller
             if ($image) {
                 return response($image, 200)->header('Content-Type', Storage::mimeType($path));
             }
-
             return response()->json(['message' => 'La foto de la instalación no existe.'], 404);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function deleteFacilityPhoto(PhotoNameRequest $request)
+    public function deleteFacilityPhoto(Request $request)
     {
         try {
             $path = $this->user->user_folder . '//facility_photos//' . $request->photo;
@@ -195,7 +189,6 @@ class MedicalIdentityController extends Controller
                 Storage::delete($path);
                 return response()->json(['message' => 'Foto de la instalación eliminada correctamente.']);
             }
-            
             return response()->json(['message' => 'La foto de la instalación no existe.'], 404);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
