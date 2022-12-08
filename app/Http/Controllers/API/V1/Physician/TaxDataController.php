@@ -26,7 +26,7 @@ class TaxDataController extends Controller
     {
         try {
             DB::beginTransaction();
-            $tax_data = TexData::where('user_id', $request->user->id)->first();
+            $tax_data = TaxData::where('user_id', $request->user->id)->first();
             $tax_data->user_id = $this->user->id;
             $tax_data->rfc = $request->rfc;
             $tax_data->taxpayer_name = $request->taxpayer_name;
