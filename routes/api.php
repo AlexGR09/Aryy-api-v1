@@ -117,7 +117,7 @@ Route::prefix('v1')->group(function () {
             Route::controller($this->physician . MedicalServiceController::class)->group(function () {
                 Route::put('/medicalservice', 'update');
             });
-           
+
             // INSTALACIONES DEL MÉDICO
             // Route::controller($this->physician.FacilityController::class)->group(function() {
             //     Route::get('/facility', 'index');
@@ -126,6 +126,12 @@ Route::prefix('v1')->group(function () {
             //     Route::put('/facility/{id}', 'update');
             //     Route::delete('/facility/{id}', 'destroy');
             // });
+
+            //DATOS FISCALES DEL MÉDICO
+            Route::controller($this->physician . TaxDataController::class)->group(function () {
+                Route::post('/tax_data', 'store');
+                Route::get('/tax_data', 'show');
+            });
         });
 
         /* RUTAS DEL PACIENTE */
@@ -138,9 +144,9 @@ Route::prefix('v1')->group(function () {
                 Route::put('profile/basic_information', 'update');
                 Route::delete('profile/basic_information', 'destroy_occupation');
 
-                Route::get('country','country');
-                Route::get('country_states','country_states');
-                Route::get('cities_states','cities_states');
+                Route::get('country', 'country');
+                Route::get('country_states', 'country_states');
+                Route::get('cities_states', 'cities_states');
             });
             //Perfil del paciente - Seguros de gastos medicos
             Route::controller($this->patient . HealthInsuranceController::class)->group(function () {
@@ -213,7 +219,7 @@ Route::prefix('v1')->group(function () {
             Route::resource('permissions', PermissionController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
         });
-        
+
         Route::get('facilities', [FacilityController::class, 'index']);
         Route::post('facilities', [FacilityController::class, 'store']);
         Route::put('facilities/{facility}', [FacilityController::class, 'update']);

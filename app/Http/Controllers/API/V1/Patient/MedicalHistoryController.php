@@ -54,7 +54,7 @@ class MedicalHistoryController extends Controller
             $basic_information->patient_id = $patient->id;
             $basic_information->weight = $request->weight;
             $basic_information->height = $request->height;
-
+            
             $weight = $basic_information->weight;
             $height = $basic_information->height;
 
