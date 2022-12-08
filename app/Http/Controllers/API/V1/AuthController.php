@@ -28,17 +28,15 @@ class AuthController extends Controller
     {
         try {
             $user = User::where('email', $request->email)->first();
-            if (! $user || ! Hash::check($request->password, $user->password)) {
+            if (!$user || !Hash::check($request->password, $user->password)) {
                 return response()->json(['message' => 'Credenciales no válidas.'], 503);
             }
-
             $token = $user->createToken('authToken')->plainTextToken;
             $user->remember_token = $token;
             $user->save();
-
             return (new UserResource($user))->additional([
                 'message' => 'Bienvenido a Aryy.',
-                'access_token' => $token, ]);
+                'access_token' => $token ]);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -46,14 +44,12 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $directory = null;
-        $user_folder = null;
         try {
             DB::beginTransaction();
             $user = User::create([
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
-            ]);
+            ]); 
             $user->assignRole('User');
 
             $user_folder = 'id'.$user->id.'_'.substr(sha1(time()), 0, 16);
@@ -72,23 +68,20 @@ class AuthController extends Controller
                 default:
                     break;
             }
-
             // CREA LA CARPETA CORRESPONDIENTE DEL USUARIO-MÉDICO
             Storage::makeDirectory($directory.$user_folder);
             // GENERA UN TOKEN PARA EL USUARIO Y LO GUARDA EN LA DB
             $token = $user->createToken('authToken')->plainTextToken;
-            $user->remember_token = $token;
+            $user->remember_token = $token; 
             $user->user_folder = $directory.$user_folder;
             $user->update();
             DB::commit();
-
             return (new UserResource($user))->additional([
                 'message' => 'Usuario registrado con éxito.',
-                'access_token' => $token, ]);
+                'access_token' => $token ]);
         } catch (\Throwable $th) {
             Storage::deleteDirectory($directory.$user_folder);
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -118,11 +111,10 @@ class AuthController extends Controller
                 $this->user->password = bcrypt($request->password);
                 $this->logout(); // Invocación del método logout
             }
-
             $this->user->save();
             DB::commit();
-
             return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
+
         } catch (\Throwable $th) {
             DB::rollBack();
             // FALTA REGRESAR LA IMAGEN BORRADA
@@ -134,7 +126,6 @@ class AuthController extends Controller
     {
         try {
             $this->user->delete();
-
             return (new UserResource($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -149,11 +140,9 @@ class AuthController extends Controller
             $this->user->remember_token = null;
             $this->user->save();
             DB::commit();
-
             return (new UserResource($this->user))->additional(['message' => 'Cierre de sesión exitoso, adiós']);
         } catch (\Throwable $th) {
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

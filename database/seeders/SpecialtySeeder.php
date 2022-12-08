@@ -2,339 +2,344 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class SpecialtySeeder extends Seeder
 {
+
     public function run()
     {
+
+        
         DB::table('specialties')->insert([
 
             [
-                'name' => 'Acupuntor',
+                "name" => "Acupuntor"
             ],
             [
-                'name' => 'Alergólogo',
+                "name" => "Alergólogo"
             ],
             [
-                'name' => 'Anatomopatólogo',
+                "name" => "Anatomopatólogo"
             ],
             [
-                'name' => 'Anestesiólogo',
+                "name" => "Anestesiólogo"
             ],
             [
-                'name' => 'Angiólogo',
+                "name" => "Angiólogo"
             ],
             [
-                'name' => 'Audiólogo',
+                "name" => "Audiólogo"
             ],
             [
-                'name' => 'Cardiólogo',
+                "name" => "Cardiólogo"
             ],
             [
-                'name' => 'Cardiólogo pediátrico',
+                "name" => "Cardiólogo pediátrico"
             ],
             [
-                'name' => 'Cirujano cardiovascular y torácico',
+                "name" => "Cirujano cardiovascular y torácico"
             ],
             [
-                'name' => 'Cirujano de la mano',
+                "name" => "Cirujano de la mano"
             ],
             [
-                'name' => 'Cirujano estético y cosmético',
+                "name" => "Cirujano estético y cosmético"
             ],
             [
-                'name' => 'Cirujano general',
+                "name" => "Cirujano general"
             ],
             [
-                'name' => 'Cirujano maxilofacial',
+                "name" => "Cirujano maxilofacial"
             ],
             [
-                'name' => 'Cirujano oncólogo',
+                "name" => "Cirujano oncólogo"
             ],
             [
-                'name' => 'Cirujano pediátrico',
+                "name" => "Cirujano pediátrico"
             ],
             [
-                'name' => 'Cirujano plástico',
+                "name" => "Cirujano plástico"
             ],
             [
-                'name' => 'Dermatólogo',
+                "name" => "Dermatólogo"
             ],
             [
-                'name' => 'Dermatólogo pediátrico',
+                "name" => "Dermatólogo pediátrico"
             ],
             [
-                'name' => 'Diabetólogo',
+                "name" => "Diabetólogo"
             ],
             [
-                'name' => 'Endocrinólogo',
+                "name" => "Endocrinólogo"
             ],
             [
-                'name' => 'Endocrinólogo pediátrico',
+                "name" => "Endocrinólogo pediátrico"
             ],
             [
-                'name' => 'Endoscopista',
+                "name" => "Endoscopista"
             ],
             [
-                'name' => 'Enfermero',
+                "name" => "Enfermero"
             ],
             [
-                'name' => 'Fisioterapeuta',
+                "name" => "Fisioterapeuta"
             ],
             [
-                'name' => 'Gastroenterólogo',
+                "name" => "Gastroenterólogo"
             ],
             [
-                'name' => 'Gastroenterólogo pediátrico',
+                "name" => "Gastroenterólogo pediátrico"
             ],
             [
-                'name' => 'Genetista',
+                "name" => "Genetista"
             ],
             [
-                'name' => 'Geriatra',
+                "name" => "Geriatra"
             ],
             [
-                'name' => 'Ginecólogo oncológico',
+                "name" => "Ginecólogo oncológico"
             ],
             [
-                'name' => 'Ginecólogo',
+                "name" => "Ginecólogo"
             ],
             [
-                'name' => 'Hematólogo',
+                "name" => "Hematólogo"
             ],
             [
-                'name' => 'Hematólogo pediatra',
+                "name" => "Hematólogo pediatra"
             ],
             [
-                'name' => 'Homeópata',
+                "name" => "Homeópata"
             ],
             [
-                'name' => 'Infectólogo',
+                "name" => "Infectólogo"
             ],
             [
-                'name' => 'Infectólogo pediatra',
+                "name" => "Infectólogo pediatra"
             ],
             [
-                'name' => 'Inmunólogo',
+                "name" => "Inmunólogo"
             ],
             [
-                'name' => 'Analista clínico',
+                "name" => "Analista clínico"
             ],
             [
-                'name' => 'Logopeda',
+                "name" => "Logopeda"
             ],
             [
-                'name' => 'Terapeuta complementario',
+                "name" => "Terapeuta complementario"
             ],
             [
-                'name' => 'Especialista en Medicina Crítica y Terapia Intensiva',
+                "name" => "Especialista en Medicina Crítica y Terapia Intensiva"
             ],
             [
-                'name' => 'Especialista en Medicina del Deporte',
+                "name" => "Especialista en Medicina del Deporte"
             ],
             [
-                'name' => 'Especialista en Medicina del Trabajo',
+                "name" => "Especialista en Medicina del Trabajo"
             ],
             [
-                'name' => 'Médico estético',
+                "name" => "Médico estético"
             ],
             [
-                'name' => 'Médico de familia',
+                "name" => "Médico de familia"
             ],
             [
-                'name' => 'Médico general',
+                "name" => "Médico general"
             ],
             [
-                'name' => 'Especialista en Medicina Integrada',
+                "name" => "Especialista en Medicina Integrada"
             ],
             [
-                'name' => 'Internista',
+                "name" => "Internista"
             ],
             [
-                'name' => 'Especialista en Medicina Nuclear',
+                "name" => "Especialista en Medicina Nuclear"
             ],
             [
-                'name' => 'Especialista en Medicina Preventiva',
+                "name" => "Especialista en Medicina Preventiva"
             ],
             [
-                'name' => 'Naturista',
+                "name" => "Naturista"
             ],
             [
-                'name' => 'Nefrólogo',
+                "name" => "Nefrólogo"
             ],
             [
-                'name' => 'Nefrólogo pediatra',
+                "name" => "Nefrólogo pediatra"
             ],
             [
-                'name' => 'Neonatólogo',
+                "name" => "Neonatólogo"
             ],
             [
-                'name' => 'Neumólogo',
+                "name" => "Neumólogo"
             ],
             [
-                'name' => 'Neumólogo pediatra',
+                "name" => "Neumólogo pediatra"
             ],
             [
-                'name' => 'Neurocirujano',
+                "name" => "Neurocirujano"
             ],
             [
-                'name' => 'Neurofisiólogo',
+                "name" => "Neurofisiólogo"
             ],
             [
-                'name' => 'Neurólogo',
+                "name" => "Neurólogo"
             ],
             [
-                'name' => 'Neurólogo pediatra',
+                "name" => "Neurólogo pediatra"
             ],
             [
-                'name' => 'Nutricionista',
+                "name" => "Nutricionista"
             ],
             [
-                'name' => 'Nutriólogo clínico',
+                "name" => "Nutriólogo clínico"
             ],
             [
-                'name' => 'Especialista en Obesidad y Delgadez',
+                "name" => "Especialista en Obesidad y Delgadez"
             ],
             [
-                'name' => 'Dentista - Odontólogo',
+                "name" => "Dentista - Odontólogo"
             ],
             [
-                'name' => 'Oftalmólogo',
+                "name" => "Oftalmólogo"
             ],
             [
-                'name' => 'Oftalmólogo pediátrico',
+                "name" => "Oftalmólogo pediátrico"
             ],
             [
-                'name' => 'Oncólogo médico',
+                "name" => "Oncólogo médico"
             ],
             [
-                'name' => 'Oncólogo pediátrico',
+                "name" => "Oncólogo pediátrico"
             ],
             [
-                'name' => 'Optometrista',
+                "name" => "Optometrista"
             ],
             [
-                'name' => 'Ortopedista',
+                "name" => "Ortopedista"
             ],
             [
-                'name' => 'Ortopedista infantil',
+                "name" => "Ortopedista infantil"
             ],
             [
-                'name' => 'Otorrinolaringólogo',
+                "name" => "Otorrinolaringólogo"
             ],
             [
-                'name' => 'Patólogo clínico',
+                "name" => "Patólogo clínico"
             ],
             [
-                'name' => 'Pediatra',
+                "name" => "Pediatra"
             ],
             [
-                'name' => 'Podiatra',
+                "name" => "Podiatra"
             ],
             [
-                'name' => 'Podólogo',
+                "name" => "Podólogo"
             ],
             [
-                'name' => 'Proctólogo',
+                "name" => "Proctólogo"
             ],
             [
-                'name' => 'Psicoanalista',
+                "name" => "Psicoanalista"
             ],
             [
-                'name' => 'Psicólogo',
+                "name" => "Psicólogo"
             ],
             [
-                'name' => 'Psicopedagogo',
+                "name" => "Psicopedagogo"
             ],
             [
-                'name' => 'Psiquiatra',
+                "name" => "Psiquiatra"
             ],
             [
-                'name' => 'Psiquiatra infantil',
+                "name" => "Psiquiatra infantil"
             ],
             [
-                'name' => 'Quiropráctico',
+                "name" => "Quiropráctico"
             ],
             [
-                'name' => 'Radiólogo',
+                "name" => "Radiólogo"
             ],
             [
-                'name' => 'Radioterapeuta',
+                "name" => "Radioterapeuta"
             ],
             [
-                'name' => 'Especialista en Rehabilitación y Medicina Física',
+                "name" => "Especialista en Rehabilitación y Medicina Física"
             ],
             [
-                'name' => 'Especialista en Retina Médica y Quirúrgica',
+                "name" => "Especialista en Retina Médica y Quirúrgica"
             ],
             [
-                'name' => 'Reumatólogo',
+                "name" => "Reumatólogo"
             ],
             [
-                'name' => 'Sexólogo',
+                "name" => "Sexólogo"
             ],
             [
-                'name' => 'Algólogo',
+                "name" => "Algólogo"
             ],
             [
-                'name' => 'Terapeuta ocupacional',
+                "name" => "Terapeuta ocupacional"
             ],
             [
-                'name' => 'Traumatólogo',
+                "name" => "Traumatólogo"
             ],
             [
-                'name' => 'Urgenciólogo',
+                "name" => "Urgenciólogo"
             ],
             [
-                'name' => 'Urólogo',
+                "name" => "Urólogo"
             ],
             [
-                'name' => 'Reumatólogo pediátrico',
+                "name" => "Reumatólogo pediátrico"
             ],
             [
-                'name' => 'Cirujano cardiovascular y torácico pediátrico',
+                "name" => "Cirujano cardiovascular y torácico pediátrico"
             ],
             [
-                'name' => 'Urólogo pediátrico',
+                "name" => "Urólogo pediátrico"
             ],
             [
-                'name' => 'Cirujano cardiovascular',
+                "name" => "Cirujano cardiovascular"
             ],
             [
-                'name' => 'Cirujano torácico',
+                "name" => "Cirujano torácico"
             ],
             [
-                'name' => 'Radio Oncólogo',
+                "name" => "Radio Oncólogo"
             ],
             [
-                'name' => 'Epidemiólogo',
+                "name" => "Epidemiólogo"
             ],
             [
-                'name' => 'Odontólogo pediatra',
+                "name" => "Odontólogo pediatra"
             ],
             [
-                'name' => 'Cirujano bariatra',
+                "name" => "Cirujano bariatra"
             ],
             [
-                'name' => 'Foniatra',
+                "name" => "Foniatra"
             ],
             [
-                'name' => 'Otorrinolaringólogo Pediátrico',
+                "name" => "Otorrinolaringólogo Pediátrico"
             ],
             [
-                'name' => 'Cirujano vascular',
+                "name" => "Cirujano vascular"
             ],
             [
-                'name' => 'Especialidad en Medicina del Enfermo Pediátrico en Estado Crítico',
+                "name" => "Especialidad en Medicina del Enfermo Pediátrico en Estado Crítico"
             ],
             [
-                'name' => 'Patólogo Bucal',
+                "name" => "Patólogo Bucal"
             ],
             [
-                'name' => 'Gerontologo',
-            ],
+                "name" => "Gerontologo"
+            ]
 
         ]);
     }

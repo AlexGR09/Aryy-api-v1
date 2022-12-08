@@ -11,12 +11,12 @@ class MedicalService extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name',
+        'name'
     ];
 
     // RELACIÓN MUCHOS A MUCHOS CON EL MODELO ESPECIALIDADES
     public function physicians()
     {
-        return $this->belongsToMany(\App\Models\Physician::class, 'medical_service_physician');
+        return $this->belongsToMany('App\Models\Physician', 'medical_service_physician');
     }
 }

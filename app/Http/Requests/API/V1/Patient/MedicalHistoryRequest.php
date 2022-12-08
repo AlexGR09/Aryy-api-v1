@@ -26,7 +26,7 @@ class MedicalHistoryRequest extends FormRequest
         return [
             'height.height' => 'numeric',
             'weight.weight' => 'numeric',
-            'blood_type' => 'string',
+            'blood_type' => 'string'
         ];
     }
 }

@@ -11,11 +11,11 @@ class Insurance extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name',
+        'name'
     ];
 
     public function health_insurance()
     {
-        return $this->hasOne(\App\Models\HealthInsurance::class);
+        return $this->hasOne('App\Models\HealthInsurance');
     }
 }

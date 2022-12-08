@@ -36,7 +36,7 @@ class PathologicalBackgroundRequest extends FormRequest
             'trauma' => 'string',
             'respiratory_diseases' => 'string',
             'ets' => 'string',
-            'gastrointestinal_pathologies' => 'string',
+            'gastrointestinal_pathologies' => 'string'
         ];
     }
 }

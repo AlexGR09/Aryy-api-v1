@@ -11,16 +11,16 @@ class City extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'state_id',
+        'name', 'state_id'
     ];
 
     public function state()
     {
-        return $this->belongsTo(\App\Models\State::class);
+        return $this->belongsTo('App\Models\State');
     }
 
     public function users()
     {
-        return $this->hasMany(\App\Models\User::class);
+        return $this->hasMany('App\Models\User');
     }
 }

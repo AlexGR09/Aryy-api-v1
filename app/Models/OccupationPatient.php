@@ -14,11 +14,11 @@ class OccupationPatient extends Model
 
     public function patient()
     {
-        return $this->belongsTo(\App\Models\Patient::class);
+        return $this->belongsTo('App\Models\Patient');
     }
 
     public function occupation()
     {
-        return $this->belongsTo(\App\Models\Occupation::class);
+        return $this->belongsTo('App\Models\Occupation');
     }
 }

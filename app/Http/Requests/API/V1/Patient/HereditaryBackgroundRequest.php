@@ -25,18 +25,19 @@ class HereditaryBackgroundRequest extends FormRequest
     public function rules()
     {
         return [
-            'diabetes.family' => 'string',
-            'diabetes.type' => 'string',
-            'heart_diseases.family' => 'string',
-            'heart_diseases.type' => 'string',
-            'blood_pressure.family' => 'string',
-            'blood_pressure.type' => 'string',
-            'thyroid_diseases.family' => 'string',
-            'thyroid_diseases.type' => 'string',
-            'cancer.family' => 'string',
-            'cancer.type' => 'string',
-            'kidney_stones.family' => 'string',
-            'kidney_stones.type' => 'string',
+            'diabetes.family'=>'string',
+            'diabetes.type'=>'string',
+            'heart_diseases.family'=>'string',
+            'heart_diseases.type'=>'string',
+            'blood_pressure.family'=>'string',
+            'blood_pressure.type'=>'string',
+            'thyroid_diseases.family'=>'string',
+            'thyroid_diseases.type'=>'string',
+            'cancer.family'=>'string',
+            'cancer.type'=>'string',
+            'kidney_stones.family'=>'string',
+            'kidney_stones.type'=>'string'
         ];
+        
     }
 }
