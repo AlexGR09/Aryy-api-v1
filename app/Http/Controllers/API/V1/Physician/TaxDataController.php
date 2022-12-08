@@ -15,7 +15,7 @@ class TaxDataController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
-        $this->middleware('role:Physician')->only(['store']);
+        $this->middleware('role:Physician')->only(['store','update']);
     }
     public function index()
     {
@@ -25,20 +25,20 @@ class TaxDataController extends Controller
     public function store(TaxDataRequest $request)
     {
         try {
+
             DB::beginTransaction();
-            $tax_data = TaxData::where('user_id', $request->user->id)->first();
+
+            $file = $request->file('constancy');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs($this->user->user_folder . '//tax_data//', $fileName);
+
+            $tax_data = new TaxData();
             $tax_data->user_id = $this->user->id;
             $tax_data->rfc = $request->rfc;
             $tax_data->taxpayer_name = $request->taxpayer_name;
             $tax_data->tax_regime = $request->tax_regime;
             $tax_data->tax_email = $request->tax_email;
             $tax_data->tax_residence = $request->tax_residence;
-
-            $file = $request->file('constancy');
-            $fileName = $file->getClientOriginalName();
-            $file->storeAs($this->user->user_folder . '//tax_data//', $fileName);
-
-            //Storage::delete($this->user->user_folder.'//tax_data//' . $);
             
             $tax_data->constancy = '//tax_data//' . $fileName;
             
@@ -67,37 +67,14 @@ class TaxDataController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        try {
-            DB::beginTransaction();
-
-            $tax_data = TaxData::where('user_id', $this->user->id)->first();
-            return $tax_data;
-            $tax_data->user_id = $this->user->id;
-            $tax_data->rfc = $request->rfc;
-            $tax_data->taxpayer_name = $request->taxpayer_name;
-            $tax_data->tax_regime = $request->tax_regime;
-            $tax_data->tax_email = $request->tax_email;
-            $tax_data->tax_residence = $request->tax_residence;
-
-            $file = $request->file('constancy');
-            $fileName = $file->getClientOriginalName();
-            $file->storeAs($this->user->user_folder . '//tax_data//', $fileName);
-
-            $tax_data->constancy = '//tax_data//' . $fileName;
-            
-            $tax_data->save();
-
-            DB::commit();
-            return (new TaxDataResource($tax_data))->additional(['message' => 'Informacion guardada con exito.']);
-        } catch (\Throwable $th) {
-            Storage::delete($this->user->user_folder.'//identity//' . $fileName);
-            return response()->json(['error' => $th->getMessage()], 503);
-        }
+        return $request;
+        
+   
     }
 
-    public function destroy($id)
+    public function destroy()
     {
         //
     }

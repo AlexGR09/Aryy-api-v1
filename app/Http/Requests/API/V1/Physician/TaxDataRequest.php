@@ -29,7 +29,6 @@ class TaxDataRequest extends FormRequest
             'tax_regime'=>'required',
             'tax_email'=>'required|email',
             'tax_residence'=>'required',
-            'constancy'=>'required|image|mimes:jpg,png|max:3000',
         ];
     }
 }
