@@ -31,7 +31,10 @@ class IdentityController extends Controller
             $file = $request->file('id_card');
             $fileName = $file->getClientOriginalName();
             $file->storeAs($this->user->user_folder . '//identity//', $fileName);
+            
             $patient = Patient::where('user_id', $this->user->id)->firstOrFail();
+            Storage::delete($this->user->user_folder.'//identity//' . $patient->id_card);
+            
             $patient->id_card = '//identity//' . $fileName;
             $patient->save();
 

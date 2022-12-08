@@ -26,7 +26,7 @@ class TaxDataController extends Controller
     {
         try {
             DB::beginTransaction();
-            $tax_data = new TaxData();
+            $tax_data = TexData::where('user_id', $request->user->id)->first();
             $tax_data->user_id = $this->user->id;
             $tax_data->rfc = $request->rfc;
             $tax_data->taxpayer_name = $request->taxpayer_name;
@@ -38,6 +38,8 @@ class TaxDataController extends Controller
             $fileName = $file->getClientOriginalName();
             $file->storeAs($this->user->user_folder . '//tax_data//', $fileName);
 
+            //Storage::delete($this->user->user_folder.'//tax_data//' . $);
+            
             $tax_data->constancy = '//tax_data//' . $fileName;
             
             $tax_data->save();
