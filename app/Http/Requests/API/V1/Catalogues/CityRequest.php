@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CityRequest extends FormRequest
 {
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -15,7 +15,7 @@ class CityRequest extends FormRequest
     {
         return [
             'name' => 'required|max:32',
-            'state_id' => 'required'
+            'state_id' => 'required',
         ];
     }
 }

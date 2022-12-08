@@ -9,9 +9,8 @@ class UserRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return false;
     }
@@ -24,7 +23,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'full_name'=>'string',
+            'full_name' => 'string',
             'gender' => 'string',
         ];
     }

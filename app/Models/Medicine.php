@@ -14,6 +14,6 @@ class Medicine extends Model
         'name',
         'formula',
         'Presentation',
-        'brand'
+        'brand',
     ];
 }

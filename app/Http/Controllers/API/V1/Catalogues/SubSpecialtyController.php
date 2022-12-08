@@ -20,8 +20,9 @@ class SubSpecialtyController extends Controller
     {
         try {
             if ($this->user->hasRole('User')) {
-                return (SubSpecialtyResource::collection(SubSpecialty::orderBy('name')->get()));
+                return SubSpecialtyResource::collection(SubSpecialty::orderBy('name')->get());
             }
+
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -32,8 +33,9 @@ class SubSpecialtyController extends Controller
     {
         try {
             if ($this->user->hasRole('User')) {
-                return (SubSpecialtyResource::collection(SubSpecialty::orderBy('name')->where('specialty_id', $request->specialty_id)->get()));
+                return SubSpecialtyResource::collection(SubSpecialty::orderBy('name')->where('specialty_id', $request->specialty_id)->get());
             }
+
             return response()->json(['message' => 'No puedes realizar esta acción.'], 403);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

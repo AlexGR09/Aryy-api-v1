@@ -5,13 +5,14 @@ namespace App\Http\Controllers\API\V1\Patient;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\V1\Patient\HealthInsuranceResource;
 use App\Models\HealthInsurance;
-use Illuminate\Http\Request;
 use App\Models\Patient;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 
 class HealthInsuranceController extends Controller
 {
+    public ?\Illuminate\Contracts\Auth\Authenticatable $user;
+
     public function __construct()
     {
         $this->user = auth()->user();
@@ -19,6 +20,7 @@ class HealthInsuranceController extends Controller
         $this->middleware('role:Patient')->only(['store', 'show', 'update']);
         //$this->middleware('permission:edit hereditary background')->only(['update']);
     }
+
     public function index()
     {
         //
@@ -37,6 +39,7 @@ class HealthInsuranceController extends Controller
             return (new HealthInsuranceResource($health_insurance))->additional(['message' => 'Informacion guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -52,6 +55,7 @@ class HealthInsuranceController extends Controller
             return response()->json(['error'=>'La informacion no se encontro'], 503);;
            } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -67,6 +71,7 @@ class HealthInsuranceController extends Controller
             return (new HealthInsuranceResource($health_insurance))->additional(['message' => 'Informacion actualizada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
