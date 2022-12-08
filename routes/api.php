@@ -120,9 +120,6 @@ Route::prefix('v1')->group(function () {
             Route::controller($this->physician . MedicalServiceController::class)->group(function () {
                 Route::put('/medicalservice', 'update');
             });
-<<<<<<< HEAD
-
-=======
             // ENFERMEDADES QUE EL MÉDICO ATIENDE
             Route::controller($this->physician . DiseaseController::class)->group(function () {
                 Route::get('/disease', 'index');
@@ -130,7 +127,6 @@ Route::prefix('v1')->group(function () {
                 Route::delete('/disease', 'destroy');
             });
            
->>>>>>> parent of dd85d20 (Revert "CU04 finalizado")
             // INSTALACIONES DEL MÉDICO
             // Route::controller($this->physician.FacilityController::class)->group(function() {
             //     Route::get('/facility', 'index');
