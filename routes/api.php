@@ -117,11 +117,7 @@ Route::prefix('v1')->group(function () {
             Route::controller($this->physician . MedicalServiceController::class)->group(function () {
                 Route::put('/medicalservice', 'update');
             });
-<<<<<<< HEAD
 
-=======
-           
->>>>>>> parent of ddcf25a (CU04 finalizado)
             // INSTALACIONES DEL MÉDICO
             // Route::controller($this->physician.FacilityController::class)->group(function() {
             //     Route::get('/facility', 'index');
