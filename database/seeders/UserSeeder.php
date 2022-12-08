@@ -5,12 +5,15 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class UserSeeder extends Seeder
 {
     
     public function run()
     {
+        Storage::deleteDirectory('users');
+
         $user = new User();
         $user->full_name = "admin";
         $user->email = "admin@email.com";

@@ -68,7 +68,7 @@ Route::prefix('v1')->group(function () {
             Route::resource('ocupations', $this->catalogues . OccupationController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
             //MEDICAL SERVICES
-            Route::resource('medicalservice', $this->catalogues . MedicalServiceController::class)
+            Route::resource('/medicalservices', $this->catalogues . MedicalServiceController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
             //INSURANCE
             Route::resource('insurance', $this->catalogues . InsuranceController::class)
@@ -76,6 +76,9 @@ Route::prefix('v1')->group(function () {
             // ESPECIALIDADES
             Route::resource('/specialties', $this->catalogues . SpecialtyController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
+            // ENFERMEDADES
+            Route::resource('/diseases', $this->catalogues . DiseaseController::class)
+            ->only(['index', 'store', 'show', 'update', 'destroy']);
             // SUB ESPECIALIDADES
             Route::controller($this->catalogues . SubSpecialtyController::class)->group(function () {
                 Route::get('/subspecialties', 'index');
@@ -113,9 +116,15 @@ Route::prefix('v1')->group(function () {
                 Route::get('/medicalindentity/getfacilityphoto', 'getFacilityPhoto');
                 Route::delete('/medicalindentity/deletefacilityphoto', 'deleteFacilityPhoto');
             });
-            // SERVICIOS DEL MÉDICO
+            // SERVICIOS QUE EL MÉDICO OFRECE
             Route::controller($this->physician . MedicalServiceController::class)->group(function () {
                 Route::put('/medicalservice', 'update');
+            });
+            // ENFERMEDADES QUE EL MÉDICO ATIENDE
+            Route::controller($this->physician . DiseaseController::class)->group(function () {
+                Route::get('/disease', 'index');
+                Route::post('/disease', 'store');
+                Route::delete('/disease', 'destroy');
             });
            
             // INSTALACIONES DEL MÉDICO

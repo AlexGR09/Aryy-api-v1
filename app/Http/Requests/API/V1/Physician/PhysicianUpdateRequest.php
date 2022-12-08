@@ -24,9 +24,10 @@ class PhysicianUpdateRequest extends FormRequest
             'social_networks' => 'array:facebook,instagram,tiktok,youtube,website',
             'social_networks.*' => 'url',
             'specialties' => 'required|array',
-            'specialties.*.specialty_id' => 'required|numeric',
+            'specialties.*.specialty_id' => 'required|numeric|distinct',
             'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty')->whereNot('physician_id', $physician->id),
-            'specialties.*.institution' => 'required'
+            'specialties.*.institution' => 'required',
+            'specialties.*.license_photo' => 'present|exists:physician_specialty,license_photo'
         ];
     }
 
@@ -39,7 +40,8 @@ class PhysicianUpdateRequest extends FormRequest
             'social_networks.*' => 'url de la red social',
             'specialties.*.specialty_id' => 'id de la especialidad',
             'specialties.*.license' => 'licencia de la especialidad',
-            'specialties.*.institution' => 'institución de la especialidad'
+            'specialties.*.institution' => 'institución de la especialidad',
+            'specialties.*.license_photo' => 'foto de la especialidad'
         ];
     }
 
