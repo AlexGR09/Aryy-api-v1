@@ -12,7 +12,7 @@ class DiseaseController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:show diseases')->only([
+        $this->middleware('role_or_permission:User|show diseases')->only([
             'index',
             'show', 
         ]);
@@ -34,8 +34,13 @@ class DiseaseController extends Controller
     public function index()
     {
         try {
+<<<<<<< HEAD
             $diseases = Disease::paginate(5);
             return (DiseaseResource::collection($diseases))->additional(['message' => 'Enfermedades existentes']);
+=======
+            return (DiseaseResource::collection(Disease::orderBy('name')->get()))
+                ->additional(['message' => 'Enfermedades encontradas.']);
+>>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

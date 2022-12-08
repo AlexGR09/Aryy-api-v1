@@ -48,6 +48,7 @@ class Physician extends Model
     public function medical_service_physician()
     {
         return $this->hasMany('App\Models\MedicalServicePhysician');
+<<<<<<< HEAD
     }
 
     
@@ -57,6 +58,16 @@ class Physician extends Model
     // }
 
     
+=======
+    }
+    // RELACIÓN MUCHOS A MUCHOS CON EL MODELO DISEASES
+    public function diseases()
+    {
+        return $this->belongsToMany('App\Models\Disease', 'disease_physician');
+    }
+
+    
+>>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
     public function facilities()
     {
         return $this->belongsToMany('App\Models\Facility', 'facility_physician');

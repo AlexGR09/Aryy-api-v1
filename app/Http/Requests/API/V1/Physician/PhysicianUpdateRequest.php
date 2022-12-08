@@ -24,9 +24,16 @@ class PhysicianUpdateRequest extends FormRequest
             'social_networks' => 'array:facebook,instagram,tiktok,youtube,website',
             'social_networks.*' => 'url',
             'specialties' => 'required|array',
+<<<<<<< HEAD
             'specialties.*.specialty_id' => 'required|numeric',
             'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty')->whereNot('physician_id', $physician->id),
             'specialties.*.institution' => 'required'
+=======
+            'specialties.*.specialty_id' => 'required|numeric|distinct',
+            'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty')->whereNot('physician_id', $physician->id),
+            'specialties.*.institution' => 'required',
+            'specialties.*.license_photo' => 'present|exists:physician_specialty,license_photo'
+>>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
         ];
     }
 
@@ -39,7 +46,12 @@ class PhysicianUpdateRequest extends FormRequest
             'social_networks.*' => 'url de la red social',
             'specialties.*.specialty_id' => 'id de la especialidad',
             'specialties.*.license' => 'licencia de la especialidad',
+<<<<<<< HEAD
             'specialties.*.institution' => 'institución de la especialidad'
+=======
+            'specialties.*.institution' => 'institución de la especialidad',
+            'specialties.*.license_photo' => 'foto de la especialidad'
+>>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
         ];
     }
 

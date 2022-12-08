@@ -68,7 +68,11 @@ Route::prefix('v1')->group(function () {
             Route::resource('ocupations', $this->catalogues . OccupationController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
             //MEDICAL SERVICES
+<<<<<<< HEAD
             Route::resource('medicalservice', $this->catalogues . MedicalServiceController::class)
+=======
+            Route::resource('/medicalservices', $this->catalogues . MedicalServiceController::class)
+>>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
             //INSURANCE
             Route::resource('insurance', $this->catalogues . InsuranceController::class)
@@ -76,6 +80,9 @@ Route::prefix('v1')->group(function () {
             // ESPECIALIDADES
             Route::resource('/specialties', $this->catalogues . SpecialtyController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
+            // ENFERMEDADES
+            Route::resource('/diseases', $this->catalogues . DiseaseController::class)
+            ->only(['index', 'store', 'show', 'update', 'destroy']);
             // SUB ESPECIALIDADES
             Route::controller($this->catalogues . SubSpecialtyController::class)->group(function () {
                 Route::get('/subspecialties', 'index');
@@ -112,6 +119,19 @@ Route::prefix('v1')->group(function () {
                 Route::post('/medicalindentity/uploadfacilityphoto', 'uploadFacilityPhoto');
                 Route::get('/medicalindentity/getfacilityphoto', 'getFacilityPhoto');
                 Route::delete('/medicalindentity/deletefacilityphoto', 'deleteFacilityPhoto');
+<<<<<<< HEAD
+=======
+            });
+            // SERVICIOS QUE EL MÉDICO OFRECE
+            Route::controller($this->physician . MedicalServiceController::class)->group(function () {
+                Route::put('/medicalservice', 'update');
+            });
+            // ENFERMEDADES QUE EL MÉDICO ATIENDE
+            Route::controller($this->physician . DiseaseController::class)->group(function () {
+                Route::get('/disease', 'index');
+                Route::post('/disease', 'store');
+                Route::delete('/disease', 'destroy');
+>>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
             });
             // SERVICIOS DEL MÉDICO
             Route::controller($this->physician . MedicalServiceController::class)->group(function () {
@@ -129,9 +149,16 @@ Route::prefix('v1')->group(function () {
 
             //DATOS FISCALES DEL MÉDICO
             Route::controller($this->physician . TaxDataController::class)->group(function () {
+<<<<<<< HEAD
                 Route::post('/tax_data', 'store');
                 Route::get('/tax_data', 'show');
                 Route::put('/tax_data','update');
+=======
+                Route::post('tax_data', 'store');
+                Route::get('tax_data', 'show');
+                Route::put('tax_data','update');
+                Route::delete('tax_data','destroy');
+>>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
             });
         });
 

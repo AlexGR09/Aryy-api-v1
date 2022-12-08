@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class MedicalServiceResource extends JsonResource
 {
+<<<<<<< HEAD
     /**
      * Transform the resource into an array.
      *
@@ -15,6 +16,13 @@ class MedicalServiceResource extends JsonResource
     public function toArray($request)
     {
         return [
+=======
+
+    public function toArray($request)
+    {
+        return [
+            'medical_service_id' => $this->id,
+>>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
             'name' => $this->name
         ];
     }

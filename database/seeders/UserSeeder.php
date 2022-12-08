@@ -5,12 +5,18 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\Storage;
+>>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
 
 class UserSeeder extends Seeder
 {
     
     public function run()
     {
+        Storage::deleteDirectory('users');
+
         $user = new User();
         $user->full_name = "admin";
         $user->email = "admin@email.com";
