@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UploadCertificateRequest extends FormRequest
 {
+    
     public function authorize()
     {
         return auth()->check();
@@ -23,7 +24,7 @@ class UploadCertificateRequest extends FormRequest
     {
         return [
             'certificate_photo' => 'array de fotos de certificados',
-            'license_photo.*' => 'foto de certificado',
+            'license_photo.*' => 'foto de certificado'
         ];
     }
 }

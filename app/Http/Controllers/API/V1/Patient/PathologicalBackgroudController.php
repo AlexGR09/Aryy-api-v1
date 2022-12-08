@@ -4,16 +4,16 @@ namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\PathologicalBackgroundRequest;
+use App\Http\Resources\API\V1\Patient\BasicImformationResource;
 use App\Http\Resources\API\V1\Patient\PathologicalBackgroundResource;
 use App\Models\MedicalHistory;
 use App\Models\PathologicalBackground;
 use App\Models\Patient;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PathologicalBackgroudController extends Controller
 {
-    public ?\Illuminate\Contracts\Auth\Authenticatable $user;
-
     public function __construct()
     {
         $this->user = auth()->user();
@@ -55,11 +55,9 @@ class PathologicalBackgroudController extends Controller
             $medical_history->save();
 
             DB::commit();
-
             return (new PathologicalBackgroundResource($pathological_background))->additional(['message' => 'Informacion guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -70,11 +68,9 @@ class PathologicalBackgroudController extends Controller
             $patient = Patient::where('user_id', $this->user->id)->first();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
             $pathological = PathologicalBackground::where('id', $medical_history->pathological_background_id)->get();
-
-            return PathologicalBackgroundResource::collection($pathological)->additional(['message' => 'Mi perfil de paciente.']);
+            return (PathologicalBackgroundResource::collection($pathological))->additional(['message' => 'Mi perfil de paciente.']);
         } catch (\Throwable $th) {
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -102,11 +98,9 @@ class PathologicalBackgroudController extends Controller
             $pathological_background->gastrointestinal_pathologies = $request->gastrointestinal_pathologies;
             $pathological_background->save();
             DB::commit();
-
             return (new PathologicalBackgroundResource($pathological_background))->additional(['message' => 'Informacion actualizada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

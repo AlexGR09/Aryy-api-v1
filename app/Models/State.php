@@ -11,16 +11,16 @@ class State extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'country_id',
+        'name', 'country_id'
     ];
 
     public function country()
     {
-        return $this->belongsTo(\App\Models\Country::class);
+        return $this->belongsTo('App\Models\Country');
     }
 
     public function cities()
     {
-        return $this->hasMany(\App\Models\City::class);
+        return $this->hasMany('App\Models\City');
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 class VaccinationHistory extends Model
 {
     use HasFactory, SoftDeletes;
@@ -14,11 +15,12 @@ class VaccinationHistory extends Model
         'vaccine',
         'dose',
         'lot_number',
-        'application_date',
+        'application_date'
     ];
 
     public function medical_history()
     {
         return $this->belongsTo('App\Models\MedicalHistory');
     }
+
 }

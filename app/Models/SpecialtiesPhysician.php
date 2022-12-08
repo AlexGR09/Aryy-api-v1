@@ -11,17 +11,17 @@ class SpecialtiesPhysician extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'license' => 'unique',
+        'license'=>'unique',
         'institution',
     ];
 
     public function physician()
     {
-        return $this->belongsTo(\App\Models\Physician::class);
+        return $this->belongsTo('App\Models\Physician');
     }
 
     public function specialty()
     {
-        return $this->belongsTo(\App\Models\Specialty::class);
+        return $this->belongsTo('App\Models\Specialty');
     }
 }

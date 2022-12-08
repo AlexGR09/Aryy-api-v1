@@ -10,16 +10,17 @@ class HereditaryBackgroundResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+    public function toArray($request)
     {
         return [
-            'diabetes' => $this->diabetes,
-            'heart_diseases' => $this->heart_diseases,
-            'blood_pressure' => $this->blood_pressure,
-            'thyroid_diseases' => $this->thyroid_diseases,
-            'cancer' => $this->cancer,
-            'kidney_stones' => $this->kidney_stones,
+            'diabetes'=>$this->diabetes,
+            'heart_diseases'=>$this->heart_diseases,
+            'blood_pressure'=>$this->blood_pressure,
+            'thyroid_diseases'=>$this->thyroid_diseases,
+            'cancer'=>$this->cancer,
+            'kidney_stones'=>$this->kidney_stones
         ];
     }
 }

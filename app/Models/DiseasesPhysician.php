@@ -12,17 +12,15 @@ class DiseasesPhysician extends Model
 
     public function physician()
     {
-        return $this->belongsTo(\App\Models\Physician::class);
+        return $this->belongsTo('App\Models\Physician');
     }
-
     // RELACIONES DE ESTA TABLA PIVOT (M:N) PRUEBAS
     public function physicians()
     {
-        return $this->belongsToMany(\App\Models\Physician::class)->withPivot('physician_id');
+        return $this->belongsToMany('App\Models\Physician')->withPivot('physician_id');
     }
-
     public function disease()
     {
-        return $this->belongsTo(\App\Models\Disease::class);
+        return $this->belongsTo('App\Models\Disease');
     }
 }

@@ -25,10 +25,9 @@ class SearchController extends Controller
             $result = array_merge($specialties, $physicians);
             $data = $this->arrayPaginator($result, $request);
 
-            if (($specialties === []) == true && ($physicians === []) == true) {
+            if (empty($specialties) == true && empty($physicians) == true) {
                 return response()->json(['message' => 'Sin resultados para esta búsqueda.']);
             }
-
             return response()->json($data);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -40,7 +39,6 @@ class SearchController extends Controller
         $currentPage = 1;
         $perPage = 10;
         $currentElements = array_slice($array, $perPage * ($currentPage - 1), $perPage);
-
-        return new LengthAwarePaginator($currentElements, is_countable($array) ? count($array) : 0, $perPage, $currentPage, ['path' => $request->url()]);
+        return new LengthAwarePaginator($currentElements, count($array), $perPage, $currentPage, ['path' => $request->url()]);
     }
 }
