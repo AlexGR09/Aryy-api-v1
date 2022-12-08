@@ -9,9 +9,8 @@ class InsuranceRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return false;
     }
@@ -24,7 +23,7 @@ class InsuranceRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ($this->getMethod() == 'POST') ? 'required' : 'required,name,'
+            'name' => ($this->getMethod() == 'POST') ? 'required' : 'required,name,',
         ];
     }
 }

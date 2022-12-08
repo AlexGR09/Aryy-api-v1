@@ -13,11 +13,9 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Patient;
 use App\Models\OccupationPatient;
-use App\Models\State;
+use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-
 
 class PatientController extends Controller
 {
@@ -60,6 +58,7 @@ class PatientController extends Controller
             return (new PatientResource($patient))->additional(['message' => 'Perfil de paciente creado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

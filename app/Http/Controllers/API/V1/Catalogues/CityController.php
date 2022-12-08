@@ -41,7 +41,7 @@ class CityController extends Controller
     public function index()
     {
         try {
-            return (CityResource::collection(City::orderBy('name')->get()));
+            return CityResource::collection(City::orderBy('name')->get());
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -58,7 +58,6 @@ class CityController extends Controller
         }
     }
 
-
     public function show(City $city)
     {
         try {
@@ -72,6 +71,7 @@ class CityController extends Controller
     {
         try {
             $city = City::create(['name' => $request->name, 'state_id' => $request->state_id]);
+
             return (new CityResource($city))->additional(['message' => 'Ciudad creada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -84,6 +84,7 @@ class CityController extends Controller
             $city->name = $request->name;
             $city->state_id = $request->state_id;
             $city->save();
+
             return (new CityResource($city))->additional(['message' => 'Ciudad actualizada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -94,6 +95,7 @@ class CityController extends Controller
     {
         try {
             $city->delete();
+
             return (new CityResource($city))->additional(['message' => 'Ciudad eliminada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

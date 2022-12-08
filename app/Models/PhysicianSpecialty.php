@@ -17,7 +17,7 @@ class PhysicianSpecialty extends Model
         'specialty_id',
         'physician_id',
         'license',
-        'institution'
+        'institution',
     ];
 
     protected $hidden = [
@@ -31,12 +31,11 @@ class PhysicianSpecialty extends Model
     // RELACIONES DE ESTA TABLA PIVOT (M:N) 
     public function physicians()
     {
-        return $this->belongsToMany('App\Models\Physician')->withPivot('physician_id');
+        return $this->belongsToMany(\App\Models\Physician::class)->withPivot('physician_id');
     }
 
     public function specialties()
     {
-        return $this->belongsToMany('App\Models\Specialty')->withPivot('specialty_id');
+        return $this->belongsToMany(\App\Models\Specialty::class)->withPivot('specialty_id');
     }
-    
 }
