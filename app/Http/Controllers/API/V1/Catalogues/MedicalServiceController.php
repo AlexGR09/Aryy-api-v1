@@ -12,7 +12,7 @@ class MedicalServiceController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:show medical services')->only([
+        $this->middleware('role_or_permission:User|show medical services')->only([
             'index',
             'show',
         ]);
@@ -29,8 +29,8 @@ class MedicalServiceController extends Controller
     public function index()
     {
         try {
-            $medical_service = MedicalService::paginate(5);
-            return (MedicalServiceResource::collection($medical_service))->additional(['message' => 'Servicios medicos encontrados']);
+            return (MedicalServiceResource::collection(MedicalService::orderBy('name')->get()))
+                ->additional(['message' => 'Servicios médicos encontrados.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

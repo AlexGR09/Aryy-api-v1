@@ -21,6 +21,7 @@ class PhysicianResource extends JsonResource
             'languages' => $this->languages,
             'is_verified' => $this->is_verified,
             'physician_specialties' => PhysicianSpecialtyResource::collection($this->physician_specialty),
+            'physician_medical_services' => MedicalServicePhysicianResource::collection($this->medical_service_physician),
             // 'recipe_template' => $this->recipe_template,
             // 'user' => new UserResource($this->user),
         ];
