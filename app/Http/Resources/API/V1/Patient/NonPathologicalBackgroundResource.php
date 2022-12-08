@@ -10,9 +10,8 @@ class NonPathologicalBackgroundResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public function toArray($request)
+    public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
     {
         return [
             'physical_activity' => $this->physical_activity,
@@ -22,7 +21,7 @@ class NonPathologicalBackgroundResource extends JsonResource
             'other_substances' => $this->other_substances,
             'diet' => $this->diet,
             'drug_active' => $this->drug_active,
-            'previous_medication' => $this->previous_medication
+            'previous_medication' => $this->previous_medication,
         ];
     }
 }

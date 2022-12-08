@@ -6,11 +6,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class DiseaseResource extends JsonResource
 {
-
-    public function toArray($request)
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
     {
         return [
-            'disease_id' => $this->id,
             'name' => $this->name,
         ];
     }

@@ -7,12 +7,16 @@ use App\Http\Requests\API\V1\Patient\NonPathologicalBackgroundRequest;
 use App\Http\Resources\API\V1\Patient\NonPathologicalBackgroundResource;
 use App\Models\MedicalHistory;
 use App\Models\NonPathologicalBackground;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Patient;
+use Illuminate\Support\Facades\DB;
 
 class NonPathologicalBackgroundController extends Controller
 {
+    /**
+     * @var \Illuminate\Contracts\Auth\Authenticatable|null|mixed
+     */
+    public $user;
+
     public function __construct()
     {
         $this->user = auth()->user();
@@ -45,9 +49,11 @@ class NonPathologicalBackgroundController extends Controller
                 'non_pathological_background_id' => $no_pathological->id,
             ]);
             DB::commit();
+
             return (new NonPathologicalBackgroundResource($no_pathological))->additional(['message' => 'Informacion guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -60,24 +66,22 @@ class NonPathologicalBackgroundController extends Controller
 
             $no_pathological = NonPathologicalBackground::where('id', $medical_history->non_pathological_background_id)->get();
 
-            return (NonPathologicalBackgroundResource::collection($no_pathological))->additional(['message' => '..']);
+            return NonPathologicalBackgroundResource::collection($no_pathological)->additional(['message' => '..']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
     public function update(NonPathologicalBackgroundRequest $request)
     {
-
         try {
-
             $patient = Patient::where('user_id', $this->user->id)->first();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
             $no_pathological = NonPathologicalBackground::where('id', $medical_history->non_pathological_background_id)->first();
 
             if ($this->user->hasRole('Patient')) {
-
                 $no_pathological = tap($no_pathological)->update([
                     'physical_activity' => $request->physical_activity,
                     'rest_time' => $request->rest_time,
@@ -86,12 +90,14 @@ class NonPathologicalBackgroundController extends Controller
                     'other_substances' => $request->other_substances,
                     'diet' => $request->diet,
                     'drug_active' => $request->drug_active,
-                    'previous_medication' => $request->previous_medication,    
+                    'previous_medication' => $request->previous_medication,
                 ]);
+
                 return (new NonPathologicalBackgroundResource($no_pathological))->additional(['message' => 'Informacion actualizada con exito.']);
             }
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

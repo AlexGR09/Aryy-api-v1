@@ -10,11 +10,9 @@ class PathologicalBackgroundResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public function toArray($request)
+    public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
     {
-        
         return [
             'previous_surgeries' => $this->previous_surgeries,
             'blood_transfusions' => $this->blood_transfusions,
@@ -28,7 +26,7 @@ class PathologicalBackgroundResource extends JsonResource
             'trauma' => $this->trauma,
             'respiratory_diseases' => $this->respiratory_diseases,
             'ets' => $this->ets,
-            'gastrointestinal_pathologies' => $this->gastrointestinal_pathologies
+            'gastrointestinal_pathologies' => $this->gastrointestinal_pathologies,
         ];
     }
 }
