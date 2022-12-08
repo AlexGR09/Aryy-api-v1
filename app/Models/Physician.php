@@ -49,11 +49,12 @@ class Physician extends Model
     {
         return $this->hasMany('App\Models\MedicalServicePhysician');
     }
-    // RELACIÓN MUCHOS A MUCHOS CON EL MODELO DISEASES
-    public function diseases()
-    {
-        return $this->belongsToMany('App\Models\Disease', 'disease_physician');
-    }
+
+    
+    // public function diseases()
+    // {
+    //     return $this->hasMany('App\Models\DiseasesPhysician');
+    // }
 
     
     public function facilities()

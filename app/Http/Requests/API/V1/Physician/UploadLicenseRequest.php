@@ -16,7 +16,7 @@ class UploadLicenseRequest extends FormRequest
     {
         return [
             'license' => 'required|string|max:200|exists:physician_specialty',
-            'photo' => 'required|image|mimes:jpg,png|max:2000',
+            'license_photo' => 'required|image|mimes:jpg,png|max:2000',
         ];
     }
 
@@ -24,7 +24,7 @@ class UploadLicenseRequest extends FormRequest
     {
         return [
             'license' => 'campo cédula',
-            'photo' => 'foto de cédula'
+            'license_photo' => 'foto de cédula'
         ];
     }
 }
