@@ -47,7 +47,7 @@ class TaxDataController extends Controller
             DB::commit();
             return (new TaxDataResource($tax_data))->additional(['message' => 'Informacion guardada con exito.']);
         } catch (\Throwable $th) {
-            Storage::delete($this->user->user_folder.'//tax_data//' . $fileName);
+            Storage::delete($this->user->user_folder.'//identity//' . $fileName);
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -69,18 +69,13 @@ class TaxDataController extends Controller
 
     public function update(Request $request)
     {
+        return $request;
         
+   
     }
 
     public function destroy()
     {
-        try {
-            $tax_data = TaxData::where('user_id', $this->user->id)->first();
-            $path = $this->user->user_folder.$tax_data->constancy;
-            Storage::delete($path);
-             
-         } catch (\Throwable $th) {
-             return response()->json(['error' => $th->getMessage()], 503);
-         }
+        //
     }
 }
