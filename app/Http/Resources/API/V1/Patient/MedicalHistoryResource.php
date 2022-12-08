@@ -3,6 +3,10 @@
 namespace App\Http\Resources\API\V1\Patient;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\API\V1\Patient\AllergyPatientResource;
+use App\Http\Resources\API\V1\UserResource;
+use App\Http\Resources\API\V1\Patient\PathologicalBackgorundResource;
+use App\Models\Patient;
 
 class MedicalHistoryResource extends JsonResource
 {
@@ -10,12 +14,13 @@ class MedicalHistoryResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+    public function toArray($request)
     {
         return [
             'patient_id' => $this->patient_id,
-            'patient' => new PatientResource($this->patient),
+            'patient'=>new PatientResource($this->patient),
             'height' => $this->height,
             'weight' => $this->weight,
             'imc' => $this->imc,
@@ -30,6 +35,8 @@ class MedicalHistoryResource extends JsonResource
             'hereditarybackground' => new HereditaryBackgroundResource($this->hereditarybackground),
             'vaccination_history_id' => $this->vaccination_history_id,
             'vaccinationhistory' => new VaccinationHistoryResource($this->vaccinationhistory),
+
+
 
         ];
     }

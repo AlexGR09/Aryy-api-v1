@@ -38,45 +38,46 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $e)
     {
         switch ($e) {
-            case $e instanceof ErrorException:
+
+            case ($e instanceof ErrorException):
                 return response()->json([
-                    'message' => 'Ha ocurrido un error inesperado.',
-                    'error' => $e->getMessage(),
+                    "message" => "Ha ocurrido un error inesperado.",
+                    "error" => $e->getMessage()
                 ], 500);
                 break;
 
-            case $e instanceof ModelNotFoundException:
+            case ($e instanceof ModelNotFoundException):
                 return response()->json([
-                    'message' => 'El modelo al que quiere acceder no existe.',
-                    'error' => $e->getMessage(),
+                    "message" => "El modelo al que quiere acceder no existe.",
+                    "error" => $e->getMessage()
                 ], 404);
                 break;
 
-            case $e instanceof AuthenticationException:
+            case ($e instanceof AuthenticationException):
                 return response()->json([
-                    'message' => 'Debe iniciar sesión.',
-                    'error' => $e->getMessage(),
+                    "message" => "Debe iniciar sesión.",
+                    "error" => $e->getMessage()
                 ], 401);
                 break;
 
-            case $e instanceof MethodNotAllowedHttpException:
+            case ($e instanceof MethodNotAllowedHttpException):
                 return response()->json([
-                    'message' => 'El método actual no es compatible con esta ruta.',
-                    'error' => $e->getMessage(),
+                    "message" => "El método actual no es compatible con esta ruta.",
+                    "error" => $e->getMessage()
                 ], 405);
                 break;
 
-            case $e instanceof NotFoundHttpException:
+            case ($e instanceof NotFoundHttpException):
                 return response()->json([
-                    'message' => 'El recurso no se encuentra.',
-                    'error' => $e->getMessage(),
+                    "message" => "El recurso no se encuentra.",
+                    "error" => $e->getMessage()
                 ], 404);
                 break;
 
-            case $e instanceof QueryException:
+            case ($e instanceof QueryException):
                 return response()->json([
-                    'message' => 'La conexión con la base de datos se ha interrumpido.',
-                    'error' => $e->getMessage(),
+                    "message" => "La conexión con la base de datos se ha interrumpido.",
+                    "error" => $e->getMessage()
                 ], 500);
                 break;
 

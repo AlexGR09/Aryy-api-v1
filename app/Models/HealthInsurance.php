@@ -13,17 +13,17 @@ class HealthInsurance extends Model
     protected $fillable = [
         'insurance_number',
         'insurance_id',
-        'patient_id',
+        'patient_id'
     ];
 
     // RELACIÓN MUCHOS A UNO CON PACIENTE
     public function patient()
     {
-        return $this->hasMany(\App\Models\Patient::class);
+        return $this->hasMany('App\Models\Patient');
     }
 
     public function insurance()
     {
-        return $this->belongsTo(\App\Models\Insurance::class);
+        return $this->belongsTo('App\Models\Insurance');
     }
 }

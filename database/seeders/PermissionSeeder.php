@@ -2,11 +2,13 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class PermissionSeeder extends Seeder
 {
+
     public function run()
     {
         DB::table('permissions')->insert([
@@ -30,7 +32,7 @@ class PermissionSeeder extends Seeder
             ['name' => 'show user profile', 'guard_name' => 'sanctum'],
             ['name' => 'edit user profile', 'guard_name' => 'sanctum'],
             ['name' => 'delete user profile', 'guard_name' => 'sanctum'],
-            // CATÁLOGOS
+            // CATÁLOGOS    
             // CRUD ESPECIALIDADES
             ['name' => 'show specialties', 'guard_name' => 'sanctum'],
             ['name' => 'create specialties', 'guard_name' => 'sanctum'],
@@ -87,15 +89,16 @@ class PermissionSeeder extends Seeder
             ['name' => 'show medical history', 'guard_name' => 'sanctum'],
             ['name' => 'edit basic information', 'guard_name' => 'sanctum'],
 
-            ['name' => 'show non pathological background', 'guard_name' => 'sanctum'],
-            ['name' => 'edit non pathological background', 'guard_name' => 'sanctum'],
+            ['name' => 'show non pathological background', 'guard_name' =>'sanctum'],
+            ['name' => 'edit non pathological background', 'guard_name' =>'sanctum'],
+            
+            ['name' => 'show pathological background', 'guard_name' =>'sanctum'],
+            ['name' => 'edit pathological background', 'guard_name' =>'sanctum'],
 
-            ['name' => 'show pathological background', 'guard_name' => 'sanctum'],
-            ['name' => 'edit pathological background', 'guard_name' => 'sanctum'],
 
             ['name' => 'show hereditary background', 'guard_name' => 'sanctum'],
             ['name' => 'edit hereditary background', 'guard_name' => 'sanctum'],
-
+            
             ['name' => 'show patient vaccination History', 'guard_name' => 'sanctum'],
             ['name' => 'edit patient vaccination History', 'guard_name' => 'sanctum'],
 

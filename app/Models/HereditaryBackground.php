@@ -16,20 +16,20 @@ class HereditaryBackground extends Model
         'blood_pressure',
         'thyroid_diseases',
         'cancer',
-        'kidney_stones',
+        'kidney_stones'
     ];
 
     public function medical_history()
     {
-        return $this->hasOne(\App\Models\MedicalHistory::class);
+        return $this->hasOne('App\Models\MedicalHistory');
     }
 
     protected $casts = [
-        'diabetes' => 'object',
-        'heart_diseases' => 'object',
-        'blood_pressure' => 'object',
-        'thyroid_diseases' => 'object',
-        'cancer' => 'object',
-        'kidney_stones' => 'object',
+        'diabetes'=>'object',
+        'heart_diseases'=>'object',
+        'blood_pressure'=>'object',
+        'thyroid_diseases'=>'object',
+        'cancer'=>'object',
+        'kidney_stones'=>'object'
     ];
 }

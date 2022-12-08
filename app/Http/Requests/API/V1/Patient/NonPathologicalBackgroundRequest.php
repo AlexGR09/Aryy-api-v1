@@ -24,19 +24,19 @@ class NonPathologicalBackgroundRequest extends FormRequest
     public function rules()
     {
         return [
-            'physical_activity.type_of_activity' => 'string',
-            'physical_activity.days_of_the_week' => 'string',
-            'rest_time.hours_of_sleep' => 'string',
-            'rest_time.dreams_while_sleeping' => 'string',
-            'rest_time.rest_when_sleeping' => 'string',
-            'smoking.number_of_cigarettes' => 'string',
-            'smoking.type' => 'string',
-            'alcoholim.weekly_frequency' => 'string',
-            'alcoholim.type' => 'string',
-            'other_substances' => 'string',
+            'physical_activity.type_of_activity'=>'string',
+            'physical_activity.days_of_the_week'=>'string',
+            'rest_time.hours_of_sleep'=>'string',
+            'rest_time.dreams_while_sleeping'=>'string',
+            'rest_time.rest_when_sleeping'=>'string',
+            'smoking.number_of_cigarettes'=>'string',
+            'smoking.type'=>'string',
+            'alcoholim.weekly_frequency'=>'string',
+            'alcoholim.type'=>'string',
+            'other_substances'=>'string',
             'diet' => 'string',
             'drug_active' => 'string',
-            'previous_medication' => 'string',
+            'previous_medication' => 'string'
         ];
     }
 }

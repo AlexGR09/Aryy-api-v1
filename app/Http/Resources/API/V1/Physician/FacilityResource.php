@@ -6,10 +6,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class FacilityResource extends JsonResource
 {
+    
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
             'name' => $this->name,
             'location' => $this->location,
             'phone' => $this->phone,
