@@ -9,6 +9,14 @@ use App\Models\Facility;
 
 class FacilityController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('facility_user')->only([
+            'delete',
+            'show'
+        ]);
+    }
+
     public function index()
     {
         
