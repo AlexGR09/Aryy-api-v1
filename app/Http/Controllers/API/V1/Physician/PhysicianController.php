@@ -31,21 +31,14 @@ class PhysicianController extends Controller
                 'user_id' => $this->user->id,
                 'professional_name' => $request->professional_name,
                 'is_verified' => 'in_verification'
-<<<<<<< HEAD
             ]);       
-=======
-            ]);           
->>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
 
+            // CONSTRUYE UN ARRAY DE ESPECIALIDADES PARA SINCRONIZARLOS CON EL MÉDICO
+            $specialties = $this->specialtiesArrayConstructor($request->specialties, $physician->id);
             // CREA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVOTE
-<<<<<<< HEAD
             $physician->specialties()->attach($specialties);
-=======
-            $physician->specialties()->attach($request->specialties);
->>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
     
             $this->user->syncRoles(['User', 'PhysicianInVerification']);
-            
             DB::commit();
             return (new PhysicianResource($physician))->additional(['message' => 'Perfil médico creado con éxito.']);
         } catch (\Throwable $th) {
@@ -59,7 +52,6 @@ class PhysicianController extends Controller
         try {
             $message = 'Mi perfil médico.';
             $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
-
             if ($this->user->hasRole('PhysicianInVerification')) {
                 $message = 'Su perfil médico está en proceso de verificación, esto puede tomar un par de días. Por favor, tenga paciencia, nosotros le avisaremos.';
             }
@@ -80,7 +72,7 @@ class PhysicianController extends Controller
             
             // CONSULTA LOS REGISTROS EXISTENTES DE ESPECIALIDADES-MÉDICO (specialty_id, license)
             $previousSpecialties = PhysicianSpecialty::where('physician_id', $physician->id)
-                ->select('specialty_id', 'license', 'license_photo')
+                ->select('specialty_id', 'license')
                 ->get()
                 ->toArray();
             // FORMATEA LA SOLICITUD DE ESPECIALIDADES
@@ -91,19 +83,12 @@ class PhysicianController extends Controller
                 $this->user->syncRoles(['User', 'PhysicianInVerification']);
                 $physician->is_verified = 'in_verification';
             }
-<<<<<<< HEAD
             // CONSTRUYE UN ARRAY DE ESPECIALIDADES PARA SINCRONIZARLOS CON EL MÉDICO
             $specialties = $this->specialtiesArrayConstructor($request->specialties, $physician->id);
             // SINCRONIZA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVOTE
             $physician->specialties()->sync($specialties);
 
             $physician->save();
-=======
-
-            $physician->specialties()->sync($request->specialties);
-            $physician->save();
-
->>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
             DB::commit();
             return (new PhysicianResource($physician))->additional(['message' => 'Perfil médico actualizado con éxito.']);
         } catch (\Throwable $th) {
@@ -123,7 +108,6 @@ class PhysicianController extends Controller
         return $currentSpecialties;
     }
 
-<<<<<<< HEAD
     // CONSTRUYE EL ARRAY DE ESPECIALIDADES PARA SINCRONIZARLOS CON EL MÉDICO
     public function specialtiesArrayConstructor($specialties, $physician_id) 
     {
@@ -140,6 +124,4 @@ class PhysicianController extends Controller
         return $currentSpecialties;
     }
 
-=======
->>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
 }

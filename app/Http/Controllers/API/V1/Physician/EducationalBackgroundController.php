@@ -3,15 +3,11 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\V1\Physician\PhotoNameRequest;
 use App\Http\Requests\API\V1\Physician\UploadCertificateRequest;
 use App\Http\Requests\API\V1\Physician\UploadLicenseRequest;
 use App\Models\Physician;
 use App\Models\PhysicianSpecialty;
-<<<<<<< HEAD
 use Illuminate\Http\Request;
-=======
->>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
 use Illuminate\Support\Facades\Storage;
 
 class EducationalBackgroundController extends Controller
@@ -28,11 +24,7 @@ class EducationalBackgroundController extends Controller
     {
         try {
             // GUARDA LA FOTO DE LA CÉDULA DE LA ESPECIALIDAD EN LA CARPETA CORRESPONDIENTE DEL USUARIO
-<<<<<<< HEAD
             $file = $request->file('license_photo');
-=======
-            $file = $request->file('photo');
->>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs($this->user->user_folder . '//licenses//', $fileName);
 
@@ -93,7 +85,6 @@ class EducationalBackgroundController extends Controller
             return response()->json(['message' => 'Imagen de certificado almacenada correctamente.']);
         } catch (\Throwable $th) {
             Storage::delete($certificateFileName);
-<<<<<<< HEAD
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -109,35 +100,14 @@ class EducationalBackgroundController extends Controller
             }
             return response()->json(['message' => 'La foto del certificado no existe.'], 404);
         } catch (\Throwable $th) {
-=======
->>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function getCertificate(PhotoNameRequest $request)
+    public function deleteCertificate(Request $request)
     {
         try {
             $path = $this->user->user_folder . '//certificates//' .$request->photo;
-<<<<<<< HEAD
-=======
-            $image = Storage::get($path);
-
-            if ($image) {
-                return response($image, 200)->header('Content-Type', Storage::mimeType($path));
-            }
-
-            return response()->json(['message' => 'La foto del certificado no existe.'], 404);
-        } catch (\Throwable $th) {
-            return response()->json(['error' => $th->getMessage()], 503);
-        }
-    }
-
-    public function deleteCertificate(PhotoNameRequest $request)
-    {
-        try {
-            $path = $this->user->user_folder . '//certificates//' .$request->photo;
->>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
             $image = Storage::get($path);
 
             if ($image) {
@@ -154,10 +124,6 @@ class EducationalBackgroundController extends Controller
 
                 return response()->json(['message' => 'Foto del certificado eliminada correctamente.']);
             }
-<<<<<<< HEAD
-=======
-            
->>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
             return response()->json(['message' => 'La foto del certificado no existe.'], 404);   
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

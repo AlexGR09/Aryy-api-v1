@@ -18,11 +18,7 @@ class PhysicianCreateRequest extends FormRequest
         return [
             'professional_name' => 'required|max:60',
             'specialties' => 'required|array',
-<<<<<<< HEAD
             'specialties.*.specialty_id' => 'required|numeric',
-=======
-            'specialties.*.specialty_id' => 'required|numeric|distinct',
->>>>>>> parent of 2668f6c (Merge branch 'main' of https://github.com/AlexGR09/Aryy-api-v1)
             'specialties.*.license' => 'required|distinct|'. Rule::unique('physician_specialty'),
             'specialties.*.institution' => 'required',
         ];
