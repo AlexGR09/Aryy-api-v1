@@ -69,7 +69,7 @@ class TaxDataController extends Controller
 
     public function update(Request $request)
     {
-        
+        $tax_data = TaxData::where('user_id', $this->user->id)->update();
     }
 
     public function destroy()

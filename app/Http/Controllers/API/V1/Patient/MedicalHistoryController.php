@@ -50,7 +50,7 @@ class MedicalHistoryController extends Controller
                 'environmental_allergy' => $request->environmental_allergy,
             ]);
 
-            $basic_information = new MedicalHistory();
+            $basic_information = MedicalHistory::where('patient_id', $patient->id)->first();
             $basic_information->patient_id = $patient->id;
             $basic_information->weight = $request->weight;
             $basic_information->height = $request->height;

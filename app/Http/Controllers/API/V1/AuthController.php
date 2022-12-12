@@ -4,8 +4,10 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Auth\LoginRequest;
+use App\Http\Requests\API\V1\Auth\ProfilePhotoNameRequest;
 use App\Http\Requests\API\V1\Auth\RegisterRequest;
 use App\Http\Requests\API\V1\Auth\UpdateProfileRequest;
+use App\Http\Requests\API\V1\Auth\UploadProfilePhotoRequest;
 use App\Http\Resources\API\V1\UserResource;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -19,9 +21,15 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
-        $this->middleware('permission:show user profile')->only(['show']);
-        $this->middleware('permission:edit user profile')->only(['update']);
-        $this->middleware('permission:delete user profile')->only(['destroy']);
+        $this->middleware('role:User')->only([
+            'show',
+            'update',
+            'destroy',
+            'logout',
+            'uploadProfilePhoto',
+            'getProfilePhoto'
+        ]);
+
     }
 
     public function login(LoginRequest $request)
@@ -46,13 +54,13 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $directory = null;
-        $user_folder = null;
         try {
             DB::beginTransaction();
             $user = User::create([
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
+                'country_code' => $request->country_code,
+                'phone_number' => $request->phone_number
             ]);
             $user->assignRole('User');
 
@@ -64,8 +72,6 @@ class AuthController extends Controller
                     $directory = '//users//patients//';
                     break;
                 case 'Physician':
-                    $user->country_code = $request->country_code;
-                    $user->phone_number = $request->phone_number;
                     $user->assignRole('NewPhysician');
                     $directory = '//users//physicians//';
                     break;
@@ -79,7 +85,7 @@ class AuthController extends Controller
             $token = $user->createToken('authToken')->plainTextToken;
             $user->remember_token = $token;
             $user->user_folder = $directory.$user_folder;
-            $user->update();
+            $user->save();
             DB::commit();
 
             return (new UserResource($user))->additional([
@@ -106,8 +112,7 @@ class AuthController extends Controller
     {
         try {
             DB::beginTransaction();
-            $this->user->name = $request->name;
-            $this->user->last_name = $request->last_name;
+            $this->user->full_name = $request->full_name;
             $this->user->gender = $request->gender;
             $this->user->birthday = $request->birthday;
             $this->user->country_code = $request->country_code;
@@ -157,4 +162,42 @@ class AuthController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
+
+    public function uploadProfilePhoto(UploadProfilePhotoRequest $request)
+    {
+        try {
+            // VACIA EL DIRECTORIO FOTO DE PERFIL DEL USUARIO CORRESPONDIENTE
+            Storage::deleteDirectory($this->user->user_folder . '//profile_photos//');
+
+            $file = $request->file('photo');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs($this->user->user_folder . '//profile_photos//', $fileName);
+
+            // GUARDA LA REFRENCIA DEL ARCHIVO EN LA BASE DE DATOS
+            $this->user->profile_photo = $fileName;
+            $this->user->save();
+
+            return response()->json(['message' => 'Foto de perfil almacenada correctamente.']);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
+
+    public function getProfilePhoto(ProfilePhotoNameRequest $request) 
+    {
+        try {
+            $path =  $this->user->user_folder . '//profile_photos//' . $request->photo;
+            $image = Storage::get($path);
+
+            if ($image) {
+                return response($image, 200)->header('Content-Type', Storage::mimeType($path));
+            }
+
+            return response()->json(['message' => 'Foto de perfil no existe.'], 404);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
+
 }
+

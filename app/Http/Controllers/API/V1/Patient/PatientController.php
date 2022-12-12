@@ -11,6 +11,7 @@ use App\Http\Resources\API\V1\Catalogues\StateResource;
 use App\Http\Resources\API\V1\Patient\PatientResource;
 use App\Models\City;
 use App\Models\Country;
+use App\Models\MedicalHistory;
 use App\Models\Patient;
 use App\Models\OccupationPatient;
 use App\Models\State;
@@ -55,6 +56,11 @@ class PatientController extends Controller
             $patient_occupation->occupation_id = $request->occupation_id;
             $patient_occupation->patient_id = $patient->id;
             $patient_occupation->save();
+
+            $medical_history = new MedicalHistory();
+            $medical_history->patient_id = $patient->id;
+            $medical_history->save();
+
 
             DB::commit();
             return (new PatientResource($patient))->additional(['message' => 'Perfil de paciente creado con éxito.']);
