@@ -5,6 +5,8 @@ use App\Http\Controllers\API\V1\FacilityController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\RoleController;
 use App\Http\Controllers\API\V1\ScheduleFacilityController;
+use App\Http\Controllers\FacilityScheduleController;
+use App\Http\Controllers\FullFacilityController;
 // use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
 // use App\Http\Controllers\API\V1\Search\SearchController;
 use App\Http\Controllers\TestJoseController;
