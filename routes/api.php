@@ -231,7 +231,7 @@ Route::prefix('v1')->group(function () {
         Route::get('facilities', [FacilityController::class, 'index']);
         Route::get('facilities/{facility}', [FacilityController::class, 'show']);
         Route::post('facilities', [FacilityController::class, 'store']);
-        Route::put('facilities/schedule/{facility}', FacilityScheduleController::class);
+        Route::put('facilities/schedule/{facility}', [FacilityScheduleController::class, 'schedule']);
         Route::post('facilities/full/{facility?}', [FullFacilityController::class, 'store']);
         Route::delete('facilities/{facility}', [FacilityController::class, 'delete']);
     });
