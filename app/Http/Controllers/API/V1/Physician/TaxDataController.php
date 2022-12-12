@@ -69,7 +69,22 @@ class TaxDataController extends Controller
 
     public function update(Request $request)
     {
-        $tax_data = TaxData::where('user_id', $this->user->id)->update();
+        $file = $request->file('constancy');
+        $fileName = $file->getClientOriginalName();
+        $file->storeAs($this->user->user_folder . '//tax_data//', $fileName);
+        
+
+        $tax_data = TaxData::where('user_id', $this->user->id)->first();
+        $tax_data->rfc = $request->rfc;
+        $tax_data->taxpayer_name = $request->taxpayer_name;
+        $tax_data->tax_regime = $request->tax_regime;
+        $tax_data->tax_email = $request->tax_email;
+        $tax_data->tax_residence = $request->tax_residence;
+        Storage::delete($this->user->user_folder.'//tax_data//' . $request->constacy);
+        $tax_data->constancy = '//tax_data//'. $fileName;
+        $tax_data->save();
+        /* $tax_data = TaxData::where('user_id', $this->user->id)->get();
+        return $request; */
     }
 
     public function destroy()

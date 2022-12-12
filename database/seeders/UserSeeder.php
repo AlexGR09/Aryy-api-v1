@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -30,6 +31,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
         //medicos
         $user = new User();
@@ -39,6 +41,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -48,6 +51,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -57,6 +61,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -66,6 +71,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -75,6 +81,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -84,6 +91,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -93,6 +101,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -102,6 +111,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -111,6 +121,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -120,6 +131,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         //pacientes
@@ -130,6 +142,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -139,6 +152,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -148,6 +162,7 @@ class UserSeeder extends Seeder
         $user->gender = "Femenino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -157,6 +172,7 @@ class UserSeeder extends Seeder
         $user->gender = "Femenino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -166,6 +182,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -175,6 +192,7 @@ class UserSeeder extends Seeder
         $user->gender = "Femenino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -184,6 +202,7 @@ class UserSeeder extends Seeder
         $user->gender = "Femenino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -193,6 +212,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -202,6 +222,7 @@ class UserSeeder extends Seeder
         $user->gender = "Femenino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
         $user = new User();
@@ -211,6 +232,7 @@ class UserSeeder extends Seeder
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
         $user->phone_number = fake()->regexify('[0-9]{10}');
+        $user->country_code = "+70";
         $user->save();
 
 
