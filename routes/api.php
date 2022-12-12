@@ -195,6 +195,7 @@ Route::prefix('v1')->group(function () {
                 Route::get('medical_history/non_pathological_background', 'show');
                 Route::put('medical_history/non_pathological_background', 'update');
             });
+            
             //Antecedentes Heredofamiliares
             Route::controller($this->patient . HereditaryBackgroundController::class)->group(function () {
                 Route::post('medical_history/hereditary_background', 'store');
@@ -226,9 +227,11 @@ Route::prefix('v1')->group(function () {
         });
 
         Route::get('facilities', [FacilityController::class, 'index']);
+        Route::get('facilities/{facility}', [FacilityController::class, 'show']);
         Route::post('facilities', [FacilityController::class, 'store']);
-        Route::put('facilities/{facility}', [FacilityController::class, 'update']);
-        Route::put('facilities/schedule/{facility}', ScheduleFacilityController::class);
+        Route::put('facilities/schedule/{facility}', FacilityScheduleController::class);
+        Route::post('facilities/full/{facility?}', [FullFacilityController::class, 'store']);
+        Route::delete('facilities/{facility}', [FacilityController::class, 'delete']);
     });
 
 
