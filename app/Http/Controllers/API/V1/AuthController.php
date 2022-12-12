@@ -130,7 +130,6 @@ class AuthController extends Controller
             return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
-            // FALTA REGRESAR LA IMAGEN BORRADA
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -138,6 +137,7 @@ class AuthController extends Controller
     public function destroy()
     {
         try {
+            Storage::deleteDirectory($this->user->user_folder);
             $this->user->delete();
 
             return (new UserResource($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
