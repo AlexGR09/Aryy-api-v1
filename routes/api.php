@@ -41,6 +41,8 @@ Route::prefix('v1')->group(function () {
             Route::get('/profile', 'show')->middleware(['auth:sanctum']);
             Route::put('/profile', 'update')->middleware(['auth:sanctum']);
             Route::delete('/profile', 'destroy')->middleware(['auth:sanctum']);
+            Route::post('/uploadprofilephoto', 'uploadProfilePhoto')->middleware(['auth:sanctum']);
+            Route::get('/getprofilephoto', 'getProfilePhoto')->middleware(['auth:sanctum']);
         });
     });
 
@@ -126,15 +128,7 @@ Route::prefix('v1')->group(function () {
                 Route::post('/disease', 'store');
                 Route::delete('/disease', 'destroy');
             });
-           
-            // INSTALACIONES DEL MÉDICO
-            // Route::controller($this->physician.FacilityController::class)->group(function() {
-            //     Route::get('/facility', 'index');
-            //     Route::get('/facility/{id}', 'show');
-            //     Route::post('/facility', 'store');
-            //     Route::put('/facility/{id}', 'update');
-            //     Route::delete('/facility/{id}', 'destroy');
-            // });
+
 
             //DATOS FISCALES DEL MÉDICO
             Route::controller($this->physician . TaxDataController::class)->group(function () {

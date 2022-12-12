@@ -15,15 +15,13 @@ class UpdateProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:40',
-            'last_name' => 'required|max:40',
+            'full_name' => 'required|string|max:255',
             'gender' => 'required|in:masculino,femenino',
             'birthday' => 'required|date',
             'email' => 'required|email|max:35|'.Rule::unique('users')->ignore(auth()->user()),
             'password' => 'confirmed|min:8|max:16',
             'country_code' => 'required|max:6',
             'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|'.Rule::unique('users')->ignore(auth()->user()),
-            // 'photo' => 'image|mimes:jpg,jpeg,png|max:2000|dimensions:max_width=512,max_height=512'
         ];
     }
 
