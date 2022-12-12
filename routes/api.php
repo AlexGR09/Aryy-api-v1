@@ -5,6 +5,8 @@ use App\Http\Controllers\API\V1\FacilityController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\RoleController;
 use App\Http\Controllers\API\V1\ScheduleFacilityController;
+use App\Http\Controllers\FacilityScheduleController;
+use App\Http\Controllers\FullFacilityController;
 // use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
 // use App\Http\Controllers\API\V1\Search\SearchController;
 use App\Http\Controllers\TestJoseController;
@@ -229,7 +231,7 @@ Route::prefix('v1')->group(function () {
         Route::get('facilities', [FacilityController::class, 'index']);
         Route::get('facilities/{facility}', [FacilityController::class, 'show']);
         Route::post('facilities', [FacilityController::class, 'store']);
-        Route::put('facilities/schedule/{facility}', FacilityScheduleController::class);
+        Route::put('facilities/schedule/{facility}', [FacilityScheduleController::class, 'schedule']);
         Route::post('facilities/full/{facility?}', [FullFacilityController::class, 'store']);
         Route::delete('facilities/{facility}', [FacilityController::class, 'delete']);
     });

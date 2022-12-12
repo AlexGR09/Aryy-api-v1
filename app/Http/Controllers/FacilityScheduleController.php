@@ -8,7 +8,7 @@ use App\Models\Facility;
 
 class FacilityScheduleController extends Controller
 {
-    public function __invoke(Facility $facility, FacilityScheduleRequest $request)
+    public function schedule(Facility $facility, FacilityScheduleRequest $request)
     {
         return new FacilityResource(tap($facility)->update($request->validated()));
     }
