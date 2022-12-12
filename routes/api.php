@@ -201,6 +201,7 @@ Route::prefix('v1')->group(function () {
                 Route::get('medical_history/non_pathological_background', 'show');
                 Route::put('medical_history/non_pathological_background', 'update');
             });
+            
             //Antecedentes Heredofamiliares
             Route::controller($this->patient . HereditaryBackgroundController::class)->group(function () {
                 Route::post('medical_history/hereditary_background', 'store');
