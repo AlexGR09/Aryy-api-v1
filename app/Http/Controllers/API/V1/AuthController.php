@@ -46,13 +46,13 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $directory = null;
-        $user_folder = null;
         try {
             DB::beginTransaction();
             $user = User::create([
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
+                'country_code' => $request->country_code,
+                'phone_number' => $request->phone_number
             ]);
             $user->assignRole('User');
 
@@ -64,8 +64,6 @@ class AuthController extends Controller
                     $directory = '//users//patients//';
                     break;
                 case 'Physician':
-                    $user->country_code = $request->country_code;
-                    $user->phone_number = $request->phone_number;
                     $user->assignRole('NewPhysician');
                     $directory = '//users//physicians//';
                     break;
@@ -79,7 +77,7 @@ class AuthController extends Controller
             $token = $user->createToken('authToken')->plainTextToken;
             $user->remember_token = $token;
             $user->user_folder = $directory.$user_folder;
-            $user->update();
+            $user->save();
             DB::commit();
 
             return (new UserResource($user))->additional([
