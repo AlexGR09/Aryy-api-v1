@@ -26,7 +26,7 @@ class StoreAppointmentRequest extends FormRequest
         return [
         'user_id' => 'required|exists:App\Models\User,id',
         'physician_id' => 'required|exists:App\Models\Physician,id',
-        'speciality_id',
+        'specialty_id'=> 'required|exists:App\Models\Specialty,id',
         'appointment_date',
         'address'
         ];
