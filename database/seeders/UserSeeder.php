@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_number = fake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 //medicos
         $user = new User();
@@ -36,6 +38,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -44,6 +47,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -52,6 +56,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -60,6 +65,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -68,6 +74,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -76,6 +83,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -84,6 +92,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -92,6 +101,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -100,6 +110,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -108,6 +119,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         //pacientes
@@ -117,6 +129,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -125,6 +138,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -133,6 +147,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Femenino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -141,6 +156,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Femenino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -149,6 +165,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -157,6 +174,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Femenino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -165,6 +183,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Femenino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -173,6 +192,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -181,6 +201,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Femenino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
         $user = new User();
@@ -189,6 +210,7 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";// password
         $user->gender = "Masculino";
         $user->birthday = "1990-02-10";
+        $user->phone_numberfake()->regexify('[0-9]{10}');
         $user->save();
 
 
