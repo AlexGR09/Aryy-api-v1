@@ -17,7 +17,6 @@ return new class() extends Migration
             $table->string('password');
             $table->string('country_code')->nullable();
             $table->string('phone_number')->unique()->nullable();
-            $table->string('profile_photo')->nullable();
             $table->string('user_folder')->unique()->nullable();
             $table->json('profile')->nullable();
             $table->timestamp('email_verified_at')->nullable();

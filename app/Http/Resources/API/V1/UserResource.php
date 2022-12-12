@@ -16,8 +16,8 @@ class UserResource extends JsonResource
             'country_code' => $this->country_code,
             'phone_number' => $this->phone_number,
             'email' => $this->email,
-            'profile_photo' => $this->profile_photo,
-            // 'user_folder' => $this->user_folder,
+            'photo' => $this->photo,
+            'user_folder' => $this->user_folder,
             // 'roles' => RoleResource::collection($this->roles)
         ];
     }
