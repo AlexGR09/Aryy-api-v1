@@ -184,6 +184,9 @@ Route::prefix('v1')->group(function () {
                 Route::get('medical_history/basic_information', 'show');
                 Route::post('medical_history/basic_information', 'store');
                 Route::put('medical_history/basic_information', 'update');
+
+                Route::get('allergy','allergy');
+                Route::get('blood_type','blood_type');
             });
             //Antecedentes patologicos
             Route::controller($this->patient . PathologicalBackgroudController::class)->group(function () {
@@ -248,3 +251,4 @@ Route::prefix('v1')->group(function () {
 /* TESTS */
 // JOSÉ
 Route::get('/testjose', [TestJoseController::class, 'index']);
+

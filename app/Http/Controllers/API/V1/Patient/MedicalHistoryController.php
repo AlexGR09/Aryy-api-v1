@@ -4,10 +4,13 @@ namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\MedicalHistoryRequest;
+use App\Http\Resources\API\V1\Catalogues\AllergyResource;
+use App\Http\Resources\API\V1\Catalogues\BloodTypeResource;
 use App\Http\Resources\API\V1\Patient\BasicInformationResource;
 use App\Http\Resources\API\V1\Patient\MedicalHistoryResource;
 use App\Models\Allergy;
 use App\Models\AllergyPatient;
+use App\Models\BloodType;
 use Illuminate\Http\Request;
 use App\Models\MedicalHistory;
 use App\Models\Patient;
@@ -54,7 +57,7 @@ class MedicalHistoryController extends Controller
             $basic_information->patient_id = $patient->id;
             $basic_information->weight = $request->weight;
             $basic_information->height = $request->height;
-            
+
             $weight = $basic_information->weight;
             $height = $basic_information->height;
 
@@ -83,7 +86,7 @@ class MedicalHistoryController extends Controller
 
             $weight = $basic_information->weight;
             $height = $basic_information->height;
-            
+
             $basic_information->imc = round((float)$weight->weight / pow((float)$height->height, 2));
             $basic_information->blood_type = $request->blood_type;
             $basic_information->save();
@@ -107,6 +110,30 @@ class MedicalHistoryController extends Controller
             $patient = Patient::where('user_id', $this->user->id)->first();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergypatient')->get();
             return (BasicInformationResource::collection($medical_history))->additional(['message' => '..']);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
+
+    public function allergy(Request $request)
+    {
+        try {
+            $allergy = Allergy::where('name', 'LIKE', "%" . $request->allergy . "%")->get();
+
+            return (AllergyResource::collection($allergy))->additional(['message' => '..']);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
+
+    public function blood_type(Request $request)
+    {
+        try {
+            $blood_type = BloodType::all();
+
+            return (BloodTypeResource::collection($blood_type))->additional(['message' => '..']);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
