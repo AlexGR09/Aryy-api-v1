@@ -19,13 +19,13 @@ class AppointmentUserMiddleware
     {
         $appointment = $request->route('appointment');
         $appointmentDB = Appointment::where([
-            ['user_id' , auth()->id()],
-            ['id' , $appointment->id]
+            ['user_id', auth()->id()],
+            ['id', $appointment->id],
         ])->first();
-        if($appointmentDB){
+        if ($appointmentDB) {
             return $next($request);
         }
-        return response()->json(['message' => 'No tienes permiso para modificar esta cita'],403);
 
+        return response()->json(['message' => 'No tienes permiso para modificar esta cita'], 403);
     }
 }

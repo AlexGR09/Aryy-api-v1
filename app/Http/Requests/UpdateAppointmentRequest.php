@@ -24,7 +24,7 @@ class UpdateAppointmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'appointment_date' => 'required|date'
+            'appointment_date' => 'required|date',
         ];
     }
 }

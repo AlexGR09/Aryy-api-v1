@@ -52,8 +52,9 @@ class HealthInsuranceController extends Controller
             if ($health_insurance) {
                 return (new HealthInsuranceResource($health_insurance))->additional(['message' => '..']);
             }
-            return response()->json(['error'=>'La informacion no se encontro'], 503);;
-           } catch (\Throwable $th) {
+
+            return response()->json(['error' => 'La informacion no se encontro'], 503);
+        } catch (\Throwable $th) {
             DB::rollBack();
 
             return response()->json(['error' => $th->getMessage()], 503);
@@ -86,8 +87,8 @@ class HealthInsuranceController extends Controller
             return (new HealthInsuranceResource($health_insurance))->additional(['message' => 'Informacion eliminada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 }
-

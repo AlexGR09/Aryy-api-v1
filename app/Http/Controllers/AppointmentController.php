@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Appointment;
 use App\Http\Requests\StoreAppointmentRequest;
 use App\Http\Requests\UpdateAppointmentRequest;
 use App\Http\Resources\AppointmentResource;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -18,9 +18,9 @@ class AppointmentController extends Controller
     public function index(Request $request)
     {
         $status = $request->status;
-        
+
         return  AppointmentResource::collection(
-            Appointment::where('user_id',auth()->id())
+            Appointment::where('user_id', auth()->id())
             ->when($status, function ($q) use ($status) {
                 return $q->whereIn('status', $status);
             })

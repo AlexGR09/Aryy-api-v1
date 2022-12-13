@@ -66,7 +66,8 @@ class HereditaryBackgroundController extends Controller
             $hereditary_background = HereditaryBackground::where('id', $medical_history->hereditary_background_id)->get();
 
             DB::commit();
-            return (HereditaryBackgroundResource::collection($hereditary_background))->additional(['message' => '..']);
+
+            return HereditaryBackgroundResource::collection($hereditary_background)->additional(['message' => '..']);
         } catch (\Throwable $th) {
             DB::rollBack();
 

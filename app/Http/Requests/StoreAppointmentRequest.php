@@ -28,7 +28,7 @@ class StoreAppointmentRequest extends FormRequest
             'physician_id' => 'required|exists:App\Models\Physician,id',
             'specialty_id' => 'required|exists:App\Models\Specialty,id',
             'appointment_date' => 'required|date',
-            'address' => 'required'
+            'address' => 'required',
         ];
     }
 }

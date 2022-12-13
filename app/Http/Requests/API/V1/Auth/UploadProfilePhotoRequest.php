@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UploadProfilePhotoRequest extends FormRequest
 {
-    
     public function authorize()
     {
         return auth()->check();

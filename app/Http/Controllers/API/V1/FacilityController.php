@@ -13,13 +13,12 @@ class FacilityController extends Controller
     {
         $this->middleware('facility_user')->only([
             'delete',
-            'show'
+            'show',
         ]);
     }
 
     public function index()
     {
-        
         return FacilityResource::collection(
             Facility::whereHas('users', function ($query) {
                 $query->where('user_id', auth()->id());

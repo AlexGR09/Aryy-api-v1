@@ -22,7 +22,7 @@ class AppointmentFactory extends Factory
             'specialty_id' => 1,
             'appointment_date' => now(),
             'address' => 'Enrique segoviano',
-            'status' => 'scheduled'
+            'status' => 'scheduled',
         ];
     }
 }
