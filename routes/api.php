@@ -5,6 +5,7 @@ use App\Http\Controllers\API\V1\FacilityController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\RoleController;
 use App\Http\Controllers\API\V1\ScheduleFacilityController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\FacilityScheduleController;
 use App\Http\Controllers\FullFacilityController;
 // use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
@@ -234,6 +235,11 @@ Route::prefix('v1')->group(function () {
         Route::put('facilities/schedule/{facility}', [FacilityScheduleController::class, 'schedule']);
         Route::post('facilities/full/{facility?}', [FullFacilityController::class, 'store']);
         Route::delete('facilities/{facility}', [FacilityController::class, 'delete']);
+
+        Route::post('appointments', [AppointmentController::class, 'store']);
+        Route::get('appointments', [AppointmentController::class, 'index']);
+        Route::put('appointments/{appointment}', [AppointmentController::class, 'update'])->middleware('appointment_user');
+        Route::delete('appointments/{appointment}', [AppointmentController::class, 'destroy'])->middleware('appointment_user');
     });
 
 

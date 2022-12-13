@@ -39,5 +39,7 @@ class DatabaseSeeder extends Seeder
         $this->call(HealthInsuranceSeeder::class);
         $this->call(OcupationPatientSeeder::class);
         $this->call(LanguageSeeder::class);
+        $this->call(AppointmentSeeder::class);
+
     }
 }
