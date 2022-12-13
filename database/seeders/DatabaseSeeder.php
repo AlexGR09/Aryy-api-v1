@@ -42,6 +42,5 @@ class DatabaseSeeder extends Seeder
         $this->call(LanguageSeeder::class);
         $this->call(AppointmentSeeder::class);
         $this->call(BloodTypeSeeder::class);
-
     }
 }
