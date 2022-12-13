@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UploadLicenseRequest extends FormRequest
 {
+
     public function authorize()
     {
         return auth()->check();
@@ -23,7 +24,7 @@ class UploadLicenseRequest extends FormRequest
     {
         return [
             'license' => 'campo cédula',
-            'photo' => 'foto de cédula',
+            'photo' => 'foto de cédula'
         ];
     }
 }

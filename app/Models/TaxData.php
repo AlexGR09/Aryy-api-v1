@@ -18,11 +18,10 @@ class TaxData extends Model
         'tax_regime',
         'email',
         'tax_residence',
-        'constancy',
+        'constancy'
     ];
 
-    public function user()
-    {
+    public function user(){
         return $this->belongsTo('App\Models\User');
     }
 }

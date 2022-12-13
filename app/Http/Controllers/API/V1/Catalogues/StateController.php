@@ -16,20 +16,19 @@ class StateController extends Controller
             'show',
         ]);
         $this->middleware('permission:create states')->only([
-            'store',
+            'store'
         ]);
         $this->middleware('permission:edit states')->only([
-            'update',
+            'update'
         ]);
         $this->middleware('permission:delete states')->only([
-            'destroy',
+            'destroy'
         ]);
     }
-
     public function index()
     {
         try {
-            return StateResource::collection(State::orderBy('name')->get())->additional(['message' => 'Estados encontrados.']);
+            return (StateResource::collection(State::orderBy('name')->get()))->additional(['message' => 'Estados encontrados.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -49,9 +48,8 @@ class StateController extends Controller
         try {
             $state = State::create([
                 'name' => $request->name,
-                'country_id' => $request->country_id,
+                'country_id' => $request->country_id
             ]);
-
             return (new StateResource($state))->additional(['message' => 'Estado creado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -64,7 +62,6 @@ class StateController extends Controller
             $state->name = $request->name;
             $state->country_id = $request->country_id;
             $state->save();
-
             return (new StateResource($state))->additional(['message' => 'Estado actualizado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -75,7 +72,6 @@ class StateController extends Controller
     {
         try {
             $state->delete();
-
             return (new StateResource($state))->additional(['message' => 'Estado eliminado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

@@ -24,11 +24,11 @@ class TaxDataRequest extends FormRequest
     public function rules()
     {
         return [
-            'rfc' => 'required|min:12|max:13',
-            'taxpayer_name' => 'required',
-            'tax_regime' => 'required',
-            'tax_email' => 'required|email',
-            'tax_residence' => 'required',
+            'rfc'=>'required|min:12|max:13',
+            'taxpayer_name'=>'required',
+            'tax_regime'=>'required',
+            'tax_email'=>'required|email',
+            'tax_residence'=>'required',
         ];
     }
 }

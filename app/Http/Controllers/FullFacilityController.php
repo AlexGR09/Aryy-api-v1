@@ -12,15 +12,14 @@ class FullFacilityController extends Controller
     {
         $this->middleware('facility_user');
     }
-
     public function store(Facility $facility, FullFacilityRequest $request)
     {
         $facilityUpdatedOrCreated = Facility::updateOrCreate(
             ['id' => optional($facility)->id],
             $request->validated()
         );
-
-        if (! optional($facility)->id) {
+        
+        if (!optional($facility)->id) {
             $facilityUpdatedOrCreated->users()->attach(['user_id' => auth()->id()]);
         }
 

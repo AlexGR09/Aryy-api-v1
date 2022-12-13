@@ -23,20 +23,20 @@ class MedicalIdentityController extends Controller
     {
         try {
             // LOGO DE LA IDENTIDAD MÉDICA
-            $logo_all = Storage::files($this->user->user_folder.'//logos//');
-            $logo = empty($logo_all) ? null : basename($logo_all[0]);
+            $logo_all = Storage::files($this->user->user_folder . '//logos//');
+            $logo = empty($logo_all) ? NULL : basename($logo_all[0]);
 
             // FOTOS DEL MÉDICO
-            $physician_photos = [];
-            $physician_photos_all = Storage::files($this->user->user_folder.'//physician_photos//');
+            $physician_photos = array();
+            $physician_photos_all = Storage::files($this->user->user_folder . '//physician_photos//');
             foreach ($physician_photos_all as $physician_photo) {
                 $physician_photo_name = basename($physician_photo);
                 array_push($physician_photos, $physician_photo_name);
             }
 
             // FOTOS DE LA INSTALACIÓN
-            $facility_photos = [];
-            $facility_photos_all = Storage::files($this->user->user_folder.'//facility_photos//');
+            $facility_photos = array();
+            $facility_photos_all = Storage::files($this->user->user_folder . '//facility_photos//');
             foreach ($facility_photos_all as $facility_photo) {
                 $facility_photo_name = basename($facility_photo);
                 array_push($facility_photos, $facility_photo_name);
@@ -44,11 +44,11 @@ class MedicalIdentityController extends Controller
 
             return response()->json([
                 'message' => 'Imágenes de identidad médica',
-                'data' => [
+                'data' => array(
                     'logo' => $logo,
                     'physician_photos' => $physician_photos,
-                    'facility_photos' => $facility_photos,
-                ],
+                    'facility_photos' => $facility_photos
+                )
             ]);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -59,12 +59,12 @@ class MedicalIdentityController extends Controller
     {
         try {
             // VACIA EL DIRECTORIO LOGOS DEL USUARIO CORRESPONDIENTE
-            Storage::deleteDirectory($this->user->user_folder.'//logos//');
+            Storage::deleteDirectory($this->user->user_folder . '//logos//');
 
             // GUARDA LA IMAGEN DEL LOGO EN LA CARPETA CORRESPONDIENTE DEL USUARIO
             $file = $request->file('logo');
-            $fileName = time().'_'.$file->getClientOriginalName();
-            $file->storeAs($this->user->user_folder.'//logos//', $fileName);
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs($this->user->user_folder . '//logos//', $fileName);
 
             return response()->json(['message' => 'Imagen de cédula almacenada correctamente.']);
         } catch (\Throwable $th) {
@@ -75,7 +75,7 @@ class MedicalIdentityController extends Controller
     public function getLogo(PhotoNameRequest $request)
     {
         try {
-            $path = $this->user->user_folder.'//logos//'.$request->photo;
+            $path =  $this->user->user_folder . '//logos//' . $request->photo;
             $image = Storage::get($path);
 
             if ($image) {
@@ -91,12 +91,11 @@ class MedicalIdentityController extends Controller
     public function deleteLogo(PhotoNameRequest $request)
     {
         try {
-            $path = $this->user->user_folder.'//logos//'.$request->photo;
+            $path = $this->user->user_folder . '//logos//' . $request->photo;
             $image = Storage::get($path);
 
             if ($image) {
                 Storage::delete($path);
-
                 return response()->json(['message' => 'Logo eliminado correctamente.']);
             }
 
@@ -111,8 +110,9 @@ class MedicalIdentityController extends Controller
         try {
             foreach ($request->file('physician_photo') as $key => $file) {
                 // GUARDA LAS FOTOS DEL MÉDICO EN LA CARPETA CORRESPONDIENTE DEL USUARIO
-                $fileName = time().'_'.$file->getClientOriginalName();
-                $file->storeAs($this->user->user_folder.'//physician_photos//', $fileName);
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs($this->user->user_folder . '//physician_photos//', $fileName);
+    
             }
 
             return response()->json(['message' => 'Imagen del médico almacenada correctamente.']);
@@ -124,7 +124,7 @@ class MedicalIdentityController extends Controller
     public function getPhysicianPhoto(PhotoNameRequest $request)
     {
         try {
-            $path = $this->user->user_folder.'//physician_photos//'.$request->photo;
+            $path =  $this->user->user_folder . '//physician_photos//' . $request->photo;
             $image = Storage::get($path);
 
             if ($image) {
@@ -140,12 +140,11 @@ class MedicalIdentityController extends Controller
     public function deletePhysicianPhoto(PhotoNameRequest $request)
     {
         try {
-            $path = $this->user->user_folder.'//physician_photos//'.$request->photo;
+            $path = $this->user->user_folder . '//physician_photos//' . $request->photo;
             $image = Storage::get($path);
 
             if ($image) {
                 Storage::delete($path);
-
                 return response()->json(['message' => 'Foto del médico  eliminada correctamente.']);
             }
 
@@ -160,8 +159,8 @@ class MedicalIdentityController extends Controller
         try {
             foreach ($request->file('facility_photo') as $key => $file) {
                 // GUARDA LAS FOTOS DE LA INSTALACIÓN EN LA CARPETA CORRESPONDIENTE DEL USUARIO
-                $fileName = time().'_'.$file->getClientOriginalName();
-                $file->storeAs($this->user->user_folder.'//facility_photos//', $fileName);
+                $fileName = time()  .'_' . $file->getClientOriginalName();
+                $file->storeAs($this->user->user_folder . '//facility_photos//', $fileName);
             }
 
             return response()->json(['message' => 'Imagen de la instalación almacenada correctamente.']);
@@ -173,7 +172,7 @@ class MedicalIdentityController extends Controller
     public function getFacilityPhoto(PhotoNameRequest $request)
     {
         try {
-            $path = $this->user->user_folder.'//facility_photos//'.$request->photo;
+            $path =  $this->user->user_folder . '//facility_photos//' . $request->photo;
             $image = Storage::get($path);
 
             if ($image) {
@@ -189,18 +188,18 @@ class MedicalIdentityController extends Controller
     public function deleteFacilityPhoto(PhotoNameRequest $request)
     {
         try {
-            $path = $this->user->user_folder.'//facility_photos//'.$request->photo;
+            $path = $this->user->user_folder . '//facility_photos//' . $request->photo;
             $image = Storage::get($path);
 
             if ($image) {
                 Storage::delete($path);
-
                 return response()->json(['message' => 'Foto de la instalación eliminada correctamente.']);
             }
-
+            
             return response()->json(['message' => 'La foto de la instalación no existe.'], 404);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
+
 }

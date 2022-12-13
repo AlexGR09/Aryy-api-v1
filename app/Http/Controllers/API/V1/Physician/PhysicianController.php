@@ -29,20 +29,18 @@ class PhysicianController extends Controller
             $physician = Physician::create([
                 'user_id' => $this->user->id,
                 'professional_name' => $request->professional_name,
-                'is_verified' => 'in_verification',
-            ]);
+                'is_verified' => 'in_verification'
+            ]);           
 
             // CREA LAS ESPECIALIDADES DEL MÉDICO EN LA TABLA PIVOTE
             $physician->specialties()->attach($request->specialties);
-
+    
             $this->user->syncRoles(['User', 'PhysicianInVerification']);
-
+            
             DB::commit();
-
             return (new PhysicianResource($physician))->additional(['message' => 'Perfil médico creado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -63,7 +61,7 @@ class PhysicianController extends Controller
         }
     }
 
-    public function update(PhysicianUpdateRequest $request)
+    public function update(PhysicianUpdateRequest $request) 
     {
         try {
             DB::beginTransaction();
@@ -71,7 +69,7 @@ class PhysicianController extends Controller
             $physician->professional_name = $request->professional_name;
             $physician->biography = $request->biography;
             $physician->social_networks = $request->social_networks;
-
+            
             // CONSULTA LOS REGISTROS EXISTENTES DE ESPECIALIDADES-MÉDICO (specialty_id, license)
             $previousSpecialties = PhysicianSpecialty::where('physician_id', $physician->id)
                 ->select('specialty_id', 'license', 'license_photo')
@@ -79,7 +77,7 @@ class PhysicianController extends Controller
                 ->toArray();
             // FORMATEA LA SOLICITUD DE ESPECIALIDADES
             $currentSpecialties = $this->specialtiesFormat($request->specialties);
-
+        
             // SI LAS ESPECIALIDADES DEL MÉDICO(specialty_id, license) DE LA BASE DE DATOS SON DIFERENTES A LA ESPECIALIDADES DE LA SOLICITUD
             if ($previousSpecialties != $currentSpecialties) {
                 $this->user->syncRoles(['User', 'PhysicianInVerification']);
@@ -90,24 +88,22 @@ class PhysicianController extends Controller
             $physician->save();
 
             DB::commit();
-
             return (new PhysicianResource($physician))->additional(['message' => 'Perfil médico actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
     // DEPURA EL ARRAY DE LA SOLICITUD SPECIALTIES (specialty_id, license)
-    public function specialtiesFormat($specialties)
+    public function specialtiesFormat($specialties) 
     {
         $currentSpecialties = [];
         foreach ($specialties as $key => $specialty) {
             unset($specialty['institution']);
-            $currentSpecialties += [$key => $specialty];
+            $currentSpecialties += [ $key => $specialty];
         }
-
         return $currentSpecialties;
     }
+
 }

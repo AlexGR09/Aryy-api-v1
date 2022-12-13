@@ -15,9 +15,8 @@ class TaxDataController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
-        $this->middleware('role:Physician')->only(['store', 'update']);
+        $this->middleware('role:Physician')->only(['store','update']);
     }
-
     public function index()
     {
         //
@@ -26,30 +25,29 @@ class TaxDataController extends Controller
     public function store(TaxDataRequest $request)
     {
         try {
+
             DB::beginTransaction();
 
             $file = $request->file('constancy');
             $fileName = $file->getClientOriginalName();
-            $file->storeAs($this->user->user_folder.'//tax_data//', $fileName);
+            $file->storeAs($this->user->user_folder . '//tax_data//', $fileName);
 
-            $tax_data = new TaxData;
+            $tax_data = new TaxData();
             $tax_data->user_id = $this->user->id;
             $tax_data->rfc = $request->rfc;
             $tax_data->taxpayer_name = $request->taxpayer_name;
             $tax_data->tax_regime = $request->tax_regime;
             $tax_data->tax_email = $request->tax_email;
             $tax_data->tax_residence = $request->tax_residence;
-
-            $tax_data->constancy = '//tax_data//'.$fileName;
-
+            
+            $tax_data->constancy = '//tax_data//' . $fileName;
+            
             $tax_data->save();
 
             DB::commit();
-
             return (new TaxDataResource($tax_data))->additional(['message' => 'Informacion guardada con exito.']);
         } catch (\Throwable $th) {
-            Storage::delete($this->user->user_folder.'//tax_data//'.$fileName);
-
+            Storage::delete($this->user->user_folder.'//tax_data//' . $fileName);
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -57,6 +55,7 @@ class TaxDataController extends Controller
     public function show()
     {
         try {
+
             $tax_data = TaxData::where('user_id', $this->user->id)->first();
             $path = $this->user->user_folder.$tax_data->constancy;
             Storage::get($path);
@@ -64,7 +63,6 @@ class TaxDataController extends Controller
             return (new TaxDataResource($tax_data))->additional(['message' => 'Informacion guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -95,8 +93,9 @@ class TaxDataController extends Controller
             $tax_data = TaxData::where('user_id', $this->user->id)->first();
             $path = $this->user->user_folder.$tax_data->constancy;
             Storage::delete($path);
-        } catch (\Throwable $th) {
-            return response()->json(['error' => $th->getMessage()], 503);
-        }
+             
+         } catch (\Throwable $th) {
+             return response()->json(['error' => $th->getMessage()], 503);
+         }
     }
 }

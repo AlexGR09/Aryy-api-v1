@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class MedicalServiceUpdateRequest extends FormRequest
 {
+
     public function authorize()
     {
         return auth()->check();

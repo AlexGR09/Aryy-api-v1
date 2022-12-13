@@ -12,7 +12,7 @@ class MedicalServicePhysician extends Model
 
     protected $table = 'medical_service_physician';
 
-    // RELACIONES DE ESTA TABLA PIVOT (M:N)
+    // RELACIONES DE ESTA TABLA PIVOT (M:N) 
     public function physicians()
     {
         return $this->belongsToMany('App\Models\Physician')->withPivot('physician_id');
@@ -22,4 +22,5 @@ class MedicalServicePhysician extends Model
     {
         return $this->belongsToMany('App\Models\Specialty')->withPivot('medical_service_id');
     }
+    
 }

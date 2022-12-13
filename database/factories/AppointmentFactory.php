@@ -17,12 +17,7 @@ class AppointmentFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 1,
-            'physician_id' => 3,
-            'specialty_id' => 1,
-            'appointment_date' => now(),
-            'address' => 'Enrique segoviano',
-            'status' => 'scheduled',
+            //
         ];
     }
 }
