@@ -8,13 +8,11 @@ use App\Http\Resources\API\V1\Catalogues\AllergyResource;
 use App\Http\Resources\API\V1\Catalogues\BloodTypeResource;
 use App\Http\Resources\API\V1\Patient\BasicInformationResource;
 use App\Http\Resources\API\V1\Patient\MedicalHistoryResource;
-use App\Models\Allergy;
 use App\Models\AllergyPatient;
 use App\Models\BloodType;
 use Illuminate\Http\Request;
 use App\Models\MedicalHistory;
 use App\Models\Patient;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
 class MedicalHistoryController extends Controller
@@ -35,12 +33,15 @@ class MedicalHistoryController extends Controller
         try {
             $patient = Patient::where('user_id', $this->user->id)->first();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergypatient')->get();
-            return (MedicalHistoryResource::collection($medical_history))->additional(['message' => '..']);
+
+            return MedicalHistoryResource::collection($medical_history)->additional(['message' => '..']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
+
     public function store(MedicalHistoryRequest $request)
     {
         try {
@@ -48,7 +49,7 @@ class MedicalHistoryController extends Controller
 
             DB::beginTransaction();
             $allergy_patient = AllergyPatient::create([
-                'food_allergy' =>  $request->food_allergy,
+                'food_allergy' => $request->food_allergy,
                 'drug_allergy' => $request->drug_allergy,
                 'environmental_allergy' => $request->environmental_allergy,
             ]);
@@ -58,18 +59,21 @@ class MedicalHistoryController extends Controller
             $basic_information->weight = $request->weight;
             $basic_information->height = $request->height;
 
+
             $weight = $basic_information->weight;
             $height = $basic_information->height;
 
-            $basic_information->imc = round((float)$weight->weight / pow((float)$height->height, 2));
+            $basic_information->imc = round((float) $weight->weight / pow((float) $height->height, 2));
             $basic_information->blood_type = $request->blood_type;
             $basic_information->allergy_patient_id = $allergy_patient->id;
 
             $basic_information->save();
             DB::commit();
+
             return (new BasicInformationResource($basic_information))->additional(['message' => 'Informacion basica guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -100,6 +104,7 @@ class MedicalHistoryController extends Controller
             return (new BasicInformationResource($basic_information))->additional(['message' => 'La informacion basica se actualizo con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

@@ -25,8 +25,8 @@ class EducationalBackgroundController extends Controller
         try {
             // GUARDA LA FOTO DE LA CÉDULA DE LA ESPECIALIDAD EN LA CARPETA CORRESPONDIENTE DEL USUARIO
             $file = $request->file('photo');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs($this->user->user_folder . '//licenses//', $fileName);
+            $fileName = time().'_'.$file->getClientOriginalName();
+            $file->storeAs($this->user->user_folder.'//licenses//', $fileName);
 
             $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
             $specialtyOfPhysician = PhysicianSpecialty::where('license', $request->license)
@@ -34,7 +34,7 @@ class EducationalBackgroundController extends Controller
                 ->firstOrFail();
 
             // ELIMINA LA FOTO PREVIA DE LA CÉDULA DE LA ESPECIALIDAD
-            Storage::delete($this->user->user_folder . '//licenses//' .$specialtyOfPhysician->license_photo);
+            Storage::delete($this->user->user_folder.'//licenses//'.$specialtyOfPhysician->license_photo);
 
             // SE GUARDA LA REFERENCIA DEL ARCHIVO SUBIDO AL SERVIDOR EN LA TABLA PHYSICIAN_SPECIALTY
             $specialtyOfPhysician->license_photo = $fileName;
@@ -43,8 +43,9 @@ class EducationalBackgroundController extends Controller
             return response()->json(['message' => 'Imagen de cédula almacenada correctamente.']);
         } catch (\Throwable $th) {
             Storage::delete($this->user->user_folder.'//licenses//'.$fileName);
+
             return response()->json(['error' => $th->getMessage()], 503);
-        } 
+        }
     }
 
     public function uploadCertificate(UploadCertificateRequest $request)
@@ -60,31 +61,32 @@ class EducationalBackgroundController extends Controller
                 $file->storeAs($this->user->user_folder.'//certificates//', $fileName);
 
                 // ESTE ARRAY CONTIENE EL FORMATO PARA LA BD DE LAS FOTOS DE LOS CERTIFICADOS
-                $certificates += [ 
+                $certificates += [
                     $key => [
-                        'certificate_photo' => $fileName
-                    ] 
+                        'certificate_photo' => $fileName,
+                    ],
                 ];
 
                 // ESTE ARRAY CONTIENE CADA ELEMENTO CON LA RUTA ABSOLUTA DE LAS FOTOS DE LOS CERTIFICADOS
-                $certificateFileName[] = $this->user->user_folder . '//certificates//' . $fileName;
+                $certificateFileName[] = $this->user->user_folder.'//certificates//'.$fileName;
             }
 
             $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
 
             // COMBINA LOS ELEMENTOS DEL ARRAY DE CERTIFICADOS CUANDO EL CAMPO CERTIFICADOS EN LA BD NO ES NULO
-            $currentCertificates = $certificates;   
-            if ($physician->certificates != NULL) {
+            $currentCertificates = $certificates;
+            if ($physician->certificates != null) {
                 $currentCertificates = array_merge($physician->certificates, $certificates);
             }
 
-             // SE GUARDA LA REFERENCIA DE LOS CERTIFICADOS DEL SERVIDOR EN LA TABLA PHYSICIAN
+            // SE GUARDA LA REFERENCIA DE LOS CERTIFICADOS DEL SERVIDOR EN LA TABLA PHYSICIAN
             $physician->certificates = $currentCertificates;
             $physician->save();
 
             return response()->json(['message' => 'Imagen de certificado almacenada correctamente.']);
         } catch (\Throwable $th) {
             Storage::delete($certificateFileName);
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -92,7 +94,7 @@ class EducationalBackgroundController extends Controller
     public function getCertificate(PhotoNameRequest $request)
     {
         try {
-            $path = $this->user->user_folder . '//certificates//' .$request->photo;
+            $path = $this->user->user_folder.'//certificates//'.$request->photo;
             $image = Storage::get($path);
 
             if ($image) {
@@ -108,12 +110,12 @@ class EducationalBackgroundController extends Controller
     public function deleteCertificate(PhotoNameRequest $request)
     {
         try {
-            $path = $this->user->user_folder . '//certificates//' .$request->photo;
+            $path = $this->user->user_folder.'//certificates//'.$request->photo;
             $image = Storage::get($path);
 
             if ($image) {
                 $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
-       
+
                 //  FORMATEA LOS CERTIFICADOS DEL JSON, REMUEVE EL ELEMENTO DEL CERTIFICADO A ELIMINAR
                 $currentCertificates = $this->certificatesFormat($physician->certificates, $request->photo);
 
@@ -125,22 +127,22 @@ class EducationalBackgroundController extends Controller
 
                 return response()->json(['message' => 'Foto del certificado eliminada correctamente.']);
             }
-            
-            return response()->json(['message' => 'La foto del certificado no existe.'], 404);   
+
+            return response()->json(['message' => 'La foto del certificado no existe.'], 404);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function certificatesFormat($certificates, $certificate_filename) 
+    public function certificatesFormat($certificates, $certificate_filename)
     {
         $currentCertificates = [];
         foreach ($certificates as $key => $certificate) {
-            if ($certificate['certificate_photo'] != $certificate_filename ) {
-                $currentCertificates += [ $key => $certificate];
+            if ($certificate['certificate_photo'] != $certificate_filename) {
+                $currentCertificates += [$key => $certificate];
             }
         }
+
         return $currentCertificates;
     }
-
 }

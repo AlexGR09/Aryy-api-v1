@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UploadFacilityPhotoRequest extends FormRequest
 {
-
     public function authorize()
     {
         return auth()->check();
@@ -24,7 +23,7 @@ class UploadFacilityPhotoRequest extends FormRequest
     {
         return [
             'facility_photo' => 'array de fotos de la instalación',
-            'facility_photo.*' => 'foto de la instalación'
+            'facility_photo.*' => 'foto de la instalación',
         ];
     }
 }

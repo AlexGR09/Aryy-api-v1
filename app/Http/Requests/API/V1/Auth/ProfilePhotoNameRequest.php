@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ProfilePhotoNameRequest extends FormRequest
 {
-    
     public function authorize()
     {
         return auth()->check();
@@ -15,7 +14,7 @@ class ProfilePhotoNameRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'required|string'
+            'photo' => 'required|string',
         ];
     }
 }
