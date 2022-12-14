@@ -138,8 +138,9 @@ class PatientController extends Controller
     public function country_states(Request $request)
     {
         try {
+            $country = Country::where('name',$request->country)->first();
             return (StateResource::collection(State::orderBy('name')
-                ->where('country_id', $request->country_id)->get()))
+                ->where('country_id', $country->id)->where('name', 'LIKE', "%" . $request->name . "%")->get()))
                 ->additional(['message' => 'Estados encontrados.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -149,8 +150,10 @@ class PatientController extends Controller
     public function cities_states(Request $request)
     {
         try {
+            $country_states = State::where('name',$request->country_states)->first();
+            
             return (CityResource::collection(City::orderBy('name')
-                ->where('state_id', $request->state_id)->get()))
+                ->where('state_id', $country_states->id)->where('name', 'LIKE', "%" . $request->name . "%")->get()))
                 ->additional(['message' => 'Ciudades encontradas.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

@@ -13,7 +13,7 @@ class StoreAppointmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,11 +24,11 @@ class StoreAppointmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|exists:App\Models\User,id',
-            'physician_id' => 'required|exists:App\Models\Physician,id',
-            'specialty_id' => 'required|exists:App\Models\Specialty,id',
-            'appointment_date' => 'required|date',
-            'address' => 'required'
+        'user_id' => 'required|exists:App\Models\User,id',
+        'physician_id' => 'required|exists:App\Models\Physician,id',
+        'specialty_id'=> 'required|exists:App\Models\Specialty,id',
+        'appointment_date',
+        'address'
         ];
     }
 }

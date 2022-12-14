@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Appointment;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,6 +14,6 @@ class AppointmentSeeder extends Seeder
      */
     public function run()
     {
-        Appointment::factory()->create();
+        //
     }
 }
