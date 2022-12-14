@@ -254,3 +254,5 @@ Route::prefix('v1')->group(function () {
 /* TESTS */
 // JOSÉ
 Route::get('/testjose', [TestJoseController::class, 'index']);
+Route::post('/testjose', [TestJoseController::class, 'testpost']);
+Route::put('/testjose/{id}', [TestJoseController::class, 'testupdate']);
