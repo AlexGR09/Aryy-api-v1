@@ -12,6 +12,11 @@
         "trim_array_spaces": true,
         "single_quote":true,
         "ordered_class_elements": true,
+        "operator_linebreak": true,
+        "no_whitespace_in_blank_line": true,
+        "no_whitespace_before_comma_in_array":true,
+        "no_useless_else": true,
+        "no_unused_imports": true,
         "ordered_imports": {
             "sort_algorithm": "alpha", 
             "imports_order" : [

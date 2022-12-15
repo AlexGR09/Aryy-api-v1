@@ -6,6 +6,7 @@ use App\Http\Controllers\API\V1\RoleController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\FacilityScheduleController;
 use App\Http\Controllers\FullFacilityController;
+use App\Http\Controllers\SubcriptionUserController;
 // use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
 // use App\Http\Controllers\API\V1\Search\SearchController;
 use App\Http\Controllers\TestJoseController;
@@ -227,6 +228,11 @@ Route::prefix('v1')->group(function () {
         Route::get('appointments', [AppointmentController::class, 'index']);
         Route::put('appointments/{appointment}', [AppointmentController::class, 'update'])->middleware('appointment_user');
         Route::delete('appointments/{appointment}', [AppointmentController::class, 'destroy'])->middleware('appointment_user');
+
+        Route::get('subscriptions', [SubcriptionUserController::class, 'index']);
+        Route::post('subscriptions', [SubcriptionUserController::class, 'store'])->middleware('subscription_user');
+        Route::delete('subscriptions', [SubcriptionUserController::class, 'destroy']);
+        Route::put('subscriptions', [SubcriptionUserController::class, 'update']);
     });
 
     /* BÚSQUEDAS */
