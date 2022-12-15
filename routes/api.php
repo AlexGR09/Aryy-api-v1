@@ -138,6 +138,8 @@ Route::prefix('v1')->group(function () {
                 Route::get('tax_data', 'show');
                 Route::put('tax_data','update');
                 Route::delete('tax_data','destroy');
+
+                Route::post('tax_data/update_constancy','update_constancy');
             });
         });
 
