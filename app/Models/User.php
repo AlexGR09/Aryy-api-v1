@@ -73,4 +73,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\TaxData');
     }
+
+    public function user_subscription()
+    {
+        return $this->belongsToMany(Subscription::class);
+    }
 }
