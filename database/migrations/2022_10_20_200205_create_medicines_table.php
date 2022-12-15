@@ -15,10 +15,13 @@ return new class() extends Migration
     {
         Schema::create('medicines', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('formula');
-            $table->string('Presentation');
-            $table->string('brand');
+            $table->string('tradename')->nullable();
+            $table->string('active')->nullable();
+            $table->string('presentation')->nullable();
+            $table->string('description')->nullable();
+            $table->string('contents')->nullable();
+            $table->string('laboratory')->nullable();
+            $table->string('price')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
