@@ -15,9 +15,9 @@ class SubcriptionUserController extends Controller
      */
     public function index()
     {
-        return User::with('user_subscription')->whereHas('user_subscription', function ($q) {
+        return ok('',User::with('user_subscription')->whereHas('user_subscription', function ($q) {
             return $q->where('user_id', auth()->id());
-        })->first()->user_subscription;
+        })->first()?->user_subscription);
     }
 
     /**
