@@ -60,14 +60,14 @@ class TaxDataController extends Controller
             $path = $this->user->user_folder.$tax_data->constancy;
             Storage::get($path);
             //return response($image, 200)->header('Content-Type', Storage::mimeType($path));
-            return (new TaxDataResource($tax_data))->additional(['message' => 'Informacion guardada con exito.']);
+            return (new TaxDataResource($tax_data))->additional(['message' => 'Informacion fiscal.']);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function update(Request $request)
+    public function update(TaxDataRequest $request)
     {
         $file = $request->file('constancy');
         $fileName = $file->getClientOriginalName();
@@ -83,6 +83,8 @@ class TaxDataController extends Controller
         Storage::delete($this->user->user_folder.'//tax_data//' . $request->constacy);
         $tax_data->constancy = '//tax_data//'. $fileName;
         $tax_data->save();
+
+        return (new TaxDataResource($tax_data))->additional(['message' => 'Informacion actualizada con exito.']);
         /* $tax_data = TaxData::where('user_id', $this->user->id)->get();
         return $request; */
     }
@@ -93,7 +95,7 @@ class TaxDataController extends Controller
             $tax_data = TaxData::where('user_id', $this->user->id)->first();
             $path = $this->user->user_folder.$tax_data->constancy;
             Storage::delete($path);
-             
+            return (new TaxDataResource($tax_data))->additional(['message' => 'La informacion se ha eliminado con exito.']);
          } catch (\Throwable $th) {
              return response()->json(['error' => $th->getMessage()], 503);
          }

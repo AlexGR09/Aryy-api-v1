@@ -29,6 +29,13 @@ class TaxDataRequest extends FormRequest
             'tax_regime'=>'required',
             'tax_email'=>'required|email',
             'tax_residence'=>'required',
+            'constancy'=>'required|image|mimes:jpg,png|max:2000',
+        ];
+    }
+    public function attributes()
+    {
+        return [
+            'constancy'=>'Foto de la constancia de situacion fiscal',
         ];
     }
 }
