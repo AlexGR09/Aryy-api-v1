@@ -27,8 +27,9 @@ class AuthController extends Controller
             'destroy',
             'logout',
             'uploadProfilePhoto',
-            'getProfilePhoto',
+            'getProfilePhoto'
         ]);
+
     }
 
     public function login(LoginRequest $request)
@@ -59,7 +60,7 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
                 'country_code' => $request->country_code,
-                'phone_number' => $request->phone_number,
+                'phone_number' => $request->phone_number
             ]);
             $user->assignRole('User');
 
@@ -129,7 +130,6 @@ class AuthController extends Controller
             return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
-            // FALTA REGRESAR LA IMAGEN BORRADA
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -137,6 +137,7 @@ class AuthController extends Controller
     public function destroy()
     {
         try {
+            Storage::deleteDirectory($this->user->user_folder);
             $this->user->delete();
 
             return (new UserResource($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
@@ -166,11 +167,11 @@ class AuthController extends Controller
     {
         try {
             // VACIA EL DIRECTORIO FOTO DE PERFIL DEL USUARIO CORRESPONDIENTE
-            Storage::deleteDirectory($this->user->user_folder.'//profile_photos//');
+            Storage::deleteDirectory($this->user->user_folder . '//profile_photos//');
 
             $file = $request->file('photo');
-            $fileName = time().'_'.$file->getClientOriginalName();
-            $file->storeAs($this->user->user_folder.'//profile_photos//', $fileName);
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs($this->user->user_folder . '//profile_photos//', $fileName);
 
             // GUARDA LA REFRENCIA DEL ARCHIVO EN LA BASE DE DATOS
             $this->user->profile_photo = $fileName;
@@ -182,10 +183,10 @@ class AuthController extends Controller
         }
     }
 
-    public function getProfilePhoto(ProfilePhotoNameRequest $request)
+    public function getProfilePhoto(ProfilePhotoNameRequest $request) 
     {
         try {
-            $path = $this->user->user_folder.'//profile_photos//'.$request->photo;
+            $path =  $this->user->user_folder . '//profile_photos//' . $request->photo;
             $image = Storage::get($path);
 
             if ($image) {
@@ -197,4 +198,6 @@ class AuthController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
+
 }
+

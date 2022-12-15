@@ -20,7 +20,6 @@ class IdentityController extends Controller
             'show',
         ]);
     }
-
     public function index()
     {
         //
@@ -31,18 +30,17 @@ class IdentityController extends Controller
         try {
             $file = $request->file('id_card');
             $fileName = $file->getClientOriginalName();
-            $file->storeAs($this->user->user_folder.'//identity//', $fileName);
-
+            $file->storeAs($this->user->user_folder . '//identity//', $fileName);
+            
             $patient = Patient::where('user_id', $this->user->id)->firstOrFail();
-            Storage::delete($this->user->user_folder.'//identity//'.$patient->id_card);
-
-            $patient->id_card = '//identity//'.$fileName;
+            Storage::delete($this->user->user_folder.'//identity//' . $patient->id_card);
+            
+            $patient->id_card = '//identity//' . $fileName;
             $patient->save();
 
             return (new IdentityResource($patient))->additional(['message' => 'Imagen guardada con exito.']);
         } catch (\Throwable $th) {
-            Storage::delete($this->user->user_folder.'//identity//'.$fileName);
-
+            Storage::delete($this->user->user_folder.'//identity//' . $fileName);
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -50,11 +48,10 @@ class IdentityController extends Controller
     public function show()
     {
         try {
-            $patient = Patient::where('user_id', $this->user->id)->first();
-            $path = $this->user->user_folder.$patient->id_card;
-
+           $patient = Patient::where('user_id', $this->user->id)->first();
+           $path = $this->user->user_folder.$patient->id_card;
+           
             $image = Storage::get($path);
-
             return response($image, 200)->header('Content-Type', Storage::mimeType($path));
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -72,8 +69,9 @@ class IdentityController extends Controller
             $patient = Patient::where('user_id', $this->user->id)->first();
             $path = $this->user->user_folder.$patient->id_card;
             Storage::delete($path);
-        } catch (\Throwable $th) {
-            return response()->json(['error' => $th->getMessage()], 503);
-        }
+             
+         } catch (\Throwable $th) {
+             return response()->json(['error' => $th->getMessage()], 503);
+         }
     }
 }

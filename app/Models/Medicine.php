@@ -11,9 +11,12 @@ class Medicine extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name',
-        'formula',
-        'Presentation',
-        'brand',
+        'tradename',
+        'active',
+        'presentation',
+        'description',
+        'contents',
+        'laboratory',
+        'price',
     ];
 }

@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class DiseaseIdRequest extends FormRequest
 {
+
     public function authorize()
     {
         return auth()->check();
@@ -14,14 +15,14 @@ class DiseaseIdRequest extends FormRequest
     public function rules()
     {
         return [
-            'disease_id' => 'required|numeric',
+            'disease_id' => 'required|numeric'
         ];
     }
 
     public function attributes()
     {
         return [
-            'disease_id' => 'id de la enfermedad',
+            'disease_id' => 'id de la enfermedad'
         ];
     }
 }

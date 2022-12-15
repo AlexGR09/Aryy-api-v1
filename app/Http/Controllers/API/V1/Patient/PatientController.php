@@ -4,18 +4,21 @@ namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\PatientRequest;
+use App\Http\Requests\API\V1\Patient\UserRequest;
 use App\Http\Resources\API\V1\Catalogues\CityResource;
+use App\Http\Resources\API\V1\Catalogues\CountryResource;
 use App\Http\Resources\API\V1\Catalogues\StateResource;
 use App\Http\Resources\API\V1\Patient\PatientResource;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\MedicalHistory;
-use App\Models\OccupationPatient;
 use App\Models\Patient;
+use App\Models\OccupationPatient;
 use App\Models\State;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+
 
 class PatientController extends Controller
 {
@@ -34,7 +37,7 @@ class PatientController extends Controller
     {
         try {
             DB::beginTransaction();
-            $patient = new Patient;
+            $patient = new Patient();
             $patient->user_id = $this->user->id;
             $patient->emergency_number = $request->emergency_number;
             $patient->city_id = $request->city_id;
@@ -49,21 +52,20 @@ class PatientController extends Controller
             $user->phone_number = $request->phone_number;
             $user->save();
 
-            $patient_occupation = new OccupationPatient;
+            $patient_occupation = new OccupationPatient();
             $patient_occupation->occupation_id = $request->occupation_id;
             $patient_occupation->patient_id = $patient->id;
             $patient_occupation->save();
 
-            $medical_history = new MedicalHistory;
+            $medical_history = new MedicalHistory();
             $medical_history->patient_id = $patient->id;
             $medical_history->save();
 
-            DB::commit();
 
+            DB::commit();
             return (new PatientResource($patient))->additional(['message' => 'Perfil de paciente creado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -72,8 +74,7 @@ class PatientController extends Controller
     {
         try {
             $patient = Patient::where('user_id', $this->user->id)->get();
-
-            return PatientResource::collection($patient)->additional(['message' => 'Mi perfil de paciente.']);
+            return (PatientResource::collection($patient))->additional(['message' => 'Mi perfil de paciente.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -104,15 +105,12 @@ class PatientController extends Controller
             $patient_occupation->save();
 
             DB::commit();
-
             return (new PatientResource($patient))->additional(['message' => 'paciente actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-
     public function destroy_occupation()
     {
         try {
@@ -121,20 +119,17 @@ class PatientController extends Controller
 
             $patient_occupation->occupation_id = 1;
             $patient_occupation->save();
-
             return $patient_occupation;
             //return (new LocationResource($patient))->additional(['message' => 'Informacion basica guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 500);
         }
     }
-
     public function country(Request $request)
     {
         try {
-            return Country::where('name', 'LIKE', '%'.$request->name.'%')->first();
+            return Country::where('name', 'LIKE', "%" . $request->name . "%")->first();
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -143,8 +138,9 @@ class PatientController extends Controller
     public function country_states(Request $request)
     {
         try {
-            return StateResource::collection(State::orderBy('name')
-                ->where('country_id', $request->country_id)->get())
+            $country = Country::where('name',$request->country)->first();
+            return (StateResource::collection(State::orderBy('name')
+                ->where('country_id', $country->id)->where('name', 'LIKE', "%" . $request->name . "%")->get()))
                 ->additional(['message' => 'Estados encontrados.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -154,8 +150,10 @@ class PatientController extends Controller
     public function cities_states(Request $request)
     {
         try {
-            return CityResource::collection(City::orderBy('name')
-                ->where('state_id', $request->state_id)->get())
+            $country_states = State::where('name',$request->country_states)->first();
+            
+            return (CityResource::collection(City::orderBy('name')
+                ->where('state_id', $country_states->id)->where('name', 'LIKE', "%" . $request->name . "%")->get()))
                 ->additional(['message' => 'Ciudades encontradas.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

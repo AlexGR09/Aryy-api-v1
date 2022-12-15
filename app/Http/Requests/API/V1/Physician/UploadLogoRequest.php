@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UploadLogoRequest extends FormRequest
 {
+
     public function authorize()
     {
         return auth()->check();
@@ -21,7 +22,7 @@ class UploadLogoRequest extends FormRequest
     public function attributes()
     {
         return [
-            'logo' => 'logotipo',
+            'logo' => 'logotipo'
         ];
     }
 }

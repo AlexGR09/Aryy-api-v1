@@ -21,7 +21,7 @@ class PhysicianSearchController extends Controller
             $search = $request->search;
             $city = $request->city;
             $physicianQuery = Physician::query();
-            $physicianQuery->when(! empty($city), fn ($q) => $q->whereHas('facilities.city', function (Builder $query) use ($city) {
+            $physicianQuery->when(! empty($city), fn($q) => $q->whereHas('facilities.city', function (Builder $query) use ($city) {
                 $query->where('cities.name', 'LIKE', '%'.$city.'%');
             }));
 
@@ -31,7 +31,7 @@ class PhysicianSearchController extends Controller
             $physician = $physicianQuery->get();
 
             $specialtyQuery = Specialty::query();
-            $specialtyQuery->when(! empty($city), fn ($q) => $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
+            $specialtyQuery->when(! empty($city), fn($q) => $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
                 $query->where('name', 'LIKE', '%'.$city.'%');
             }));
             $specialtyQuery->where('specialties.name', 'LIKE', '%'.$search.'%');
@@ -39,7 +39,7 @@ class PhysicianSearchController extends Controller
             $specialities = $specialtyQuery->get();
 
             $diseaseyQuery = Disease::query();
-            $diseaseyQuery->when(! empty($city), fn ($q) => $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
+            $diseaseyQuery->when(! empty($city), fn($q) => $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
                 $query->where('name', 'LIKE', '%'.$city.'%');
             }));
             $diseaseyQuery->where('diseases.name', 'LIKE', '%'.$search.'%');
@@ -47,7 +47,7 @@ class PhysicianSearchController extends Controller
             $diseases = $diseaseyQuery->get();
 
             $medicalServiceQuery = MedicalService::query();
-            $medicalServiceQuery->when(! empty($city), fn ($q) => $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
+            $medicalServiceQuery->when(! empty($city), fn($q) => $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
                 $query->where('name', 'LIKE', '%'.$city.'%');
             }));
             $medicalServiceQuery->select('id', 'name')

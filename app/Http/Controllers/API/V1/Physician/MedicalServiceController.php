@@ -34,13 +34,12 @@ class MedicalServiceController extends Controller
             }
 
             DB::commit();
-
-            return MedicalServicePhysicianResource::collection($physician->medical_service_physician)
+            return (MedicalServicePhysicianResource::collection($physician->medical_service_physician))
                 ->additional(['message' => 'Servicios del médico actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
+
 }
