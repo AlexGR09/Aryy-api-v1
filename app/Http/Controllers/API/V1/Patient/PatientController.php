@@ -33,33 +33,60 @@ class PatientController extends Controller
         $this->middleware('permission:edit patient profile')->only(['update']);
     }
 
-    public function store(PatientRequest $request)
+    public function store(Request $request)
     {
         try {
+            $user = User::find(auth()->id());
+
+            if (count($user->patients) > 4) {
+                return response()->json(['messaage' => 'No puedes agregar más perfiles de paciente'], 503);
+            }
+
             DB::beginTransaction();
-            $patient = new Patient();
-            $patient->user_id = $this->user->id;
-            $patient->emergency_number = $request->emergency_number;
-            $patient->city_id = $request->city_id;
-            $patient->save();
-            $this->user->syncRoles(['User', 'Patient']);
 
-            $user = User::where('id', $this->user->id)->first();
-            $user->full_name = $request->full_name;
-            $user->gender = $request->gender;
-            $user->birthday = $request->birthday;
-            $user->country_code = $request->country_code;
-            $user->phone_number = $request->phone_number;
-            $user->save();
+            $patient = Patient::create([
+                'full_name' => $request->full_name,
+                'gender' => $request->gender,
+                'birthday' => $request->birthday,
+                'address' => $request->address,
+                'zip_code' => $request->zip_code,
+                'country_code' => $request->country_code,
+                'emergency_number' => $request->emergency_number,
+                'id_card' => $request->id_card,
+                'city_id' => $request->city_id
+            ]);
 
-            $patient_occupation = new OccupationPatient();
-            $patient_occupation->occupation_id = $request->occupation_id;
-            $patient_occupation->patient_id = $patient->id;
-            $patient_occupation->save();
+            $user->patients()->attach($patient->id);
 
-            $medical_history = new MedicalHistory();
-            $medical_history->patient_id = $patient->id;
-            $medical_history->save();
+            $patient->occupations()->attach($request->occupation_id);
+
+
+            // return $patient;
+
+
+            // $patient = new Patient();
+            // $patient->user_id = $this->user->id;
+            // $patient->emergency_number = $request->emergency_number;
+            // $patient->city_id = $request->city_id;
+            // $patient->save();
+            // $this->user->syncRoles(['User', 'Patient']);
+
+            // $user = User::where('id', $this->user->id)->first();
+            // $user->full_name = $request->full_name;
+            // $user->gender = $request->gender;
+            // $user->birthday = $request->birthday;
+            // $user->country_code = $request->country_code;
+            // $user->phone_number = $request->phone_number;
+            // $user->save();
+
+            // $patient_occupation = new OccupationPatient();
+            // $patient_occupation->occupation_id = $request->occupation_id;
+            // $patient_occupation->patient_id = $patient->id;
+            // $patient_occupation->save();
+
+            // $medical_history = new MedicalHistory();
+            // $medical_history->patient_id = $patient->id;
+            // $medical_history->save();
 
 
             DB::commit();

@@ -10,7 +10,9 @@ return new class() extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('full_name')->nullable();
+            $table->enum('gender', ['masculino', 'femenino'])->nullable();
+            $table->date('birthday')->nullable();
             $table->json('address')->nullable();
             $table->string('zip_code')->nullable();
             $table->string('country_code')->nullable();
@@ -19,6 +21,7 @@ return new class() extends Migration
             $table->foreignId('city_id')->references('id')->on('cities');
             $table->timestamps();
             $table->softDeletes();
+            // $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
         });
     }
 

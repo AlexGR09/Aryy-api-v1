@@ -13,12 +13,14 @@ class Patient extends Model
     use HasFactory, SoftDeletes,HasRoles,HasApiTokens;
 
     protected $fillable = [
-        'user_id',
+        'full_name',
+        'gender',
         'address',
         'zip_code',
         'country_code',
         'emergency_number',
         'id_card',
+        'city_id'
     ];
 
     // RELACIÓN UNO UNO CON USUARIO
@@ -54,10 +56,10 @@ class Patient extends Model
         return $this->belongsToMany(\App\Models\User::class, 'patient_user');
     }
 
-    // public function ocupations()
-    // {
-    //     return $this->hasMany('App\Models\OcupationPatient');
-    // }
+    public function occupations()
+    {
+        return $this->belongsToMany(\App\Models\Occupation::class, 'occupation_patient');
+    }
 
     // public function health_insurance()
     // {
