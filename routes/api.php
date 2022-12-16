@@ -240,10 +240,6 @@ Route::prefix('v1')->group(function () {
             // PERMISOS (FALTA MOVER A CARPETA ADMIN)
             Route::resource('permissions', PermissionController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
-            //PACIENTE CHECK
-            Route::controller($this->admin.CheckPatientController::class)->group(function(){
-                Route::post('/checkpatient', 'check');
-            });
         });
 
         Route::get('facilities', [FacilityController::class, 'index']);
