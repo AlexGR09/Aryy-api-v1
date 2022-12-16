@@ -7,8 +7,6 @@ use App\Http\Controllers\API\V1\RoleController;
 use App\Http\Controllers\API\V1\ScheduleFacilityController;
 use App\Http\Controllers\FacilityScheduleController;
 use App\Http\Controllers\FullFacilityController;
-// use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
-// use App\Http\Controllers\API\V1\Search\SearchController;
 use App\Http\Controllers\TestJoseController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,8 +41,6 @@ Route::prefix('v1')->group(function () {
             Route::get('/profile', 'show')->middleware(['auth:sanctum']);
             Route::put('/profile', 'update')->middleware(['auth:sanctum']);
             Route::delete('/profile', 'destroy')->middleware(['auth:sanctum']);
-            // Route::post('/uploadprofilephoto', 'uploadProfilePhoto')->middleware(['auth:sanctum']);
-            // Route::get('/getprofilephoto', 'getProfilePhoto')->middleware(['auth:sanctum']);
         });
     });
 

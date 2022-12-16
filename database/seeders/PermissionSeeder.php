@@ -77,9 +77,9 @@ class PermissionSeeder extends Seeder
             ['name' => 'edit cities', 'guard_name' => 'sanctum'],
             ['name' => 'delete cities', 'guard_name' => 'sanctum'],
             // NUEVOS USUARIOS
-            ['name' => 'complete patient profile', 'guard_name' => 'sanctum'],
             ['name' => 'complete physician profile', 'guard_name' => 'sanctum'],
             // PACIENTES
+            ['name' => 'create patient profiles', 'guard_name' => 'sanctum'],
             ['name' => 'show patient profile', 'guard_name' => 'sanctum'],
             ['name' => 'edit patient profile', 'guard_name' => 'sanctum'],
 
