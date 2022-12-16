@@ -163,9 +163,9 @@ Route::prefix('v1')->group(function () {
             //Perfil del paciente - Seguros de gastos medicos
             Route::controller($this->patient . HealthInsuranceController::class)->group(function () {
                 Route::post('profile/health_insurance_data', 'store');
-                Route::get('profile/health_insurance_data', 'show');
-                Route::put('profile/health_insurance_data', 'update');
-                Route::delete('profile/health_insurance_data', 'destroy');
+                Route::get('profile/health_insurance_data/{patient_id}', 'show');
+                Route::put('profile/health_insurance_data/{patient_id}', 'update');
+                Route::delete('profile/health_insurance_data/{patient_id}', 'destroy');
             });
 
             //Perfil del paciente - Ubicacion(es)

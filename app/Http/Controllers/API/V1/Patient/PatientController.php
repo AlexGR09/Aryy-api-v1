@@ -112,22 +112,22 @@ class PatientController extends Controller
          try {
 
         DB::beginTransaction();
-        $test = Patient::where('id', $id)
+        $patient = Patient::where('id', $id)
             ->where('user_id', auth()->id())
             ->firstOrFail();
 
-        $test->city_id = $request->city_id;
-        $test->full_name = $request->full_name;
-        $test->gender = $request->gender;
-        $test->birthday = $request->birthday;
-        $test->country_code = $request->country_code;
-        $test->emergency_number = $request->emergency_number;
-        $test->occupations()->sync($request->occupation_id);
-        $test->save();
+        $patient->city_id = $request->city_id;
+        $patient->full_name = $request->full_name;
+        $patient->gender = $request->gender;
+        $patient->birthday = $request->birthday;
+        $patient->country_code = $request->country_code;
+        $patient->emergency_number = $request->emergency_number;
+        $patient->occupations()->sync($request->occupation_id);
+        $patient->save();
 
 
         DB::commit();
-        return (new PatientResource($test))->additional(['message' => 'paciente actualizado con éxito.']);
+        return (new PatientResource($patient))->additional(['message' => 'paciente actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
