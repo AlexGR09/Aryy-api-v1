@@ -7,6 +7,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Spatie\Permission\Exceptions\UnauthorizedException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
@@ -78,6 +79,13 @@ class Handler extends ExceptionHandler
                     'message' => 'La conexión con la base de datos se ha interrumpido.',
                     'error' => $e->getMessage(),
                 ], 500);
+                break;
+
+            case $e instanceof UnauthorizedException:
+                return response()->json([
+                    'message' => 'No tienes permisos para esta acción.',
+                    'error' => $e->getMessage(),
+                ], 403);
                 break;
 
             default:

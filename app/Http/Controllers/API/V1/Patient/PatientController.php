@@ -28,9 +28,12 @@ class PatientController extends Controller
     {
         $this->user = auth()->user();
 
-        // $this->middleware('permission:show patient profile')->only(['show']);
-        // $this->middleware('role:NewPatient')->only(['store']);
-        // $this->middleware('permission:edit patient profile')->only(['update']);
+        $this->middleware('role:Patient')->only([
+            'index',
+            'show',
+            'update'
+        ]);
+        $this->middleware('permission:create patient profiles')->only(['store']);
     }
 
     public function index()
@@ -77,6 +80,8 @@ class PatientController extends Controller
 
             $patient->patient_folder = $patient_folder;
             $patient->save();
+
+            $user->syncRoles(['User', 'Patient']);
 
             MedicalHistory::create(['patient_id' => $patient->id]);
 

@@ -16,10 +16,7 @@ class ProfilePhotoController extends Controller
     public function __construct()
     {
         $this->user = User::find(auth()->id());
-        // $this->middleware('role:Patient')->only([
-        //     'uploadProfilePhoto',
-        //     'getProfilePhoto'
-        // ]);
+        $this->middleware('role:Patient');
     }
 
     public function uploadProfilePhoto(ProfilePhotoRequest $request, $id)
