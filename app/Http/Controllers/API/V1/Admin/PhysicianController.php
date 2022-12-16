@@ -15,15 +15,15 @@ class PhysicianController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
-        $this->middleware('role:Administrator')->only(['store']);
+        $this->middleware('role:Administrator');
     }
 
-    public function check(Request $request)
+    public function checkOne($id)
     {
         try {
             DB::beginTransaction();
             // ACTUALIZA EL STATUS DE VERIFICACIÓN DEL MÉDICO
-            $physician = Physician::findOrFail($request->physician_id);
+            $physician = Physician::findOrFail($id);
             $physician->update([
                 'is_verified' => 'verified',
             ]);
@@ -35,7 +35,15 @@ class PhysicianController extends Controller
             return response()->json(['message' => 'Médico verificado con éxito.'], 200);
         } catch (\Throwable $th) {
             DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
 
+    public function checkAll()
+    {
+        try {
+             
+        } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
