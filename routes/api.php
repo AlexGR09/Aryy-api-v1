@@ -11,6 +11,7 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PlanUserController;
 use App\Http\Controllers\SubcriptionController;
 use App\Http\Controllers\SubcriptionUserController;
+use App\Http\Controllers\SubscriptionUserController;
 use App\Http\Controllers\TestJoseController;
 use Illuminate\Support\Facades\Route;
 
@@ -248,10 +249,10 @@ Route::prefix('v1')->group(function () {
         Route::get('plans', [PlanController::class, 'index']);
         Route::apiresource('payment-methods',PaymentMethodController::class);
         Route::group(['middleware' => ['role:Physician']], function () {
-            Route::get('users/plans', [PlanUserController::class, 'index']);
-            Route::post('users/plans', [PlanUserController::class, 'store'])->middleware('plan_user');
-            Route::delete('users/plans', [PlanUserController::class, 'destroy']);
-            Route::put('users/plans', [PlanUserController::class, 'update']);
+            Route::get('users/subscriptions', [SubscriptionUserController::class, 'index']);
+            Route::post('users/subscriptions', [SubscriptionUserController::class, 'store'])->middleware('user_subscription');
+            Route::delete('users/subscriptions', [SubscriptionUserController::class, 'destroy']);
+            Route::put('users/subscriptions', [SubscriptionUserController::class, 'update']);
         });
     });
 

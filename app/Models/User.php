@@ -74,8 +74,8 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\TaxData');
     }
 
-    public function userPlan()
+    public function userSubscription()
     {
-        return $this->belongsToMany(Plan::class);
+        return $this->belongsToMany(Plan::class,'subscriptions', 'user_id', 'plan_id');
     }
 }

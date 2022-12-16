@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePlanUserRequest;
 use App\Models\User;
 
-class PlanUserController extends Controller
+class SubscriptionUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class PlanUserController extends Controller
      */
     public function index()
     {
-        return ok('',User::with('userPlan')->whereHas('userPlan', function ($q) {
+        return ok('',User::with('userSubscription')->whereHas('userSubscription', function ($q) {
             return $q->where('user_id', auth()->id());
-        })->first()?->user_plan);
+        })->first()?->userSubscription);
     }
 
     /**
@@ -29,11 +29,11 @@ class PlanUserController extends Controller
     {
         auth()
         ->user()
-        ->userPlan()
+        ->userSubscription()
         ->attach(
             $request->validated()
         );
-        return User::with('userPlan')->find(auth()->id());
+        return User::with('userSubscription')->find(auth()->id());
     }
 
     /**
@@ -58,11 +58,11 @@ class PlanUserController extends Controller
     {
         auth()
         ->user()
-        ->user_plan()
+        ->userSubscription()
         ->sync(
             $request->validated()
         );
-        return User::with('user_plan')->find(auth()->id());
+        return User::with('userSubscription')->find(auth()->id());
     }
 
     /**
@@ -71,8 +71,8 @@ class PlanUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        return User::find(auth()->id())->user_plan()->detach();
+        return User::find(auth()->id())->userSubscription()->detach();
     }
 }
