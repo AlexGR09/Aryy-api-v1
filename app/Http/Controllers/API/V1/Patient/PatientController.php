@@ -106,13 +106,13 @@ class PatientController extends Controller
         }
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         //En correccion
          try {
 
         DB::beginTransaction();
-        $test = Patient::where('id', $request->patient_id)
+        $test = Patient::where('id', $id)
             ->where('user_id', auth()->id())
             ->firstOrFail();
 

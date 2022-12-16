@@ -149,7 +149,7 @@ Route::prefix('v1')->group(function () {
                 Route::get('/', 'index');
                 Route::get('/profile/{patient_id}', 'show');
                 Route::post('/profile', 'store');
-                Route::put('/profile', 'update');
+                Route::put('/profile/{patient_id}', 'update');
 
                 Route::get('country', 'country');
                 Route::get('country_states', 'country_states');
