@@ -104,7 +104,7 @@ class PatientController extends Controller
     public function update(Request $request)
     {
         //En correccion
-        /*  try { */
+         try {
 
         DB::beginTransaction();
         $test = Patient::where('id', $request->patient_id)
@@ -121,29 +121,12 @@ class PatientController extends Controller
         $test->save();
 
 
-        /* $patient = Patient::where('user_id', $this->user->id)->first();
-            $patient->emergency_number = $request->emergency_number;
-            $patient->city_id = $request->city_id;
-            $patient->country_code = $request->country_code;
-            
-
-            
-            $patient->full_name = $request->full_name;
-            $patient->gender = $request->gender;
-            $patient->birthday = $request->birthday;
-            $patient->save();
-
-            $patient_occupation = OccupationPatient::where('patient_id', $patient->id)->first();
-            $patient_occupation->occupation_id = $request->occupation_id;
-            $patient_occupation->patient_id = $patient->id;
-            $patient_occupation->save(); */
-
         DB::commit();
         return (new PatientResource($test))->additional(['message' => 'paciente actualizado con éxito.']);
-        /* } catch (\Throwable $th) {
+        } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
-        } */
+        }
     }
     public function destroy_occupation()
     {
