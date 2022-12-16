@@ -64,7 +64,7 @@ class AuthController extends Controller
             ]);
             $user->assignRole('User');
 
-            $user_folder = 'id'.$user->id.'_'.substr(sha1(time()), 0, 16);
+            $user_folder = $user->id . '_' . $user->country_code . $user->phone_number;
             // ASIGNAR ROL DE ACUERDO AL TIPO DE USUARIO
             switch ($request->type_user) {
                 case 'Patient':
@@ -79,12 +79,12 @@ class AuthController extends Controller
                     break;
             }
 
-            // CREA LA CARPETA CORRESPONDIENTE DEL USUARIO-MÉDICO
-            Storage::makeDirectory($directory.$user_folder);
+            // CREA LA CARPETA CORRESPONDIENTE DEL USUARIO
+            Storage::makeDirectory($directory . $user_folder);
             // GENERA UN TOKEN PARA EL USUARIO Y LO GUARDA EN LA DB
             $token = $user->createToken('authToken')->plainTextToken;
             $user->remember_token = $token;
-            $user->user_folder = $directory.$user_folder;
+            $user->user_folder = $directory . $user_folder;
             $user->save();
             DB::commit();
 
@@ -92,7 +92,7 @@ class AuthController extends Controller
                 'message' => 'Usuario registrado con éxito.',
                 'access_token' => $token, ]);
         } catch (\Throwable $th) {
-            Storage::deleteDirectory($directory.$user_folder);
+            Storage::deleteDirectory($directory . $user_folder);
             DB::rollBack();
 
             return response()->json(['error' => $th->getMessage()], 503);

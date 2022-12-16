@@ -146,6 +146,7 @@ Route::prefix('v1')->group(function () {
             // PACIENTE
             //Perfil de paciente - Informacion basica del perfil
             Route::controller($this->patient . PatientController::class)->group(function () {
+                Route::get('/', 'index');
                 Route::get('/profile', 'show');
                 Route::post('/profile', 'store');
                 Route::put('/profile', 'update');

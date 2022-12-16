@@ -55,13 +55,10 @@ class User extends Authenticatable
         return $this->hasOne(\App\Models\Physician::class);
     }
 
-    // public function patient()
-    // {
-    //     return $this->hasOne(\App\Models\Patient::class);
-    // }
-    // RELACIÓN MUCHOS A MUCHOS CON EL MODELO PATIENT
-    public function patients() {
-        return $this->belongsToMany(\App\Models\Patient::class, 'patient_user');
+    // RELACIÓN UNO A MUCHOS CON EL MODELO PATIENT
+    public function patients() 
+    {
+        return $this->hasMany(\App\Models\Patient::class);
     }
 
     public function city()

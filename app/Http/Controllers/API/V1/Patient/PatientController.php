@@ -18,7 +18,7 @@ use App\Models\State;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class PatientController extends Controller
 {
@@ -28,9 +28,22 @@ class PatientController extends Controller
     {
         $this->user = auth()->user();
 
-        $this->middleware('permission:show patient profile')->only(['show']);
-        $this->middleware('role:NewPatient')->only(['store']);
-        $this->middleware('permission:edit patient profile')->only(['update']);
+        // $this->middleware('permission:show patient profile')->only(['show']);
+        // $this->middleware('role:NewPatient')->only(['store']);
+        // $this->middleware('permission:edit patient profile')->only(['update']);
+    }
+
+    public function index()
+    {
+        try {
+            $user = User::find(auth()->id());
+            $patients = $user->patients;
+
+            return (PatientResource::collection($patients))->additional(['message' => 'Perfiles de pacientes en esta cuenta.']);
+        
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 
     public function store(Request $request)
@@ -39,12 +52,14 @@ class PatientController extends Controller
             $user = User::find(auth()->id());
 
             if (count($user->patients) > 4) {
-                return response()->json(['messaage' => 'No puedes agregar más perfiles de paciente'], 503);
+                return response()->json(['messaage' => 'No puedes agregar más pacientes'], 503);
             }
 
             DB::beginTransaction();
 
             $patient = Patient::create([
+                'user_id' => $user->id,
+                'city_id' => $request->city_id,
                 'full_name' => $request->full_name,
                 'gender' => $request->gender,
                 'birthday' => $request->birthday,
@@ -52,42 +67,19 @@ class PatientController extends Controller
                 'zip_code' => $request->zip_code,
                 'country_code' => $request->country_code,
                 'emergency_number' => $request->emergency_number,
-                'id_card' => $request->id_card,
-                'city_id' => $request->city_id
+                'id_card' => $request->id_card
             ]);
-
-            $user->patients()->attach($patient->id);
 
             $patient->occupations()->attach($request->occupation_id);
 
+            // CREA EL DIRECTORIO CORRESPONDIENTE DEL PACIENTE EN LA CARPETA DEL USUARIO
+            $patient_folder  = '//' . $patient->id . '_' . substr(sha1(time()), 0, 8);
+            Storage::makeDirectory($user->user_folder . $patient_folder);
 
-            // return $patient;
+            $patient->patient_folder = $patient_folder;
+            $patient->save();
 
-
-            // $patient = new Patient();
-            // $patient->user_id = $this->user->id;
-            // $patient->emergency_number = $request->emergency_number;
-            // $patient->city_id = $request->city_id;
-            // $patient->save();
-            // $this->user->syncRoles(['User', 'Patient']);
-
-            // $user = User::where('id', $this->user->id)->first();
-            // $user->full_name = $request->full_name;
-            // $user->gender = $request->gender;
-            // $user->birthday = $request->birthday;
-            // $user->country_code = $request->country_code;
-            // $user->phone_number = $request->phone_number;
-            // $user->save();
-
-            // $patient_occupation = new OccupationPatient();
-            // $patient_occupation->occupation_id = $request->occupation_id;
-            // $patient_occupation->patient_id = $patient->id;
-            // $patient_occupation->save();
-
-            // $medical_history = new MedicalHistory();
-            // $medical_history->patient_id = $patient->id;
-            // $medical_history->save();
-
+            MedicalHistory::create(['patient_id' => $patient->id]);
 
             DB::commit();
             return (new PatientResource($patient))->additional(['message' => 'Perfil de paciente creado con éxito.']);
@@ -97,11 +89,14 @@ class PatientController extends Controller
         }
     }
 
-    public function show()
+    public function show(Request $request)
     {
         try {
-            $patient = Patient::where('user_id', $this->user->id)->get();
-            return (PatientResource::collection($patient))->additional(['message' => 'Mi perfil de paciente.']);
+            $patient = Patient::where('id', $request->patient_id)
+                ->where('user_id', auth()->id())
+                ->firstOrFail();
+
+            return (new PatientResource($patient))->additional(['message' => 'Perfil del paciente.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

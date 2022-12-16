@@ -13,23 +13,26 @@ class Patient extends Model
     use HasFactory, SoftDeletes,HasRoles,HasApiTokens;
 
     protected $fillable = [
+        'user_id',
+        'city_id',
         'full_name',
         'gender',
+        'birthday',
         'address',
         'zip_code',
         'country_code',
         'emergency_number',
         'id_card',
-        'city_id'
+        'patient_folder'
     ];
 
-    // RELACIÓN UNO UNO CON USUARIO
-    // public function user()
-    // {
-    //     return $this->belongsTo(\App\Models\User::class);
-    // }
+    // RELACIÓN MUCHOS A UNO CON EL MODELO USER
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 
-    // RELACIÓN MUCHOS A UNO CON SEGUROS MÉDICOS
+    // RELACIÓN MUCHOS A UNO CON SEGUROS MÉDICOS  
     public function health_insurance()
     {
         return $this->belongsTo(\App\Models\HealthInsurance::class);
@@ -49,11 +52,6 @@ class Patient extends Model
     public function occupationpatient()
     {
         return $this->hasMany(\App\Models\OccupationPatient::class)->with('Occupation');
-    }
-
-    // RELACIÓN MUCHOS A MUCHOS CON EL MODELO USER
-    public function users() {
-        return $this->belongsToMany(\App\Models\User::class, 'patient_user');
     }
 
     public function occupations()
