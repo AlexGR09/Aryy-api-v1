@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAppointmentRequest extends FormRequest
+class StorePlanUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class UpdateAppointmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'appointment_date' => 'required|date'
+            'plan_id' => 'required|exists:\App\Models\Plan,id'
         ];
     }
 }

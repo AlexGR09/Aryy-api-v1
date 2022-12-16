@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         $this->call(OcupationPatientSeeder::class);
         $this->call(LanguageSeeder::class);
         $this->call(AppointmentSeeder::class);
-        $this->call(SubscriptionSeeder::class);
+        $this->call(PlanSeeder::class);
         $this->call(BloodTypeSeeder::class);
 
     }

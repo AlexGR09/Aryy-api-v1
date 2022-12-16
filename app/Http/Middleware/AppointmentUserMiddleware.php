@@ -2,10 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Appointment;
 use Closure;
 use Illuminate\Http\Request;
 
-class SubscriptionUserMiddleware
+class AppointmentUserMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,9 +17,15 @@ class SubscriptionUserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->userSubscription()->exists()){
-            return conflict('El usuario tiene un subscripcion activa',[]);
+        $appointment = $request->route('appointment');
+        $appointmentDB = Appointment::where([
+            ['user_id' , auth()->id()],
+            ['id' , $appointment->id]
+        ])->first();
+        if($appointmentDB){
+            return $next($request);
         }
-        return $next($request);
+        return response()->json(['message' => 'No tienes permiso para modificar esta cita'],403);
+
     }
 }
