@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Requests\API\V1\Auth;
+namespace App\Http\Requests\API\V1\Patient;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UploadProfilePhotoRequest extends FormRequest
+class PhotoNameRequest extends FormRequest
 {
-    
     public function authorize()
     {
         return auth()->check();
@@ -15,7 +14,7 @@ class UploadProfilePhotoRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'required|image|mimes:jpg,png|max:2000|dimensions:max_width=512,max_height=512',
+            'photo' => 'required|string'
         ];
     }
 }

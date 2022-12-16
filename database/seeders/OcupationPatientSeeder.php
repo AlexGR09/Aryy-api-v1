@@ -15,7 +15,7 @@ class OcupationPatientSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('occupation_patients')->insert([
+        DB::table('occupation_patient')->insert([
             [
                 'occupation_id'=>1,
                 'patient_id'=>1

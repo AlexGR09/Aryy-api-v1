@@ -4,10 +4,8 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Auth\LoginRequest;
-use App\Http\Requests\API\V1\Auth\ProfilePhotoNameRequest;
 use App\Http\Requests\API\V1\Auth\RegisterRequest;
 use App\Http\Requests\API\V1\Auth\UpdateProfileRequest;
-use App\Http\Requests\API\V1\Auth\UploadProfilePhotoRequest;
 use App\Http\Resources\API\V1\UserResource;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -26,8 +24,6 @@ class AuthController extends Controller
             'update',
             'destroy',
             'logout',
-            'uploadProfilePhoto',
-            'getProfilePhoto'
         ]);
 
     }
@@ -64,7 +60,7 @@ class AuthController extends Controller
             ]);
             $user->assignRole('User');
 
-            $user_folder = 'id'.$user->id.'_'.substr(sha1(time()), 0, 16);
+            $user_folder = $user->id . '_' . $user->country_code . $user->phone_number;
             // ASIGNAR ROL DE ACUERDO AL TIPO DE USUARIO
             switch ($request->type_user) {
                 case 'Patient':
@@ -79,12 +75,12 @@ class AuthController extends Controller
                     break;
             }
 
-            // CREA LA CARPETA CORRESPONDIENTE DEL USUARIO-MÉDICO
-            Storage::makeDirectory($directory.$user_folder);
+            // CREA LA CARPETA CORRESPONDIENTE DEL USUARIO
+            Storage::makeDirectory($directory . $user_folder);
             // GENERA UN TOKEN PARA EL USUARIO Y LO GUARDA EN LA DB
             $token = $user->createToken('authToken')->plainTextToken;
             $user->remember_token = $token;
-            $user->user_folder = $directory.$user_folder;
+            $user->user_folder = $directory . $user_folder;
             $user->save();
             DB::commit();
 
@@ -92,7 +88,7 @@ class AuthController extends Controller
                 'message' => 'Usuario registrado con éxito.',
                 'access_token' => $token, ]);
         } catch (\Throwable $th) {
-            Storage::deleteDirectory($directory.$user_folder);
+            Storage::deleteDirectory($directory . $user_folder);
             DB::rollBack();
 
             return response()->json(['error' => $th->getMessage()], 503);
@@ -159,42 +155,6 @@ class AuthController extends Controller
         } catch (\Throwable $th) {
             DB::rollBack();
 
-            return response()->json(['error' => $th->getMessage()], 503);
-        }
-    }
-
-    public function uploadProfilePhoto(UploadProfilePhotoRequest $request)
-    {
-        try {
-            // VACIA EL DIRECTORIO FOTO DE PERFIL DEL USUARIO CORRESPONDIENTE
-            Storage::deleteDirectory($this->user->user_folder . '//profile_photos//');
-
-            $file = $request->file('photo');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs($this->user->user_folder . '//profile_photos//', $fileName);
-
-            // GUARDA LA REFRENCIA DEL ARCHIVO EN LA BASE DE DATOS
-            $this->user->profile_photo = $fileName;
-            $this->user->save();
-
-            return response()->json(['message' => 'Foto de perfil almacenada correctamente.']);
-        } catch (\Throwable $th) {
-            return response()->json(['error' => $th->getMessage()], 503);
-        }
-    }
-
-    public function getProfilePhoto(ProfilePhotoNameRequest $request) 
-    {
-        try {
-            $path =  $this->user->user_folder . '//profile_photos//' . $request->photo;
-            $image = Storage::get($path);
-
-            if ($image) {
-                return response($image, 200)->header('Content-Type', Storage::mimeType($path));
-            }
-
-            return response()->json(['message' => 'Foto de perfil no existe.'], 404);
-        } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

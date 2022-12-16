@@ -15,7 +15,7 @@ return new class() extends Migration
     {
         Schema::create('medical_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('patient_id')->constrained('patients');
+            $table->foreignId('patient_id')->unique()->constrained('patients');
             $table->json('height')->nullable();
             $table->json('weight')->nullable();
             $table->double('imc')->nullable();

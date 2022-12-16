@@ -89,6 +89,21 @@ class TaxDataController extends Controller
         return $request; */
     }
 
+    public function update_constancy(Request $request){
+        $file = $request->file('constancy');
+        $fileName = $file->getClientOriginalName();
+        $file->storeAs($this->user->user_folder . '//tax_data//', $fileName);
+        
+
+        $tax_data = TaxData::where('user_id', $this->user->id)->first();
+        
+        Storage::delete($this->user->user_folder.'//tax_data//' . $request->constacy);
+        $tax_data->constancy = '//tax_data//'. $fileName;
+        $tax_data->save();
+
+        return (new TaxDataResource($tax_data))->additional(['message' => 'Informacion actualizada con exito.']);
+    }
+
     public function destroy()
     {
         try {

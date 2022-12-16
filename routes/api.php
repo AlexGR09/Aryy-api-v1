@@ -14,6 +14,7 @@ use App\Http\Controllers\SubcriptionUserController;
 use App\Http\Controllers\SubscriptionUserController;
 use App\Http\Controllers\TestJoseController;
 use Illuminate\Support\Facades\Route;
+use Psy\VersionUpdater\Checker;
 
 /* RUTAS API VERSIÓN 1 */
 
@@ -46,8 +47,6 @@ Route::prefix('v1')->group(function () {
             Route::get('/profile', 'show')->middleware(['auth:sanctum']);
             Route::put('/profile', 'update')->middleware(['auth:sanctum']);
             Route::delete('/profile', 'destroy')->middleware(['auth:sanctum']);
-            Route::post('/uploadprofilephoto', 'uploadProfilePhoto')->middleware(['auth:sanctum']);
-            Route::get('/getprofilephoto', 'getProfilePhoto')->middleware(['auth:sanctum']);
         });
     });
 
@@ -141,6 +140,8 @@ Route::prefix('v1')->group(function () {
                 Route::get('tax_data', 'show');
                 Route::put('tax_data','update');
                 Route::delete('tax_data','destroy');
+
+                Route::post('tax_data/update_constancy','update_constancy');
             });
         });
 
@@ -149,21 +150,26 @@ Route::prefix('v1')->group(function () {
             // PACIENTE
             //Perfil de paciente - Informacion basica del perfil
             Route::controller($this->patient . PatientController::class)->group(function () {
-                Route::get('profile/basic_information', 'show');
-                Route::post('profile/basic_information', 'store');
-                Route::put('profile/basic_information', 'update');
-                Route::delete('profile/basic_information', 'destroy_occupation');
+                Route::get('/', 'index');
+                Route::get('/profile/{patient_id}', 'show');
+                Route::post('/profile', 'store');
+                Route::put('/profile/{patient_id}', 'update');
 
                 Route::get('country', 'country');
                 Route::get('country_states', 'country_states');
                 Route::get('cities_states', 'cities_states');
             });
+            // FOTO DE PERFIL DEL PACIENTE
+            Route::controller($this->patient . ProfilePhotoController::class)->group(function () {
+                Route::post('/uploadprofilephoto/{patient_id}', 'uploadProfilePhoto');
+                Route::get('/getprofilephoto/{patient_id}', 'getProfilePhoto');
+            });
             //Perfil del paciente - Seguros de gastos medicos
             Route::controller($this->patient . HealthInsuranceController::class)->group(function () {
                 Route::post('profile/health_insurance_data', 'store');
-                Route::get('profile/health_insurance_data', 'show');
-                Route::put('profile/health_insurance_data', 'update');
-                Route::delete('profile/health_insurance_data', 'destroy');
+                Route::get('profile/health_insurance_data/{patient_id}', 'show');
+                Route::put('profile/health_insurance_data/{patient_id}', 'update');
+                Route::delete('profile/health_insurance_data/{patient_id}', 'destroy');
             });
 
             //Perfil del paciente - Ubicacion(es)
@@ -224,7 +230,8 @@ Route::prefix('v1')->group(function () {
         Route::prefix('admin')->group(function () {
             //  MÉDICOS
             Route::controller($this->admin . PhysicianController::class)->group(function () {
-                Route::post('/checkphysician', 'check');
+                Route::post('/checkphysicans', 'checkAll');
+                Route::get('/checkphysician/{physician_id}', 'checkOne');
             });
             // ROLES (FALTA MOVER A CARPETA ADMIN)
             Route::resource('roles', RoleController::class)
@@ -268,4 +275,6 @@ Route::prefix('v1')->group(function () {
 /* TESTS */
 // JOSÉ
 Route::get('/testjose', [TestJoseController::class, 'index']);
+Route::post('/testjose', [TestJoseController::class, 'testpost']);
+Route::put('/testjose/{id}', [TestJoseController::class, 'testupdate']);
 

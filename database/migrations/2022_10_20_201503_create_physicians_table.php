@@ -20,6 +20,7 @@ return new class() extends Migration
             $table->string('subsequent_consultation')->nullable();
             $table->string('languages')->nullable();
             $table->enum('is_verified', ['not_verified', 'in_verification', 'verified'])->default('not_verified');
+            $table->string('physician_profile_photo')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
