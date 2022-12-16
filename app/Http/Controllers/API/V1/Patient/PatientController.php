@@ -128,21 +128,7 @@ class PatientController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-    public function destroy_occupation()
-    {
-        try {
-            $patient = Patient::where('user_id', $this->user->id)->first();
-            $patient_occupation = OccupationPatient::where('patient_id', $patient->id)->first();
-
-            $patient_occupation->occupation_id = 1;
-            $patient_occupation->save();
-            return $patient_occupation;
-            //return (new LocationResource($patient))->additional(['message' => 'Informacion basica guardada con exito.']);
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            return response()->json(['error' => $th->getMessage()], 500);
-        }
-    }
+    
     public function country(Request $request)
     {
         try {

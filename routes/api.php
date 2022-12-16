@@ -155,7 +155,6 @@ Route::prefix('v1')->group(function () {
                 Route::get('/profile', 'show');
                 Route::post('/profile', 'store');
                 Route::put('/profile', 'update');
-                Route::delete('/profile', 'destroy_occupation');
 
                 Route::get('country', 'country');
                 Route::get('country_states', 'country_states');
