@@ -43,8 +43,8 @@ Route::prefix('v1')->group(function () {
             Route::get('/profile', 'show')->middleware(['auth:sanctum']);
             Route::put('/profile', 'update')->middleware(['auth:sanctum']);
             Route::delete('/profile', 'destroy')->middleware(['auth:sanctum']);
-            Route::post('/uploadprofilephoto', 'uploadProfilePhoto')->middleware(['auth:sanctum']);
-            Route::get('/getprofilephoto', 'getProfilePhoto')->middleware(['auth:sanctum']);
+            // Route::post('/uploadprofilephoto', 'uploadProfilePhoto')->middleware(['auth:sanctum']);
+            // Route::get('/getprofilephoto', 'getProfilePhoto')->middleware(['auth:sanctum']);
         });
     });
 
@@ -147,7 +147,7 @@ Route::prefix('v1')->group(function () {
             //Perfil de paciente - Informacion basica del perfil
             Route::controller($this->patient . PatientController::class)->group(function () {
                 Route::get('/', 'index');
-                Route::get('/profile', 'show');
+                Route::get('/profile/{patient_id}', 'show');
                 Route::post('/profile', 'store');
                 Route::put('/profile', 'update');
                 Route::delete('/profile', 'destroy_occupation');
@@ -155,6 +155,11 @@ Route::prefix('v1')->group(function () {
                 Route::get('country', 'country');
                 Route::get('country_states', 'country_states');
                 Route::get('cities_states', 'cities_states');
+            });
+            // FOTO DE PERFIL DEL PACIENTE
+            Route::controller($this->patient . ProfilePhotoController::class)->group(function () {
+                Route::post('/uploadprofilephoto/{patient_id}', 'uploadProfilePhoto');
+                Route::get('/getprofilephoto/{patient_id}', 'getProfilePhoto');
             });
             //Perfil del paciente - Seguros de gastos medicos
             Route::controller($this->patient . HealthInsuranceController::class)->group(function () {

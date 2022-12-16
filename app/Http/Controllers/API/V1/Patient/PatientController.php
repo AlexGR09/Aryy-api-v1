@@ -89,10 +89,10 @@ class PatientController extends Controller
         }
     }
 
-    public function show(Request $request)
+    public function show($id)
     {
         try {
-            $patient = Patient::where('id', $request->patient_id)
+            $patient = Patient::where('id', $id)
                 ->where('user_id', auth()->id())
                 ->firstOrFail();
 
