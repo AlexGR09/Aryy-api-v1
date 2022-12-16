@@ -21,6 +21,7 @@ return new class () extends Migration {
             $table->string('emergency_number')->nullable();             
             $table->json('id_card')->nullable();
             $table->string('patient_folder')->nullable();
+            $table->string('patient_profile_photo')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
