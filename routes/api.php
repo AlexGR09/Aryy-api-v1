@@ -246,7 +246,7 @@ Route::prefix('v1')->group(function () {
         Route::delete('appointments/{appointment}', [AppointmentController::class, 'destroy'])->middleware('appointment_user');
 
         Route::get('plans', [PlanController::class, 'index']);
-        Route::resource('payment-methods',PaymentMethodController::class);
+        Route::apiresource('payment-methods',PaymentMethodController::class);
         Route::group(['middleware' => ['role:Physician']], function () {
             Route::get('users/plans', [PlanUserController::class, 'index']);
             Route::post('users/plans', [PlanUserController::class, 'store'])->middleware('plan_user');
