@@ -10,20 +10,18 @@ return new class() extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name')->nullable();
-            $table->enum('gender', ['masculino', 'femenino'])->nullable();
-            $table->date('birthday')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('country_code')->nullable();
             $table->string('phone_number')->unique()->nullable();
-            $table->string('profile_photo')->nullable();
             $table->string('user_folder')->unique()->nullable();
-            $table->json('profile')->nullable();
+            $table->timestamp('phone_number_verified_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+            // $table->string('profile_photo')->nullable();
+            // $table->json('profile')->nullable();
         });
     }
 

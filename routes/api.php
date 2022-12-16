@@ -151,10 +151,11 @@ Route::prefix('v1')->group(function () {
             // PACIENTE
             //Perfil de paciente - Informacion basica del perfil
             Route::controller($this->patient . PatientController::class)->group(function () {
-                Route::get('profile/basic_information', 'show');
-                Route::post('profile/basic_information', 'store');
-                Route::put('profile/basic_information', 'update');
-                Route::delete('profile/basic_information', 'destroy_occupation');
+                Route::get('/', 'index');
+                Route::get('/profile', 'show');
+                Route::post('/profile', 'store');
+                Route::put('/profile', 'update');
+                Route::delete('/profile', 'destroy_occupation');
 
                 Route::get('country', 'country');
                 Route::get('country_states', 'country_states');
@@ -270,4 +271,6 @@ Route::prefix('v1')->group(function () {
 /* TESTS */
 // JOSÉ
 Route::get('/testjose', [TestJoseController::class, 'index']);
+Route::post('/testjose', [TestJoseController::class, 'testpost']);
+Route::put('/testjose/{id}', [TestJoseController::class, 'testupdate']);
 

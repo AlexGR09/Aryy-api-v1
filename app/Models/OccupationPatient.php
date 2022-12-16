@@ -10,15 +10,15 @@ class OccupationPatient extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'occupation_patients';
+    protected $table = 'occupation_patient';
 
-    public function patient()
+    public function patients()
     {
-        return $this->belongsTo(\App\Models\Patient::class);
+        return $this->belongsTo(\App\Models\Patient::class)->withPivot('patient_id');;
     }
 
-    public function occupation()
+    public function occupations()
     {
-        return $this->belongsTo(\App\Models\Occupation::class);
+        return $this->belongsTo(\App\Models\Occupation::class)->withPivot('occupation_id');;
     }
 }

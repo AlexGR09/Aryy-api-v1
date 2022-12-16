@@ -14,6 +14,7 @@ class OccupationResource extends JsonResource
     public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
     {
         return [
+            'occupation_id' => $this->id,
             'name' => $this->name,
         ];
     }
