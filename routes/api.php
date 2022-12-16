@@ -230,7 +230,8 @@ Route::prefix('v1')->group(function () {
         Route::prefix('admin')->group(function () {
             //  MÉDICOS
             Route::controller($this->admin . PhysicianController::class)->group(function () {
-                Route::post('/checkphysician', 'check');
+                Route::post('/checkphysicans', 'checkAll');
+                Route::get('/checkphysician/{physician_id}', 'checkOne');
             });
             // ROLES (FALTA MOVER A CARPETA ADMIN)
             Route::resource('roles', RoleController::class)

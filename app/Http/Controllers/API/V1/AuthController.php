@@ -24,8 +24,6 @@ class AuthController extends Controller
             'update',
             'destroy',
             'logout',
-            'uploadProfilePhoto',
-            'getProfilePhoto'
         ]);
 
     }
@@ -160,42 +158,6 @@ class AuthController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-
-    // public function uploadProfilePhoto(UploadProfilePhotoRequest $request)
-    // {
-    //     try {
-    //         // VACIA EL DIRECTORIO FOTO DE PERFIL DEL USUARIO CORRESPONDIENTE
-    //         Storage::deleteDirectory($this->user->user_folder . '//profile_photos//');
-
-    //         $file = $request->file('photo');
-    //         $fileName = time() . '_' . $file->getClientOriginalName();
-    //         $file->storeAs($this->user->user_folder . '//profile_photos//', $fileName);
-
-    //         // GUARDA LA REFRENCIA DEL ARCHIVO EN LA BASE DE DATOS
-    //         $this->user->profile_photo = $fileName;
-    //         $this->user->save();
-
-    //         return response()->json(['message' => 'Foto de perfil almacenada correctamente.']);
-    //     } catch (\Throwable $th) {
-    //         return response()->json(['error' => $th->getMessage()], 503);
-    //     }
-    // }
-
-    // public function getProfilePhoto(ProfilePhotoNameRequest $request) 
-    // {
-    //     try {
-    //         $path =  $this->user->user_folder . '//profile_photos//' . $request->photo;
-    //         $image = Storage::get($path);
-
-    //         if ($image) {
-    //             return response($image, 200)->header('Content-Type', Storage::mimeType($path));
-    //         }
-
-    //         return response()->json(['message' => 'Foto de perfil no existe.'], 404);
-    //     } catch (\Throwable $th) {
-    //         return response()->json(['error' => $th->getMessage()], 503);
-    //     }
-    // }
 
 }
 
