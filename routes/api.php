@@ -14,6 +14,7 @@ use App\Http\Controllers\SubcriptionUserController;
 use App\Http\Controllers\TestJoseController;
 use App\Models\Subscription;
 use Illuminate\Support\Facades\Route;
+use Psy\VersionUpdater\Checker;
 
 /* RUTAS API VERSIÓN 1 */
 
@@ -234,6 +235,10 @@ Route::prefix('v1')->group(function () {
             // PERMISOS (FALTA MOVER A CARPETA ADMIN)
             Route::resource('permissions', PermissionController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
+            //PACIENTE CHECK
+            Route::controller($this->admin.CheckPatientController::class)->group(function(){
+                Route::post('/checkpatient', 'check');
+            });
         });
 
         Route::get('facilities', [FacilityController::class, 'index']);
