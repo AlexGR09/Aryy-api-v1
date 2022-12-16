@@ -40,7 +40,6 @@ class PatientController extends Controller
             $patients = $user->patients;
 
             return (PatientResource::collection($patients))->additional(['message' => 'Perfiles de pacientes en esta cuenta.']);
-        
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -102,36 +101,49 @@ class PatientController extends Controller
         }
     }
 
-    public function update(PatientRequest $request)
+    public function update(Request $request)
     {
-        try {
-            DB::beginTransaction();
+        //En correccion
+        /*  try { */
 
-            $patient = Patient::where('user_id', $this->user->id)->first();
+        DB::beginTransaction();
+        $test = Patient::where('id', $request->patient_id)
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+
+        $test->city_id = $request->city_id;
+        $test->full_name = $request->full_name;
+        $test->gender = $request->gender;
+        $test->birthday = $request->birthday;
+        $test->country_code = $request->country_code;
+        $test->emergency_number = $request->emergency_number;
+        $test->occupations()->sync($request->occupation_id);
+        $test->save();
+
+
+        /* $patient = Patient::where('user_id', $this->user->id)->first();
             $patient->emergency_number = $request->emergency_number;
             $patient->city_id = $request->city_id;
             $patient->country_code = $request->country_code;
-            $patient->save();
+            
 
-            $user = User::where('id', $this->user->id)->first();
-            $user->full_name = $request->full_name;
-            $user->gender = $request->gender;
-            $user->birthday = $request->birthday;
-            $user->country_code = $request->country_code;
-            $user->phone_number = $request->phone_number;
-            $user->save();
+            
+            $patient->full_name = $request->full_name;
+            $patient->gender = $request->gender;
+            $patient->birthday = $request->birthday;
+            $patient->save();
 
             $patient_occupation = OccupationPatient::where('patient_id', $patient->id)->first();
             $patient_occupation->occupation_id = $request->occupation_id;
             $patient_occupation->patient_id = $patient->id;
-            $patient_occupation->save();
+            $patient_occupation->save(); */
 
-            DB::commit();
-            return (new PatientResource($patient))->additional(['message' => 'paciente actualizado con éxito.']);
-        } catch (\Throwable $th) {
+        DB::commit();
+        return (new PatientResource($test))->additional(['message' => 'paciente actualizado con éxito.']);
+        /* } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
-        }
+        } */
     }
     public function destroy_occupation()
     {
@@ -160,7 +172,7 @@ class PatientController extends Controller
     public function country_states(Request $request)
     {
         try {
-            $country = Country::where('name',$request->country)->first();
+            $country = Country::where('name', $request->country)->first();
             return (StateResource::collection(State::orderBy('name')
                 ->where('country_id', $country->id)->where('name', 'LIKE', "%" . $request->name . "%")->get()))
                 ->additional(['message' => 'Estados encontrados.']);
@@ -172,8 +184,8 @@ class PatientController extends Controller
     public function cities_states(Request $request)
     {
         try {
-            $country_states = State::where('name',$request->country_states)->first();
-            
+            $country_states = State::where('name', $request->country_states)->first();
+
             return (CityResource::collection(City::orderBy('name')
                 ->where('state_id', $country_states->id)->where('name', 'LIKE', "%" . $request->name . "%")->get()))
                 ->additional(['message' => 'Ciudades encontradas.']);
