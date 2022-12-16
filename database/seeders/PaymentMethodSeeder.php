@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\PaymentMethod;
 use App\Models\Subscription;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SubscriptionSeeder extends Seeder
+class PaymentMethodSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +16,6 @@ class SubscriptionSeeder extends Seeder
      */
     public function run()
     {
-        Subscription::create([
-            'name' => 'Gold',
-            'price' => 100.11
-        ]);
+        PaymentMethod::factory(10)->create();
     }
 }

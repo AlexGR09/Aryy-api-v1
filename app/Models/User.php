@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -39,6 +38,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'pm_last_four'
     ];
 
     /**
@@ -74,8 +74,8 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\TaxData');
     }
 
-    public function user_subscription()
+    public function userPlan()
     {
-        return $this->belongsToMany(Subscription::class);
+        return $this->belongsToMany(Plan::class);
     }
 }

@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Subscription>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PaymentMethod>
  */
-class SubscriptionFactory extends Factory
+class PaymentMethodFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,9 @@ class SubscriptionFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'cc' => fake()->creditCardNumber(),
+            'cc_date' => fake()->creditCardExpirationDate(),
+            'cc_cvv' => 11,
         ];
     }
 }

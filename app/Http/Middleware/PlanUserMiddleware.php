@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class SubscriptionUserMiddleware
+class PlanUserMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class SubscriptionUserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->user_subscription()->exists()){
+        if(auth()->user()->user_plan()->exists()){
             return conflict('El usuario tiene un subscripcion activa',[]);
         }
         return $next($request);

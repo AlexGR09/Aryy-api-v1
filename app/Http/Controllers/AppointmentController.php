@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use App\Http\Requests\StoreAppointmentRequest;
 use App\Http\Requests\UpdateAppointmentRequest;
+use App\Http\Resources\AppointmentResource;
+use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
@@ -13,19 +15,17 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $status = $request->status;
+        
+        return  AppointmentResource::collection(
+            Appointment::where('user_id',auth()->id())
+            ->when($status, function ($q) use ($status) {
+                return $q->whereIn('status', $status);
+            })
+            ->get()
+        );
     }
 
     /**
@@ -36,7 +36,9 @@ class AppointmentController extends Controller
      */
     public function store(StoreAppointmentRequest $request)
     {
-        //
+        return new AppointmentResource(
+            Appointment::create($request->validated())
+        );
     }
 
     /**
@@ -51,17 +53,6 @@ class AppointmentController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Appointment  $appointment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Appointment $appointment)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateAppointmentRequest  $request
@@ -70,7 +61,9 @@ class AppointmentController extends Controller
      */
     public function update(UpdateAppointmentRequest $request, Appointment $appointment)
     {
-        //
+        return new AppointmentResource(
+            tap($appointment)->update($request->validated())
+        );
     }
 
     /**
@@ -81,6 +74,8 @@ class AppointmentController extends Controller
      */
     public function destroy(Appointment $appointment)
     {
-        //
+        return new AppointmentResource(
+            tap($appointment)->update(['status' => 'canceled'])
+        );
     }
 }

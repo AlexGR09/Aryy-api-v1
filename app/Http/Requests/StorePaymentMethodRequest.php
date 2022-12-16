@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSubscriptionUserRequest extends FormRequest
+class StorePaymentMethodRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,9 @@ class StoreSubscriptionUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'subscription_id' => 'required|exists:\App\Models\Subscription,id'
+            'cc' => 'required',
+            'cc_date' => 'required',
+            'cc_cvv' => 'required'
         ];
     }
 }
