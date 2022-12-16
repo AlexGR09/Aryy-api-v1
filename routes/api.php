@@ -1,18 +1,18 @@
 <?php
 
-use App\Http\Controllers\API\V1\ConsultingRoomController;
 use App\Http\Controllers\API\V1\FacilityController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\RoleController;
-use App\Http\Controllers\API\V1\ScheduleFacilityController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\FacilityScheduleController;
 use App\Http\Controllers\FullFacilityController;
+use App\Http\Controllers\PaymentMethodController;
+use App\Http\Controllers\PlanController;
+use App\Http\Controllers\PlanUserController;
 use App\Http\Controllers\SubcriptionController;
 use App\Http\Controllers\SubcriptionUserController;
-// use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
-// use App\Http\Controllers\API\V1\Search\SearchController;
+use App\Http\Controllers\SubscriptionUserController;
 use App\Http\Controllers\TestJoseController;
-use App\Models\Subscription;
 use Illuminate\Support\Facades\Route;
 
 /* RUTAS API VERSIÓN 1 */
@@ -246,13 +246,13 @@ Route::prefix('v1')->group(function () {
         Route::put('appointments/{appointment}', [AppointmentController::class, 'update'])->middleware('appointment_user');
         Route::delete('appointments/{appointment}', [AppointmentController::class, 'destroy'])->middleware('appointment_user');
 
-        Route::get('subscriptions', [SubcriptionController::class, 'index']);
-        
+        Route::get('plans', [PlanController::class, 'index']);
+        Route::apiresource('payment-methods',PaymentMethodController::class);
         Route::group(['middleware' => ['role:Physician']], function () {
-            Route::get('users/subscriptions', [SubcriptionUserController::class, 'index']);
-            Route::post('users/subscriptions', [SubcriptionUserController::class, 'store'])->middleware('subscription_user');
-            Route::delete('users/subscriptions', [SubcriptionUserController::class, 'destroy']);
-            Route::put('users/subscriptions', [SubcriptionUserController::class, 'update']);
+            Route::get('users/subscriptions', [SubscriptionUserController::class, 'index']);
+            Route::post('users/subscriptions', [SubscriptionUserController::class, 'store'])->middleware('user_subscription');
+            Route::delete('users/subscriptions', [SubscriptionUserController::class, 'destroy']);
+            Route::put('users/subscriptions', [SubscriptionUserController::class, 'update']);
         });
     });
 

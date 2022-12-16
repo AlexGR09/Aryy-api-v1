@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class SubscriptionUserMiddleware
+class PaymentMethodUserMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,10 @@ class SubscriptionUserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->userSubscription()->exists()){
-            return conflict('El usuario tiene un subscripcion activa',[]);
+        $paymentMethod = $request->route('paymentMethod');
+        if ($paymentMethod->where('user_id', auth()->id())->exists()){
+            return $next($request);
         }
-        return $next($request);
+        return conflict('No puedes editar esta tarjeta', []);
     }
 }

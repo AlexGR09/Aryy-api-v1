@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSubscriptionUserRequest;
+use App\Http\Requests\StorePlanUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 
-class SubcriptionUserController extends Controller
+class SubscriptionUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,9 @@ class SubcriptionUserController extends Controller
      */
     public function index()
     {
-        return ok('',User::with('user_subscription')->whereHas('user_subscription', function ($q) {
+        return ok('',User::with('userSubscription')->whereHas('userSubscription', function ($q) {
             return $q->where('user_id', auth()->id());
-        })->first()?->user_subscription);
+        })->first()?->userSubscription);
     }
 
     /**
@@ -26,15 +25,15 @@ class SubcriptionUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSubscriptionUserRequest $request)
+    public function store(StorePlanUserRequest $request)
     {
         auth()
         ->user()
-        ->user_subscription()
+        ->userSubscription()
         ->attach(
             $request->validated()
         );
-        return User::with('user_subscription')->find(auth()->id());
+        return User::with('userSubscription')->find(auth()->id());
     }
 
     /**
@@ -55,15 +54,15 @@ class SubcriptionUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreSubscriptionUserRequest $request)
+    public function update(StorePlanUserRequest $request)
     {
         auth()
         ->user()
-        ->user_subscription()
+        ->userSubscription()
         ->sync(
             $request->validated()
         );
-        return User::with('user_subscription')->find(auth()->id());
+        return User::with('userSubscription')->find(auth()->id());
     }
 
     /**
@@ -72,8 +71,8 @@ class SubcriptionUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        return User::find(auth()->id())->user_subscription()->detach();
+        return User::find(auth()->id())->userSubscription()->detach();
     }
 }
