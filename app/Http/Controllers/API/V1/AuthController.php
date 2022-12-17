@@ -33,7 +33,7 @@ class AuthController extends Controller
         try {
             $user = User::where('email', $request->email)->orWhere('phone_number',$request->phone_number)->first();
             if (! $user || ! Hash::check($request->password, $user->password)) {
-                return response()->json(['message' => 'Credenciales no válidas.'], 503);
+                return response()->json(['message' => 'Correo o contraseña invalida, intente de nuevo.'], 503);
             }
 
             $token = $user->createToken('authToken')->plainTextToken;
