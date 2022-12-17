@@ -181,8 +181,8 @@ Route::prefix('v1')->group(function () {
             });
             //Perfil del paciente - Identidad
             Route::controller($this->patient . IdentityController::class)->group(function () {
-                Route::get('profile/identity', 'show');
-                Route::post('profile/identity', 'store');
+                Route::get('profile/identity/{patient_id}', 'show');
+                Route::post('profile/identity/{patient_id}', 'store');
                 Route::delete('profile/identity', 'destroy');
             });
 
