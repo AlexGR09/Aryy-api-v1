@@ -8,6 +8,7 @@ use App\Http\Requests\API\V1\Physician\PhysicianUpdateRequest;
 use App\Http\Resources\API\V1\Physician\PhysicianResource;
 use App\Models\Physician;
 use App\Models\PhysicianSpecialty;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class PhysicianController extends Controller
@@ -16,7 +17,7 @@ class PhysicianController extends Controller
 
     public function __construct()
     {
-        $this->user = auth()->user();
+        $this->user = User::findOrFail(auth()->id());
         $this->middleware('role:NewPhysician')->only(['store']);
         $this->middleware('permission:show physician profile')->only(['show']);
         $this->middleware('role:Physician')->only(['update']);
@@ -68,6 +69,7 @@ class PhysicianController extends Controller
             $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
             $physician->professional_name = $request->professional_name;
             $physician->biography = $request->biography;
+            $physician->gender = $request->gender;
             $physician->social_networks = $request->social_networks;
             
             // CONSULTA LOS REGISTROS EXISTENTES DE ESPECIALIDADES-MÉDICO (specialty_id, license)
