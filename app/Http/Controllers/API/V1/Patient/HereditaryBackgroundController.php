@@ -17,9 +17,13 @@ class HereditaryBackgroundController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
-        $this->middleware('permission:show hereditary background')->only(['show']);
-        $this->middleware('role:Patient')->only(['store']);
-        $this->middleware('permission:edit hereditary background')->only(['update']);
+        //$this->middleware('permission:show hereditary background')->only(['show']);
+        $this->middleware('role:Patient')->only([
+            'store',
+            'show',
+            'update',
+        ]);
+        //$this->middleware('permission:edit hereditary background')->only(['update']);
     }
 
     public function index()

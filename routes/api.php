@@ -166,7 +166,7 @@ Route::prefix('v1')->group(function () {
             });
             //Perfil del paciente - Seguros de gastos medicos
             Route::controller($this->patient . HealthInsuranceController::class)->group(function () {
-                Route::post('profile/health_insurance_data', 'store');
+                Route::post('profile/health_insurance_data/{patient_id}', 'store');
                 Route::get('profile/health_insurance_data/{patient_id}', 'show');
                 Route::put('profile/health_insurance_data/{patient_id}', 'update');
                 Route::delete('profile/health_insurance_data/{patient_id}', 'destroy');
@@ -174,40 +174,40 @@ Route::prefix('v1')->group(function () {
 
             //Perfil del paciente - Ubicacion(es)
             Route::controller($this->patient . LocationController::class)->group(function () {
-                Route::get('profile/location', 'show');
-                Route::post('profile/location', 'store');
-                Route::put('profile/location', 'update');
-                Route::delete('profile/location', 'destroy');
+                Route::get('profile/location/{patient_id}', 'show');
+                Route::post('profile/location/{patient_id}', 'store');
+                Route::put('profile/location/{patient_id}', 'update');
+                Route::delete('profile/location/{patient_id}', 'destroy');
             });
             //Perfil del paciente - Identidad
             Route::controller($this->patient . IdentityController::class)->group(function () {
                 Route::get('profile/identity/{patient_id}', 'show');
                 Route::post('profile/identity/{patient_id}', 'store');
-                Route::delete('profile/identity', 'destroy');
+                Route::delete('profile/identity/{patient_id}', 'destroy');
             });
 
             /* Historial medico del paciente */
             //Datos basicos
             Route::controller($this->patient . MedicalHistoryController::class)->group(function () {
-                Route::get('medical_history', 'index');
-                Route::get('medical_history/basic_information', 'show');
-                Route::post('medical_history/basic_information', 'store');
-                Route::put('medical_history/basic_information', 'update');
+                //Route::get('medical_history', 'index');
+                Route::get('medical_history/basic_information/{patient_id}', 'show');
+                Route::post('medical_history/basic_information/{patient_id}', 'store');
+                Route::put('medical_history/basic_information/{patient_id}', 'update');
 
                 Route::get('allergy','allergy');
                 Route::get('blood_type','blood_type');
             });
             //Antecedentes patologicos
             Route::controller($this->patient . PathologicalBackgroudController::class)->group(function () {
-                Route::post('medical_history/pathological_background', 'store');
-                Route::get('medical_history/pathological_background', 'show');
-                Route::put('medical_history/pathological_background', 'update');
+                Route::post('medical_history/pathological_background/{patient_id}', 'store');
+                Route::get('medical_history/pathological_background/{patient_id}', 'show');
+                Route::put('medical_history/pathological_background/{patient_id}', 'update');
             });
             //Antecedentes no patologicos
             Route::controller($this->patient . NonPathologicalBackgroundController::class)->group(function () {
-                Route::post('medical_history/non_pathological_background', 'store');
-                Route::get('medical_history/non_pathological_background', 'show');
-                Route::put('medical_history/non_pathological_background', 'update');
+                Route::post('medical_history/non_pathological_background/{patient_id}', 'store');
+                Route::get('medical_history/non_pathological_background/{patient_id}', 'show');
+                Route::put('medical_history/non_pathological_background/{patient_id}', 'update');
             });
             
             //Antecedentes Heredofamiliares
@@ -218,9 +218,9 @@ Route::prefix('v1')->group(function () {
             });
             //Historial de vacunacion
             Route::controller($this->patient . VaccinationHistoryController::class)->group(function () {
-                Route::post('medical_history/vaccination_history', 'store');
-                Route::get('medical_history/vaccination_history', 'show');
-                Route::put('medical_history/vaccination_history', 'update');
+                Route::post('medical_history/vaccination_history/{patient_id}', 'store');
+                Route::get('medical_history/vaccination_history/{patient_id}', 'show');
+                Route::put('medical_history/vaccination_history/{patient_id}', 'update');
             });
         });
 

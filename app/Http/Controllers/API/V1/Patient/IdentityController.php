@@ -70,11 +70,13 @@ class IdentityController extends Controller
         //
     }
 
-    public function destroy()
+    public function destroy($id)
     {
         try {
-            $patient = Patient::where('user_id', $this->user->id)->first();
-            $path = $this->user->user_folder . $patient->id_card;
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
+                ->firstOrFail();
+            $path = $this->user->user_folder . $patient->patient_folder . '//identity//' . $patient->id_card;;
             Storage::delete($path);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

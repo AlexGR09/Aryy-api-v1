@@ -26,10 +26,10 @@ class HealthInsuranceController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
         try {
-            $patient = Patient::where('id', $request->patient_id)
+            $patient = Patient::where('id', $id)
                 ->where('user_id', auth()->id())
                 ->firstOrFail();
 
