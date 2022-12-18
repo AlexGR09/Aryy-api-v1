@@ -40,7 +40,7 @@ class TaxDataController extends Controller
             $tax_data->tax_email = $request->tax_email;
             $tax_data->tax_residence = $request->tax_residence;
             
-            $tax_data->constancy = '//tax_data//' . $fileName;
+            $tax_data->constancy = $fileName;
             
             $tax_data->save();
 
@@ -57,7 +57,7 @@ class TaxDataController extends Controller
         try {
 
             $tax_data = TaxData::where('user_id', $this->user->id)->first();
-            $path = $this->user->user_folder.$tax_data->constancy;
+            $path = $this->user->user_folder.'//tax_data//'.$tax_data->constancy;
             Storage::get($path);
             //return response($image, 200)->header('Content-Type', Storage::mimeType($path));
             return (new TaxDataResource($tax_data))->additional(['message' => 'Informacion fiscal.']);
@@ -81,7 +81,7 @@ class TaxDataController extends Controller
         $tax_data->tax_email = $request->tax_email;
         $tax_data->tax_residence = $request->tax_residence;
         Storage::delete($this->user->user_folder.'//tax_data//' . $request->constacy);
-        $tax_data->constancy = '//tax_data//'. $fileName;
+        $tax_data->constancy = $fileName;
         $tax_data->save();
 
         return (new TaxDataResource($tax_data))->additional(['message' => 'Informacion actualizada con exito.']);
