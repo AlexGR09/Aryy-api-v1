@@ -80,7 +80,7 @@ class PhysicianController extends Controller
             // FORMATEA LA SOLICITUD DE ESPECIALIDADES
             $currentSpecialties = $this->specialtiesFormat($request->specialties);
         
-            // SI LAS ESPECIALIDADES DEL MÉDICO(specialty_id, license) DE LA BASE DE DATOS SON DIFERENTES A LA ESPECIALIDADES DE LA SOLICITUD
+            // SI LAS ESPECIALIDADES DEL MÉDICO(specialty_id, license, license_photo) DE LA BASE DE DATOS SON DIFERENTES A LA ESPECIALIDADES DE LA SOLICITUD
             if ($previousSpecialties != $currentSpecialties) {
                 $this->user->syncRoles(['User', 'PhysicianInVerification']);
                 $physician->is_verified = 'in_verification';
