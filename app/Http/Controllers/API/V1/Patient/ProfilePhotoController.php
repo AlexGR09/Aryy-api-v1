@@ -11,11 +11,12 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfilePhotoController extends Controller
 {
-    protected $user;
+    protected $user, $path_patients;
 
     public function __construct()
     {
         $this->user = User::find(auth()->id());
+        $this->path_patients = '//users//patients//';
         $this->middleware('role:Patient');
     }
 
@@ -24,12 +25,12 @@ class ProfilePhotoController extends Controller
         try {
             $patient = Patient::where('id', $id)->where('user_id', $this->user->id)->firstOrFail();
 
-            $directory_patient = $this->user->user_folder . $patient->patient_folder;
+            $directory_patient = $this->path_patients . $this->user->user_folder . $patient->patient_folder;
 
             // SE MUEVE LA IMAGEN PREVIA REGISTRADA A LA PAPELERA
             if ($patient->patient_profile_photo != NULL) {
                 $from = $directory_patient . '//profile_photo//' . $patient->patient_profile_photo;
-                $to = $this->user->user_folder . '//recycle_bin//' . $patient->patient_profile_photo;
+                $to = $this->path_patients . $this->user->user_folder . '//recycle_bin//' . $patient->patient_profile_photo;
                 Storage::move($from, $to);
             }
 
@@ -54,7 +55,7 @@ class ProfilePhotoController extends Controller
         try {
             $patient = Patient::where('id', $id)->where('user_id', $this->user->id)->firstOrFail();
 
-            $path =  $this->user->user_folder . $patient->patient_folder . '//profile_photo//' . $request->photo;
+            $path =  $this->path_patients . $this->user->user_folder . $patient->patient_folder . '//profile_photo//' . $request->photo;
             $image = Storage::get($path);
 
             if ($image) {

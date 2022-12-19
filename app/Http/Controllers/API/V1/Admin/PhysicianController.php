@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API\V1\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Physician;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PhysicianController extends Controller
@@ -39,12 +38,16 @@ class PhysicianController extends Controller
         }
     }
 
-    public function checkAll()
-    {
-        try {
-             
-        } catch (\Throwable $th) {
-            return response()->json(['error' => $th->getMessage()], 503);
-        }
-    }
+    // public function checkAll()
+    // {
+    //     try {
+    //         DB::table('physicians')
+    //             ->where('is_verified', 'in_verification')
+    //             ->update(array('is_verified' => 'verified'));
+
+    //         return response()->json(['message' => 'Médicos verificados con éxito.'], 200);
+    //     } catch (\Throwable $th) {
+    //         return response()->json(['error' => $th->getMessage()], 503);
+    //     }
+    // }
 }
