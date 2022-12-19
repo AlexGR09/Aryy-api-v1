@@ -16,13 +16,11 @@ class VaccinationHistoryController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
-        //$this->middleware('permission:show patient vaccination History')->only(['show']);
         $this->middleware('role:Patient')->only([
             'store',
             'show',
             'update'
         ]);
-        //$this->middleware('permission:edit patient vaccination History')->only(['update']);
     }
 
     public function index()
