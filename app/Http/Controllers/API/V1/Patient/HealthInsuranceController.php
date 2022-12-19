@@ -16,9 +16,12 @@ class HealthInsuranceController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
-        //$this->middleware('permission:show hereditary background')->only(['show']);
-        $this->middleware('role:Patient')->only(['store', 'show', 'update']);
-        //$this->middleware('permission:edit hereditary background')->only(['update']);
+        
+        $this->middleware('role:Patient')->only([
+            'store',
+            'show',
+            'update'
+        ]);
     }
 
     public function index()
@@ -26,10 +29,10 @@ class HealthInsuranceController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
         try {
-            $patient = Patient::where('id', $request->patient_id)
+            $patient = Patient::where('id', $id)
                 ->where('user_id', auth()->id())
                 ->firstOrFail();
 

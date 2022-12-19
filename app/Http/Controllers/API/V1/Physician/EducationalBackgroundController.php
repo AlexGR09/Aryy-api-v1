@@ -7,34 +7,38 @@ use App\Http\Requests\API\V1\Physician\PhotoNameRequest;
 use App\Http\Requests\API\V1\Physician\UploadCertificateRequest;
 use App\Http\Requests\API\V1\Physician\UploadLicenseRequest;
 use App\Models\Physician;
-use App\Models\PhysicianSpecialty;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class EducationalBackgroundController extends Controller
 {
-    protected $user;
+    protected $user, $path_physicians;
 
     public function __construct()
     {
-        $this->user = auth()->user();
+        $this->user = User::findOrFail(auth()->id());
+        $this->path_physicians = '//users//physicians//';
         $this->middleware('role:Physician');
     }
 
     public function uploadLicense(UploadLicenseRequest $request)
     {
         try {
+            $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
+
+            $specialtyOfPhysician = $physician->physician_specialty->where('license', $request->license)->firstOrfail();
+
+            // MUEVE LA FOTO PREVIA DE LA CÉDULA DE LA ESPECIALIDAD
+            if ($specialtyOfPhysician->license_photo != NULL) {
+                $from = $this->path_physicians . $this->user->user_folder . '//licenses//' . $specialtyOfPhysician->license_photo;
+                $to = $this->path_physicians . $this->user->user_folder . '//recycle_bin//' . $specialtyOfPhysician->license_photo;
+                Storage::move($from, $to);
+            }
+
             // GUARDA LA FOTO DE LA CÉDULA DE LA ESPECIALIDAD EN LA CARPETA CORRESPONDIENTE DEL USUARIO
             $file = $request->file('photo');
             $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs($this->user->user_folder . '//licenses//', $fileName);
-
-            $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
-            $specialtyOfPhysician = PhysicianSpecialty::where('license', $request->license)
-                ->where('physician_id', $physician->id)
-                ->firstOrFail();
-
-            // ELIMINA LA FOTO PREVIA DE LA CÉDULA DE LA ESPECIALIDAD
-            Storage::delete($this->user->user_folder . '//licenses//' .$specialtyOfPhysician->license_photo);
+            $file->storeAs($this->path_physicians . $this->user->user_folder . '//licenses//', $fileName);
 
             // SE GUARDA LA REFERENCIA DEL ARCHIVO SUBIDO AL SERVIDOR EN LA TABLA PHYSICIAN_SPECIALTY
             $specialtyOfPhysician->license_photo = $fileName;
@@ -42,7 +46,8 @@ class EducationalBackgroundController extends Controller
 
             return response()->json(['message' => 'Imagen de cédula almacenada correctamente.']);
         } catch (\Throwable $th) {
-            Storage::delete($this->user->user_folder.'//licenses//'.$fileName);
+            // SE INVIRTE EL ORIGEN Y DESTINO PARA REVERTIR LOS CAMBIOS
+            Storage::move($to, $from);
             return response()->json(['error' => $th->getMessage()], 503);
         } 
     }
@@ -57,11 +62,10 @@ class EducationalBackgroundController extends Controller
             foreach ($request->file('certificate_photo') as $key => $file) {
                 // GUARDA LAS FOTOS DE LOS CERTIFICADOS EN LA CARPETA CORRESPONDIENTE DEL USUARIO
                 $fileName = time().'_'.$file->getClientOriginalName();
-                $file->storeAs($this->user->user_folder.'//certificates//', $fileName);
+                $file->storeAs($this->path_physicians . $this->user->user_folder . '//certificates//', $fileName);
 
                 // ESTE ARRAY CONTIENE EL FORMATO PARA LA BD DE LAS FOTOS DE LOS CERTIFICADOS
-                $certificates += [ 
-                    $key => [
+                $certificates += [ $key => [
                         'certificate_photo' => $fileName
                     ] 
                 ];
@@ -92,7 +96,7 @@ class EducationalBackgroundController extends Controller
     public function getCertificate(PhotoNameRequest $request)
     {
         try {
-            $path = $this->user->user_folder . '//certificates//' .$request->photo;
+            $path = $this->path_physicians . $this->user->user_folder . '//certificates//' . $request->photo;
             $image = Storage::get($path);
 
             if ($image) {
@@ -108,7 +112,7 @@ class EducationalBackgroundController extends Controller
     public function deleteCertificate(PhotoNameRequest $request)
     {
         try {
-            $path = $this->user->user_folder . '//certificates//' .$request->photo;
+            $path = $this->path_physicians . $this->user->user_folder . '//certificates//' . $request->photo;
             $image = Storage::get($path);
 
             if ($image) {
@@ -125,7 +129,6 @@ class EducationalBackgroundController extends Controller
 
                 return response()->json(['message' => 'Foto del certificado eliminada correctamente.']);
             }
-            
             return response()->json(['message' => 'La foto del certificado no existe.'], 404);   
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

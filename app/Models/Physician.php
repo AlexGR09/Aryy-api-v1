@@ -13,10 +13,14 @@ class Physician extends Model
     protected $fillable = [
         'user_id',
         'professional_name',
+        'gender',
         'certificates',
         'social_networks',
         'biography',
         'recipe_template',
+        'first_time_consultation',
+        'subsequent_consultation',
+        'languages',
         'is_verified'
     ];
 

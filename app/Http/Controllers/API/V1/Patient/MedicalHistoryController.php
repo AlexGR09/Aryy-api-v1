@@ -30,10 +30,12 @@ class MedicalHistoryController extends Controller
         ]);
     }
 
-    public function index()
+    public function index($id)
     {
         try {
-            $patient = Patient::where('user_id', $this->user->id)->first();
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
+                ->firstOrFail();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergypatient')->get();
             return (MedicalHistoryResource::collection($medical_history))->additional(['message' => '..']);
         } catch (\Throwable $th) {
@@ -41,12 +43,14 @@ class MedicalHistoryController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-    public function store(MedicalHistoryRequest $request)
+    public function store(MedicalHistoryRequest $request, $id)
     {
         try {
-            $patient = Patient::where('user_id', $this->user->id)->first();
-
             DB::beginTransaction();
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
+                ->firstOrFail();
+
             $allergy_patient = AllergyPatient::create([
                 'food_allergy' =>  $request->food_allergy,
                 'drug_allergy' => $request->drug_allergy,
@@ -74,11 +78,28 @@ class MedicalHistoryController extends Controller
         }
     }
 
-    public function update(MedicalHistoryRequest $request)
+    public function show($id)
     {
         try {
-            $patient = Patient::where('user_id', $this->user->id)->first();
-            $basic_information = MedicalHistory::where('patient_id', $patient->id)->first();
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
+                ->firstOrFail();
+            $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergypatient')->get();
+            return (BasicInformationResource::collection($medical_history))->additional(['message' => 'Alergias encontradas']);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
+
+
+    public function update(MedicalHistoryRequest $request, $id)
+    {
+        try {
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
+                ->firstOrFail();
+            $basic_information = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
 
             $basic_information->patient_id = $patient->id;
             $basic_information->weight = $request->weight;
@@ -91,25 +112,13 @@ class MedicalHistoryController extends Controller
             $basic_information->blood_type = $request->blood_type;
             $basic_information->save();
 
-            $allergy_patient = AllergyPatient::where('id', $basic_information->allergy_patient_id)->first();
+            $allergy_patient = AllergyPatient::where('id', $basic_information->allergy_patient_id)->firstOrFail();
             $allergy_patient->food_allergy = $request->food_allergy;
             $allergy_patient->drug_allergy = $request->drug_allergy;
             $allergy_patient->environmental_allergy = $request->environmental_allergy;
             $allergy_patient->save();
 
             return (new BasicInformationResource($basic_information))->additional(['message' => 'La informacion basica se actualizo con exito.']);
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            return response()->json(['error' => $th->getMessage()], 503);
-        }
-    }
-
-    public function show()
-    {
-        try {
-            $patient = Patient::where('user_id', $this->user->id)->first();
-            $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergypatient')->get();
-            return (BasicInformationResource::collection($medical_history))->additional(['message' => '..']);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
@@ -128,7 +137,7 @@ class MedicalHistoryController extends Controller
         }
     }
 
-    public function blood_type(Request $request)
+    public function blood_type()
     {
         try {
             $blood_type = BloodType::all();

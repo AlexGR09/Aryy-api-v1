@@ -12,6 +12,7 @@ return new class() extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->string('professional_name');
+            $table->enum('gender', ['masculino', 'femenino'])->nullable();
             $table->json('certificates')->nullable();
             $table->json('social_networks')->nullable();
             $table->string('biography')->nullable();

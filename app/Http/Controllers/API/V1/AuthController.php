@@ -31,9 +31,9 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         try {
-            $user = User::where('email', $request->email)->first();
+            $user = User::where('email', $request->email)->orWhere('phone_number',$request->phone_number)->first();
             if (! $user || ! Hash::check($request->password, $user->password)) {
-                return response()->json(['message' => 'Credenciales no válidas.'], 503);
+                return response()->json(['message' => 'Correo o contraseña invalida, intente de nuevo.'], 503);
             }
 
             $token = $user->createToken('authToken')->plainTextToken;
@@ -80,7 +80,7 @@ class AuthController extends Controller
             // GENERA UN TOKEN PARA EL USUARIO Y LO GUARDA EN LA DB
             $token = $user->createToken('authToken')->plainTextToken;
             $user->remember_token = $token;
-            $user->user_folder = $directory . $user_folder;
+            $user->user_folder =  $user_folder;
             $user->save();
             DB::commit();
 
@@ -90,7 +90,6 @@ class AuthController extends Controller
         } catch (\Throwable $th) {
             Storage::deleteDirectory($directory . $user_folder);
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -133,11 +132,33 @@ class AuthController extends Controller
     public function destroy()
     {
         try {
-            Storage::deleteDirectory($this->user->user_folder);
+            $roles = $this->user->getRoleNames();
+
+            switch ($roles) {
+
+                case $roles->contains('Physician') || $roles->contains('NewPhysician'):
+                    $from = '//users//physicians//' . $this->user->user_folder;
+                    $to = '//recycle_bin//' . $this->user->user_folder;
+                    break;
+
+                case $roles->contains('Patient') || $roles->contains('NewPatient'):
+                    $from = '//users//patients//' . $this->user->user_folder;
+                    $to = '//recycle_bin//' . $this->user->user_folder;
+                    break;
+                
+                default:
+                return response()->json(['message' => 'rol no encontrado'], 503);
+                    break;
+            }
+
+            // MUEVE EL DIRECTORIO COMPLETO DEL USUARIO A LA PAPELERA DE RECICLAJE
+            Storage::move($from, $to);
+
             $this->user->delete();
 
             return (new UserResource($this->user))->additional(['message' => 'Usuario eliminado con éxito, adiós.']);
         } catch (\Throwable $th) {
+            Storage::move($to, $from);
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -147,14 +168,13 @@ class AuthController extends Controller
         try {
             DB::beginTransaction();
             $this->user->tokens()->delete();
-            $this->user->remember_token = null;
+            $this->user->remember_token = NULL;
             $this->user->save();
             DB::commit();
 
             return (new UserResource($this->user))->additional(['message' => 'Cierre de sesión exitoso, adiós']);
         } catch (\Throwable $th) {
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
