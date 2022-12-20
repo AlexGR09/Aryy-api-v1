@@ -33,7 +33,7 @@ class PatientController extends Controller
             'show',
             'update'
         ]);
-        $this->middleware('permission:create patient profiles')->only(['store']);
+        $this->middleware('role:NewPatient')->only(['store']);
     }
 
     public function index()
@@ -48,38 +48,16 @@ class PatientController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(PatientRequest $request)
     {
         try {
             $user = User::find(auth()->id());
 
-            if (count($user->patients) > 4) {
-                return response()->json(['messaage' => 'No puedes agregar más pacientes'], 503);
-            }
-
             DB::beginTransaction();
 
-            $patient = Patient::create([
-                'user_id' => $user->id,
-                'city_id' => $request->city_id,
-                'full_name' => $request->full_name,
-                'gender' => $request->gender,
-                'birthday' => $request->birthday,
-                'address' => $request->address,
-                'zip_code' => $request->zip_code,
-                'country_code' => $request->country_code,
-                'emergency_number' => $request->emergency_number,
-                'id_card' => $request->id_card
-            ]);
+            $patient = $user->patients()->create($request->validated());
 
             $patient->occupations()->attach($request->occupation_id);
-
-            // CREA EL DIRECTORIO CORRESPONDIENTE DEL PACIENTE EN LA CARPETA DEL USUARIO
-            $patient_folder  = '//' . $patient->id . '_' . substr(sha1(time()), 0, 8);
-            Storage::makeDirectory($user->user_folder . $patient_folder);
-
-            $patient->patient_folder = $patient_folder;
-            $patient->save();
 
             $user->syncRoles(['User', 'Patient']);
 
