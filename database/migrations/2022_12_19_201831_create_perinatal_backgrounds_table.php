@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class() extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ return new class() extends Migration
      */
     public function up()
     {
-        Schema::create('medical_records', function (Blueprint $table) {
+        Schema::create('perinatal_backgrounds', function (Blueprint $table) {
             $table->id();
-            
+            $table->date('last_menstrual_cycle')->nullable();
+            $table->date('cycle_time')->nullable();
+            $table->string('contraceptive_method_use')->nullable();
+            $table->string('assisted_conception')->nullable();
+            $table->string('final_ppf')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +32,6 @@ return new class() extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medical_records');
+        Schema::dropIfExists('perinatal_backgrounds');
     }
 };

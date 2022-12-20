@@ -55,6 +55,11 @@ class MedicalHistory extends Model
         return $this->belongsTo('App\Models\VaccinationHistory', 'vaccination_history_id', 'id');
     }
 
+    public function pyschologicalbackground()
+    {
+        return $this->belongsTo('App\Models\PyschologicalBackground');
+    }
+
     /**
      * The attributes that should be cast.
      *
