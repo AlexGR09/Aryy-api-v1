@@ -35,6 +35,13 @@ $this->catalogues = "App\\Http\\Controllers\\API\\V1\\Catalogues\\";
 $this->patient = "App\\Http\\Controllers\\API\\V1\\Patient\\";
 
 
+/* RUTAS API VERSIÓN 2 */
+
+global $v2;
+// V2
+$this->v2 = "App\\Http\\Controllers\\API\\V2\\";
+
+
 
 Route::prefix('v1')->group(function () {
 
@@ -272,6 +279,24 @@ Route::prefix('v1')->group(function () {
     Route::get('/search', [$this->search . SearchController::class, 'index']);
     // BUSQUEDA DEFINIDA DE MÉDICO
     Route::get('/searchphy', [$this->search . PhysicianSearchController::class, 'index']);
+});
+
+
+
+Route::prefix('v2')->group(function () {
+
+    Route::group(['middleware' => ['auth:sanctum']], function () {
+
+        /* RUTAS DEL PACIENTE */
+        Route::prefix('patient')->group(function () {
+            // PERFIL DEL MÉDICO
+            Route::controller($this->v2 . 'Patient\\' . PatientController::class)->group(function () {
+                Route::post('/profile', 'store');
+            });
+        });
+
+    });
+    
 });
 
 

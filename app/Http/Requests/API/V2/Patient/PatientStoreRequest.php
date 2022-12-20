@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\API\V1\Patient;
+namespace App\Http\Requests\API\V2\Patient;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class PatientRequest extends FormRequest
+class PatientStoreRequest extends FormRequest
 {
 
     public function authorize()
