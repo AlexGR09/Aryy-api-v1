@@ -17,7 +17,7 @@ class RegisterRequest extends FormRequest
             'email' => 'email|max:35|unique:users',
             'password' => 'required|confirmed|min:8|max:16',
             'type_user' => 'required|in:Patient,Physician',
-            'country_code' => 'required|max:6',
+            'country_code' => 'required|string|max:6',
             'phone_number' => 'required|unique:users|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
         ];
     }

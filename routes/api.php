@@ -18,9 +18,11 @@ use Psy\VersionUpdater\Checker;
 
 /* RUTAS API VERSIÓN 1 */
 
-global $v1, $physician, $admin, $search, $catalogues, $patient;
+global $v1, $physician, $admin, $search, $catalogues, $patient, $auth;
 // V1
 $this->v1 = "App\\Http\\Controllers\\API\\V1\\";
+// V1
+$this->auth = "App\\Http\\Controllers\\API\\V1\\Auth\\";
 // MÉDICO
 $this->physician = "App\\Http\\Controllers\\API\\V1\\Physician\\";
 // MÉDICO
@@ -37,113 +39,114 @@ $this->patient = "App\\Http\\Controllers\\API\\V1\\Patient\\";
 Route::prefix('v1')->group(function () {
 
 
-    // RUTAS REGISTRO, LOGIN, PERFIL DE USUARIO
-    Route::controller($this->v1 . AuthController::class)->group(function () {
+    // RUTAS REGISTRO Y LOGIN
+    Route::controller($this->auth . AuthController::class)->group(function () {
         Route::post('/login', 'login');
         Route::post('/register', 'register');
-        Route::get('/logout', 'logout')->middleware(['auth:sanctum']);
-
-        Route::prefix('user')->group(function () {
-            Route::get('/profile', 'show')->middleware(['auth:sanctum']);
-            Route::put('/profile', 'update')->middleware(['auth:sanctum']);
-            Route::delete('/profile', 'destroy')->middleware(['auth:sanctum']);
-        });
     });
 
     Route::group(['middleware' => ['auth:sanctum']], function () {
 
-
-        /* CATALÓGOS */
-        Route::prefix('catalogue')->group(function () {
-            // PAÍSES
-            Route::resource('countries', $this->catalogues . CountryController::class)
-                ->only(['index', 'store', 'show', 'update', 'destroy']);
-            // ESTADOS
-            Route::resource('/states', $this->catalogues . StateController::class)
-                ->only(['index', 'store', 'show', 'update', 'destroy']);
-            // CIUDADES
-            Route::controller($this->catalogues . CityController::class)->group(function () {
-                Route::get('/cities', 'index');
-                Route::get('/citiesofstate', 'citiesOfState');
-                Route::get('/cities/{city}', 'show');
-                Route::post('/cities', 'store');
-                Route::put('/cities/{city}', 'update');
-                Route::delete('/cities/{city}', 'destroy');
-            });
-            //OCUPACIONES
-            Route::resource('ocupations', $this->catalogues . OccupationController::class)
-                ->only(['index', 'store', 'show', 'update', 'destroy']);
-            //MEDICAL SERVICES
-            Route::resource('/medicalservices', $this->catalogues . MedicalServiceController::class)
-                ->only(['index', 'store', 'show', 'update', 'destroy']);
-            //INSURANCE
-            Route::resource('insurance', $this->catalogues . InsuranceController::class)
-                ->only(['index', 'store', 'show', 'update', 'destroy']);
-            // ESPECIALIDADES
-            Route::resource('/specialties', $this->catalogues . SpecialtyController::class)
-                ->only(['index', 'store', 'show', 'update', 'destroy']);
-            // ENFERMEDADES
-            Route::resource('/diseases', $this->catalogues . DiseaseController::class)
-            ->only(['index', 'store', 'show', 'update', 'destroy']);
-            // SUB ESPECIALIDADES
-            Route::controller($this->catalogues . SubSpecialtyController::class)->group(function () {
-                Route::get('/subspecialties', 'index');
-                Route::get('/subspecialtiesofspecialty', 'subSpecialtiesOfSpecialty');
-            });
-        });
-
-
-
-        /* RUTAS DEL MÉDICO */
-        Route::prefix('physician')->group(function () {
-            // PERFIL DEL MÉDICO
-            Route::controller($this->physician . PhysicianController::class)->group(function () {
+        // RUTAS PERFIL DE USUARIO
+        Route::prefix('user')->group(function () {
+            Route::controller($this->auth . UserController::class)->group(function () {
                 Route::get('/profile', 'show');
-                Route::post('/profile', 'store');
                 Route::put('/profile', 'update');
-            });
-            // ARCHIVOS DE FORMACIÓN DEL MÉDICO
-            Route::controller($this->physician . EducationalBackgroundController::class)->group(function () {
-                Route::post('/educationalbackground/uploadlicense', 'uploadLicense');
-                Route::post('/educationalbackground/uploadcertificate', 'uploadCertificate');
-                Route::get('/educationalbackground/getcertificate', 'getCertificate');
-                Route::delete('/educationalbackground/deletecertificate', 'deleteCertificate');
-            });
-            // ARCHIVOS DE IDENTIDAD MÉDICA
-            Route::controller($this->physician . MedicalIdentityController::class)->group(function () {
-                Route::get('/medicalindentity', 'index');
-                Route::post('/medicalindentity/uploadlogo', 'uploadLogo');
-                Route::get('/medicalindentity/getlogo', 'getLogo');
-                Route::delete('/medicalindentity/deletelogo', 'deleteLogo');
-                Route::post('/medicalindentity/uploadphysicianphoto', 'uploadPhysicianPhoto');
-                Route::get('/medicalindentity/getphysicianphoto', 'getPhysicianPhoto');
-                Route::delete('/medicalindentity/deletephysicianphoto', 'deletePhysicianPhoto');
-                Route::post('/medicalindentity/uploadfacilityphoto', 'uploadFacilityPhoto');
-                Route::get('/medicalindentity/getfacilityphoto', 'getFacilityPhoto');
-                Route::delete('/medicalindentity/deletefacilityphoto', 'deleteFacilityPhoto');
-            });
-            // SERVICIOS QUE EL MÉDICO OFRECE
-            Route::controller($this->physician . MedicalServiceController::class)->group(function () {
-                Route::put('/medicalservice', 'update');
-            });
-            // ENFERMEDADES QUE EL MÉDICO ATIENDE
-            Route::controller($this->physician . DiseaseController::class)->group(function () {
-                Route::get('/disease', 'index');
-                Route::post('/disease', 'store');
-                Route::delete('/disease', 'destroy');
-            });
-
-
-            //DATOS FISCALES DEL MÉDICO
-            Route::controller($this->physician . TaxDataController::class)->group(function () {
-                Route::post('tax_data', 'store');
-                Route::get('tax_data', 'show');
-                Route::put('tax_data','update');
-                Route::delete('tax_data','destroy');
-
-                Route::post('tax_data/update_constancy','update_constancy');
+                Route::delete('/profile', 'destroy');
+                Route::get('/logout', 'logout');
             });
         });
+
+    /* CATALÓGOS */
+    Route::prefix('catalogue')->group(function () {
+        // PAÍSES
+        Route::resource('countries', $this->catalogues . CountryController::class)
+            ->only(['index', 'store', 'show', 'update', 'destroy']);
+        // ESTADOS
+        Route::resource('/states', $this->catalogues . StateController::class)
+            ->only(['index', 'store', 'show', 'update', 'destroy']);
+        // CIUDADES
+        Route::controller($this->catalogues . CityController::class)->group(function () {
+            Route::get('/cities', 'index');
+            Route::get('/citiesofstate', 'citiesOfState');
+            Route::get('/cities/{city}', 'show');
+            Route::post('/cities', 'store');
+            Route::put('/cities/{city}', 'update');
+            Route::delete('/cities/{city}', 'destroy');
+        });
+        //OCUPACIONES
+        Route::resource('ocupations', $this->catalogues . OccupationController::class)
+            ->only(['index', 'store', 'show', 'update', 'destroy']);
+        //MEDICAL SERVICES
+        Route::resource('/medicalservices', $this->catalogues . MedicalServiceController::class)
+            ->only(['index', 'store', 'show', 'update', 'destroy']);
+        //INSURANCE
+        Route::resource('insurance', $this->catalogues . InsuranceController::class)
+            ->only(['index', 'store', 'show', 'update', 'destroy']);
+        // ESPECIALIDADES
+        Route::resource('/specialties', $this->catalogues . SpecialtyController::class)
+            ->only(['index', 'store', 'show', 'update', 'destroy']);
+        // ENFERMEDADES
+        Route::resource('/diseases', $this->catalogues . DiseaseController::class)
+        ->only(['index', 'store', 'show', 'update', 'destroy']);
+        // SUB ESPECIALIDADES
+        Route::controller($this->catalogues . SubSpecialtyController::class)->group(function () {
+            Route::get('/subspecialties', 'index');
+            Route::get('/subspecialtiesofspecialty', 'subSpecialtiesOfSpecialty');
+        });
+    });
+
+
+    /* RUTAS DEL MÉDICO */
+    Route::prefix('physician')->group(function () {
+        // PERFIL DEL MÉDICO
+        Route::controller($this->physician . PhysicianController::class)->group(function () {
+            Route::get('/profile', 'show');
+            Route::post('/profile', 'store');
+            Route::put('/profile', 'update');
+        });
+        // ARCHIVOS DE FORMACIÓN DEL MÉDICO
+        Route::controller($this->physician . EducationalBackgroundController::class)->group(function () {
+            Route::post('/educationalbackground/uploadlicense', 'uploadLicense');
+            Route::post('/educationalbackground/uploadcertificate', 'uploadCertificate');
+            Route::get('/educationalbackground/getcertificate', 'getCertificate');
+            Route::delete('/educationalbackground/deletecertificate', 'deleteCertificate');
+        });
+        // ARCHIVOS DE IDENTIDAD MÉDICA
+        Route::controller($this->physician . MedicalIdentityController::class)->group(function () {
+            Route::get('/medicalindentity', 'index');
+            Route::post('/medicalindentity/uploadlogo', 'uploadLogo');
+            Route::get('/medicalindentity/getlogo', 'getLogo');
+            Route::delete('/medicalindentity/deletelogo', 'deleteLogo');
+            Route::post('/medicalindentity/uploadphysicianphoto', 'uploadPhysicianPhoto');
+            Route::get('/medicalindentity/getphysicianphoto', 'getPhysicianPhoto');
+            Route::delete('/medicalindentity/deletephysicianphoto', 'deletePhysicianPhoto');
+            Route::post('/medicalindentity/uploadfacilityphoto', 'uploadFacilityPhoto');
+            Route::get('/medicalindentity/getfacilityphoto', 'getFacilityPhoto');
+            Route::delete('/medicalindentity/deletefacilityphoto', 'deleteFacilityPhoto');
+        });
+        // SERVICIOS QUE EL MÉDICO OFRECE
+        Route::controller($this->physician . MedicalServiceController::class)->group(function () {
+            Route::put('/medicalservice', 'update');
+        });
+        // ENFERMEDADES QUE EL MÉDICO ATIENDE
+        Route::controller($this->physician . DiseaseController::class)->group(function () {
+            Route::get('/disease', 'index');
+            Route::post('/disease', 'store');
+            Route::delete('/disease', 'destroy');
+        });
+
+
+        //DATOS FISCALES DEL MÉDICO
+        Route::controller($this->physician . TaxDataController::class)->group(function () {
+            Route::post('tax_data', 'store');
+            Route::get('tax_data', 'show');
+            Route::put('tax_data','update');
+            Route::delete('tax_data','destroy');
+
+            Route::post('tax_data/update_constancy','update_constancy');
+        });
+    });
 
         /* RUTAS DEL PACIENTE */
         Route::prefix('patient')->group(function () {
