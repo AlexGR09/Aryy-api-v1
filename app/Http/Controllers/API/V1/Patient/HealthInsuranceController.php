@@ -41,7 +41,7 @@ class HealthInsuranceController extends Controller
                 'insurance_id' => $request->insurance_id,
                 'patient_id' => $patient->id,
             ]);
-
+            
             return (new HealthInsuranceResource($health_insurance))->additional(['message' => 'Informacion guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
