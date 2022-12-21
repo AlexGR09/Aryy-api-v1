@@ -10,11 +10,9 @@ use Illuminate\Support\Facades\DB;
 
 class MedicalServiceController extends Controller
 {
-    protected $user;
 
     public function __construct()
     {
-        $this->user = auth()->user();
         $this->middleware('role:Physician');
     }
 
@@ -22,11 +20,8 @@ class MedicalServiceController extends Controller
     {
         try {
             DB::beginTransaction();
-            $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
-            $physician->first_time_consultation = $request->first_time_consultation;
-            $physician->subsequent_consultation = $request->subsequent_consultation;
-            $physician->languages = $request->languages;
-            $physician->save();
+            $physician = Physician::where('user_id', auth()->id())->firstOrFail();
+            $physician->update($request->validated());
 
             if ($request->medical_services) {
                 // SINCRONIZA LOS SERVICIOS MÉDICOS CON EL MÉDICO CORRESPONDIENTE

@@ -16,7 +16,8 @@ class EducationalBackgroundController extends Controller
 
     public function __construct()
     {
-        $this->user = User::findOrFail(auth()->id());
+        $this->user =  empty(auth()->id()) ? null : User::findOrFail(auth()->id());
+
         $this->path_physicians = '//users//physicians//';
         $this->middleware('role:Physician');
     }
@@ -28,8 +29,8 @@ class EducationalBackgroundController extends Controller
 
             $specialtyOfPhysician = $physician->physician_specialty->where('license', $request->license)->firstOrfail();
 
-            // MUEVE LA FOTO PREVIA DE LA CÉDULA DE LA ESPECIALIDAD
-            if ($specialtyOfPhysician->license_photo != NULL) {
+            // MUEVE LA FOTO PREVIA DE LA CÉDULA DE LA ESPECIALIDAD A LA PAPELERA
+            if ($specialtyOfPhysician->license_photo != null) {
                 $from = $this->path_physicians . $this->user->user_folder . '//licenses//' . $specialtyOfPhysician->license_photo;
                 $to = $this->path_physicians . $this->user->user_folder . '//recycle_bin//' . $specialtyOfPhysician->license_photo;
                 Storage::move($from, $to);
@@ -41,15 +42,14 @@ class EducationalBackgroundController extends Controller
             $file->storeAs($this->path_physicians . $this->user->user_folder . '//licenses//', $fileName);
 
             // SE GUARDA LA REFERENCIA DEL ARCHIVO SUBIDO AL SERVIDOR EN LA TABLA PHYSICIAN_SPECIALTY
-            $specialtyOfPhysician->license_photo = $fileName;
-            $specialtyOfPhysician->save();
+            $specialtyOfPhysician->update(['license_photo' => $fileName]);
 
             return response()->json(['message' => 'Imagen de cédula almacenada correctamente.']);
         } catch (\Throwable $th) {
             // SE INVIRTE EL ORIGEN Y DESTINO PARA REVERTIR LOS CAMBIOS
             Storage::move($to, $from);
             return response()->json(['error' => $th->getMessage()], 503);
-        } 
+        }
     }
 
     public function uploadCertificate(UploadCertificateRequest $request)
@@ -67,7 +67,7 @@ class EducationalBackgroundController extends Controller
                 // ESTE ARRAY CONTIENE EL FORMATO PARA LA BD DE LAS FOTOS DE LOS CERTIFICADOS
                 $certificates += [ $key => [
                         'certificate_photo' => $fileName
-                    ] 
+                    ]
                 ];
 
                 // ESTE ARRAY CONTIENE CADA ELEMENTO CON LA RUTA ABSOLUTA DE LAS FOTOS DE LOS CERTIFICADOS
@@ -77,14 +77,13 @@ class EducationalBackgroundController extends Controller
             $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
 
             // COMBINA LOS ELEMENTOS DEL ARRAY DE CERTIFICADOS CUANDO EL CAMPO CERTIFICADOS EN LA BD NO ES NULO
-            $currentCertificates = $certificates;   
-            if ($physician->certificates != NULL) {
+            $currentCertificates = $certificates;
+            if ($physician->certificates != null) {
                 $currentCertificates = array_merge($physician->certificates, $certificates);
             }
 
-             // SE GUARDA LA REFERENCIA DE LOS CERTIFICADOS DEL SERVIDOR EN LA TABLA PHYSICIAN
-            $physician->certificates = $currentCertificates;
-            $physician->save();
+            // SE GUARDA LA REFERENCIA DE LOS CERTIFICADOS DEL SERVIDOR EN LA TABLA PHYSICIAN
+            $physician->update(['certificates' => $currentCertificates]);
 
             return response()->json(['message' => 'Imagen de certificado almacenada correctamente.']);
         } catch (\Throwable $th) {
@@ -117,33 +116,32 @@ class EducationalBackgroundController extends Controller
 
             if ($image) {
                 $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
-       
+
                 //  FORMATEA LOS CERTIFICADOS DEL JSON, REMUEVE EL ELEMENTO DEL CERTIFICADO A ELIMINAR
                 $currentCertificates = $this->certificatesFormat($physician->certificates, $request->photo);
 
                 // ELIMINA LA IMAGEN DEL CERTIFICADO
                 Storage::delete($path);
 
-                $physician->certificates = $currentCertificates;
-                $physician->save();
+                $physician->update(['certificates' => $currentCertificates]);
 
                 return response()->json(['message' => 'Foto del certificado eliminada correctamente.']);
             }
-            return response()->json(['message' => 'La foto del certificado no existe.'], 404);   
+            return response()->json(['message' => 'La foto del certificado no existe.'], 404);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function certificatesFormat($certificates, $certificate_filename) 
+    // FORMATEA EL ARRAY DE LOS CERTIFICADOS DEL MÉDICO
+    public function certificatesFormat($certificates, $certificate_filename)
     {
         $currentCertificates = [];
         foreach ($certificates as $key => $certificate) {
-            if ($certificate['certificate_photo'] != $certificate_filename ) {
+            if ($certificate['certificate_photo'] != $certificate_filename) {
                 $currentCertificates += [ $key => $certificate];
             }
         }
         return $currentCertificates;
     }
-
 }
