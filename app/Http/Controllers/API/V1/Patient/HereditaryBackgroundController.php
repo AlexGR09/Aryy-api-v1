@@ -29,12 +29,11 @@ class HereditaryBackgroundController extends Controller
         //
     }
 
-    public function store(HereditaryBackgroundRequest $request, $id)
+    public function store(HereditaryBackgroundRequest $request)
     {
         try {
             DB::beginTransaction();
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
 
             $hereditary_background = HereditaryBackground::create([
@@ -60,12 +59,11 @@ class HereditaryBackgroundController extends Controller
         }
     }
 
-    public function show($id)
+    public function show()
     {
         try {
             DB::beginTransaction();
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
 
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
@@ -80,11 +78,10 @@ class HereditaryBackgroundController extends Controller
         }
     }
 
-    public function update(HereditaryBackgroundRequest $request, $id)
+    public function update(HereditaryBackgroundRequest $request)
     {
         try {
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
             $hereditary_background = HereditaryBackground::where('id', $medical_history->hereditary_background_id)->firstOrFail();

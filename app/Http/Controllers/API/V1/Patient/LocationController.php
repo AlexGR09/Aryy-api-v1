@@ -30,13 +30,12 @@ class LocationController extends Controller
         //
     }
 
-    public function store(LocationRequest $request, $id)
+    public function store(LocationRequest $request)
     {
         try {
             DB::beginTransaction();
 
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
             $patient->address = $request->address;
             $patient->zip_code = $request->zip_code;
@@ -50,11 +49,10 @@ class LocationController extends Controller
         }
     }
 
-    public function show($id)
+    public function show()
     {
         try {
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
             return (new LocationResource($patient))->additional(['message' => 'Informacion basica guardada con exito.']);
         } catch (\Throwable $th) {
@@ -63,12 +61,11 @@ class LocationController extends Controller
         }
     }
 
-    public function update(LocationRequest $request, $id)
+    public function update(LocationRequest $request)
     {
         try {
             DB::beginTransaction();
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
             $patient->address = $request->address;
             $patient->zip_code = $request->zip_code;
@@ -81,11 +78,10 @@ class LocationController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy()
     {
         try {
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
 
             DB::beginTransaction();

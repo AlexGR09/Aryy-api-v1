@@ -29,11 +29,10 @@ class HealthInsuranceController extends Controller
         //
     }
 
-    public function store(Request $request,$id)
+    public function store(Request $request)
     {
         try {
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
 
             $health_insurance = HealthInsurance::create([
@@ -50,11 +49,10 @@ class HealthInsuranceController extends Controller
         }
     }
 
-    public function show($id)
+    public function show()
     {
         try {
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
 
             $health_insurance = HealthInsurance::where('patient_id', $patient->id)->firstOrFail();
@@ -67,11 +65,10 @@ class HealthInsuranceController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         try {
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
 
             $health_insurance = HealthInsurance::where('patient_id', $patient->id)->firstOrFail();
@@ -86,11 +83,10 @@ class HealthInsuranceController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy()
     {
         try {
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
             $health_insurance = HealthInsurance::where('patient_id', $patient->id)->firstOrFail();
             $health_insurance->delete();

@@ -43,12 +43,11 @@ class MedicalHistoryController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-    public function store(MedicalHistoryRequest $request, $id)
+    public function store(MedicalHistoryRequest $request)
     {
         try {
             DB::beginTransaction();
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
 
             $allergy_patient = AllergyPatient::create([
@@ -78,11 +77,10 @@ class MedicalHistoryController extends Controller
         }
     }
 
-    public function show($id)
+    public function show()
     {
         try {
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergypatient')->get();
             return (BasicInformationResource::collection($medical_history))->additional(['message' => 'Alergias encontradas']);
@@ -93,11 +91,10 @@ class MedicalHistoryController extends Controller
     }
 
 
-    public function update(MedicalHistoryRequest $request, $id)
+    public function update(MedicalHistoryRequest $request)
     {
         try {
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
             $basic_information = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
 

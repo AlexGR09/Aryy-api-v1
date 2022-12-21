@@ -30,11 +30,10 @@ class NonPathologicalBackgroundController extends Controller
         //
     }
 
-    public function store(NonPathologicalBackgroundRequest $request, $id)
+    public function store(NonPathologicalBackgroundRequest $request)
     {
         try {
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
             DB::beginTransaction();
             $no_pathological = NonPathologicalBackground::create([
@@ -58,11 +57,10 @@ class NonPathologicalBackgroundController extends Controller
         }
     }
 
-    public function show($id)
+    public function show()
     {
         try {
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
 
@@ -75,13 +73,12 @@ class NonPathologicalBackgroundController extends Controller
         }
     }
 
-    public function update(NonPathologicalBackgroundRequest $request,$id)
+    public function update(NonPathologicalBackgroundRequest $request)
     {
 
         try {
 
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
             $no_pathological = NonPathologicalBackground::where('id', $medical_history->non_pathological_background_id)->firstOrFail();

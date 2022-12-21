@@ -25,12 +25,11 @@ class IdentityController extends Controller
         //
     }
 
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         try {
 
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
 
             $file = $request->file('id_card');
@@ -49,11 +48,10 @@ class IdentityController extends Controller
         }
     }
 
-    public function show($id)
+    public function show()
     {
         try {
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
             $path = $this->user->user_folder . $patient->patient_folder . '//identity//' . $patient->id_card;
             
@@ -70,11 +68,10 @@ class IdentityController extends Controller
         //
     }
 
-    public function destroy($id)
+    public function destroy()
     {
         try {
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
             $path = $this->user->user_folder . $patient->patient_folder . '//identity//' . $patient->id_card;;
             Storage::delete($path);
