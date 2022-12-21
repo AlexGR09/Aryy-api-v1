@@ -5,7 +5,7 @@ namespace App\Http\Requests\API\V1\Physician;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class PhysicianCreateRequest extends FormRequest
+class PhysicianStoreRequest extends FormRequest
 {
 
     public function authorize()

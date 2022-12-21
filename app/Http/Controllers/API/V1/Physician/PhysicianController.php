@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\V1\Physician\PhysicianCreateRequest;
+use App\Http\Requests\API\V1\Physician\PhysicianStoreRequest;
 use App\Http\Requests\API\V1\Physician\PhysicianUpdateRequest;
 use App\Http\Resources\API\V1\Physician\PhysicianResource;
 use App\Models\Physician;
@@ -23,7 +23,7 @@ class PhysicianController extends Controller
         $this->middleware('role:Physician')->only(['update']);
     }
 
-    public function store(PhysicianCreateRequest $request)
+    public function store(PhysicianStoreRequest $request)
     {
         try {
             DB::beginTransaction();
