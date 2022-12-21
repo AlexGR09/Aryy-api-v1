@@ -77,10 +77,11 @@ class MedicalHistoryController extends Controller
         }
     }
 
-    public function show()
+    public function show($id)
     {
         try {
-            $patient = Patient::where('user_id', auth()->id())
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
                 ->firstOrFail();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergypatient')->get();
             return (BasicInformationResource::collection($medical_history))->additional(['message' => 'Alergias encontradas']);
@@ -91,10 +92,11 @@ class MedicalHistoryController extends Controller
     }
 
 
-    public function update(MedicalHistoryRequest $request)
+    public function update(MedicalHistoryRequest $request,$id)
     {
         try {
-            $patient = Patient::where('user_id', auth()->id())
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
                 ->firstOrFail();
             $basic_information = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
 

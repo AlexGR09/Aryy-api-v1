@@ -16,7 +16,7 @@ class HealthInsuranceController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
-        
+
         $this->middleware('role:Patient')->only([
             'store',
             'show',
@@ -40,7 +40,7 @@ class HealthInsuranceController extends Controller
                 'insurance_id' => $request->insurance_id,
                 'patient_id' => $patient->id,
             ]);
-            
+
             return (new HealthInsuranceResource($health_insurance))->additional(['message' => 'Informacion guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -49,10 +49,11 @@ class HealthInsuranceController extends Controller
         }
     }
 
-    public function show()
+    public function show($id)
     {
         try {
-            $patient = Patient::where('user_id', auth()->id())
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
                 ->firstOrFail();
 
             $health_insurance = HealthInsurance::where('patient_id', $patient->id)->firstOrFail();
@@ -65,10 +66,11 @@ class HealthInsuranceController extends Controller
         }
     }
 
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
         try {
-            $patient = Patient::where('user_id', auth()->id())
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
                 ->firstOrFail();
 
             $health_insurance = HealthInsurance::where('patient_id', $patient->id)->firstOrFail();
@@ -83,10 +85,11 @@ class HealthInsuranceController extends Controller
         }
     }
 
-    public function destroy()
+    public function destroy($id)
     {
         try {
-            $patient = Patient::where('user_id', auth()->id())
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
                 ->firstOrFail();
             $health_insurance = HealthInsurance::where('patient_id', $patient->id)->firstOrFail();
             $health_insurance->delete();

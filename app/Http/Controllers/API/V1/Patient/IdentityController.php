@@ -48,10 +48,11 @@ class IdentityController extends Controller
         }
     }
 
-    public function show()
+    public function show($id)
     {
         try {
-            $patient = Patient::where('user_id', auth()->id())
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
                 ->firstOrFail();
             $path = $this->user->user_folder . $patient->patient_folder . '//identity//' . $patient->id_card;
             
@@ -68,10 +69,11 @@ class IdentityController extends Controller
         //
     }
 
-    public function destroy()
+    public function destroy($id)
     {
         try {
-            $patient = Patient::where('user_id', auth()->id())
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
                 ->firstOrFail();
             $path = $this->user->user_folder . $patient->patient_folder . '//identity//' . $patient->id_card;;
             Storage::delete($path);

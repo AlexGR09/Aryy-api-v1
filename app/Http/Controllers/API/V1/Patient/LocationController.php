@@ -49,11 +49,13 @@ class LocationController extends Controller
         }
     }
 
-    public function show()
+    public function show($id)
     {
         try {
-            $patient = Patient::where('user_id', auth()->id())
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
                 ->firstOrFail();
+
             return (new LocationResource($patient))->additional(['message' => 'Informacion basica guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -61,12 +63,14 @@ class LocationController extends Controller
         }
     }
 
-    public function update(LocationRequest $request)
+    public function update(LocationRequest $request, $id)
     {
         try {
             DB::beginTransaction();
-            $patient = Patient::where('user_id', auth()->id())
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
                 ->firstOrFail();
+
             $patient->address = $request->address;
             $patient->zip_code = $request->zip_code;
             $patient->save();
@@ -78,10 +82,11 @@ class LocationController extends Controller
         }
     }
 
-    public function destroy()
+    public function destroy($id)
     {
         try {
-            $patient = Patient::where('user_id', auth()->id())
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
                 ->firstOrFail();
 
             DB::beginTransaction();

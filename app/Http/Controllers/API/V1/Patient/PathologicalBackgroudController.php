@@ -65,11 +65,13 @@ class PathologicalBackgroudController extends Controller
         }
     }
 
-    public function show()
+    public function show($id)
     {
         try {
-            $patient = Patient::where('user_id', auth()->id())
-                ->firstOrFail();
+            $patient = Patient::where('id', $id)
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+            
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
             $pathological = PathologicalBackground::where('id', $medical_history->pathological_background_id)->get();
             return (PathologicalBackgroundResource::collection($pathological))->additional(['message' => 'Mi perfil de paciente.']);
@@ -79,11 +81,13 @@ class PathologicalBackgroudController extends Controller
         }
     }
 
-    public function update(PathologicalBackgroundRequest $request)
+    public function update(PathologicalBackgroundRequest $request,$id)
     {
         try {
-            $patient = Patient::where('user_id', auth()->id())
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
                 ->firstOrFail();
+
             DB::beginTransaction();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
 

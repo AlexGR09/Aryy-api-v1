@@ -53,12 +53,14 @@ class VaccinationHistoryController extends Controller
         }
     }
 
-    public function show()
+    public function show($id)
     {
         try {
             DB::beginTransaction();
-            $patient = Patient::where('user_id', auth()->id())
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
                 ->firstOrFail();
+
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
             $vaccination_history = VaccinationHistory::where('id', $medical_history->vaccination_history_id)->get();
 
@@ -73,11 +75,13 @@ class VaccinationHistoryController extends Controller
         }
     }
 
-    public function update(VaccinationHistoryRequest $request)
+    public function update(VaccinationHistoryRequest $request,$id)
     {
         try {
-            $patient = Patient::where('user_id', auth()->id())
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
                 ->firstOrFail();
+                
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
             $vaccination_history = VaccinationHistory::where('id', $medical_history->vaccination_history_id)->firstOrFail();
 
