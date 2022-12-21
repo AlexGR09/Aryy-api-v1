@@ -17,4 +17,14 @@ class Prescription extends Model
         'medical_examination',
         'laboratory_order',
     ];
+
+    public function medicalappointment()
+    {
+        return $this->belongsTo(\App\Models\MedicalAppointment::class);
+    }
+
+    public function vitalsigns()
+    {
+        return $this->hasOne(\App\Models\VitalSing::class);
+    }
 }

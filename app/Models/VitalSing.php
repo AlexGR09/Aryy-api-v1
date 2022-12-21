@@ -27,4 +27,8 @@ class VitalSing extends Model
         'muscle',
         'abdomen',
     ];
+    public function prescription()
+    {
+        return $this->hasOne(\App\Models\Prescription::class);
+    }
 }

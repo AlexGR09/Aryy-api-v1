@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('vital_sign_id')->constrained('vital_sings');
             $table->string('symptom');
             $table->string('diagnosis');
-            $table->string('treatment');
+            $table->json('treatment');
             $table->string('medication_instructions');
             $table->string('medical_examination');
             $table->string('laboratory_order');

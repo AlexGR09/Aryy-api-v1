@@ -11,6 +11,17 @@ class MedicalAppointment extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-
+        'appointment_date',
+        'appointment_type',
+        'phone_number',
+        'emergency_number',
+        'status',
+        'patient_id',
+        'physician_id'
     ];
+
+    public function prescription()
+    {
+        return $this->hasOne(\App\Models\Prescription::class);
+    }
 }
