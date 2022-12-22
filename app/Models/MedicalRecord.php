@@ -11,11 +11,17 @@ class MedicalRecord extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'medical_recordscol',
+        'note',
+        'patient_id',
+        'prescription_id',
     ];
 
     public function patient()
     {
         return $this->hasOne(\App\Models\Patient::class);
+    }
+    public function prescription()
+    {
+        return $this->hasOne(\App\Models\Prescription::class);
     }
 }

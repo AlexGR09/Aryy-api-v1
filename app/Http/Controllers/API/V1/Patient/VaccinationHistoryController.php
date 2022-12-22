@@ -28,11 +28,10 @@ class VaccinationHistoryController extends Controller
         //
     }
 
-    public function store(VaccinationHistoryRequest $request, $id)
+    public function store(VaccinationHistoryRequest $request)
     {
         try {
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
             DB::beginTransaction();
             $vaccination_history = VaccinationHistory::create([
@@ -61,6 +60,7 @@ class VaccinationHistoryController extends Controller
             $patient = Patient::where('id', $id)
                 ->where('user_id', auth()->id())
                 ->firstOrFail();
+
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
             $vaccination_history = VaccinationHistory::where('id', $medical_history->vaccination_history_id)->get();
 
@@ -75,12 +75,13 @@ class VaccinationHistoryController extends Controller
         }
     }
 
-    public function update(VaccinationHistoryRequest $request, $id)
+    public function update(VaccinationHistoryRequest $request,$id)
     {
         try {
             $patient = Patient::where('id', $id)
                 ->where('user_id', auth()->id())
                 ->firstOrFail();
+                
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
             $vaccination_history = VaccinationHistory::where('id', $medical_history->vaccination_history_id)->firstOrFail();
 

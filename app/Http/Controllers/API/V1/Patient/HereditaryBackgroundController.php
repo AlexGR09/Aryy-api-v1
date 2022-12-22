@@ -29,12 +29,11 @@ class HereditaryBackgroundController extends Controller
         //
     }
 
-    public function store(HereditaryBackgroundRequest $request, $id)
+    public function store(HereditaryBackgroundRequest $request)
     {
         try {
             DB::beginTransaction();
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
 
             $hereditary_background = HereditaryBackground::create([
@@ -80,7 +79,7 @@ class HereditaryBackgroundController extends Controller
         }
     }
 
-    public function update(HereditaryBackgroundRequest $request, $id)
+    public function update(HereditaryBackgroundRequest $request,$id)
     {
         try {
             $patient = Patient::where('id', $id)

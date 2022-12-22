@@ -43,12 +43,11 @@ class MedicalHistoryController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-    public function store(MedicalHistoryRequest $request, $id)
+    public function store(MedicalHistoryRequest $request)
     {
         try {
             DB::beginTransaction();
-            $patient = Patient::where('id', $id)
-                ->where('user_id', auth()->id())
+            $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
 
             $allergy_patient = AllergyPatient::create([
@@ -93,7 +92,7 @@ class MedicalHistoryController extends Controller
     }
 
 
-    public function update(MedicalHistoryRequest $request, $id)
+    public function update(MedicalHistoryRequest $request,$id)
     {
         try {
             $patient = Patient::where('id', $id)

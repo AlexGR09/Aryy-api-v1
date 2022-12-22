@@ -23,8 +23,10 @@ class PatientResource extends JsonResource
             'id_card' => $this->id_card,
             'city_id' => $this->city_id,
             'main_profile' => $this->main_profile,
-            'occupations_patient' => OccupationResource::collection($this->occupations)
-            // 'city' => new CityResource($this->city),
+            'occupations_patient' => OccupationResource::collection($this->occupations),
+            'user_id' => $this->user_id,
+/*             'user' => new UserResource($this->user)
+ */            // 'city' => new CityResource($this->city),
             // 'occupation_patient' => $this->occupationpatient,
 
         ];

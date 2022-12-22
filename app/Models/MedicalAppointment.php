@@ -10,19 +10,19 @@ class MedicalAppointment extends Model
 {
     use HasFactory, SoftDeletes;
 
-    // protected $fillable = [
+    protected $fillable = [
+        'appointment_date',
+        'appointment_time',
+        'appointment_type',
+        'phone_number',
+        'emergency_number',
+        'status',
+        'patient_id',
+        'physician_id'
+    ];
 
-    // ];
-
-    // RELACIÓN MUCHOS A UNO CON LA TABLA PHYSICIANS
-    public function physician()
+    public function prescription()
     {
-        return $this->belongsTo(Physician::class);
-    }
-
-    // RELACIÓN MUCHOS A UNO CON LA TABLA PATIENTS
-    public function patient()
-    {
-        return $this->belongsTo(Patient::class);
+        return $this->hasOne(\App\Models\Prescription::class);
     }
 }

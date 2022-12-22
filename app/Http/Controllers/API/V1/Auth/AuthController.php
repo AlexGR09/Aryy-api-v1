@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         try {
-            $user = User::where('email', $request->email)->orWhere('phone_number',$request->phone_number)->first();
+            $user = User::where('email', $request->email)->first();
             if (! $user || ! Hash::check($request->password, $user->password)) {
                 return response()->json(['message' => 'Correo o contraseña inválida, intente de nuevo.'], 503);
             }
