@@ -59,14 +59,16 @@ class CalendarAppointmentController extends Controller
                     return $weekAppointments; // retornar colleción
                 }
                 $weekYear = $year . '-' . $month;
+                
                 $valor =  Carbon::createFromFormat('Y-m', $weekYear);
+                
                 $weekAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
-                    ->whereBetween('appointment_date',  [$valor->startOfWeek(), $valor->endOfWeek()])
+                    ->whereBetween('appointment_date',  [$valor->startOfWeek()->toDateString(), $valor->endOfWeek()->toDateString()])
                     ->get();
                 return $weekAppointments; // retornar
                 break;
-
-                /*             case 'month':
+//FALTA CREAR EL CASO PARA EL MES Y ACOMODAR EL CODIGO  
+                /* case 'month':
                 // condición
                 if ($month = al mes de hoy) {
 
