@@ -9,18 +9,16 @@ use App\Models\Physician;
 
 class DiseaseController extends Controller
 {
-    protected $user;
 
     public function __construct()
     {
-        $this->user = auth()->user();
         $this->middleware('role:Physician');
     }
 
     public function index() 
     {
         try {
-            $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
+            $physician = Physician::where('user_id', auth()->id())->firstOrFail();
 
             return (DiseaseResource::collection($physician->diseases))
                 ->additional(['message' => 'Enfermedades que atiende el médico.']);
@@ -32,7 +30,7 @@ class DiseaseController extends Controller
     public function store(DiseaseIdRequest $request)
     {
         try {
-            $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
+            $physician = Physician::where('user_id', auth()->id())->firstOrFail();
 
             // GUARDA ENFERMEDAD EN LA TABLA PIVOTE DISEASE-PHYSICIAN SIN DUPLICADOS
             $physician->diseases()->syncWithoutDetaching($request->disease_id);
@@ -47,7 +45,7 @@ class DiseaseController extends Controller
     public function destroy(DiseaseIdRequest $request)
     {
         try {
-            $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
+            $physician = Physician::where('user_id', auth()->id())->firstOrFail();
 
             // ELIMINA LA RELACIÓN DE DISEASE-PHYSICIAN DEL MÉDICO CORRESPONDIENTE
             $physician->diseases()->detach($request->disease_id);

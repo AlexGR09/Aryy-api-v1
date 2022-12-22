@@ -7,6 +7,7 @@ use App\Http\Requests\API\V1\Physician\PhotoNameRequest;
 use App\Http\Requests\API\V1\Physician\UploadFacilityPhotoRequest;
 use App\Http\Requests\API\V1\Physician\UploadLogoRequest;
 use App\Http\Requests\API\V1\Physician\UploadPhysicianPhotoRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class MedicalIdentityController extends Controller
@@ -15,7 +16,8 @@ class MedicalIdentityController extends Controller
 
     public function __construct()
     {
-        $this->user = auth()->user();
+        $this->user =  empty(auth()->id()) ? null : User::findOrFail(auth()->id());
+
         $this->path_physicians = '//users//physicians//';
         $this->middleware('role:Physician');
     }
