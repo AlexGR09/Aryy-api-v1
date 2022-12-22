@@ -59,6 +59,12 @@ class Patient extends Model
         return $this->belongsToMany(\App\Models\Occupation::class, 'occupation_patient');
     }
 
+    // RELACIÓN UNO A MUCHOS CON LA TABLA MEDICAL APPOINTMENTS
+    public function medical_appointments() 
+    {
+        return $this->hasMany(MedicalAppointment::class);
+    }
+
     // public function health_insurance()
     // {
     //     return $this->belongsTo('App\Models\HealthInsurance');

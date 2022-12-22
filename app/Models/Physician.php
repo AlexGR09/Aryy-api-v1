@@ -58,6 +58,11 @@ class Physician extends Model
     {
         return $this->belongsToMany('App\Models\Disease', 'disease_physician');
     }
+    // RELACIÓN UNO A MUCHOS CON LA TABLA MEDICAL APPOINTMENTS
+    public function medical_appointments() 
+    {
+        return $this->hasMany(MedicalAppointment::class);
+    }
 
     
     public function facilities()
