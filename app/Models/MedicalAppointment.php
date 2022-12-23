@@ -25,4 +25,16 @@ class MedicalAppointment extends Model
     {
         return $this->hasOne(\App\Models\Prescription::class);
     }
+
+    // RELACIÓN MUCHOS A UNO CON LA TABLA PHYSICIANS
+    public function physician()
+    {
+        return $this->belongsTo(Physician::class);
+    }
+
+    // RELACIÓN MUCHOS A UNO CON LA TABLA PATIENTS
+    public function patient()
+    {
+    return $this->belongsTo(Patient::class);
+}
 }
