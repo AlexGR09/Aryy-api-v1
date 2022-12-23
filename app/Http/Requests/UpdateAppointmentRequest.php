@@ -24,7 +24,8 @@ class UpdateAppointmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'appointment_date' => 'required|date'
+            'appointment_date' => 'nullable|date',
+            'status' => 'nullable|in:attended,no-attended,canceled,scheduled'
         ];
     }
 }
