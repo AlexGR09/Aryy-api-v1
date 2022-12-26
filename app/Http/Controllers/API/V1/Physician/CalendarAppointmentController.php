@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\API\V1\Physician\CalendarAppointmentResource;
 use App\Models\Appointment;
 use App\Models\MedicalAppointment;
 use App\Models\Physician;
@@ -93,7 +94,15 @@ class CalendarAppointmentController extends Controller
 
     public function show($id)
     {
-        return "index calendar appointment" . $id;
-        # pasar id del appointment
+        try {
+            $appointment = $this->physician->medical_appointments()
+                ->where('id', $id)
+                ->first();
+
+            return (new CalendarAppointmentResource($appointment))->additional(['message' => 'Perfil de paciente creado con éxito.']);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+        
     }
 }
