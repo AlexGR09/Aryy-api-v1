@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('medical_appointments', function (Blueprint $table) {
@@ -18,20 +14,15 @@ return new class extends Migration
             $table->date('appointment_date');
             $table->time('appointment_time');
             $table->string('appointment_type');
-            $table->string('phone_number');
-            $table->string('emergency_number');
-            $table->foreignId('physician_id')->constrained('physicians');
+            $table->enum('status', ['assisted', 'not assisted', 'cancelled' , 'scheduled'])->nullable();
             $table->foreignId('patient_id')->constrained('patients');
+            $table->foreignId('physician_id')->constrained('physicians');
+            $table->foreignId('facility_id')->constrained('facilities');
             $table->softDeletes();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('medical_appointments');

@@ -104,7 +104,7 @@ class CalendarAppointmentController extends Controller
                 ->where('id', $id)
                 ->first();
 
-            return (new CalendarAppointmentResource($appointment))->additional(['message' => 'Perfil de paciente creado con éxito.']);
+            return (new CalendarAppointmentResource($appointment))->additional(['message' => 'Cita encontrada.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

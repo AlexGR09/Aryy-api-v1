@@ -48,4 +48,10 @@ class Facility extends Model
     {
         return $this->belongsTo(\App\Models\City::class);
     }
+
+    // RELACIÓN UNO A MUCHOS CON LA TABLA MEDICAL APPOINTMENTS
+    public function medical_appointments() 
+    {
+        return $this->hasMany(MedicalAppointment::class);
+    }
 }

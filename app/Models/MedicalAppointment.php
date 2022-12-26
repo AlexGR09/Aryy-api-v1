@@ -14,11 +14,10 @@ class MedicalAppointment extends Model
         'appointment_date',
         'appointment_time',
         'appointment_type',
-        'phone_number',
-        'emergency_number',
         'status',
         'patient_id',
-        'physician_id'
+        'physician_id',
+        'facility_id'
     ];
 
     public function prescription()
@@ -35,6 +34,12 @@ class MedicalAppointment extends Model
     // RELACIÓN MUCHOS A UNO CON LA TABLA PATIENTS
     public function patient()
     {
-    return $this->belongsTo(Patient::class);
-}
+        return $this->belongsTo(Patient::class);
+    }
+
+    // RELACIÓN UNO A MUCHOS CON LA TABLA PATIENTS
+    public function facility()
+    {
+        return $this->belongsTo(Facility::class);
+    }
 }
