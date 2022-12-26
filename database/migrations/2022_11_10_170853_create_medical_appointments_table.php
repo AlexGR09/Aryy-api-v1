@@ -14,7 +14,7 @@ return new class extends Migration
             $table->date('appointment_date');
             $table->time('appointment_time');
             $table->string('appointment_type');
-            $table->enum('status', ['assisted', 'not assisted', 'cancelled' , 'scheduled'])->nullable();
+            $table->enum('status', ['assisted', 'not-assisted', 'cancelled' , 'scheduled'])->nullable();
             $table->foreignId('patient_id')->constrained('patients');
             $table->foreignId('physician_id')->constrained('physicians');
             $table->foreignId('facility_id')->constrained('facilities');
