@@ -65,8 +65,12 @@ class CalendarAppointmentController extends Controller
                 }
                 $weekYear = $year . '-' . $month . '-' . $day;
                 $valor =  Carbon::createFromFormat('Y-m-d', $weekYear);
+                
+                $weekstart = $valor->startOfWeek()->toDateString();
+                $weekend = $valor->endOfWeek()->toDateString();
+              
                 $weekAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
-                    ->whereBetween('appointment_date',  [$valor->startOfWeek()->toDateString(), $valor->endOfWeek()->toDateString()])
+                    ->whereBetween('appointment_date',  [$weekstart, $weekend])
                     ->get();
 
                 return new CalendarAppointmentCollection($weekAppointments);
@@ -93,9 +97,8 @@ class CalendarAppointmentController extends Controller
                 $other_month = $year . '-' . $month . '-01';
                 $other_month = Carbon::createFromFormat('Y-m-d', $other_month);
                 $other_month_end = $other_month->format('Y-m-t');
-
                 $monthAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
-                    ->whereBetween('appointment_date', [$other_month, $other_month_end])
+                    ->whereBetween('appointment_date', [$other_month->toDateString(), $other_month_end])
                     ->get();
                 return new CalendarAppointmentCollection($monthAppointments);
                 /* return $monthAppointments; */

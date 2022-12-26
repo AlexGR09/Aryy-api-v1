@@ -17,8 +17,7 @@ class CalendarAppointmentCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data'=>$this->collection,
-            'id'=>'id'
+            'data' => $this->collection,
         ];
     }
 }
