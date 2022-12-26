@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreignId('physician_id')->constrained();
             $table->foreignId('specialty_id')->constrained();
             $table->dateTime('appointment_date');
-            $table->string('address');
-            $table->string('status');
+            $table->string('address')->nullable();
+            $table->enum('status',['attended','no-attended','canceled','scheduled']);
             $table->timestamps();
         });
     }
