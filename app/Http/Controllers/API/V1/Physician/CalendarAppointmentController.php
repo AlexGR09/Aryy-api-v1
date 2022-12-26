@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\API\V1\Physician\CalendarAppointmentCollection;
 use App\Http\Resources\API\V1\Physician\CalendarAppointmentResource;
 use App\Models\Appointment;
 use App\Models\MedicalAppointment;
@@ -31,10 +32,11 @@ class CalendarAppointmentController extends Controller
         // AÑO = ?
         $type = $request->type;
         $month = $request->month;
+        $day = $request->day;
         $year = $request->year;
         $todaydatetime = today();  //fecah y hora
         $dateToday = $todaydatetime->toDateString(); // fecha de hoy
-        $monthknow = $todaydatetime->format('m');
+        $monthnow = $todaydatetime->format('m');
 
         switch ($type) {
             case 'today':
@@ -42,51 +44,70 @@ class CalendarAppointmentController extends Controller
                 $todayAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
                     ->where('appointment_date', $dateToday)
                     ->get();
-                return $todayAppointments; // retornar colleción
+                return new CalendarAppointmentCollection($todayAppointments);
+                /* return $todayAppointments; */ // retornar colleción
                 break;
 
             case 'week':
                 // condición
 
-                if ($month == $monthknow) {
+                if ($month == $monthnow) {
 
                     $weekstart =  $todaydatetime->startOfWeek()->toDateString(); // week of the now
                     $weekend = $todaydatetime->endOfWeek()->toDateString(); //
-
+                    /* $weekAppointments = MedicalAppointment::all(); */
                     $weekAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
                         ->whereBetween('appointment_date', [$weekstart, $weekend])
                         ->get();
 
-                    return $weekAppointments; // retornar colleción
+                    return new CalendarAppointmentCollection($weekAppointments);
+                    /* return $weekAppointments; */ // retornar colleción
                 }
-                $weekYear = $year . '-' . $month;
-                $valor =  Carbon::createFromFormat('Y-m', $weekYear);
+                $weekYear = $year . '-' . $month . '-' . $day;
+                $valor =  Carbon::createFromFormat('Y-m-d', $weekYear);
+                
+                $weekstart = $valor->startOfWeek()->toDateString();
+                $weekend = $valor->endOfWeek()->toDateString();
+              
                 $weekAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
-                    ->whereBetween('appointment_date',  [$valor->startOfWeek(), $valor->endOfWeek()])
+                    ->whereBetween('appointment_date',  [$weekstart, $weekend])
                     ->get();
-                return $weekAppointments; // retornar
-                break;
 
-                /*             case 'month':
+                return new CalendarAppointmentCollection($weekAppointments);
+                /* return $weekAppointments; */   // retornar
+                break;
+                //FALTA CREAR EL CASO PARA EL MES Y ACOMODAR EL CODIGO  
+            case 'month':
                 // condición
-                if ($month = al mes de hoy) {
+                if ($month == $monthnow) {
 
-                    $week =  $todaydatetime // week of the now
+                    $month_start = date('Y-m-01');
+                    $month_end = date('Y-m-t');
 
-                    $weekAppointments = Appointment::where('physician_id', $this->physician->id)
-                    ->where('appointment_date',  between(inicio de mes, fin de mes))
-                    ->get();
+                    /* return $month_start.'----------'.$month_end; // retornar */
+
+                    $monthAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
+                        ->whereBetween('appointment_date', [$month_start, $month_end])
+                        ->get();
+
+                    return new CalendarAppointmentCollection($monthAppointments);
+                    /* return $monthAppointments; */ // retornar
+
                 }
-
-                $weekAppointments = Appointment::where('physician_id', $this->physician->id)
-                    ->where('appointment_date',  between(first day of $month, end day $month))
+                $other_month = $year . '-' . $month . '-01';
+                $other_month = Carbon::createFromFormat('Y-m-d', $other_month);
+                $other_month_end = $other_month->format('Y-m-t');
+                $monthAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
+                    ->whereBetween('appointment_date', [$other_month->toDateString(), $other_month_end])
                     ->get();
+                return new CalendarAppointmentCollection($monthAppointments);
+                /* return $monthAppointments; */
 
                 break;
-            
+
             default:
                 # code...
-                break; */
+                break;
         }
     }
 
@@ -101,6 +122,5 @@ class CalendarAppointmentController extends Controller
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
-        
     }
 }
