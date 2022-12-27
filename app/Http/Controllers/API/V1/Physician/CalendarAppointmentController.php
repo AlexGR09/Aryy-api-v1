@@ -8,6 +8,7 @@ use App\Http\Resources\API\V1\Physician\CalendarAppointmentCollection;
 use App\Http\Resources\API\V1\Physician\CalendarAppointmentResource;
 use App\Models\Appointment;
 use App\Models\MedicalAppointment;
+use App\Models\Patient;
 use App\Models\Physician;
 use App\Models\User;
 use Carbon\Carbon;
@@ -114,7 +115,7 @@ class CalendarAppointmentController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(AppointmentRequest $request)
     {
         /* try { */
 
@@ -122,13 +123,16 @@ class CalendarAppointmentController extends Controller
             $user = new User();
             $user->country_code = $request->country_code;
             $user->phone_number = $request->phone_number;
-            
             $user->save();
-            
-            
-            /* $patient = $user->patients()->create($request->validated());
-            
-            $medicalAppointment = MedicalAppointment::create([
+
+            $patient = Patient::create([
+                'full_name' => $request->full_name,
+                'country_code' => $request->country_code,
+                'emergency_number'=>$request->emergency_number,
+                'city_id'=>$request->city_id,
+                'user_id'=>$user->id,
+            ]);
+            /* $medicalAppointment = MedicalAppointment::create([
                 'appointment_date' => $request->appointment_date,
                 'appointment_type' => $request->appointment_type,
                 'appointment_time' => $request->appointment_time,
