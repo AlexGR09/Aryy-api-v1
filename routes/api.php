@@ -279,6 +279,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/appointments/{id}', [$this->physician . CalendarAppointmentController::class, 'show']);
             //REGISTRO DE CITAS Y PACIENTE
             Route::post('appointments', [$this->physician . CalendarAppointmentController::class,'store']);
+            Route::get('/facilityphysician',[$this->physician . CalendarAppointmentController::class,'facilityphysician']);
         });
 
         

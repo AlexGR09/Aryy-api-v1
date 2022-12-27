@@ -10,7 +10,7 @@ return new class () extends Migration {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('city_id')->constrained('cities');
+            $table->foreignId('city_id')->nullable()->constrained('cities');
             $table->boolean('main_profile')->default(FALSE);
             $table->string('full_name')->nullable();
             $table->enum('gender', ['masculino', 'femenino'])->nullable();

@@ -13,6 +13,7 @@ return new class extends Migration
             $table->id();
             $table->date('appointment_date');
             $table->time('appointment_time');
+            $table->time('appointment_time_end');
             $table->string('appointment_type');
             $table->enum('status', ['assisted', 'not assisted', 'cancelled' , 'scheduled'])->nullable();
             $table->foreignId('patient_id')->constrained('patients');
