@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\V1\Physician\AppointmentRequest;
 use App\Http\Resources\API\V1\Physician\CalendarAppointmentCollection;
 use App\Http\Resources\API\V1\Physician\CalendarAppointmentResource;
 use App\Models\Appointment;
 use App\Models\MedicalAppointment;
 use App\Models\Physician;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CalendarAppointmentController extends Controller
 {
@@ -65,10 +68,10 @@ class CalendarAppointmentController extends Controller
                 }
                 $weekYear = $year . '-' . $month . '-' . $day;
                 $valor =  Carbon::createFromFormat('Y-m-d', $weekYear);
-                
+
                 $weekstart = $valor->startOfWeek()->toDateString();
                 $weekend = $valor->endOfWeek()->toDateString();
-              
+
                 $weekAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
                     ->whereBetween('appointment_date',  [$weekstart, $weekend])
                     ->get();
@@ -109,6 +112,36 @@ class CalendarAppointmentController extends Controller
                 # code...
                 break;
         }
+    }
+
+    public function store(Request $request)
+    {
+        /* try { */
+
+            DB::beginTransaction();
+            $user = new User();
+            $user->country_code = $request->country_code;
+            $user->phone_number = $request->phone_number;
+            
+            $user->save();
+            
+            
+            /* $patient = $user->patients()->create($request->validated());
+            
+            $medicalAppointment = MedicalAppointment::create([
+                'appointment_date' => $request->appointment_date,
+                'appointment_type' => $request->appointment_type,
+                'appointment_time' => $request->appointment_time,
+                'patient_id' => $patient->id,
+                'physician_id' => $this->physician,
+                'facility_id' => $request->facility_id,
+            ]); */
+
+            DB::commit();
+            //return (new TaxDataResource($tax_data))->additional(['message' => 'Informacion guardada con exito.']);
+        /* } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        } */
     }
 
     public function show($id)
