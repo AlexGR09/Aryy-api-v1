@@ -176,7 +176,7 @@ class CalendarAppointmentController extends Controller
         ]);
 
         DB::commit();
-        return $medicalAppointment;
+        return (new CalendarResource($medicalAppointment))->additional(['message' => 'Cita agendada correctamente.']);
 
         } catch (\Throwable $th) {
             DB::rollback();
