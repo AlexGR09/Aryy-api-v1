@@ -162,6 +162,7 @@ class CalendarAppointmentController extends Controller
                 'patient_id' => $patient->id,
                 'physician_id' => $this->physician->id,
                 'facility_id' => $request->facility_id,
+                'status'=>'Cita Agendada'
             ]);
 
             DB::commit();
