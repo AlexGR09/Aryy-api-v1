@@ -22,7 +22,7 @@ class MedicalServiceController extends Controller
     public function index()
     {
         try {
-            return $this->physician->medical_services;
+            return $this->physician->medical_services->makeHidden('pivot');  
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -34,10 +34,14 @@ class MedicalServiceController extends Controller
             DB::beginTransaction();
             $this->physician->update($request->validated());
 
-            if ($request->medical_services) {
-                // SINCRONIZA LOS SERVICIOS MÉDICOS CON EL MÉDICO CORRESPONDIENTE
-                $this->physician->medical_services()->sync($request->medical_services);
+            $data = [];
+            foreach ($request->medical_services as $key => $medical_service) {
+                $data += [
+                    $medical_service['id'] => [ 'price' => $medical_service['price'] ],
+                ];
             }
+           
+           $this->physician->medical_services()->sync($data);
 
             DB::commit();
             return (MedicalServicePhysicianResource::collection($this->physician->medical_service_physician))
