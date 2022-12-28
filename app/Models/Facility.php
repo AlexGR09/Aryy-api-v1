@@ -21,6 +21,7 @@ class Facility extends Model
         'consultation_length',
         'accessibility_and_others',
         'city_id',
+        'coordinates'
     ];
 
     /**

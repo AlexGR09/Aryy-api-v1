@@ -16,4 +16,7 @@ class Appointment extends Model
         'address',
         'status',
     ];
+    protected $casts = [
+        'appointment_date' => 'datetime',
+    ];
 }
