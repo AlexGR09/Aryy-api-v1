@@ -12,7 +12,6 @@ class MedicalService extends Model
 
     protected $fillable = [
         'name',
-        'price'
     ];
 
     // RELACIÓN MUCHOS A MUCHOS CON EL MODELO ESPECIALIDADES

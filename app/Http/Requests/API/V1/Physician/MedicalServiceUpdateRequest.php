@@ -15,11 +15,9 @@ class MedicalServiceUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_time_consultation' => 'string|max:40',
-            'subsequent_consultation' => 'string|max:40',
             'languages' => 'string|max:250',
             'medical_services' => 'array',
-            'medical_services.*.medical_service_id' => 'required|numeric|distinct',
+            'medical_services.*.id' => 'required|numeric|distinct',
             'medical_services.*.price' => 'required|string',
         ];
     }
@@ -27,8 +25,6 @@ class MedicalServiceUpdateRequest extends FormRequest
     public function attributes()
     {
         return [
-            'first_time_consultation' => 'consulta por primera vez',
-            'subsequent_consultation' => 'consulta posterior',
             'languages' => 'idiomas',
         ];
     }
