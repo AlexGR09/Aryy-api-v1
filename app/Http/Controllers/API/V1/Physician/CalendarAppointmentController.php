@@ -62,6 +62,10 @@ class CalendarAppointmentController extends Controller
         $monthnow = $todaydatetime->format('m'); //SE EXTRAE EL MES
 
         switch ($type) {
+            case 'all':
+                $todayAppointments = MedicalAppointment::where('physician_id', $this->physician->id)->get();
+                return new CalendarAppointmentCollection($todayAppointments); //RETORNA LA COLECCION
+                break;
             case 'today':
 
                 $todayAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
@@ -222,11 +226,5 @@ class CalendarAppointmentController extends Controller
         $user = User::where('phone_number',$phone_number)->first();
         $patient = Patient::where('user_id',$user->id)->where('full_name','LIKE', "%" .$request->full_name."%")->get();
         return (PatientMedicalAppointmentResource::collection($patient))->additional(['message' => 'Paciente encontrado']);
-    }
-
-    public function physicianservice(){
-        $medicalservices = MedicalServicePhysician::where('physician_id',$this->physician->id)->get();
-        //return $medicalservices;
-        //return (MedicalServicePhysicianResource::collection($medicalservices))->additional(['message' => 'Servicios encontrados']);
     }
 }
