@@ -77,7 +77,7 @@ class CalendarAppointmentController extends Controller
             case 'week':
                 // condición
 
-                if ($month == $monthnow) {
+                /* if ($month == $monthnow) { */
 
                     $weekstart =  $todaydatetime->startOfWeek()->toDateString(); // Inicio de la semana
                     $weekend = $todaydatetime->endOfWeek()->toDateString(); // Fin de la semana
@@ -86,8 +86,8 @@ class CalendarAppointmentController extends Controller
                         ->get();
 
                     return new CalendarAppointmentCollection($weekAppointments); //RETORNA LA COLECCION
-                }
-                $weekYear = $year . '-' . $month . '-' . $day;
+                /* } */
+                /* $weekYear = $year . '-' . $month . '-' . $day;
                 $valor =  Carbon::createFromFormat('Y-m-d', $weekYear); //SE CREA EL FORMATO DE FECHA
 
                 $weekstart = $valor->startOfWeek()->toDateString(); // ENCUENTRA EL INICO DE LA SEMANA
@@ -97,11 +97,11 @@ class CalendarAppointmentController extends Controller
                     ->whereBetween('appointment_date',  [$weekstart, $weekend])
                     ->get();
 
-                return new CalendarAppointmentCollection($weekAppointments); //RETORNA LA COLECCION
+                return new CalendarAppointmentCollection($weekAppointments); //RETORNA LA COLECCION */
                 break;
             case 'month':
                 // condición
-                if ($month == $monthnow) {
+                /* if ($month == $monthnow) { */
 
                     $month_start = date('Y-m-01'); // SE DETERMINA EL INICO DEL MES
                     $month_end = date('Y-m-t'); //SE DETERMINA EL FIN DEL MES
@@ -111,14 +111,14 @@ class CalendarAppointmentController extends Controller
                         ->get();
 
                     return new CalendarAppointmentCollection($monthAppointments); //RETORNA LA COLECCION
-                }
+                /* }
                 $other_month = $year . '-' . $month . '-01';
                 $other_month = Carbon::createFromFormat('Y-m-d', $other_month); //SE CREA EL FORMATO DE FECHA
                 $other_month_end = $other_month->format('Y-m-t'); //SE DETERMINA EL FIN DEL MES
                 $monthAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
                     ->whereBetween('appointment_date', [$other_month->toDateString(), $other_month_end])
                     ->get();
-                return new CalendarAppointmentCollection($monthAppointments); //RETORNA LA COLECCION
+                return new CalendarAppointmentCollection($monthAppointments); //RETORNA LA COLECCION */
                 break;
 
             default:
