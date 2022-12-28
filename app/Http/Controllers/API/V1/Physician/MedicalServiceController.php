@@ -10,26 +10,37 @@ use Illuminate\Support\Facades\DB;
 
 class MedicalServiceController extends Controller
 {
+    protected $physician;
 
     public function __construct()
     {
+        $this->physician = Physician::where('user_id', auth()->id())->firstOrFail();
+
         $this->middleware('role:Physician');
+    }
+
+    public function index()
+    {
+        try {
+            return $this->physician->medical_services;
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 
     public function update(MedicalServiceUpdateRequest $request)
     {
         try {
             DB::beginTransaction();
-            $physician = Physician::where('user_id', auth()->id())->firstOrFail();
-            $physician->update($request->validated());
+            $this->physician->update($request->validated());
 
             if ($request->medical_services) {
                 // SINCRONIZA LOS SERVICIOS MÉDICOS CON EL MÉDICO CORRESPONDIENTE
-                $physician->medical_services()->sync($request->medical_services);
+                $this->physician->medical_services()->sync($request->medical_services);
             }
 
             DB::commit();
-            return (MedicalServicePhysicianResource::collection($physician->medical_service_physician))
+            return (MedicalServicePhysicianResource::collection($this->physician->medical_service_physician))
                 ->additional(['message' => 'Servicios del médico actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();

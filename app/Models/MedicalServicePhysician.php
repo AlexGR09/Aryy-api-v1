@@ -18,9 +18,12 @@ class MedicalServicePhysician extends Model
         return $this->belongsToMany('App\Models\Physician')->withPivot('physician_id');
     }
 
-    public function specialties()
+    public function medical_services()
     {
-        return $this->belongsToMany('App\Models\Specialty')->withPivot('medical_service_id');
+        return $this->belongsToMany(MedicalService::class)->withPivot('medical_service_id');
     }
+
+
+    
     
 }
