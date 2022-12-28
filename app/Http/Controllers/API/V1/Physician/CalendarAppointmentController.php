@@ -4,13 +4,21 @@ namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Physician\AppointmentRequest;
+use App\Http\Resources\API\V1\Auth\UserResource;
+use App\Http\Resources\API\V1\FacilityResource as V1FacilityResource;
+use App\Http\Resources\API\V1\Patient\PatientResource;
 use App\Http\Resources\API\V1\Physician\CalendarAppointmentCollection;
 use App\Http\Resources\API\V1\Physician\CalendarAppointmentResource;
 use App\Http\Resources\API\V1\Physician\CalendarResource;
+use App\Http\Resources\API\V1\Physician\FacilityPhysicanResource;
+use App\Http\Resources\API\V1\Physician\FacilityResource;
+use App\Http\Resources\API\V1\Physician\MedicalServicePhysicianResource;
+use App\Http\Resources\API\V1\Physician\PatientMedicalAppointmentResource;
 use App\Models\Appointment;
 use App\Models\Facility;
 use App\Models\FacilityPhysician;
 use App\Models\MedicalAppointment;
+use App\Models\MedicalServicePhysician;
 use App\Models\Patient;
 use App\Models\Physician;
 use App\Models\User;
@@ -185,11 +193,7 @@ class CalendarAppointmentController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-    public function facilityphysician()
-    {
-        $facility = FacilityPhysician::where('physician_id', $this->physician->id)->get();
-        return $facility;
-    }
+
     public function update($id)
     {
         try {
@@ -200,11 +204,29 @@ class CalendarAppointmentController extends Controller
 
             $medicalAppointment->status = "cancelled";
             $medicalAppointment->save();
-            return $medicalAppointment;
 
             return response()->json(['status' => 'Cita cancelada con exito']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
+    }
+
+    //CONSULTA PARA LOS SELECT´S
+    public function facilityphysician()
+    {
+        $facility = FacilityPhysician::where('physician_id', $this->physician->id)->get();
+        return (FacilityPhysicanResource::collection($facility))->additional(['message' => 'Consultorio encontrado']);
+    }
+
+    public function patient($phone_number, Request $request){
+        $user = User::where('phone_number',$phone_number)->first();
+        $patient = Patient::where('user_id',$user->id)->where('full_name','LIKE', "%" .$request->full_name."%")->get();
+        return (PatientMedicalAppointmentResource::collection($patient))->additional(['message' => 'Paciente encontrado']);
+    }
+
+    public function physicianservice(){
+        $medicalservices = MedicalServicePhysician::where('physician_id',$this->physician->id)->get();
+        //return $medicalservices;
+        //return (MedicalServicePhysicianResource::collection($medicalservices))->additional(['message' => 'Servicios encontrados']);
     }
 }

@@ -280,7 +280,11 @@ Route::prefix('v1')->group(function () {
             //REGISTRO DE CITAS Y PACIENTE
             Route::post('/appointments', [$this->physician . CalendarAppointmentController::class,'store']);
             Route::put('/appointments/{appointment_id}', [$this->physician . CalendarAppointmentController::class,'update']);
+            
+            //consulta para los selects
             Route::get('/facilityphysician',[$this->physician . CalendarAppointmentController::class,'facilityphysician']);
+            Route::get('/patient/{phone_number}',[$this->physician . CalendarAppointmentController::class,'patient']);
+            Route::get('/medicalservice',[$this->physician . CalendarAppointmentController::class,'physicianservice']);
         });
 
         

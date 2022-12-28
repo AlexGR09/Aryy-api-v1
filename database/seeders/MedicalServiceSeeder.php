@@ -12,6 +12,12 @@ class MedicalServiceSeeder extends Seeder
         DB::table('medical_services')->insert([
 
             [
+                'name' => 'Consulta de primera vez',
+            ],
+            [
+                'name' => 'Consulta subsecuente',
+            ],
+            [
                 'name' => 'Acupuntura láser',
             ],
             [
