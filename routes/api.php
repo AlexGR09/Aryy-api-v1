@@ -134,14 +134,16 @@ Route::prefix('v1')->group(function () {
         });
         // SERVICIOS QUE EL MÉDICO OFRECE
         Route::controller($this->physician . MedicalServiceController::class)->group(function () {
-            Route::put('/medicalservice', 'update');
+            Route::get('/medicalservices', 'index');
+            Route::put('/medicalservices', 'update');
         });
         // ENFERMEDADES QUE EL MÉDICO ATIENDE
         Route::controller($this->physician . DiseaseController::class)->group(function () {
-            Route::get('/disease', 'index');
-            Route::post('/disease', 'store');
-            Route::delete('/disease', 'destroy');
+            Route::get('/diseases', 'index');
+            Route::post('/diseases', 'store');
+            Route::delete('/diseases', 'destroy');
         });
+
 
 
         //DATOS FISCALES DEL MÉDICO
