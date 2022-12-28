@@ -192,5 +192,11 @@ class CalendarAppointmentController extends Controller
     }
     public function facility()
     {
+
+    }
+    public function update($id){
+        $medicalAppointment = MedicalAppointment::where('id', $id)->get();
+        $medicalAppointment->status = 'Cita canselada';
+        $medicalAppointment->save();
     }
 }
