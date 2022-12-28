@@ -73,40 +73,40 @@ class CalendarAppointmentController extends Controller
                         ->whereBetween('appointment_date', [$weekstart, $weekend])
                         ->get();
 
-                    return new CalendarAppointmentCollection($weekAppointments);//RETORNA LA COLECCION
+                    return new CalendarAppointmentCollection($weekAppointments); //RETORNA LA COLECCION
                 }
                 $weekYear = $year . '-' . $month . '-' . $day;
                 $valor =  Carbon::createFromFormat('Y-m-d', $weekYear); //SE CREA EL FORMATO DE FECHA
 
-                $weekstart = $valor->startOfWeek()->toDateString();// ENCUENTRA EL INICO DE LA SEMANA
-                $weekend = $valor->endOfWeek()->toDateString();// ENCUENTRA EL FIN DE LA SEMANA
+                $weekstart = $valor->startOfWeek()->toDateString(); // ENCUENTRA EL INICO DE LA SEMANA
+                $weekend = $valor->endOfWeek()->toDateString(); // ENCUENTRA EL FIN DE LA SEMANA
 
                 $weekAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
                     ->whereBetween('appointment_date',  [$weekstart, $weekend])
                     ->get();
 
-                return new CalendarAppointmentCollection($weekAppointments);//RETORNA LA COLECCION
+                return new CalendarAppointmentCollection($weekAppointments); //RETORNA LA COLECCION
                 break;
             case 'month':
                 // condición
                 if ($month == $monthnow) {
 
-                    $month_start = date('Y-m-01');// SE DETERMINA EL INICO DEL MES
-                    $month_end = date('Y-m-t');//SE DETERMINA EL FIN DEL MES
+                    $month_start = date('Y-m-01'); // SE DETERMINA EL INICO DEL MES
+                    $month_end = date('Y-m-t'); //SE DETERMINA EL FIN DEL MES
 
                     $monthAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
                         ->whereBetween('appointment_date', [$month_start, $month_end])
                         ->get();
 
-                    return new CalendarAppointmentCollection($monthAppointments);//RETORNA LA COLECCION
+                    return new CalendarAppointmentCollection($monthAppointments); //RETORNA LA COLECCION
                 }
                 $other_month = $year . '-' . $month . '-01';
-                $other_month = Carbon::createFromFormat('Y-m-d', $other_month);//SE CREA EL FORMATO DE FECHA
-                $other_month_end = $other_month->format('Y-m-t');//SE DETERMINA EL FIN DEL MES
+                $other_month = Carbon::createFromFormat('Y-m-d', $other_month); //SE CREA EL FORMATO DE FECHA
+                $other_month_end = $other_month->format('Y-m-t'); //SE DETERMINA EL FIN DEL MES
                 $monthAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
                     ->whereBetween('appointment_date', [$other_month->toDateString(), $other_month_end])
                     ->get();
-                return new CalendarAppointmentCollection($monthAppointments);//RETORNA LA COLECCION
+                return new CalendarAppointmentCollection($monthAppointments); //RETORNA LA COLECCION
                 break;
 
             default:
@@ -145,8 +145,8 @@ class CalendarAppointmentController extends Controller
             }
             $facility = Facility::where('id', $request->facility_id)->firstOrFail();
 
-            $time = strtotime($request->appointment_time) + strtotime($facility->consultation_length);//SUMA LA DURACION DE LA CONSULTA A LA HORA DE LA CITA
-            $date_time_end = date("H:i:s", $time);//SE LE DA EL FORMATO DE HORA
+            $time = strtotime($request->appointment_time) + strtotime($facility->consultation_length); //SUMA LA DURACION DE LA CONSULTA A LA HORA DE LA CITA
+            $date_time_end = date("H:i:s", $time); //SE LE DA EL FORMATO DE HORA
 
             $medicalAppointment = MedicalAppointment::where('appointment_date', $request->appointment_date)
                 ->where('appointment_time', $request->appointment_time)->first();
@@ -162,7 +162,7 @@ class CalendarAppointmentController extends Controller
                 'patient_id' => $patient->id,
                 'physician_id' => $this->physician->id,
                 'facility_id' => $request->facility_id,
-                'status'=>'Cita Agendada'
+                'status' => 'scheduled'
             ]);
 
             DB::commit();
@@ -190,13 +190,21 @@ class CalendarAppointmentController extends Controller
         $facility = FacilityPhysician::where('physician_id', $this->physician->id)->get();
         return $facility;
     }
-    public function facility()
+    public function update($id)
     {
+        try {
 
-    }
-    public function update($id){
-        $medicalAppointment = MedicalAppointment::where('id', $id)->get();
-        $medicalAppointment->status = 'Cita canselada';
-        $medicalAppointment->save();
+            $medicalAppointment = $this->physician->medical_appointments()
+                ->where('id', $id)
+                ->first();
+
+            $medicalAppointment->status = "cancelled";
+            $medicalAppointment->save();
+            return $medicalAppointment;
+
+            return response()->json(['status' => 'Cita cancelada con exito']);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 }
