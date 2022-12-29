@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\API\V1\Search\PhysicianSearchResource;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -49,4 +50,22 @@ class TestJoseController extends Controller
     // }
 
     // return (PhysicianSearchResource::collection($physicians))->additional(['message' => 'Médico(s) encontrado(s).']);
+
+    public function testpost(Request $request) 
+    {
+        $country = Country::create([
+            'name' => $request->name
+        ]);
+        
+        return $country;
+    }
+
+    public function testupdate(Request $request, Country $country) 
+    {
+        $country = Country::create([
+            'name' => $request->name
+        ]);
+        
+        return $country;
+    }
 }

@@ -14,20 +14,25 @@ class Patient extends Model
 
     protected $fillable = [
         'user_id',
+        'city_id',
+        'full_name',
+        'gender',
+        'birthday',
         'address',
         'zip_code',
         'country_code',
         'emergency_number',
         'id_card',
+        'patient_folder'
     ];
 
-    // RELACIÓN UNO UNO CON USUARIO
-    // public function user()
-    // {
-    //     return $this->belongsTo(\App\Models\User::class);
-    // }
+    // RELACIÓN MUCHOS A UNO CON EL MODELO USER
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 
-    // RELACIÓN MUCHOS A UNO CON SEGUROS MÉDICOS
+    // RELACIÓN MUCHOS A UNO CON SEGUROS MÉDICOS  
     public function health_insurance()
     {
         return $this->belongsTo(\App\Models\HealthInsurance::class);
@@ -49,15 +54,16 @@ class Patient extends Model
         return $this->hasMany(\App\Models\OccupationPatient::class)->with('Occupation');
     }
 
-    // RELACIÓN MUCHOS A MUCHOS CON EL MODELO USER
-    public function users() {
-        return $this->belongsToMany(\App\Models\User::class, 'patient_user');
+    public function occupations()
+    {
+        return $this->belongsToMany(\App\Models\Occupation::class, 'occupation_patient');
     }
 
-    // public function ocupations()
-    // {
-    //     return $this->hasMany('App\Models\OcupationPatient');
-    // }
+    // RELACIÓN UNO A MUCHOS CON LA TABLA MEDICAL APPOINTMENTS
+    public function medical_appointments() 
+    {
+        return $this->hasMany(MedicalAppointment::class);
+    }
 
     // public function health_insurance()
     // {

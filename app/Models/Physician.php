@@ -13,13 +13,21 @@ class Physician extends Model
     protected $fillable = [
         'user_id',
         'professional_name',
+        'gender',
         'certificates',
         'social_networks',
         'biography',
         'recipe_template',
+<<<<<<< HEAD
         'is_verified',
         'first_time_consultation',
         'subsequent_consultation'
+=======
+        'first_time_consultation',
+        'subsequent_consultation',
+        'languages',
+        'is_verified'
+>>>>>>> facf14e15f8ce88f314c3230a65e73c71b46af42
     ];
     protected $hidden = [
         'appointments',
@@ -54,6 +62,11 @@ class Physician extends Model
     public function physician_specialty()
     {
         return $this->hasMany(\App\Models\PhysicianSpecialty::class);
+    }
+    // RELACIÓN UNO A MUCHOS CON LA TABLA MEDICAL APPOINTMENTS
+    public function medical_appointments() 
+    {
+        return $this->hasMany(MedicalAppointment::class);
     }
 
     // public function diseases()

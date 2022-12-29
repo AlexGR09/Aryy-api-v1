@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Relationship extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+    
     protected $fillable = [
         'name',
     ];

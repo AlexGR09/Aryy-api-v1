@@ -15,7 +15,9 @@ return new class() extends Migration
     {
         Schema::create('medical_records', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
+            $table->foreignId('patient_id')->constrained('patients');
+            $table->foreignId('prescription_id')->constrained();
+            $table->string('note')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

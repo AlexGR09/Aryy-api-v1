@@ -17,9 +17,11 @@ class HereditaryBackgroundController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
-        $this->middleware('permission:show hereditary background')->only(['show']);
-        $this->middleware('role:Patient')->only(['store']);
-        $this->middleware('permission:edit hereditary background')->only(['update']);
+        $this->middleware('role:Patient')->only([
+            'store',
+            'show',
+            'update',
+        ]);
     }
 
     public function index()
@@ -31,7 +33,8 @@ class HereditaryBackgroundController extends Controller
     {
         try {
             DB::beginTransaction();
-            $patient = Patient::where('user_id', $this->user->id)->first();
+            $patient = Patient::where('user_id', auth()->id())
+                ->firstOrFail();
 
             $hereditary_background = HereditaryBackground::create([
                 'diabetes' => $request->diabetes,
@@ -56,13 +59,15 @@ class HereditaryBackgroundController extends Controller
         }
     }
 
-    public function show()
+    public function show($id)
     {
         try {
             DB::beginTransaction();
-            $patient = Patient::where('user_id', $this->user->id)->first();
-            $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
+                ->firstOrFail();
 
+            $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
             $hereditary_background = HereditaryBackground::where('id', $medical_history->hereditary_background_id)->get();
 
             DB::commit();
@@ -74,12 +79,14 @@ class HereditaryBackgroundController extends Controller
         }
     }
 
-    public function update(HereditaryBackgroundRequest $request)
+    public function update(HereditaryBackgroundRequest $request,$id)
     {
         try {
-            $patient = Patient::where('user_id', $this->user->id)->first();
-            $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
-            $hereditary_background = HereditaryBackground::where('id', $medical_history->hereditary_background_id)->first();
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
+                ->firstOrFail();
+            $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
+            $hereditary_background = HereditaryBackground::where('id', $medical_history->hereditary_background_id)->firstOrFail();
 
             $hereditary_background->diabetes = $request->diabetes;
             $hereditary_background->heart_diseases = $request->heart_diseases;

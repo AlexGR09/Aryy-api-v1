@@ -10,31 +10,41 @@ use Illuminate\Support\Facades\DB;
 
 class MedicalServiceController extends Controller
 {
-    protected $user;
+    protected $physician;
 
     public function __construct()
     {
-        $this->user = auth()->user();
+        $this->physician = Physician::where('user_id', auth()->id())->firstOrFail();
+
         $this->middleware('role:Physician');
+    }
+
+    public function index()
+    {
+        try {
+            return $this->physician->medical_services->makeHidden('pivot');  
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 
     public function update(MedicalServiceUpdateRequest $request)
     {
         try {
             DB::beginTransaction();
-            $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
-            $physician->first_time_consultation = $request->first_time_consultation;
-            $physician->subsequent_consultation = $request->subsequent_consultation;
-            $physician->languages = $request->languages;
-            $physician->save();
+            $this->physician->update($request->validated());
 
-            if ($request->medical_services) {
-                // SINCRONIZA LOS SERVICIOS MÉDICOS CON EL MÉDICO CORRESPONDIENTE
-                $physician->medical_services()->sync($request->medical_services);
+            $data = [];
+            foreach ($request->medical_services as $key => $medical_service) {
+                $data += [
+                    $medical_service['id'] => [ 'price' => $medical_service['price'] ],
+                ];
             }
+           
+           $this->physician->medical_services()->sync($data);
 
             DB::commit();
-            return (MedicalServicePhysicianResource::collection($physician->medical_service_physician))
+            return (MedicalServicePhysicianResource::collection($this->physician->medical_service_physician))
                 ->additional(['message' => 'Servicios del médico actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();

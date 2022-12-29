@@ -16,7 +16,7 @@ return new class() extends Migration
         Schema::create('disease_physician', function (Blueprint $table) {
             $table->id();
             $table->foreignId('disease_id')->onDelete('cascade')->constrained('diseases');
-            $table->foreignId('physician_id')->onDelete('physicians')->constrained('diseases');
+            $table->foreignId('physician_id')->onDelete('cascade')->constrained('physicians');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -223,6 +223,14 @@ class MedicalServicesPhysicianSeeder extends Seeder
             //enfermero
             //dermatologo pediatrico
             [
+                'medical_service_id' => 1,
+                'physician_id' => 10,
+            ],
+            [
+                'medical_service_id' => 2,
+                'physician_id' => 10,
+            ],
+            [
                 'medical_service_id' => 1209,
                 'physician_id' => 10,
             ],

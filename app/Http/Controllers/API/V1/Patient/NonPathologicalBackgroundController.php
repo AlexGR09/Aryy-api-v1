@@ -16,9 +16,13 @@ class NonPathologicalBackgroundController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
-        $this->middleware('role:Patient')->only(['show']);
-        $this->middleware('role:Patient')->only(['store']);
-        $this->middleware('permission:edit non pathological background')->only(['update']);
+        $this->middleware('role:Patient')->only([
+            'show',
+            'store',
+            'update',
+        ]);
+       /*  $this->middleware('role:Patient')->only(['store']);
+        $this->middleware('permission:edit non pathological background')->only(['update']); */
     }
 
     public function index()
@@ -29,7 +33,8 @@ class NonPathologicalBackgroundController extends Controller
     public function store(NonPathologicalBackgroundRequest $request)
     {
         try {
-            $patient = Patient::where('user_id', $this->user->id)->first();
+            $patient = Patient::where('user_id', auth()->id())
+                ->firstOrFail();
             DB::beginTransaction();
             $no_pathological = NonPathologicalBackground::create([
                 'physical_activity' => $request->physical_activity,
@@ -52,31 +57,35 @@ class NonPathologicalBackgroundController extends Controller
         }
     }
 
-    public function show()
+    public function show($id)
     {
         try {
-            $patient = Patient::where('user_id', $this->user->id)->first();
-            $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
+                ->firstOrFail();
+
+            $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
 
             $no_pathological = NonPathologicalBackground::where('id', $medical_history->non_pathological_background_id)->get();
 
-            return (NonPathologicalBackgroundResource::collection($no_pathological))->additional(['message' => '..']);
+            return (NonPathologicalBackgroundResource::collection($no_pathological))->additional(['message' => 'Historial de enfermedades encontrada']);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function update(NonPathologicalBackgroundRequest $request)
+    public function update(NonPathologicalBackgroundRequest $request,$id)
     {
 
         try {
 
-            $patient = Patient::where('user_id', $this->user->id)->first();
-            $medical_history = MedicalHistory::where('patient_id', $patient->id)->first();
-            $no_pathological = NonPathologicalBackground::where('id', $medical_history->non_pathological_background_id)->first();
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
+                ->firstOrFail();
 
-            if ($this->user->hasRole('Patient')) {
+            $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
+            $no_pathological = NonPathologicalBackground::where('id', $medical_history->non_pathological_background_id)->firstOrFail();
 
                 $no_pathological = tap($no_pathological)->update([
                     'physical_activity' => $request->physical_activity,
@@ -86,10 +95,10 @@ class NonPathologicalBackgroundController extends Controller
                     'other_substances' => $request->other_substances,
                     'diet' => $request->diet,
                     'drug_active' => $request->drug_active,
-                    'previous_medication' => $request->previous_medication,    
+                    'previous_medication' => $request->previous_medication,
                 ]);
                 return (new NonPathologicalBackgroundResource($no_pathological))->additional(['message' => 'Informacion actualizada con exito.']);
-            }
+            
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);

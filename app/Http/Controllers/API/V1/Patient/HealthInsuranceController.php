@@ -16,9 +16,12 @@ class HealthInsuranceController extends Controller
     public function __construct()
     {
         $this->user = auth()->user();
-        //$this->middleware('permission:show hereditary background')->only(['show']);
-        $this->middleware('role:Patient')->only(['store', 'show', 'update']);
-        //$this->middleware('permission:edit hereditary background')->only(['update']);
+
+        $this->middleware('role:Patient')->only([
+            'store',
+            'show',
+            'update'
+        ]);
     }
 
     public function index()
@@ -29,7 +32,9 @@ class HealthInsuranceController extends Controller
     public function store(Request $request)
     {
         try {
-            $patient = Patient::where('user_id', $this->user->id)->first();
+            $patient = Patient::where('user_id', auth()->id())
+                ->firstOrFail();
+
             $health_insurance = HealthInsurance::create([
                 'insurance_number' => $request->insurance_number,
                 'insurance_id' => $request->insurance_id,
@@ -44,31 +49,16 @@ class HealthInsuranceController extends Controller
         }
     }
 
-    public function show()
+    public function show($id)
     {
         try {
-            $patient = Patient::where('user_id', $this->user->id)->first();
-            $health_insurance = HealthInsurance::where('patient_id', $patient->id)->first();
-            if ($health_insurance) {
-                return (new HealthInsuranceResource($health_insurance))->additional(['message' => '..']);
-            }
-            return response()->json(['error'=>'La informacion no se encontro'], 503);;
-           } catch (\Throwable $th) {
-            DB::rollBack();
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
+                ->firstOrFail();
 
-            return response()->json(['error' => $th->getMessage()], 503);
-        }
-    }
+            $health_insurance = HealthInsurance::where('patient_id', $patient->id)->firstOrFail();
 
-    public function update(Request $request)
-    {
-        try {
-            $patient = Patient::where('user_id', $this->user->id)->first();
-            $health_insurance = HealthInsurance::where('patient_id', $patient->id)->first();
-            $health_insurance->insurance_number = $request->insurance_number;
-            $health_insurance->insurance_id = $request->insurance_id;
-
-            return (new HealthInsuranceResource($health_insurance))->additional(['message' => 'Informacion actualizada con exito.']);
+            return (new HealthInsuranceResource($health_insurance))->additional(['message' => 'Datos de seguro medico']);
         } catch (\Throwable $th) {
             DB::rollBack();
 
@@ -76,11 +66,32 @@ class HealthInsuranceController extends Controller
         }
     }
 
-    public function destroy()
+    public function update(Request $request,$id)
     {
         try {
-            $patient = Patient::where('user_id', $this->user->id)->first();
-            $health_insurance = HealthInsurance::where('patient_id', $patient->id)->first();
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
+                ->firstOrFail();
+
+            $health_insurance = HealthInsurance::where('patient_id', $patient->id)->firstOrFail();
+            $health_insurance->insurance_number = $request->insurance_number;
+            $health_insurance->insurance_id = $request->insurance_id;
+            $health_insurance->save();
+
+            return (new HealthInsuranceResource($health_insurance))->additional(['message' => 'Informacion actualizada con exito.']);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $patient = Patient::where('id', $id)
+                ->where('user_id', auth()->id())
+                ->firstOrFail();
+            $health_insurance = HealthInsurance::where('patient_id', $patient->id)->firstOrFail();
             $health_insurance->delete();
 
             return (new HealthInsuranceResource($health_insurance))->additional(['message' => 'Informacion eliminada con exito.']);
@@ -90,4 +101,3 @@ class HealthInsuranceController extends Controller
         }
     }
 }
-

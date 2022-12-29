@@ -53,7 +53,7 @@ class RoleSeeder extends Seeder
             'delete user profile',
         ]);
         // NUEVO PACIENTE
-        Role::findByName('NewPatient')->givePermissionTo(['complete patient profile']);
+        Role::findByName('NewPatient')->givePermissionTo(['create patient profiles']);
         // NUEVO MÉDICO
         Role::findByName('NewPhysician')->givePermissionTo(['complete physician profile']);
         // MÉDICO EN VERIFICACIÓN
@@ -63,6 +63,7 @@ class RoleSeeder extends Seeder
         ]);
         // PACIENTE
         Role::findByName('Patient')->givePermissionTo([
+            'create patient profiles',
             'show patient profile',
             'edit patient profile',
             'show basic information',
