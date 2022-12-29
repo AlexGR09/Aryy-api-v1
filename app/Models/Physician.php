@@ -18,16 +18,10 @@ class Physician extends Model
         'social_networks',
         'biography',
         'recipe_template',
-<<<<<<< HEAD
-        'is_verified',
-        'first_time_consultation',
-        'subsequent_consultation'
-=======
         'first_time_consultation',
         'subsequent_consultation',
         'languages',
         'is_verified'
->>>>>>> facf14e15f8ce88f314c3230a65e73c71b46af42
     ];
     protected $hidden = [
         'appointments',
