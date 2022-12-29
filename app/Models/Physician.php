@@ -22,7 +22,9 @@ class Physician extends Model
         'subsequent_consultation'
     ];
     protected $hidden = [
-        'appointments'
+        'appointments',
+        'pivot',
+
     ];
     protected $casts = [
         'social_networks' => 'array',

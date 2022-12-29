@@ -34,6 +34,8 @@ class Facility extends Model
         'schedule' => 'object',
         'accessibility_and_others' => 'object',
     ];
+    protected $hidden = ['pivot'];
+
 
     public function physicians()
     {
