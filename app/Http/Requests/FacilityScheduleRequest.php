@@ -27,6 +27,7 @@ class FacilityScheduleRequest extends FormRequest
             // 'extension' => 'nullable',
             'schedule.*.day' => 'required',
             'schedule.*.attention_time' => 'required',
+            'schedule.*.rest_hours' => 'required',
             'type_schedule' => 'required',
             'consultation_length' => 'required',
             // 'accessibility_and_others.accessibility.parking_with_access_to_the_establishment' => 'required',

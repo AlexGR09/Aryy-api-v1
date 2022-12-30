@@ -12,6 +12,7 @@ use App\Models\Specialty;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class PhysicianSearchController extends Controller
 {
@@ -21,37 +22,106 @@ class PhysicianSearchController extends Controller
             $search = $request->search;
             $city = $request->city;
             $physicianQuery = Physician::query();
-            $physicianQuery->when(! empty($city), fn($q) => $q->whereHas('facilities.city', function (Builder $query) use ($city) {
-                $query->where('cities.name', 'LIKE', '%'.$city.'%');
+            $physicianQuery->when(!empty($city), fn ($q) => $q->whereHas('facilities.city', function (Builder $query) use ($city) {
+                $query->where('cities.name', 'LIKE', '%' . $city . '%');
             }));
 
-            $physicianQuery->select('id', 'professional_name')
-            ->where('professional_name', 'LIKE', '%'.$search.'%');
-
+            $physicianQuery->with(['score', 'facilitiesCoordinates', 'appointments'])->select('id', 'user_id', 'professional_name')
+                ->where('professional_name', 'LIKE', '%' . $search . '%')
+                ->withCount('comments');
+            $physicianQuery->whereHas('facilities');
+            //basic info 
             $physician = $physicianQuery->get();
 
+
+
+            foreach ($physician as $key => $phy) {
+                $currentDay = \Carbon\Carbon::now();
+
+                $addConsultationLength = true;
+                if ($currentDay->toDateTimeString() < $currentDay->copy()->setTime(9, 0, 0)->toDateTimeString()) {
+                    $currentDay = $currentDay->copy()->setTime(9, 0, 0);
+                    $addConsultationLength = false;
+                }
+     
+                if ($currentDay->toDateTimeString() > $currentDay->copy()->setTime(21, 0, 0)->toDateTimeString()) {
+                    $currentDay = $currentDay->addDay()->copy()->setTime(21, 0, 0);
+                    $addConsultationLength = false;
+                }
+
+                $loop = true;
+                while ($loop) {
+                    $consultationLength = $physician[$key]->facilities[0]->consultation_length;
+                    $schedule = $physician[$key]->facilities[0]->schedule;
+                    $isAnAvailableDay = false;
+                    $scheduleKey = 0;
+                    while($isAnAvailableDay === false){
+                        foreach ($schedule as $key => $availableDate ) {
+                            if ($availableDate->day == $currentDay->format('l')){
+                                $isAnAvailableDay = true;
+                                $scheduleKey = $key;
+                                break;
+                            } 
+                        }
+                        if(!$isAnAvailableDay){
+                            $currentDay->addDay();
+                        }
+                    }
+
+                    $hours = explode(" a ", $schedule[$scheduleKey]->attention_time);
+                    $restHours = explode(" a ", $schedule[$scheduleKey]->rest_hours);
+
+                    $restStartHour = Carbon::parse($restHours[0]);
+                    $restEndtHour = Carbon::parse($restHours[1]);
+                    
+                    $startHour = Carbon::parse($hours[0]);
+                    $endHour = Carbon::parse($hours[1]);
+
+                    $availableDate = $physician[$key]->appointments()->where('appointment_date', '>=', $currentDay->copy()->setTime($startHour->hour, $startHour->minute, 0))
+                        ->whereNotBetween('appointment_date', [ $currentDay->copy()->setTime($restStartHour->hour, $restStartHour->minute,0), $currentDay->copy()->setTime($restEndtHour->hour, $restEndtHour->minute,0)] )
+                        ->orWhere('appointment_date', '<=', $currentDay->copy()->setTime($endHour->hour, $endHour->minute, 0))
+                        ->where(function ($query) use($currentDay, $addConsultationLength, $consultationLength){
+                            $query->where('appointment_date', $currentDay);
+                            if($addConsultationLength){
+                                $query->orWhere('appointment_date', $currentDay->addMinutes($consultationLength));
+                            }
+                        })
+                        ->first();
+
+                    // return $availableDate;
+                    if (is_null($availableDate)) {
+
+                        $physician[$key]->available_appointment = $currentDay->format('Y-m-d');
+                        $loop = false;
+                        break;
+                    }
+                    // $currentDay->addDay();
+                }
+            }
+            $physician = $physician->except(['appointments']);
+
             $specialtyQuery = Specialty::query();
-            $specialtyQuery->when(! empty($city), fn($q) => $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
-                $query->where('name', 'LIKE', '%'.$city.'%');
+            $specialtyQuery->when(!empty($city), fn ($q) => $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
+                $query->where('name', 'LIKE', '%' . $city . '%');
             }));
-            $specialtyQuery->where('specialties.name', 'LIKE', '%'.$search.'%');
+            $specialtyQuery->where('specialties.name', 'LIKE', '%' . $search . '%');
 
             $specialities = $specialtyQuery->get();
 
             $diseaseyQuery = Disease::query();
-            $diseaseyQuery->when(! empty($city), fn($q) => $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
-                $query->where('name', 'LIKE', '%'.$city.'%');
+            $diseaseyQuery->when(!empty($city), fn ($q) => $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
+                $query->where('name', 'LIKE', '%' . $city . '%');
             }));
-            $diseaseyQuery->where('diseases.name', 'LIKE', '%'.$search.'%');
+            $diseaseyQuery->where('diseases.name', 'LIKE', '%' . $search . '%');
 
             $diseases = $diseaseyQuery->get();
 
             $medicalServiceQuery = MedicalService::query();
-            $medicalServiceQuery->when(! empty($city), fn($q) => $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
-                $query->where('name', 'LIKE', '%'.$city.'%');
+            $medicalServiceQuery->when(!empty($city), fn ($q) => $q->whereHas('physicians.facilities.city', function (Builder $query) use ($city) {
+                $query->where('name', 'LIKE', '%' . $city . '%');
             }));
             $medicalServiceQuery->select('id', 'name')
-            ->where('name', 'LIKE', '%'.$search.'%');
+                ->where('name', 'LIKE', '%' . $search . '%');
 
             $medicalService = $medicalServiceQuery->get();
 

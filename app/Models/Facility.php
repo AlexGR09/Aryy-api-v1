@@ -21,6 +21,7 @@ class Facility extends Model
         'consultation_length',
         'accessibility_and_others',
         'city_id',
+        'coordinates'
     ];
 
     /**
@@ -33,6 +34,8 @@ class Facility extends Model
         'schedule' => 'object',
         'accessibility_and_others' => 'object',
     ];
+    protected $hidden = ['pivot'];
+
 
     public function physicians()
     {
