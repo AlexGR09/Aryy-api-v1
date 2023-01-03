@@ -54,7 +54,7 @@ Route::prefix('v1')->group(function () {
         // RUTAS PERFIL DE USUARIO
         Route::prefix('user')->group(function () {
             Route::controller($this->auth . UserController::class)->group(function () {
-                Route::get('/me', 'show');
+                Route::get('/profile', 'show');
                 Route::put('/profile', 'update');
                 Route::delete('/profile', 'destroy');
                 Route::get('/logout', 'logout');
