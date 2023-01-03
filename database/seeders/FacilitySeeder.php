@@ -76,7 +76,7 @@ class FacilitySeeder extends Seeder
                 ],
                 'city_id' => 1,
             ]);
-            $facility->users()->attach(['user_id' => 1]);
+            $facility->users()->attach(['user_id' => 3]);
         }
     }
 }

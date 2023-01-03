@@ -38,7 +38,7 @@ class Physician extends Model
     }
     public function appointments()
     {
-        return $this->hasMany(Appointment::class, 'user_id', 'user_id');
+        return $this->hasMany(Appointment::class, 'user_id_physician', 'user_id');
     }
     // RELACIÓN UNO UNO CON EL MODELO USUARIO
     public function user()
@@ -91,5 +91,22 @@ class Physician extends Model
     public function facilitiesCoordinates()
     {
         return $this->belongsToMany(\App\Models\Facility::class, 'facility_physician')->select(['coordinates']);
+    }
+
+    public function appointmentAvailability(
+        $currentDay, 
+        $restStartHour, 
+        $restEndtHour,
+        $startHour,
+        $endHour, 
+        $schedule, 
+        $availableHour)
+    {
+        return $this->appointments()->where('appointment_date', '>=', $currentDay->copy()->setTime($startHour->hour, $startHour->minute, 0))
+        ->whereNotBetween('appointment_date', [ $currentDay->copy()->setTime($restStartHour->hour, $restStartHour->minute,0), $currentDay->copy()->setTime($restEndtHour->hour, $restEndtHour->minute,0)] )
+        ->where('appointment_date', '<=', $currentDay->copy()->setTime($endHour->hour, $endHour->minute, 0))
+        ->whereNotIn('appointment_date', $schedule[0]->free_days)
+        ->where('appointment_date',  $availableHour)
+        ->first();
     }
 }

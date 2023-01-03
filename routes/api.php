@@ -4,17 +4,15 @@ use App\Http\Controllers\API\V1\FacilityController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\RoleController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\AppointmentsDetailController;
 use App\Http\Controllers\FacilityScheduleController;
 use App\Http\Controllers\FullFacilityController;
 use App\Http\Controllers\PaymentMethodController;
+use App\Http\Controllers\PhysicianAppointmentController;
 use App\Http\Controllers\PlanController;
-use App\Http\Controllers\PlanUserController;
-use App\Http\Controllers\SubcriptionController;
-use App\Http\Controllers\SubcriptionUserController;
 use App\Http\Controllers\SubscriptionUserController;
 use App\Http\Controllers\TestJoseController;
 use Illuminate\Support\Facades\Route;
-use Psy\VersionUpdater\Checker;
 
 /* RUTAS API VERSIÓN 1 */
 
@@ -44,7 +42,6 @@ $this->v2 = "App\\Http\\Controllers\\API\\V2\\";
 
 
 Route::prefix('v1')->group(function () {
-
 
     // RUTAS REGISTRO Y LOGIN
     Route::controller($this->auth . AuthController::class)->group(function () {
@@ -259,6 +256,12 @@ Route::prefix('v1')->group(function () {
         Route::put('facilities/schedule/{facility}', [FacilityScheduleController::class, 'schedule']);
         Route::post('facilities/full/{facility?}', [FullFacilityController::class, 'store']);
         Route::delete('facilities/{facility}', [FacilityController::class, 'delete']);
+        
+        Route::group(['middleware' => ['role:Physician|Patient']], function () {
+            Route::get('physician/{physician}/appointments', [PhysicianAppointmentController::class, 'index']);
+        });
+        Route::get('appointments-detail/phyisician/{physician}', [AppointmentsDetailController::class, 'index']);
+        Route::get('appointment/review', [AppointmentController::class, 'review']);
 
         Route::post('appointments', [AppointmentController::class, 'store']);
         Route::get('appointments', [AppointmentController::class, 'index']);
@@ -293,12 +296,11 @@ Route::prefix('v1')->group(function () {
         
     });
 
-
     /* BÚSQUEDAS */
     // BUSQUEDA MÉDICO MOBILE
-    Route::get('/search', [$this->search . SearchController::class, 'index']);
+    // Route::get('/search', [$this->search . SearchController::class, 'index']);
     // BUSQUEDA DEFINIDA DE MÉDICO
-    Route::get('/searchphy', [$this->search . PhysicianSearchController::class, 'index']);
+    Route::get('/search', [$this->search . PhysicianSearchController::class, 'index']);
 });
 
 
