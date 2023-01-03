@@ -17,10 +17,10 @@ class AppointmentSeeder extends Seeder
     {
         for ($i = 9 ; $i <= 18; $i++){ 
             Appointment::create([
-                'user_id' => 3,
-                'physician_id' => 1,
+                'user_id_physician' => 3,
+                'user_id_patient' => 22,
                 'specialty_id' => 1,
-                'appointment_date' => now(),
+                'appointment_date' => now()->addDays(7),
                 'address' => 'chemsito',
                 'status' => 'attended', 
             ]); 

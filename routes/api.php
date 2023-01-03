@@ -7,6 +7,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\FacilityScheduleController;
 use App\Http\Controllers\FullFacilityController;
 use App\Http\Controllers\PaymentMethodController;
+use App\Http\Controllers\PhysicianAppointmentController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PlanUserController;
 use App\Http\Controllers\SubcriptionController;
@@ -44,7 +45,6 @@ $this->v2 = "App\\Http\\Controllers\\API\\V2\\";
 
 
 Route::prefix('v1')->group(function () {
-
 
     // RUTAS REGISTRO Y LOGIN
     Route::controller($this->auth . AuthController::class)->group(function () {
@@ -260,6 +260,9 @@ Route::prefix('v1')->group(function () {
         Route::post('facilities/full/{facility?}', [FullFacilityController::class, 'store']);
         Route::delete('facilities/{facility}', [FacilityController::class, 'delete']);
 
+        Route::get('physician/{physician}/appointments', [PhysicianAppointmentController::class, 'index']);
+
+
         Route::post('appointments', [AppointmentController::class, 'store']);
         Route::get('appointments', [AppointmentController::class, 'index']);
         Route::put('appointments/{appointment}', [AppointmentController::class, 'update'])->middleware('appointment_user');
@@ -292,7 +295,6 @@ Route::prefix('v1')->group(function () {
         
         
     });
-
 
     /* BÚSQUEDAS */
     // BUSQUEDA MÉDICO MOBILE

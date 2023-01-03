@@ -24,8 +24,8 @@ class StoreAppointmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|exists:App\Models\User,id',
-            'physician_id' => 'required|exists:App\Models\Physician,id',
+            'user_id_physician' => 'required|exists:App\Models\User,id',
+            'user_id_patient' => 'required|exists:App\Models\User,id',
             'specialty_id' => 'required|exists:App\Models\Specialty,id',
             'appointment_date' => 'required|date',
             'address'=> 'required',
