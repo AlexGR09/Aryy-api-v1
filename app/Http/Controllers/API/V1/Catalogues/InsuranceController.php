@@ -12,9 +12,12 @@ class InsuranceController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:show insurances')->only([
+        $this->middleware('role:User')->only([
             'index',
-            'show',
+        ]);
+
+        $this->middleware('permission:show insurances')->only([
+            'show'
         ]);
         $this->middleware('permission:create insurances')->only([
             'store'
@@ -30,8 +33,7 @@ class InsuranceController extends Controller
     public function index()
     {
         try {
-            $insurance = Insurance::paginate(5);
-            return (InsuranceResource::collection($insurance))->additional(['message' => 'Seguros medicos encontrados']);
+            return (InsuranceResource::collection(Insurance::orderBy('name')->get()))->additional(['message' => 'Seguros medicos encontrados']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

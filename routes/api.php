@@ -88,7 +88,7 @@ Route::prefix('v1')->group(function () {
         Route::resource('/medicalservices', $this->catalogues . MedicalServiceController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
         //INSURANCE
-        Route::resource('insurance', $this->catalogues . InsuranceController::class)
+        Route::resource('/insurances', $this->catalogues . InsuranceController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
         // ESPECIALIDADES
         Route::resource('/specialties', $this->catalogues . SpecialtyController::class)
