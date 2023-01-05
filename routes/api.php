@@ -179,6 +179,8 @@ Route::prefix('v1')->group(function () {
                 Route::get('profile/health_insurance_data/{patient_id}', 'show');
                 Route::put('profile/health_insurance_data/{patient_id}', 'update');
                 Route::delete('profile/health_insurance_data/{patient_id}', 'destroy');
+
+                Route::get('health_insurance','health_insurance');
             });
 
             //Perfil del paciente - Ubicacion(es)
