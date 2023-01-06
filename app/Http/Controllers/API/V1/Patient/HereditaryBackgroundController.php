@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1\Patient;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\HereditaryBackgroundRequest;
 use App\Http\Resources\API\V1\Patient\HereditaryBackgroundResource;
+use App\Http\Resources\API\V1\Patient\KinshipResource as PatientKinshipResource;
 use App\Http\Resources\Resources\API\V1\Patient\KinshipResource;
 use App\Models\HereditaryBackground;
 use App\Models\Kinship;
@@ -107,6 +108,6 @@ class HereditaryBackgroundController extends Controller
     }
     public function kinship(){
         $kinship = Kinship::all();
-        return $kinship;        
+        return ( PatientKinshipResource::collection($kinship))->additional(['message' => 'Ocupaciones encontradas.']);     
     }
 }
