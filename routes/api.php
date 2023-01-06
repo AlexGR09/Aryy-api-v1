@@ -82,7 +82,7 @@ Route::prefix('v1')->group(function () {
             Route::delete('/cities/{city}', 'destroy');
         });
         //OCUPACIONES
-        Route::resource('ocupations', $this->catalogues . OccupationController::class)
+        Route::resource('occupations', $this->catalogues . OccupationController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
         //MEDICAL SERVICES
         Route::resource('/medicalservices', $this->catalogues . MedicalServiceController::class)
@@ -167,6 +167,7 @@ Route::prefix('v1')->group(function () {
                 Route::get('/profile/{patient_id}', 'show');
                 Route::put('/profile/{patient_id}', 'update');
 
+                Route::get('occupations','occupation');
                 Route::get('country', 'country');
                 Route::get('country_states', 'country_states');
                 Route::get('cities_states', 'cities_states');

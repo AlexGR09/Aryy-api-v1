@@ -7,11 +7,14 @@ use App\Http\Requests\API\V1\Patient\PatientRequest;
 use App\Http\Requests\API\V1\Patient\UserRequest;
 use App\Http\Resources\API\V1\Catalogues\CityResource;
 use App\Http\Resources\API\V1\Catalogues\CountryResource;
+use App\Http\Resources\API\V1\Catalogues\OccupationResource;
 use App\Http\Resources\API\V1\Catalogues\StateResource;
+use App\Http\Resources\API\V1\Patient\OccupationtResource;
 use App\Http\Resources\API\V1\Patient\PatientResource;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\MedicalHistory;
+use App\Models\Occupation;
 use App\Models\Patient;
 use App\Models\OccupationPatient;
 use App\Models\State;
@@ -144,5 +147,10 @@ class PatientController extends Controller
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
+    }
+    public function occupation(){
+        $occupations = Occupation::all();
+        
+        return (new OccupationResource($occupations))->additional(['message' => 'Ocupaciones encontradas.']);
     }
 }
