@@ -27,6 +27,7 @@ class CalendarResource extends JsonResource
             'appointment_end'=>$date_end,
             'appointment_type' => $this->appointment_type,
             'facility_name' => $this->facility->name,
+            'status'=>$this->status,
         ];
     }
 }
