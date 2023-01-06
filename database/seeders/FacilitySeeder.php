@@ -43,12 +43,14 @@ class FacilitySeeder extends Seeder
                 'zipcode' => fake()->regexify('[0-9]{5}'),
                 'schedule' => [
                     [
-                        'day' => 'Lunes',
+                        'day' => 'Monday',
                         'attention_time' => '09:00am a 09:00pm',
+                        'rest_hours' => '02:00pm a 03:00pm',
                     ],
                     [
-                        'day' => 'Martes',
+                        'day' => 'Tuesday',
                         'attention_time' => '09:00am a 09:00pm',
+                        'rest_hours' => '02:00pm a 03:00pm',
                     ],
                 ],
                 'type_schedule' => 'perm',
@@ -74,7 +76,7 @@ class FacilitySeeder extends Seeder
                 ],
                 'city_id' => 1,
             ]);
-            $facility->users()->attach(['user_id' => 1]);
+            $facility->users()->attach(['user_id' => 3]);
         }
     }
 }

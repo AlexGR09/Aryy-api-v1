@@ -14,7 +14,7 @@ class MedicalServiceController extends Controller
 
     public function __construct()
     {
-        $this->physician = Physician::where('user_id', auth()->id())->firstOrFail();
+        $this->physician = Physician::where('user_id', auth()->id())->first();
 
         $this->middleware('role:Physician');
     }

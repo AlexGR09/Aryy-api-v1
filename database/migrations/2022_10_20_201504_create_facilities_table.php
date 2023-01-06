@@ -11,16 +11,16 @@ return new class extends Migration
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
             $table->string('name')->index();
-            $table->json('location');
+            $table->json('location')->nullable();
             $table->string('phone')->nullable();
             $table->string('extension')->nullable();
-            $table->string('zipcode');
+            $table->string('zipcode')->nullable();
             $table->json('schedule')->nullable();
             $table->string('type_schedule')->nullable();
-            $table->time('consultation_length')->nullable();
+            $table->integer('consultation_length')->nullable();
             $table->json('accessibility_and_others')->nullable();
             $table->json('coordinates')->nullable();
-            $table->foreignId('city_id')->constrained();
+            $table->foreignId('city_id')->constrained()->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
