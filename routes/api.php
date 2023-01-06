@@ -229,6 +229,8 @@ Route::prefix('v1')->group(function () {
                 Route::post('medical_history/hereditary_background/', 'store');
                 Route::get('medical_history/hereditary_background/{patient_id}', 'show');
                 Route::put('medical_history/hereditary_background/{patient_id}', 'update');
+
+                Route::get('kinship','kinship');
             });
             //Historial de vacunacion
             Route::controller($this->patient . VaccinationHistoryController::class)->group(function () {

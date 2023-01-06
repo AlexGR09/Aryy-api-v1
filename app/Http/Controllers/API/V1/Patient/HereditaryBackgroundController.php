@@ -5,7 +5,9 @@ namespace App\Http\Controllers\API\V1\Patient;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\HereditaryBackgroundRequest;
 use App\Http\Resources\API\V1\Patient\HereditaryBackgroundResource;
+use App\Http\Resources\Resources\API\V1\Patient\KinshipResource;
 use App\Models\HereditaryBackground;
+use App\Models\Kinship;
 use App\Models\MedicalHistory;
 use App\Models\Patient;
 use Illuminate\Support\Facades\DB;
@@ -102,5 +104,9 @@ class HereditaryBackgroundController extends Controller
 
             return response()->json(['error' => $th->getMessage()], 503);
         }
+    }
+    public function kinship(){
+        $kinship = Kinship::all();
+        return $kinship;        
     }
 }
