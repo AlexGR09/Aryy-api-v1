@@ -11,6 +11,11 @@ class CountrySeeder extends Seeder
     {
         DB::table('countries')->insert([
             ['name' => 'México'],
+            ['name' => 'Estados Unidos'],
+            ['name' => 'Canadá'],
+            ['name' => 'Japón'],
+            ['name' => 'China'],
+            ['name' => 'Brasil'],
         ]);
     }
 }

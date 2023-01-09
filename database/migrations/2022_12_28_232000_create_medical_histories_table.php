@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class() extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('medical_histories', function (Blueprint $table) {
@@ -25,16 +21,15 @@ return new class() extends Migration
             $table->foreignId('non_pathological_background_id')->nullable()->constrained('non_pathological_backgrounds')->onDelete('cascade');
             $table->foreignId('hereditary_background_id')->nullable()->constrained('hereditary_backgrounds')->onDelete('cascade');
             $table->foreignId('vaccination_history_id')->nullable()->constrained('vaccination_histories')->onDelete('cascade');
+            $table->foreignId('pyschological_background_id')->nullable()->constrained('pyschological_backgrounds')->onDelete('cascade');
+            $table->foreignId('perinatal_background_id')->nullable()->constrained('perinatal_backgrounds')->onDelete('cascade');
+            $table->foreignId('postnatal_background_id')->nullable()->constrained('postnatal_backgrounds')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
     public function down()
     {
         Schema::dropIfExists('medical_histories');
