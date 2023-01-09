@@ -157,6 +157,7 @@ Route::prefix('v1')->group(function () {
         Route::controller($this->physician . PostnatalBackgroundController::class)->group(function () {
             Route::prefix('medical_history')->group(function () {
                 Route::get('/postnatal-background/{medical_history_id}', 'show');
+                Route::post('/postnatal-background/{medical_history_id}', 'store');
             });
         });
 

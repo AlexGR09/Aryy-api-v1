@@ -23,6 +23,7 @@ class MedicalHistory extends Model
         'pathological_backgorund_id',
         'hereditary_background_id',
         'vaccination_history_id',
+        'postnatal_background_id',
     ];
 
     public function patient()
