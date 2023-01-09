@@ -19,10 +19,11 @@ class MedicalHistory extends Model
         'active_medication',
         'previous_medication',
         'vaccination_history',
-        'allergi_patient_id',
+        'allergy_patient_id',
         'pathological_backgorund_id',
         'hereditary_background_id',
         'vaccination_history_id',
+        'perinatal_background_id'
     ];
 
     public function patient()
@@ -30,7 +31,7 @@ class MedicalHistory extends Model
         return $this->belongsTo(\App\Models\Patient::class);
     }
 
-    public function allergypatient()
+    public function allergyPatient()
     {
         return $this->belongsTo('App\Models\AllergyPatient', 'allergy_patient_id', 'id');
     }
@@ -58,6 +59,11 @@ class MedicalHistory extends Model
     public function pyschologicalbackground()
     {
         return $this->belongsTo('App\Models\PyschologicalBackground');
+    }
+
+    public function perinatalBackground()
+    {
+        return $this->belongsTo(PerinatalBackground::class);
     }
 
     /**

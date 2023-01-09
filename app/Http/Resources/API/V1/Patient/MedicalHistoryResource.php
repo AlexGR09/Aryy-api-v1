@@ -21,7 +21,7 @@ class MedicalHistoryResource extends JsonResource
             'imc' => $this->imc,
             'blood_type' => $this->blood_type,
             'allergy_patient_id' => $this->allergy_patient_id,
-            'allergypatient' => new AllergyPatientResource($this->allergypatient),
+            'allergypatient' => new AllergyPatientResource($this->allergyPatient),
             'pathological_background_id' => $this->pathological_background_id,
             'pathological_background' => new PathologicalBackgroundResource($this->pathologicalbackground),
             'non_pathological_background_id' => $this->non_pathological_background_id,

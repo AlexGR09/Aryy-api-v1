@@ -56,7 +56,6 @@ class VaccinationHistoryController extends Controller
     public function show($id)
     {
         try {
-            DB::beginTransaction();
             $patient = Patient::where('id', $id)
                 ->where('user_id', auth()->id())
                 ->firstOrFail();
@@ -64,13 +63,11 @@ class VaccinationHistoryController extends Controller
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
             $vaccination_history = VaccinationHistory::where('id', $medical_history->vaccination_history_id)->get();
 
-            DB::commit();
             return (VaccinationHistoryResource::collection($vaccination_history))->additional(['message' => 'Historial de vacunacion encontrado']);
 
             //return (new VaccinationHistoryResource($vaccination_history))->additional(['message' => '..']);
 
         } catch (\Throwable $th) {
-            DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
