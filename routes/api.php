@@ -89,13 +89,13 @@ Route::prefix('v1')->group(function () {
             Route::delete('/cities/{city}', 'destroy');
         });
         //OCUPACIONES
-        Route::resource('ocupations', $this->catalogues . OccupationController::class)
+        Route::resource('/occupations', $this->catalogues . OccupationController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
         //MEDICAL SERVICES
         Route::resource('/medicalservices', $this->catalogues . MedicalServiceController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
         //INSURANCE
-        Route::resource('insurance', $this->catalogues . InsuranceController::class)
+        Route::resource('/insurances', $this->catalogues . InsuranceController::class)
             ->only(['index', 'store', 'show', 'update', 'destroy']);
         // ESPECIALIDADES
         Route::resource('/specialties', $this->catalogues . SpecialtyController::class)
@@ -174,6 +174,7 @@ Route::prefix('v1')->group(function () {
                 Route::get('/profile/{patient_id}', 'show');
                 Route::put('/profile/{patient_id}', 'update');
 
+                Route::get('occupations','occupation');
                 Route::get('country', 'country');
                 Route::get('country_states', 'country_states');
                 Route::get('cities_states', 'cities_states');
@@ -189,6 +190,8 @@ Route::prefix('v1')->group(function () {
                 Route::get('profile/health_insurance_data/{patient_id}', 'show');
                 Route::put('profile/health_insurance_data/{patient_id}', 'update');
                 Route::delete('profile/health_insurance_data/{patient_id}', 'destroy');
+
+                Route::get('health_insurance','health_insurance');
             });
 
             //Perfil del paciente - Ubicacion(es)

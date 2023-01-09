@@ -14,8 +14,12 @@ class OccupationController extends Controller
 {
     public function __construct()
     {
+
+        $this->middleware('role:User')->only([
+            'index'
+        ]);
+
         $this->middleware('permission:show occupations')->only([
-            'index',
             'show',
         ]);
         $this->middleware('permission:create occupations')->only([
@@ -32,8 +36,7 @@ class OccupationController extends Controller
     public function index()
     {
         try {
-            $occupation = Occupation::paginate(5);
-            return (OccupationResource::collection($occupation))->additional(['message' => 'ocupaciones encontradas']);
+            return (OccupationResource::collection(Occupation::orderBy('name')->get()))->additional(['message' => 'ocupaciones encontradas']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
