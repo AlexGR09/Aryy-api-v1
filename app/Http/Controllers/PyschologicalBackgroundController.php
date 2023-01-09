@@ -19,13 +19,13 @@ class PyschologicalBackgroundController extends Controller
     public function store(StorePyschologicalBackgroundRequest $request)
     {
         $medicalHistory = MedicalHistory::where('user_id',$request->user_id)->first();
-        return ok('', $medicalHistory->pyschologicalbackground->create($request->validated()));
+        return ok('', $medicalHistory->pyschologicalbackground()->create($request->validated()));
     }
 
     public function update(UpdatePyschologicalBackgroundRequest $request)
     {
         $medicalHistory = MedicalHistory::where('user_id',$request->user_id)->first();
-        return ok('', $medicalHistory->pyschologicalbackground->update($request->validated()));
+        return ok('', $medicalHistory->pyschologicalbackground()->update($request->validated()));
     }
 
 }

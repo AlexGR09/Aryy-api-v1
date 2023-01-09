@@ -311,8 +311,8 @@ Route::prefix('v1')->group(function () {
         Route::put('vital-signs/{vitalSign}/patient', [VitalSignController::class, 'update']);
         Route::get('info/patient/{patient}', [VitalSignController::class, 'patientInfo']);
         Route::get('allergies/patient/{patient}', [AllergyController::class, 'show']);
-        Route::post('allergies/patient', [AllergyController::class, 'show']);
-        Route::put('allergies/patient/{patient}', [AllergyController::class, 'show']);
+        Route::post('allergies/patient', [AllergyController::class, 'store']);
+        Route::put('allergies/patient/{patient}', [AllergyController::class, 'update']);
 
         Route::get('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'show']);
         Route::post('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'store']);
