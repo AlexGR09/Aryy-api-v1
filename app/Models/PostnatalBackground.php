@@ -11,6 +11,7 @@ class PostnatalBackground extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'id',
         'delivery_details',
         'baby_name',
         'baby_weight',
@@ -18,4 +19,12 @@ class PostnatalBackground extends Model
         'type_of_feeding',
         'emotonial_state',
     ];
+
+    protected $casts = [
+        'type_of_feeding' => 'array',
+    ];
+
+    public function medical_history() {
+        return $this->hasOne(MedicalHistory::class);
+    }
 }

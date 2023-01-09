@@ -152,6 +152,14 @@ Route::prefix('v1')->group(function () {
 
             Route::post('tax_data/update_constancy','update_constancy');
         });
+
+        // ANTECEDENTES POSTNATALES
+        Route::controller($this->physician . PostnatalBackgroundController::class)->group(function () {
+            Route::prefix('medical_history')->group(function () {
+                Route::get('/postnatal-background/{medical_history_id}', 'show');
+            });
+        });
+
     });
 
         /* RUTAS DEL PACIENTE */
