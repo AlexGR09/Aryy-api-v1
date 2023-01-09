@@ -20,4 +20,5 @@ class AllergyPatient extends Model
     {
         return $this->hasOne(\App\Models\MedicalHistory::class);
     }
+
 }

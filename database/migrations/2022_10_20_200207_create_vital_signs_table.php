@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vital_sings', function (Blueprint $table) {
+        Schema::create('vital_signs', function (Blueprint $table) {
             $table->id();
             $table->double('temperature')->nullable();
             $table->double('weight')->nullable();
@@ -24,12 +24,13 @@ return new class extends Migration
             $table->integer('oxygen_saturation')->nullable();
             $table->integer('body_mass')->nullable();
             $table->integer('body_fat')->nullable();
-            $table->double('weightloos')->nullable();
+            $table->double('weight_loss')->nullable();
             $table->integer('fat')->nullable();
             $table->double('waist')->nullable();
             $table->integer('water')->nullable();
             $table->integer('muscle')->nullable();
             $table->integer('abdomen')->nullable();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -42,6 +43,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vital_sings');
+        Schema::dropIfExists('vital_signs');
     }
 };

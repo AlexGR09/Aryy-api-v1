@@ -36,7 +36,7 @@ class MedicalHistoryController extends Controller
             $patient = Patient::where('id', $id)
                 ->where('user_id', auth()->id())
                 ->firstOrFail();
-            $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergypatient')->get();
+            $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergyPatient')->get();
             return (MedicalHistoryResource::collection($medical_history))->additional(['message' => '..']);
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -83,7 +83,7 @@ class MedicalHistoryController extends Controller
             $patient = Patient::where('id', $id)
                 ->where('user_id', auth()->id())
                 ->firstOrFail();
-            $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergypatient')->get();
+            $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergyPatient')->get();
             return (BasicInformationResource::collection($medical_history))->additional(['message' => 'Alergias encontradas']);
         } catch (\Throwable $th) {
             DB::rollBack();

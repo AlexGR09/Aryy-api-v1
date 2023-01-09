@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('vital_sign_id')->constrained('vital_sings');
+            $table->foreignId('vital_sign_id')->constrained();
             $table->string('symptom');
             $table->string('diagnosis');
             $table->json('treatment');
