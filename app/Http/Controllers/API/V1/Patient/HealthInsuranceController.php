@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1\Patient;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\V1\Patient\HealthInsuranceResource;
 use App\Models\HealthInsurance;
+use App\Models\Insurance;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -99,5 +100,9 @@ class HealthInsuranceController extends Controller
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
+    }
+    public function health_insurance(Request $request){
+        $health_insurance =Insurance::all();
+        return $health_insurance;
     }
 }

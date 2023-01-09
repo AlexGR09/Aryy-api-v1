@@ -17,9 +17,20 @@ class AppointmentUserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        if(auth()->user()->hasRole('Physician')){
+            $currentUser = [
+                'user_id_physician' => auth()->id()
+            ];
+        }
+
+        if(auth()->user()->hasRole('Patient')){
+            $currentUser = [
+                'user_id_patient' => auth()->id()
+            ];
+        }
         $appointment = $request->route('appointment');
         $appointmentDB = Appointment::where([
-            ['user_id' , auth()->id()],
+            $currentUser,
             ['id' , $appointment->id]
         ])->first();
         if($appointmentDB){
