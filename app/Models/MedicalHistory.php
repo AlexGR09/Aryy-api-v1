@@ -60,11 +60,12 @@ class MedicalHistory extends Model
         return $this->belongsTo('App\Models\PyschologicalBackground');
     }
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
+    public function postnatal_background()
+    {
+    return $this->belongsTo(PostnatalBackground::class);
+    }
+
+
     protected $casts = [
         'weight' => 'object',
         'height' => 'object',
