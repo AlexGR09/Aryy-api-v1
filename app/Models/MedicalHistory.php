@@ -19,10 +19,12 @@ class MedicalHistory extends Model
         'active_medication',
         'previous_medication',
         'vaccination_history',
-        'allergi_patient_id',
+        'allergy_patient_id',
         'pathological_backgorund_id',
         'hereditary_background_id',
         'vaccination_history_id',
+        'perinatal_background_id',
+        'postnatal_backgroun_id',
     ];
 
     public function patient()
@@ -30,7 +32,7 @@ class MedicalHistory extends Model
         return $this->belongsTo(\App\Models\Patient::class);
     }
 
-    public function allergypatient()
+    public function allergyPatient()
     {
         return $this->belongsTo('App\Models\AllergyPatient', 'allergy_patient_id', 'id');
     }
@@ -60,12 +62,16 @@ class MedicalHistory extends Model
         return $this->belongsTo('App\Models\PyschologicalBackground');
     }
 
-    public function postnatal_background()
+    public function perinatalBackground()
     {
-    return $this->belongsTo(PostnatalBackground::class);
+        return $this->belongsTo(PerinatalBackground::class);
     }
 
-
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
     protected $casts = [
         'weight' => 'object',
         'height' => 'object',
