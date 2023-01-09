@@ -13,6 +13,7 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\SubscriptionUserController;
 use App\Http\Controllers\TestJoseController;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\TextUI\XmlConfiguration\Group;
 
 /* RUTAS API VERSIÓN 1 */
 
@@ -141,8 +142,6 @@ Route::prefix('v1')->group(function () {
             Route::delete('/diseases', 'destroy');
         });
 
-
-
         //DATOS FISCALES DEL MÉDICO
         Route::controller($this->physician . TaxDataController::class)->group(function () {
             Route::post('tax_data', 'store');
@@ -151,6 +150,18 @@ Route::prefix('v1')->group(function () {
             Route::delete('tax_data','destroy');
 
             Route::post('tax_data/update_constancy','update_constancy');
+        });
+
+        //VISUALIZAR LOS MEDICAMENTOS ACTIVOS Y MEDICAMENTOS ANTERIORES DE UN PACIENTE
+        Route::controller($this->physician. ViewMedicationsController::class)->group(function () {
+            Route::get('/medical_history/non_pathological_background/drugactive/{patient_id}', 'drugActive');
+            Route::get('/medical_history/non_pathological_background/previusmedication/{patient_id}', 'previusMedication');
+        });
+
+        // HISTORIAL DE VACUNACION
+        Route::controller($this->physician.VaccinationHistoryController::class)->group(function () {
+            Route::post('vaccination_history/{patient_id}','store');
+            Route::get('vaccination_history/{patient_id}','show');
         });
     });
 
