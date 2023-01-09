@@ -11,8 +11,10 @@ class CountryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:show countries')->only([
+        $this->middleware('role:User')->only([
             'index',
+        ]);
+        $this->middleware('permission:show countries')->only([
             'show',
         ]);
         $this->middleware('permission:create countries')->only([
@@ -29,8 +31,7 @@ class CountryController extends Controller
     public function index()
     {
         try {
-            $countries = Country::paginate(5);
-            return (CountryResource::collection($countries))->additional(['message' => 'Países encontrados.']);
+            return (CountryResource::collection(Country::orderBy('name')->get()))->additional(['message' => 'Países encontrados.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

@@ -171,6 +171,31 @@ class StateSeeder extends Seeder
                 'short_name' => 'ZAC',
                 'country_id' => 1,
             ],
+            [
+                'name' => 'Alabama',
+                'short_name' => 'ALB',
+                'country_id' => 2,
+            ],
+            [
+                'name' => 'Alaska',
+                'short_name' => 'ALK',
+                'country_id' => 2,
+            ],
+            [
+                'name' => 'Arizona',
+                'short_name' => 'ARI',
+                'country_id' => 2,
+            ],
+            [
+                'name' => 'Arkansas',
+                'short_name' => 'ARK',
+                'country_id' => 2,
+            ],
+            [
+                'name' => 'California',
+                'short_name' => 'CAL',
+                'country_id' => 2,
+            ],
 
         ]);
     }
