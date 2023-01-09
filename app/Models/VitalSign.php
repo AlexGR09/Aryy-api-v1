@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class VitalSing extends Model
+class VitalSign extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -20,7 +20,7 @@ class VitalSing extends Model
         'oxygen_saturation',
         'body_mass',
         'body_fat',
-        'weightloos',
+        'weight_loss',
         'fat',
         'waist',
         'water',
