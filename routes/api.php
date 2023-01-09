@@ -9,14 +9,17 @@ use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\RoleController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AppointmentsDetailController;
+use App\Http\Controllers\BasicInformationController;
 use App\Http\Controllers\FacilityScheduleController;
 use App\Http\Controllers\FullFacilityController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\PerinatalBackgroundController;
 use App\Http\Controllers\PhysicianAppointmentController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\PostnatalBackgroundController;
 use App\Http\Controllers\PyschologicalBackgroundController;
 use App\Http\Controllers\SubscriptionUserController;
+use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TestJoseController;
 use App\Http\Controllers\VitalSignController;
 use Illuminate\Support\Facades\Route;
@@ -311,6 +314,14 @@ Route::prefix('v1')->group(function () {
         Route::post('allergies/patient', [AllergyController::class, 'show']);
         Route::put('allergies/patient/{patient}', [AllergyController::class, 'show']);
 
+        Route::get('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'show']);
+        Route::post('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'store']);
+        Route::put('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'update']);
+        
+        Route::put('basic-information/patient/{patient}', [BasicInformationController::class, 'show']);
+
+        
+
     });
 
     Route::prefix('medical-history')->group(function(){
@@ -334,6 +345,7 @@ Route::prefix('v1')->group(function () {
         Route::put('perinatal-background', [PerinatalBackgroundController::class, 'store']);
         Route::put('perinatal-background/patient/{patient}', [PerinatalBackgroundController::class, 'update']);
 
+        Route::post('survey', [SurveyController::class, 'store']);
     });
     /* BÚSQUEDAS */
     // BUSQUEDA MÉDICO MOBILE

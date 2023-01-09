@@ -74,4 +74,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Patient::class);
     }
+
+    public function medicalHistory()
+    {
+        return $this->belongsTo(User::class, 'patient_id', 'id');
+    }
 }
