@@ -30,35 +30,39 @@ class ViewMedicationsController extends Controller
     {
         try {
             $cita = MedicalAppointment::where('patient_id', $id)
+                ->where('physician_id', $this->physician->id)
                 ->where('status', 'scheduled')
                 ->orWhere('status', 'assisted')
-                ->first();
-            if ($cita) {
-                $medicalhistory = MedicalHistory::where('patient_id', $id)->first();
-                $drug_active  = NonPathologicalBackground::where('id', $medicalhistory->non_pathological_background_id)
-                    ->first();
-                return (new ViewMedicationsResource($drug_active))->additional(['message' => 'Informacion de Medicacion.']);
+                ->count();
+            if ($cita < 1) {
+                return response()->json(['Petición incorrecta']);
             }
-            return response()->json(['Petición incorrecta']);
+
+            $medicalhistory = MedicalHistory::where('patient_id', $id)->first();
+            $drug_active  = NonPathologicalBackground::where('id', $medicalhistory->non_pathological_background_id)
+                ->first();
+            return (new ViewMedicationsResource($drug_active))->additional(['message' => 'Informacion de Medicacion.']);
         } catch (\Throwable $th) {
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
         }
     }
 
-    public function previusMedication($id)
+    public function previousMedication($id)
     {
         try {
             $cita = MedicalAppointment::where('patient_id', $id)
+                ->where('physician_id', $this->physician->id)
                 ->where('status', 'scheduled')
                 ->orWhere('status', 'assisted')
-                ->first();
-            if ($cita) {
-                $medicalhistory = MedicalHistory::where('patient_id', $id)->first();
-                $previus_medication  = NonPathologicalBackground::where('id', $medicalhistory->non_pathological_background_id)
-                    ->first();
-                return (new ViewMedicationsResource($previus_medication))->additional(['message' => 'Informacion de Medicacion.']);
+                ->count();
+
+            if ($cita < 1) {
+                return response()->json(['Petición incorrecta']);
             }
-            return response()->json(['Petición incorrecta']);
+            $medicalhistory = MedicalHistory::where('patient_id', $id)->first();
+            $previus_medication  = NonPathologicalBackground::where('id', $medicalhistory->non_pathological_background_id)
+                ->first();
+            return (new ViewMedicationsResource($previus_medication))->additional(['message' => 'Informacion de Medicacion.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

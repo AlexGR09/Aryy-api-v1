@@ -14,6 +14,7 @@ class VaccinationHistoryResource extends JsonResource
     public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
     {
         return [
+            /* 'vaccination_history_id' => $this->id, */
             'vaccine' => $this->vaccine,
             'dose' => $this->dose,
             'lot_number' => $this->lot_number,

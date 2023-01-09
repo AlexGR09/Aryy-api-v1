@@ -154,14 +154,23 @@ Route::prefix('v1')->group(function () {
 
         //VISUALIZAR LOS MEDICAMENTOS ACTIVOS Y MEDICAMENTOS ANTERIORES DE UN PACIENTE
         Route::controller($this->physician. ViewMedicationsController::class)->group(function () {
-            Route::get('/medical_history/non_pathological_background/drugactive/{patient_id}', 'drugActive');
-            Route::get('/medical_history/non_pathological_background/previusmedication/{patient_id}', 'previusMedication');
+            Route::prefix('medical_history')->group(function () {
+                Route::get('/drugactive/{patient_id}', 'drugActive');
+                Route::get('/previousmedication/{patient_id}', 'previousMedication');
+            });
         });
 
         // HISTORIAL DE VACUNACION
         Route::controller($this->physician.VaccinationHistoryController::class)->group(function () {
             Route::post('vaccination_history/{patient_id}','store');
-            Route::get('vaccination_history/{patient_id}','show');
+            Route::get('vaccination_history/{medical_history_id}','show');
+        });
+
+        // ANTECEDENTES POSTNATALES
+        Route::controller($this->physician . PostnatalBackgroundController::class)->group(function () {
+            Route::prefix('medical_history')->group(function () {
+                Route::get('/postnatal-background/{medical_history_id}', 'show');
+            });
         });
     });
 

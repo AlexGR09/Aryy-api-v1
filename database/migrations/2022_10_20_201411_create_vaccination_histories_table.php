@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('dose')->nullable();
             $table->string('lot_number')->nullable();
             $table->date('application_date')->nullable();
-            $table->foreignId('patient_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
