@@ -26,15 +26,20 @@ class PhysicianSearchController extends Controller
                 $query->where('cities.name', 'LIKE', '%' . $city . '%');
             }));
 
-            $physicianQuery->with(['score', 'facilitiesCoordinates', 'appointments'])->select('id', 'user_id', 'professional_name')
-                ->where('professional_name', 'LIKE', '%' . $search . '%')
-                ->withCount('comments');
+            $physicianQuery
+            ->with(['score', 'facilitiesCoordinates', 'appointments'])
+            ->select('id', 'user_id', 'professional_name')
+            ->whereHas('specialties', function($q) use($search){
+                $q->where('specialties.name', 'LIKE', '%' . $search . '%');
+            })
+            ->orWhere('professional_name', 'LIKE', '%' . $search . '%')
+            ->withCount('comments');
             $physicianQuery->whereHas('facilities');
             //basic info 
             $physician = $physicianQuery->get();
 
 
-
+            
             foreach ($physician as $key => $phy) {
                 $currentDay = \Carbon\Carbon::now();
 
