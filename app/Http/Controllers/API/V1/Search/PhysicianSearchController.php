@@ -35,6 +35,9 @@ class PhysicianSearchController extends Controller
             ->orWhereHas('medicalServices', function($q) use($search){
                 $q->where('medical_services.name', 'LIKE', '%' . $search . '%');
             })
+            ->orWhereHas('diseases', function($q) use($search){
+                $q->where('diseases.name', 'LIKE', '%' . $search . '%');
+            })
             ->orWhere('professional_name', 'LIKE', '%' . $search . '%')
             ->withCount('comments');
             $physicianQuery->whereHas('facilities');
