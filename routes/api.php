@@ -16,7 +16,6 @@ use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\PerinatalBackgroundController;
 use App\Http\Controllers\PhysicianAppointmentController;
 use App\Http\Controllers\PlanController;
-use App\Http\Controllers\PostnatalBackgroundController;
 use App\Http\Controllers\PyschologicalBackgroundController;
 use App\Http\Controllers\SubscriptionUserController;
 use App\Http\Controllers\SurveyController;
@@ -166,8 +165,9 @@ Route::prefix('v1')->group(function () {
         // ANTECEDENTES POSTNATALES
         Route::controller($this->physician . PostnatalBackgroundController::class)->group(function () {
             Route::prefix('medical_history')->group(function () {
-                Route::get('/postnatal-background/{medical_history_id}', 'show');
-                Route::post('/postnatal-background/{medical_history_id}', 'store');
+                Route::get('/postnatal-background', 'show');
+                Route::post('/postnatal-background', 'store');
+                Route::put('/postnatal-background', 'update');
             });
         });
 

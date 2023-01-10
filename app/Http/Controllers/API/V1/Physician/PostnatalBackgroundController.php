@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\V1\Patient\PosnatalBackgroundRequest;
 use App\Http\Resources\API\V1\Patient\PosnatalBackgroundResource;
 use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
@@ -21,62 +22,93 @@ class PostnatalBackgroundController extends Controller
         $this->physician = Physician::where('user_id', auth()->id())->first();
     }
 
-    public function index()
-    {
-        #CODE
-    }
-
-    public function show($medical_history_id)
+    public function show(Request $request)
     {
         try {
-            $medical_history = MedicalHistory::where('id', $medical_history_id)->firstOrFail();
 
-            // SE ASEGURA QUE EL MÉDICO PUEDA VER INFORMACIÓN SÓLO DEL PACIENTE QUE HA ATENDIDO
-            $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
-                ->where('physician_id', $this->physician->id)
-                ->count();
-            
-            if ($medical_appointments < 1) {
-                return response()->json(['message' => 'Prohibido'], 403);
+            $medical_history = $this->medicalHistory($request->medical_history_id);
+
+            if (!$medical_history) {
+                return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
-    
-            return (new PosnatalBackgroundResource($medical_history->postnatal_background))->additional(['message' => 'Antecedente postnatal.']);
+
+            return (new PosnatalBackgroundResource($medical_history->postnatal_background))
+                ->additional(['message' => 'Antecedente postnatal.']);
 
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function store(Request $request, $medical_history_id)
+    public function store(PosnatalBackgroundRequest $request)
     {
-        $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
+        try {
 
-        // SE ASEGURA QUE EL MÉDICO PUEDA VER INFORMACIÓN SÓLO DEL PACIENTE QUE HA ATENDIDO
-        $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
-        ->where('physician_id', $this->physician->id)
-        ->count();
+            $medical_history = $this->medicalHistory($request->medical_history_id);
 
-        if ($medical_appointments < 1) {
-            return response()->json(['message' => 'Prohibido'], 403);
+            if (!$medical_history || $medical_history->postnatal_background) {
+                return response()->json(['message' => 'No se encontraron resultados'], 404);
+            }
+
+            $postnatal_background = PostnatalBackground::create($request->validated());
+    
+            $medical_history->postnatal_background()
+                ->associate($postnatal_background);
+
+            $medical_history->save();
+            
+            return (new PosnatalBackgroundResource($postnatal_background))
+                ->additional(['message' => 'Antecedente postnatal guardado con éxito.']);
+
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
         }
-
-        if ($medical_history->postnatal_background) {
-            return "existe";
-        }
-
-        $postnatal_background = PostnatalBackground::create([
-            'delivery_details' => 'si me dolió',
-            'baby_name' => 'stevie',
-            'baby_weight' => '2.7 kg',
-            'baby_health' => 'sanito',
-            // 'type_of_feeding' => json_encode($type_of_feeding),
-            'emotonial_state' => 'bien'
-        ]);
-
-        $medical_history->update([
-            'postnatal_background_id' => $postnatal_background->id,
-        ]);
-
-        return true;
     }
+
+    public function update(PosnatalBackgroundRequest $request)
+    {
+        try {
+
+            $medical_history = $this->medicalHistory($request->medical_history_id);
+
+            if (!$medical_history || !$medical_history->postnatal_background) {
+                return response()->json(['message' => 'No se encontraron resultados'], 404);
+            }
+
+            $postnatal_background = $medical_history->postnatal_background;
+
+            $postnatal_background->update($request->validated());
+
+            return (new PosnatalBackgroundResource($postnatal_background))
+                    ->additional(['message' => 'Antecedente postnatal actualizado con éxito.']);
+
+            } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+        
+    }
+
+    // SE ASEGURA QUE EL MÉDICO PUEDA VER INFORMACIÓN SÓLO DEL PACIENTE QUE HA ATENDIDO
+    public function medicalHistory($medical_history_id)
+    {
+        try {
+
+            $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
+
+            if ($medical_history) {
+                
+                $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
+                ->where('physician_id', $this->physician->id)
+                ->count();
+            
+                if ($medical_appointments > 0) {
+                    return $medical_history;
+                }
+            }
+            
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
+
 }
