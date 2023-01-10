@@ -16,10 +16,10 @@ class PhysicianController extends Controller
 
     public function __construct()
     {
-        $this->user =  empty(auth()->id()) ? NULL : User::findOrFail(auth()->id());
+        // $this->user =  empty(auth()->id()) ? NULL : User::findOrFail(auth()->id());
 
         $this->middleware('role:NewPhysician')->only(['store']);
-        $this->middleware('permission:show physician profile')->only(['show']);
+        // $this->middleware('permission:show physician profile')->only(['show']);
         $this->middleware('role:Physician')->only(['update']);
     }
 
@@ -46,17 +46,19 @@ class PhysicianController extends Controller
         }
     }
 
-    public function show()
+    public function show(User $physician)
     {
         try {
             $message = 'Mi perfil médico.';
-            $physician = Physician::where('user_id', $this->user->id)->firstOrFail();
+            $physicianDb = Physician::with(['score', 'facilitiesCoordinates','facilities', 'specialty:name','physician_specialty'])
+            ->where('user_id', $physician->id)
+            ->withCount('comments')
+            ->first();
 
-            if ($this->user->hasRole('PhysicianInVerification')) {
+            if ($physician->hasRole('PhysicianInVerification')) {
                 $message = 'Su perfil médico está en proceso de verificación, esto puede tomar un par de días. Por favor, tenga paciencia, nosotros le avisaremos.';
             }
-
-            return (new PhysicianResource($physician))->additional(['message' => $message]);
+            return (new PhysicianResource($physicianDb))->additional(['message' => $message]);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
