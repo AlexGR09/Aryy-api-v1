@@ -116,7 +116,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('physician')->group(function () {
         // PERFIL DEL MÉDICO
         Route::controller($this->physician . PhysicianController::class)->group(function () {
-            Route::get('/profile', 'show');
+            Route::get('/{physician}/profile', 'show');
             Route::post('/profile', 'store');
             Route::put('/profile', 'update');
         });
