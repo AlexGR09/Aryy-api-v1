@@ -7,6 +7,7 @@ use App\Http\Controllers\API\V1\Patient\PathologicalBackgroudController;
 use App\Http\Controllers\API\V1\Patient\VaccinationHistoryController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\RoleController;
+use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AppointmentsDetailController;
 use App\Http\Controllers\BasicInformationController;
@@ -354,7 +355,7 @@ Route::prefix('v1')->group(function () {
     // BUSQUEDA MÉDICO MOBILE
     // Route::get('/search', [$this->search . SearchController::class, 'index']);
     // BUSQUEDA DEFINIDA DE MÉDICO
-    Route::get('/search', [$this->search . PhysicianSearchController::class, 'index']);
+    Route::get('/search', [PhysicianSearchController::class, 'index']);
 });
 
 
