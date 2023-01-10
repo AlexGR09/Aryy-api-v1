@@ -87,7 +87,11 @@ class Physician extends Model
     {
         return $this->hasMany(Comment::class,'user_id','user_id');
     }
-
+    // RELACIÓN MUCHOS A MUCHOS CON EL MODELO ESPECIALIDADES
+    public function medicalServices()
+    {
+        return $this->belongsToMany(MedicalService::class, 'medical_service_physician');
+    }
     public function facilitiesCoordinates()
     {
         return $this->belongsToMany(\App\Models\Facility::class, 'facility_physician')->select(['coordinates']);

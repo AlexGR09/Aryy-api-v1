@@ -29,8 +29,11 @@ class PhysicianSearchController extends Controller
             $physicianQuery
             ->with(['score', 'facilitiesCoordinates', 'appointments'])
             ->select('id', 'user_id', 'professional_name')
-            ->whereHas('specialties', function($q) use($search){
+            ->orWhereHas('specialties', function($q) use($search){
                 $q->where('specialties.name', 'LIKE', '%' . $search . '%');
+            })
+            ->orWhereHas('medicalServices', function($q) use($search){
+                $q->where('medical_services.name', 'LIKE', '%' . $search . '%');
             })
             ->orWhere('professional_name', 'LIKE', '%' . $search . '%')
             ->withCount('comments');
@@ -40,7 +43,7 @@ class PhysicianSearchController extends Controller
 
 
             
-            foreach ($physician as $key => $phy) {
+            foreach ($physician as $key2 => $phy) {
                 $currentDay = \Carbon\Carbon::now();
 
                 $addConsultationLength = true;
@@ -55,9 +58,10 @@ class PhysicianSearchController extends Controller
                 }
 
                 $loop = true;
+                
                 while ($loop) {
-                    $consultationLength = $physician[$key]->facilities[0]->consultation_length;
-                    $schedule = $physician[$key]->facilities[0]->schedule;
+                    $consultationLength = $physician[$key2]->facilities[0]->consultation_length;
+                    $schedule = $physician[$key2]->facilities[0]->schedule;
                     $isAnAvailableDay = false;
                     $scheduleKey = 0;
                     while($isAnAvailableDay === false){
@@ -72,7 +76,7 @@ class PhysicianSearchController extends Controller
                             $currentDay->addDay();
                         }
                     }
-
+                    
                     $hours = explode(" a ", $schedule[$scheduleKey]->attention_time);
                     $restHours = explode(" a ", $schedule[$scheduleKey]->rest_hours);
 
@@ -81,8 +85,11 @@ class PhysicianSearchController extends Controller
                     
                     $startHour = Carbon::parse($hours[0]);
                     $endHour = Carbon::parse($hours[1]);
-
-                    $availableDate = $physician[$key]->appointments()->where('appointment_date', '>=', $currentDay->copy()->setTime($startHour->hour, $startHour->minute, 0))
+                    
+                    // return $key2;
+                    $availableDate = $physician[$key2]
+                        ->appointments()
+                        ->where('appointment_date', '>=', $currentDay->copy()->setTime($startHour->hour, $startHour->minute, 0))
                         ->whereNotBetween('appointment_date', [ $currentDay->copy()->setTime($restStartHour->hour, $restStartHour->minute,0), $currentDay->copy()->setTime($restEndtHour->hour, $restEndtHour->minute,0)] )
                         ->orWhere('appointment_date', '<=', $currentDay->copy()->setTime($endHour->hour, $endHour->minute, 0))
                         ->where(function ($query) use($currentDay, $addConsultationLength, $consultationLength){
@@ -92,11 +99,10 @@ class PhysicianSearchController extends Controller
                             }
                         })
                         ->first();
-
                     // return $availableDate;
                     if (is_null($availableDate)) {
 
-                        $physician[$key]->available_appointment = $currentDay->format('Y-m-d');
+                        $physician[$key2]->available_appointment = $currentDay->format('Y-m-d');
                         $loop = false;
                         break;
                     }
