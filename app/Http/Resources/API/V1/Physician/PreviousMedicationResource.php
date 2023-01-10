@@ -4,7 +4,7 @@ namespace App\Http\Resources\API\V1\Physician;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ViewMedicationsResource extends JsonResource
+class PreviousMedicationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,7 +16,7 @@ class ViewMedicationsResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'medication' => $this->drug_active,
+            'previus medication' => $this->previous_medication,
         ];
     }
 }

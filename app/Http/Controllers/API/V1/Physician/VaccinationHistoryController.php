@@ -87,6 +87,7 @@ class VaccinationHistoryController extends Controller
             DB::commit();
             return (new VaccinationHistoryResource($vaccination_history))->additional(['message' => 'Informacion guardada.']);
         } catch (\Throwable $th) {
+            DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 400);
         }
     }

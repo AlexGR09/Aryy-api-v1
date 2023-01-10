@@ -192,6 +192,11 @@ Route::prefix('v1')->group(function () {
                 Route::put('/psycological_background/{medical_history_id}','update');
             });
         });
+
+        //EDITAR ESTADO DEL TRATAMIENTO
+        Route::controller($this->physician.StatusTreatmentController::class)->group(function(){
+            Route::put('status_medicine/{id}','update');
+        });
     });
 
         /* RUTAS DEL PACIENTE */

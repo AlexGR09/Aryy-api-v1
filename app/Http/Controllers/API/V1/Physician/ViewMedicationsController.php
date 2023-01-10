@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\API\V1\Physician\PreviousMedicationResource;
 use App\Http\Resources\API\V1\Physician\ViewMedicationsResource;
 use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
@@ -39,12 +40,11 @@ class ViewMedicationsController extends Controller
             }
 
             $medicalhistory = MedicalHistory::where('patient_id', $id)->first();
+            
             $drug_active  = NonPathologicalBackground::where('id', $medicalhistory->non_pathological_background_id)
                 ->first();
-            $medication_active = json_decode($drug_active->drug_active);
-            if ($medication_active->status == 'No completado') {
+            
                 return (new ViewMedicationsResource($drug_active))->additional(['message' => 'Informacion de Medicacion.']);
-            }
         } catch (\Throwable $th) {
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
         }
@@ -65,11 +65,8 @@ class ViewMedicationsController extends Controller
             $medicalhistory = MedicalHistory::where('patient_id', $id)->first();
             $previus_medication  = NonPathologicalBackground::where('id', $medicalhistory->non_pathological_background_id)
                 ->first();
-            $medication_previous = json_decode($previus_medication->previous_medication);
-
-            if ($medication_previous->status == 'Completado') {
-                return (new ViewMedicationsResource($previus_medication))->additional(['message' => 'Informacion de Medicacion.']);
-            }
+            
+                return (new PreviousMedicationResource($previus_medication))->additional(['message' => 'Informacion de Medicacion.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
