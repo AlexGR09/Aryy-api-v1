@@ -92,6 +92,12 @@ class Physician extends Model
     {
         return $this->belongsToMany(MedicalService::class, 'medical_service_physician');
     }
+
+    public function diseases()
+    {
+        return $this->belongsToMany(Disease::class, 'disease_physician');
+    }
+
     public function facilitiesCoordinates()
     {
         return $this->belongsToMany(\App\Models\Facility::class, 'facility_physician')->select(['coordinates']);
