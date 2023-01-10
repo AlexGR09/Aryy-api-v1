@@ -17,7 +17,7 @@ use App\Http\Controllers\PerinatalBackgroundController;
 use App\Http\Controllers\PhysicianAppointmentController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PostnatalBackgroundController;
-use App\Http\Controllers\PyschologicalBackgroundController;
+/* use App\Http\Controllers\PyschologicalBackgroundController; */
 use App\Http\Controllers\SubscriptionUserController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TestJoseController;
@@ -182,6 +182,15 @@ Route::prefix('v1')->group(function () {
                 Route::get('/postnatal-background/{medical_history_id}', 'show');
             });
         });
+
+        //ANTECEDENTES PSYQUIATRICOS
+        Route::controller($this->physician.PyschologicalBackgroundController::class)->group(function(){
+            Route::prefix('medical_history')->group(function () {
+                Route::post('/psycological_background', 'store');
+                Route::get('/psycological_background/{medical_history_id}', 'show');
+                Route::put('/psycological_background/{medical_history_id}','update');
+            });
+        });
     });
 
         /* RUTAS DEL PACIENTE */
@@ -265,8 +274,6 @@ Route::prefix('v1')->group(function () {
             //     Route::put('medical_history/vaccination_history/{patient_id}', 'update');
             // });
         });
-
-
 
         /* RUTAS ADMINISTRATIVAS */
         Route::prefix('admin')->group(function () {
@@ -361,11 +368,11 @@ Route::prefix('v1')->group(function () {
         Route::get('vaccination_history/{patient_id}', [VaccinationHistoryController::class, 'show']);
 
         Route::get('pyschological-background/patient/{patient}', [PyschologicalBackgroundController::class, 'show']);
-        Route::put('pyschological-background', [PyschologicalBackgroundController::class, 'store']);
+        Route::post('pyschological-background', [PyschologicalBackgroundController::class, 'store']);
         Route::put('pyschological-background/patient/{patient}', [PyschologicalBackgroundController::class, 'update']);
 
         Route::get('perinatal-background/patient/{patient}', [PerinatalBackgroundController::class, 'show']);
-        Route::put('perinatal-background', [PerinatalBackgroundController::class, 'store']);
+        Route::post('perinatal-background', [PerinatalBackgroundController::class, 'store']);
         Route::put('perinatal-background/patient/{patient}', [PerinatalBackgroundController::class, 'update']);
 
         Route::post('survey', [SurveyController::class, 'store']);
