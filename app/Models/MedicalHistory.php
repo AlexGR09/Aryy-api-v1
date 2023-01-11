@@ -25,6 +25,7 @@ class MedicalHistory extends Model
         'vaccination_history_id',
         'perinatal_background_id',
         'postnatal_backgroun_id',
+        'gynecological_history_id',
     ];
 
     public function patient()
@@ -69,7 +70,11 @@ class MedicalHistory extends Model
 
     public function postnatal_background()
     {
-    return $this->belongsTo(PostnatalBackground::class);
+        return $this->belongsTo(PostnatalBackground::class);
+    }
+
+    public function gynecologyBackground(){
+        return $this->belongsTo('App\Models\ObgynBackground');
     }
 
 

@@ -28,4 +28,9 @@ class ObgynBackground extends Model
         'last_pap_smear',
         'last_mammography',
     ];
+
+    public function medical_history()
+    {
+        return $this->hasOne(\App\Models\MedicalHistory::class);
+    }
 }

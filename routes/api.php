@@ -362,7 +362,7 @@ Route::prefix('v1')->group(function () {
     });
     Route::prefix('medical-history')->group(function(){
         Route::controller($this->patient . MedicalHistoryController::class)->group(function () {
-            Route::get('/{patient_id}','index');
+            /* Route::get('/{patient_id}','index'); */
             Route::post('/basic-information', 'store');
             Route::get('/basic-information/{patient_id}', 'show');
             Route::put('/basic-information/{patient_id}', 'update');
@@ -372,12 +372,18 @@ Route::prefix('v1')->group(function () {
         });
 
         Route::controller($this->physician . GynecologicalHistoryController::class)->group(function () {
-            Route::post('/gynecological-history','store');
+            Route::post('/gynecological-history/{patient_id}','store');
+            Route::get('/gynecological-history/patient/{patient_id}','show');
+            Route::put('/gynecological-history/patient/{patient_id}','update');
         });
 
-        Route::get('/pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'show']);
-        Route::post('/pathological-background', [PathologicalBackgroudController::class, 'store']);
-        Route::put('/pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'update']);
+        Route::controller($this->physician . PerinatalBackgroundController::class)->group(function(){
+            Route::post('/perinatal-background/{patient_id}','store');
+        });
+
+        Route::get('pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'show']);
+        Route::post('pathological-background', [PathologicalBackgroudController::class, 'store']);
+        Route::put('pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'update']);
         Route::get('non-pathological-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'show']);
         Route::post('non-pathological-background', [NonPathologicalBackgroundController::class, 'store']);
         Route::put('non-pathological-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'update']);
@@ -386,7 +392,6 @@ Route::prefix('v1')->group(function () {
         Route::put('hereditary-background/patient/{patient}', [HereditaryBackgroundController::class, 'update']);
         Route::post('vaccination-history/', [VaccinationHistoryController::class, 'store']);
         Route::get('vaccination-history/patient/{patient_id}', [VaccinationHistoryController::class, 'show']);
-        /* Route::put('vaccination-history/patient/{patient_id}', [VaccinationHistoryController::class, 'update']); */
 
         Route::get('pyschological-background/patient/{patient}', [PyschologicalBackgroundController::class, 'show']);
         Route::post('pyschological-background', [PyschologicalBackgroundController::class, 'store']);
