@@ -224,7 +224,7 @@ Route::prefix('v1')->group(function () {
             Route::prefix('medical-history')->group(function () {
                 //Datos basicos del paciente
                 Route::controller($this->patient . MedicalHistoryController::class)->group(function () {
-                    Route::get('/{patient_id}','index');
+                    Route::get('/{patient_id}', 'index');
                     Route::post('/basic-information', 'store');
                     Route::get('/basic-information/{patient_id}', 'show');
                     Route::put('/basic-information/{patient_id}', 'update');
@@ -266,7 +266,14 @@ Route::prefix('v1')->group(function () {
                 Route::controller($this->physician . PerinatalBackgroundController::class)->group(function () {
                     Route::post('/perinatal-background/{patient_id}', 'store');
                 });
-                //rutas jorge
+                // ANTECEDENTES POSTNATALES
+                Route::controller($this->physician . PostnatalBackgroundController::class)->group(function () {
+                    Route::get('/{medical_history_id}/postnatal-background', 'show');
+                    Route::post('/{medical_history_id}/postnatal-background', 'store');
+                    Route::put('/{medical_history_id}/postnatal-background', 'update');
+                });
+
+                //rutas jorge antecedentes ginecologicos
                 /* Route::get('perinatal-background/patient/{patient}', [PerinatalBackgroundController::class, 'show']);
                 Route::post('perinatal-background', [PerinatalBackgroundController::class, 'store']);
                 Route::put('perinatal-background/patient/{patient}', [PerinatalBackgroundController::class, 'update']); */
@@ -343,36 +350,6 @@ Route::prefix('v1')->group(function () {
         Route::put('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'update']);
 
         Route::put('basic-information/patient/{patient}', [BasicInformationController::class, 'show']);
-    });
-    Route::prefix('medical-history')->group(function () {
-        
-
-       
-
-        Route::get('pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'show']);
-        Route::post('pathological-background', [PathologicalBackgroudController::class, 'store']);
-        Route::put('pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'update']);
-
-        Route::get('non-pathological-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'show']);
-        Route::post('non-pathological-background', [NonPathologicalBackgroundController::class, 'store']);
-        Route::put('non-pathological-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'update']);
-
-        Route::get('hereditary-background/patient/{patient}', [HereditaryBackgroundController::class, 'show']);
-        Route::post('hereditary-background', [HereditaryBackgroundController::class, 'store']);
-        Route::put('hereditary-background/patient/{patient}', [HereditaryBackgroundController::class, 'update']);
-
-        Route::post('vaccination-history/', [VaccinationHistoryController::class, 'store']);
-        Route::get('vaccination-history/patient/{patient_id}', [VaccinationHistoryController::class, 'show']);
-
-        Route::get('pyschological-background/patient/{patient}', [PyschologicalBackgroundController::class, 'show']);
-        Route::post('pyschological-background', [PyschologicalBackgroundController::class, 'store']);
-        Route::put('pyschological-background/patient/{patient}', [PyschologicalBackgroundController::class, 'update']);
-
-        Route::get('perinatal-background/patient/{patient}', [PerinatalBackgroundController::class, 'show']);
-        Route::post('perinatal-background', [PerinatalBackgroundController::class, 'store']);
-        Route::put('perinatal-background/patient/{patient}', [PerinatalBackgroundController::class, 'update']);
-
-        Route::post('survey', [SurveyController::class, 'store']);
     });
     /* BÚSQUEDAS */
     // BUSQUEDA MÉDICO MOBILE
