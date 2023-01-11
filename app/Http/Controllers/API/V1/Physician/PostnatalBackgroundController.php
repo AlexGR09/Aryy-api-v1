@@ -22,11 +22,11 @@ class PostnatalBackgroundController extends Controller
         $this->physician = Physician::where('user_id', auth()->id())->first();
     }
 
-    public function show(Request $request)
+    public function show(Request $request, $medical_history_id)
     {
         try {
 
-            $medical_history = $this->medicalHistory($request->medical_history_id);
+            $medical_history = $this->medicalHistory($medical_history_id);
 
             if (!$medical_history) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
@@ -40,11 +40,11 @@ class PostnatalBackgroundController extends Controller
         }
     }
 
-    public function store(PosnatalBackgroundRequest $request)
+    public function store(PosnatalBackgroundRequest $request, $medical_history_id)
     {
         try {
 
-            $medical_history = $this->medicalHistory($request->medical_history_id);
+            $medical_history = $this->medicalHistory($medical_history_id);
 
             if (!$medical_history || $medical_history->postnatal_background) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
@@ -65,11 +65,11 @@ class PostnatalBackgroundController extends Controller
         }
     }
 
-    public function update(PosnatalBackgroundRequest $request)
+    public function update(PosnatalBackgroundRequest $request, $medical_history_id)
     {
         try {
 
-            $medical_history = $this->medicalHistory($request->medical_history_id);
+            $medical_history = $this->medicalHistory($medical_history_id);
 
             if (!$medical_history || !$medical_history->postnatal_background) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);

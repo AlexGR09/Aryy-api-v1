@@ -16,30 +16,30 @@ class SurveySeeder extends Seeder
      */
     public function run()
     {
-        $survey = Survey::create([
-            'physician_id' => 3,
-            'title' => 'Cuestionario de pokemon'
-        ]);
-        $questions = $survey->questions()
-        ->insert([
-            [
-                'survey_id' => $survey->id,
-                'physician_id' => 3,
-                'title' => 'Pokemon Favorito',
-            ],
-            [
-                'survey_id' => $survey->id,
-                'physician_id' => 3,
-                'title' => 'Poder Favorito2',
-            ]
-        ]);
-        $questions = $survey->questions;
-        foreach ($questions as $question) {
-            $question->answers()->create([
-                'answer' => 'Si',
-                'survey_id' => $survey->id,
-                'physician_id' => 5
-            ]);
-        }
+        // $survey = Survey::create([
+        //     'physician_id' => 3,
+        //     'title' => 'Cuestionario de pokemon'
+        // ]);
+        // $questions = $survey->questions()
+        // ->insert([
+        //     [
+        //         'survey_id' => $survey->id,
+        //         'physician_id' => 3,
+        //         'title' => 'Pokemon Favorito',
+        //     ],
+        //     [
+        //         'survey_id' => $survey->id,
+        //         'physician_id' => 3,
+        //         'title' => 'Poder Favorito2',
+        //     ]
+        // ]);
+        // $questions = $survey->questions;
+        // foreach ($questions as $question) {
+        //     $question->answers()->create([
+        //         'answer' => 'Si',
+        //         'survey_id' => $survey->id,
+        //         'physician_id' => 5
+        //     ]);
+        // }
     }
 }

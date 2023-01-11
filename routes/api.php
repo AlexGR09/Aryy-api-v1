@@ -163,15 +163,6 @@ Route::prefix('v1')->group(function () {
             Route::post('tax_data/update_constancy','update_constancy');
         });
 
-        // ANTECEDENTES POSTNATALES
-        Route::controller($this->physician . PostnatalBackgroundController::class)->group(function () {
-            Route::prefix('medical_history')->group(function () {
-                Route::get('/postnatal-background', 'show');
-                Route::post('/postnatal-background', 'store');
-                Route::put('/postnatal-background', 'update');
-            });
-        });
-
     });
 
         /* RUTAS DEL PACIENTE */
@@ -358,7 +349,16 @@ Route::prefix('v1')->group(function () {
         Route::put('perinatal-background', [PerinatalBackgroundController::class, 'store']);
         Route::put('perinatal-background/patient/{patient}', [PerinatalBackgroundController::class, 'update']);
 
-        Route::post('survey', [SurveyController::class, 'store']);
+        // Route::post('survey', [SurveyController::class, 'store']);
+
+        // ANTECEDENTES POSTNATALES
+        Route::controller($this->physician . PostnatalBackgroundController::class)->group(function () {
+            Route::get('/{medical_history_id}/postnatal-background', 'show');
+            Route::post('/{medical_history_id}/postnatal-background', 'store');
+            Route::put('/{medical_history_id}/postnatal-background', 'update');
+        });
+
+
     });
     /* BÚSQUEDAS */
     // BUSQUEDA MÉDICO MOBILE
