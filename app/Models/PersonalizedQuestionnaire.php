@@ -6,9 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Survey extends Model
+class PersonalizedQuestionnaire extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'physician_id',
+        'title',
+    ];
+
+    protected $hidden = [ 
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
     // MUCHOS CUESTIONARIOS PERTENECEN A UN MÉDICO
     public function physician()

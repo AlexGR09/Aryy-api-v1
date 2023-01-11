@@ -11,7 +11,7 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('survey_id')->constrained('surveys');
+            $table->foreignId('personalized_questionnaire_id')->constrained('personalized_questionnaires');
             $table->string('title');
             $table->timestamps();
             $table->softDeletes();

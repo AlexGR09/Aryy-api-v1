@@ -10,6 +10,19 @@ class Question extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'personalized_questionnaire_id',
+        'title',
+    ];
+
+    protected $with = ['answers'];
+
+    protected $hidden = [ 
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     // MUCHAS PREGUNTAS PERTENECEN A UN CUESTIONARIO
     public function survey()
     {

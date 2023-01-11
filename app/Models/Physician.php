@@ -77,9 +77,9 @@ class Physician extends Model
         return $this->belongsToMany(Disease::class, 'disease_physician');
     }
     // UN MÉDICO TIENE MUCHOS CUESTIONARIOS
-    public function surveys()
+    public function personalized_questionnaires()
     {
-        return $this->hasMany(Survey::class);
+        return $this->hasMany(PersonalizedQuestionnaire::class);
     }
 
     public function facilities()
