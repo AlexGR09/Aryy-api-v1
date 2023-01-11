@@ -5,6 +5,7 @@ use App\Http\Controllers\API\V1\FacilityController;
 use App\Http\Controllers\API\V1\Patient\NonPathologicalBackgroundController;
 use App\Http\Controllers\API\V1\Patient\PathologicalBackgroudController;
 use App\Http\Controllers\API\V1\Patient\VaccinationHistoryController;
+use App\Http\Controllers\API\V1\Patient\HereditaryBackgroundController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\RoleController;
 use App\Http\Controllers\AppointmentController;
@@ -362,29 +363,30 @@ Route::prefix('v1')->group(function () {
     Route::prefix('medical-history')->group(function(){
         Route::controller($this->patient . MedicalHistoryController::class)->group(function () {
             Route::get('/{patient_id}','index');
-            Route::post('/basic_information', 'store');
-            Route::get('/basic_information/{patient_id}', 'show');
-            Route::put('/basic_information/{patient_id}', 'update');
+            Route::post('/basic-information', 'store');
+            Route::get('/basic-information/{patient_id}', 'show');
+            Route::put('/basic-information/{patient_id}', 'update');
             
-            Route::get('allergy','allergy');
-            Route::get('blood_type','blood_type');
+            Route::get('/allergy','allergy');
+            Route::get('/blood-type','blood_type');
         });
 
         Route::controller($this->physician . GynecologicalHistoryController::class)->group(function () {
             Route::post('/gynecological-history','store');
         });
 
-        Route::get('pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'show']);
-        Route::post('pathological-background', [PathologicalBackgroudController::class, 'store']);
-        Route::put('pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'update']);
+        Route::get('/pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'show']);
+        Route::post('/pathological-background', [PathologicalBackgroudController::class, 'store']);
+        Route::put('/pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'update']);
         Route::get('non-pathological-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'show']);
         Route::post('non-pathological-background', [NonPathologicalBackgroundController::class, 'store']);
         Route::put('non-pathological-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'update']);
-        Route::get('hereditary-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'show']);
-        Route::post('hereditary-background', [NonPathologicalBackgroundController::class, 'store']);
-        Route::put('hereditary-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'update']);
-        Route::post('vaccination_history/', [VaccinationHistoryController::class, 'store']);
-        Route::get('vaccination_history/{patient_id}', [VaccinationHistoryController::class, 'show']);
+        Route::get('hereditary-background/patient/{patient}', [HereditaryBackgroundController::class, 'show']);
+        Route::post('hereditary-background', [HereditaryBackgroundController::class, 'store']);
+        Route::put('hereditary-background/patient/{patient}', [HereditaryBackgroundController::class, 'update']);
+        Route::post('vaccination-history/', [VaccinationHistoryController::class, 'store']);
+        Route::get('vaccination-history/patient/{patient_id}', [VaccinationHistoryController::class, 'show']);
+        Route::put('vaccination-history/patient/{patient_id}', [VaccinationHistoryController::class, 'update']);
 
         Route::get('pyschological-background/patient/{patient}', [PyschologicalBackgroundController::class, 'show']);
         Route::post('pyschological-background', [PyschologicalBackgroundController::class, 'store']);
