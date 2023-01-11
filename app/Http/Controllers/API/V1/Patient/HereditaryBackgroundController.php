@@ -65,19 +65,14 @@ class HereditaryBackgroundController extends Controller
     public function show($id)
     {
         try {
-            DB::beginTransaction();
             $patient = Patient::where('id', $id)
                 ->where('user_id', auth()->id())
                 ->firstOrFail();
 
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
             $hereditary_background = HereditaryBackground::where('id', $medical_history->hereditary_background_id)->get();
-
-            DB::commit();
             return (HereditaryBackgroundResource::collection($hereditary_background))->additional(['message' => '..']);
         } catch (\Throwable $th) {
-            DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

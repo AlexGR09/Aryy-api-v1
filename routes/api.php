@@ -3,6 +3,7 @@
 use App\Http\Controllers\AllergyController;
 use App\Http\Controllers\API\V1\Admin\PhysicianController;
 use App\Http\Controllers\API\V1\FacilityController;
+use App\Http\Controllers\API\V1\Patient\HereditaryBackgroundController;
 use App\Http\Controllers\API\V1\Patient\NonPathologicalBackgroundController;
 use App\Http\Controllers\API\V1\Patient\PathologicalBackgroudController;
 use App\Http\Controllers\API\V1\Patient\VaccinationHistoryController;
@@ -339,12 +340,15 @@ Route::prefix('v1')->group(function () {
         Route::get('pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'show']);
         Route::post('pathological-background', [PathologicalBackgroudController::class, 'store']);
         Route::put('pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'update']);
+        
         Route::get('non-pathological-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'show']);
         Route::post('non-pathological-background', [NonPathologicalBackgroundController::class, 'store']);
         Route::put('non-pathological-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'update']);
-        Route::get('hereditary-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'show']);
-        Route::post('hereditary-background', [NonPathologicalBackgroundController::class, 'store']);
-        Route::put('hereditary-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'update']);
+        
+        Route::get('hereditary-background/patient/{patient}', [HereditaryBackgroundController::class, 'show']);
+        Route::post('hereditary-background', [HereditaryBackgroundController::class, 'store']);
+        Route::put('hereditary-background/patient/{patient}', [HereditaryBackgroundController::class, 'update']);
+        
         Route::post('vaccination_history/', [VaccinationHistoryController::class, 'store']);
         Route::get('vaccination_history/{patient_id}', [VaccinationHistoryController::class, 'show']);
 
