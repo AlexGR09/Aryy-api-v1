@@ -22,6 +22,7 @@ use App\Http\Controllers\SubscriptionUserController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TestJoseController;
 use App\Http\Controllers\VitalSignController;
+use App\Models\PostnatalBackground;
 use Illuminate\Support\Facades\Route;
 
 /* RUTAS API VERSIÓN 1 */
@@ -358,6 +359,10 @@ Route::prefix('v1')->group(function () {
             Route::put('/{medical_history_id}/postnatal-background', 'update');
         });
 
+        // CUESTIONARIOS PERSONALIZADOS
+        Route::controller($this->physician . SurveyController::class)->group(function () {
+            Route::get('/surveys', 'index');
+        });
 
     });
     /* BÚSQUEDAS */

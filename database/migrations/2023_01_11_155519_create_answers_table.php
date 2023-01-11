@@ -9,9 +9,9 @@ return new class extends Migration
 
     public function up()
     {
-        Schema::create('surveys', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('physician_id')->constrained('physicians');
+            $table->foreignId('question_id')->constrained('questions');
             $table->string('title');
             $table->timestamps();
             $table->softDeletes();
@@ -20,6 +20,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('surveys');
+        Schema::dropIfExists('answers');
     }
 };
