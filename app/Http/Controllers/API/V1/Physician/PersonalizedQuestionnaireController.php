@@ -7,8 +7,6 @@ use App\Http\Requests\API\V1\Physician\PersonalizedQuestionnaireRequest;
 use App\Http\Resources\API\V1\Physician\PersonalizedQuestionnaireResource;
 use App\Models\PersonalizedQuestionnaire;
 use App\Models\Physician;
-use App\Models\Question;
-use Illuminate\Http\Request;
 
 class PersonalizedQuestionnaireController extends Controller
 {
