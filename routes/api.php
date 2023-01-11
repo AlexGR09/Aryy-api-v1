@@ -19,7 +19,7 @@ use App\Http\Controllers\PhysicianAppointmentController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PyschologicalBackgroundController;
 use App\Http\Controllers\SubscriptionUserController;
-use App\Http\Controllers\SurveyController;
+// use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TestJoseController;
 use App\Http\Controllers\VitalSignController;
 use App\Models\PostnatalBackground;
@@ -350,8 +350,6 @@ Route::prefix('v1')->group(function () {
         Route::put('perinatal-background', [PerinatalBackgroundController::class, 'store']);
         Route::put('perinatal-background/patient/{patient}', [PerinatalBackgroundController::class, 'update']);
 
-        // Route::post('survey', [SurveyController::class, 'store']);
-
         // ANTECEDENTES POSTNATALES
         Route::controller($this->physician . PostnatalBackgroundController::class)->group(function () {
             Route::get('/{medical_history_id}/postnatal-background', 'show');
@@ -360,8 +358,10 @@ Route::prefix('v1')->group(function () {
         });
 
         // CUESTIONARIOS PERSONALIZADOS
-        Route::controller($this->physician . SurveyController::class)->group(function () {
-            Route::get('/surveys', 'index');
+        Route::controller($this->physician . PersonalizedQuestionnaireController::class)->group(function () {
+            Route::get('/personalized-questionnaire', 'index');
+            Route::get('/personalized-questionnaire/{personalized_questionnaire_id}', 'show');
+            Route::post('/personalized-questionnaire', 'store');
         });
 
     });
