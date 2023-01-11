@@ -1,13 +1,17 @@
 <?php
 
 use App\Http\Controllers\AllergyController;
+use App\Http\Controllers\API\V1\Admin\PhysicianController;
 use App\Http\Controllers\API\V1\FacilityController;
+use App\Http\Controllers\API\V1\Patient\HereditaryBackgroundController;
 use App\Http\Controllers\API\V1\Patient\NonPathologicalBackgroundController;
 use App\Http\Controllers\API\V1\Patient\PathologicalBackgroudController;
 use App\Http\Controllers\API\V1\Patient\VaccinationHistoryController;
 use App\Http\Controllers\API\V1\Patient\HereditaryBackgroundController;
 use App\Http\Controllers\API\V1\PermissionController;
+use App\Http\Controllers\API\V1\Physician\PhysicianController as PhysicianPhysicianController;
 use App\Http\Controllers\API\V1\RoleController;
+use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AppointmentsDetailController;
 use App\Http\Controllers\BasicInformationController;
@@ -16,9 +20,9 @@ use App\Http\Controllers\FullFacilityController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\PerinatalBackgroundController;
 use App\Http\Controllers\PhysicianAppointmentController;
+use App\Http\Controllers\PhysicianProfileController;
 use App\Http\Controllers\PlanController;
-use App\Http\Controllers\PostnatalBackgroundController;
-/* use App\Http\Controllers\PyschologicalBackgroundController; */
+use App\Http\Controllers\PyschologicalBackgroundController;
 use App\Http\Controllers\SubscriptionUserController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TestJoseController;
@@ -116,35 +120,39 @@ Route::prefix('v1')->group(function () {
     /* RUTAS DEL MÉDICO */
     Route::prefix('physician')->group(function () {
         // PERFIL DEL MÉDICO
-        Route::controller($this->physician . PhysicianController::class)->group(function () {
+        Route::get('/{physician}',[PhysicianPhysicianController::class, 'show']);
+        Route::controller(PhysicianProfileController::class)->group(function () {
             Route::get('/profile', 'show');
             Route::post('/profile', 'store');
             Route::put('/profile', 'update');
         });
         // ARCHIVOS DE FORMACIÓN DEL MÉDICO
         Route::controller($this->physician . EducationalBackgroundController::class)->group(function () {
-            Route::post('/educationalbackground/uploadlicense', 'uploadLicense');
-            Route::post('/educationalbackground/uploadcertificate', 'uploadCertificate');
-            Route::get('/educationalbackground/getcertificate', 'getCertificate');
-            Route::delete('/educationalbackground/deletecertificate', 'deleteCertificate');
+            Route::post('/educational-background/upload-license', 'uploadLicense');
+            Route::post('/educational-background/upload-certificate', 'uploadCertificate');
+            Route::get('/educational-background/certificate', 'getCertificate');
+            Route::delete('/educational-background/certificate', 'deleteCertificate');
         });
         // ARCHIVOS DE IDENTIDAD MÉDICA
         Route::controller($this->physician . MedicalIdentityController::class)->group(function () {
-            Route::get('/medicalindentity', 'index');
-            Route::post('/medicalindentity/uploadlogo', 'uploadLogo');
-            Route::get('/medicalindentity/getlogo', 'getLogo');
-            Route::delete('/medicalindentity/deletelogo', 'deleteLogo');
-            Route::post('/medicalindentity/uploadphysicianphoto', 'uploadPhysicianPhoto');
-            Route::get('/medicalindentity/getphysicianphoto', 'getPhysicianPhoto');
-            Route::delete('/medicalindentity/deletephysicianphoto', 'deletePhysicianPhoto');
-            Route::post('/medicalindentity/uploadfacilityphoto', 'uploadFacilityPhoto');
-            Route::get('/medicalindentity/getfacilityphoto', 'getFacilityPhoto');
-            Route::delete('/medicalindentity/deletefacilityphoto', 'deleteFacilityPhoto');
+            Route::prefix('medical-indentity')->group(function () {
+                Route::get('/', 'index');
+                Route::post('/upload-logo', 'uploadLogo');
+                Route::get('/logo', 'getLogo');
+                Route::delete('/logo', 'deleteLogo');
+                Route::post('/upload-physician-photo', 'uploadPhysicianPhoto');
+                Route::get('/physician-photo', 'getPhysicianPhoto');
+                Route::delete('/physician-photo', 'deletePhysicianPhoto');
+                Route::post('/upload-facility-photo', 'uploadFacilityPhoto');
+                Route::get('/facility-photo', 'getFacilityPhoto');
+                Route::delete('/facility-photo', 'deleteFacilityPhoto');
+    
+            });
         });
         // SERVICIOS QUE EL MÉDICO OFRECE
         Route::controller($this->physician . MedicalServiceController::class)->group(function () {
-            Route::get('/medicalservices', 'index');
-            Route::put('/medicalservices', 'update');
+            Route::get('/medical-services', 'index');
+            Route::put('/medical-services', 'update');
         });
         // ENFERMEDADES QUE EL MÉDICO ATIENDE
         Route::controller($this->physician . DiseaseController::class)->group(function () {
@@ -155,49 +163,23 @@ Route::prefix('v1')->group(function () {
 
         //DATOS FISCALES DEL MÉDICO
         Route::controller($this->physician . TaxDataController::class)->group(function () {
-            Route::post('tax_data', 'store');
-            Route::get('tax_data', 'show');
-            Route::put('tax_data','update');
-            Route::delete('tax_data','destroy');
+            Route::post('tax-data', 'store');
+            Route::get('tax-data', 'show');
+            Route::put('tax-data','update');
+            Route::delete('tax-data','destroy');
 
-            Route::post('tax_data/update_constancy','update_constancy');
-        });
-
-        //VISUALIZAR LOS MEDICAMENTOS ACTIVOS Y MEDICAMENTOS ANTERIORES DE UN PACIENTE
-        Route::controller($this->physician. ViewMedicationsController::class)->group(function () {
-            Route::prefix('medical_history')->group(function () {
-                Route::get('/drugactive/{patient_id}', 'drugActive');
-                Route::get('/previousmedication/{patient_id}', 'previousMedication');
-            });
-        });
-
-        // HISTORIAL DE VACUNACION
-        Route::controller($this->physician.VaccinationHistoryController::class)->group(function () {
-            Route::post('vaccination_history/{patient_id}','store');
-            Route::get('vaccination_history/{medical_history_id}','show');
+            Route::post('tax-data/update-constancy','update_constancy');
         });
 
         // ANTECEDENTES POSTNATALES
         Route::controller($this->physician . PostnatalBackgroundController::class)->group(function () {
             Route::prefix('medical_history')->group(function () {
-                Route::get('/postnatal-background/{medical_history_id}', 'show');
-                Route::post('/postnatal-background/{medical_history_id}', 'store');
+                Route::get('/postnatal-background', 'show');
+                Route::post('/postnatal-background', 'store');
+                Route::put('/postnatal-background', 'update');
             });
         });
 
-        //ANTECEDENTES PSYQUIATRICOS
-        Route::controller($this->physician.PyschologicalBackgroundController::class)->group(function(){
-            Route::prefix('medical_history')->group(function () {
-                Route::post('/psycological_background', 'store');
-                Route::get('/psycological_background/{medical_history_id}', 'show');
-                Route::put('/psycological_background/{medical_history_id}','update');
-            });
-        });
-
-        //EDITAR ESTADO DEL TRATAMIENTO
-        Route::controller($this->physician.StatusTreatmentController::class)->group(function(){
-            Route::put('status_medicine/{id}','update');
-        });
     });
 
         /* RUTAS DEL PACIENTE */
@@ -217,17 +199,17 @@ Route::prefix('v1')->group(function () {
             });
             // FOTO DE PERFIL DEL PACIENTE
             Route::controller($this->patient . ProfilePhotoController::class)->group(function () {
-                Route::post('/uploadprofilephoto/{patient_id}', 'uploadProfilePhoto');
-                Route::get('/getprofilephoto/{patient_id}', 'getProfilePhoto');
+                Route::post('/upload-profile-photo/{patient_id}', 'uploadProfilePhoto');
+                Route::get('/profile-photo/{patient_id}', 'getProfilePhoto');
             });
             //Perfil del paciente - Seguros de gastos medicos
             Route::controller($this->patient . HealthInsuranceController::class)->group(function () {
-                Route::post('profile/health_insurance_data/', 'store');
-                Route::get('profile/health_insurance_data/{patient_id}', 'show');
-                Route::put('profile/health_insurance_data/{patient_id}', 'update');
-                Route::delete('profile/health_insurance_data/{patient_id}', 'destroy');
+                Route::post('profile/health-insurance-data/', 'store');
+                Route::get('profile/health-insurance-data/{patient_id}', 'show');
+                Route::put('profile/health-insurance-data/{patient_id}', 'update');
+                Route::delete('profile/health-insurance-data/{patient_id}', 'destroy');
 
-                Route::get('health_insurance','health_insurance');
+                Route::get('health-insurance','health_insurance');
             });
 
             //Perfil del paciente - Ubicacion(es)
@@ -285,9 +267,9 @@ Route::prefix('v1')->group(function () {
         /* RUTAS ADMINISTRATIVAS */
         Route::prefix('admin')->group(function () {
             //  MÉDICOS
-            Route::controller($this->admin . PhysicianController::class)->group(function () {
-                Route::get('/checkphysicans', 'checkAll');
-                Route::get('/checkphysician/{physician_id}', 'checkOne');
+            Route::controller(PhysicianController::class)->group(function () {
+                Route::get('/check-physicans', 'checkAll');
+                Route::get('/check-physician/{physician_id}', 'checkOne');
             });
             // ROLES (FALTA MOVER A CARPETA ADMIN)
             Route::resource('roles', RoleController::class)
@@ -384,12 +366,15 @@ Route::prefix('v1')->group(function () {
         Route::get('pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'show']);
         Route::post('pathological-background', [PathologicalBackgroudController::class, 'store']);
         Route::put('pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'update']);
+        
         Route::get('non-pathological-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'show']);
         Route::post('non-pathological-background', [NonPathologicalBackgroundController::class, 'store']);
         Route::put('non-pathological-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'update']);
+        
         Route::get('hereditary-background/patient/{patient}', [HereditaryBackgroundController::class, 'show']);
         Route::post('hereditary-background', [HereditaryBackgroundController::class, 'store']);
         Route::put('hereditary-background/patient/{patient}', [HereditaryBackgroundController::class, 'update']);
+        
         Route::post('vaccination-history/', [VaccinationHistoryController::class, 'store']);
         Route::get('vaccination-history/patient/{patient_id}', [VaccinationHistoryController::class, 'show']);
 
@@ -407,7 +392,7 @@ Route::prefix('v1')->group(function () {
     // BUSQUEDA MÉDICO MOBILE
     // Route::get('/search', [$this->search . SearchController::class, 'index']);
     // BUSQUEDA DEFINIDA DE MÉDICO
-    Route::get('/search', [$this->search . PhysicianSearchController::class, 'index']);
+    Route::get('/search', [PhysicianSearchController::class, 'index']);
 });
 
 
