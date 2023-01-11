@@ -16,7 +16,8 @@ class GynecologicalHistoryController extends Controller
 
     public function store(Request $request)
     {
-        $gynecologicalHistory = ObgynBackground::create([$request]);
+        //$gynecologicalHistory = ObgynBackground::create([$request]);
+
     }
 
     public function show($id)

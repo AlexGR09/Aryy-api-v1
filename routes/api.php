@@ -370,6 +370,10 @@ Route::prefix('v1')->group(function () {
             Route::get('blood_type','blood_type');
         });
 
+        Route::controller($this->physician . GynecologicalHistoryController::class)->group(function () {
+            Route::post('/gynecological-history','store');
+        });
+
         Route::get('pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'show']);
         Route::post('pathological-background', [PathologicalBackgroudController::class, 'store']);
         Route::put('pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'update']);
