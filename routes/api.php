@@ -261,28 +261,6 @@ Route::prefix('v1')->group(function () {
                     Route::get('/gynecological-history/patient/{patient_id}', 'show');
                     Route::put('/gynecological-history/patient/{patient_id}', 'update');
                 });
-                //Antecedentes perinatales-Corregir Carlos(Dinho)
-                Route::controller($this->physician . PerinatalBackgroundController::class)->group(function () {
-                    Route::post('/perinatal-background/{patient_id}', 'store');
-                });
-                // ANTECEDENTES POSTNATALES
-                Route::controller($this->physician . PostnatalBackgroundController::class)->group(function () {
-                    Route::get('/{medical_history_id}/postnatal-background', 'show');
-                    Route::post('/{medical_history_id}/postnatal-background', 'store');
-                    Route::put('/{medical_history_id}/postnatal-background', 'update');
-                });
-                // CUESTIONARIOS PERSONALIZADOS
-                Route::controller($this->physician . PersonalizedQuestionnaireController::class)->group(function () {
-                    Route::get('/personalized-questionnaire', 'index');
-                    Route::get('/personalized-questionnaire/{personalized_questionnaire_id}', 'show');
-                    Route::post('/personalized-questionnaire', 'store');
-                });
-                //ANTECEDENTES PSYQUIATRICOS-Corregir Carlos(Dinho)
-                Route::controller($this->physician . PyschologicalBackgroundController::class)->group(function () {
-                    Route::post('/psycological_background', 'store');
-                    Route::get('/psycological_background/{medical_history_id}', 'show');
-                    Route::put('/psycological_background/{medical_history_id}', 'update');
-                });
                 //rutas jorge antecedentes ginecologicos
                 /* Route::get('perinatal-background/patient/{patient}', [PerinatalBackgroundController::class, 'show']);
                 Route::post('perinatal-background', [PerinatalBackgroundController::class, 'store']);
