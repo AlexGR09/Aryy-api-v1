@@ -7,7 +7,6 @@ use App\Http\Controllers\API\V1\Patient\HereditaryBackgroundController;
 use App\Http\Controllers\API\V1\Patient\NonPathologicalBackgroundController;
 use App\Http\Controllers\API\V1\Patient\PathologicalBackgroudController;
 use App\Http\Controllers\API\V1\Patient\VaccinationHistoryController;
-use App\Http\Controllers\API\V1\Patient\HereditaryBackgroundController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\Physician\PhysicianController as PhysicianPhysicianController;
 use App\Http\Controllers\API\V1\RoleController;
