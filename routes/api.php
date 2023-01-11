@@ -386,7 +386,7 @@ Route::prefix('v1')->group(function () {
         Route::put('hereditary-background/patient/{patient}', [HereditaryBackgroundController::class, 'update']);
         Route::post('vaccination-history/', [VaccinationHistoryController::class, 'store']);
         Route::get('vaccination-history/patient/{patient_id}', [VaccinationHistoryController::class, 'show']);
-        Route::put('vaccination-history/patient/{patient_id}', [VaccinationHistoryController::class, 'update']);
+        /* Route::put('vaccination-history/patient/{patient_id}', [VaccinationHistoryController::class, 'update']); */
 
         Route::get('pyschological-background/patient/{patient}', [PyschologicalBackgroundController::class, 'show']);
         Route::post('pyschological-background', [PyschologicalBackgroundController::class, 'store']);
