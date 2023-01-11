@@ -19,7 +19,6 @@ use App\Http\Controllers\PhysicianProfileController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PyschologicalBackgroundController;
 use App\Http\Controllers\SubscriptionUserController;
-use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TestJoseController;
 use App\Http\Controllers\VitalSignController;
 use Illuminate\Support\Facades\Route;
@@ -272,7 +271,12 @@ Route::prefix('v1')->group(function () {
                     Route::post('/{medical_history_id}/postnatal-background', 'store');
                     Route::put('/{medical_history_id}/postnatal-background', 'update');
                 });
-
+                // CUESTIONARIOS PERSONALIZADOS
+                Route::controller($this->physician . PersonalizedQuestionnaireController::class)->group(function () {
+                    Route::get('/personalized-questionnaire', 'index');
+                    Route::get('/personalized-questionnaire/{personalized_questionnaire_id}', 'show');
+                    Route::post('/personalized-questionnaire', 'store');
+                });
                 //rutas jorge antecedentes ginecologicos
                 /* Route::get('perinatal-background/patient/{patient}', [PerinatalBackgroundController::class, 'show']);
                 Route::post('perinatal-background', [PerinatalBackgroundController::class, 'store']);
