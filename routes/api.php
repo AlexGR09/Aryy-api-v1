@@ -255,13 +255,13 @@ Route::prefix('v1')->group(function () {
                     Route::get('/vaccination_history/{patient_id}', 'show');
                     Route::put('/vaccination_history/{patient_id}', 'update');
                 });
-                //Antecedentes ginecologicos
+                //Antecedentes ginecologicos - Corregir Carlos(Dinho)
                 Route::controller($this->physician . GynecologicalHistoryController::class)->group(function () {
                     Route::post('/gynecological-history/{patient_id}', 'store');
                     Route::get('/gynecological-history/patient/{patient_id}', 'show');
                     Route::put('/gynecological-history/patient/{patient_id}', 'update');
                 });
-                //Antecedentes perinatales
+                //Antecedentes perinatales-Corregir Carlos(Dinho)
                 Route::controller($this->physician . PerinatalBackgroundController::class)->group(function () {
                     Route::post('/perinatal-background/{patient_id}', 'store');
                 });
@@ -276,6 +276,12 @@ Route::prefix('v1')->group(function () {
                     Route::get('/personalized-questionnaire', 'index');
                     Route::get('/personalized-questionnaire/{personalized_questionnaire_id}', 'show');
                     Route::post('/personalized-questionnaire', 'store');
+                });
+                //ANTECEDENTES PSYQUIATRICOS-Corregir Carlos(Dinho)
+                Route::controller($this->physician . PyschologicalBackgroundController::class)->group(function () {
+                    Route::post('/psycological_background', 'store');
+                    Route::get('/psycological_background/{medical_history_id}', 'show');
+                    Route::put('/psycological_background/{medical_history_id}', 'update');
                 });
                 //rutas jorge antecedentes ginecologicos
                 /* Route::get('perinatal-background/patient/{patient}', [PerinatalBackgroundController::class, 'show']);
