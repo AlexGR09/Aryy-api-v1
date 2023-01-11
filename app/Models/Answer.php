@@ -4,29 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Answer extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+
     protected $fillable = [
-        'answer',
         'question_id',
-        'survey_id',
-        'physician_id'
+        'title',
     ];
 
-    public function survey()
-    {
-        return $this->belongsTo(Survey::class);
-    }
+    protected $hidden = [ 
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
 
+    // MUCHAS RESPUESTAS PERTENECEN A UNA PREGUNTA
     public function question()
     {
         return $this->belongsTo(Question::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'patient_id', 'id');
     }
 }
