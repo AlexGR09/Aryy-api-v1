@@ -55,6 +55,7 @@ class GynecologicalHistoryController extends Controller
             'last_pap_smear' => $request->last_pap_smear,
             'last_mammography' => $request->last_mammography,
         ]);
+        //$medical_history->obgyn_background_id = $gynecologicalHistory->id;
         return $gynecologicalHistory;
     }
 
