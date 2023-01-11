@@ -246,7 +246,7 @@ Route::prefix('v1')->group(function () {
             // /* Historial medico del paciente */
             // //Datos basicos
             // Route::controller($this->patient . MedicalHistoryController::class)->group(function () {
-            //     Route::get('medical_history', 'index');
+            //     Route::get('medical_history/{patient_id}', 'index');
             //     Route::post('medical_history/basic_information/', 'store');
             //     Route::get('medical_history/basic_information/{patient_id}', 'show');
             //     Route::put('medical_history/basic_information/{patient_id}', 'update');
@@ -359,8 +359,17 @@ Route::prefix('v1')->group(function () {
         
 
     });
-
     Route::prefix('medical-history')->group(function(){
+        Route::controller($this->patient . MedicalHistoryController::class)->group(function () {
+            Route::get('/{patient_id}','index');
+            Route::post('/basic_information', 'store');
+            Route::get('/basic_information/{patient_id}', 'show');
+            Route::put('/basic_information/{patient_id}', 'update');
+            
+            Route::get('allergy','allergy');
+            Route::get('blood_type','blood_type');
+        });
+
         Route::get('pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'show']);
         Route::post('pathological-background', [PathologicalBackgroudController::class, 'store']);
         Route::put('pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'update']);
