@@ -153,7 +153,7 @@ Route::prefix('v1')->group(function () {
                 Route::delete('/diseases', 'destroy');
             });
 
-            
+
 
             //DATOS FISCALES DEL MÉDICO
             Route::controller($this->physician . TaxDataController::class)->group(function () {
@@ -166,7 +166,7 @@ Route::prefix('v1')->group(function () {
             });
 
             Route::prefix('medical-history')->group(function () {
-
+                //Antecedentes ginecologicos - Corregir Carlos(Dinho)
                 Route::controller($this->physician . GynecologicalHistoryController::class)->group(function () {
                     Route::post('/gynecological-history/{patient_id}', 'store');
                     Route::get('/gynecological-history/patient/{patient_id}', 'show');
@@ -176,7 +176,7 @@ Route::prefix('v1')->group(function () {
                 Route::controller($this->physician . PerinatalBackgroundController::class)->group(function () {
                     Route::post('/perinatal-background/{patient_id}', 'store');
                 });
-            
+
                 //ANTECEDENTES PSYQUIATRICOS-Corregir Carlos(Dinho)
                 Route::controller($this->physician . PyschologicalBackgroundController::class)->group(function () {
                     Route::post('/psycological-background', 'store');
@@ -190,7 +190,6 @@ Route::prefix('v1')->group(function () {
                     Route::post('/{medical_history_id}/postnatal-background', 'store');
                     Route::put('/{medical_history_id}/postnatal-background', 'update');
                 });
-
             });
 
             // CUESTIONARIOS PERSONALIZADOS
@@ -199,7 +198,6 @@ Route::prefix('v1')->group(function () {
                 Route::get('/personalized-questionnaire/{personalized_questionnaire_id}', 'show');
                 Route::post('/personalized-questionnaire', 'store');
             });
-
         });
 
         /* RUTAS DEL PACIENTE */
@@ -283,8 +281,7 @@ Route::prefix('v1')->group(function () {
                     Route::get('/vaccination_history/{patient_id}', 'show');
                     Route::put('/vaccination_history/{patient_id}', 'update');
                 });
-                //Antecedentes ginecologicos - Corregir Carlos(Dinho)
-               
+
                 //rutas jorge antecedentes ginecologicos
                 /* Route::get('perinatal-background/patient/{patient}', [PerinatalBackgroundController::class, 'show']);
                 Route::post('perinatal-background', [PerinatalBackgroundController::class, 'store']);
