@@ -1,25 +1,34 @@
 <?php
 
-namespace App\Http\Resources\API\V1\Physician;
+namespace App\Http\Resources\API\V1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class FacilityResource extends JsonResource
 {
-    public function toArray($request)
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
     {
         return [
-            'id' => $this->id,
             'name' => $this->name,
-            'location' => $this->location,
             'phone' => $this->phone,
             'extension' => $this->extension,
+            'attetion_time' => $this->attetion_time,
             'zipcode' => $this->zipcode,
-            'schedule' => $this->schedule,
-            'type_schedule' => $this->type_schedule,
-            'consultation_length' => $this->consultation_length,
-            'accessibility_and_others' => $this->accessibility_and_others,
-            'city_id' => $this->city_id,
+            'state' => $this->state,
+            'city' => $this->city,
+            'town' => $this->town,
+            'street' => $this->street,
+            'exterior_no' => $this->exterior_no,
+            'interior_no' => $this->interior_no,
+            'references' => $this->references,
+            'accesibility' => $this->accesibility,
+            'public_target' => $this->public_target,
+            'services' => $this->services,
         ];
     }
 }
