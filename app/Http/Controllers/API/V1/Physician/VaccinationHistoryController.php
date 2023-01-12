@@ -30,7 +30,7 @@ class VaccinationHistoryController extends Controller
         //
     }
 
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         try {
             DB::beginTransaction();
@@ -41,7 +41,7 @@ class VaccinationHistoryController extends Controller
                 'application_date' => $request->application_date,
             ]);
 
-            $medical_history = MedicalHistory::where('patient_id', $id)->FirstOrFail();
+            $medical_history = MedicalHistory::where('patient_id', $request->patient_id)->FirstOrFail();
             $medical_history->vaccination_history_id = $vaccination_history->id;
             $medical_history->save();
 

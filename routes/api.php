@@ -17,7 +17,7 @@ use App\Http\Controllers\PerinatalBackgroundController;
 use App\Http\Controllers\PhysicianAppointmentController;
 use App\Http\Controllers\PhysicianProfileController;
 use App\Http\Controllers\PlanController;
-use App\Http\Controllers\PyschologicalBackgroundController;
+/* use App\Http\Controllers\PyschologicalBackgroundController; */
 use App\Http\Controllers\SubscriptionUserController;
 use App\Http\Controllers\TestJoseController;
 use App\Http\Controllers\VitalSignController;
@@ -153,8 +153,6 @@ Route::prefix('v1')->group(function () {
                 Route::delete('/diseases', 'destroy');
             });
 
-
-
             //DATOS FISCALES DEL MÉDICO
             Route::controller($this->physician . TaxDataController::class)->group(function () {
                 Route::post('tax-data', 'store');
@@ -168,7 +166,7 @@ Route::prefix('v1')->group(function () {
             Route::prefix('medical-history')->group(function () {
                 //Antecedentes ginecologicos - Corregir Carlos(Dinho)
                 Route::controller($this->physician . GynecologicalHistoryController::class)->group(function () {
-                    Route::post('/gynecological-history/{patient_id}', 'store');
+                    Route::post('/gynecological-history', 'store');
                     Route::get('/gynecological-history/patient/{patient_id}', 'show');
                     Route::put('/gynecological-history/patient/{patient_id}', 'update');
                 });
@@ -186,7 +184,7 @@ Route::prefix('v1')->group(function () {
 
                 // HISTORIAL DE VACUNACION
                 Route::controller($this->physician . VaccinationHistoryController::class)->group(function () {
-                    Route::post('vaccination_history/{patient_id}', 'store');
+                    Route::post('vaccination_history', 'store');
                     Route::get('vaccination_history/{medical_history_id}', 'show');
                 });
 

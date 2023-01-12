@@ -24,6 +24,7 @@ return new class() extends Migration
             $table->foreignId('postnatal_background_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('gynecological_history_id')->nullable()->constrained('obgyn_backgrounds')->onDelete('cascade');
             $table->foreignId('perinatal_background_id')->nullable()->constrained('perinatal_backgrounds')->onDelete('cascade');
+            $table->foreignId('pyschological_background_id')->nullable()->constrained('pyschological_backgrounds')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

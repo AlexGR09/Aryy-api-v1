@@ -35,8 +35,8 @@ class NonPathologicalBackgroundRequest extends FormRequest
             'alcoholim.type' => 'string',
             'other_substances' => 'string',
             'diet' => 'string',
-            'drug_active' => 'string',
-            'previous_medication' => 'string',
+            /* 'drug_active' => 'json',
+            'previous_medication' => 'json', */
         ];
     }
 }
