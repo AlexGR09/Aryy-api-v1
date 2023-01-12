@@ -16,7 +16,7 @@ return new class() extends Migration
             $table->json('certificates')->nullable();
             $table->json('social_networks')->nullable();
             $table->string('biography')->nullable();
-            $table->string('recipe_template')->nullable();
+            $table->string('prescription _template')->nullable();
             $table->string('languages')->nullable();
             $table->enum('is_verified', ['not_verified', 'in_verification', 'verified'])->default('not_verified');
             $table->string('physician_profile_photo')->nullable();

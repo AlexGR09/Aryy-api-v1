@@ -21,7 +21,10 @@ return new class() extends Migration
             $table->foreignId('non_pathological_background_id')->nullable()->constrained('non_pathological_backgrounds')->onDelete('cascade');
             $table->foreignId('hereditary_background_id')->nullable()->constrained('hereditary_backgrounds')->onDelete('cascade');
             $table->foreignId('vaccination_history_id')->nullable()->constrained('vaccination_histories')->onDelete('cascade');
-            $table->foreignId('perinatal_background_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('postnatal_background_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('gynecological_history_id')->nullable()->constrained('obgyn_backgrounds')->onDelete('cascade');
+            $table->foreignId('perinatal_background_id')->nullable()->constrained('perinatal_backgrounds')->onDelete('cascade');
+            $table->foreignId('pyschological_background_id')->nullable()->constrained('pyschological_backgrounds')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

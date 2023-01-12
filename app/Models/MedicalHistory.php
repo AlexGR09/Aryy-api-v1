@@ -25,6 +25,7 @@ class MedicalHistory extends Model
         'vaccination_history_id',
         'perinatal_background_id',
         'postnatal_backgroun_id',
+        'gynecological_history_id',
     ];
 
     public function patient()
@@ -67,11 +68,16 @@ class MedicalHistory extends Model
         return $this->belongsTo(PerinatalBackground::class);
     }
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
+    public function postnatal_background()
+    {
+        return $this->belongsTo(PostnatalBackground::class);
+    }
+
+    public function gynecologyBackground(){
+        return $this->belongsTo('App\Models\ObgynBackground');
+    }
+
+
     protected $casts = [
         'weight' => 'object',
         'height' => 'object',

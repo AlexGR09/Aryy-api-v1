@@ -21,7 +21,7 @@ return new class extends Migration
             $table->json('alcoholim')->nullable();
             $table->string('other_substances')->nullable();
             $table->string('diet')->nullable();
-            $table->string('current_medication')->nullable();
+            $table->json('current_medication')->nullable();
             $table->string('previous_medication')->nullable();
             $table->string('drug_active')->nullable();
             $table->timestamps();

@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('surveys', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('physician_id')->constrained('users');
-            $table->string('title');
-            $table->timestamps();
-        });
+        // Schema::create('questions', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('survey_id')->constrained();
+        //     $table->foreignId('physician_id')->constrained('users');
+        //     $table->string('title');
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('surveys');
+        // Schema::dropIfExists('questions');
     }
 };

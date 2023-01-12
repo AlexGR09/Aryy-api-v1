@@ -53,11 +53,9 @@ class HereditaryBackgroundController extends Controller
             ]);
 
             DB::commit();
-
             return (new HereditaryBackgroundResource($hereditary_background))->additional(['message' => 'Informacion guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

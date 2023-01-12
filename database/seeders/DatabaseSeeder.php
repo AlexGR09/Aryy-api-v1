@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DiseasesPhysicianSeeder::class);
         // $this->call(SearchProcedureSeeder::class);
         $this->call(AllergiesPatientSeeder::class);
+        $this->call(PostnatalBackgroundSeeder::class);
         $this->call(MedicalHistorySeeder::class);
         $this->call(HealthInsuranceSeeder::class);
         $this->call(OcupationPatientSeeder::class);
@@ -46,6 +47,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PlanSeeder::class);
         $this->call(BloodTypeSeeder::class);
         $this->call(MedicalAppointmentSeeder::class);
-        $this->call(SurveySeeder::class);
+        $this->call(PersonalizedQuestionnaireSeeder::class);
     }
 }

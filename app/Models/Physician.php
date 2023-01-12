@@ -18,8 +18,6 @@ class Physician extends Model
         'social_networks',
         'biography',
         'recipe_template',
-        'first_time_consultation',
-        'subsequent_consultation',
         'languages',
         'is_verified'
     ];
@@ -55,7 +53,7 @@ class Physician extends Model
     //RELACIÓN MUCHOS A MUCHOS CON EL MODELO MÉDICO-ESPECIALIDADES
     public function physician_specialty()
     {
-        return $this->hasMany(\App\Models\PhysicianSpecialty::class);
+        return $this->hasMany(PhysicianSpecialty::class);
     }
     // RELACIÓN UNO A MUCHOS CON LA TABLA MEDICAL APPOINTMENTS
     public function medical_appointments() 
@@ -63,15 +61,26 @@ class Physician extends Model
         return $this->hasMany(MedicalAppointment::class);
     }
 
-    // public function diseases()
-    // {
-    //     return $this->hasMany('App\Models\DiseasesPhysician');
-    // }
-
-    // public function medical_services()
-    // {
-    //     return $this->hasMany('App\Models\MedicalServicesPhysician');
-    // }
+    /// RELACIÓN MUCHOS A MUCHOS CON EL MODELO MEDICAL SERVICES
+    public function medical_services()
+    {
+        return $this->belongsToMany(MedicalService::class, 'medical_service_physician');
+    }
+    //RELACIÓN MUCHOS A MUCHOS CON EL MODELO MÉDICO-SERVICIOS
+    public function medical_service_physician()
+    {
+        return $this->hasMany(MedicalServicePhysician::class);
+    }
+    // RELACIÓN MUCHOS A MUCHOS CON EL MODELO DISEASES
+    public function diseases()
+    {
+        return $this->belongsToMany(Disease::class, 'disease_physician');
+    }
+    // UN MÉDICO TIENE MUCHOS CUESTIONARIOS
+    public function personalized_questionnaires()
+    {
+        return $this->hasMany(PersonalizedQuestionnaire::class);
+    }
 
     public function facilities()
     {
@@ -93,11 +102,6 @@ class Physician extends Model
         return $this->belongsToMany(MedicalService::class, 'medical_service_physician');
     }
 
-    public function diseases()
-    {
-        return $this->belongsToMany(Disease::class, 'disease_physician');
-    }
-    
     public function specialty()
     {
         return $this->belongsToMany(Specialty::class, 'physician_specialty');

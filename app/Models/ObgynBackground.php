@@ -22,10 +22,15 @@ class ObgynBackground extends Model
         'pregnancies',
         'cervical_cancer',
         'breast_cancer',
-        'sexuallly_active',
-        'family_plannings',
+        'sexually_active',
+        'family_planning',
         'hormone_replacement_therapy',
         'last_pap_smear',
         'last_mammography',
     ];
+
+    public function medical_history()
+    {
+        return $this->hasOne(\App\Models\MedicalHistory::class);
+    }
 }

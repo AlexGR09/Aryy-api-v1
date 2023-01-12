@@ -24,17 +24,16 @@ class StorePyschologicalBackgroundRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required',
-            'family_history' => 'required',
-            'disease_awareness' => 'required',
-            'areas_affected_by_the_disease' => 'required',
-            'family_support_group' => 'required',
-            'family_group_of_the_patient' => 'required',
-            'aspects_of_social_life' => 'required',
-            'aspects_of_working_life' => 'required',
-            'relationship_whit_authority' => 'required',
-            'inpulse_control' => 'required',
-            'frustration_management' => 'required',
+            'family_history' => 'string',
+            'disease_awareness' => 'string',
+            'areas_affected_by_the_disease' => 'string',
+            'family_support_group' => 'string',
+            'family_group_of_the_patient' => 'string',
+            'aspects_of_social_life' => 'string',
+            'aspects_of_working_life' => 'string',
+            'relationship_whit_authority' => 'string',
+            'inpulse_control' => 'string',
+            'frustration_management' => 'string',
         ];
     }
 }
