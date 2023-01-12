@@ -184,11 +184,23 @@ Route::prefix('v1')->group(function () {
                     Route::put('/psycological-background/{medical_history_id}', 'update');
                 });
 
+                // HISTORIAL DE VACUNACION
+                Route::controller($this->physician . VaccinationHistoryController::class)->group(function () {
+                    Route::post('vaccination_history/{patient_id}', 'store');
+                    Route::get('vaccination_history/{medical_history_id}', 'show');
+                });
+
                 // ANTECEDENTES POSTNATALES
                 Route::controller($this->physician . PostnatalBackgroundController::class)->group(function () {
                     Route::get('/{medical_history_id}/postnatal-background', 'show');
                     Route::post('/{medical_history_id}/postnatal-background', 'store');
                     Route::put('/{medical_history_id}/postnatal-background', 'update');
+                });
+
+                //VISUALIZAR LOS MEDICAMENTOS ACTIVOS Y MEDICAMENTOS ANTERIORES DE UN PACIENTE
+                Route::controller($this->physician . ViewMedicationsController::class)->group(function () {
+                    Route::get('/drugactive/{patient_id}', 'drugActive');
+                    Route::get('/previousmedication/{patient_id}', 'previousMedication');
                 });
             });
 
@@ -197,6 +209,11 @@ Route::prefix('v1')->group(function () {
                 Route::get('/personalized-questionnaire', 'index');
                 Route::get('/personalized-questionnaire/{personalized_questionnaire_id}', 'show');
                 Route::post('/personalized-questionnaire', 'store');
+            });
+
+            //EDITAR ESTADO DEL TRATAMIENTO
+            Route::controller($this->physician . StatusTreatmentController::class)->group(function () {
+                Route::put('status_medicine/{id}', 'update');
             });
         });
 
