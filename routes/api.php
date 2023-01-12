@@ -207,6 +207,7 @@ Route::prefix('v1')->group(function () {
                 Route::get('/personalized-questionnaire', 'index');
                 Route::get('/personalized-questionnaire/{personalized_questionnaire_id}', 'show');
                 Route::post('/personalized-questionnaire', 'store');
+                Route::put('/personalized-questionnaire/{personalized_questionnaire_id}', 'update');
             });
 
             //EDITAR ESTADO DEL TRATAMIENTO
