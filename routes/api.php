@@ -1,32 +1,36 @@
 <?php
 
-use App\Http\Controllers\AllergyController;
 use App\Http\Controllers\API\V1\Admin\PhysicianController;
+use App\Http\Controllers\API\V1\Patient\AllergyController;
+use App\Http\Controllers\API\V1\AppointmentController;
+use App\Http\Controllers\API\V1\Physician\AppointmentsDetailController;
+use App\Http\Controllers\API\V1\Patient\BasicInformationController;
 use App\Http\Controllers\API\V1\FacilityController;
+use App\Http\Controllers\API\V1\Physician\FacilityScheduleController;
+use App\Http\Controllers\API\V1\Physician\FullFacilityController;
 use App\Http\Controllers\API\V1\Patient\HereditaryBackgroundController;
+use App\Http\Controllers\API\V1\Patient\MedicalHistoryController;
 use App\Http\Controllers\API\V1\Patient\NonPathologicalBackgroundController;
 use App\Http\Controllers\API\V1\Patient\PathologicalBackgroudController;
+use App\Http\Controllers\API\V1\Patient\PaymentMethodController;
 use App\Http\Controllers\API\V1\Patient\VaccinationHistoryController;
+use App\Http\Controllers\API\V1\Patient\PerinatalBackgroundController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\Physician\PhysicianController as PhysicianPhysicianController;
+use App\Http\Controllers\API\V1\Physician\PhysicianAppointmentController;
+use App\Http\Controllers\API\V1\Physician\PhysicianProfileController;
+use App\Http\Controllers\API\V1\PlanController;
+use App\Http\Controllers\API\V1\PostnatalBackgroundController;
+use App\Http\Controllers\API\V1\PyschologicalBackgroundController;
 use App\Http\Controllers\API\V1\RoleController;
 use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
-use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\AppointmentsDetailController;
-use App\Http\Controllers\BasicInformationController;
-use App\Http\Controllers\FacilityScheduleController;
-use App\Http\Controllers\FullFacilityController;
-use App\Http\Controllers\PaymentMethodController;
-use App\Http\Controllers\PerinatalBackgroundController;
-use App\Http\Controllers\PhysicianAppointmentController;
-use App\Http\Controllers\PhysicianProfileController;
-use App\Http\Controllers\PlanController;
-use App\Http\Controllers\PostnatalBackgroundController;
-use App\Http\Controllers\PyschologicalBackgroundController;
-use App\Http\Controllers\SubscriptionUserController;
-use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\API\V1\Physician\SubscriptionUserController;
+use App\Http\Controllers\API\V1\SurveyController;
+use App\Http\Controllers\API\V1\Patient\VitalSignController;
+use App\Http\Controllers\API\V1\Physician\HereditaryBackgroundController as PhysicianHereditaryBackgroundController;
+use App\Http\Controllers\API\V1\Physician\NonPathologicalBackgroundController as PhysicianNonPathologicalBackgroundController;
+use App\Http\Controllers\API\V1\Physician\PathologicalBackgroundController;
 use App\Http\Controllers\TestJoseController;
-use App\Http\Controllers\VitalSignController;
 use Illuminate\Support\Facades\Route;
 
 /* RUTAS API VERSIÓN 1 */
@@ -321,18 +325,20 @@ Route::prefix('v1')->group(function () {
         Route::get('vital-signs/patient/{patient}', [VitalSignController::class, 'show']);
         Route::post('vital-signs/patient', [VitalSignController::class, 'store']);
         Route::put('vital-signs/{vitalSign}/patient', [VitalSignController::class, 'update']);
+
         Route::get('info/patient/{patient}', [VitalSignController::class, 'patientInfo']);
-        Route::get('allergies/patient/{patient}', [AllergyController::class, 'show']);
+        Route::get('allergies/patient/{patient}',[AllergyController::class, 'show']);
         Route::post('allergies/patient', [AllergyController::class, 'store']);
         Route::put('allergies/patient/{patient}', [AllergyController::class, 'update']);
 
-        Route::get('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'show']);
-        Route::post('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'store']);
-        Route::put('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'update']);
+        // Route::get('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'show']);
+        // Route::post('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'store']);
+        // Route::put('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'update']);
         
-        Route::put('basic-information/patient/{patient}', [BasicInformationController::class, 'show']);
+        Route::get('basic-information/patient/{patient}', [BasicInformationController::class, 'show']);
+        Route::post('basic-information', [MedicalHistoryController::class, 'store']);
+        Route::put('basic-information/patient/{patient}', [MedicalHistoryController::class, 'update']);
 
-        
 
     });
 
@@ -341,6 +347,18 @@ Route::prefix('v1')->group(function () {
         Route::post('pathological-background', [PathologicalBackgroudController::class, 'store']);
         Route::put('pathological-background/patient/{patient}', [PathologicalBackgroudController::class, 'update']);
         
+        Route::get('physician/pathological-background/patient/{patient}', [PathologicalBackgroundController::class, 'show']);
+        Route::post('physician/pathological-background', [PathologicalBackgroundController::class, 'store']);
+        Route::put('physician/pathological-background/patient/{patient}', [PathologicalBackgroundController::class, 'update']);
+
+        Route::get('physician/non-pathological-background/patient/{patient}', [PhysicianNonPathologicalBackgroundController::class, 'show']);
+        Route::post('physician/non-pathological-background', [PhysicianNonPathologicalBackgroundController::class, 'store']);
+        Route::put('physician/non-pathological-background/patient/{patient}', [PhysicianNonPathologicalBackgroundController::class, 'update']);
+
+        Route::get('physician/hereditary-background/patient/{patient}', [PhysicianHereditaryBackgroundController::class, 'show']);
+        Route::post('physician/hereditary-background', [PhysicianHereditaryBackgroundController::class, 'store']);
+        Route::put('physician/hereditary-background/patient/{patient}', [PhysicianHereditaryBackgroundController::class, 'update']);
+
         Route::get('non-pathological-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'show']);
         Route::post('non-pathological-background', [NonPathologicalBackgroundController::class, 'store']);
         Route::put('non-pathological-background/patient/{patient}', [NonPathologicalBackgroundController::class, 'update']);
