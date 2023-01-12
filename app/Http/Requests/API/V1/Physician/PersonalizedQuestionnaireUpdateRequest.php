@@ -4,7 +4,7 @@ namespace App\Http\Requests\API\V1\Physician;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PersonalizedQuestionnaireRequest extends FormRequest
+class PersonalizedQuestionnaireUpdateRequest extends FormRequest
 {
 
     public function authorize()
@@ -17,8 +17,10 @@ class PersonalizedQuestionnaireRequest extends FormRequest
         return [
             'title' => 'required|string|max:200',
             'questions' => 'required|array',
+            'questions.*.question_id' => 'present|nullable|distinct',
             'questions.*.title' => 'required|string',
             'questions.*.answers' => 'required|array',
+            'questions.*.answers.*.answer_id' => 'present|nullable|distinct',
             'questions.*.answers.*.title' => 'required|string',
         ];
     }
