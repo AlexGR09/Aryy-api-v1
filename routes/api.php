@@ -191,6 +191,11 @@ Route::prefix('v1')->group(function () {
                     Route::put('/{medical_history_id}/postnatal-background', 'update');
                 });
 
+                // CONSULTAS MÉDICAS (SÓLO VER)
+                Route::controller($this->physician . MedicalAppointmentController::class)->group(function () {
+                    Route::get('/{medical_history_id}/medical-appointments', 'index');
+                });
+
             });
 
             // CUESTIONARIOS PERSONALIZADOS
@@ -350,6 +355,7 @@ Route::prefix('v1')->group(function () {
         });
     });
     Route::prefix('medical-records')->group(function () {
+
         Route::get('vital-signs/patient/{patient}', [VitalSignController::class, 'show']);
         Route::post('vital-signs/patient', [VitalSignController::class, 'store']);
         Route::put('vital-signs/{vitalSign}/patient', [VitalSignController::class, 'update']);
@@ -363,6 +369,7 @@ Route::prefix('v1')->group(function () {
         Route::put('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'update']);
 
         Route::put('basic-information/patient/{patient}', [BasicInformationController::class, 'show']);
+
     });
     /* BÚSQUEDAS */
     // BUSQUEDA MÉDICO MOBILE

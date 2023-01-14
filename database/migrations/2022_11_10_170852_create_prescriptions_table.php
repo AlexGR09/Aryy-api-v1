@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('prescriptions', function (Blueprint $table) {
@@ -20,18 +16,13 @@ return new class extends Migration
             $table->string('diagnosis');
             $table->json('treatment');
             $table->string('medication_instructions');
-            $table->string('medical_examination');
-            $table->string('laboratory_order');
+            $table->string('medical_examination')->nullable();
+            $table->string('laboratory_order')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('prescriptions');

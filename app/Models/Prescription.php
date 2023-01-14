@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Prescription extends Model
 {
     use HasFactory, SoftDeletes;
+
     protected $fillable = [
         'symptom',
         'diagnosis',
@@ -18,13 +19,17 @@ class Prescription extends Model
         'laboratory_order',
     ];
 
-    public function medicalappointment()
+    protected $casts = [
+        'treatment' => 'array',
+    ];
+
+    public function vital_signs()
     {
-        return $this->belongsTo(\App\Models\MedicalAppointment::class);
+        return $this->belongsTo(VitalSing::class);
     }
 
-    public function vitalsigns()
+    public function  medicalappointment()
     {
-        return $this->hasOne(\App\Models\VitalSing::class);
+        return $this->hasOne(MedicalAppointment::class);
     }
 }
