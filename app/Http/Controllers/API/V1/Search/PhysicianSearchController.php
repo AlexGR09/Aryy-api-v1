@@ -44,11 +44,9 @@ class PhysicianSearchController extends Controller
             //basic info 
             $physician = $physicianQuery->get();
 
-
-            
             foreach ($physician as $key2 => $phy) {
                 $currentDay = \Carbon\Carbon::now();
-
+                
                 $addConsultationLength = true;
                 if ($currentDay->toDateTimeString() < $currentDay->copy()->setTime(9, 0, 0)->toDateTimeString()) {
                     $currentDay = $currentDay->copy()->setTime(9, 0, 0);
@@ -72,7 +70,7 @@ class PhysicianSearchController extends Controller
                             if ($availableDate->day == $currentDay->format('l')){
                                 $isAnAvailableDay = true;
                                 $scheduleKey = $key;
-                                break;
+                                break 2;
                             } 
                         }
                         if(!$isAnAvailableDay){
@@ -88,13 +86,15 @@ class PhysicianSearchController extends Controller
                     
                     $startHour = Carbon::parse($hours[0]);
                     $endHour = Carbon::parse($hours[1]);
-                    
-                    // return $key2;
+                    $startAppointmentDate = $currentDay->copy()->setTime($startHour->hour, $startHour->minute, 0)->toDateTimeString();
+                    $endAppointmentDate = $currentDay->copy()->setTime($endHour->hour, $endHour->minute, 0)->toDateTimeString();
+                    $restStartAppointmentDate = $currentDay->copy()->setTime($restStartHour->hour, $restStartHour->minute,0)->toDateTimeString();
+                    $restEndAppointmentDate = $currentDay->copy()->setTime($restEndtHour->hour, $restEndtHour->minute,0)->toDateTimeString();
                     $availableDate = $physician[$key2]
                         ->appointments()
-                        ->where('appointment_date', '>=', $currentDay->copy()->setTime($startHour->hour, $startHour->minute, 0))
-                        ->whereNotBetween('appointment_date', [ $currentDay->copy()->setTime($restStartHour->hour, $restStartHour->minute,0), $currentDay->copy()->setTime($restEndtHour->hour, $restEndtHour->minute,0)] )
-                        ->orWhere('appointment_date', '<=', $currentDay->copy()->setTime($endHour->hour, $endHour->minute, 0))
+                        ->where('appointment_date', '>=', $startAppointmentDate)
+                        ->where('appointment_date', '<=', $endAppointmentDate)
+                        ->whereNotBetween('appointment_date', [$restStartAppointmentDate , $restEndAppointmentDate] )
                         ->where(function ($query) use($currentDay, $addConsultationLength, $consultationLength){
                             $query->where('appointment_date', $currentDay);
                             if($addConsultationLength){
@@ -102,7 +102,7 @@ class PhysicianSearchController extends Controller
                             }
                         })
                         ->first();
-                    // return $availableDate;
+                        
                     if (is_null($availableDate)) {
 
                         $physician[$key2]->available_appointment = $currentDay->format('Y-m-d');
@@ -110,7 +110,9 @@ class PhysicianSearchController extends Controller
                         break;
                     }
                     // $currentDay->addDay();
+                    $iteration += 1;
                 }
+                
             }
             $physician = $physician->except(['appointments']);
 
