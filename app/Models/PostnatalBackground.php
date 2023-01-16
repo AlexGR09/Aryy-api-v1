@@ -11,7 +11,6 @@ class PostnatalBackground extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'id',
         'delivery_details',
         'baby_name',
         'baby_weight',

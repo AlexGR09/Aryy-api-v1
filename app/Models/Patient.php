@@ -65,6 +65,15 @@ class Patient extends Model
         return $this->hasMany(MedicalAppointment::class);
     }
 
+    public function vitalSign()
+    {
+        return $this->hasOne(VitalSign::class);
+    }
+    
+    public function medicalHistory()
+    {
+        return $this->hasOne(MedicalHistory::class);
+    }
     // public function health_insurance()
     // {
     //     return $this->belongsTo('App\Models\HealthInsurance');
