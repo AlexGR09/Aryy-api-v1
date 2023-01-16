@@ -26,6 +26,7 @@ class VitalSign extends Model
         'water',
         'muscle',
         'abdomen',
+        'patient_id',
     ];
     public function prescription()
     {

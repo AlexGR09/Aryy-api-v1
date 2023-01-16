@@ -65,18 +65,4 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Plan::class,'subscriptions', 'user_id', 'plan_id');
     }
-
-    public function vitalSign()
-    {
-        return $this->hasOne(VitalSign::class);
-    }
-    public function patient()
-    {
-        return $this->belongsTo(Patient::class);
-    }
-
-    public function medicalHistory()
-    {
-        return $this->belongsTo(User::class, 'patient_id', 'id');
-    }
 }
