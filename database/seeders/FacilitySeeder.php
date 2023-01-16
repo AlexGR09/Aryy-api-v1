@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\City;
 use App\Models\Facility;
 use Illuminate\Database\Seeder;
 
@@ -26,6 +27,8 @@ class FacilitySeeder extends Seeder
             'days' => json_encode($days),
             'hours' => '09:00 - 19:00',
         ];
+        //Tuxtla,Guadalajara
+        $cities = [146,701];
         $facilities = [];
         for ($i = 0; $i < 10; $i++) {
             $facility = Facility::create([
@@ -74,9 +77,8 @@ class FacilitySeeder extends Seeder
                         'wifi' => true,
                     ],
                 ],
-                'city_id' => 1,
+                'city_id' => \Arr::random($cities,1)[0],
             ]);
-            $facility->users()->attach(['user_id' => 3]);
         }
     }
 }
