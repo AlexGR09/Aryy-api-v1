@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('patient_id')->constrained();
             $table->tinyInteger('score');
             $table->timestamps();
         });

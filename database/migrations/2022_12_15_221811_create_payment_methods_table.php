@@ -18,7 +18,8 @@ return new class extends Migration
             $table->text('cc');
             $table->text('cc_date');
             $table->text('cc_cvv');
-            $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('profile_id');
+            $table->string('role');
             $table->timestamps();
         });
     }

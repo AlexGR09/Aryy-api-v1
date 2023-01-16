@@ -89,12 +89,12 @@ class Physician extends Model
 
     public function score()
     {
-        return $this->belongsTo(Score::class,'user_id','user_id');
+        return $this->belongsTo(Score::class,'physician_id','physician_id');
     }
 
     public function comments()
     {
-        return $this->hasMany(Comment::class,'user_id','user_id');
+        return $this->hasMany(Comment::class,'physician_id','id');
     }
     // RELACIÓN MUCHOS A MUCHOS CON EL MODELO ESPECIALIDADES
     public function medicalServices()
