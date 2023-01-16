@@ -191,9 +191,10 @@ Route::prefix('v1')->group(function () {
                     Route::put('/{medical_history_id}/postnatal-background', 'update');
                 });
 
-                // CONSULTAS MÉDICAS (SÓLO VER)
+                // CONSULTAS MÉDICAS Y RECETAS (SÓLO VER)
                 Route::controller($this->physician . MedicalAppointmentController::class)->group(function () {
                     Route::get('/{medical_history_id}/medical-appointments', 'index');
+                    Route::get('/{medical_history_id}/medical-appointments/{medical_appointment_id}', 'show');
                 });
 
             });

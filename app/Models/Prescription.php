@@ -23,6 +23,12 @@ class Prescription extends Model
         'treatment' => 'array',
     ];
 
+    protected $hidden = [ 
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     public function vital_signs()
     {
         return $this->belongsTo(VitalSing::class);

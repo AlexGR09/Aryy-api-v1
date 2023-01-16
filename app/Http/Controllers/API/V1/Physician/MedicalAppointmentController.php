@@ -23,9 +23,8 @@ class MedicalAppointmentController extends Controller
     public function index($medical_history_id)
     {
         try {
-            $patient_id = MedicalHistory::where('id', $medical_history_id)->value('id');
 
-            $medical_apopointment = MedicalAppointment::where('patient_id', $patient_id)
+            $medical_apopointment = MedicalAppointment::where('patient_id', $this->patient_id($medical_history_id))
                 ->where('physician_id', $this->physician->id)
                 ->get(); 
        
@@ -35,5 +34,27 @@ class MedicalAppointmentController extends Controller
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
+    }
+
+    public function show($medical_history_id, $medical_appointment_id)
+    {
+        try {
+
+            $medical_apopointment = MedicalAppointment::where('id', $medical_appointment_id)
+                ->where('physician_id', $this->physician->id)
+                ->where('patient_id', $this->patient_id($medical_history_id))
+                ->first(); 
+       
+            return (new MedicalAppointmentResource($medical_apopointment))
+                ->additional(['message' => 'Citas médicas.']);
+
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
+    }
+
+    public function patient_id($medical_history_id)
+    {
+        return MedicalHistory::where('id', $medical_history_id)->value('id');
     }
 }

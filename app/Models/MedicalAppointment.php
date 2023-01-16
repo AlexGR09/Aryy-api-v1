@@ -11,6 +11,7 @@ class MedicalAppointment extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'id',
         'appointment_date',
         'appointment_time',
         'appointment_date_end',
