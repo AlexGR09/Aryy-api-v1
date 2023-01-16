@@ -37,8 +37,7 @@ class ViewMedicationsController extends Controller
                 return response()->json(['Petición incorrecta']);
             }
 
-            $medicalhistory = MedicalHistory::where('patient_id', $id)->first();
-            
+            $medicalhistory = MedicalHistory::where('patient_id', $id)->first();    
             $drug_active  = NonPathologicalBackground::where('id', $medicalhistory->non_pathological_background_id)
                 ->first();
             

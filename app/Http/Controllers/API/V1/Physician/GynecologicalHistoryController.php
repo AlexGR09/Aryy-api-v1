@@ -97,10 +97,9 @@ class GynecologicalHistoryController extends Controller
         try {
             DB::beginTransaction();
             $medical_history = MedicalHistory::where('patient_id', $id)->first();
-            
+
             $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
                 ->where('physician_id', $this->physician->id)
-                ->where('status', 'assisted')
                 ->count();
             if ($medical_appointments < 1) {
                 return response()->json(['message' => 'Prohibido'], 403);

@@ -168,12 +168,14 @@ Route::prefix('v1')->group(function () {
                 //Antecedentes ginecologicos - Corregir Carlos(Dinho)
                 Route::controller($this->physician . GynecologicalHistoryController::class)->group(function () {
                     Route::post('/gynecological-history', 'store');
-                    Route::get('/gynecological-history/patient/{patient_id}', 'show');
-                    Route::put('/gynecological-history/patient/{patient_id}', 'update');
+                    Route::get('/gynecological-history/{medical_history_id}', 'show');
+                    Route::put('/gynecological-history/{medical_history_id}', 'update');
                 });
                 //Antecedentes perinatales-Corregir Carlos(Dinho)
                 Route::controller($this->physician .PerinatalBackgroundController::class)->group(function () {
                     Route::post('/perinatal-background', 'store');
+                    Route::post('/perinatal-background/{medical_history_id}', 'show');
+                    Route::post('/perinatal-background/{medical_history_id}', 'update');
                 });
 
                 //ANTECEDENTES PSYQUIATRICOS-Corregir Carlos(Dinho)
