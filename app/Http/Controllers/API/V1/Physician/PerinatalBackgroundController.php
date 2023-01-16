@@ -32,16 +32,6 @@ class PerinatalBackgroundController extends Controller
 
     public function store(Request $request)
     {
-        //consulta la fecha actual
-        /* $todaydatetime = date('Y-m-d');
-
-        $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)
-            ->where('physician_id', $this->physician->id)
-            ->first();
-        //se compara la fecha actual con la fecha de la cita
-        if ($medicalAppointment->appointment_date != $todaydatetime) {
-            return "Petición incorrecta";
-        } */
         try {
             DB::beginTransaction();
             $medicalHistory = MedicalHistory::where('patient_id', $request->patient_id)->FirstOrFail();
@@ -80,7 +70,7 @@ class PerinatalBackgroundController extends Controller
             }
             $perinatalBackground  = PerinatalBackground::where('id', $medical_history->perinatal_background_id)
                 ->first();
-            return (new PerinatalBackgroundResource($perinatalBackground ))->additional(['message' => 'Informacion encontrada.']);
+            return (new PerinatalBackgroundResource($perinatalBackground))->additional(['message' => 'Informacion encontrada.']);
         } catch (\Throwable $th) {
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
         }
