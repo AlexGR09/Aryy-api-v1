@@ -1,28 +1,29 @@
 <?php
 
-use App\Http\Controllers\AllergyController;
 use App\Http\Controllers\API\V1\Admin\PhysicianController;
+use App\Http\Controllers\API\V1\Patient\AllergyController;
+use App\Http\Controllers\API\V1\AppointmentController;
+use App\Http\Controllers\API\V1\Physician\AppointmentsDetailController;
+use App\Http\Controllers\API\V1\Patient\BasicInformationController;
 use App\Http\Controllers\API\V1\FacilityController;
+use App\Http\Controllers\API\V1\Physician\FacilityScheduleController;
+use App\Http\Controllers\API\V1\Physician\FullFacilityController;
+use App\Http\Controllers\API\V1\Patient\PaymentMethodController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\Physician\PhysicianController as PhysicianPhysicianController;
+use App\Http\Controllers\API\V1\Physician\PhysicianAppointmentController;
+use App\Http\Controllers\API\V1\Physician\PhysicianProfileController;
+use App\Http\Controllers\API\V1\PlanController;
 use App\Http\Controllers\API\V1\RoleController;
 use App\Http\Controllers\API\V1\Search\PhysicianSearchController;
-use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\AppointmentsDetailController;
-use App\Http\Controllers\BasicInformationController;
-use App\Http\Controllers\FacilityScheduleController;
-use App\Http\Controllers\FullFacilityController;
-use App\Http\Controllers\PaymentMethodController;
-/* use App\Http\Controllers\PerinatalBackgroundController; */
-use App\Http\Controllers\PhysicianAppointmentController;
-use App\Http\Controllers\PhysicianProfileController;
-use App\Http\Controllers\PlanController;
-/* use App\Http\Controllers\PyschologicalBackgroundController; */
-use App\Http\Controllers\SubscriptionUserController;
+use App\Http\Controllers\API\V1\Physician\SubscriptionUserController;
+use App\Http\Controllers\API\V1\SurveyController;
+use App\Http\Controllers\API\V1\Patient\VitalSignController;
+use App\Http\Controllers\API\V1\Physician\HereditaryBackgroundController as PhysicianHereditaryBackgroundController;
+use App\Http\Controllers\API\V1\Physician\NonPathologicalBackgroundController as PhysicianNonPathologicalBackgroundController;
+use App\Http\Controllers\API\V1\Physician\PathologicalBackgroundController;
 use App\Http\Controllers\TestJoseController;
-use App\Http\Controllers\VitalSignController;
 use Illuminate\Support\Facades\Route;
-use PHPUnit\TextUI\XmlConfiguration\Group;
 
 /* RUTAS API VERSIÓN 1 */
 
@@ -171,8 +172,8 @@ Route::prefix('v1')->group(function () {
                     Route::put('/gynecological-history/patient/{patient_id}', 'update');
                 });
                 //Antecedentes perinatales-Corregir Carlos(Dinho)
-                Route::controller($this->physician . PerinatalBackgroundController::class)->group(function () {
-                    Route::post('/perinatal-background', 'store');
+                Route::controller($this->physician .PerinaltalBackgroundController::class)->group(function () {
+                    Route::post('/perinatal-background/{patient_id}', 'store');
                 });
 
                 //ANTECEDENTES PSYQUIATRICOS-Corregir Carlos(Dinho)
@@ -299,9 +300,7 @@ Route::prefix('v1')->group(function () {
                 });
 
                 //rutas jorge antecedentes ginecologicos
-                /* Route::get('perinatal-background/patient/{patient}', [PerinatalBackgroundController::class, 'show']);
-                Route::post('perinatal-background', [PerinatalBackgroundController::class, 'store']);
-                Route::put('perinatal-background/patient/{patient}', [PerinatalBackgroundController::class, 'update']); */
+
             });
         });
         /* RUTAS ADMINISTRATIVAS */
@@ -365,20 +364,34 @@ Route::prefix('v1')->group(function () {
         Route::get('vital-signs/patient/{patient}', [VitalSignController::class, 'show']);
         Route::post('vital-signs/patient', [VitalSignController::class, 'store']);
         Route::put('vital-signs/{vitalSign}/patient', [VitalSignController::class, 'update']);
+
         Route::get('info/patient/{patient}', [VitalSignController::class, 'patientInfo']);
-        Route::get('allergies/patient/{patient}', [AllergyController::class, 'show']);
+        Route::get('allergies/patient/{patient}',[AllergyController::class, 'show']);
         Route::post('allergies/patient', [AllergyController::class, 'store']);
         Route::put('allergies/patient/{patient}', [AllergyController::class, 'update']);
+        
+        Route::get('basic-information/vital-signs/patient/{patient}', [BasicInformationController::class, 'show']);
+        Route::post('basic-information/vital-signs', [BasicInformationController::class, 'store']);
+        Route::put('basic-information/vital-signs/patient/{patient}', [BasicInformationController::class, 'update']);
+    });
 
-        Route::get('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'show']);
-        Route::post('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'store']);
-        Route::put('allergies/patient/{patient}', [PostnatalBackgroundController::class, 'update']);
+    Route::prefix('medical-history')->group(function(){        
+        Route::get('physician/pathological-background/patient/{patient}', [PathologicalBackgroundController::class, 'show']);
+        Route::post('physician/pathological-background', [PathologicalBackgroundController::class, 'store']);
+        Route::put('physician/pathological-background/patient/{patient}', [PathologicalBackgroundController::class, 'update']);
 
-        Route::put('basic-information/patient/{patient}', [BasicInformationController::class, 'show']);
+        Route::get('physician/non-pathological-background/patient/{patient}', [PhysicianNonPathologicalBackgroundController::class, 'show']);
+        Route::post('physician/non-pathological-background', [PhysicianNonPathologicalBackgroundController::class, 'store']);
+        Route::put('physician/non-pathological-background/patient/{patient}', [PhysicianNonPathologicalBackgroundController::class, 'update']);
+
+        Route::get('physician/hereditary-background/patient/{patient}', [PhysicianHereditaryBackgroundController::class, 'show']);
+        Route::post('physician/hereditary-background', [PhysicianHereditaryBackgroundController::class, 'store']);
+        Route::put('physician/hereditary-background/patient/{patient}', [PhysicianHereditaryBackgroundController::class, 'update']);
+
+        Route::post('survey', [SurveyController::class, 'store']);
     });
     /* BÚSQUEDAS */
     // BUSQUEDA MÉDICO MOBILE
-    // Route::get('/search', [$this->search . SearchController::class, 'index']);
     // BUSQUEDA DEFINIDA DE MÉDICO
     Route::get('/search', [PhysicianSearchController::class, 'index']);
 });

@@ -14,8 +14,8 @@ class PhysicianSearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'search' => 'nullable|string',
-            'city' => 'nullable',
+            'search' => 'required',
+            'city' => 'required',
         ];
     }
 
