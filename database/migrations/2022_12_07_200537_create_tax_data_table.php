@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tax_data', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('physician_id')->constrained('physicians')->onDelete('cascade');
             $table->string('rfc')->nullable();
             $table->string('taxpayer_name')->nullable();
             $table->string('tax_regime')->nullable();

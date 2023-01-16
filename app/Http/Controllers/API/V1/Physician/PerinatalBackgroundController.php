@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1\Physician;
 use App\Http\Controllers\Controller;
 use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
+use App\Models\PerinatalBackground;
 use App\Models\Physician;
 use Illuminate\Http\Request;
 
@@ -29,15 +30,28 @@ class PerinatalBackgroundController extends Controller
 
     public function store(Request $request)
     {
-        //CHECAR COMO MANTENER LA FECHA ACTUAL
+        //consulta la fecha actual
         $todaydatetime = date('Y-m-d');
-        $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)->firstOrFail();
-        // return $medicalAppointment->ppointment_date;
+
+
+        $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)
+            ->where('physician_id', $this->physician->id)
+            ->first();
+        //se compara la fecha actual con la fecha de la cita
         if ($medicalAppointment->appointment_date != $todaydatetime) {
-            return "no puedes iniciar la cita";
+            return "No puedes agregar ";
         }
         $medicalHistory = MedicalHistory::where('patient_id', $medicalAppointment->patient_id)->first();
-        return $medicalHistory;
+        
+        $perinatalBackground = PerinatalBackground::create([
+            'last_menstrual_cycle'=>$request->last_menstrual_cycle,
+            'cycle_time'=>$request->cycle_time,
+            'contraceptive_method_use'=>$request->contraceptive_method_use,
+            'assisted_conception'=>$request->assisted_conception,
+            'final_ppf'=>$request->final_ppf,
+        ]);
+        $medicalHistory->perinatal_background_id = $perinatalBackground->id;
+        $medicalHistory->save();
     }
 
     public function show($id)

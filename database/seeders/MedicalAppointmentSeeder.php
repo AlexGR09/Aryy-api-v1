@@ -20,6 +20,7 @@ class MedicalAppointmentSeeder extends Seeder
                 'physician_id' => 10,
                 'patient_id' => 1,
                 'facility_id' => 10,
+                'status' => 'scheduled',
             ],
             [
                 'appointment_date' => '2020-12-22',
@@ -29,6 +30,7 @@ class MedicalAppointmentSeeder extends Seeder
                 'physician_id' => 10,
                 'patient_id' => 2,
                 'facility_id' => 10,
+                'status' => 'scheduled',
             ],
             [
                 'appointment_date' => '2023-01-22',
@@ -38,6 +40,7 @@ class MedicalAppointmentSeeder extends Seeder
                 'physician_id' => 10,
                 'patient_id' => 3,
                 'facility_id' => 10,
+                'status' => 'scheduled',
             ],
             [
                 'appointment_date' => '2022-10-22',
@@ -47,6 +50,7 @@ class MedicalAppointmentSeeder extends Seeder
                 'physician_id' => 10,
                 'patient_id' => 4,
                 'facility_id' => 10,
+                'status' => 'scheduled',
             ],
             [
                 'appointment_date'=>'2022-12-02',
@@ -56,6 +60,7 @@ class MedicalAppointmentSeeder extends Seeder
                 'physician_id'=>10,
                 'patient_id'=>4,
                 'facility_id' => 10,
+                'status' => 'scheduled',
             ],
             [
                 'appointment_date'=>'2022-10-05',
@@ -65,6 +70,7 @@ class MedicalAppointmentSeeder extends Seeder
                 'physician_id'=>10,
                 'patient_id'=>4,
                 'facility_id' => 10,
+                'status' => 'scheduled',
             ],
             [
                 'appointment_date'=>'2022-07-02',
@@ -74,6 +80,7 @@ class MedicalAppointmentSeeder extends Seeder
                 'physician_id'=>10,
                 'patient_id'=>4,
                 'facility_id' => 10,
+                'status' => 'scheduled',
             ],
             [
                 'appointment_date'=>'2023-10-01',
@@ -83,6 +90,7 @@ class MedicalAppointmentSeeder extends Seeder
                 'physician_id'=>10,
                 'patient_id'=>4,
                 'facility_id' => 10,
+                'status' => 'scheduled',
             ],
             [
                 'appointment_date'=>'2023-10-22',
@@ -92,6 +100,7 @@ class MedicalAppointmentSeeder extends Seeder
                 'physician_id'=>10,
                 'patient_id'=>4,
                 'facility_id' => 10,
+                'status' => 'scheduled',
             ],
             [
                 'appointment_date'=>'2022-12-28',
@@ -101,6 +110,7 @@ class MedicalAppointmentSeeder extends Seeder
                 'physician_id'=>10,
                 'patient_id'=>4,
                 'facility_id' => 10,
+                'status' => 'scheduled',
             ]
         ]);
     }

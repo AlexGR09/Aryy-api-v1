@@ -172,8 +172,8 @@ Route::prefix('v1')->group(function () {
                     Route::put('/gynecological-history/patient/{patient_id}', 'update');
                 });
                 //Antecedentes perinatales-Corregir Carlos(Dinho)
-                Route::controller($this->physician .PerinaltalBackgroundController::class)->group(function () {
-                    Route::post('/perinatal-background/{patient_id}', 'store');
+                Route::controller($this->physician .PerinatalBackgroundController::class)->group(function () {
+                    Route::post('/perinatal-background', 'store');
                 });
 
                 //ANTECEDENTES PSYQUIATRICOS-Corregir Carlos(Dinho)

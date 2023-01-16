@@ -4,7 +4,7 @@ namespace App\Http\Resources\API\V1\Physician;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PerinatanlBackgroundResource extends JsonResource
+class PerinatalBackgroundResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

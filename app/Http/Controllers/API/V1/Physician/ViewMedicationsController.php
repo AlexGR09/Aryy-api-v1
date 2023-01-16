@@ -32,8 +32,6 @@ class ViewMedicationsController extends Controller
         try {
             $cita = MedicalAppointment::where('patient_id', $id)
                 ->where('physician_id', $this->physician->id)
-                ->where('status', 'scheduled')
-                ->orWhere('status', 'assisted')
                 ->count();
             if ($cita < 1) {
                 return response()->json(['Petición incorrecta']);
@@ -55,8 +53,6 @@ class ViewMedicationsController extends Controller
         try {
             $cita = MedicalAppointment::where('patient_id', $id)
                 ->where('physician_id', $this->physician->id)
-                ->where('status', 'scheduled')
-                ->orWhere('status', 'assisted')
                 ->count();
 
             if ($cita < 1) {
