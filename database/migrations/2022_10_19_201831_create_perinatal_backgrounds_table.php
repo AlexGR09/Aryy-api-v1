@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('cycle_time')->nullable();
             $table->string('contraceptive_method_use')->nullable();
             $table->string('assisted_conception')->nullable();
-            $table->string('final_ppf')->nullable();
+            $table->date('final_ppf')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

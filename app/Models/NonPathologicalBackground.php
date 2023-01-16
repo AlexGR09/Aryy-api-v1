@@ -36,7 +36,5 @@ class NonPathologicalBackground extends Model
         'rest_time' => 'object',
         'smoking' => 'object',
         'alcoholim' => 'object',
-        'drug_active' => 'object',
-        'previous_medication' => 'object',
     ];
 }

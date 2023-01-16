@@ -73,17 +73,17 @@ class GynecologicalHistoryController extends Controller
         }
     }
 
-    public function show($id)
+    public function show($medical_history_id)
     {
         try {
-            $medical_appointments = MedicalAppointment::where('patient_id', $id)
+            $medical_history = MedicalHistory::where('id', $medical_history_id)->firstOrFail();
+            $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
                 ->where('physician_id', $this->physician->id)
                 ->count();
             if ($medical_appointments < 1) {
                 return response()->json(['message' => 'Prohibido'], 403);
             }
-            $medicalhistory = MedicalHistory::where('patient_id', $id)->first();
-            $gynecologicalHistory  = ObgynBackground::where('id', $medicalhistory->gynecological_history_id)
+            $gynecologicalHistory  = ObgynBackground::where('id', $medical_history->gynecological_history_id)
                 ->first();
             return (new GynecologicalHistoryResource($gynecologicalHistory))->additional(['message' => 'Informacion encontrada.']);
         } catch (\Throwable $th) {
@@ -92,11 +92,11 @@ class GynecologicalHistoryController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $medical_history_id)
     {
         try {
             DB::beginTransaction();
-            $medical_history = MedicalHistory::where('patient_id', $id)->first();
+            $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
 
             $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
                 ->where('physician_id', $this->physician->id)

@@ -174,8 +174,8 @@ Route::prefix('v1')->group(function () {
                 //Antecedentes perinatales-Corregir Carlos(Dinho)
                 Route::controller($this->physician .PerinatalBackgroundController::class)->group(function () {
                     Route::post('/perinatal-background', 'store');
-                    Route::post('/perinatal-background/{medical_history_id}', 'show');
-                    Route::post('/perinatal-background/{medical_history_id}', 'update');
+                    Route::get('/perinatal-background/{medical_history_id}', 'show');
+                    Route::put('/perinatal-background/{medical_history_id}', 'update');
                 });
 
                 //ANTECEDENTES PSYQUIATRICOS-Corregir Carlos(Dinho)
@@ -215,7 +215,7 @@ Route::prefix('v1')->group(function () {
 
             //EDITAR ESTADO DEL TRATAMIENTO
             Route::controller($this->physician . StatusTreatmentController::class)->group(function () {
-                Route::put('status_medicine/{id}', 'update');
+                Route::put('status_medicine/{medical_history_id}', 'update');
             });
         });
 

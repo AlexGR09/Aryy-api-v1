@@ -68,12 +68,13 @@ class VaccinationHistoryController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $medical_history_id)
     {
         try {
             DB::beginTransaction();
-            $vaccination_history = VaccinationHistory::where('id', $id)->firstOrFail();
-            $medical_appointments = MedicalAppointment::where('patient_id', $vaccination_history->patient_id)
+            $medicalHistory = MedicalHistory::where('id', $medical_history_id)->firstOrFail();
+            $vaccination_history = VaccinationHistory::where('id', $medicalHistory->vaccination_history_id)->firstOrFail();
+            $medical_appointments = MedicalAppointment::where('patient_id', $$medicalHistory->patient_id)
                 ->where('physician_id', $this->physician->id)
                 ->count();
             if ($medical_appointments < 1) {

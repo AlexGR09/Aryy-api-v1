@@ -39,18 +39,17 @@ class StatusTreatmentController extends Controller
         //
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $medical_history_id)
     {
         try {
         DB::beginTransaction();
-        $cita = MedicalAppointment::where('patient_id', $id)
+        $medicalHistory = MedicalHistory::where('id', $medical_history_id)->first();
+        $cita = MedicalAppointment::where('patient_id', $medicalHistory->patient_id)
             ->where('physician_id', $this->physician->id)
             ->count();
         if ($cita < 1) {
             return response()->json(['Petición incorrecta']);
         }
-        $medicalHistory = MedicalHistory::where('patient_id', $id)
-            ->first();
         $drug_active  = NonPathologicalBackground::where('id', $medicalHistory->non_pathological_background_id)
             ->first();
         if ($drug_active->previous_medication == NULL) {
