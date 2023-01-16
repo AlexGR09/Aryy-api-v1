@@ -12,7 +12,7 @@ use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PathologicalBackgroudController extends Controller
+class PathologicalBackgroundController extends Controller
 {
     public function __construct()
     {

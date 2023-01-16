@@ -13,7 +13,7 @@ use App\Http\Controllers\BasicInformationController;
 use App\Http\Controllers\FacilityScheduleController;
 use App\Http\Controllers\FullFacilityController;
 use App\Http\Controllers\PaymentMethodController;
-use App\Http\Controllers\PerinatalBackgroundController;
+/* use App\Http\Controllers\PerinatalBackgroundController; */
 use App\Http\Controllers\PhysicianAppointmentController;
 use App\Http\Controllers\PhysicianProfileController;
 use App\Http\Controllers\PlanController;
@@ -172,7 +172,7 @@ Route::prefix('v1')->group(function () {
                 });
                 //Antecedentes perinatales-Corregir Carlos(Dinho)
                 Route::controller($this->physician . PerinatalBackgroundController::class)->group(function () {
-                    Route::post('/perinatal-background/{patient_id}', 'store');
+                    Route::post('/perinatal-background', 'store');
                 });
 
                 //ANTECEDENTES PSYQUIATRICOS-Corregir Carlos(Dinho)
@@ -274,7 +274,7 @@ Route::prefix('v1')->group(function () {
                     Route::get('/blood-type', 'blood_type');
                 });
                 //Antecedentes patologicos
-                Route::controller($this->patient . PathologicalBackgroudController::class)->group(function () {
+                Route::controller($this->patient . PathologicalBackgroundController::class)->group(function () {
                     Route::post('/pathological-background', 'store');
                     Route::get('/pathological-background/{patient_id}', 'show');
                     Route::put('/pathological-background/{patient_id}', 'update');
