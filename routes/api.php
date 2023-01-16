@@ -394,6 +394,20 @@ Route::prefix('v1')->group(function () {
     // BUSQUEDA MÉDICO MOBILE
     // BUSQUEDA DEFINIDA DE MÉDICO
     Route::get('/search', [PhysicianSearchController::class, 'index']);
+    Route::get('build-id', function()
+    {
+        $path = base_path('.git/');
+
+        if (! file_exists($path)) {
+            return null;
+        }
+    
+        $head = trim(substr(file_get_contents($path . 'HEAD'), 4));
+    
+        $hash = trim(file_get_contents(sprintf($path . $head)));
+    
+        return $hash;
+    });
 });
 
 
