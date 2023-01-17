@@ -18,8 +18,8 @@ class MedicalHistorySeeder extends Seeder
             'campo 4' => 'valor 4',
         ];
 
-        // DB::table('medical_histories')->insert([
-        //     [
+         DB::table('medical_histories')->insert([
+             [
 
                 'patient_id' => 1,
                 'allergy_patient_id' => 1,

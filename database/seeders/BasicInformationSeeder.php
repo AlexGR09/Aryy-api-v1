@@ -125,7 +125,7 @@ class BasicInformationSeeder extends Seeder
                 'cycle_time' => '2022-12-12',
                 'contraceptive_method_use' => 'no',
                 'assisted_conception' => 'no',
-                'final_ppf' => 'no',
+                'final_ppf' => '2022-02-10',
             ]);
             $pyschologicalBackground = PyschologicalBackground::create([
                 'family_history' => 'good',

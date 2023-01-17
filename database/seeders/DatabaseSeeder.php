@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AllergiesPatientSeeder::class);
         $this->call(PostnatalBackgroundSeeder::class);
         $this->call(NonPathologicalBackgroundSeeder::class);
-        $this->call(MedicalHistorySeeder::class);
+        //$this->call(MedicalHistorySeeder::class);
         $this->call(HealthInsuranceSeeder::class);
         $this->call(OcupationPatientSeeder::class);
         $this->call(LanguageSeeder::class);
