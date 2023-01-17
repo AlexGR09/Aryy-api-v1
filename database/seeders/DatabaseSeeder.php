@@ -49,5 +49,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BloodTypeSeeder::class);
         $this->call(MedicalAppointmentSeeder::class);
         $this->call(PersonalizedQuestionnaireSeeder::class);
+        $this->call(BasicInformationSeeder::class);
     }
 }
