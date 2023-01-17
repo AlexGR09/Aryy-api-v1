@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\V1\Physician\PerinatalBackgroundRequest;
 use App\Http\Resources\API\V1\Physician\PerinatalBackgroundResource;
 use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
@@ -30,7 +31,7 @@ class PerinatalBackgroundController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(PerinatalBackgroundRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -86,7 +87,7 @@ class PerinatalBackgroundController extends Controller
         }
     }
 
-    public function update(Request $request, $medical_history_id)
+    public function update(PerinatalBackgroundRequest $request, $medical_history_id)
     {
         try {
             DB::beginTransaction();

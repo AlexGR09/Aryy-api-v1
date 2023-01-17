@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\V1\Physician\GynecologicalHistoryRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\API\V1\Physician\GynecologicalHistoryResource;
 use App\Models\MedicalAppointment;
@@ -32,7 +33,7 @@ class GynecologicalHistoryController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(GynecologicalHistoryRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -101,7 +102,7 @@ class GynecologicalHistoryController extends Controller
         }
     }
 
-    public function update(Request $request, $medical_history_id)
+    public function update(GynecologicalHistoryRequest $request, $medical_history_id)
     {
         try {
             DB::beginTransaction();

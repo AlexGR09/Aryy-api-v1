@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\V1\Physician\VaccinationHistoryRequest;
 use App\Http\Resources\API\V1\Patient\VaccinationHistoryResource;
 use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
@@ -30,7 +31,7 @@ class VaccinationHistoryController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(VaccinationHistoryRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -83,7 +84,7 @@ class VaccinationHistoryController extends Controller
         }
     }
 
-    public function update(Request $request, $medical_history_id)
+    public function update(VaccinationHistoryRequest $request, $medical_history_id)
     {
         try {
             DB::beginTransaction();
