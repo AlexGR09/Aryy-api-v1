@@ -53,19 +53,19 @@ class StatusTreatmentController extends Controller
         $drug_active  = NonPathologicalBackground::where('id', $medicalHistory->non_pathological_background_id)
             ->first();
         if ($drug_active->previous_medication == NULL) {
-            $drug_active->previous_medication = $request->drug_active;
+            $drug_active->previous_medication = $drug_active->drug_active;
             $drug_active->drug_active = NULL;
             $drug_active->save();
             return response()->json(["Trataniento Completado", $request->drug_active]);
         }
-        $new_medicine = $drug_active->previous_medication . ',' . $request->drug_active;
+        $new_medicine = $drug_active->previous_medication . ',' . $drug_active->drug_active;
         $drug_active->previous_medication = $new_medicine;
         $drug_active->drug_active = NULL;
         $drug_active->save();
 
         DB::commit();
         //return (new ViewMedicationsResource($drug_active));
-        return response()->json(["Trataniento Completado", $request->drug_active]);
+        return response()->json(["Trataniento Completado"]);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
