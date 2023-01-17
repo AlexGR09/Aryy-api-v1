@@ -34,6 +34,21 @@ class VaccinationHistoryController extends Controller
     {
         try {
             DB::beginTransaction();
+            /* $medicalappointment = MedicalAppointment::where('patient_id', $request->patient_id)
+                ->where('physician_id', $this->physician->id)
+                ->count();
+            if ($medicalappointment < 1) {
+                return response()->json(['Petición incorrecta']);
+            } */
+            $todaydatetime = date('Y-m-d');
+            //return MedicalAppointment::where('patient_id',$request->patient_id)->firstOrFail();
+            $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)
+                ->where('physician_id', $this->physician->id)
+                ->first();
+            //se compara la fecha actual con la fecha de la cita
+            if ($medicalAppointment->appointment_date != $todaydatetime) {
+                return "Petición incorrecta";
+            }
             $vaccination_history = VaccinationHistory::create([
                 'vaccine' => $request->vaccine,
                 'dose' => $request->dose,

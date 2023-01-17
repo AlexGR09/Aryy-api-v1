@@ -187,8 +187,8 @@ Route::prefix('v1')->group(function () {
 
                 // HISTORIAL DE VACUNACION
                 Route::controller($this->physician . VaccinationHistoryController::class)->group(function () {
-                    Route::post('vaccination_history', 'store');
-                    Route::get('vaccination_history/{medical_history_id}', 'show');
+                    Route::post('vaccination-history', 'store');
+                    Route::get('vaccination-history/{medical_history_id}', 'show');
                 });
 
                 // ANTECEDENTES POSTNATALES

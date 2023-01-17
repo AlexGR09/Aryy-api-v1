@@ -35,11 +35,20 @@ class PyschologicalBackgroundController extends Controller
     {
         try {
             DB::beginTransaction();
-            $medicalappointment = MedicalAppointment::where('patient_id', $request->patient_id)
+            /* $medicalappointment = MedicalAppointment::where('patient_id', $request->patient_id)
                 ->where('physician_id', $this->physician->id)
                 ->count();
             if ($medicalappointment < 1) {
                 return response()->json(['Petición incorrecta']);
+            } */
+            $todaydatetime = date('Y-m-d');
+
+            $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)
+                ->where('physician_id', $this->physician->id)
+                ->first();
+            //se compara la fecha actual con la fecha de la cita
+            if ($medicalAppointment->appointment_date != $todaydatetime) {
+                return "Petición incorrecta";
             }
             $medicalHistory = MedicalHistory::where('patient_id', $request->patient_id)->firstOrFail();
             $pyschological = $medicalHistory->pyschologicalbackground()->create($request->validated());
@@ -65,7 +74,7 @@ class PyschologicalBackgroundController extends Controller
             if ($medical_appointments < 1) {
                 return response()->json(['message' => 'Prohibido'], 403);
             }
-            $pyschological = PyschologicalBackground::where('id',$medicalHistory->pyschological_background_id)->first();
+            $pyschological = PyschologicalBackground::where('id', $medicalHistory->pyschological_background_id)->first();
             DB::commit();
             return (new PyschologicalBackgroundResource($pyschological))->additional(['message' => 'Registro encontrado con éxito.']);
         } catch (\Throwable $th) {
@@ -74,7 +83,7 @@ class PyschologicalBackgroundController extends Controller
         }
     }
 
-    public function update(PyschologicalBackgroundRequest $request,$medical_history_id)
+    public function update(PyschologicalBackgroundRequest $request, $medical_history_id)
     {
         try {
             DB::beginTransaction();
@@ -86,18 +95,18 @@ class PyschologicalBackgroundController extends Controller
             if ($medical_appointments < 1) {
                 return response()->json(['Petición incorrecta']);
             }
-             $pychologicalBackground = PyschologicalBackground::where('id',$medicalHistory->pyschological_background_id)->first();
-             $pychologicalBackground->family_history = $request->family_history;
-             $pychologicalBackground->disease_awareness = $request->disease_awareness; 
-             $pychologicalBackground->areas_affected_by_the_disease = $request->areas_affected_by_the_disease; 
-             $pychologicalBackground->family_support_group = $request->family_support_group; 
-             $pychologicalBackground->family_group_of_the_patient = $request->family_group_of_the_patient; 
-             $pychologicalBackground->aspects_of_social_life = $request->aspects_of_social_life; 
-             $pychologicalBackground->aspects_of_working_life = $request->aspects_of_working_life; 
-             $pychologicalBackground->relationship_whit_authority = $request->relationship_whit_authority;      
-             $pychologicalBackground->inpulse_control = $request->inpulse_control; 
-             $pychologicalBackground->frustration_management = $request->frustration_management; 
-             $pychologicalBackground ->save();
+            $pychologicalBackground = PyschologicalBackground::where('id', $medicalHistory->pyschological_background_id)->first();
+            $pychologicalBackground->family_history = $request->family_history;
+            $pychologicalBackground->disease_awareness = $request->disease_awareness;
+            $pychologicalBackground->areas_affected_by_the_disease = $request->areas_affected_by_the_disease;
+            $pychologicalBackground->family_support_group = $request->family_support_group;
+            $pychologicalBackground->family_group_of_the_patient = $request->family_group_of_the_patient;
+            $pychologicalBackground->aspects_of_social_life = $request->aspects_of_social_life;
+            $pychologicalBackground->aspects_of_working_life = $request->aspects_of_working_life;
+            $pychologicalBackground->relationship_whit_authority = $request->relationship_whit_authority;
+            $pychologicalBackground->inpulse_control = $request->inpulse_control;
+            $pychologicalBackground->frustration_management = $request->frustration_management;
+            $pychologicalBackground->save();
             DB::commit();
             return (new PyschologicalBackgroundResource($pychologicalBackground))->additional(['message' => 'Registro actualizado con éxito.']);
         } catch (\Throwable $th) {

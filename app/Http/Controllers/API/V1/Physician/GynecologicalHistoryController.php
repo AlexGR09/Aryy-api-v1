@@ -37,12 +37,21 @@ class GynecologicalHistoryController extends Controller
         try {
             DB::beginTransaction();
 
-            $medical_appointments = MedicalAppointment::where('patient_id', $request->patient_id)
+            /* $medical_appointments = MedicalAppointment::where('patient_id', $request->patient_id)
                 ->where('physician_id', $this->physician->id)
                 ->count();
 
             if ($medical_appointments < 1) {
-                return response()->json(['message' => 'Prohibido'], 403);
+                return response()->json(['message' => 'Petición incorrecta'], 403);
+            } */
+            $todaydatetime = date('Y-m-d');
+
+            $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)
+                ->where('physician_id', $this->physician->id)
+                ->first();
+            //se compara la fecha actual con la fecha de la cita
+            if ($medicalAppointment->appointment_date != $todaydatetime) {
+                return "Petición incorrecta";
             }
 
             $gynecologicalHistory = ObgynBackground::create([
