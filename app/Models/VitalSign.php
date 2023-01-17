@@ -28,8 +28,10 @@ class VitalSign extends Model
         'abdomen',
         'patient_id',
     ];
+
     public function prescription()
     {
-        return $this->hasOne(\App\Models\Prescription::class);
+        return $this->hasOne(Prescription::class);
     }
+    
 }

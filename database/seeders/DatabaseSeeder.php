@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
-use App\Models\Allergy;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -47,8 +45,9 @@ class DatabaseSeeder extends Seeder
         $this->call(AppointmentSeeder::class);
         $this->call(PlanSeeder::class);
         $this->call(BloodTypeSeeder::class);
-        $this->call(MedicalAppointmentSeeder::class);
         $this->call(PersonalizedQuestionnaireSeeder::class);
-        $this->call(BasicInformationSeeder::class);
+        $this->call(VitalSignSeeder::class);
+        $this->call(PrescriptionSeeder::class);
+        $this->call(MedicalAppointmentSeeder::class);
     }
 }

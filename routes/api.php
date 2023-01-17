@@ -205,6 +205,21 @@ Route::prefix('v1')->group(function () {
                 });
             });
 
+            Route::prefix('medical-appointments')->group(function () {
+
+                // CONSULTAS MÉDICAS
+                Route::controller($this->physician . MedicalAppointmentController::class)->group(function () {
+                    Route::get('/patient/{patient_id}', 'index');
+                    Route::get('/{medical_appointment_id}', 'show');
+                    Route::put('/{medical_appointment_id}', 'updateNote');
+                });
+
+                // RECETAS MÉDICAS
+                Route::controller($this->physician . PrescriptionController::class)->group(function () {
+                    Route::post('{medical_appointment_id}/prescriptions', 'store');
+                });
+
+            });
             // CUESTIONARIOS PERSONALIZADOS
             Route::controller($this->physician . PersonalizedQuestionnaireController::class)->group(function () {
                 Route::get('/personalized-questionnaire', 'index');
@@ -363,6 +378,7 @@ Route::prefix('v1')->group(function () {
         });
     });
     Route::prefix('medical-records')->group(function () {
+
         Route::get('vital-signs/patient/{patient}', [VitalSignController::class, 'show']);
         Route::post('vital-signs/patient', [VitalSignController::class, 'store']);
         Route::put('vital-signs/{vitalSign}/patient', [VitalSignController::class, 'update']);
@@ -390,7 +406,8 @@ Route::prefix('v1')->group(function () {
         Route::post('physician/hereditary-background', [PhysicianHereditaryBackgroundController::class, 'store']);
         Route::put('physician/hereditary-background/patient/{patient}', [PhysicianHereditaryBackgroundController::class, 'update']);
 
-        Route::post('survey', [SurveyController::class, 'store']);
+        Route::put('basic-information/patient/{patient}', [BasicInformationController::class, 'show']);
+
     });
     /* BÚSQUEDAS */
     // BUSQUEDA MÉDICO MOBILE

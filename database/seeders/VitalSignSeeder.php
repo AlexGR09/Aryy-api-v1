@@ -1,0 +1,198 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class VitalSignSeeder extends Seeder
+{
+
+    public function run()
+    {
+        DB::table('vital_signs')->insert([
+            [
+                'id' => 1,
+                'temperature' => null,
+                'weight' => null,
+                'breathing_frecuncy' => null,
+                'systolic_pressure' => null,
+                'diasystolic_pressure' => null,
+                'heart_rate' => null,
+                'oxygen_saturation' => null,
+                'body_mass' => null,
+                'body_fat' => null,
+                'weight_loss' => null,
+                'fat' => null,
+                'waist' => null,
+                'water' => null,
+                'muscle' => null,
+                'abdomen' => null
+            ],
+            [
+                'id' => 2,
+                'temperature' => null,
+                'weight' => null,
+                'breathing_frecuncy' => null,
+                'systolic_pressure' => null,
+                'diasystolic_pressure' => null,
+                'heart_rate' => null,
+                'oxygen_saturation' => null,
+                'body_mass' => null,
+                'body_fat' => null,
+                'weight_loss' => null,
+                'fat' => null,
+                'waist' => null,
+                'water' => null,
+                'muscle' => null,
+                'abdomen' => null
+            ],
+            [
+                'id' => 3,
+                'temperature' => null,
+                'weight' => null,
+                'breathing_frecuncy' => null,
+                'systolic_pressure' => null,
+                'diasystolic_pressure' => null,
+                'heart_rate' => null,
+                'oxygen_saturation' => null,
+                'body_mass' => null,
+                'body_fat' => null,
+                'weight_loss' => null,
+                'fat' => null,
+                'waist' => null,
+                'water' => null,
+                'muscle' => null,
+                'abdomen' => null
+            ],
+            [
+                'id' => 4,
+                'temperature' => null,
+                'weight' => null,
+                'breathing_frecuncy' => null,
+                'systolic_pressure' => null,
+                'diasystolic_pressure' => null,
+                'heart_rate' => null,
+                'oxygen_saturation' => null,
+                'body_mass' => null,
+                'body_fat' => null,
+                'weight_loss' => null,
+                'fat' => null,
+                'waist' => null,
+                'water' => null,
+                'muscle' => null,
+                'abdomen' => null
+            ],
+            [
+                'id' => 5,
+                'temperature' => null,
+                'weight' => null,
+                'breathing_frecuncy' => null,
+                'systolic_pressure' => null,
+                'diasystolic_pressure' => null,
+                'heart_rate' => null,
+                'oxygen_saturation' => null,
+                'body_mass' => null,
+                'body_fat' => null,
+                'weight_loss' => null,
+                'fat' => null,
+                'waist' => null,
+                'water' => null,
+                'muscle' => null,
+                'abdomen' => null
+            ],
+            [
+                'id' => 6,
+                'temperature' => null,
+                'weight' => null,
+                'breathing_frecuncy' => null,
+                'systolic_pressure' => null,
+                'diasystolic_pressure' => null,
+                'heart_rate' => null,
+                'oxygen_saturation' => null,
+                'body_mass' => null,
+                'body_fat' => null,
+                'weight_loss' => null,
+                'fat' => null,
+                'waist' => null,
+                'water' => null,
+                'muscle' => null,
+                'abdomen' => null
+            ],
+            [
+                'id' => 7,
+                'temperature' => null,
+                'weight' => null,
+                'breathing_frecuncy' => null,
+                'systolic_pressure' => null,
+                'diasystolic_pressure' => null,
+                'heart_rate' => null,
+                'oxygen_saturation' => null,
+                'body_mass' => null,
+                'body_fat' => null,
+                'weight_loss' => null,
+                'fat' => null,
+                'waist' => null,
+                'water' => null,
+                'muscle' => null,
+                'abdomen' => null
+            ],
+            [
+                'id' => 8,
+                'temperature' => null,
+                'weight' => null,
+                'breathing_frecuncy' => null,
+                'systolic_pressure' => null,
+                'diasystolic_pressure' => null,
+                'heart_rate' => null,
+                'oxygen_saturation' => null,
+                'body_mass' => null,
+                'body_fat' => null,
+                'weight_loss' => null,
+                'fat' => null,
+                'waist' => null,
+                'water' => null,
+                'muscle' => null,
+                'abdomen' => null
+            ],
+            [
+                'id' => 9,
+                'temperature' => null,
+                'weight' => null,
+                'breathing_frecuncy' => null,
+                'systolic_pressure' => null,
+                'diasystolic_pressure' => null,
+                'heart_rate' => null,
+                'oxygen_saturation' => null,
+                'body_mass' => null,
+                'body_fat' => null,
+                'weight_loss' => null,
+                'fat' => null,
+                'waist' => null,
+                'water' => null,
+                'muscle' => null,
+                'abdomen' => null
+            ],
+            [
+                'id' => 10,
+                'temperature' => null,
+                'weight' => null,
+                'breathing_frecuncy' => null,
+                'systolic_pressure' => null,
+                'diasystolic_pressure' => null,
+                'heart_rate' => null,
+                'oxygen_saturation' => null,
+                'body_mass' => null,
+                'body_fat' => null,
+                'weight_loss' => null,
+                'fat' => null,
+                'waist' => null,
+                'water' => null,
+                'muscle' => null,
+                'abdomen' => null
+            ],
+            
+        ]);
+    }
+}
