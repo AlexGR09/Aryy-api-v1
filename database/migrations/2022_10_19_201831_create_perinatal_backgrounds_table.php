@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('perinatal_backgrounds', function (Blueprint $table) {
             $table->id();
             $table->date('last_menstrual_cycle')->nullable();
-            $table->strng('cycle_time')->nullable();
+            $table->string('cycle_time')->nullable();
             $table->string('contraceptive_method_use')->nullable();
             $table->string('assisted_conception')->nullable();
             $table->date('final_ppf')->nullable();
