@@ -366,9 +366,9 @@ Route::prefix('v1')->group(function () {
         Route::put('vital-signs/{vitalSign}/patient', [VitalSignController::class, 'update']);
 
         Route::get('info/patient/{patient}', [VitalSignController::class, 'patientInfo']);
-        Route::get('allergies/patient/{patient}',[AllergyController::class, 'show']);
-        Route::post('allergies/patient', [AllergyController::class, 'store']);
-        Route::put('allergies/patient/{patient}', [AllergyController::class, 'update']);
+        Route::get('physician/allergies/patient/{patient}',[AllergyController::class, 'show']);
+        Route::post('physician/allergies/patient', [AllergyController::class, 'store']);
+        Route::put('physician/allergies/patient/{patient}', [AllergyController::class, 'update']);
         
         Route::get('basic-information/vital-signs/patient/{patient}', [BasicInformationController::class, 'show']);
         Route::post('basic-information/vital-signs', [BasicInformationController::class, 'store']);
