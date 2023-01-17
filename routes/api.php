@@ -20,7 +20,6 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PyschologicalBackgroundController;
 use App\Http\Controllers\SubscriptionUserController;
 use App\Http\Controllers\TestJoseController;
-use App\Http\Controllers\VitalSignController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\TextUI\XmlConfiguration\Group;
 
@@ -191,14 +190,23 @@ Route::prefix('v1')->group(function () {
                     Route::put('/{medical_history_id}/postnatal-background', 'update');
                 });
 
-                // CONSULTAS MÉDICAS Y RECETAS (SÓLO VER)
+            });
+
+            Route::prefix('medical-appointments')->group(function () {
+
+                // CONSULTAS MÉDICAS
                 Route::controller($this->physician . MedicalAppointmentController::class)->group(function () {
-                    Route::get('/{medical_history_id}/medical-appointments', 'index');
-                    Route::get('/{medical_history_id}/medical-appointments/{medical_appointment_id}', 'show');
+                    Route::get('/patient/{patient_id}', 'index');
+                    Route::get('/{medical_appointment_id}', 'show');
+                    Route::put('/{medical_appointment_id}', 'updateNote');
+                });
+
+                // RECETAS MÉDICAS
+                Route::controller($this->physician . PrescriptionController::class)->group(function () {
+                    Route::post('{medical_appointment_id}/prescriptions', 'store');
                 });
 
             });
-
             // CUESTIONARIOS PERSONALIZADOS
             Route::controller($this->physician . PersonalizedQuestionnaireController::class)->group(function () {
                 Route::get('/personalized-questionnaire', 'index');

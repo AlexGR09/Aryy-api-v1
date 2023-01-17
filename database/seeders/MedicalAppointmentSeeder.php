@@ -106,11 +106,11 @@ class MedicalAppointmentSeeder extends Seeder
                 'appointment_date'=>'2022-12-28',
                 'appointment_time'=>'5:00:00',
                 'appointment_time_end'=>'5:30:00',
-                'appointment_type'=>'Consulta de primera vez',
+                'appointment_type'=>'Consulta test',
                 'physician_id'=>10,
                 'patient_id'=>4,
                 'facility_id' => 10,
-                'prescription_id' => 10,
+                'prescription_id' => null,
             ]
         ]);
     }
