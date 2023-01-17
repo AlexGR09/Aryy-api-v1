@@ -215,7 +215,7 @@ Route::prefix('v1')->group(function () {
 
             //EDITAR ESTADO DEL TRATAMIENTO
             Route::controller($this->physician . StatusTreatmentController::class)->group(function () {
-                Route::put('status_medicine/{medical_history_id}', 'update');
+                Route::put('status-medicine/{medical_history_id}', 'update');
             });
         });
 
