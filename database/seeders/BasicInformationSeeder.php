@@ -72,9 +72,9 @@ class BasicInformationSeeder extends Seeder
                 'smoking' => 'no',
                 'alcoholim' => 'no',
                 'other_substances' => 'no',
-                'diet' => 'no',
-                'drug_active' => 'no',
-                'previous_medication' => 'no',
+                'diet' => 'Dieta keto',
+                'drug_active' => 'Naproxeno',
+                'previous_medication' => 'Ampisilina',
             ]);
 
             $hereditaryBackground = HereditaryBackground::create([
