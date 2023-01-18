@@ -24,6 +24,7 @@ class StoreNonPathologicalBackgroundRequest extends FormRequest
     public function rules()
     {
         return [
+            'patient_id'=>  'required',
             'physical_activity.type_of_activity' => 'string',
             'physical_activity.days_of_the_week' => 'string',
             'rest_time.hours_of_sleep' => 'string',

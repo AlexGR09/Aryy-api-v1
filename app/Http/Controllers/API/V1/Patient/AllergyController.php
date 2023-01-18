@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\Patient\StoreAllergyPatientRequest;
-use App\Http\Requests\API\Patient\UpdateAllergyPatientRequest;
+use App\Http\Requests\API\V1\Patient\UpdateAllergyPatientRequest;
+use App\Http\Requests\API\V1\Patient\StoreAllergyPatientRequest;
 use App\Models\MedicalHistory;
 use App\Models\User;
 

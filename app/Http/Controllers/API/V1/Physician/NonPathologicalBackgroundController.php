@@ -9,41 +9,42 @@ use App\Http\Requests\API\V1\Physician\UpdateNonPathologicalBackgroundRequest;
 use App\Http\Resources\API\V1\Patient\NonPathologicalBackgroundResource;
 use App\Models\MedicalHistory;
 use App\Models\NonPathologicalBackground;
+use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class NonPathologicalBackgroundController extends Controller
 {
-    public function show(User $patient)
+    public function show(Patient $patient)
     {
+        $medicalHistory = MedicalHistory::where('patient_id', $patient->id)->first();
         return (new NonPathologicalBackgroundResource(
-            MedicalHistory::where('patient_id', $patient->id)->first()
+            $medicalHistory->nonpathologicalbackground
         ));
     }
 
     public function store(StoreNonPathologicalBackgroundRequest $request)
     {
         $data = $request->validated();
-        $pathologicalBackground = NonPathologicalBackground::create([
-            $data
+        
+        $nonPathologicalBackground = NonPathologicalBackground::create($data);
+        MedicalHistory::where('patient_id', $data["patient_id"])->update([
+            'non_pathological_background_id' => $nonPathologicalBackground->id 
         ]);
         return (new NonPathologicalBackgroundResource(
-            tap(MedicalHistory::where('patient_id', $data['patient_id']))->update(
-                ['pathological_background_id' => $pathologicalBackground->id]
-            )
+            $nonPathologicalBackground 
         ))->additional(['message' => 'Informacion guardada con exito.']);
     }
 
     public function update(User $patient, UpdateNonPathologicalBackgroundRequest $request)
     {
         $data = $request->validated();
-        $pathologicalBackground = NonPathologicalBackground::create([
+        $medicalHistory = MedicalHistory::where('patient_id', $patient->id)->first();
+        $medicalHistory->nonpathologicalbackground()->update(
             $data
-        ]);
+        );
         return (new NonPathologicalBackgroundResource(
-            tap(MedicalHistory::where('patient_id', $patient->id))->update(
-                ['pathological_background_id' => $pathologicalBackground->id]
-            )
+            $medicalHistory->nonpathologicalbackground
         ))->additional(['message' => 'Informacion guardada con exito.']);
     }
 }
