@@ -74,6 +74,11 @@ class Patient extends Model
     {
         return $this->hasOne(MedicalHistory::class);
     }
+
+    public function pillReminders() 
+    {
+        return $this->hasMany(PillReminder::class);
+    }
     // public function health_insurance()
     // {
     //     return $this->belongsTo('App\Models\HealthInsurance');
