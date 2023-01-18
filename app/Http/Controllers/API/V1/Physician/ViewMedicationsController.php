@@ -30,14 +30,11 @@ class ViewMedicationsController extends Controller
     public function drugActive($id)
     {
         try {
-          /*   $cita = MedicalAppointment::where('patient_id', $id)
-                ->where('physician_id', $this->physician->id)
-                ->count();
-            if ($cita < 1) {
-                return response()->json(['Petición incorrecta']);
-            } */
-            $medicalhistory = $this->medicalhistory($id);
-            $drug_active = $medicalhistory->nonpathologicalbackground;   
+            $medicalHistory = $this->medicalhistory($id);
+            if (!$medicalHistory) {
+                return response()->json(['message' => 'No se encontraron resultados'], 404);
+            }
+            $drug_active = $medicalHistory->nonpathologicalbackground;   
             
                 return (new ViewMedicationsResource($drug_active))->additional(['message' => 'Informacion de Medicacion.']);
         } catch (\Throwable $th) {
@@ -48,15 +45,11 @@ class ViewMedicationsController extends Controller
     public function previousMedication($id)
     {
         try {
-            /* $cita = MedicalAppointment::where('patient_id', $id)
-                ->where('physician_id', $this->physician->id)
-                ->count();
-
-            if ($cita < 1) {
-                return response()->json(['Petición incorrecta']);
-            } */
-            $medicalhistory = $this->medicalhistory($id);
-            $previus_medication  = $medicalhistory->nonpathologicalbackground;
+            $medicalHistory = $this->medicalhistory($id);
+            if (!$medicalHistory) {
+                return response()->json(['message' => 'No se encontraron resultados'], 404);
+            }
+            $previus_medication  = $medicalHistory->nonpathologicalbackground;
             
                 return (new PreviousMedicationResource($previus_medication))->additional(['message' => 'Informacion de Medicacion.']);
         } catch (\Throwable $th) {
