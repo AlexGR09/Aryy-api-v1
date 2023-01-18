@@ -3,26 +3,24 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\V1\Physician\GynecologicalHistoryRequest;
-use Illuminate\Support\Facades\DB;
-use App\Http\Resources\API\V1\Physician\GynecologicalHistoryResource;
+use App\Http\Requests\API\V1\Physician\PerinatalBackgroundRequest;
+use App\Http\Resources\API\V1\Physician\PerinatalBackgroundResource;
 use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
-use App\Models\ObgynBackground;
+use App\Models\PerinatalBackground;
 use App\Models\Physician;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class GynecologicalHistoryController extends Controller
+class PerinatalBackgroundController extends Controller
 {
-
     protected $physician;
 
     public function __construct()
     {
         $this->middleware('role:Physician')->only([
             'store',
-            'show',
-            'update'
+            'previusMedication',
         ]);
         // $this->user =  empty(auth()->id()) ? NULL : User::findOrFail(auth()->id());
         $this->physician = empty(auth()->id()) ? NULL : Physician::where('user_id', auth()->id())->firstOrFail();
@@ -33,7 +31,7 @@ class GynecologicalHistoryController extends Controller
         //
     }
 
-    public function store(GynecologicalHistoryRequest $request)
+    public function store(PerinatalBackgroundRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -47,14 +45,14 @@ class GynecologicalHistoryController extends Controller
                 return "Petición incorrecta";
             } */
             $medicalHistory = $this->medicalhistory($request->patient_id);
-            $gynecologicalHistory = ObgynBackground::create($request->validated());
-            $medicalHistory->gynecological_history_id = $gynecologicalHistory->id;
+            $perinatalBackground = PerinatalBackground::create($request->validated());
+            $medicalHistory->perinatal_background_id = $perinatalBackground->id;
             $medicalHistory->save();
             DB::commit();
-            return (new GynecologicalHistoryResource($gynecologicalHistory))->additional(['message' => 'Informacion de antecedentes ginecologicos guardado con exito.']);
+            return (new PerinatalBackgroundResource($perinatalBackground))->additional(['message' => 'Informacion guardada.']);
         } catch (\Throwable $th) {
-            DB::rollBack();
-            return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
+            DB::rollback();
+            return response()->json(['error' => $th->getMessage()], 400);
         }
     }
 
@@ -62,31 +60,29 @@ class GynecologicalHistoryController extends Controller
     {
         try {
             $medicalHistory = $this->medicalhistory($medical_history_id);
-            $gynecologicalHistory  = ObgynBackground::where('id', $medicalHistory->gynecological_history_id)
-                ->first();
-            if (!$gynecologicalHistory) {
+            $perinatalBackground = $medicalHistory->perinatalBackground;
+            if (!$perinatalBackground) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
-            return (new GynecologicalHistoryResource($gynecologicalHistory))->additional(['message' => 'Informacion encontrada.']);
+            return (new PerinatalBackgroundResource($perinatalBackground))->additional(['message' => 'Informacion encontrada.']);
         } catch (\Throwable $th) {
-            DB::rollBack();
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
         }
     }
 
-    public function update(GynecologicalHistoryRequest $request, $medical_history_id)
+    public function update(PerinatalBackgroundRequest $request, $medical_history_id)
     {
         try {
             DB::beginTransaction();
             $medicalHistory = $this->medicalhistory($medical_history_id);
-            $gynecologicalHistory = ObgynBackground::where('id', $medicalHistory->gynecological_history_id)->first();
-            $gynecologicalHistory->update($request->validated());
-            $gynecologicalHistory->save();
+            $perinatalBackground = $medicalHistory->perinatalBackground;
+            $perinatalBackground->update($request->validated());
+            $perinatalBackground->save();
             DB::commit();
-            return (new GynecologicalHistoryResource($gynecologicalHistory))->additional(['message' => 'Informacion actualizada.']);
+            return (new PerinatalBackgroundResource($perinatalBackground))->additional(['message' => 'Informacion actualizada con exito.']);
         } catch (\Throwable $th) {
-            DB::rollBack();
-            return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
+            DB::rollback();
+            return response()->json(['error' => $th->getMessage()], 400);
         }
     }
 

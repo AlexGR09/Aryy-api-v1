@@ -17,15 +17,13 @@ class MedicalAppointment extends Model
         'appointment_time_end',
         'appointment_type',
         'status',
+        'note',
         'patient_id',
         'physician_id',
-        'facility_id'
+        'facility_id',
+        'prescription_id'
     ];
 
-    public function prescription()
-    {
-        return $this->hasOne(\App\Models\Prescription::class);
-    }
 
     // RELACIÓN MUCHOS A UNO CON LA TABLA PHYSICIANS
     public function physician()
@@ -44,4 +42,10 @@ class MedicalAppointment extends Model
     {
         return $this->belongsTo(Facility::class);
     }
+
+    public function prescription()
+    {
+        return $this->belongsTo(Prescription::class);
+    }
+
 }

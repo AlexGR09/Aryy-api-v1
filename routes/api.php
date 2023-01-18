@@ -168,12 +168,14 @@ Route::prefix('v1')->group(function () {
                 //Antecedentes ginecologicos - Corregir Carlos(Dinho)
                 Route::controller($this->physician . GynecologicalHistoryController::class)->group(function () {
                     Route::post('/gynecological-history', 'store');
-                    Route::get('/gynecological-history/patient/{patient_id}', 'show');
-                    Route::put('/gynecological-history/patient/{patient_id}', 'update');
+                    Route::get('/gynecological-history/{medical_history_id}', 'show');
+                    Route::put('/gynecological-history/{medical_history_id}', 'update');
                 });
                 //Antecedentes perinatales-Corregir Carlos(Dinho)
-                Route::controller($this->physician .PerinaltalBackgroundController::class)->group(function () {
-                    Route::post('/perinatal-background/{patient_id}', 'store');
+                Route::controller($this->physician .PerinatalBackgroundController::class)->group(function () {
+                    Route::post('/perinatal-background', 'store');
+                    Route::get('/perinatal-background/{medical_history_id}', 'show');
+                    Route::put('/perinatal-background/{medical_history_id}', 'update');
                 });
 
                 //ANTECEDENTES PSYQUIATRICOS-Corregir Carlos(Dinho)
@@ -185,8 +187,8 @@ Route::prefix('v1')->group(function () {
 
                 // HISTORIAL DE VACUNACION
                 Route::controller($this->physician . VaccinationHistoryController::class)->group(function () {
-                    Route::post('vaccination_history', 'store');
-                    Route::get('vaccination_history/{medical_history_id}', 'show');
+                    Route::post('vaccination-history', 'store');
+                    Route::get('vaccination-history/{medical_history_id}', 'show');
                 });
 
                 // ANTECEDENTES POSTNATALES
@@ -198,11 +200,26 @@ Route::prefix('v1')->group(function () {
 
                 //VISUALIZAR LOS MEDICAMENTOS ACTIVOS Y MEDICAMENTOS ANTERIORES DE UN PACIENTE
                 Route::controller($this->physician . ViewMedicationsController::class)->group(function () {
-                    Route::get('/drugactive/{patient_id}', 'drugActive');
-                    Route::get('/previousmedication/{patient_id}', 'previousMedication');
+                    Route::get('/current-medication/{patient_id}', 'drugActive');
+                    Route::get('/previous-medication/{patient_id}', 'previousMedication');
                 });
             });
 
+            Route::prefix('medical-appointments')->group(function () {
+
+                // CONSULTAS MÉDICAS
+                Route::controller($this->physician . MedicalAppointmentController::class)->group(function () {
+                    Route::get('/patient/{patient_id}', 'index');
+                    Route::get('/{medical_appointment_id}', 'show');
+                    Route::put('/{medical_appointment_id}', 'updateNote');
+                });
+
+                // RECETAS MÉDICAS
+                Route::controller($this->physician . PrescriptionController::class)->group(function () {
+                    Route::post('{medical_appointment_id}/prescriptions', 'store');
+                });
+
+            });
             // CUESTIONARIOS PERSONALIZADOS
             Route::controller($this->physician . PersonalizedQuestionnaireController::class)->group(function () {
                 Route::get('/personalized-questionnaire', 'index');
@@ -213,7 +230,7 @@ Route::prefix('v1')->group(function () {
 
             //EDITAR ESTADO DEL TRATAMIENTO
             Route::controller($this->physician . StatusTreatmentController::class)->group(function () {
-                Route::put('status_medicine/{id}', 'update');
+                Route::put('status-medicine/{medical_history_id}', 'update');
             });
         });
 
@@ -275,7 +292,7 @@ Route::prefix('v1')->group(function () {
                     Route::get('/blood-type', 'blood_type');
                 });
                 //Antecedentes patologicos
-                Route::controller($this->patient . PathologicalBackgroudController::class)->group(function () {
+                Route::controller($this->patient . PathologicalBackgroundController::class)->group(function () {
                     Route::post('/pathological-background', 'store');
                     Route::get('/pathological-background/{patient_id}', 'show');
                     Route::put('/pathological-background/{patient_id}', 'update');
@@ -361,6 +378,7 @@ Route::prefix('v1')->group(function () {
         });
     });
     Route::prefix('medical-records')->group(function () {
+
         Route::get('vital-signs/patient/{patient}', [VitalSignController::class, 'show']);
         Route::post('vital-signs/patient', [VitalSignController::class, 'store']);
         Route::put('vital-signs/{vitalSign}/patient', [VitalSignController::class, 'update']);
@@ -388,7 +406,8 @@ Route::prefix('v1')->group(function () {
         Route::post('physician/hereditary-background', [PhysicianHereditaryBackgroundController::class, 'store']);
         Route::put('physician/hereditary-background/patient/{patient}', [PhysicianHereditaryBackgroundController::class, 'update']);
 
-        Route::post('survey', [SurveyController::class, 'store']);
+        Route::put('basic-information/patient/{patient}', [BasicInformationController::class, 'show']);
+
     });
     /* BÚSQUEDAS */
     // BUSQUEDA MÉDICO MOBILE

@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('perinatal_backgrounds', function (Blueprint $table) {
             $table->id();
             $table->date('last_menstrual_cycle')->nullable();
-            $table->date('cycle_time')->nullable();
+            $table->string('cycle_time')->nullable();
             $table->string('contraceptive_method_use')->nullable();
             $table->string('assisted_conception')->nullable();
-            $table->string('final_ppf')->nullable();
+            $table->date('final_ppf')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

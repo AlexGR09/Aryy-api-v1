@@ -16,8 +16,8 @@ class TaxDataResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'user_id' => $this->user_id,
-            'user' => new UserResource($this->user),
+            'physician_id' => $this->physician_id,
+            'physician' => new PhysicianResource($this->physician),
             'rfc' => $this->rfc,
             'taxpayer_name' => $this->taxpayer_name,
             'tax_regime' => $this->tax_regime,

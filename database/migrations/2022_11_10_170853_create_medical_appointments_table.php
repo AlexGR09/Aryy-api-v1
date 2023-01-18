@@ -11,14 +11,16 @@ return new class extends Migration
     {
         Schema::create('medical_appointments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('patient_id')->constrained('patients');
+            $table->foreignId('physician_id')->constrained('physicians');
+            $table->foreignId('facility_id')->constrained('facilities');
+            $table->foreignId('prescription_id')->nullable()->constrained('prescriptions');
             $table->date('appointment_date');
             $table->time('appointment_time');
             $table->time('appointment_time_end');
             $table->string('appointment_type');
             $table->enum('status', ['assisted', 'not-assisted', 'cancelled' , 'scheduled'])->nullable();
-            $table->foreignId('patient_id')->constrained('patients');
-            $table->foreignId('physician_id')->constrained('physicians');
-            $table->foreignId('facility_id')->constrained('facilities');
+            $table->string('note')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
