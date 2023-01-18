@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up()
     {
         Schema::create('medical_appointments', function (Blueprint $table) {
@@ -19,7 +18,7 @@ return new class extends Migration
             $table->time('appointment_time');
             $table->time('appointment_time_end');
             $table->string('appointment_type');
-            $table->enum('status', ['assisted', 'not-assisted', 'cancelled' , 'scheduled'])->nullable();
+            $table->enum('status', ['assisted', 'not-assisted', 'cancelled', 'scheduled'])->nullable();
             $table->string('note')->nullable();
             $table->timestamps();
             $table->softDeletes();

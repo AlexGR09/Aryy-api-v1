@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Plan;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PlanSeeder extends Seeder
@@ -17,7 +16,7 @@ class PlanSeeder extends Seeder
     {
         Plan::create([
             'name' => 'Gold',
-            'price' => 100.11
+            'price' => 100.11,
         ]);
     }
 }

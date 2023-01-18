@@ -15,14 +15,13 @@ class PatientController extends Controller
 
     public function __construct()
     {
-        $this->user =  empty(auth()->id()) ? NULL : User::findOrFail(auth()->id());
+        $this->user = empty(auth()->id()) ? null : User::findOrFail(auth()->id());
         $this->middleware('permission:create patient profiles')->only(['store']);
     }
 
     public function store(PatientStoreRequest $request)
     {
         try {
-
             if (count($this->user->patients) > 4) {
                 return response()->json(['messaage' => 'No puedes agregar más pacientes'], 503);
             }
@@ -34,8 +33,8 @@ class PatientController extends Controller
             $patient->occupations()->attach($request->occupation_id);
 
             // CREA EL DIRECTORIO CORRESPONDIENTE DEL PACIENTE EN LA CARPETA DEL USUARIO
-            $patient_folder  =  $patient->id . '_' . substr(sha1(time()), 0, 8);
-            Storage::makeDirectory('users//patients//' . $this->user->user_folder . '//' . $patient_folder);
+            $patient_folder = $patient->id.'_'.substr(sha1(time()), 0, 8);
+            Storage::makeDirectory('users//patients//'.$this->user->user_folder.'//'.$patient_folder);
 
             $patient->update([
                 'patient_folder' => $patient_folder,
@@ -46,11 +45,12 @@ class PatientController extends Controller
             $patient->medical_history()->create(['patient_id' => $patient->id]);
 
             DB::commit();
+
             return (new PatientResource($patient))->additional(['message' => 'Perfil de paciente creado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-
 }

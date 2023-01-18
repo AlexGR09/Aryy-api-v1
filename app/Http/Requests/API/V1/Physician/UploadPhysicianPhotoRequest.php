@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UploadPhysicianPhotoRequest extends FormRequest
 {
-
     public function authorize()
     {
         return auth()->check();
@@ -24,7 +23,7 @@ class UploadPhysicianPhotoRequest extends FormRequest
     {
         return [
             'physician_photo' => 'array de fotos del médico',
-            'physician_photo.*' => 'foto del médico'
+            'physician_photo.*' => 'foto del médico',
         ];
     }
 }

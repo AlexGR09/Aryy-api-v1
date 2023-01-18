@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\AllergyPatient;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class AllergiesPatientSeeder extends Seeder
 {
@@ -15,56 +14,56 @@ class AllergiesPatientSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('allergy_patients')->insert([
+        AllergyPatient::insert([
             [
-                'food_allergy' => 'Camaron',
-                'drug_allergy'=>'N/A',
-                'environmental_allergy'=>'Polvo',
+                'food_allergy' => json_encode(['Camaron']),
+                'drug_allergy' => json_encode(['N/A']),
+                'environmental_allergy' => json_encode(['Polvo']),
             ],
             [
-                'food_allergy' => 'Chocolate, Lacteos',
-                'drug_allergy'=>'Anpicilina',
-                'environmental_allergy'=>'Polen',
+                'food_allergy' => json_encode(['Chocolate, Lacteos']),
+                'drug_allergy' => json_encode(['Anpicilina']),
+                'environmental_allergy' => json_encode(['Polen']),
             ],
             [
-                'food_allergy' => 'N/A',
-                'drug_allergy'=>'N/A',
-                'environmental_allergy'=>'N/A',
+                'food_allergy' => json_encode(['N/A']),
+                'drug_allergy' => json_encode(['N/A']),
+                'environmental_allergy' => json_encode(['N/A']),
             ],
             [
-                'food_allergy' => 'Atún',
-                'drug_allergy'=>'N/A',
-                'environmental_allergy'=>'N/A',
+                'food_allergy' => json_encode(['Atún']),
+                'drug_allergy' => json_encode(['N/A']),
+                'environmental_allergy' => json_encode(['N/A']),
             ],
             [
-                'food_allergy' => 'N/A',
-                'drug_allergy'=>'N/A',
-                'environmental_allergy'=>'N/A',
+                'food_allergy' => json_encode(['N/A']),
+                'drug_allergy' => json_encode(['N/A']),
+                'environmental_allergy' => json_encode(['N/A']),
             ],
             [
-                'food_allergy' => 'N/A',
-                'drug_allergy'=>'N/A',
-                'environmental_allergy'=>'N/A',
+                'food_allergy' => json_encode(['N/A']),
+                'drug_allergy' => json_encode(['N/A']),
+                'environmental_allergy' => json_encode(['N/A']),
             ],
             [
-                'food_allergy' => 'Durazno',
-                'drug_allergy'=>'N/A',
-                'environmental_allergy'=>'N/A',
+                'food_allergy' => json_encode(['Durazno']),
+                'drug_allergy' => json_encode(['N/A']),
+                'environmental_allergy' => json_encode(['N/A']),
             ],
             [
-                'food_allergy' => 'N/A',
-                'drug_allergy'=>'N/A',
-                'environmental_allergy'=>'N/A',
+                'food_allergy' => json_encode(['N/A']),
+                'drug_allergy' => json_encode(['N/A']),
+                'environmental_allergy' => json_encode(['N/A']),
             ],
             [
-                'food_allergy' => 'N/A',
-                'drug_allergy'=>'N/A',
-                'environmental_allergy'=>'Agua',
+                'food_allergy' => json_encode(['N/A']),
+                'drug_allergy' => json_encode(['N/A']),
+                'environmental_allergy' => json_encode(['Agua']),
             ],
             [
-                'food_allergy' => 'N/A',
-                'drug_allergy'=>'N/A',
-                'environmental_allergy'=>'N/A',
+                'food_allergy' => json_encode(['N/A']),
+                'drug_allergy' => json_encode(['N/A']),
+                'environmental_allergy' => json_encode(['N/A']),
             ],
 
         ]);

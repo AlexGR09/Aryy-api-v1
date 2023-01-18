@@ -20,6 +20,7 @@ class MedicalRecord extends Model
     {
         return $this->hasOne(\App\Models\Patient::class);
     }
+
     public function prescription()
     {
         return $this->hasOne(\App\Models\Prescription::class);

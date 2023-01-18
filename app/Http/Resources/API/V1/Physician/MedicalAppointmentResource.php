@@ -6,7 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class MedicalAppointmentResource extends JsonResource
 {
-
     public function toArray($request)
     {
         return [
@@ -16,7 +15,7 @@ class MedicalAppointmentResource extends JsonResource
             'status' => $this->status,
             'appointment_date' => $this->appointment_date,
             'note' => $this->note,
-            'prescription' => $this->prescription
+            'prescription' => $this->prescription,
         ];
     }
 }

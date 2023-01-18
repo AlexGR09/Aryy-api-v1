@@ -4,19 +4,15 @@ namespace App\Http\Controllers\API\V1\Catalogues;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\V1\Catalogues\OccupationResource;
-use App\Http\Resources\RoleResource;
 use App\Models\Occupation;
 use Illuminate\Http\Request;
-use Spatie\Permission\Contracts\Role;
-use Illuminate\Support\Facades\DB;
 
 class OccupationController extends Controller
 {
     public function __construct()
     {
-
         $this->middleware('role:User')->only([
-            'index'
+            'index',
         ]);
 
         $this->middleware('permission:show occupations')->only([
@@ -26,17 +22,17 @@ class OccupationController extends Controller
             'create',
         ]);
         $this->middleware('permission:edit occupations')->only([
-            'update'
+            'update',
         ]);
         $this->middleware('permission:delete occupations')->only([
-            'destroy'
+            'destroy',
         ]);
     }
 
     public function index()
     {
         try {
-            return (OccupationResource::collection(Occupation::orderBy('name')->get()))->additional(['message' => 'ocupaciones encontradas']);
+            return OccupationResource::collection(Occupation::orderBy('name')->get())->additional(['message' => 'ocupaciones encontradas']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -46,6 +42,7 @@ class OccupationController extends Controller
     {
         try {
             $occupation = Occupation::create(['name' => $request->name]);
+
             return (new OccupationResource($occupation))->additional(['message' => 'Ocupacion creada correctamente']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -66,6 +63,7 @@ class OccupationController extends Controller
         try {
             $occupation->name = $request->name;
             $occupation->save();
+
             return (new OccupationResource($occupation))->additional(['message' => 'Ocupacion actualizada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -76,6 +74,7 @@ class OccupationController extends Controller
     {
         try {
             $occupation->delete();
+
             return response()->json(['message' => 'Ocupacion eliminada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

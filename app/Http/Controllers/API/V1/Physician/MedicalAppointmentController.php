@@ -25,11 +25,10 @@ class MedicalAppointmentController extends Controller
             $medical_appointment = MedicalAppointment::where('patient_id', $patient_id)
                 ->where('physician_id', $this->physician->id)
                 ->orderBy('appointment_date', 'DESC')
-                ->get(); 
-       
-            return (MedicalAppointmentResource::collection($medical_appointment))
-                ->additional(['message' => 'Citas médicas.']);
+                ->get();
 
+            return MedicalAppointmentResource::collection($medical_appointment)
+                ->additional(['message' => 'Citas médicas.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -40,7 +39,6 @@ class MedicalAppointmentController extends Controller
         try {
             return (new MedicalAppointmentResource($this->medical_appointment($medical_appointment_id)))
                 ->additional(['message' => 'Cita médica encontrada.']);
-
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -55,7 +53,6 @@ class MedicalAppointmentController extends Controller
 
             return (new MedicalAppointmentResource($medical_appointment))
                 ->additional(['message' => 'Nota de la cita médica actualizada.']);
-
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -65,7 +62,6 @@ class MedicalAppointmentController extends Controller
     {
         return MedicalAppointment::where('id', $id)
             ->where('physician_id', $this->physician->id)
-            ->first(); 
+            ->first();
     }
-
 }

@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PhysicianSpecialty extends Model
 {
-    protected $table = 'physician_specialty';
-
     use HasFactory;
     use SoftDeletes;
+
+    protected $table = 'physician_specialty';
 
     protected $fillable = [
         'specialty_id',
@@ -28,7 +28,7 @@ class PhysicianSpecialty extends Model
         'deleted_at',
     ];
 
-    // RELACIONES DE ESTA TABLA PIVOT (M:N) 
+    // RELACIONES DE ESTA TABLA PIVOT (M:N)
     public function physicians()
     {
         return $this->belongsToMany(\App\Models\Physician::class)->withPivot('physician_id');

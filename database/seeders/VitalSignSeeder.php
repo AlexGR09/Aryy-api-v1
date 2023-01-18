@@ -2,13 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class VitalSignSeeder extends Seeder
 {
-
     public function run()
     {
         DB::table('vital_signs')->insert([
@@ -28,7 +26,7 @@ class VitalSignSeeder extends Seeder
                 'waist' => null,
                 'water' => null,
                 'muscle' => null,
-                'abdomen' => null
+                'abdomen' => null,
             ],
             [
                 'id' => 2,
@@ -46,7 +44,7 @@ class VitalSignSeeder extends Seeder
                 'waist' => null,
                 'water' => null,
                 'muscle' => null,
-                'abdomen' => null
+                'abdomen' => null,
             ],
             [
                 'id' => 3,
@@ -64,7 +62,7 @@ class VitalSignSeeder extends Seeder
                 'waist' => null,
                 'water' => null,
                 'muscle' => null,
-                'abdomen' => null
+                'abdomen' => null,
             ],
             [
                 'id' => 4,
@@ -82,7 +80,7 @@ class VitalSignSeeder extends Seeder
                 'waist' => null,
                 'water' => null,
                 'muscle' => null,
-                'abdomen' => null
+                'abdomen' => null,
             ],
             [
                 'id' => 5,
@@ -100,7 +98,7 @@ class VitalSignSeeder extends Seeder
                 'waist' => null,
                 'water' => null,
                 'muscle' => null,
-                'abdomen' => null
+                'abdomen' => null,
             ],
             [
                 'id' => 6,
@@ -118,7 +116,7 @@ class VitalSignSeeder extends Seeder
                 'waist' => null,
                 'water' => null,
                 'muscle' => null,
-                'abdomen' => null
+                'abdomen' => null,
             ],
             [
                 'id' => 7,
@@ -136,7 +134,7 @@ class VitalSignSeeder extends Seeder
                 'waist' => null,
                 'water' => null,
                 'muscle' => null,
-                'abdomen' => null
+                'abdomen' => null,
             ],
             [
                 'id' => 8,
@@ -154,7 +152,7 @@ class VitalSignSeeder extends Seeder
                 'waist' => null,
                 'water' => null,
                 'muscle' => null,
-                'abdomen' => null
+                'abdomen' => null,
             ],
             [
                 'id' => 9,
@@ -172,7 +170,7 @@ class VitalSignSeeder extends Seeder
                 'waist' => null,
                 'water' => null,
                 'muscle' => null,
-                'abdomen' => null
+                'abdomen' => null,
             ],
             [
                 'id' => 10,
@@ -190,9 +188,9 @@ class VitalSignSeeder extends Seeder
                 'waist' => null,
                 'water' => null,
                 'muscle' => null,
-                'abdomen' => null
+                'abdomen' => null,
             ],
-            
+
         ]);
     }
 }

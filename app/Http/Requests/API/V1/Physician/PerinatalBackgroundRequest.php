@@ -24,11 +24,11 @@ class PerinatalBackgroundRequest extends FormRequest
     public function rules()
     {
         return [
-            'last_menstrual_cycle'=>'date',
-            'cycle_time'=>'string',
-            'contraceptive_method_use'=>'string',
-            'assisted_conception'=>'string',
-            'final_ppf'=>'date',
+            'last_menstrual_cycle' => 'date',
+            'cycle_time' => 'string',
+            'contraceptive_method_use' => 'string',
+            'assisted_conception' => 'string',
+            'final_ppf' => 'date',
         ];
     }
 }

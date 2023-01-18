@@ -15,10 +15,10 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|max:35|' . Rule::unique('users')->ignore(auth()->user()),
+            'email' => 'required|email|max:35|'.Rule::unique('users')->ignore(auth()->user()),
             'password' => 'confirmed|min:8|max:16',
             'country_code' => 'required|max:6',
-            'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|' . Rule::unique('users')->ignore(auth()->user()),
+            'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|'.Rule::unique('users')->ignore(auth()->user()),
         ];
     }
 

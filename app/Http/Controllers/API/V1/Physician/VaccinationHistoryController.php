@@ -9,7 +9,6 @@ use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
 use App\Models\Physician;
 use App\Models\VaccinationHistory;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class VaccinationHistoryController extends Controller
@@ -23,7 +22,7 @@ class VaccinationHistoryController extends Controller
             'previusMedication',
         ]);
         // $this->user =  empty(auth()->id()) ? NULL : User::findOrFail(auth()->id());
-        $this->physician = empty(auth()->id()) ? NULL : Physician::where('user_id', auth()->id())->firstOrFail();
+        $this->physician = empty(auth()->id()) ? null : Physician::where('user_id', auth()->id())->firstOrFail();
     }
 
     public function index()
@@ -36,19 +35,20 @@ class VaccinationHistoryController extends Controller
         try {
             DB::beginTransaction();
             $todaydatetime = date('Y-m-d');
-           /*  $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)
-                ->where('physician_id', $this->physician->id)
-                ->first();
-            //se compara la fecha actual con la fecha de la cita
-            if ($medicalAppointment->appointment_date != $todaydatetime) {
-                return "Petición incorrecta";
-            } */
+            /*  $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)
+                 ->where('physician_id', $this->physician->id)
+                 ->first();
+             //se compara la fecha actual con la fecha de la cita
+             if ($medicalAppointment->appointment_date != $todaydatetime) {
+                 return "Petición incorrecta";
+             } */
             $vaccination_history = VaccinationHistory::create($request->validated());
 
             $medical_history = $this->medicalhistory($request->patient_id);
             $medical_history->vaccination_history_id = $vaccination_history->id;
             $medical_history->save();
             DB::commit();
+
             return (new VaccinationHistoryResource($vaccination_history))->additional(['message' => 'Informacion guardada.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 400);
@@ -60,9 +60,10 @@ class VaccinationHistoryController extends Controller
         try {
             $medical_history = $this->medicalHistory($medical_history_id);
             $vaccinationhistory = $medical_history->vaccinationhistory;
-            if (!$vaccinationhistory) {
+            if (! $vaccinationhistory) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
+
             return (new VaccinationHistoryResource($vaccinationhistory))->additional(['message' => 'Historial de vacunación.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

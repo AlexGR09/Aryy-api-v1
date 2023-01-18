@@ -21,7 +21,7 @@ class Facility extends Model
         'consultation_length',
         'accessibility_and_others',
         'city_id',
-        'coordinates'
+        'coordinates',
     ];
 
     /**
@@ -34,8 +34,8 @@ class Facility extends Model
         'schedule' => 'object',
         'accessibility_and_others' => 'object',
     ];
-    protected $hidden = ['pivot'];
 
+    protected $hidden = ['pivot'];
 
     public function physicians()
     {
@@ -53,7 +53,7 @@ class Facility extends Model
     }
 
     // RELACIÓN UNO A MUCHOS CON LA TABLA MEDICAL APPOINTMENTS
-    public function medical_appointments() 
+    public function medical_appointments()
     {
         return $this->hasMany(MedicalAppointment::class);
     }

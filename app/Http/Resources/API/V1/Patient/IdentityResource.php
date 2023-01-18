@@ -15,7 +15,7 @@ class IdentityResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id_card'=>$this->id_card,
+            'id_card' => $this->id_card,
         ];
     }
 }

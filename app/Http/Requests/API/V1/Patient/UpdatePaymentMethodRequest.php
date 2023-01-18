@@ -26,7 +26,7 @@ class UpdatePaymentMethodRequest extends FormRequest
         return [
             'cc' => 'required',
             'cc_date' => 'required',
-            'cc_cvv' => 'required'
+            'cc_cvv' => 'required',
         ];
     }
 }

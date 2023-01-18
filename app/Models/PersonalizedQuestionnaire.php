@@ -15,7 +15,7 @@ class PersonalizedQuestionnaire extends Model
         'title',
     ];
 
-    protected $hidden = [ 
+    protected $hidden = [
         'created_at',
         'updated_at',
         'deleted_at',

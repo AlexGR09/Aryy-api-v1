@@ -20,6 +20,7 @@ class IdentityController extends Controller
             'show',
         ]);
     }
+
     public function index()
     {
         //
@@ -28,22 +29,22 @@ class IdentityController extends Controller
     public function store(Request $request)
     {
         try {
-
             $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
 
             $file = $request->file('id_card');
             $fileName = $file->getClientOriginalName();
-            $file->storeAs($this->user->user_folder . $patient->patient_folder . '//identity//', $fileName);
+            $file->storeAs($this->user->user_folder.$patient->patient_folder.'//identity//', $fileName);
 
-            Storage::delete($this->user->user_folder . $patient->patient_folder . '//identity//');
+            Storage::delete($this->user->user_folder.$patient->patient_folder.'//identity//');
 
             $patient->id_card = $fileName;
             $patient->save();
 
             return (new IdentityResource($patient))->additional(['message' => 'Imagen guardada con exito.']);
         } catch (\Throwable $th) {
-            Storage::delete($this->user->user_folder . '//identity//' . $fileName);
+            Storage::delete($this->user->user_folder.'//identity//'.$fileName);
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -54,8 +55,8 @@ class IdentityController extends Controller
             $patient = Patient::where('id', $id)
                 ->where('user_id', auth()->id())
                 ->firstOrFail();
-            $path = $this->user->user_folder . $patient->patient_folder . '//identity//' . $patient->id_card;
-            
+            $path = $this->user->user_folder.$patient->patient_folder.'//identity//'.$patient->id_card;
+
             $image = Storage::get($path);
 
             return response($image, 200)->header('Content-Type', Storage::mimeType($path));
@@ -64,7 +65,7 @@ class IdentityController extends Controller
         }
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,7 +76,7 @@ class IdentityController extends Controller
             $patient = Patient::where('id', $id)
                 ->where('user_id', auth()->id())
                 ->firstOrFail();
-            $path = $this->user->user_folder . $patient->patient_folder . '//identity//' . $patient->id_card;;
+            $path = $this->user->user_folder.$patient->patient_folder.'//identity//'.$patient->id_card;
             Storage::delete($path);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

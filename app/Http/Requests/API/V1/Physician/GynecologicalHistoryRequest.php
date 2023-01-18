@@ -24,21 +24,21 @@ class GynecologicalHistoryRequest extends FormRequest
     public function rules()
     {
         return [
-           'first_menstruation'=>'date',
-           'last_menstruation'=>'date',
-           'bleeding'=>'string',
-           'pain'=>'string',
-           'intimate_hygiene'=>'string',
-           'cervical_discharge'=>'string',
-           'sex'=>'string',
-           'pregnancies'=>'string',
-           'cervical_cancer'=>'string',
-           'breast_cancer'=>'string',
-           'sexually_active'=>'string',
-           'family_planning'=>'string',
-           'hormone_replacement_therapy'=>'string',
-           'last_pap_smear'=>'date',
-           'last_mammography'=>'date'
+            'first_menstruation' => 'date',
+            'last_menstruation' => 'date',
+            'bleeding' => 'string',
+            'pain' => 'string',
+            'intimate_hygiene' => 'string',
+            'cervical_discharge' => 'string',
+            'sex' => 'string',
+            'pregnancies' => 'string',
+            'cervical_cancer' => 'string',
+            'breast_cancer' => 'string',
+            'sexually_active' => 'string',
+            'family_planning' => 'string',
+            'hormone_replacement_therapy' => 'string',
+            'last_pap_smear' => 'date',
+            'last_mammography' => 'date',
         ];
     }
 }

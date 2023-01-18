@@ -21,11 +21,6 @@ class NonPathologicalBackground extends Model
         'previous_medication',
     ];
 
-    public function medical_history()
-    {
-        return $this->hasOne(\App\Models\MedicalHistory::class);
-    }
-
     /**
      * The attributes that should be cast.
      *
@@ -37,4 +32,9 @@ class NonPathologicalBackground extends Model
         'smoking' => 'object',
         'alcoholim' => 'object',
     ];
+
+    public function medical_history()
+    {
+        return $this->hasOne(\App\Models\MedicalHistory::class);
+    }
 }

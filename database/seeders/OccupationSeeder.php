@@ -2,109 +2,107 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class OccupationSeeder extends Seeder
 {
-
     public function run()
     {
         DB::table('occupations')->insert([
             [
-                'name' => ' '
+                'name' => ' ',
             ],
             [
-                'name' => 'Abogado'
+                'name' => 'Abogado',
             ],
             [
-                'name' => 'Ingeniero'
+                'name' => 'Ingeniero',
             ],
             [
-                'name' => 'Biólogo'
+                'name' => 'Biólogo',
             ],
             [
-                'name' => 'Contador'
+                'name' => 'Contador',
             ],
             [
-                'name' => 'Arquitecto'
+                'name' => 'Arquitecto',
             ],
             [
-                'name' => 'Periodista'
+                'name' => 'Periodista',
             ],
             [
-                'name' => 'Psicologo'
+                'name' => 'Psicologo',
             ],
             [
-                'name' => 'Botánico'
+                'name' => 'Botánico',
             ],
             [
-                'name' => 'Farmacólogo'
+                'name' => 'Farmacólogo',
             ],
             [
-                'name' => 'Cajero'
+                'name' => 'Cajero',
             ],
             [
-                'name' => 'Policía'
+                'name' => 'Policía',
             ],
             [
-                'name' => 'Panadero'
+                'name' => 'Panadero',
             ],
             [
-                'name' => 'Escritor'
+                'name' => 'Escritor',
             ],
             [
-                'name' => 'Locutor'
+                'name' => 'Locutor',
             ],
             [
                 'name' => 'Carnicero',
             ],
             [
-                'name' => 'Albañil'
+                'name' => 'Albañil',
             ],
             [
-                'name' => 'Editor'
+                'name' => 'Editor',
             ],
             [
-                'name' => 'Cocinero'
+                'name' => 'Cocinero',
             ],
             [
-                'name' => 'Agricultor'
+                'name' => 'Agricultor',
             ],
             [
-                'name' => 'Soldador'
+                'name' => 'Soldador',
             ],
             [
-                'name' => 'Sastre'
+                'name' => 'Sastre',
             ],
             [
-                'name' => 'Plomero'
+                'name' => 'Plomero',
             ],
             [
-                'name' => 'Pescador'
+                'name' => 'Pescador',
             ],
             [
-                'name' => 'Mecanico'
+                'name' => 'Mecanico',
             ],
             [
-                'name' => 'Músico'
+                'name' => 'Músico',
             ],
             [
-                'name' => 'Traductor'
+                'name' => 'Traductor',
             ],
             [
-                'name' => 'Carpintero'
+                'name' => 'Carpintero',
             ],
             [
-                'name' => 'Cerrajero'
+                'name' => 'Cerrajero',
             ],
             [
-                'name' => 'Sastre'
+                'name' => 'Sastre',
             ],
             [
-                'name' => 'Minero'
-            ]
+                'name' => 'Minero',
+            ],
         ]);
     }
 }

@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Plan extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
         'price',
     ];
+
     public function userPlan()
     {
         return $this->belongsToMany(User::class);

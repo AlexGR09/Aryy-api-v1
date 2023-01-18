@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('allergy_patients', function (Blueprint $table) {
             $table->id();
-            $table->string('food_allergy')->nullable();
-            $table->string('drug_allergy')->nullable();
-            $table->string('environmental_allergy')->nullable();
+            $table->json('food_allergy')->nullable();
+            $table->json('drug_allergy')->nullable();
+            $table->json('environmental_allergy')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

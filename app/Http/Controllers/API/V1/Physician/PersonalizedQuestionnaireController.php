@@ -35,7 +35,7 @@ class PersonalizedQuestionnaireController extends Controller
         try {
             $personalized_questionnaire = $this->getPersonalizedQuestionnaire($personalized_questionnaire_id);
 
-            if (!$personalized_questionnaire) {
+            if (! $personalized_questionnaire) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
 
@@ -55,7 +55,7 @@ class PersonalizedQuestionnaireController extends Controller
 
             $personalized_questionnaire = PersonalizedQuestionnaire::create([
                 'physician_id' => $this->physician->id,
-                'title' => $data['title']
+                'title' => $data['title'],
             ]);
 
             foreach ($data['questions'] as $key => $question) {
@@ -73,10 +73,12 @@ class PersonalizedQuestionnaireController extends Controller
             }
 
             DB::commit();
+
             return (new PersonalizedQuestionnaireResource($personalized_questionnaire))
                     ->additional(['message' => 'Cuestionario personalizado guardado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -88,14 +90,14 @@ class PersonalizedQuestionnaireController extends Controller
 
             $personalized_questionnaire = $this->getPersonalizedQuestionnaire($personalized_questionnaire_id);
 
-            if (!$personalized_questionnaire) {
+            if (! $personalized_questionnaire) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
 
             DB::beginTransaction();
 
             $personalized_questionnaire->update([
-                'title' => $data['title']
+                'title' => $data['title'],
             ]);
 
             foreach ($data['questions'] as $key => $question) {
@@ -115,10 +117,12 @@ class PersonalizedQuestionnaireController extends Controller
             }
 
             DB::commit();
+
             return (new PersonalizedQuestionnaireResource($personalized_questionnaire))
                 ->additional(['message' => 'Cuestionario personalizado actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

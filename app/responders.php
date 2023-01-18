@@ -24,7 +24,7 @@ function getResponse($code, $msg, $data)
 if (! function_exists('ok')) {
     function ok($message = '', $data = [])
     {
-        return getResponse(200, $message,  $data);
+        return getResponse(200, $message, $data);
     }
 }
 

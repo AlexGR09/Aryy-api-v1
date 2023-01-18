@@ -23,7 +23,25 @@ class Patient extends Model
         'country_code',
         'emergency_number',
         'id_card',
-        'patient_folder'
+        'patient_folder',
+    ];
+    // public function health_insurance()
+    // {
+    //     return $this->belongsTo('App\Models\HealthInsurance');
+    // }
+
+    // public function medical_records()
+    // {
+    //     return $this->belongsTo('App\Models\MedicalRecord');
+    // }
+
+    // public function medical_history()
+    // {
+    //     return $this->belongsTo('App\Models\MedicalHistory');
+    // }
+    protected $casts = [
+        'address' => 'object',
+        'id_card' => 'object',
     ];
 
     // RELACIÓN MUCHOS A UNO CON EL MODELO USER
@@ -32,7 +50,7 @@ class Patient extends Model
         return $this->belongsTo(\App\Models\User::class);
     }
 
-    // RELACIÓN MUCHOS A UNO CON SEGUROS MÉDICOS  
+    // RELACIÓN MUCHOS A UNO CON SEGUROS MÉDICOS
     public function health_insurance()
     {
         return $this->belongsTo(\App\Models\HealthInsurance::class);
@@ -60,7 +78,7 @@ class Patient extends Model
     }
 
     // RELACIÓN UNO A MUCHOS CON LA TABLA MEDICAL APPOINTMENTS
-    public function medical_appointments() 
+    public function medical_appointments()
     {
         return $this->hasMany(MedicalAppointment::class);
     }
@@ -69,27 +87,9 @@ class Patient extends Model
     {
         return $this->hasOne(VitalSign::class);
     }
-    
+
     public function medicalHistory()
     {
         return $this->hasOne(MedicalHistory::class);
     }
-    // public function health_insurance()
-    // {
-    //     return $this->belongsTo('App\Models\HealthInsurance');
-    // }
-
-    // public function medical_records()
-    // {
-    //     return $this->belongsTo('App\Models\MedicalRecord');
-    // }
-
-    // public function medical_history()
-    // {
-    //     return $this->belongsTo('App\Models\MedicalHistory');
-    // }
-    protected $casts = [
-        'address' => 'object',
-        'id_card' => 'object',
-    ];
 }

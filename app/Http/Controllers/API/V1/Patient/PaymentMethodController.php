@@ -11,9 +11,9 @@ class PaymentMethodController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('payment_method_user')->only([ 'show', 'update', 'destroy']);
+        $this->middleware('payment_method_user')->only(['show', 'update', 'destroy']);
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -21,7 +21,7 @@ class PaymentMethodController extends Controller
      */
     public function index()
     {
-        $paymentMethods = PaymentMethod::select('id','cc')
+        $paymentMethods = PaymentMethod::select('id', 'cc')
         ->where('user_id', auth()->id())
         ->get();
         $changedArray = [];
@@ -29,6 +29,7 @@ class PaymentMethodController extends Controller
             $paymentMethod->cc = substr($paymentMethod->cc, -4);
             $changedArray[] = $paymentMethod;
         }
+
         return ok('', $changedArray);
     }
 
@@ -41,6 +42,7 @@ class PaymentMethodController extends Controller
     public function store(StorePaymentMethodRequest $request)
     {
         PaymentMethod::create($request->validated() + ['user_id' => auth()->id()]);
+
         return ok('Creada', []);
     }
 
@@ -52,7 +54,8 @@ class PaymentMethodController extends Controller
      */
     public function show(PaymentMethod $paymentMethod)
     {
-        $paymentMethod->cc = substr($paymentMethod->cc, -4); 
+        $paymentMethod->cc = substr($paymentMethod->cc, -4);
+
         return ok('', $paymentMethod->cc);
     }
 
@@ -66,6 +69,7 @@ class PaymentMethodController extends Controller
     public function update(UpdatePaymentMethodRequest $request, PaymentMethod $paymentMethod)
     {
         $paymentMethod->update($request->validated());
+
         return ok('Actualizado', []);
     }
 
@@ -78,6 +82,7 @@ class PaymentMethodController extends Controller
     public function destroy(PaymentMethod $paymentMethod)
     {
         $paymentMethod->delete();
+
         return ok('Borrado', []);
     }
 }
