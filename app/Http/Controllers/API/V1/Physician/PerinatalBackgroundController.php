@@ -9,7 +9,6 @@ use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
 use App\Models\PerinatalBackground;
 use App\Models\Physician;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PerinatalBackgroundController extends Controller
@@ -23,7 +22,7 @@ class PerinatalBackgroundController extends Controller
             'previusMedication',
         ]);
         // $this->user =  empty(auth()->id()) ? NULL : User::findOrFail(auth()->id());
-        $this->physician = empty(auth()->id()) ? NULL : Physician::where('user_id', auth()->id())->firstOrFail();
+        $this->physician = empty(auth()->id()) ? null : Physician::where('user_id', auth()->id())->firstOrFail();
     }
 
     public function index()
@@ -49,9 +48,11 @@ class PerinatalBackgroundController extends Controller
             $medicalHistory->perinatal_background_id = $perinatalBackground->id;
             $medicalHistory->save();
             DB::commit();
+
             return (new PerinatalBackgroundResource($perinatalBackground))->additional(['message' => 'Informacion guardada.']);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 400);
         }
     }
@@ -61,9 +62,10 @@ class PerinatalBackgroundController extends Controller
         try {
             $medicalHistory = $this->medicalhistory($medical_history_id);
             $perinatalBackground = $medicalHistory->perinatalBackground;
-            if (!$perinatalBackground) {
+            if (! $perinatalBackground) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
+
             return (new PerinatalBackgroundResource($perinatalBackground))->additional(['message' => 'Informacion encontrada.']);
         } catch (\Throwable $th) {
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
@@ -79,9 +81,11 @@ class PerinatalBackgroundController extends Controller
             $perinatalBackground->update($request->validated());
             $perinatalBackground->save();
             DB::commit();
+
             return (new PerinatalBackgroundResource($perinatalBackground))->additional(['message' => 'Informacion actualizada con exito.']);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 400);
         }
     }

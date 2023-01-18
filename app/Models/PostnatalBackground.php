@@ -23,7 +23,8 @@ class PostnatalBackground extends Model
         'type_of_feeding' => 'array',
     ];
 
-    public function medical_history() {
+    public function medical_history()
+    {
         return $this->hasOne(MedicalHistory::class);
     }
 }

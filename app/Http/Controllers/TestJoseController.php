@@ -51,21 +51,21 @@ class TestJoseController extends Controller
 
     // return (PhysicianSearchResource::collection($physicians))->additional(['message' => 'Médico(s) encontrado(s).']);
 
-    public function testpost(Request $request) 
+    public function testpost(Request $request)
     {
         $country = Country::create([
-            'name' => $request->name
+            'name' => $request->name,
         ]);
-        
+
         return $country;
     }
 
-    public function testupdate(Request $request, Country $country) 
+    public function testupdate(Request $request, Country $country)
     {
         $country = Country::create([
-            'name' => $request->name
+            'name' => $request->name,
         ]);
-        
+
         return $country;
     }
 }

@@ -2,19 +2,17 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class PrescriptionSeeder extends Seeder
 {
-
     public function run()
     {
         $treatment = [
             'marca' => 'Bio electro',
             'activo' => 'Ácido Acetilsalicílico',
-            'presentación' => 'tabletas'
+            'presentación' => 'tabletas',
         ];
 
         DB::table('prescriptions')->insert([
@@ -26,7 +24,7 @@ class PrescriptionSeeder extends Seeder
                 'treatment' => json_encode($treatment),
                 'medication_instructions' => 'una tableta al día',
                 'medical_examination' => null,
-                'laboratory_order' => null
+                'laboratory_order' => null,
             ],
             [
                 'id' => 2,
@@ -36,7 +34,7 @@ class PrescriptionSeeder extends Seeder
                 'treatment' => json_encode($treatment),
                 'medication_instructions' => 'media tableta al día',
                 'medical_examination' => null,
-                'laboratory_order' => null
+                'laboratory_order' => null,
             ],
             [
                 'id' => 3,
@@ -46,7 +44,7 @@ class PrescriptionSeeder extends Seeder
                 'treatment' => json_encode($treatment),
                 'medication_instructions' => 'media tableta al día',
                 'medical_examination' => null,
-                'laboratory_order' => null
+                'laboratory_order' => null,
             ],
             [
                 'id' => 4,
@@ -56,7 +54,7 @@ class PrescriptionSeeder extends Seeder
                 'treatment' => json_encode($treatment),
                 'medication_instructions' => 'media tableta al día',
                 'medical_examination' => null,
-                'laboratory_order' => null
+                'laboratory_order' => null,
             ],
             [
                 'id' => 5,
@@ -66,7 +64,7 @@ class PrescriptionSeeder extends Seeder
                 'treatment' => json_encode($treatment),
                 'medication_instructions' => 'media tableta al día',
                 'medical_examination' => null,
-                'laboratory_order' => null
+                'laboratory_order' => null,
             ],
             [
                 'id' => 6,
@@ -76,7 +74,7 @@ class PrescriptionSeeder extends Seeder
                 'treatment' => json_encode($treatment),
                 'medication_instructions' => 'media tableta al día',
                 'medical_examination' => null,
-                'laboratory_order' => null
+                'laboratory_order' => null,
             ],
             [
                 'id' => 7,
@@ -86,7 +84,7 @@ class PrescriptionSeeder extends Seeder
                 'treatment' => json_encode($treatment),
                 'medication_instructions' => 'media tableta al día',
                 'medical_examination' => null,
-                'laboratory_order' => null
+                'laboratory_order' => null,
             ],
             [
                 'id' => 8,
@@ -96,7 +94,7 @@ class PrescriptionSeeder extends Seeder
                 'treatment' => json_encode($treatment),
                 'medication_instructions' => 'media tableta al día',
                 'medical_examination' => null,
-                'laboratory_order' => null
+                'laboratory_order' => null,
             ],
             [
                 'id' => 9,
@@ -106,7 +104,7 @@ class PrescriptionSeeder extends Seeder
                 'treatment' => json_encode($treatment),
                 'medication_instructions' => 'media tableta al día',
                 'medical_examination' => null,
-                'laboratory_order' => null
+                'laboratory_order' => null,
             ],
             [
                 'id' => 10,
@@ -116,7 +114,7 @@ class PrescriptionSeeder extends Seeder
                 'treatment' => json_encode($treatment),
                 'medication_instructions' => 'media tableta al día',
                 'medical_examination' => null,
-                'laboratory_order' => null
+                'laboratory_order' => null,
             ],
         ]);
     }

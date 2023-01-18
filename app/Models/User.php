@@ -14,7 +14,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes;
 
-
     protected $fillable = [
         'id',
         'email',
@@ -22,23 +21,23 @@ class User extends Authenticatable
         'country_code',
         'phone_number',
         'user_folder',
-        'remember_token'
+        'remember_token',
     ];
-
 
     protected $hidden = [
         'password',
         'remember_token',
-        'pm_last_four'
+        'pm_last_four',
     ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    public function setPasswordAttribute($value) {
+    public function setPasswordAttribute($value)
+    {
         $this->attributes['password'] = Hash::make($value);
-     }
+    }
 
     public function physician()
     {
@@ -46,7 +45,7 @@ class User extends Authenticatable
     }
 
     // RELACIÓN UNO A MUCHOS CON EL MODELO PATIENT
-    public function patients() 
+    public function patients()
     {
         return $this->hasMany(\App\Models\Patient::class);
     }
@@ -63,6 +62,6 @@ class User extends Authenticatable
 
     public function userSubscription()
     {
-        return $this->belongsToMany(Plan::class,'subscriptions', 'user_id', 'plan_id');
+        return $this->belongsToMany(Plan::class, 'subscriptions', 'user_id', 'plan_id');
     }
 }

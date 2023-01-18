@@ -17,9 +17,10 @@ class PaymentMethodUserMiddleware
     public function handle(Request $request, Closure $next)
     {
         $paymentMethod = $request->route('paymentMethod');
-        if ($paymentMethod->where('user_id', auth()->id())->exists()){
+        if ($paymentMethod->where('user_id', auth()->id())->exists()) {
             return $next($request);
         }
+
         return conflict('No puedes editar esta tarjeta', []);
     }
 }

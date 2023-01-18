@@ -24,16 +24,17 @@ class FacilityUserMiddleware
         )
         ->get();
         $facilitySearch = $request->route('facility');
-        if (!$facilitySearch) {
+        if (! $facilitySearch) {
             return $next($request);
         }
-        foreach ($facilities as $facility ) {
+        foreach ($facilities as $facility) {
             if ($facility->id === $facilitySearch->id) {
                 return $next($request);
             }
         }
+
         return response()->json([
-            'message' => 'Este consultorio no te pertenece'
+            'message' => 'Este consultorio no te pertenece',
         ]);
     }
 }

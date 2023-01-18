@@ -24,7 +24,7 @@ class StorePlanUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'plan_id' => 'required|exists:\App\Models\Plan,id'
+            'plan_id' => 'required|exists:\App\Models\Plan,id',
         ];
     }
 }

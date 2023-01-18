@@ -15,7 +15,7 @@ class BasicInformationResource extends JsonResource
     {
         return [
             'height' => $this->height,
-            'weight' =>$this->weight,
+            'weight' => $this->weight,
             'imc' => $this->imc,
             'blood_type' => $this->blood_type,
             'allergy_patient_id' => $this->allergy_patient_id,

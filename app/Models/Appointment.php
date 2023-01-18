@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'user_id_physician',
         'user_id_patient',
@@ -16,6 +17,7 @@ class Appointment extends Model
         'address',
         'status',
     ];
+
     protected $casts = [
         'appointment_date' => 'datetime',
     ];

@@ -16,13 +16,14 @@ class AllergyPatient extends Model
         'environmental_allergy',
     ];
 
+    protected $casts = [
+        'food_allergy' => 'array',
+        'drug_allergy' => 'array',
+        'environmental_allergy' => 'array',
+    ];
+
     public function medical_history()
     {
         return $this->hasOne(\App\Models\MedicalHistory::class);
     }
-    protected $casts = [
-        'food_allergy' => 'array',
-        'drug_allergy'=> 'array',
-        'environmental_allergy'=> 'array',
-    ];
 }

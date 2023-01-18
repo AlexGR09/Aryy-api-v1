@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class() extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -20,8 +20,8 @@ return new class() extends Migration
             $table->string('languages')->nullable();
             $table->enum('is_verified', ['not_verified', 'in_verification', 'verified'])->default('not_verified');
             $table->string('physician_profile_photo')->nullable();
-            $table->decimal('first_time_consultation',8,2);
-            $table->decimal('subsequent_consultation',8,2);
+            $table->decimal('first_time_consultation', 8, 2);
+            $table->decimal('subsequent_consultation', 8, 2);
             $table->timestamps();
             $table->softDeletes();
         });

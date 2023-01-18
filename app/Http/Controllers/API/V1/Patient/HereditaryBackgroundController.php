@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\HereditaryBackgroundRequest;
 use App\Http\Resources\API\V1\Patient\HereditaryBackgroundResource;
 use App\Http\Resources\API\V1\Patient\KinshipResource as PatientKinshipResource;
-use App\Http\Resources\Resources\API\V1\Patient\KinshipResource;
 use App\Models\HereditaryBackground;
 use App\Models\Kinship;
 use App\Models\MedicalHistory;
@@ -53,9 +52,11 @@ class HereditaryBackgroundController extends Controller
             ]);
 
             DB::commit();
+
             return (new HereditaryBackgroundResource($hereditary_background))->additional(['message' => 'Informacion guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -69,13 +70,14 @@ class HereditaryBackgroundController extends Controller
 
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
             $hereditary_background = HereditaryBackground::where('id', $medical_history->hereditary_background_id)->get();
-            return (HereditaryBackgroundResource::collection($hereditary_background))->additional(['message' => '..']);
+
+            return HereditaryBackgroundResource::collection($hereditary_background)->additional(['message' => '..']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function update(HereditaryBackgroundRequest $request,$id)
+    public function update(HereditaryBackgroundRequest $request, $id)
     {
         try {
             $patient = Patient::where('id', $id)
@@ -99,8 +101,11 @@ class HereditaryBackgroundController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-    public function kinship(){
+
+    public function kinship()
+    {
         $kinship = Kinship::all();
-        return ( PatientKinshipResource::collection($kinship))->additional(['message' => 'Ocupaciones encontradas.']);     
+
+        return  PatientKinshipResource::collection($kinship)->additional(['message' => 'Ocupaciones encontradas.']);
     }
 }

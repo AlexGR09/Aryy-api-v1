@@ -6,7 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class PrescriptionResource extends JsonResource
 {
-
     public function toArray($request)
     {
         return [
@@ -16,7 +15,7 @@ class PrescriptionResource extends JsonResource
             'diagnosis' => $this->diagnosis,
             'treatment' => $this->treatment,
             'medication_instructions' => $this->medication_instructions,
-            'medical_examination' => $this->medical_examination
+            'medical_examination' => $this->medical_examination,
         ];
     }
 }

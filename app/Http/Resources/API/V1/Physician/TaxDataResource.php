@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\API\V1\Physician;
 
-use App\Http\Resources\API\V1\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TaxDataResource extends JsonResource

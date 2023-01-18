@@ -28,8 +28,8 @@ class StoreAppointmentRequest extends FormRequest
             'user_id_patient' => 'required|exists:App\Models\User,id',
             'specialty_id' => 'required|exists:App\Models\Specialty,id',
             'appointment_date' => 'required|date',
-            'address'=> 'required',
-            'status' => 'required'
+            'address' => 'required',
+            'status' => 'required',
         ];
     }
 }

@@ -15,7 +15,7 @@ class SubscriptionUserController extends Controller
      */
     public function index()
     {
-        return ok('',User::with('userSubscription')->whereHas('userSubscription', function ($q) {
+        return ok('', User::with('userSubscription')->whereHas('userSubscription', function ($q) {
             return $q->where('user_id', auth()->id());
         })->first()?->userSubscription);
     }
@@ -34,6 +34,7 @@ class SubscriptionUserController extends Controller
         ->attach(
             $request->validated()
         );
+
         return User::with('userSubscription')->find(auth()->id());
     }
 
@@ -63,6 +64,7 @@ class SubscriptionUserController extends Controller
         ->sync(
             $request->validated()
         );
+
         return User::with('userSubscription')->find(auth()->id());
     }
 

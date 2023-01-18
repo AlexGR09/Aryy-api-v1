@@ -7,16 +7,12 @@ use App\Http\Resources\API\V1\Physician\PreviousMedicationResource;
 use App\Http\Resources\API\V1\Physician\ViewMedicationsResource;
 use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
-use App\Models\NonPathologicalBackground;
 use App\Models\Physician;
-use App\Models\Prescription;
-use Illuminate\Http\Request;
-
-use function PHPUnit\Framework\isEmpty;
 
 class ViewMedicationsController extends Controller
 {
     protected $physician;
+
     public function __construct()
     {
         $this->middleware('role:Physician')->only([
@@ -24,19 +20,19 @@ class ViewMedicationsController extends Controller
             'previusMedication',
         ]);
         // $this->user =  empty(auth()->id()) ? NULL : User::findOrFail(auth()->id());
-        $this->physician = empty(auth()->id()) ? NULL : Physician::where('user_id', auth()->id())->firstOrFail();
+        $this->physician = empty(auth()->id()) ? null : Physician::where('user_id', auth()->id())->firstOrFail();
     }
 
     public function drugActive($id)
     {
         try {
             $medicalHistory = $this->medicalhistory($id);
-            if (!$medicalHistory) {
+            if (! $medicalHistory) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
-            $drug_active = $medicalHistory->nonpathologicalbackground;   
-            
-                return (new ViewMedicationsResource($drug_active))->additional(['message' => 'Informacion de Medicacion.']);
+            $drug_active = $medicalHistory->nonpathologicalbackground;
+
+            return (new ViewMedicationsResource($drug_active))->additional(['message' => 'Informacion de Medicacion.']);
         } catch (\Throwable $th) {
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
         }
@@ -46,12 +42,12 @@ class ViewMedicationsController extends Controller
     {
         try {
             $medicalHistory = $this->medicalhistory($id);
-            if (!$medicalHistory) {
+            if (! $medicalHistory) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
-            $previus_medication  = $medicalHistory->nonpathologicalbackground;
-            
-                return (new PreviousMedicationResource($previus_medication))->additional(['message' => 'Informacion de Medicacion.']);
+            $previus_medication = $medicalHistory->nonpathologicalbackground;
+
+            return (new PreviousMedicationResource($previus_medication))->additional(['message' => 'Informacion de Medicacion.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

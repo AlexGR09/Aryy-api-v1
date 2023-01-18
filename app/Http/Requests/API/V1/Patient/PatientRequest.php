@@ -7,7 +7,6 @@ use Illuminate\Validation\Rule;
 
 class PatientRequest extends FormRequest
 {
-
     public function authorize()
     {
         return auth()->check();
@@ -22,7 +21,7 @@ class PatientRequest extends FormRequest
             'gender' => 'required|in:masculino,femenino',
             'birthday' => 'required|date',
             'country_code' => 'nullable|string|max:6',
-            'emergency_number' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|'. Rule::unique('patients'),
+            'emergency_number' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|'.Rule::unique('patients'),
         ];
     }
 }

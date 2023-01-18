@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfilePhotoController extends Controller
 {
-    protected $user, $path_patients;
+    protected $user;
+
+    protected $path_patients;
 
     public function __construct()
     {
@@ -25,37 +27,38 @@ class ProfilePhotoController extends Controller
         try {
             $patient = Patient::where('id', $id)->where('user_id', $this->user->id)->firstOrFail();
 
-            $directory_patient = $this->path_patients . $this->user->user_folder . $patient->patient_folder;
+            $directory_patient = $this->path_patients.$this->user->user_folder.$patient->patient_folder;
 
             // SE MUEVE LA IMAGEN PREVIA REGISTRADA A LA PAPELERA
-            if ($patient->patient_profile_photo != NULL) {
-                $from = $directory_patient . '//profile_photo//' . $patient->patient_profile_photo;
-                $to = $this->path_patients . $this->user->user_folder . '//recycle_bin//' . $patient->patient_profile_photo;
+            if ($patient->patient_profile_photo != null) {
+                $from = $directory_patient.'//profile_photo//'.$patient->patient_profile_photo;
+                $to = $this->path_patients.$this->user->user_folder.'//recycle_bin//'.$patient->patient_profile_photo;
                 Storage::move($from, $to);
             }
 
-            // SE GUARDA LA IMAGEN EN EL STORAGE ASIMISMO SU REFERENCIA EN LA DB    
+            // SE GUARDA LA IMAGEN EN EL STORAGE ASIMISMO SU REFERENCIA EN LA DB
             $file = $request->file('photo');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs($directory_patient . '//profile_photo//', $fileName);
+            $fileName = time().'_'.$file->getClientOriginalName();
+            $file->storeAs($directory_patient.'//profile_photo//', $fileName);
 
-            $patient->patient_profile_photo =  $fileName;
+            $patient->patient_profile_photo = $fileName;
             $patient->save();
 
             return response()->json(['message' => 'Foto de perfil almacenada correctamente.']);
         } catch (\Throwable $th) {
             // SE INVIRTE EL ORIGEN Y DESTINO PARA REVERTIR LOS CAMBIOS
             Storage::move($to, $from);
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function getProfilePhoto(PhotoNameRequest $request, $id) 
+    public function getProfilePhoto(PhotoNameRequest $request, $id)
     {
         try {
             $patient = Patient::where('id', $id)->where('user_id', $this->user->id)->firstOrFail();
 
-            $path =  $this->path_patients . $this->user->user_folder . $patient->patient_folder . '//profile_photo//' . $request->photo;
+            $path = $this->path_patients.$this->user->user_folder.$patient->patient_folder.'//profile_photo//'.$request->photo;
             $image = Storage::get($path);
 
             if ($image) {
@@ -67,5 +70,4 @@ class ProfilePhotoController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-
 }

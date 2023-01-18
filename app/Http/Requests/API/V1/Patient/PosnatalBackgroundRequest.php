@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PosnatalBackgroundRequest extends FormRequest
 {
-
     public function authorize()
     {
         return auth()->check();

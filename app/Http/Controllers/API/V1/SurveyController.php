@@ -40,10 +40,10 @@ class SurveyController extends Controller
         $data = $request->validated();
         $survey = Survey::create([
             'physician_id' => auth()->id(),
-            'title' => $data['title']
+            'title' => $data['title'],
         ]);
 
-        foreach($data['survey'] as $question){
+        foreach ($data['survey'] as $question) {
             $questionReplay = $survey->questions()->create([
                 'survey_id' => $survey->id,
                 'physician_id' => auth()->id(),
@@ -51,13 +51,13 @@ class SurveyController extends Controller
             ]);
             $survey->answers()->create([
                 'question_id' => $questionReplay->id,
-                'survey_id' =>  $survey ->id ,
+                'survey_id' => $survey->id,
                 'physician_id' => auth()->id(),
-                'answer' => $question['questions']['answer']
+                'answer' => $question['questions']['answer'],
             ]);
         }
-        
-        return ok('',$survey->load('questions'));
+
+        return ok('', $survey->load('questions'));
     }
 
     /**

@@ -25,7 +25,7 @@ class PatientResource extends JsonResource
             'main_profile' => $this->main_profile,
             'occupations_patient' => OccupationResource::collection($this->occupations),
             'user_id' => $this->user_id,
-/*             'user' => new UserResource($this->user)
+            /*             'user' => new UserResource($this->user)
  */            // 'city' => new CityResource($this->city),
             // 'occupation_patient' => $this->occupationpatient,
 

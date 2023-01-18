@@ -6,12 +6,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class MedicalServiceResource extends JsonResource
 {
-
     public function toArray($request)
     {
         return [
             'medical_service_id' => $this->id,
-            'name' => $this->name
+            'name' => $this->name,
         ];
     }
 }

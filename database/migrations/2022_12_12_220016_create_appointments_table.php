@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('specialty_id')->constrained();
             $table->dateTime('appointment_date');
             $table->string('address')->nullable();
-            $table->enum('status',['attended','no-attended','canceled','scheduled']);
+            $table->enum('status', ['attended', 'no-attended', 'canceled', 'scheduled']);
             $table->timestamps();
         });
     }

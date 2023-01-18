@@ -27,7 +27,7 @@ class PostnatalBackgroundController extends Controller
         try {
             $medical_history = $this->medicalHistory($medical_history_id);
 
-            if (!$medical_history) {
+            if (! $medical_history) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
 
@@ -43,7 +43,7 @@ class PostnatalBackgroundController extends Controller
         try {
             $medical_history = $this->medicalHistory($medical_history_id);
 
-            if (!$medical_history || $medical_history->postnatal_background) {
+            if (! $medical_history || $medical_history->postnatal_background) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
 
@@ -66,7 +66,7 @@ class PostnatalBackgroundController extends Controller
         try {
             $medical_history = $this->medicalHistory($medical_history_id);
 
-            if (!$medical_history || !$medical_history->postnatal_background) {
+            if (! $medical_history || ! $medical_history->postnatal_background) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
 

@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\API\V1\Physician\ViewMedicationsResource;
-use Illuminate\Support\Facades\DB;
 use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
-use App\Models\NonPathologicalBackground;
 use App\Models\Physician;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StatusTreatmentController extends Controller
 {
     protected $physician;
+
     public function __construct()
     {
         $this->middleware('role:Physician')->only([
@@ -21,40 +20,43 @@ class StatusTreatmentController extends Controller
             'previusMedication',
         ]);
         // $this->user =  empty(auth()->id()) ? NULL : User::findOrFail(auth()->id());
-        $this->physician = empty(auth()->id()) ? NULL : Physician::where('user_id', auth()->id())->firstOrFail();
+        $this->physician = empty(auth()->id()) ? null : Physician::where('user_id', auth()->id())->firstOrFail();
     }
 
     public function update(Request $request, $medical_history_id)
     {
         try {
-        DB::beginTransaction();
-        $medicalHistory = $this->medicalhistory($medical_history_id);
-        $cita = MedicalAppointment::where('patient_id', $medicalHistory->patient_id)
-            ->where('physician_id', $this->physician->id)
-            ->count();
-        if ($cita < 1) {
-            return response()->json(['Petición incorrecta']);
-        }
-            $drug_active  = $medicalHistory->nonpathologicalbackground;
-        if ($drug_active->previous_medication == NULL) {
-            $drug_active->previous_medication = $drug_active->drug_active;
-            $drug_active->drug_active = NULL;
-            $drug_active->save();
-            return response()->json(["Trataniento Completado", $request->drug_active]);
-        }
-        $new_medicine = $drug_active->previous_medication . ',' . $drug_active->drug_active;
-        $drug_active->previous_medication = $new_medicine;
-        $drug_active->drug_active = NULL;
-        $drug_active->save();
+            DB::beginTransaction();
+            $medicalHistory = $this->medicalhistory($medical_history_id);
+            $cita = MedicalAppointment::where('patient_id', $medicalHistory->patient_id)
+                ->where('physician_id', $this->physician->id)
+                ->count();
+            if ($cita < 1) {
+                return response()->json(['Petición incorrecta']);
+            }
+            $drug_active = $medicalHistory->nonpathologicalbackground;
+            if ($drug_active->previous_medication == null) {
+                $drug_active->previous_medication = $drug_active->drug_active;
+                $drug_active->drug_active = null;
+                $drug_active->save();
 
-        DB::commit();
-        return response()->json(["Trataniento Completado"]);
+                return response()->json(['Trataniento Completado', $request->drug_active]);
+            }
+            $new_medicine = $drug_active->previous_medication.','.$drug_active->drug_active;
+            $drug_active->previous_medication = $new_medicine;
+            $drug_active->drug_active = null;
+            $drug_active->save();
+
+            DB::commit();
+
+            return response()->json(['Trataniento Completado']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
         }
     }
-    
+
     public function medicalhistory($medical_history_id)
     {
         try {

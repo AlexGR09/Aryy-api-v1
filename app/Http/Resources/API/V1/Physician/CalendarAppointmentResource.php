@@ -7,10 +7,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class CalendarAppointmentResource extends JsonResource
 {
-
     public function toArray($request)
     {
-
         return [
             'appointment_id' => $this->id,
             'appointment_date' => Carbon::parse($this->appointment_date)->translatedFormat('d-F-y'),

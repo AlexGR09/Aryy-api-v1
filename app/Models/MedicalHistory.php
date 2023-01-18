@@ -29,6 +29,11 @@ class MedicalHistory extends Model
         'gynecological_history_id',
     ];
 
+    protected $casts = [
+        'weight' => 'object',
+        'height' => 'object',
+    ];
+
     public function patient()
     {
         return $this->belongsTo(\App\Models\Patient::class);
@@ -74,13 +79,8 @@ class MedicalHistory extends Model
         return $this->belongsTo(PostnatalBackground::class);
     }
 
-    public function ObgynBackground(){
+    public function ObgynBackground()
+    {
         return $this->belongsTo(ObgynBackground::class);
     }
-
-
-    protected $casts = [
-        'weight' => 'object',
-        'height' => 'object',
-    ];
 }

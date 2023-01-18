@@ -2,19 +2,17 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class PostnatalBackgroundSeeder extends Seeder
 {
-
     public function run()
     {
         $type_of_feeding = [
             'formula' => false,
             'breastfeed' => true,
-            'both' => false
+            'both' => false,
         ];
         DB::table('postnatal_backgrounds')->insert([
             [
@@ -24,7 +22,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'baby_weight' => '3 kg',
                 'baby_health' => 'sanito',
                 'type_of_feeding' => json_encode($type_of_feeding),
-                'emotonial_state' => 'bien'
+                'emotonial_state' => 'bien',
             ],
             [
                 'id' => 2,
@@ -33,7 +31,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'baby_weight' => '2.7 kg',
                 'baby_health' => 'sanito',
                 'type_of_feeding' => json_encode($type_of_feeding),
-                'emotonial_state' => 'bien'
+                'emotonial_state' => 'bien',
             ],
             [
                 'id' => 3,
@@ -42,7 +40,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'baby_weight' => '2.6 kg',
                 'baby_health' => 'sanita',
                 'type_of_feeding' => json_encode($type_of_feeding),
-                'emotonial_state' => 'bien'
+                'emotonial_state' => 'bien',
             ],
             [
                 'id' => 4,
@@ -51,7 +49,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'baby_weight' => '2.5 kg',
                 'baby_health' => 'sanita',
                 'type_of_feeding' => json_encode($type_of_feeding),
-                'emotonial_state' => 'bien'
+                'emotonial_state' => 'bien',
             ],
             [
                 'id' => 5,
@@ -60,7 +58,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'baby_weight' => '2.7 kg',
                 'baby_health' => 'sanito',
                 'type_of_feeding' => json_encode($type_of_feeding),
-                'emotonial_state' => 'bien'
+                'emotonial_state' => 'bien',
             ],
             [
                 'id' => 6,
@@ -69,7 +67,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'baby_weight' => '2.9 kg',
                 'baby_health' => 'sanito',
                 'type_of_feeding' => json_encode($type_of_feeding),
-                'emotonial_state' => 'bien'
+                'emotonial_state' => 'bien',
             ],
             [
                 'id' => 7,
@@ -78,7 +76,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'baby_weight' => '3.2 kg',
                 'baby_health' => 'sanito',
                 'type_of_feeding' => json_encode($type_of_feeding),
-                'emotonial_state' => 'bien'
+                'emotonial_state' => 'bien',
             ],
             [
                 'id' => 8,
@@ -87,7 +85,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'baby_weight' => '3.0 kg',
                 'baby_health' => 'sanito',
                 'type_of_feeding' => json_encode($type_of_feeding),
-                'emotonial_state' => 'bien'
+                'emotonial_state' => 'bien',
             ],
             [
                 'id' => 9,
@@ -96,7 +94,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'baby_weight' => '2.7 kg',
                 'baby_health' => 'sanito',
                 'type_of_feeding' => json_encode($type_of_feeding),
-                'emotonial_state' => 'bien'
+                'emotonial_state' => 'bien',
             ],
             [
                 'id' => 10,
@@ -105,7 +103,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'baby_weight' => '3.3 kg',
                 'baby_health' => 'sanita',
                 'type_of_feeding' => json_encode($type_of_feeding),
-                'emotonial_state' => 'bien'
+                'emotonial_state' => 'bien',
             ],
         ]);
     }
