@@ -13,7 +13,7 @@ class StoreHereditaryBackgroundRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,19 @@ class StoreHereditaryBackgroundRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'patient_id' => 'required',
+            'diabetes.family' => 'string',
+            'diabetes.type' => 'string',
+            'heart_diseases.family' => 'string',
+            'heart_diseases.type' => 'string',
+            'blood_pressure.family' => 'string',
+            'blood_pressure.type' => 'string',
+            'thyroid_diseases.family' => 'string',
+            'thyroid_diseases.type' => 'string',
+            'cancer.family' => 'string',
+            'cancer.type' => 'string',
+            'kidney_stones.family' => 'string',
+            'kidney_stones.type' => 'string',
         ];
     }
 }
