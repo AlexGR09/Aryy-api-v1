@@ -200,8 +200,8 @@ Route::prefix('v1')->group(function () {
 
                 //VISUALIZAR LOS MEDICAMENTOS ACTIVOS Y MEDICAMENTOS ANTERIORES DE UN PACIENTE
                 Route::controller($this->physician . ViewMedicationsController::class)->group(function () {
-                    Route::get('/drugactive/{patient_id}', 'drugActive');
-                    Route::get('/previousmedication/{patient_id}', 'previousMedication');
+                    Route::get('/current-medication/{patient_id}', 'drugActive');
+                    Route::get('/previous-medication/{patient_id}', 'previousMedication');
                 });
             });
 

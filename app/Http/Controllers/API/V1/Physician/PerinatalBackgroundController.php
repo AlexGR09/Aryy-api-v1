@@ -60,10 +60,10 @@ class PerinatalBackgroundController extends Controller
     {
         try {
             $medicalHistory = $this->medicalhistory($medical_history_id);
-            if (!$medicalHistory) {
+            $perinatalBackground = $medicalHistory->perinatalBackground;
+            if (!$perinatalBackground) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
-            $perinatalBackground = $medicalHistory->perinatalBackground;
             return (new PerinatalBackgroundResource($perinatalBackground))->additional(['message' => 'Informacion encontrada.']);
         } catch (\Throwable $th) {
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);

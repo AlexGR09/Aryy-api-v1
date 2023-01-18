@@ -60,10 +60,10 @@ class PyschologicalBackgroundController extends Controller
     {
         try {
             $medicalHistory = $this->medicalhistory($medical_history_id);
-            if (!$medicalHistory) {
-                return response()->json(['message' => 'No se encontraron resultados'], 404);
-            }
             $pyschological = $medicalHistory->pyschologicalBackground;
+            if (!$pyschological) {
+                return response()->json(['message' => 'No se encontraron resultados'], 404);
+            }            
             DB::commit();
             return (new PyschologicalBackgroundResource($pyschological))->additional(['message' => 'Antecedentes psiquiatricos.']);
         } catch (\Throwable $th) {

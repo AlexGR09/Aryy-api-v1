@@ -15,7 +15,7 @@ class PerinatalBackgroundResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'perinatal_background_id' => $this->id,
             'last_menstrual_cycle' => $this->last_menstrual_cycle,
             'cycle_time' => $this->cycle_time,
             'contraceptive_method_use' => $this->contraceptive_method_use,

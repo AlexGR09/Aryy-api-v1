@@ -59,10 +59,11 @@ class VaccinationHistoryController extends Controller
     {
         try {
             $medical_history = $this->medicalHistory($medical_history_id);
-            if (!$medical_history) {
+            $vaccinationhistory = $medical_history->vaccinationhistory;
+            if (!$vaccinationhistory) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
-            return (new VaccinationHistoryResource($medical_history->vaccinationhistory))->additional(['message' => 'Historial de vacunación.']);
+            return (new VaccinationHistoryResource($vaccinationhistory))->additional(['message' => 'Historial de vacunación.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
