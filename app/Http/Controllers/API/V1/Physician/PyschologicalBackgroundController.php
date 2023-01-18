@@ -35,48 +35,37 @@ class PyschologicalBackgroundController extends Controller
     {
         try {
             DB::beginTransaction();
-            /* $medicalappointment = MedicalAppointment::where('patient_id', $request->patient_id)
-                ->where('physician_id', $this->physician->id)
-                ->count();
-            if ($medicalappointment < 1) {
-                return response()->json(['Petición incorrecta']);
-            } */
             $todaydatetime = date('Y-m-d');
 
-            $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)
+            /* $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)
                 ->where('physician_id', $this->physician->id)
                 ->first();
             //se compara la fecha actual con la fecha de la cita
             if ($medicalAppointment->appointment_date != $todaydatetime) {
                 return "Petición incorrecta";
-            }
-            $medicalHistory = MedicalHistory::where('patient_id', $request->patient_id)->firstOrFail();
+            } */
+            $medicalHistory = $this->medicalhistory($request->patient_id);
             $pyschological = $medicalHistory->pyschologicalbackground()->create($request->validated());
             $medicalHistory->pyschological_background_id = $pyschological->id;
             $medicalHistory->save();
             DB::commit();
-            return (new PyschologicalBackgroundResource($pyschological))->additional(['message' => 'Registro creado con éxito.']);
+            return (new PyschologicalBackgroundResource($pyschological))->additional(['message' => 'Antecedentes psiquiatricos guardados con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
+            return response()->json(['Petición incorrecta' => $th->getMessage()], 201);
         }
     }
 
     public function show($medical_history_id)
     {
         try {
-            $medicalHistory = MedicalHistory::where('id', $medical_history_id)->firstOrFail();
-            // SE ASEGURA QUE EL MÉDICO PUEDA VER INFORMACIÓN SÓLO DEL PACIENTE QUE HA ATENDIDO
-            $medical_appointments = MedicalAppointment::where('patient_id', $medicalHistory->patient_id)
-                ->where('physician_id', $this->physician->id)
-                ->count();
-
-            if ($medical_appointments < 1) {
-                return response()->json(['message' => 'Prohibido'], 403);
+            $medicalHistory = $this->medicalhistory($medical_history_id);
+            if (!$medicalHistory) {
+                return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
-            $pyschological = PyschologicalBackground::where('id', $medicalHistory->pyschological_background_id)->first();
+            $pyschological = $medicalHistory->pyschologicalBackground;
             DB::commit();
-            return (new PyschologicalBackgroundResource($pyschological))->additional(['message' => 'Registro encontrado con éxito.']);
+            return (new PyschologicalBackgroundResource($pyschological))->additional(['message' => 'Antecedentes psiquiatricos.']);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
@@ -87,36 +76,34 @@ class PyschologicalBackgroundController extends Controller
     {
         try {
             DB::beginTransaction();
-            $medicalHistory = MedicalHistory::where('id', $medical_history_id)->firstOrFail();
-            // SE ASEGURA QUE EL MÉDICO PUEDA VER INFORMACIÓN SÓLO DEL PACIENTE QUE HA ATENDIDO
-            $medical_appointments = MedicalAppointment::where('patient_id', $medicalHistory->patient_id)
-                ->where('physician_id', $this->physician->id)
-                ->count();
-            if ($medical_appointments < 1) {
-                return response()->json(['Petición incorrecta']);
-            }
-            $pychologicalBackground = PyschologicalBackground::where('id', $medicalHistory->pyschological_background_id)->first();
-            $pychologicalBackground->family_history = $request->family_history;
-            $pychologicalBackground->disease_awareness = $request->disease_awareness;
-            $pychologicalBackground->areas_affected_by_the_disease = $request->areas_affected_by_the_disease;
-            $pychologicalBackground->family_support_group = $request->family_support_group;
-            $pychologicalBackground->family_group_of_the_patient = $request->family_group_of_the_patient;
-            $pychologicalBackground->aspects_of_social_life = $request->aspects_of_social_life;
-            $pychologicalBackground->aspects_of_working_life = $request->aspects_of_working_life;
-            $pychologicalBackground->relationship_whit_authority = $request->relationship_whit_authority;
-            $pychologicalBackground->inpulse_control = $request->inpulse_control;
-            $pychologicalBackground->frustration_management = $request->frustration_management;
-            $pychologicalBackground->save();
+            $medicalHistory = $this->medicalhistory($medical_history_id);
+            $pyschologicalBackground = PyschologicalBackground::where('id', $medicalHistory->pyschological_background_id)->first();
+            $pyschologicalBackground->update($request->validated());
+            $pyschologicalBackground->save();
             DB::commit();
-            return (new PyschologicalBackgroundResource($pychologicalBackground))->additional(['message' => 'Registro actualizado con éxito.']);
+            return (new PyschologicalBackgroundResource($pyschologicalBackground))->additional(['message' => 'Registro antecedentes psiquiatricos actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
         }
     }
 
-    public function destroy($id)
+    public function medicalhistory($medical_history_id)
     {
-        //
+        try {
+            $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
+
+            if ($medical_history) {
+                $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
+                    ->where('physician_id', $this->physician->id)
+                    ->count();
+
+                if ($medical_appointments > 0) {
+                    return $medical_history;
+                }
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 }

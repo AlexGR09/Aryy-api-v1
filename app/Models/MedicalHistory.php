@@ -59,9 +59,9 @@ class MedicalHistory extends Model
         return $this->belongsTo('App\Models\VaccinationHistory', 'vaccination_history_id', 'id');
     }
 
-    public function pyschologicalbackground()
+    public function pyschologicalBackground()
     {
-        return $this->belongsTo('App\Models\PyschologicalBackground');
+        return $this->belongsTo(PyschologicalBackground::class);
     }
 
     public function perinatalBackground()
@@ -75,7 +75,7 @@ class MedicalHistory extends Model
     }
 
     public function gynecologyBackground(){
-        return $this->belongsTo('App\Models\ObgynBackground');
+        return $this->belongsTo(ObgynBackground::class);
     }
 
 

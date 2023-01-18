@@ -30,16 +30,14 @@ class ViewMedicationsController extends Controller
     public function drugActive($id)
     {
         try {
-            $cita = MedicalAppointment::where('patient_id', $id)
+          /*   $cita = MedicalAppointment::where('patient_id', $id)
                 ->where('physician_id', $this->physician->id)
                 ->count();
             if ($cita < 1) {
                 return response()->json(['Petición incorrecta']);
-            }
-
-            $medicalhistory = MedicalHistory::where('patient_id', $id)->first();    
-            $drug_active  = NonPathologicalBackground::where('id', $medicalhistory->non_pathological_background_id)
-                ->first();
+            } */
+            $medicalhistory = $this->medicalhistory($id);
+            $drug_active = $medicalhistory->nonpathologicalbackground;   
             
                 return (new ViewMedicationsResource($drug_active))->additional(['message' => 'Informacion de Medicacion.']);
         } catch (\Throwable $th) {
@@ -50,16 +48,15 @@ class ViewMedicationsController extends Controller
     public function previousMedication($id)
     {
         try {
-            $cita = MedicalAppointment::where('patient_id', $id)
+            /* $cita = MedicalAppointment::where('patient_id', $id)
                 ->where('physician_id', $this->physician->id)
                 ->count();
 
             if ($cita < 1) {
                 return response()->json(['Petición incorrecta']);
-            }
-            $medicalhistory = MedicalHistory::where('patient_id', $id)->first();
-            $previus_medication  = NonPathologicalBackground::where('id', $medicalhistory->non_pathological_background_id)
-                ->first();
+            } */
+            $medicalhistory = $this->medicalhistory($id);
+            $previus_medication  = $medicalhistory->nonpathologicalbackground;
             
                 return (new PreviousMedicationResource($previus_medication))->additional(['message' => 'Informacion de Medicacion.']);
         } catch (\Throwable $th) {
@@ -67,28 +64,22 @@ class ViewMedicationsController extends Controller
         }
     }
 
-    public function index()
+    public function medicalhistory($medical_history_id)
     {
-        //
-    }
+        try {
+            $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
 
-    public function store(Request $request)
-    {
-        //
-    }
+            if ($medical_history) {
+                $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
+                    ->where('physician_id', $this->physician->id)
+                    ->count();
 
-    public function show($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
+                if ($medical_appointments > 0) {
+                    return $medical_history;
+                }
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 }

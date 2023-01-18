@@ -18,4 +18,8 @@ class PerinatalBackground extends Model
         'assisted_conception',
         'final_ppf',
     ];
+
+    public function medical_history() {
+        return $this->hasOne(MedicalHistory::class);
+    }
 }

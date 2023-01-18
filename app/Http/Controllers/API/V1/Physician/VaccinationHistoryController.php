@@ -35,32 +35,19 @@ class VaccinationHistoryController extends Controller
     {
         try {
             DB::beginTransaction();
-            /* $medicalappointment = MedicalAppointment::where('patient_id', $request->patient_id)
-                ->where('physician_id', $this->physician->id)
-                ->count();
-            if ($medicalappointment < 1) {
-                return response()->json(['Petición incorrecta']);
-            } */
             $todaydatetime = date('Y-m-d');
-            //return MedicalAppointment::where('patient_id',$request->patient_id)->firstOrFail();
-            $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)
+           /*  $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)
                 ->where('physician_id', $this->physician->id)
                 ->first();
             //se compara la fecha actual con la fecha de la cita
             if ($medicalAppointment->appointment_date != $todaydatetime) {
                 return "Petición incorrecta";
-            }
-            $vaccination_history = VaccinationHistory::create([
-                'vaccine' => $request->vaccine,
-                'dose' => $request->dose,
-                'lot_number' => $request->lot_number,
-                'application_date' => $request->application_date,
-            ]);
+            } */
+            $vaccination_history = VaccinationHistory::create($request->validated());
 
-            $medical_history = MedicalHistory::where('patient_id', $request->patient_id)->FirstOrFail();
+            $medical_history = $this->medicalhistory($request->patient_id);
             $medical_history->vaccination_history_id = $vaccination_history->id;
             $medical_history->save();
-
             DB::commit();
             return (new VaccinationHistoryResource($vaccination_history))->additional(['message' => 'Informacion guardada.']);
         } catch (\Throwable $th) {
@@ -71,46 +58,32 @@ class VaccinationHistoryController extends Controller
     public function show($medical_history_id)
     {
         try {
-            $medical_history = MedicalHistory::where('id', $medical_history_id)->firstOrFail();
-            $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
-                ->where('physician_id', $this->physician->id)
-                ->count();
-            if ($medical_appointments < 1) {
-                return response()->json(['message' => 'Prohibido'], 403);
+            $medical_history = $this->medicalHistory($medical_history_id);
+            if (!$medical_history) {
+                return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
-            return (new VaccinationHistoryResource($medical_history->vaccinationhistory))->additional(['message' => 'Informacion encontrada.']);
+            return (new VaccinationHistoryResource($medical_history->vaccinationhistory))->additional(['message' => 'Historial de vacunación.']);
         } catch (\Throwable $th) {
-            return response()->json(['error' => $th->getMessage()], 400);
+            return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function update(VaccinationHistoryRequest $request, $medical_history_id)
+    public function medicalhistory($medical_history_id)
     {
         try {
-            DB::beginTransaction();
-            $medicalHistory = MedicalHistory::where('id', $medical_history_id)->firstOrFail();
-            $vaccination_history = VaccinationHistory::where('id', $medicalHistory->vaccination_history_id)->firstOrFail();
-            $medical_appointments = MedicalAppointment::where('patient_id', $$medicalHistory->patient_id)
-                ->where('physician_id', $this->physician->id)
-                ->count();
-            if ($medical_appointments < 1) {
-                return response()->json(['message' => 'Prohibido'], 403);
-            }
-            $vaccination_history->vaccine = $request->vaccine;
-            $vaccination_history->dose = $request->dose;
-            $vaccination_history->lot_number = $request->lot_number;
-            $vaccination_history->application_date = $request->application_date;
-            $vaccination_history->save();
-            DB::commit();
-            return (new VaccinationHistoryResource($vaccination_history))->additional(['message' => 'Informacion guardada.']);
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            return response()->json(['error' => $th->getMessage()], 400);
-        }
-    }
+            $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
 
-    public function destroy($id)
-    {
-        //
+            if ($medical_history) {
+                $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
+                    ->where('physician_id', $this->physician->id)
+                    ->count();
+
+                if ($medical_appointments > 0) {
+                    return $medical_history;
+                }
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 }

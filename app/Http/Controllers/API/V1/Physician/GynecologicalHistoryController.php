@@ -37,46 +37,21 @@ class GynecologicalHistoryController extends Controller
     {
         try {
             DB::beginTransaction();
-
-            /* $medical_appointments = MedicalAppointment::where('patient_id', $request->patient_id)
-                ->where('physician_id', $this->physician->id)
-                ->count();
-
-            if ($medical_appointments < 1) {
-                return response()->json(['message' => 'Petición incorrecta'], 403);
-            } */
             $todaydatetime = date('Y-m-d');
 
-            $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)
+            /* $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)
                 ->where('physician_id', $this->physician->id)
                 ->first();
             //se compara la fecha actual con la fecha de la cita
             if ($medicalAppointment->appointment_date != $todaydatetime) {
                 return "Petición incorrecta";
-            }
-
-            $gynecologicalHistory = ObgynBackground::create([
-                'first_menstruation' => $request->first_menstruation,
-                'last_menstruation' => $request->last_menstruation,
-                'bleeding' => $request->bleeding,
-                'pain' => $request->pain,
-                'intimate_hygiene' => $request->intimate_hygiene,
-                'cervical_discharge' => $request->cervical_discharge,
-                'sex' => $request->sex,
-                'pregnancies' => $request->pregnancies,
-                'cervical_cancer' => $request->cervical_cancer,
-                'breast_cancer' => $request->breast_cancer,
-                'sexually_active' => $request->sexually_active,
-                'family_planning' => $request->family_planning,
-                'hormone_replacement_therapy' => $request->hormone_replacement_therapy,
-                'last_pap_smear' => $request->last_pap_smear,
-                'last_mammography' => $request->last_mammography,
-            ]);
-            $medical_history = MedicalHistory::where('id', $request->patient_id)->firstOrFail();
-            $medical_history->gynecological_history_id = $gynecologicalHistory->id;
-            $medical_history->save();
+            } */
+            $medicalHistory = $this->medicalhistory($request->patient_id);
+            $gynecologicalHistory = ObgynBackground::create($request->validated());
+            $medicalHistory->gynecological_history_id = $gynecologicalHistory->id;
+            $medicalHistory->save();
             DB::commit();
-            return (new GynecologicalHistoryResource($gynecologicalHistory))->additional(['message' => 'Informacion guardada.']);
+            return (new GynecologicalHistoryResource($gynecologicalHistory))->additional(['message' => 'Informacion de antecedentes ginecologicos guardado con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
@@ -86,14 +61,11 @@ class GynecologicalHistoryController extends Controller
     public function show($medical_history_id)
     {
         try {
-            $medical_history = MedicalHistory::where('id', $medical_history_id)->firstOrFail();
-            $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
-                ->where('physician_id', $this->physician->id)
-                ->count();
-            if ($medical_appointments < 1) {
-                return response()->json(['message' => 'Prohibido'], 403);
+            $medicalHistory = $this->medicalhistory($medical_history_id);
+            if (!$medicalHistory) {
+                return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
-            $gynecologicalHistory  = ObgynBackground::where('id', $medical_history->gynecological_history_id)
+            $gynecologicalHistory  = ObgynBackground::where('id', $medicalHistory->gynecological_history_id)
                 ->first();
             return (new GynecologicalHistoryResource($gynecologicalHistory))->additional(['message' => 'Informacion encontrada.']);
         } catch (\Throwable $th) {
@@ -106,32 +78,10 @@ class GynecologicalHistoryController extends Controller
     {
         try {
             DB::beginTransaction();
-            $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
-
-            $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
-                ->where('physician_id', $this->physician->id)
-                ->count();
-            if ($medical_appointments < 1) {
-                return response()->json(['message' => 'Prohibido'], 403);
-            }
-            $gynecologicalHistory = ObgynBackground::where('id', $medical_history->gynecological_history_id)->first();
-            $gynecologicalHistory->first_menstruation = $request->first_menstruation;
-            $gynecologicalHistory->last_menstruation = $request->last_menstruation;
-            $gynecologicalHistory->bleeding = $request->bleeding;
-            $gynecologicalHistory->pain = $request->pain;
-            $gynecologicalHistory->intimate_hygiene = $request->intimate_hygiene;
-            $gynecologicalHistory->cervical_discharge = $request->cervical_discharge;
-            $gynecologicalHistory->sex = $request->sex;
-            $gynecologicalHistory->pregnancies = $request->pregnancies;
-            $gynecologicalHistory->cervical_cancer = $request->cervical_cancer;
-            $gynecologicalHistory->breast_cancer = $request->breast_cancer;
-            $gynecologicalHistory->sexually_active = $request->sexually_active;
-            $gynecologicalHistory->family_planning = $request->family_planning;
-            $gynecologicalHistory->hormone_replacement_therapy = $request->hormone_replacement_therapy;
-            $gynecologicalHistory->last_pap_smear = $request->last_pap_smear;
-            $gynecologicalHistory->last_mammography = $request->last_mammography;
+            $medicalHistory = $this->medicalhistory($medical_history_id);
+            $gynecologicalHistory = ObgynBackground::where('id', $medicalHistory->gynecological_history_id)->first();
+            $gynecologicalHistory->update($request->validated());
             $gynecologicalHistory->save();
-
             DB::commit();
             return (new GynecologicalHistoryResource($gynecologicalHistory))->additional(['message' => 'Informacion actualizada.']);
         } catch (\Throwable $th) {
@@ -140,8 +90,22 @@ class GynecologicalHistoryController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function medicalhistory($medical_history_id)
     {
-        //
+        try {
+            $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
+
+            if ($medical_history) {
+                $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
+                    ->where('physician_id', $this->physician->id)
+                    ->count();
+
+                if ($medical_appointments > 0) {
+                    return $medical_history;
+                }
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 503);
+        }
     }
 }
