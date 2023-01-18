@@ -20,5 +20,9 @@ class AllergyPatient extends Model
     {
         return $this->hasOne(\App\Models\MedicalHistory::class);
     }
-
+    protected $casts = [
+        'food_allergy' => 'array',
+        'drug_allergy'=> 'array',
+        'environmental_allergy'=> 'array',
+    ];
 }
