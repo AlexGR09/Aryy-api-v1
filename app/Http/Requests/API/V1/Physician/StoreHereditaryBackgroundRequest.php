@@ -24,7 +24,7 @@ class StoreHereditaryBackgroundRequest extends FormRequest
     public function rules()
     {
         return [
-            'patient_id' => 'required',
+            'patient_id' => 'required|exists:App\Models\Patient,id',
             'diabetes.family' => 'string',
             'diabetes.type' => 'string',
             'heart_diseases.family' => 'string',

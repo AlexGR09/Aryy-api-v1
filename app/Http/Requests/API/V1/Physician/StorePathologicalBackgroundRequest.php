@@ -24,7 +24,7 @@ class StorePathologicalBackgroundRequest extends FormRequest
     public function rules()
     {
         return [
-            'patient_id' => 'required',
+            'patient_id' => 'required|exists:App\Models\Patient,id',
             'previous_surgeries' => 'string',
             'blood_transfusions' => 'string',
             'diabetes' => 'string',
