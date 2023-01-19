@@ -45,73 +45,73 @@ class PhysicianSearchController extends Controller
             //basic info
             $physician = $physicianQuery->get();
 
-            foreach ($physician as $key2 => $phy) {
-                $currentDay = \Carbon\Carbon::now();
+            // foreach ($physician as $key2 => $phy) {
+            //     $currentDay = \Carbon\Carbon::now();
 
-                $addConsultationLength = true;
-                if ($currentDay->toDateTimeString() < $currentDay->copy()->setTime(9, 0, 0)->toDateTimeString()) {
-                    $currentDay = $currentDay->copy()->setTime(9, 0, 0);
-                    $addConsultationLength = false;
-                }
+            //     $addConsultationLength = true;
+            //     if ($currentDay->toDateTimeString() < $currentDay->copy()->setTime(9, 0, 0)->toDateTimeString()) {
+            //         $currentDay = $currentDay->copy()->setTime(9, 0, 0);
+            //         $addConsultationLength = false;
+            //     }
 
-                if ($currentDay->toDateTimeString() > $currentDay->copy()->setTime(21, 0, 0)->toDateTimeString()) {
-                    $currentDay = $currentDay->addDay()->copy()->setTime(21, 0, 0);
-                    $addConsultationLength = false;
-                }
+            //     if ($currentDay->toDateTimeString() > $currentDay->copy()->setTime(21, 0, 0)->toDateTimeString()) {
+            //         $currentDay = $currentDay->addDay()->copy()->setTime(21, 0, 0);
+            //         $addConsultationLength = false;
+            //     }
 
-                $loop = true;
+            //     $loop = true;
 
-                while ($loop) {
-                    $consultationLength = $physician[$key2]->facilities[0]->consultation_length;
-                    $schedule = $physician[$key2]->facilities[0]->schedule;
-                    $isAnAvailableDay = false;
-                    $scheduleKey = 0;
-                    while ($isAnAvailableDay === false) {
-                        foreach ($schedule as $key => $availableDate) {
-                            if ($availableDate->day == $currentDay->format('l')) {
-                                $isAnAvailableDay = true;
-                                $scheduleKey = $key;
-                                break 2;
-                            }
-                        }
-                        if (! $isAnAvailableDay) {
-                            $currentDay->addDay();
-                        }
-                    }
+            //     while ($loop) {
+            //         $consultationLength = $physician[$key2]->facilities[0]->consultation_length;
+            //         $schedule = $physician[$key2]->facilities[0]->schedule;
+            //         $isAnAvailableDay = false;
+            //         $scheduleKey = 0;
+            //         while ($isAnAvailableDay === false) {
+            //             foreach ($schedule as $key => $availableDate) {
+            //                 if ($availableDate->day == $currentDay->format('l')) {
+            //                     $isAnAvailableDay = true;
+            //                     $scheduleKey = $key;
+            //                     break 2;
+            //                 }
+            //             }
+            //             if (! $isAnAvailableDay) {
+            //                 $currentDay->addDay();
+            //             }
+            //         }
 
-                    $hours = explode(' a ', $schedule[$scheduleKey]->attention_time);
-                    $restHours = explode(' a ', $schedule[$scheduleKey]->rest_hours);
+            //         $hours = explode(' a ', $schedule[$scheduleKey]->attention_time);
+            //         $restHours = explode(' a ', $schedule[$scheduleKey]->rest_hours);
 
-                    $restStartHour = Carbon::parse($restHours[0]);
-                    $restEndtHour = Carbon::parse($restHours[1]);
+            //         $restStartHour = Carbon::parse($restHours[0]);
+            //         $restEndtHour = Carbon::parse($restHours[1]);
 
-                    $startHour = Carbon::parse($hours[0]);
-                    $endHour = Carbon::parse($hours[1]);
-                    $startAppointmentDate = $currentDay->copy()->setTime($startHour->hour, $startHour->minute, 0)->toDateTimeString();
-                    $endAppointmentDate = $currentDay->copy()->setTime($endHour->hour, $endHour->minute, 0)->toDateTimeString();
-                    $restStartAppointmentDate = $currentDay->copy()->setTime($restStartHour->hour, $restStartHour->minute, 0)->toDateTimeString();
-                    $restEndAppointmentDate = $currentDay->copy()->setTime($restEndtHour->hour, $restEndtHour->minute, 0)->toDateTimeString();
-                    $availableDate = $physician[$key2]
-                        ->appointments()
-                        ->where('appointment_date', '>=', $startAppointmentDate)
-                        ->where('appointment_date', '<=', $endAppointmentDate)
-                        ->whereNotBetween('appointment_date', [$restStartAppointmentDate, $restEndAppointmentDate])
-                        ->where(function ($query) use ($currentDay, $addConsultationLength, $consultationLength) {
-                            $query->where('appointment_date', $currentDay);
-                            if ($addConsultationLength) {
-                                $query->orWhere('appointment_date', $currentDay->addMinutes($consultationLength));
-                            }
-                        })
-                        ->first();
+            //         $startHour = Carbon::parse($hours[0]);
+            //         $endHour = Carbon::parse($hours[1]);
+            //         $startAppointmentDate = $currentDay->copy()->setTime($startHour->hour, $startHour->minute, 0)->toDateTimeString();
+            //         $endAppointmentDate = $currentDay->copy()->setTime($endHour->hour, $endHour->minute, 0)->toDateTimeString();
+            //         $restStartAppointmentDate = $currentDay->copy()->setTime($restStartHour->hour, $restStartHour->minute, 0)->toDateTimeString();
+            //         $restEndAppointmentDate = $currentDay->copy()->setTime($restEndtHour->hour, $restEndtHour->minute, 0)->toDateTimeString();
+            //         $availableDate = $physician[$key2]
+            //             ->appointments()
+            //             ->where('appointment_date', '>=', $startAppointmentDate)
+            //             ->where('appointment_date', '<=', $endAppointmentDate)
+            //             ->whereNotBetween('appointment_date', [$restStartAppointmentDate, $restEndAppointmentDate])
+            //             ->where(function ($query) use ($currentDay, $addConsultationLength, $consultationLength) {
+            //                 $query->where('appointment_date', $currentDay);
+            //                 if ($addConsultationLength) {
+            //                     $query->orWhere('appointment_date', $currentDay->addMinutes($consultationLength));
+            //                 }
+            //             })
+            //             ->first();
 
-                    if (is_null($availableDate)) {
-                        $physician[$key2]->available_appointment = $currentDay->format('Y-m-d');
-                        $loop = false;
-                        break;
-                    }
-                    // $currentDay->addDay();
-                }
-            }
+            //         if (is_null($availableDate)) {
+            //             $physician[$key2]->available_appointment = $currentDay->format('Y-m-d');
+            //             $loop = false;
+            //             break;
+            //         }
+            //         // $currentDay->addDay();
+            //     }
+            // }
             $physician = $physician->except(['appointments']);
 
             $specialtyQuery = Specialty::query();

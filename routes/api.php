@@ -399,6 +399,8 @@ Route::prefix('v1')->group(function () {
     // BUSQUEDA MÉDICO MOBILE
     // BUSQUEDA DEFINIDA DE MÉDICO
     Route::get('/search', [PhysicianSearchController::class, 'index']);
+    Route::post('/search', [PhysicianSearchController::class, 'index']);
+
     Route::get('build-id', function () {
         $path = base_path('.git/');
 
