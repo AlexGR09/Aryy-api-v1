@@ -15,24 +15,34 @@ class PillReminderController extends Controller
     public function __construct()
     {
         $this->middleware('role:Patient');
-
-        $this->patient = Patient::where('user_id', auth()->id())->first();
     }
 
-    public function index()
+    public function index($patient_id)
     {
         try {
-            return PillReminderResource::collection($this->patient->pillReminders)
+            $patient = $this->getPatient($patient_id);
+
+            if (!$patient) {
+                return $this->notFoundPatient();
+            }
+
+            return PillReminderResource::collection($patient->pillReminders)
                     ->additional(['message' => 'Recordatorio de medicamentos.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function store(PillReminderRequest $request)
+    public function store(PillReminderRequest $request, $patient_id)
     {
         try {
-            $pill_reminder = $this->patient->pillReminders()
+            $patient = $this->getPatient($patient_id);
+
+            if (!$patient) {
+                return $this->notFoundPatient();
+            }
+
+            $pill_reminder = $patient->pillReminders()
                 ->create($request->validated());
 
             return (new PillReminderResource($pill_reminder))
@@ -42,23 +52,34 @@ class PillReminderController extends Controller
         }
     }
 
-    public function destroy($pill_reminder_id)
+    public function destroy($patient_id, $pill_reminder_id)
     {
         try {
             $pill_reminder = PillReminder::where('id', $pill_reminder_id)
-                ->where('patient_id', $this->patient->id)
+                ->where('patient_id', $patient_id)
                 ->first();
 
             if (!$pill_reminder) {
-                return response()->json(['message' =>'Recordatorio de medicamento no encontrado'], 404);
+                return $this->notFoundPatient();
             }
 
             $pill_reminder->delete();
 
-            return (new PillReminderResource($pill_reminder))
-                    ->additional(['message' => 'Recordatorio de medicamento eliminado con éxito.']);
+            return response('', 204);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
+    }
+
+    public function getPatient($patient_id)
+    {
+        return Patient::where('user_id', auth()->id())
+             ->where('id', $patient_id)
+             ->first();
+    }
+
+    public function notFoundPatient()
+    {
+        return response()->json(['message' => 'No se encontraron recordatorio de medicamentos'], 404);
     }
 }

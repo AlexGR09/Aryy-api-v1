@@ -446,9 +446,9 @@ Route::prefix('v2')->group(function () {
 
             // PASTILLERO
             Route::controller($this->patient_v2 . PillReminderController::class)->group(function () {
-                Route::get('/pill-reminders', 'index');
-                Route::post('/pill-reminders', 'store');
-                Route::delete('/pill-reminders/{pill_reminder_id}', 'destroy');
+                Route::get('/{patient_id}/pill-reminders', 'index');
+                Route::post('/{patient_id}/pill-reminders', 'store');
+                Route::delete('/{patient_id}/pill-reminders/{pill_reminder_id}', 'destroy');
             });
 
         });
