@@ -97,22 +97,4 @@ class Patient extends Model
     {
         return $this->hasMany(PillReminder::class);
     }
-    // public function health_insurance()
-    // {
-    //     return $this->belongsTo('App\Models\HealthInsurance');
-    // }
-
-    // public function medical_records()
-    // {
-    //     return $this->belongsTo('App\Models\MedicalRecord');
-    // }
-
-    // public function medical_history()
-    // {
-    //     return $this->belongsTo('App\Models\MedicalHistory');
-    // }
-    protected $casts = [
-        'address' => 'object',
-        'id_card' => 'object',
-    ];
 }
