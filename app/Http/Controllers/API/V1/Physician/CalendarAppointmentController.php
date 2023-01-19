@@ -121,23 +121,22 @@ class CalendarAppointmentController extends Controller
     {
         try {
             $user = User::where('phone_number', $request->phone_number)->first();
-
             DB::beginTransaction();
-
-            if (! $user) {
+            //Se verifica si el usuario existe
+            if (!$user) {
                 $user = User::create([
                     'country_code' => $request->country_code,
                     'phone_number' => $request->phone_number,
                 ]);
             }
-            $patientOfuser = count($user->patients);
-            if ($patientOfuser >= 5) {
+            $patientOfuser = count($user->patients); //Se cuentos pacientes estan ligados a ese usuario
+            if ($patientOfuser >= 1) {
                 return response()->json(['message' => 'no puedes crear mas pacientes'], 503);
             }
-            $patient = Patient::where('full_name', $request->full_name)
+            $patient = Patient::where('full_name', $request->full_name) //Se verifica que el perfil de paciente exista
                 ->where('user_id', $user->id)
                 ->first();
-            if (! $patient) {
+            if (!$patient) {
                 $patient = Patient::create([
                     'user_id' => $user->id,
                     'full_name' => $request->full_name,
@@ -145,6 +144,7 @@ class CalendarAppointmentController extends Controller
                     'emergency_number' => $request->emergency_number,
                 ]);
             }
+
             $facility = Facility::where('id', $request->facility_id)->firstOrFail();
 
             $time = strtotime($request->appointment_time) + strtotime($facility->consultation_length); //SUMA LA DURACION DE LA CONSULTA A LA HORA DE LA CITA
@@ -217,7 +217,7 @@ class CalendarAppointmentController extends Controller
     public function patient($phone_number, Request $request)
     {
         $user = User::where('phone_number', $phone_number)->first();
-        $patient = Patient::where('user_id', $user->id)->where('full_name', 'LIKE', '%'.$request->full_name.'%')->get();
+        $patient = Patient::where('user_id', $user->id)->where('full_name', 'LIKE', '%' . $request->full_name . '%')->get();
 
         return PatientMedicalAppointmentResource::collection($patient)->additional(['message' => 'Paciente encontrado']);
     }

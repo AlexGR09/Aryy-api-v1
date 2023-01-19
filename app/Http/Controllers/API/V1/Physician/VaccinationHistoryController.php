@@ -5,8 +5,10 @@ namespace App\Http\Controllers\API\V1\Physician;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Physician\VaccinationHistoryRequest;
 use App\Http\Resources\API\V1\Patient\VaccinationHistoryResource;
+use App\Http\Resources\API\V1\Physician\MedicalHistoryVaccinationResource;
 use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
+use App\Models\MedicalHistoryVaccination;
 use App\Models\Physician;
 use App\Models\VaccinationHistory;
 use Illuminate\Support\Facades\DB;
@@ -42,11 +44,12 @@ class VaccinationHistoryController extends Controller
              if ($medicalAppointment->appointment_date != $todaydatetime) {
                  return "Petición incorrecta";
              } */
-            $vaccination_history = VaccinationHistory::create($request->validated());
-
             $medical_history = $this->medicalhistory($request->patient_id);
-            $medical_history->vaccination_history_id = $vaccination_history->id;
-            $medical_history->save();
+            $vaccination_history = VaccinationHistory::create($request->validated());
+            $medical_history_vaccination = MedicalHistoryVaccination::create([
+                'patient_id' => $request->patient_id,
+                'vaccination_history_id' => $vaccination_history->id,
+            ]);
             DB::commit();
 
             return (new VaccinationHistoryResource($vaccination_history))->additional(['message' => 'Informacion guardada.']);
@@ -59,12 +62,12 @@ class VaccinationHistoryController extends Controller
     {
         try {
             $medical_history = $this->medicalHistory($medical_history_id);
-            $vaccinationhistory = $medical_history->vaccinationhistory;
-            if (! $vaccinationhistory) {
+            $vaccinationhistory = MedicalHistoryVaccination::where('patient_id', $medical_history->patient_id)->with('vaccination_history')
+                ->get();
+            if (!$vaccinationhistory) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
-
-            return (new VaccinationHistoryResource($vaccinationhistory))->additional(['message' => 'Historial de vacunación.']);
+            return (MedicalHistoryVaccinationResource::collection($vaccinationhistory))->additional(['message' => 'Historial de vacunación.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
