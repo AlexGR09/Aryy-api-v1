@@ -44,17 +44,22 @@ class FacilitySeeder extends Seeder
                 'extension' => '52',
                 'zipcode' => fake()->regexify('[0-9]{5}'),
                 'schedule' => [
-                    [
-                        'day' => 'Monday',
-                        'attention_time' => '09:00am a 09:00pm',
-                        'rest_hours' => '02:00pm a 03:00pm',
+                    'week' => [
+                        [
+                            'day' => 'Monday',
+                            'attention_time' => '09:00am a 09:00pm',
+                            'rest_hours' => '02:00pm a 03:00pm',
+                        ],
+                        [
+                            'day' => 'Tuesday',
+                            'attention_time' => '09:00am a 09:00pm',
+                            'rest_hours' => '02:00pm a 03:00pm',
+                        ],
                     ],
-                    [
-                        'day' => 'Tuesday',
-                        'attention_time' => '09:00am a 09:00pm',
-                        'rest_hours' => '02:00pm a 03:00pm',
-                    ],
+
+                    "free_days" =>  ["2022-01-01", "2022-02-02"]
                 ],
+                
                 'type_schedule' => 'perm',
                 'consultation_length' => 120,
                 'accessibility_and_others' => [

@@ -24,6 +24,18 @@ class MedicalAppointment extends Model
         'prescription_id',
     ];
 
+    public function scopeGreaterThanDate($query, $date, $time)
+    {
+        return $query->where('appointment_date', '>=',$date)
+        ->where('appointment_time', '>=', $time);
+    }
+
+    public function scopeLowerThanDate($query, $date, $time)
+    {
+        return $query->where('appointment_date', '<=',$date)
+        ->where('appointment_time', '<=', $time);
+    }
+    
     // RELACIÓN MUCHOS A UNO CON LA TABLA PHYSICIANS
     public function physician()
     {
