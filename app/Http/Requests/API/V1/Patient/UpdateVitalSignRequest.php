@@ -24,7 +24,6 @@ class UpdateVitalSignRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|exists:App\Models\User,id',
             'temperature' => 'sometimes|required',
             'weight' => 'sometimes|required',
             'breathing_frecuncy' => 'sometimes|required',

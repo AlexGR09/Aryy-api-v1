@@ -7,6 +7,7 @@ use App\Http\Requests\API\V1\Physician\StorePathologicalBackgroundRequest;
 use App\Http\Requests\API\V1\Physician\UpdatePathologicalBackgroundRequest;
 use App\Http\Resources\API\V1\Patient\PathologicalBackgroundResource;
 use App\Models\MedicalHistory;
+use App\Models\PathologicalBackground;
 use App\Models\Patient;
 
 class PathologicalBackgroundController extends Controller
@@ -16,18 +17,19 @@ class PathologicalBackgroundController extends Controller
         $medicalHistory = MedicalHistory::where('patient_id', $patient->id)->first();
 
         return new PathologicalBackgroundResource(
-            $medicalHistory->pathologicalbackground
+            $medicalHistory->pathologicalBackground
         );
     }
 
     public function store(StorePathologicalBackgroundRequest $request)
     {
         $data = $request->validated();
-        $medicalHistory = MedicalHistory::where('patient_id', $data['patient_id'])->first();
-        $medicalHistory->pathologicalbackground()->create($data);
-
+        $pathologicalBackground = PathologicalBackground::create($data);
+        $medicalHistory = MedicalHistory::where('patient_id', $data['patient_id'])->update(
+            ['pathological_background_id' => $pathologicalBackground->id]
+        );
         return (new PathologicalBackgroundResource(
-            $medicalHistory->pathologicalbackground
+            $pathologicalBackground
         ))->additional(['message' => 'Informacion guardada con exito.']);
     }
 
@@ -35,11 +37,11 @@ class PathologicalBackgroundController extends Controller
     {
         $data = $request->validated();
         $medicalHistory = MedicalHistory::where('patient_id', $patient->id)->first();
-        $medicalHistory->pathologicalbackground()
+        $medicalHistory->pathologicalBackground()
         ->update($data);
 
         return (new PathologicalBackgroundResource(
-            $medicalHistory->pathologicalbackground
+            $medicalHistory->pathologicalBackground
         ))
         ->additional(['message' => 'Informacion guardada con exito.']);
     }
