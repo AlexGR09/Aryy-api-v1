@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\Patient\StoreVitalSignRequest;
-use App\Http\Requests\API\Patient\UpdateVitalSignRequest;
+use App\Http\Requests\API\V1\Patient\StoreVitalSignRequest as PatientStoreVitalSignRequest;
+use App\Http\Requests\API\V1\Patient\UpdateVitalSignRequest as PatientUpdateVitalSignRequest;
 use App\Models\Patient;
-use App\Models\User;
+use App\Models\VitalSign;
 
 class BasicInformationController extends Controller
 {
@@ -23,21 +23,14 @@ class BasicInformationController extends Controller
         ]);
     }
 
-    public function store(StoreVitalSignRequest $request)
+    public function store(PatientStoreVitalSignRequest $request)
     {
-        $data = $request->validated();
-        $user = User::find($data['user_id']);
-        $vitalSignCreated = $user->vitalSign->create($data);
-
-        return ok('', $vitalSignCreated);
+        return ok('', VitalSign::create($request->validated()));
     }
 
-    public function update(UpdateVitalSignRequest $request)
+    public function update(Patient $patient, PatientUpdateVitalSignRequest $request)
     {
-        $data = $request->validated();
-        $user = User::find($data['user_id']);
-        $user->vitalSign->update($data);
-
-        return ok('', $user->vitalSign);
+        VitalSign::where('patient_id', $patient->id)->update($request->validated());
+        return ok('', VitalSign::where('patient_id', $patient->id)->first());
     }
 }

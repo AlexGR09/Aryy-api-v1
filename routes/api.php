@@ -4,6 +4,7 @@ use App\Http\Controllers\API\V1\Admin\PhysicianController;
 use App\Http\Controllers\API\V1\AppointmentController;
 use App\Http\Controllers\API\V1\FacilityController;
 use App\Http\Controllers\API\V1\Patient\AllergyController;
+use App\Http\Controllers\API\V1\Patient\AppointmentController as PatientAppointmentController;
 use App\Http\Controllers\API\V1\Patient\BasicInformationController;
 use App\Http\Controllers\API\V1\Patient\PaymentMethodController;
 use App\Http\Controllers\API\V1\Patient\VitalSignController;
@@ -368,6 +369,9 @@ Route::prefix('v1')->group(function () {
             Route::get('/patient/{phone_number}', [$this->physician.CalendarAppointmentController::class, 'patient']);
             Route::get('/medicalservice', [$this->physician.CalendarAppointmentController::class, 'physicianservice']);
         });
+
+        Route::post('patients/{patient}/appointments',[PatientAppointmentController::class, 'store']);
+
     });
     Route::prefix('medical-records')->group(function () {
         Route::get('vital-signs/patient/{patient}', [VitalSignController::class, 'show']);

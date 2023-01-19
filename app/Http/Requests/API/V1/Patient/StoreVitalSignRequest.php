@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\API\Patient;
+namespace App\Http\Requests\API\V1\Patient;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,7 @@ class StoreVitalSignRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|exists:App\Models\User,id',
+            'patient_id' => 'required|exists:App\Models\Patient,id',
             'temperature' => 'required',
             'weight' => 'required',
             'breathing_frecuncy' => 'required',
