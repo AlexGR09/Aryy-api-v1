@@ -129,35 +129,7 @@ class CalendarAppointmentController extends Controller
                     'phone_number' => $request->phone_number,
                 ]);
             }
-            $patientOfuser = count($user->patients); //Se cuentos pacientes estan ligados a ese usuario
-            if ($patientOfuser >= 1) {
-                $patient = Patient::where('full_name', $request->full_name)->first();
-                //return response()->json(['message' => 'no puedes crear mas pacientes'], 503);
-                $facility = Facility::where('id', $request->facility_id)->firstOrFail();
-
-                $time = strtotime($request->appointment_time) + strtotime($facility->consultation_length); //SUMA LA DURACION DE LA CONSULTA A LA HORA DE LA CITA
-                $date_time_end = date('H:i:s', $time); //SE LE DA EL FORMATO DE HORA
-                /* return $facility->schedule['0']->rest_hours_start; */
-                $medicalAppointment = MedicalAppointment::where('appointment_date', $request->appointment_date)
-                    ->where('appointment_time', $request->appointment_time)->first();
-                if ($medicalAppointment) {
-                    return response()->json(['message' => 'Fecha y horario no disponibles'], 503);
-                }
-                $medicalAppointment = MedicalAppointment::create([
-                    'appointment_date' => $request->appointment_date,
-                    'appointment_type' => $request->appointment_type,
-                    'appointment_time' => $request->appointment_time,
-                    'appointment_time_end' => $date_time_end,
-                    'patient_id' => $patient->id,
-                    'physician_id' => $this->physician->id,
-                    'facility_id' => $request->facility_id,
-                    'status' => 'scheduled',
-                ]);
-                return (new CalendarResource($medicalAppointment))->additional(['message' => 'Cita agendada correctamente.']);
-            }
-            $patient = Patient::where('full_name', $request->full_name) //Se verifica que el perfil de paciente exista
-                ->where('user_id', $user->id)
-                ->first();
+            $patient = Patient::where('user_id', $user->id)->first();
             if (!$patient) {
                 $patient = Patient::create([
                     'user_id' => $user->id,
@@ -166,15 +138,11 @@ class CalendarAppointmentController extends Controller
                     'emergency_number' => $request->emergency_number,
                 ]);
             }
-
             $facility = Facility::where('id', $request->facility_id)->firstOrFail();
-
             $time = strtotime($request->appointment_time) + strtotime($facility->consultation_length); //SUMA LA DURACION DE LA CONSULTA A LA HORA DE LA CITA
-            $date_time_end = date('H:i:s', $time); //SE LE DA EL FORMATO DE HORA
-
+            $date_time_end = date('H:i:s', $time); //SE LE DA EL FORMATO DE HORA */
             $medicalAppointment = MedicalAppointment::where('appointment_date', $request->appointment_date)
                 ->where('appointment_time', $request->appointment_time)->first();
-
             if ($medicalAppointment) {
                 return response()->json(['message' => 'Fecha y horario no disponibles'], 503);
             }
@@ -188,9 +156,7 @@ class CalendarAppointmentController extends Controller
                 'facility_id' => $request->facility_id,
                 'status' => 'scheduled',
             ]);
-
             DB::commit();
-
             return (new CalendarResource($medicalAppointment))->additional(['message' => 'Cita agendada correctamente.']);
         } catch (\Throwable $th) {
             DB::rollback();
