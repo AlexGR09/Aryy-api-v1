@@ -80,6 +80,6 @@ class PillReminderController extends Controller
 
     public function notFoundPatient()
     {
-        return response()->json(['message' => 'No se encontraron recordatorio de medicamentos'], 404);
+        return response()->json(['message' => 'No se encontraron resultados'], 404);
     }
 }
