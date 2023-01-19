@@ -31,9 +31,9 @@ $this->v1 = 'App\\Http\\Controllers\\API\\V1\\';
 // V1
 $this->auth = 'App\\Http\\Controllers\\API\\V1\\Auth\\';
 // MÉDICO
-$this->physician = 'App\\Http\\Controllers\\API\\V1\\Physician\\';
-// MÉDICO
-$this->admin = 'App\\Http\\Controllers\\API\\V1\\Admin\\';
+$this->physician = "App\\Http\\Controllers\\API\\V1\\Physician\\";
+// ADMIN
+$this->admin = "App\\Http\\Controllers\\API\\V1\\Admin\\";
 // BÚSQUEDA
 $this->search = 'App\\Http\\Controllers\\API\\V1\\Search\\';
 // CATALÓGOS
@@ -43,9 +43,13 @@ $this->patient = 'App\\Http\\Controllers\\API\\V1\\Patient\\';
 
 /* RUTAS API VERSIÓN 2 */
 
-global $v2;
+global $v2, $patient_v2;
 // V2
-$this->v2 = 'App\\Http\\Controllers\\API\\V2\\';
+$this->v2 = "App\\Http\\Controllers\\API\\V2\\";
+// PATIENT
+$this->patient_v2 = "App\\Http\\Controllers\\API\\V2\\Patient\\";
+
+
 
 Route::prefix('v1')->group(function () {
     // RUTAS REGISTRO Y LOGIN
@@ -306,7 +310,7 @@ Route::prefix('v1')->group(function () {
                     Route::put('/vaccination_history/{patient_id}', 'update');
                 });
 
-                //rutas jorge antecedentes ginecologicos
+
             });
         });
         /* RUTAS ADMINISTRATIVAS */
@@ -440,10 +444,19 @@ Route::prefix('v2')->group(function () {
     Route::group(['middleware' => ['auth:sanctum']], function () {
         /* RUTAS DEL PACIENTE */
         Route::prefix('patient')->group(function () {
-            // PERFIL DEL MÉDICO
-            Route::controller($this->v2.'Patient\\'.PatientController::class)->group(function () {
+
+            // PERFIL DEL PACIENTE
+            Route::controller($this->patient_v2 . PatientController::class)->group(function () {
                 Route::post('/profile', 'store');
             });
+
+            // PASTILLERO
+            Route::controller($this->patient_v2 . PillReminderController::class)->group(function () {
+                Route::get('/{patient_id}/pill-reminders', 'index');
+                Route::post('/{patient_id}/pill-reminders', 'store');
+                Route::delete('/{patient_id}/pill-reminders/{pill_reminder_id}', 'destroy');
+            });
+
         });
     });
 });

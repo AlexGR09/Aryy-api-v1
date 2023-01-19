@@ -270,7 +270,7 @@ class UserSeeder extends Seeder
 
         //pacientes
         $patient = User::where('id', 13)->first();
-        $patient->assignRole(['User', 'NewPatient']);
+        $patient->assignRole(['User', 'Patient']);
 
         $patient2 = User::where('id', 14)->first();
         $patient2->assignRole(['User', 'NewPatient']);

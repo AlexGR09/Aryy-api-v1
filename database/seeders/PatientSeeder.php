@@ -33,7 +33,7 @@ class PatientSeeder extends Seeder
             ],
             [
 
-                'user_id' => 14,
+                'user_id' => 13,
                 'address' => json_encode($location, JSON_THROW_ON_ERROR),
                 'zip_code' => $faker->regexify('[0-9]{5}'),
                 'country_code' => '+52',
