@@ -24,6 +24,7 @@ class PathologicalBackground extends Model
         'respiratory_diseases',
         'ets',
         'gastrointestinal_pathologies',
+        'blood_disease',
     ];
 
     public function medical_history()

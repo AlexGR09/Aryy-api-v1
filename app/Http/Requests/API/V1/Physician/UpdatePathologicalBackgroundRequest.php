@@ -37,6 +37,7 @@ class UpdatePathologicalBackgroundRequest extends FormRequest
             'respiratory_diseases' => 'sometimes|string',
             'ets' => 'sometimes|string',
             'gastrointestinal_pathologies' => 'sometimes|string',
+            'blood_disease' => 'sometimes|string'
         ];
     }
 }
