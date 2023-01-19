@@ -4,12 +4,10 @@ namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\PathologicalBackgroundRequest;
-use App\Http\Resources\API\V1\Patient\BasicImformationResource;
 use App\Http\Resources\API\V1\Patient\PathologicalBackgroundResource;
 use App\Models\MedicalHistory;
 use App\Models\PathologicalBackground;
 use App\Models\Patient;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PathologicalBackgroundController extends Controller
@@ -32,7 +30,6 @@ class PathologicalBackgroundController extends Controller
     public function store(PathologicalBackgroundRequest $request)
     {
         try {
-
             $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
 
@@ -58,9 +55,11 @@ class PathologicalBackgroundController extends Controller
             $medical_history->save();
 
             DB::commit();
+
             return (new PathologicalBackgroundResource($pathological_background))->additional(['message' => 'Informacion guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -71,17 +70,19 @@ class PathologicalBackgroundController extends Controller
             $patient = Patient::where('id', $id)
             ->where('user_id', auth()->id())
             ->firstOrFail();
-            
+
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
             $pathological = PathologicalBackground::where('id', $medical_history->pathological_background_id)->get();
-            return (PathologicalBackgroundResource::collection($pathological))->additional(['message' => 'Mi perfil de paciente.']);
+
+            return PathologicalBackgroundResource::collection($pathological)->additional(['message' => 'Mi perfil de paciente.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function update(PathologicalBackgroundRequest $request,$id)
+    public function update(PathologicalBackgroundRequest $request, $id)
     {
         try {
             $patient = Patient::where('id', $id)
@@ -107,9 +108,11 @@ class PathologicalBackgroundController extends Controller
             $pathological_background->gastrointestinal_pathologies = $request->gastrointestinal_pathologies;
             $pathological_background->save();
             DB::commit();
+
             return (new PathologicalBackgroundResource($pathological_background))->additional(['message' => 'Informacion actualizada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

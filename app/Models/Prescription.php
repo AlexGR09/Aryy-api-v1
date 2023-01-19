@@ -24,10 +24,10 @@ class Prescription extends Model
         'treatment' => 'array',
     ];
 
-    protected $hidden = [ 
+    protected $hidden = [
         'created_at',
         'updated_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     public function vital_signs()
@@ -35,7 +35,7 @@ class Prescription extends Model
         return $this->belongsTo(VitalSing::class);
     }
 
-    public function  medicalappointment()
+    public function medicalappointment()
     {
         return $this->hasOne(MedicalAppointment::class);
     }

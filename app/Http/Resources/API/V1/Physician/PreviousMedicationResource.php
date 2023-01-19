@@ -16,7 +16,7 @@ class PreviousMedicationResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'previous_medication' => explode(",",$this->previous_medication),
+            'previous_medication' => explode(',', $this->previous_medication),
         ];
     }
 }

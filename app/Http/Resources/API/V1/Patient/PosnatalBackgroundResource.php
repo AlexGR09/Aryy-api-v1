@@ -6,7 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class PosnatalBackgroundResource extends JsonResource
 {
-
     public function toArray($request)
     {
         return [
@@ -18,6 +17,5 @@ class PosnatalBackgroundResource extends JsonResource
             'type_of_feeding' => $this->type_of_feeding,
             'emotonial_state' => $this->emotonial_state,
         ];
-        
     }
 }

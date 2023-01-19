@@ -12,7 +12,6 @@ use App\Models\PerinatalBackground;
 use App\Models\PostnatalBackground;
 use App\Models\PyschologicalBackground;
 use App\Models\VaccinationHistory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class BasicInformationSeeder extends Seeder
@@ -26,7 +25,7 @@ class BasicInformationSeeder extends Seeder
     {
         $patients = Patient::all();
 
-        foreach ($patients as $patient ) {
+        foreach ($patients as $patient) {
             $patient->vitalSign()->create([
                 'temperature' => 46,
                 'weight' => 87,

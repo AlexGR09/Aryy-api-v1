@@ -21,7 +21,7 @@ class HealthInsuranceController extends Controller
         $this->middleware('role:Patient')->only([
             'store',
             'show',
-            'update'
+            'update',
         ]);
     }
 
@@ -67,7 +67,7 @@ class HealthInsuranceController extends Controller
         }
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         try {
             $patient = Patient::where('id', $id)
@@ -82,6 +82,7 @@ class HealthInsuranceController extends Controller
             return (new HealthInsuranceResource($health_insurance))->additional(['message' => 'Informacion actualizada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -98,11 +99,15 @@ class HealthInsuranceController extends Controller
             return (new HealthInsuranceResource($health_insurance))->additional(['message' => 'Informacion eliminada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-    public function health_insurance(Request $request){
-        $health_insurance =Insurance::all();
+
+    public function health_insurance(Request $request)
+    {
+        $health_insurance = Insurance::all();
+
         return $health_insurance;
     }
 }

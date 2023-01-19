@@ -24,10 +24,10 @@ class StoreAllergyPatientRequest extends FormRequest
     public function rules()
     {
         return [
-            'patient_id' => 'required|exists:App\Models\User,id',
-            'food_allergy' => 'required',
-            'drug_allergy' => 'required',
-            'environmental_allergy' => 'required',
+            'patient_id' => 'required|exists:App\Models\Patient,id',
+            'food_allergy' => 'sometimes|array|min:1',
+            'drug_allergy' => 'sometimes|array|min:1',
+            'environmental_allergy' => 'sometimes|array|min:1',
         ];
     }
 }

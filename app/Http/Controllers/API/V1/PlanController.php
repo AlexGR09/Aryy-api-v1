@@ -9,6 +9,6 @@ class PlanController extends Controller
 {
     public function index()
     {
-        return ok('',Plan::all());
+        return ok('', Plan::all());
     }
 }

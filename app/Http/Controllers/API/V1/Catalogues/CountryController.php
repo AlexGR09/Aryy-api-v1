@@ -31,7 +31,7 @@ class CountryController extends Controller
     public function index()
     {
         try {
-            return (CountryResource::collection(Country::orderBy('name')->get()))->additional(['message' => 'Países encontrados.']);
+            return CountryResource::collection(Country::orderBy('name')->get())->additional(['message' => 'Países encontrados.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -50,6 +50,7 @@ class CountryController extends Controller
     {
         try {
             $country = Country::create(['name' => $request->name]);
+
             return (new CountryResource($country))->additional(['message' => 'País creado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -61,6 +62,7 @@ class CountryController extends Controller
         try {
             $country->name = $request->name;
             $country->save();
+
             return (new CountryResource($country))->additional(['message' => 'País actualizado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -71,6 +73,7 @@ class CountryController extends Controller
     {
         try {
             $country->delete();
+
             return (new CountryResource($country))->additional(['message' => 'País eliminado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

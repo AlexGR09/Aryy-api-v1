@@ -18,5 +18,4 @@ class Occupation extends Model
     {
         return $this->belongsToMany(\App\Models\Occupation::class, 'occupation_patient');
     }
-    
 }

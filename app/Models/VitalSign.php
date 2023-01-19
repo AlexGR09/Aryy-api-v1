@@ -33,5 +33,4 @@ class VitalSign extends Model
     {
         return $this->hasOne(Prescription::class);
     }
-    
 }

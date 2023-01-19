@@ -15,9 +15,9 @@ class MedicalService extends Model
     ];
 
     protected $hidden = [
-        'created_at', 
+        'created_at',
         'updated_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     // RELACIÓN MUCHOS A MUCHOS CON EL MODELO ESPECIALIDADES
@@ -25,5 +25,4 @@ class MedicalService extends Model
     {
         return $this->belongsToMany(\App\Models\Physician::class, 'medical_service_physician');
     }
-
 }

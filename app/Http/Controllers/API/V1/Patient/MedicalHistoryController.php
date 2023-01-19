@@ -11,10 +11,9 @@ use App\Http\Resources\API\V1\Patient\MedicalHistoryResource;
 use App\Models\Allergy;
 use App\Models\AllergyPatient;
 use App\Models\BloodType;
-use Illuminate\Http\Request;
 use App\Models\MedicalHistory;
 use App\Models\Patient;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class MedicalHistoryController extends Controller
@@ -37,12 +36,15 @@ class MedicalHistoryController extends Controller
                 ->where('user_id', auth()->id())
                 ->firstOrFail();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergyPatient')->get();
-            return (MedicalHistoryResource::collection($medical_history))->additional(['message' => '..']);
+
+            return MedicalHistoryResource::collection($medical_history)->additional(['message' => '..']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
+
     public function store(MedicalHistoryRequest $request)
     {
         try {
@@ -51,7 +53,7 @@ class MedicalHistoryController extends Controller
                 ->firstOrFail();
 
             $allergy_patient = AllergyPatient::create([
-                'food_allergy' =>  $request->food_allergy,
+                'food_allergy' => $request->food_allergy,
                 'drug_allergy' => $request->drug_allergy,
                 'environmental_allergy' => $request->environmental_allergy,
             ]);
@@ -64,15 +66,17 @@ class MedicalHistoryController extends Controller
             $weight = $basic_information->weight;
             $height = $basic_information->height;
 
-            $basic_information->imc = round((float)$weight->weight / pow((float)$height->height, 2));
+            $basic_information->imc = round((float) $weight->weight / pow((float) $height->height, 2));
             $basic_information->blood_type = $request->blood_type;
             $basic_information->allergy_patient_id = $allergy_patient->id;
 
             $basic_information->save();
             DB::commit();
+
             return (new BasicInformationResource($basic_information))->additional(['message' => 'Informacion basica guardada con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -84,15 +88,16 @@ class MedicalHistoryController extends Controller
                 ->where('user_id', auth()->id())
                 ->firstOrFail();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergyPatient')->get();
-            return (BasicInformationResource::collection($medical_history))->additional(['message' => 'Alergias encontradas']);
+
+            return BasicInformationResource::collection($medical_history)->additional(['message' => 'Alergias encontradas']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-
-    public function update(MedicalHistoryRequest $request,$id)
+    public function update(MedicalHistoryRequest $request, $id)
     {
         try {
             $patient = Patient::where('id', $id)
@@ -107,7 +112,7 @@ class MedicalHistoryController extends Controller
             $weight = $basic_information->weight;
             $height = $basic_information->height;
 
-            $basic_information->imc = round((float)$weight->weight / pow((float)$height->height, 2));
+            $basic_information->imc = round((float) $weight->weight / pow((float) $height->height, 2));
             $basic_information->blood_type = $request->blood_type;
             $basic_information->save();
 
@@ -120,6 +125,7 @@ class MedicalHistoryController extends Controller
             return (new BasicInformationResource($basic_information))->additional(['message' => 'La informacion basica se actualizo con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -127,11 +133,12 @@ class MedicalHistoryController extends Controller
     public function allergy(Request $request)
     {
         try {
-            $allergy = Allergy::where('name', 'LIKE', "%" . $request->allergy . "%")->get();
+            $allergy = Allergy::where('name', 'LIKE', '%'.$request->allergy.'%')->get();
 
-            return (AllergyResource::collection($allergy))->additional(['message' => '..']);
+            return AllergyResource::collection($allergy)->additional(['message' => '..']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -141,9 +148,10 @@ class MedicalHistoryController extends Controller
         try {
             $blood_type = BloodType::all();
 
-            return (BloodTypeResource::collection($blood_type))->additional(['message' => '..']);
+            return BloodTypeResource::collection($blood_type)->additional(['message' => '..']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

@@ -14,11 +14,11 @@ class OccupationPatient extends Model
 
     public function patients()
     {
-        return $this->belongsTo(\App\Models\Patient::class)->withPivot('patient_id');;
+        return $this->belongsTo(\App\Models\Patient::class)->withPivot('patient_id');
     }
 
     public function occupations()
     {
-        return $this->belongsTo(\App\Models\Occupation::class)->withPivot('occupation_id');;
+        return $this->belongsTo(\App\Models\Occupation::class)->withPivot('occupation_id');
     }
 }

@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
-
     public function login(LoginRequest $request)
     {
         try {
@@ -42,7 +41,7 @@ class AuthController extends Controller
             $user = User::create($request->validated());
             $user->assignRole('User');
 
-            $user_folder = $user->id . '_' . $user->country_code . $user->phone_number;
+            $user_folder = $user->id.'_'.$user->country_code.$user->phone_number;
 
             // CREA LA CARPETA Y ASIGNA EL ROL CORRESPONDIENTE AL USUARIO
             $this->folderUserStorage($request->type_user, $user, $user_folder);
@@ -50,15 +49,17 @@ class AuthController extends Controller
             $token = $user->createToken('authToken')->plainTextToken;
             $user->update([
                 'remember_token' => $token,
-                'user_folder' => $user_folder
+                'user_folder' => $user_folder,
             ]);
 
             DB::commit();
+
             return (new UserResource($user))->additional([
                 'message' => 'Usuario registrado con éxito.',
                 'access_token' => $token, ]);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -69,16 +70,15 @@ class AuthController extends Controller
             case 'Patient':
                 $user->assignRole('NewPatient');
                 $directory = '//users//patients//';
-                Storage::makeDirectory($directory . $user_folder);
+                Storage::makeDirectory($directory.$user_folder);
                 break;
             case 'Physician':
                 $user->assignRole('NewPhysician');
                 $directory = '//users//physicians//';
-                Storage::makeDirectory($directory . $user_folder);
+                Storage::makeDirectory($directory.$user_folder);
                 break;
             default:
                 break;
         }
     }
-
 }

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\API\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Physician\UpdateAppointmentRequest;
 use App\Http\Requests\StoreAppointmentRequest;
-use App\Models\Appointment;
 use App\Http\Resources\AppointmentResource;
+use App\Models\Appointment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,17 +22,18 @@ class AppointmentController extends Controller
     public function index(Request $request)
     {
         $status = $request->status;
-        if(User::find(auth()->id())->hasRole('Physician')){
+        if (User::find(auth()->id())->hasRole('Physician')) {
             $this->currentUser = [[
-                'user_id_physician' => auth()->id()
+                'user_id_physician' => auth()->id(),
             ]];
         }
 
-        if(User::find(auth()->id())->hasRole('Patient')){
+        if (User::find(auth()->id())->hasRole('Patient')) {
             $this->currentUser = [[
-                'user_id_patient' => auth()->id()
+                'user_id_patient' => auth()->id(),
             ]];
         }
+
         return  AppointmentResource::collection(
             Appointment::where($this->currentUser)
             ->when($status, function ($q) use ($status) {
@@ -41,7 +42,6 @@ class AppointmentController extends Controller
             ->get()
         );
     }
-    
 
     /**
      * Store a newly created resource in storage.

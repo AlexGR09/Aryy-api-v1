@@ -17,26 +17,26 @@ class AppointmentUserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->hasRole('Physician')){
+        if (auth()->user()->hasRole('Physician')) {
             $currentUser = [
-                'user_id_physician' => auth()->id()
+                'user_id_physician' => auth()->id(),
             ];
         }
 
-        if(auth()->user()->hasRole('Patient')){
+        if (auth()->user()->hasRole('Patient')) {
             $currentUser = [
-                'user_id_patient' => auth()->id()
+                'user_id_patient' => auth()->id(),
             ];
         }
         $appointment = $request->route('appointment');
         $appointmentDB = Appointment::where([
             $currentUser,
-            ['id' , $appointment->id]
+            ['id', $appointment->id],
         ])->first();
-        if($appointmentDB){
+        if ($appointmentDB) {
             return $next($request);
         }
-        return response()->json(['message' => 'No tienes permiso para modificar esta cita'],403);
 
+        return response()->json(['message' => 'No tienes permiso para modificar esta cita'], 403);
     }
 }

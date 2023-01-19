@@ -16,9 +16,10 @@ class SubscriptionUserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->userSubscription()->exists()){
-            return conflict('El usuario tiene un subscripcion activa',[]);
+        if (auth()->user()->userSubscription()->exists()) {
+            return conflict('El usuario tiene un subscripcion activa', []);
         }
+
         return $next($request);
     }
 }

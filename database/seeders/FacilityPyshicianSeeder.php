@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 
 class FacilityPyshicianSeeder extends Seeder
 {
-
     public function run()
     {
         DB::table('facility_physician')->insert([

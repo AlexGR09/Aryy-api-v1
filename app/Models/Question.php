@@ -17,10 +17,10 @@ class Question extends Model
 
     protected $with = ['answers'];
 
-    protected $hidden = [ 
+    protected $hidden = [
         'created_at',
         'updated_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     // MUCHAS PREGUNTAS PERTENECEN A UN CUESTIONARIO

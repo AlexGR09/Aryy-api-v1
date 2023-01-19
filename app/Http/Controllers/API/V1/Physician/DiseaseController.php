@@ -9,18 +9,17 @@ use App\Models\Physician;
 
 class DiseaseController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('role:Physician');
     }
 
-    public function index() 
+    public function index()
     {
         try {
             $physician = Physician::where('user_id', auth()->id())->firstOrFail();
 
-            return (DiseaseResource::collection($physician->diseases))
+            return DiseaseResource::collection($physician->diseases)
                 ->additional(['message' => 'Enfermedades que atiende el médico.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -35,7 +34,7 @@ class DiseaseController extends Controller
             // GUARDA ENFERMEDAD EN LA TABLA PIVOTE DISEASE-PHYSICIAN SIN DUPLICADOS
             $physician->diseases()->syncWithoutDetaching($request->disease_id);
 
-            return (DiseaseResource::collection($physician->diseases))
+            return DiseaseResource::collection($physician->diseases)
                 ->additional(['message' => 'Enfermedades que atiende el médico actualizado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -50,11 +49,10 @@ class DiseaseController extends Controller
             // ELIMINA LA RELACIÓN DE DISEASE-PHYSICIAN DEL MÉDICO CORRESPONDIENTE
             $physician->diseases()->detach($request->disease_id);
 
-            return (DiseaseResource::collection($physician->diseases))
+            return DiseaseResource::collection($physician->diseases)
                 ->additional(['message' => 'Enfermedades que atiende el médico actualizado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-    
 }

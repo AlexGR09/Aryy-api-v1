@@ -15,7 +15,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->user =  empty(auth()->id()) ? NULL : User::findOrFail(auth()->id());
+        $this->user = empty(auth()->id()) ? null : User::findOrFail(auth()->id());
         $this->middleware('role:User');
     }
 
@@ -31,11 +31,13 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request)
     {
         try {
-            # FALTA FUNCIÓN DE VERIFICACIÓN AL CAMBIAR NÚMERO DE TELÉFONO Y CAMBIAR EL NOMBRE DE LA CARPETA
+            // FALTA FUNCIÓN DE VERIFICACIÓN AL CAMBIAR NÚMERO DE TELÉFONO Y CAMBIAR EL NOMBRE DE LA CARPETA
             $this->user->update($request->validated());
 
-            if ($request->password) $this->logout(); // INVOCACIÓN DEL MÉTODO LOGOUT
-            
+            if ($request->password) {
+                $this->logout();
+            } // INVOCACIÓN DEL MÉTODO LOGOUT
+
             return (new UserResource($this->user))->additional(['message' => 'Perfil actualizado con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -64,35 +66,36 @@ class UserController extends Controller
 
             $this->user->tokens()->delete();
             $this->user->update([
-                'remember_token' => NULL
+                'remember_token' => null,
             ]);
-          
+
             DB::commit();
+
             return (new UserResource($this->user))->additional(['message' => 'Cierre de sesión exitoso, adiós']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function  folderUserDelete($user_roles)
+    public function folderUserDelete($user_roles)
     {
-        $to = '//recycle_bin//' . $this->user->user_folder;
+        $to = '//recycle_bin//'.$this->user->user_folder;
 
         switch ($user_roles) {
-
             case $user_roles->contains('Physician') || $user_roles->contains('NewPhysician'):
-                $from = '//users//physicians//' . $this->user->user_folder;
+                $from = '//users//physicians//'.$this->user->user_folder;
                 Storage::move($from, $to);
                 break;
 
             case $user_roles->contains('Patient') || $user_roles->contains('NewPatient'):
-                $from = '//users//patients//' . $this->user->user_folder;
+                $from = '//users//patients//'.$this->user->user_folder;
                 Storage::move($from, $to);
                 break;
-            
+
             default:
-            return response()->json(['message' => 'rol no encontrado'], 503);
+                return response()->json(['message' => 'rol no encontrado'], 503);
                 break;
         }
     }

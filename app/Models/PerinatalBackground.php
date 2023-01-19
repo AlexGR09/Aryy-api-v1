@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 class PerinatalBackground extends Model
 {
     use HasFactory, SoftDeletes;
@@ -19,7 +18,8 @@ class PerinatalBackground extends Model
         'final_ppf',
     ];
 
-    public function medical_history() {
+    public function medical_history()
+    {
         return $this->hasOne(MedicalHistory::class);
     }
 }

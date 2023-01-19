@@ -15,12 +15,12 @@ class PatientMedicalAppointmentResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'patient_id'=>$this->id,
-            'full_name'=>$this->full_name,
-            'phone_number'=>$this->user->phone_number,
-            'country_code'=>$this->country_code,
-            'emergency_number'=>$this->emergency_number,
-            
+            'patient_id' => $this->id,
+            'full_name' => $this->full_name,
+            'phone_number' => $this->user->phone_number,
+            'country_code' => $this->country_code,
+            'emergency_number' => $this->emergency_number,
+
         ];
     }
 }

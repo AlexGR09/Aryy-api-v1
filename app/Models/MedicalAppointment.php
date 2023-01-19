@@ -21,9 +21,8 @@ class MedicalAppointment extends Model
         'patient_id',
         'physician_id',
         'facility_id',
-        'prescription_id'
+        'prescription_id',
     ];
-
 
     // RELACIÓN MUCHOS A UNO CON LA TABLA PHYSICIANS
     public function physician()
@@ -47,5 +46,4 @@ class MedicalAppointment extends Model
     {
         return $this->belongsTo(Prescription::class);
     }
-
 }

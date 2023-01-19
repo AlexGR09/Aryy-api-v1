@@ -22,7 +22,7 @@ class MedicalServiceController extends Controller
     public function index()
     {
         try {
-            return $this->physician->medical_services->makeHidden('pivot');  
+            return $this->physician->medical_services->makeHidden('pivot');
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -37,19 +37,20 @@ class MedicalServiceController extends Controller
             $data = [];
             foreach ($request->medical_services as $key => $medical_service) {
                 $data += [
-                    $medical_service['id'] => [ 'price' => $medical_service['price'] ],
+                    $medical_service['id'] => ['price' => $medical_service['price']],
                 ];
             }
-           
-           $this->physician->medical_services()->sync($data);
+
+            $this->physician->medical_services()->sync($data);
 
             DB::commit();
-            return (MedicalServicePhysicianResource::collection($this->physician->medical_service_physician))
+
+            return MedicalServicePhysicianResource::collection($this->physician->medical_service_physician)
                 ->additional(['message' => 'Servicios del médico actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-
 }

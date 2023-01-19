@@ -23,7 +23,7 @@ class AllergiesSeeder extends Seeder
                 'name' => 'Alergia al maníe',
             ],
             [
-                'name' => 'Alergia a los mariscos'
+                'name' => 'Alergia a los mariscos',
             ],
             [
                 'name' => 'Alergia a la soya o soja',
@@ -35,35 +35,35 @@ class AllergiesSeeder extends Seeder
                 'name' => 'Alergia al trigo',
             ],
             [
-                'name' => 'Alergia al polen'
+                'name' => 'Alergia al polen',
             ],
             [
-                'name' => 'Alergia al moho'
+                'name' => 'Alergia al moho',
             ],
             [
-                'name' => 'Alergia al polvo'
+                'name' => 'Alergia al polvo',
             ],
             [
-                'name' => 'Alergia a la caspa'
+                'name' => 'Alergia a la caspa',
             ],
             [
-                'name' => 'Alergia a anticonvulsivos'
+                'name' => 'Alergia a anticonvulsivos',
             ],
             [
-                'name' => 'Alergia a la insulina'
+                'name' => 'Alergia a la insulina',
             ],
             [
-                'name' => 'Alergia al yodo'
+                'name' => 'Alergia al yodo',
             ],
             [
-                'name' => 'Alergia a la penicilina'
+                'name' => 'Alergia a la penicilina',
             ],
             [
-                'name' => 'Alergia a antibióticos conexos'
+                'name' => 'Alergia a antibióticos conexos',
             ],
             [
-                'name' => 'Alergia a sulfamidas'
-            ]
+                'name' => 'Alergia a sulfamidas',
+            ],
         ]);
     }
 }

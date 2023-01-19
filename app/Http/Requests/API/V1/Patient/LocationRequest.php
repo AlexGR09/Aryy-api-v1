@@ -27,7 +27,7 @@ class LocationRequest extends FormRequest
             'address' => 'required|max:255',
             'zip_code' => 'required|digits:5',
             'address.street' => 'required|max:255',
-            'address.colonia' =>'required|max:255',
+            'address.colonia' => 'required|max:255',
         ];
     }
 }

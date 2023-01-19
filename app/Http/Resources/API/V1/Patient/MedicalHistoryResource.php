@@ -23,7 +23,7 @@ class MedicalHistoryResource extends JsonResource
             'allergy_patient_id' => $this->allergy_patient_id,
             'allergypatient' => new AllergyPatientResource($this->allergyPatient),
             'pathological_background_id' => $this->pathological_background_id,
-            'pathological_background' => new PathologicalBackgroundResource($this->pathologicalbackground),
+            'pathological_background' => new PathologicalBackgroundResource($this->pathologicalBackground),
             'non_pathological_background_id' => $this->non_pathological_background_id,
             'non_pathological_background' => new NonPathologicalBackgroundResource($this->nonpathologicalbackground),
             'hereditary_background_id' => $this->hereditary_background_id,

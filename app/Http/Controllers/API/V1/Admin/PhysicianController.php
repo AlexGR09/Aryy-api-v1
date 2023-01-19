@@ -34,6 +34,7 @@ class PhysicianController extends Controller
             return response()->json(['message' => 'Médico verificado con éxito.'], 200);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

@@ -12,21 +12,21 @@ class VitalSignController extends Controller
 {
     public function show(User $patient)
     {
-        return ok('',  $patient->vitalSign);
+        return ok('', $patient->vitalSign);
     }
-    
+
     public function patientInfo(User $patient)
     {
-        return ok('',$patient->patient);
+        return ok('', $patient->patient);
     }
 
     public function store(StoreVitalSignRequest $request)
     {
-        return created('',  VitalSign::create($request->validated()));
+        return created('', VitalSign::create($request->validated()));
     }
 
     public function update(VitalSign $vitalSign, UpdateVitalSignRequest $request)
     {
-        return ok('',  tap($vitalSign)->update($request->validated()));
+        return ok('', tap($vitalSign)->update($request->validated()));
     }
 }

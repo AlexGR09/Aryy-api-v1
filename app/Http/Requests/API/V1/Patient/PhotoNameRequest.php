@@ -14,7 +14,7 @@ class PhotoNameRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'required|string'
+            'photo' => 'required|string',
         ];
     }
 }
