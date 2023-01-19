@@ -44,9 +44,9 @@ class MedicalHistory extends Model
         return $this->belongsTo('App\Models\AllergyPatient', 'allergy_patient_id', 'id');
     }
 
-    public function pathologicalbackground()
+    public function pathologicalBackground()
     {
-        return $this->belongsTo('App\Models\PathologicalBackground', 'pathological_background_id', 'id');
+        return $this->belongsTo(PathologicalBackground::class, 'pathological_background_id', 'id');
     }
 
     public function nonpathologicalbackground()
