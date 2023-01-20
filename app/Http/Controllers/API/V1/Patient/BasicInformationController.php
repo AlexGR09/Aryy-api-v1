@@ -31,6 +31,7 @@ class BasicInformationController extends Controller
     public function update(Patient $patient, PatientUpdateVitalSignRequest $request)
     {
         VitalSign::where('patient_id', $patient->id)->update($request->validated());
+
         return ok('', VitalSign::where('patient_id', $patient->id)->first());
     }
 }

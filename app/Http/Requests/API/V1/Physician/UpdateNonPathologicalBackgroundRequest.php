@@ -41,8 +41,8 @@ class UpdateNonPathologicalBackgroundRequest extends FormRequest
                 'sometimes',
                 'string',
                 Rule::in([
-                    'Dieta mediterránea', 
-                    'Dieta de la zona', 
+                    'Dieta mediterránea',
+                    'Dieta de la zona',
                     'Dieta vegetariana',
                     'Dieta vegana',
                     'Dieta de la fertilidad',
@@ -53,7 +53,7 @@ class UpdateNonPathologicalBackgroundRequest extends FormRequest
                     'Dieta detox',
                     'Dieta Ornish / Ovolactovegetariana',
                     'Dieta Dash',
-                    'Dieta paleo'
+                    'Dieta paleo',
                 ]),
             ],
             'drug_active' => 'sometimes|string',

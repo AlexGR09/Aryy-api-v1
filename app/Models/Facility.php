@@ -53,18 +53,19 @@ class Facility extends Model
 
                 $startHour = Carbon::parse($hours[0]);
                 $endHour = Carbon::parse($hours[1]);
-                
-                if(
-                    $time->format('l') >= $startHour->format('l') && 
-                    $time->format('l') <= $endHour->format('l') && 
-                    !($time >=  $restStartHour && $time <= $restEndtHour)
-                ){
-                    if(!in_array($date->toDateString(),$this->schedule->free_days)){
+
+                if (
+                    $time->format('l') >= $startHour->format('l')
+                    && $time->format('l') <= $endHour->format('l')
+                    && ! ($time >= $restStartHour && $time <= $restEndtHour)
+                ) {
+                    if (! in_array($date->toDateString(), $this->schedule->free_days)) {
                         return true;
                     }
                 }
             }
         }
+
         return false;
     }
 

@@ -6,7 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class PillReminderResource extends JsonResource
 {
-
     public function toArray($request)
     {
         return [
@@ -15,10 +14,10 @@ class PillReminderResource extends JsonResource
             'drug' => $this->drug,
             'doce' => $this->doce,
             'frecuency' => $this->frecuency,
-            'start_treatment'=> $this->start_treatment,
-            'end_treatment'=> $this->end_treatment,
-            'instruction'=> $this->instruction,
-            'status'=> $this->status,
+            'start_treatment' => $this->start_treatment,
+            'end_treatment' => $this->end_treatment,
+            'instruction' => $this->instruction,
+            'status' => $this->status,
         ];
     }
 }

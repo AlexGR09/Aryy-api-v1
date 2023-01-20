@@ -28,7 +28,7 @@ class StoreAppointmentRequest extends FormRequest
             'appointment_time' => 'required|date_format:H:i',
             'physician_id' => 'required',
             'facility_id' => 'required',
-            'appointment_type' => 'required'
+            'appointment_type' => 'required',
         ];
     }
 }

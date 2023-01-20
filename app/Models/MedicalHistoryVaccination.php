@@ -19,8 +19,9 @@ class MedicalHistoryVaccination extends Model
     {
         return $this->hasMany('App\Models\MedicalHistory');
     }
-    public function vaccination_history(){
-        return $this->hasMany('App\Models\VaccinationHistory','id','vaccination_history_id');
-    }
 
+    public function vaccination_history()
+    {
+        return $this->hasMany('App\Models\VaccinationHistory', 'id', 'vaccination_history_id');
+    }
 }

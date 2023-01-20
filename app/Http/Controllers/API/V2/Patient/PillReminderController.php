@@ -22,7 +22,7 @@ class PillReminderController extends Controller
         try {
             $patient = $this->getPatient($patient_id);
 
-            if (!$patient) {
+            if (! $patient) {
                 return $this->notFoundPatient();
             }
 
@@ -38,7 +38,7 @@ class PillReminderController extends Controller
         try {
             $patient = $this->getPatient($patient_id);
 
-            if (!$patient) {
+            if (! $patient) {
                 return $this->notFoundPatient();
             }
 
@@ -59,7 +59,7 @@ class PillReminderController extends Controller
                 ->where('patient_id', $patient_id)
                 ->first();
 
-            if (!$pill_reminder) {
+            if (! $pill_reminder) {
                 return $this->notFoundPatient();
             }
 

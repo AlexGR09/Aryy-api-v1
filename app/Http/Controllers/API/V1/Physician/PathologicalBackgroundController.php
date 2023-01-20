@@ -15,9 +15,10 @@ class PathologicalBackgroundController extends Controller
     public function show(Patient $patient)
     {
         $medicalHistory = MedicalHistory::where('patient_id', $patient->id)->first();
-        if(!$medicalHistory->pathologicalBackground()->exists()){
-            return ok('El paciente no tiene historial patologico',[]);
+        if (! $medicalHistory->pathologicalBackground()->exists()) {
+            return ok('El paciente no tiene historial patologico', []);
         }
+
         return new PathologicalBackgroundResource(
             $medicalHistory->pathologicalBackground
         );
@@ -30,6 +31,7 @@ class PathologicalBackgroundController extends Controller
         $medicalHistory = MedicalHistory::where('patient_id', $data['patient_id'])->update(
             ['pathological_background_id' => $pathologicalBackground->id]
         );
+
         return (new PathologicalBackgroundResource(
             $pathologicalBackground
         ))->additional(['message' => 'Informacion guardada con exito.']);

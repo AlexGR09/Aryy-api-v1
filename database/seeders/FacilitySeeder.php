@@ -57,9 +57,9 @@ class FacilitySeeder extends Seeder
                         ],
                     ],
 
-                    "free_days" =>  ["2022-01-01", "2022-02-02"]
+                    'free_days' => ['2022-01-01', '2022-02-02'],
                 ],
-                
+
                 'type_schedule' => 'perm',
                 'consultation_length' => 120,
                 'accessibility_and_others' => [

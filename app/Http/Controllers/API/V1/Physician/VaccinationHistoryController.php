@@ -64,10 +64,11 @@ class VaccinationHistoryController extends Controller
             $medical_history = $this->medicalHistory($medical_history_id);
             $vaccinationhistory = MedicalHistoryVaccination::where('patient_id', $medical_history->patient_id)->with('vaccination_history')
                 ->get();
-            if (!$vaccinationhistory) {
+            if (! $vaccinationhistory) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
-            return (MedicalHistoryVaccinationResource::collection($vaccinationhistory))->additional(['message' => 'Historial de vacunación.']);
+
+            return MedicalHistoryVaccinationResource::collection($vaccinationhistory)->additional(['message' => 'Historial de vacunación.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }

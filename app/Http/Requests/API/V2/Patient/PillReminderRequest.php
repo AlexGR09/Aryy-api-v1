@@ -6,12 +6,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PillReminderRequest extends FormRequest
 {
-
     public function authorize()
     {
         return auth()->check();
     }
-
 
     public function rules()
     {
@@ -21,7 +19,7 @@ class PillReminderRequest extends FormRequest
             'frecuency' => 'required|string',
             'start_treatment' => 'required|date',
             'end_treatment' => 'required|date',
-            'instruction' => 'nullable|string'
+            'instruction' => 'nullable|string',
         ];
     }
 }

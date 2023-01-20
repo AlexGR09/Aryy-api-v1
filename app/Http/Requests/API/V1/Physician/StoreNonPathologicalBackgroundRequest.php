@@ -39,8 +39,8 @@ class StoreNonPathologicalBackgroundRequest extends FormRequest
             'diet' => [
                 'string',
                 Rule::in([
-                    'Dieta mediterránea', 
-                    'Dieta de la zona', 
+                    'Dieta mediterránea',
+                    'Dieta de la zona',
                     'Dieta vegetariana',
                     'Dieta vegana',
                     'Dieta de la fertilidad',
@@ -51,7 +51,7 @@ class StoreNonPathologicalBackgroundRequest extends FormRequest
                     'Dieta detox',
                     'Dieta Ornish / Ovolactovegetariana',
                     'Dieta Dash',
-                    'Dieta paleo'
+                    'Dieta paleo',
                 ]),
             ],
             'drug_active' => 'string',

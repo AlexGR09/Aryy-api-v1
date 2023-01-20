@@ -50,8 +50,6 @@ $this->v2 = 'App\\Http\\Controllers\\API\\V2\\';
 // PATIENT
 $this->patient_v2 = 'App\\Http\\Controllers\\API\\V2\\Patient\\';
 
-
-
 Route::prefix('v1')->group(function () {
     // RUTAS REGISTRO Y LOGIN
     Route::controller($this->auth.AuthController::class)->group(function () {
@@ -370,8 +368,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/medicalservice', [$this->physician.CalendarAppointmentController::class, 'physicianservice']);
         });
 
-        Route::post('patients/{patient}/appointments',[PatientAppointmentController::class, 'store']);
-
+        Route::post('patients/{patient}/appointments', [PatientAppointmentController::class, 'store']);
     });
     Route::prefix('medical-records')->group(function () {
         Route::get('vital-signs/patient/{patient}', [VitalSignController::class, 'show']);
@@ -448,19 +445,17 @@ Route::prefix('v2')->group(function () {
     Route::group(['middleware' => ['auth:sanctum']], function () {
         /* RUTAS DEL PACIENTE */
         Route::prefix('patient')->group(function () {
-
             // PERFIL DEL PACIENTE
-            Route::controller($this->patient_v2 . PatientController::class)->group(function () {
+            Route::controller($this->patient_v2.PatientController::class)->group(function () {
                 Route::post('/profile', 'store');
             });
 
             // PASTILLERO
-            Route::controller($this->patient_v2 . PillReminderController::class)->group(function () {
+            Route::controller($this->patient_v2.PillReminderController::class)->group(function () {
                 Route::get('/{patient_id}/pill-reminders', 'index');
                 Route::post('/{patient_id}/pill-reminders', 'store');
                 Route::delete('/{patient_id}/pill-reminders/{pill_reminder_id}', 'destroy');
             });
-
         });
     });
 });
