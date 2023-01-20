@@ -16,6 +16,7 @@ use App\Models\Patient;
 use App\Models\Physician;
 use App\Models\User;
 use Carbon\Carbon;
+use Hamcrest\Core\HasToString;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -112,7 +113,7 @@ class CalendarAppointmentController extends Controller
                 break;
 
             default:
-                // code...
+                return response()->json(["Message" => "Peticion Incorrecta", 400]);
                 break;
         }
     }
@@ -122,7 +123,7 @@ class CalendarAppointmentController extends Controller
         try {
             $user = User::where('phone_number', $request->phone_number)->first();
             DB::beginTransaction();
-            //Se verifica si el usuario existe
+            //SE VERIFICA SI EL PERFIL DEL USUARIO EXISTE
             if (!$user) {
                 $user = User::create([
                     'country_code' => $request->country_code,
@@ -141,7 +142,7 @@ class CalendarAppointmentController extends Controller
             $facility = Facility::where('id', $request->facility_id)->firstOrFail();
             $time = strtotime($request->appointment_time) + strtotime($facility->consultation_length); //SUMA LA DURACION DE LA CONSULTA A LA HORA DE LA CITA
             $date_time_end = date('H:i:s', $time); //SE LE DA EL FORMATO DE HORA */
-            $medicalAppointment = MedicalAppointment::where('appointment_date', $request->appointment_date)
+            $medicalAppointment = MedicalAppointment::where('appointment_date', $request->appointment_date) //SE COMPARA LA FECHA Y HORA DE LA CONSULTA NO ESTA OCUPADA
                 ->where('appointment_time', $request->appointment_time)->first();
             if ($medicalAppointment) {
                 return response()->json(['message' => 'Fecha y horario no disponibles'], 503);
@@ -160,7 +161,6 @@ class CalendarAppointmentController extends Controller
             return (new CalendarResource($medicalAppointment))->additional(['message' => 'Cita agendada correctamente.']);
         } catch (\Throwable $th) {
             DB::rollback();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -171,7 +171,6 @@ class CalendarAppointmentController extends Controller
             $appointment = $this->physician->medical_appointments()
                 ->where('id', $id)
                 ->first();
-
             return (new CalendarAppointmentResource($appointment))->additional(['message' => 'Cita encontrada.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -184,10 +183,8 @@ class CalendarAppointmentController extends Controller
             $medicalAppointment = $this->physician->medical_appointments()
                 ->where('id', $id)
                 ->first();
-
             $medicalAppointment->status = 'cancelled';
             $medicalAppointment->save();
-
             return response()->json(['status' => 'Cita cancelada con exito']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -198,7 +195,6 @@ class CalendarAppointmentController extends Controller
     public function facilityphysician()
     {
         $facility = FacilityPhysician::where('physician_id', $this->physician->id)->get();
-
         return FacilityPhysicanResource::collection($facility)->additional(['message' => 'Consultorio encontrado']);
     }
 
@@ -206,7 +202,6 @@ class CalendarAppointmentController extends Controller
     {
         $user = User::where('phone_number', $phone_number)->first();
         $patient = Patient::where('user_id', $user->id)->where('full_name', 'LIKE', '%' . $request->full_name . '%')->get();
-
         return PatientMedicalAppointmentResource::collection($patient)->additional(['message' => 'Paciente encontrado']);
     }
 }
