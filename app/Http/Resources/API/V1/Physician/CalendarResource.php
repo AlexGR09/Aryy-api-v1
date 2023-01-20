@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\API\V1\Physician;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CalendarResource extends JsonResource
@@ -23,8 +24,8 @@ class CalendarResource extends JsonResource
             'appointment_date' => $this->appointment_date,
             'appointment_time' => $this->appointment_time,
             'appointment_time_end' => $this->appointment_time_end,
-            'appointment_start' => $date_start,
-            'appointment_end' => $date_end,
+            'appointment_start' => carbon::parse($date_start),
+            'appointment_end' => carbon::parse($date_end),
             'appointment_type' => $this->appointment_type,
             'facility_name' => $this->facility->name,
             'status' => $this->status,
