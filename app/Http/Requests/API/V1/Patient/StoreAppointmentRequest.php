@@ -26,8 +26,6 @@ class StoreAppointmentRequest extends FormRequest
         return [
             'appointment_date' => 'required|date_format:Y-m-d',
             'appointment_time' => 'required|date_format:H:i',
-            'appointment_date_end' => 'required|date_format:Y-m-d',
-            'appointment_time_end' => 'required|date_format:H:i|after:appointment_time',
             'physician_id' => 'required',
             'facility_id' => 'required',
             'appointment_type' => 'required'

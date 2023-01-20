@@ -8,6 +8,7 @@ use App\Models\Facility;
 use App\Models\MedicalAppointment;
 use App\Models\Patient;
 use App\Models\Physician;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -20,9 +21,9 @@ class AppointmentController extends Controller
         if(!$facility->checkValidDate($data['appointment_date'], $data['appointment_time'])){
             return ok('El usuario no puede agendar en esta fecha',[]);
         }
-
+        $appointmentTimeEnd = Carbon::parse($data['appointment_date'] .' '. $data['appointment_time'])->addMinutes($facility->consultation_length);
         $medicalAppointment = MedicalAppointment::greaterThanDate($data['appointment_date'], $data['appointment_time'])
-        ->lowerThanDate($data['appointment_date'], $data['appointment_time_end'])
+        ->lowerThanDate($data['appointment_date'], $appointmentTimeEnd)
         ->first();
         if (!empty($medicalAppointment)) {
             return ok('La fecha seleccionada ya fue ocupada',[]);
@@ -31,7 +32,7 @@ class AppointmentController extends Controller
         $medicalAppointment = MedicalAppointment::create([
             'appointment_date' => $data['appointment_date'],
             'appointment_time' => $data['appointment_time'],
-            'appointment_time_end' => $data['appointment_time_end'],
+            'appointment_time_end' => $appointmentTimeEnd,
             'patient_id' => Patient::where('user_id', auth()->id())->first()->id,
             'physician_id' => $data['physician_id'],
             'facility_id' => $data['facility_id'],
