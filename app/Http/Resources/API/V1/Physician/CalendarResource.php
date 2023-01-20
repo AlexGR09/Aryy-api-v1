@@ -16,7 +16,6 @@ class CalendarResource extends JsonResource
     {
         $date_start = $this->appointment_date.'T'.$this->appointment_time;
         $date_end = $this->appointment_date.'T'.$this->appointment_time_end;
-
         return[
             'id_appointment' => $this->id,
             'patient_full_name' => $this->patient->full_name,

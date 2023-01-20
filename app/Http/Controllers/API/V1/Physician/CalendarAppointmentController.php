@@ -139,13 +139,16 @@ class CalendarAppointmentController extends Controller
                     'emergency_number' => $request->emergency_number,
                 ]);
             }
-            $facility = Facility::where('id', $request->facility_id)->firstOrFail();
+            $facility = Facility::find($request->facility_id);
+            if (!$facility->checkValidDate($request->appointment_date, $request->appointment_time)) {
+                return ok('El usuario no puede agendar en esta fecha', []);
+            }
             $time = strtotime($request->appointment_time) + strtotime($facility->consultation_length); //SUMA LA DURACION DE LA CONSULTA A LA HORA DE LA CITA
             $date_time_end = date('H:i:s', $time); //SE LE DA EL FORMATO DE HORA */
-            $medicalAppointment = MedicalAppointment::where('appointment_date', $request->appointment_date) //SE COMPARA LA FECHA Y HORA DE LA CONSULTA NO ESTA OCUPADA
-                ->where('appointment_time', $request->appointment_time)->first();
-            if ($medicalAppointment) {
-                return response()->json(['message' => 'Fecha y horario no disponibles'], 503);
+            $medicalAppointment = MedicalAppointment::greaterThanDate($request->appointment_date, $request->appointment_time)
+                ->first();
+            if (!empty($medicalAppointment)) {
+                return ok('La fecha y hora no esta disponible', []);
             }
             $medicalAppointment = MedicalAppointment::create([
                 'appointment_date' => $request->appointment_date,
