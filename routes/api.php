@@ -16,6 +16,7 @@ use App\Http\Controllers\API\V1\Physician\HereditaryBackgroundController as Phys
 use App\Http\Controllers\API\V1\Physician\NonPathologicalBackgroundController as PhysicianNonPathologicalBackgroundController;
 use App\Http\Controllers\API\V1\Physician\PathologicalBackgroundController as PhysicianPathologicalBackgroundController;
 use App\Http\Controllers\API\V1\Physician\PhysicianAppointmentController;
+use App\Http\Controllers\API\V1\Physician\PhysicianDetailController;
 use App\Http\Controllers\API\V1\Physician\PhysicianProfileController;
 use App\Http\Controllers\API\V1\Physician\SubscriptionUserController;
 use App\Http\Controllers\API\V1\PlanController;
@@ -109,6 +110,7 @@ Route::prefix('v1')->group(function () {
 
         /* RUTAS DEL MÉDICO */
         Route::prefix('physician')->group(function () {
+            Route::get('/{physician}/details', [PhysicianDetailController::class,'show']);
             // PERFIL DEL MÉDICO
             Route::controller(PhysicianProfileController::class)->group(function () {
                 Route::get('/profile', 'show');
