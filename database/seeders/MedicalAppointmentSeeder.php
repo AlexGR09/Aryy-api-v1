@@ -15,10 +15,10 @@ class MedicalAppointmentSeeder extends Seeder
                 'appointment_time' => '5:00:00',
                 'appointment_time_end' => '5:30:00',
                 'appointment_type' => 'Consulta de primera vez',
-                'physician_id' => 1,
+                'physician_id' => 10,
                 'patient_id' => 1,
                 'facility_id' => 10,
-                'prescription_id' => 1,
+                'prescription_id' => null,
             ],
             [
                 'appointment_date' => '2023-01-17',

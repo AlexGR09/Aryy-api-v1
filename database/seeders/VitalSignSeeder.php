@@ -27,7 +27,6 @@ class VitalSignSeeder extends Seeder
                 'water' => null,
                 'muscle' => null,
                 'abdomen' => null,
-                'patient_id' => 5,
             ],
             [
                 'id' => 2,
@@ -46,7 +45,6 @@ class VitalSignSeeder extends Seeder
                 'water' => null,
                 'muscle' => null,
                 'abdomen' => null,
-                'patient_id' => 5,
             ],
             [
                 'id' => 3,
@@ -65,7 +63,6 @@ class VitalSignSeeder extends Seeder
                 'water' => null,
                 'muscle' => null,
                 'abdomen' => null,
-                'patient_id' => 5,
             ],
             [
                 'id' => 4,
@@ -84,7 +81,6 @@ class VitalSignSeeder extends Seeder
                 'water' => null,
                 'muscle' => null,
                 'abdomen' => null,
-                'patient_id' => 5,
             ],
             [
                 'id' => 5,
@@ -103,7 +99,6 @@ class VitalSignSeeder extends Seeder
                 'water' => null,
                 'muscle' => null,
                 'abdomen' => null,
-                'patient_id' => 5,
             ],
             [
                 'id' => 6,
@@ -122,7 +117,6 @@ class VitalSignSeeder extends Seeder
                 'water' => null,
                 'muscle' => null,
                 'abdomen' => null,
-                'patient_id' => 5,
             ],
             [
                 'id' => 7,
@@ -141,7 +135,6 @@ class VitalSignSeeder extends Seeder
                 'water' => null,
                 'muscle' => null,
                 'abdomen' => null,
-                'patient_id' => 5,
             ],
             [
                 'id' => 8,
@@ -160,7 +153,6 @@ class VitalSignSeeder extends Seeder
                 'water' => null,
                 'muscle' => null,
                 'abdomen' => null,
-                'patient_id' => 5,
             ],
             [
                 'id' => 9,
@@ -179,7 +171,6 @@ class VitalSignSeeder extends Seeder
                 'water' => null,
                 'muscle' => null,
                 'abdomen' => null,
-                'patient_id' => 5,
             ],
             [
                 'id' => 10,
@@ -198,7 +189,6 @@ class VitalSignSeeder extends Seeder
                 'water' => null,
                 'muscle' => null,
                 'abdomen' => null,
-                'patient_id' => 5,
             ],
 
         ]);
