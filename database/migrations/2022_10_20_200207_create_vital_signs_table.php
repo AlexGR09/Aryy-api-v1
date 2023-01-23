@@ -30,7 +30,6 @@ return new class extends Migration
             $table->integer('water')->nullable();
             $table->integer('muscle')->nullable();
             $table->integer('abdomen')->nullable();
-            $table->foreignId('patient_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
