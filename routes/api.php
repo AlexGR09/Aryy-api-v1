@@ -165,6 +165,10 @@ Route::prefix('v1')->group(function () {
             });
 
             Route::prefix('medical-history')->group(function () {
+                
+                Route::controller($this->physician.MedicalHistoryController::class)->group(function () {
+                    Route::get('/{patient_id}','index');
+                });
                 //Antecedentes ginecologicos - Corregir Carlos(Dinho)
                 Route::controller($this->physician.GynecologicalHistoryController::class)->group(function () {
                     Route::post('/gynecological-history', 'store');
