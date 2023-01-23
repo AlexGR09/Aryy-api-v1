@@ -309,9 +309,9 @@ Route::prefix('v1')->group(function () {
                 });
                 //Historial de vacunacion
                 Route::controller($this->patient.VaccinationHistoryController::class)->group(function () {
-                    Route::post('/vaccination_history', 'store');
-                    Route::get('/vaccination_history/{patient_id}', 'show');
-                    Route::put('/vaccination_history/{patient_id}', 'update');
+                    Route::post('/vaccination-history', 'store');
+                    Route::get('/vaccination-history/{patient_id}', 'show');
+                    Route::put('/vaccination-history/{patient_id}', 'update');
                 });
 
                 //rutas jorge antecedentes ginecologicos

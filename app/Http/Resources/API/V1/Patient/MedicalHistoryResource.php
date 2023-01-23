@@ -28,9 +28,6 @@ class MedicalHistoryResource extends JsonResource
             'non_pathological_background' => new NonPathologicalBackgroundResource($this->nonpathologicalbackground),
             'hereditary_background_id' => $this->hereditary_background_id,
             'hereditarybackground' => new HereditaryBackgroundResource($this->hereditarybackground),
-            'vaccination_history_id' => $this->vaccination_history_id,
-            'vaccinationhistory' => new VaccinationHistoryResource($this->vaccinationhistory),
-
         ];
     }
 }

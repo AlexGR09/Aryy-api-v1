@@ -35,7 +35,7 @@ class MedicalHistoryController extends Controller
             $patient = Patient::where('id', $id)
                 ->where('user_id', auth()->id())
                 ->firstOrFail();
-            $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergyPatient')->get();
+            $medical_history = MedicalHistory::where('patient_id', $patient->id)->with('allergyPatient','vaccinationhistory')->get();
 
             return MedicalHistoryResource::collection($medical_history)->additional(['message' => '..']);
         } catch (\Throwable $th) {
