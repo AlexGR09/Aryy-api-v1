@@ -17,6 +17,7 @@ class PillReminder extends Model
         'frecuency',
         'start_treatment',
         'end_treatment',
+        'first_take',
         'instruction',
         'status',
     ];
