@@ -18,10 +18,9 @@ return new class extends Migration
             $table->time('appointment_time');
             $table->time('appointment_time_end');
             $table->string('appointment_type');
-            $table->enum('status', ['assisted', 'not-assisted', 'cancelled', 'scheduled'])->nullable();
+            $table->enum('status', ['assisted', 'not-assisted', 'cancelled', 'scheduled']);
             $table->string('note')->nullable();
-            $table->enum('relationship',['Abuela / Abuelo','Madre / Padre','Hermana / Hermano','Esposa / Esposo','Hija / Hijo','Amigo / Amigo'])->nullable();
-            // $table->boolean('true','false')->nullable();
+            $table->enum('relationship',['Abuela / Abuelo','Madre / Padre','Hermana / Hermano','Esposa / Esposo','Hija / Hijo','Amigo / Amigo']);
             $table->timestamps();
             $table->softDeletes();
         });
