@@ -106,6 +106,9 @@ Route::prefix('v1')->group(function () {
                 Route::get('/subspecialties', 'index');
                 Route::get('/subspecialtiesofspecialty', 'subSpecialtiesOfSpecialty');
             });
+            Route::controller($this->catalogues.BloodTypeController::class)->group(function () {
+                Route::get('/blood-type', 'index');
+            });
         });
 
         /* RUTAS DEL MÉDICO */

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('frecuency');
             $table->date('start_treatment');
             $table->date('end_treatment');
+            $table->time('first_take');
             $table->string('instruction');
             $table->enum('status', ['finalized', 'pending'])->default('pending');
             $table->timestamps();

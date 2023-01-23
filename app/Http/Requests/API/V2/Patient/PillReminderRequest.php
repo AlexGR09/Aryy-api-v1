@@ -19,7 +19,12 @@ class PillReminderRequest extends FormRequest
             'frecuency' => 'required|string',
             'start_treatment' => 'required|date',
             'end_treatment' => 'required|date',
+<<<<<<< HEAD
             'instruction' => 'nullable|string',
+=======
+            'first_take' => 'required|date_format:H:i',
+            'instruction' => 'nullable|string'
+>>>>>>> b79841ead77829b8713b5979009eb3dd67907391
         ];
     }
 }
