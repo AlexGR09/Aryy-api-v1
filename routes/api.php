@@ -113,7 +113,6 @@ Route::prefix('v1')->group(function () {
 
         /* RUTAS DEL MÉDICO */
         Route::prefix('physician')->group(function () {
-            Route::get('/{physician}/details', [PhysicianDetailController::class,'show']);
             // PERFIL DEL MÉDICO
             Route::controller(PhysicianProfileController::class)->group(function () {
                 Route::get('/profile', 'show');
@@ -379,6 +378,8 @@ Route::prefix('v1')->group(function () {
 
         Route::post('patients/{patient}/appointments', [PatientAppointmentController::class, 'store']);
     });
+
+    Route::get('physician/{physician}/details', [PhysicianDetailController::class,'show']);
     Route::prefix('medical-records')->group(function () {
         Route::get('vital-signs/patient/{patient}', [VitalSignController::class, 'show']);
         Route::post('vital-signs/patient', [VitalSignController::class, 'store']);
