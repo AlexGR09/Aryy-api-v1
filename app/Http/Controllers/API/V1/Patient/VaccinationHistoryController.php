@@ -4,8 +4,10 @@ namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\VaccinationHistoryRequest;
+use App\Http\Resources\API\V1\Patient\MedicalHistoryVaccinationResource;
 use App\Http\Resources\API\V1\Patient\VaccinationHistoryResource;
 use App\Models\MedicalHistory;
+use App\Models\MedicalHistoryVaccination;
 use App\Models\Patient;
 use App\Models\VaccinationHistory;
 use Illuminate\Support\Facades\DB;
@@ -41,8 +43,10 @@ class VaccinationHistoryController extends Controller
             ]);
 
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
-            $medical_history->vaccination_history_id = $vaccination_history->id;
-            $medical_history->save();
+            $medical_history_vaccination = MedicalHistoryVaccination::create([
+                'patient_id' => $patient->id,
+                'vaccination_history_id' => $vaccination_history->id,
+            ]);
 
             DB::commit();
 
@@ -62,9 +66,9 @@ class VaccinationHistoryController extends Controller
                 ->firstOrFail();
 
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
-            $vaccination_history = VaccinationHistory::where('id', $medical_history->vaccination_history_id)->get();
-
-            return VaccinationHistoryResource::collection($vaccination_history)->additional(['message' => 'Historial de vacunacion encontrado']);
+            $vaccinationhistory = MedicalHistoryVaccination::where('patient_id', $medical_history->patient_id)->with('vaccination_history')
+                ->get();
+            return MedicalHistoryVaccinationResource::collection($vaccinationhistory)->additional(['message' => 'Historial de vacunacion encontrado']);
 
             //return (new VaccinationHistoryResource($vaccination_history))->additional(['message' => '..']);
         } catch (\Throwable $th) {

@@ -23,7 +23,7 @@ class MedicalHistorySeeder extends Seeder
 
                 'patient_id' => 1,
                 'allergy_patient_id' => 1,
-                'postnatal_background_id' => 1,
+                'postnatal_background_id' => null,
                 'non_pathological_background_id' => 1,
             ],
             [

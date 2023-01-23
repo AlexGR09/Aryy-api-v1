@@ -165,6 +165,10 @@ Route::prefix('v1')->group(function () {
             });
 
             Route::prefix('medical-history')->group(function () {
+                
+                Route::controller($this->physician.MedicalHistoryController::class)->group(function () {
+                    Route::get('/{patient_id}','index');
+                });
                 //Antecedentes ginecologicos - Corregir Carlos(Dinho)
                 Route::controller($this->physician.GynecologicalHistoryController::class)->group(function () {
                     Route::post('/gynecological-history', 'store');
@@ -309,9 +313,9 @@ Route::prefix('v1')->group(function () {
                 });
                 //Historial de vacunacion
                 Route::controller($this->patient.VaccinationHistoryController::class)->group(function () {
-                    Route::post('/vaccination_history', 'store');
-                    Route::get('/vaccination_history/{patient_id}', 'show');
-                    Route::put('/vaccination_history/{patient_id}', 'update');
+                    Route::post('/vaccination-history', 'store');
+                    Route::get('/vaccination-history/{patient_id}', 'show');
+                    Route::put('/vaccination-history/{patient_id}', 'update');
                 });
 
                 //rutas jorge antecedentes ginecologicos
