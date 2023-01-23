@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1\Physician;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\V1\Physician\MedicalHistoryResource;
 use App\Http\Resources\API\V1\Physician\MedicalHistoryVaccinationResource;
+use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
 use App\Models\MedicalHistoryVaccination;
 use App\Models\Physician;
@@ -23,8 +24,10 @@ class MedicalHistoryController extends Controller
     public function index($patient_id)
     {
         try {
-            $medicalHistory = MedicalHistory::where('patient_id',$patient_id)->first();
-            $vaccinationHistory = MedicalHistoryVaccination::where('patient_id',$medicalHistory->patient_id)->get();
+            $medical_appointment = MedicalAppointment::where('patient_id', $patient_id)
+            ->where('physician_id', $this->physician->id)
+            ->first();
+            $medicalHistory = MedicalHistory::where('patient_id',$medical_appointment->patient_id)->first();
             return (new MedicalHistoryResource($medicalHistory));
             //return MedicalAppointmentResource::collection($medical_appointment)->additional(['message' => 'Citas médicas.']);
         } catch (\Throwable $th) {
