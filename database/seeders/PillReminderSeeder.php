@@ -2,13 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class PillReminderSeeder extends Seeder
 {
- 
     public function run()
     {
         DB::table('pill_reminders')->insert([
@@ -59,10 +57,7 @@ class PillReminderSeeder extends Seeder
                 'first_take' => '01:00:00',
                 'instruction' => 'después los alimentos',
                 'status' => 'pending',
-            ]
+            ],
         ]);
-
-
-        
     }
 }
