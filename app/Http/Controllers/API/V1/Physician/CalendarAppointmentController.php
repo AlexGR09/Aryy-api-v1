@@ -122,12 +122,6 @@ class CalendarAppointmentController extends Controller
             if (!empty($medicalAppointment)) {
                 return response()->json(['message' => 'Fecha y horario no disponibles'], 503);
             }
-            /* $medicalAppointment = MedicalAppointment::where('appointment_date', $request->appointment_date)
-                ->where('appointment_time', $request->appointment_time)->first();
-
-            if ($medicalAppointment) {
-                return response()->json(['message' => 'Fecha y horario no disponibles'], 503);
-            } */
             $medicalAppointment = MedicalAppointment::create([
                 'appointment_date' => $request->appointment_date,
                 'appointment_type' => $request->appointment_type,
