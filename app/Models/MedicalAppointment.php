@@ -22,7 +22,7 @@ class MedicalAppointment extends Model
         'facility_id',
         'prescription_id',
     ];
-
+    
     public function scopeGreaterThanDate($query, $date, $time)
     {
         return $query->where('appointment_date', '>=', $date)
