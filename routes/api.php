@@ -379,7 +379,7 @@ Route::prefix('v1')->group(function () {
         Route::post('patients/{patient}/appointments', [PatientAppointmentController::class, 'store']);
     });
 
-    Route::get('/{physician}/details', [PhysicianDetailController::class,'show']);
+    Route::get('physician/{physician}/details', [PhysicianDetailController::class,'show']);
     Route::prefix('medical-records')->group(function () {
         Route::get('vital-signs/patient/{patient}', [VitalSignController::class, 'show']);
         Route::post('vital-signs/patient', [VitalSignController::class, 'store']);
