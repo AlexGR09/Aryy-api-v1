@@ -27,6 +27,7 @@ class PathologicalBackgroundResource extends JsonResource
             'respiratory_diseases' => $this->respiratory_diseases,
             'ets' => $this->ets,
             'gastrointestinal_pathologies' => $this->gastrointestinal_pathologies,
+            'blood_diseases' => $this->blood_diseases,
         ];
     }
 }
