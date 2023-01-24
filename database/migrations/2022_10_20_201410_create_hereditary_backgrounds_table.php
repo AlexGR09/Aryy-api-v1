@@ -21,6 +21,7 @@ return new class extends Migration
             $table->json('thyroid_diseases')->nullable();
             $table->json('cancer')->nullable();
             $table->json('kidney_stones')->nullable();
+            $table->json('blood_diseases')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

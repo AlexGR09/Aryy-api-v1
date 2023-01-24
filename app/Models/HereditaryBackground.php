@@ -17,6 +17,7 @@ class HereditaryBackground extends Model
         'thyroid_diseases',
         'cancer',
         'kidney_stones',
+        'blood_diseases',
     ];
 
     protected $casts = [
