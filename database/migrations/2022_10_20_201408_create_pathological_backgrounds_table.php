@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('trauma')->nullable();
             $table->string('respiratory_diseases')->nullable();
             $table->string('ets')->nullable();
+            $table->string('blood_disease');
             $table->string('gastrointestinal_pathologies')->nullable();
             $table->timestamps();
             $table->softDeletes();
