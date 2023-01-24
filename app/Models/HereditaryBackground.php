@@ -27,6 +27,7 @@ class HereditaryBackground extends Model
         'thyroid_diseases' => 'object',
         'cancer' => 'object',
         'kidney_stones' => 'object',
+        'blood_diseases' => 'object',
     ];
 
     public function medical_history()
