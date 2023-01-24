@@ -38,7 +38,7 @@ class StorePathologicalBackgroundRequest extends FormRequest
             'respiratory_diseases' => 'string',
             'ets' => 'string',
             'gastrointestinal_pathologies' => 'string',
-            'blood_disease' => 'string',
+            'blood_diseases' => 'string',
         ];
     }
 }
