@@ -45,6 +45,7 @@ class HereditaryBackgroundController extends Controller
                 'thyroid_diseases' => $request->thyroid_diseases,
                 'cancer' => $request->cancer,
                 'kidney_stones' => $request->kidney_stones,
+                'blood_diseases' => $request->blood_diseases,
             ]);
 
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->update([
