@@ -20,6 +20,7 @@ class HereditaryBackgroundResource extends JsonResource
             'thyroid_diseases' => $this->thyroid_diseases,
             'cancer' => $this->cancer,
             'kidney_stones' => $this->kidney_stones,
+            'blood_diseases' => $this->blood_diseases,
         ];
     }
 }
