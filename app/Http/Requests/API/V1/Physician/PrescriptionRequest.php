@@ -42,7 +42,7 @@ class PrescriptionRequest extends FormRequest
             'prescription.treatment.instruction' => 'string|nullable',
             'prescription.treatment.amount' => 'string|required',
             'prescription.treatment.frequency' => 'string|required',
-            'prescription.treatment.duration' => 'string|required',
+            'prescription.treatment.duration_days' => 'numeric|required',
             'prescription.laboratory_studies' => 'string|nullable|max:255',
             'prescription.cabinet_studies' => 'string|nullable|max:255',
         ];
