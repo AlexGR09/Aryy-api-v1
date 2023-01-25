@@ -14,10 +14,10 @@ class Prescription extends Model
         'vital_sign_id',
         'symptom',
         'diagnosis',
-        'treatment',
-        'medication_instructions',
         'medical_examination',
-        'laboratory_order',
+        'treatment',
+        'laboratory_studies',
+        'cabinet_studies',
     ];
 
     protected $casts = [
@@ -30,13 +30,13 @@ class Prescription extends Model
         'deleted_at',
     ];
 
+    public function vitalSigns()
+    {
+        return $this->belongsTo(VitalSing::class);
+    }
+
     public function medicalappointment()
     {
         return $this->hasOne(MedicalAppointment::class);
-    }
-
-    public function vitalSign()
-    {
-        return $this->belongsTo(VitalSign::class);
     }
 }

@@ -34,7 +34,14 @@ class MedicalHistoryResource extends JsonResource
             'non_pathological_background' => new NonPathologicalBackgroundResource($this->nonpathologicalbackground),
             'hereditary_background_id' => $this->hereditary_background_id,
             'hereditarybackground' => new HereditaryBackgroundResource($this->hereditarybackground),
-            
+            'gynecological_history_id'=>$this->gynecological_history_id,
+            'gynecological_history' => new GynecologicalHistoryResource($this->ObgynBackground),
+            'pyschological_background_id' => $this->pyschological_background_id,
+            'pyschological_history' => new PyschologicalBackgroundResource($this->pyschologicalBackground),
+            'perinatal_background_id' => $this->perinatal_background_id,
+            'perinatal_background' => new PerinatalBackgroundResource($this->perinatalBackground),
+            'posnatal_background_id' =>$this->posnatal_background_id,
+            'posnatal_background'=>new PerinatalBackgroundResource($this->postnatal_background),
         ];
     }
 }

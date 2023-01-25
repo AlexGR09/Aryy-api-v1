@@ -44,6 +44,9 @@ class PerinatalBackgroundController extends Controller
                 return "Petición incorrecta";
             } */
             $medicalHistory = $this->medicalhistory($request->patient_id);
+            if (! $medicalHistory || $medicalHistory->perinatalBackground) {
+                return response()->json(['message' => 'No se encontraron resultados'], 404);
+            }
             $perinatalBackground = PerinatalBackground::create($request->validated());
             $medicalHistory->perinatal_background_id = $perinatalBackground->id;
             $medicalHistory->save();

@@ -15,7 +15,7 @@ class FavoriteSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('fovorites')->insert([
+        DB::table('favorites')->insert([
             [
                 'patient_id' => 1,
                 'physician_id' => 1,

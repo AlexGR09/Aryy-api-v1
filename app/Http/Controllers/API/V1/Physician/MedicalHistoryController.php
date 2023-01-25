@@ -17,7 +17,7 @@ class MedicalHistoryController extends Controller
 
     public function __construct()
     {
-        $this->middleware('role:Physician');
+        $this->middleware('role:Physician')->only(['index']);
 
         $this->physician = Physician::where('user_id', auth()->id())->first();
     }
@@ -25,9 +25,9 @@ class MedicalHistoryController extends Controller
     {
         try {
             $medical_appointment = MedicalAppointment::where('patient_id', $patient_id)
-            ->where('physician_id', $this->physician->id)
-            ->first();
-            $medicalHistory = MedicalHistory::where('patient_id',$medical_appointment->patient_id)->first();
+                ->where('physician_id', $this->physician->id)
+                ->first();
+            $medicalHistory = MedicalHistory::where('patient_id', $medical_appointment->patient_id)->first();
             return (new MedicalHistoryResource($medicalHistory));
             //return MedicalAppointmentResource::collection($medical_appointment)->additional(['message' => 'Citas médicas.']);
         } catch (\Throwable $th) {

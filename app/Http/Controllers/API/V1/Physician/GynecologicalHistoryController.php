@@ -45,6 +45,9 @@ class GynecologicalHistoryController extends Controller
                 return "Petición incorrecta";
             } */
             $medicalHistory = $this->medicalhistory($request->patient_id);
+            if (! $medicalHistory || $medicalHistory->gynecological_history_id) {
+                return response()->json(['message' => 'No se encontraron resultados'], 404);
+            }
             $gynecologicalHistory = ObgynBackground::create($request->validated());
             $medicalHistory->gynecological_history_id = $gynecologicalHistory->id;
             $medicalHistory->save();

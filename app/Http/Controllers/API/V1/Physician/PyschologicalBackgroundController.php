@@ -44,6 +44,9 @@ class PyschologicalBackgroundController extends Controller
                 return "Petición incorrecta";
             } */
             $medicalHistory = $this->medicalhistory($request->patient_id);
+            if (! $medicalHistory || $medicalHistory->pyschologicalBackground) {
+                return response()->json(['message' => 'No se encontraron resultados'], 404);
+            }
             $pyschological = $medicalHistory->pyschologicalbackground()->create($request->validated());
             $medicalHistory->pyschological_background_id = $pyschological->id;
             $medicalHistory->save();
