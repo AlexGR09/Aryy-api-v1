@@ -10,6 +10,8 @@ class PhysicianDetailController extends Controller
 {
     public function show(Physician $physician )
     {
-        return ok('',$physician->load('facilities'));
+        $physicianDetails = Physician::with(['facilities','physician_specialty','medical_services'])->find($physician->id);
+
+        return ok('',$physicianDetails);
     }
 }
