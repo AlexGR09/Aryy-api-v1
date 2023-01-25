@@ -9,14 +9,24 @@ class MedicalAppointmentResource extends JsonResource
 {
     public function toArray($request)
     {
-        $duration_treatment = $this->prescription->treatment['duration_days'];
 
-        $start_treatment = Carbon::parse($this->prescription->created_at);
-        $start_treatment_parse =  $start_treatment->translatedFormat('d/M/Y');
+        // TENATIVO A CAMBIO CON EL PASTILLERO
+        $duration_of_treatment =  NULL;
 
-        $end_treatment = $start_treatment->addDays($duration_treatment);
-        $end_treatment_parse =  $end_treatment->translatedFormat('d/M/Y');
+        if ($this->prescription) {
 
+            $duration_treatment = $this->prescription->treatment['duration_days'];
+
+            $start_treatment = Carbon::parse($this->prescription->created_at);
+            $start_treatment_parse =  $start_treatment->translatedFormat('d/M/Y');
+
+            $end_treatment = $start_treatment->addDays($duration_treatment);
+            $end_treatment_parse =  $end_treatment->translatedFormat('d/M/Y');
+
+            $duration_of_treatment =  $start_treatment_parse . ' - ' . $end_treatment_parse;
+        }
+
+        
         return [
             'medical_appointment_id' => $this->id,
             'patient_id' => $this->patient_id,
@@ -25,7 +35,7 @@ class MedicalAppointmentResource extends JsonResource
             'appointment_date' => $this->appointment_date,
             'note' => $this->note,
             'prescription' => $this->prescription,
-            'duration_treatment' => $start_treatment_parse . ' - ' . $end_treatment_parse,
+            'duration_treatment' => $duration_of_treatment,
         ];
     }
 }
