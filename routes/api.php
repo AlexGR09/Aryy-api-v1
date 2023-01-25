@@ -323,6 +323,7 @@ Route::prefix('v1')->group(function () {
             Route::controller($this->patient . FavoriteController::class)->group(function () {
                 Route::post('/favorites/{physician_id}', 'store');
                 Route::get('/favorites', 'show');
+                Route::get('/favorites/{physician_id}','physicianInfo');
             });
         });
         /* RUTAS ADMINISTRATIVAS */
