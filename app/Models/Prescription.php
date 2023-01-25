@@ -30,7 +30,7 @@ class Prescription extends Model
         'deleted_at',
     ];
 
-    public function vital_signs()
+    public function vitalSigns()
     {
         return $this->belongsTo(VitalSing::class);
     }
