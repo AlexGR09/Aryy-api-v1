@@ -13,10 +13,10 @@ return new class extends Migration
             $table->foreignId('vital_sign_id')->nullable()->constrained();
             $table->string('symptom');
             $table->string('diagnosis');
-            $table->json('treatment');
-            $table->string('medication_instructions');
             $table->string('medical_examination')->nullable();
-            $table->string('laboratory_order')->nullable();
+            $table->json('treatment');
+            $table->string('laboratory_studies')->nullable();
+            $table->string('cabinet_studies')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

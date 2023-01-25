@@ -34,13 +34,17 @@ class PrescriptionRequest extends FormRequest
             'prescription' => 'array|present',
             'prescription.symptom' => 'string|required',
             'prescription.diagnosis' => 'string|required',
+            'prescription.medical_examination' => 'string|nullable|max:255',
             'prescription.treatment' => 'array|required',
-            'prescription.treatment.brand' => 'string|required',
-            'prescription.treatment.drug_name' => 'string|required',
-            'prescription.treatment.presentation' => 'string|required',
-            'prescription.medication_instructions' => 'string|required',
-            'prescription.medical_examination' => 'string|nullable',
-            'prescription.laboratory_order' => 'string|nullable',
+            'prescription.treatment.brand' => 'string|nullable',
+            'prescription.treatment.drug_name' => 'string|nullable',
+            'prescription.treatment.presentation' => 'string|nullable',
+            'prescription.treatment.instruction' => 'string|nullable',
+            'prescription.treatment.amount' => 'string|required',
+            'prescription.treatment.frequency' => 'string|required',
+            'prescription.treatment.duration' => 'string|required',
+            'prescription.laboratory_studies' => 'string|nullable|max:255',
+            'prescription.cabinet_studies' => 'string|nullable|max:255',
         ];
     }
 }
