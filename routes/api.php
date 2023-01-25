@@ -344,6 +344,10 @@ Route::prefix('v1')->group(function () {
 
         Route::group(['middleware' => ['role:Physician|Patient']], function () {
             Route::get('physician/{physician}/appointments', [PhysicianAppointmentController::class, 'index']);
+            Route::post('physician/{physician}/appointments', [PhysicianAppointmentController::class, 'store']);
+            Route::delete('physician/{physician}/appointments', [PhysicianAppointmentController::class, 'destroy']);
+            Route::put('physician/{physician}/appointments', [PhysicianAppointmentController::class, 'update']);
+
         });
         Route::get('appointments-detail/phyisician/{physician}', [AppointmentsDetailController::class, 'index']);
         Route::get('appointment/review', [AppointmentController::class, 'review']);
