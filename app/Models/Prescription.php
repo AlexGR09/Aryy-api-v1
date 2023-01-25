@@ -39,9 +39,4 @@ class Prescription extends Model
     {
         return $this->hasOne(MedicalAppointment::class);
     }
-
-    public function vitalSign()
-    {
-        return $this->belongsTo(VitalSign::class);
-    }
 }
