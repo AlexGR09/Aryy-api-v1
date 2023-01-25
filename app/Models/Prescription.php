@@ -14,10 +14,10 @@ class Prescription extends Model
         'vital_sign_id',
         'symptom',
         'diagnosis',
-        'treatment',
-        'medication_instructions',
         'medical_examination',
-        'laboratory_order',
+        'treatment',
+        'laboratory_studies',
+        'cabinet_studies',
     ];
 
     protected $casts = [

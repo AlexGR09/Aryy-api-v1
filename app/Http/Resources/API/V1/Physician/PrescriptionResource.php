@@ -13,9 +13,10 @@ class PrescriptionResource extends JsonResource
             'vital_sign_id' => $this->vital_sign_id,
             'symptom' => $this->symptom,
             'diagnosis' => $this->diagnosis,
-            'treatment' => $this->treatment,
-            'medication_instructions' => $this->medication_instructions,
             'medical_examination' => $this->medical_examination,
+            'treatment' => $this->treatment,
+            'laboratory_studies' => $this->laboratory_studies,
+            'cabinet_studies' => $this->cabinet_studies,
         ];
     }
 }
