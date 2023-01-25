@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fovorites', function (Blueprint $table) {
+        Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('patient_id')->nullable()->constrained('patients');
-            $table->foreignId('physician_id')->nullable()->constrained('physicians');
+            $table->foreignId('patient_id')->constrained('Patients');
+            $table->foreignId('physician_id')->constrained('physicians');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fovorites');
+        Schema::dropIfExists('favorites');
     }
 };
