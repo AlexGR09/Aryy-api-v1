@@ -324,6 +324,7 @@ Route::prefix('v1')->group(function () {
                 Route::post('/favorites/{physician_id}', 'store');
                 Route::get('/favorites', 'show');
                 Route::get('/favorites/{physician_id}','physicianInfo');
+                Route::delete('/favorites/{physician_id}','destroy');
             });
         });
         /* RUTAS ADMINISTRATIVAS */

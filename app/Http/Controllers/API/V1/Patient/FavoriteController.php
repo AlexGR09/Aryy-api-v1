@@ -18,24 +18,28 @@ class FavoriteController extends Controller
     public function __construct()
     {
         $this->middleware('role:Patient')->only([
-            'index',
             'store',
-            'show'
+            'show',
+            'destroy',
+            'physicianInfo'
         ]);
         $this->patient = empty(auth()->id()) ? null : Patient::where('user_id', auth()->id())->firstOrFail();
     }
     public function index()
     {
-        return $this->patient;
+        //
     }
 
-    public function store(Request $request, $physician_id)
+    public function store($physician_id)
     {
         try {
-
+            $physician = Physician::where('id', $physician_id)->first();
+            if (empty($physician)) {
+                return response()->json(['message' => 'El medico que quieres agregar no existe']);
+            }
             $favorite = Favorite::create([
                 'patient_id' => $this->patient->id,
-                'physician_id' => $physician_id,
+                'physician_id' => $physician->id,
             ]);
             return response()->json(["Medico agregado a favoritos"]);
         } catch (\Throwable $th) {
@@ -49,10 +53,10 @@ class FavoriteController extends Controller
                 ->where('user_id', auth()->id())
                 ->firstOrFail(); */
         $favorite = Favorite::where('patient_id', $this->patient->id)->get();
-        if (is_null($favorite)) {
-            return response()->json(['message' => 'Aun no tiene favoritos']);
+        if (count($favorite) > 0) {
+            return (FavoriteResource::collection($favorite));
         }
-        return (FavoriteResource::collection($favorite));
+        return response()->json(['message' => 'Aun no tiene favoritos']);
     }
 
     public function update(Request $request, $id)
@@ -60,10 +64,19 @@ class FavoriteController extends Controller
         //
     }
 
-    public function destroy($id)
+    public function destroy($physician_id)
     {
-        //
+        $favoritePhysician = Favorite::where('physician_id', $physician_id)
+            ->where('patient_id', $this->patient->id)->first();
+
+        if (empty($favoritePhysician)) {
+            response()->json(['message' => 'Aun no tiene
+            favoritos']);
+        }
+        $favoritePhysician->delete();
+        return response()->json(['message' => 'Especialista eliminado']);
     }
+
     public function physicianInfo($physician_id)
     {
         $favoritePhysician = Favorite::where('physician_id', $physician_id)
