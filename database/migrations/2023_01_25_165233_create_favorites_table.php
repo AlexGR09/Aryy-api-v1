@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('patient_id')->constrained('Patients');
+            $table->foreignId('patient_id')->constrained('patients');
             $table->foreignId('physician_id')->constrained('physicians');
             $table->timestamps();
             $table->softDeletes();
