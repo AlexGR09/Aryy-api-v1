@@ -134,3 +134,15 @@ if (! function_exists('error_validate')) {
             ->header('Content-Type', 'application/json');
     }
 }
+
+if (! function_exists('hourMinuteToMinutes')) {
+
+    function hourMinuteToMinutes($strHourMinute) {
+        $from = date('Y-m-d 00:00:00');
+        $to = date('Y-m-d '.$strHourMinute);
+        $diff = strtotime($to) - strtotime($from);
+        $minutes = $diff / 60;
+        return (int) $minutes;
+    }
+
+}

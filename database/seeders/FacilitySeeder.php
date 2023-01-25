@@ -61,7 +61,7 @@ class FacilitySeeder extends Seeder
                 ],
 
                 'type_schedule' => 'perm',
-                'consultation_length' => 120,
+                'consultation_length' => '01:30',
                 'accessibility_and_others' => [
                     'accessibility' => [
                         'parking_with_access_to_the_establishment' => true,
