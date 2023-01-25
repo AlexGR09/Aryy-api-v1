@@ -40,6 +40,8 @@ class StoreVitalSignRequest extends FormRequest
             'water' => 'required',
             'muscle' => 'required',
             'abdomen' => 'required',
+            'medical_appointment_id' => 'required|exists:App\Models\MedicalAppointment,id',
+
         ];
     }
 }

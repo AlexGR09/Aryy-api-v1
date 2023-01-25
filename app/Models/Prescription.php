@@ -30,13 +30,13 @@ class Prescription extends Model
         'deleted_at',
     ];
 
-    public function vitalSign()
-    {
-        return $this->belongsTo(VitalSing::class);
-    }
-
     public function medicalappointment()
     {
         return $this->hasOne(MedicalAppointment::class);
+    }
+
+    public function vitalSign()
+    {
+        return $this->belongsTo(VitalSign::class);
     }
 }
