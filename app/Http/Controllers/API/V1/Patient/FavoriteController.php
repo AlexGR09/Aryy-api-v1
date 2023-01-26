@@ -77,7 +77,7 @@ class FavoriteController extends Controller
         $patient = Patient::where([['id', $patient_id], ['user_id', auth()->id()]])->first();
         $favoritePhysician = Favorite::where([['physician_id', $physician_id], ['patient_id', $patient->id]])->first();
         if ($favoritePhysician) {
-            $physician = Physician::where('id', $favoritePhysician->physician_id)->firstOrFail();
+            $physician = Physician::where('id',$favoritePhysician->physician_id)->firstOrFail();
             return (new InfoPhysicianResource($physician));
         }
         return response()->json(['message' => 'No se encontro la informacion del medico']);
