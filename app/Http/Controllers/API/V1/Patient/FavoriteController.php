@@ -27,11 +27,13 @@ class FavoriteController extends Controller
     {
         try {
             DB::beginTransaction();
+            //Se verifica que el perfil de paciente este relacionada con el perfil del usuario logeado
             $patient = Patient::where([['id', $patient_id], ['user_id', auth()->id()]])->first();
             $physician = Physician::where('id', $physician_id)->first();
             if (empty($physician)) {
                 return response()->json(['message' => 'El medico que quieres agregar no existe']);
             }
+            //Se verifica que el medico agregado como favorito no este repetido
             $favorite = Favorite::where([['patient_id',$patient_id],['physician_id',$physician_id]])->count();
             if($favorite>1){
                 return response()->json(['message' => 'Ya has agregado a este medico com favorito']);
