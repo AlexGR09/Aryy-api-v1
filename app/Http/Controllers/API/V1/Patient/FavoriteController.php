@@ -63,7 +63,7 @@ class FavoriteController extends Controller
         $patient = Patient::where([['id', $patient_id], ['user_id', auth()->id()]])->firstOrFail();
         $favoritePhysician = Favorite::where('physician_id', $physician_id)->where('patient_id', $patient->id)->first();
         if (empty($favoritePhysician)) {
-            response()->json(['message' => 'Aun no tiene
+            return response()->json(['message' => 'Aun no tiene
             favoritos']);
         }
         $favoritePhysician->delete();
