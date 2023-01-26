@@ -34,8 +34,8 @@ class FavoriteController extends Controller
                 return response()->json(['message' => 'El medico que quieres agregar no existe']);
             }
             //Se verifica que el medico agregado como favorito no este repetido
-            $favorite = Favorite::where([['patient_id',$patient_id],['physician_id',$physician_id]])->count();
-            if($favorite>=1){
+            $favorite = Favorite::where([['patient_id', $patient_id], ['physician_id', $physician_id]])->count();
+            if ($favorite >= 1) {
                 return response()->json(['message' => 'Ya has agregado a este medico com favorito']);
             }
             Favorite::create([
@@ -63,7 +63,7 @@ class FavoriteController extends Controller
     public function destroy($patient_id, $physician_id)
     {
         $patient = Patient::where([['id', $patient_id], ['user_id', auth()->id()]])->firstOrFail();
-        $favoritePhysician = Favorite::where('physician_id', $physician_id)->where('patient_id', $patient->id)->first();
+        $favoritePhysician = Favorite::where([['physician_id', $physician_id], ['patient_id', $patient->id]])->first();
         if (empty($favoritePhysician)) {
             return response()->json(['message' => 'Aun no tiene
             favoritos']);
