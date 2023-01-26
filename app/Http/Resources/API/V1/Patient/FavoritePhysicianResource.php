@@ -15,7 +15,6 @@ class FavoritePhysicianResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'physician_id' => $this->id,
             'user_id' => $this->user_id,
             'professional_name' => $this->professional_name,
             'specialty' => $this->specialty,
