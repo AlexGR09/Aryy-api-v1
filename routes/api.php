@@ -6,6 +6,7 @@ use App\Http\Controllers\API\V1\FacilityController;
 use App\Http\Controllers\API\V1\Patient\AllergyController;
 use App\Http\Controllers\API\V1\Patient\AppointmentController as PatientAppointmentController;
 use App\Http\Controllers\API\V1\Patient\BasicInformationController;
+use App\Http\Controllers\API\V1\Patient\PatientController;
 use App\Http\Controllers\API\V1\Patient\PaymentMethodController;
 use App\Http\Controllers\API\V1\Patient\VitalSignController;
 use App\Http\Controllers\API\V1\PermissionController;
@@ -68,7 +69,6 @@ Route::prefix('v1')->group(function () {
                 Route::get('/logout', 'logout');
             });
         });
-
         /* CATALÓGOS */
         Route::prefix('catalogue')->group(function () {
             // PAÍSES
@@ -349,10 +349,10 @@ Route::prefix('v1')->group(function () {
         Route::delete('facilities/{facility}', [FacilityController::class, 'delete']);
 
         Route::group(['middleware' => ['role:Physician|Patient']], function () {
-            Route::get('physician/{physician}/appointments', [PhysicianAppointmentController::class, 'index']);
-            Route::post('physician/{physician}/appointments', [PhysicianAppointmentController::class, 'store']);
-            Route::delete('physician/{physician}/appointments', [PhysicianAppointmentController::class, 'destroy']);
-            Route::put('physician/{physician}/appointments', [PhysicianAppointmentController::class, 'update']);
+            Route::get('physician/{physician}/medical-appointment', [PhysicianAppointmentController::class, 'index']);
+            Route::post('/patient/{patient}/physician/{physician}/medical-appointment', [PhysicianAppointmentController::class, 'store']);
+            Route::delete('/patient/{patient}/medical-appointment/{medicalAppointment}', [PhysicianAppointmentController::class, 'destroy']);
+            Route::put('/patient/{patient}/physician/{physician}/medical-appointment/{medicalAppointment}', [PhysicianAppointmentController::class, 'update']);
 
         });
         Route::get('appointments-detail/phyisician/{physician}', [AppointmentsDetailController::class, 'index']);
