@@ -27,8 +27,11 @@ class FavoriteController extends Controller
     {
         try {
             DB::beginTransaction();
-            //Se verifica que el perfil de paciente este relacionada con el perfil del usuario logeado
-            $patient = Patient::where([['id', $patient_id], ['user_id', auth()->id()]])->first();
+
+            $patient = $this->patient($patient_id);
+            if (!$patient) {
+                return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
+            }
             $physician = Physician::where('id', $physician_id)->first();
             if (empty($physician)) {
                 return response()->json(['message' => 'El medico que quieres agregar no existe']);
@@ -39,7 +42,7 @@ class FavoriteController extends Controller
                 return response()->json(['message' => 'Ya has agregado a este medico com favorito']);
             }
             Favorite::create([
-                'patient_id' => $patient->id,
+                'patient_id' => $patient,
                 'physician_id' => $physician->id,
             ]);
             DB::commit();
@@ -52,8 +55,11 @@ class FavoriteController extends Controller
 
     public function show($patient_id)
     {
-        $patient = Patient::where([['id', $patient_id], ['user_id', auth()->id()]])->firstOrFail();
-        $favorite = Favorite::where('patient_id', $patient->id)->get();
+        $patient = $this->patient($patient_id);
+        if (!$patient) {
+            return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
+        }
+        $favorite = Favorite::where('patient_id', $patient)->get();
         if (count($favorite) > 0) {
             return (FavoriteResource::collection($favorite));
         }
@@ -62,11 +68,13 @@ class FavoriteController extends Controller
 
     public function destroy($patient_id, $physician_id)
     {
-        $patient = Patient::where([['id', $patient_id], ['user_id', auth()->id()]])->firstOrFail();
-        $favoritePhysician = Favorite::where([['physician_id', $physician_id], ['patient_id', $patient->id]])->first();
+        $patient = $this->patient($patient_id);
+        if (!$patient) {
+            return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
+        }
+        $favoritePhysician = Favorite::where([['physician_id', $physician_id], ['patient_id', $patient]])->first();
         if (empty($favoritePhysician)) {
-            return response()->json(['message' => 'Aun no tiene
-            favoritos']);
+            return response()->json(['message' => 'Aun no tiene favoritos']);
         }
         $favoritePhysician->delete();
         return response()->json(['message' => 'Especialista eliminado']);
@@ -74,12 +82,25 @@ class FavoriteController extends Controller
 
     public function physicianInfo($patient_id, $physician_id)
     {
-        $patient = Patient::where([['id', $patient_id], ['user_id', auth()->id()]])->first();
-        $favoritePhysician = Favorite::where([['physician_id', $physician_id], ['patient_id', $patient->id]])->first();
+        $patient = $this->patient($patient_id);
+        if (!$patient) {
+            return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
+        }
+        $favoritePhysician = Favorite::where([['physician_id', $physician_id], ['patient_id', $patient]])->first();
         if ($favoritePhysician) {
-            $physician = Physician::where('id',$favoritePhysician->physician_id)->firstOrFail();
+            $physician = Physician::where('id', $favoritePhysician->physician_id)->firstOrFail();
             return (new InfoPhysicianResource($physician));
         }
         return response()->json(['message' => 'No se encontro la informacion del medico']);
+    }
+
+    public function patient($patient_id)
+    {
+        //Se verifica que el perfil de paciente este relacionada con el perfil del usuario logeado
+        $patient = Patient::where([['id', $patient_id], ['user_id', auth()->id()]])->first();
+        if (!$patient) {
+            return $patient;
+        }
+        return $patient->id;
     }
 }
