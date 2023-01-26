@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\API\V1\Patient\FavoriteRequest;
 use App\Http\Resources\API\V1\Patient\FavoriteResource;
 use App\Http\Resources\API\V1\Patient\InfoPhysicianResource;
 use App\Models\Favorite;
