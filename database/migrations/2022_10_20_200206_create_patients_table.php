@@ -14,7 +14,7 @@ return new class extends Migration
             $table->foreignId('city_id')->nullable()->constrained('cities');
             $table->boolean('main_profile')->default(false);
             $table->string('full_name')->nullable();
-            $table->enum('gender', ['masculino', 'femenino'])->nullable();
+            $table->enum('gender', ['Masculino', 'Femenino'])->nullable();
             $table->date('birthday')->nullable();
             $table->json('address')->nullable();
             $table->string('zip_code')->nullable();

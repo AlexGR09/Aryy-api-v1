@@ -6,7 +6,6 @@ use App\Http\Controllers\API\V1\FacilityController;
 use App\Http\Controllers\API\V1\Patient\AllergyController;
 use App\Http\Controllers\API\V1\Patient\AppointmentController as PatientAppointmentController;
 use App\Http\Controllers\API\V1\Patient\BasicInformationController;
-use App\Http\Controllers\API\V1\Patient\PatientController;
 use App\Http\Controllers\API\V1\Patient\PaymentMethodController;
 use App\Http\Controllers\API\V1\Patient\VitalSignController;
 use App\Http\Controllers\API\V1\PermissionController;
