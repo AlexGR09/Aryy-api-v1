@@ -43,7 +43,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(\App\Models\Physician::class);
     }
-
+    public function patient()
+    {
+        return $this->hasOne(Patient::class);
+    }
     // RELACIÓN UNO A MUCHOS CON EL MODELO PATIENT
     public function patients()
     {
