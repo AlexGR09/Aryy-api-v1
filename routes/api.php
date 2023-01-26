@@ -321,10 +321,13 @@ Route::prefix('v1')->group(function () {
             });
             //MEDICOS FAVORITOS DE UN PACIENTE
             Route::controller($this->patient . FavoriteController::class)->group(function () {
-                Route::post('/favorites/{physician_id}', 'store');
-                Route::get('/favorites', 'show');
-                Route::get('/favorites/{physician_id}','physicianInfo');
-                Route::delete('/favorites/{physician_id}','destroy');
+                Route::post('{patient_id}/favorites/{physician_id}', 'store');
+
+                Route::get('{patient_id}/favorites', 'show');
+
+                Route::get('{patient_id}/favorites/{physician_id}','physicianInfo');
+                
+                Route::delete('{patient_id}/favorites/{physician_id}','destroy');
             });
         });
         /* RUTAS ADMINISTRATIVAS */
