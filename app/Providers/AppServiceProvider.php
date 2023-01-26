@@ -19,5 +19,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Country::observe(CountryObserver::class);
         State::observe(StateObserver::class);
+        \Carbon\Carbon::setLocale(config('app.locale'));
     }
 }

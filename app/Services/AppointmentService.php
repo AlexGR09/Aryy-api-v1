@@ -20,7 +20,7 @@ class AppointmentService
     public function generateValidHours($currentDay, $endHour, $consultationLength)
     {
         $availableHours = [];
-        $availableHours[] = $currentDay;
+        // $availableHours[] = $currentDay;
         while ($currentDay->format('H:i') <= $endHour->format('H:i')) {
             $availableHours[] = $currentDay;
             $currentDay = $currentDay->copy()->addMinutes($consultationLength);

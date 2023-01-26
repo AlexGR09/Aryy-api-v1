@@ -16,7 +16,7 @@ class PrescriptionSeeder extends Seeder
 			"instruction" => "Tomar después de los alimentos",
 			"amount" => "1",
 			"frequency" => "cada 8hrs",
-			"duration" => "15 dias"
+			"duration_days" => random_int(3,14)
         ];
 
         DB::table('prescriptions')->insert([
