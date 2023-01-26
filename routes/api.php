@@ -322,12 +322,9 @@ Route::prefix('v1')->group(function () {
             //MEDICOS FAVORITOS DE UN PACIENTE
             Route::controller($this->patient . FavoriteController::class)->group(function () {
                 Route::post('{patient_id}/favorites/{physician_id}', 'store');
-
                 Route::get('{patient_id}/favorites', 'show');
-
-                Route::get('{patient_id}/favorites/{physician_id}','physicianInfo');
-                
-                Route::delete('{patient_id}/favorites/{physician_id}','destroy');
+                Route::get('{patient_id}/favorites/{physician_id}', 'physicianInfo');
+                Route::delete('{patient_id}/favorites/{physician_id}', 'destroy');
             });
         });
         /* RUTAS ADMINISTRATIVAS */
@@ -357,7 +354,6 @@ Route::prefix('v1')->group(function () {
             Route::post('/patient/{patient}/physician/{physician}/medical-appointment', [PhysicianAppointmentController::class, 'store']);
             Route::delete('/patient/{patient}/medical-appointment/{medicalAppointment}', [PhysicianAppointmentController::class, 'destroy']);
             Route::put('/patient/{patient}/physician/{physician}/medical-appointment/{medicalAppointment}', [PhysicianAppointmentController::class, 'update']);
-
         });
         Route::get('appointments-detail/phyisician/{physician}', [AppointmentsDetailController::class, 'index']);
         Route::get('appointment/review', [AppointmentController::class, 'review']);

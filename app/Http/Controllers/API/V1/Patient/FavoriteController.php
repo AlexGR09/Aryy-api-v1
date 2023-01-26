@@ -35,7 +35,7 @@ class FavoriteController extends Controller
             }
             //Se verifica que el medico agregado como favorito no este repetido
             $favorite = Favorite::where([['patient_id',$patient_id],['physician_id',$physician_id]])->count();
-            if($favorite>1){
+            if($favorite>=1){
                 return response()->json(['message' => 'Ya has agregado a este medico com favorito']);
             }
             Favorite::create([
