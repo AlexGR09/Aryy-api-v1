@@ -38,8 +38,10 @@ class HereditaryBackgroundController extends Controller
     {
         $data = $request->validated();
         $medicalHistory = MedicalHistory::where('patient_id', $patient->id)->first();
+        if(empty($medicalHistory) || $medicalHistory->hereditarybackground()->exists() == false){
+            return conflict('Este registro medico no tiene antecedentes hereditarios',[]);
+        }
         $medicalHistory->hereditarybackground()->update($data);
-
         return (new HereditaryBackgroundResource($medicalHistory->hereditarybackground))->additional(['message' => 'Informacion actualizada con exito.']);
     }
 }
