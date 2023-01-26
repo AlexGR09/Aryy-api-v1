@@ -32,6 +32,10 @@ class FavoriteController extends Controller
             if (empty($physician)) {
                 return response()->json(['message' => 'El medico que quieres agregar no existe']);
             }
+            $favorite = Favorite::where([['patient_id',$patient_id],['physician_id',$physician_id]])->count();
+            if($favorite>1){
+                return response()->json(['message' => 'Ya has agregado a este medico com favorito']);
+            }
             Favorite::create([
                 'patient_id' => $patient->id,
                 'physician_id' => $physician->id,
