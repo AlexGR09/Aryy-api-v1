@@ -182,9 +182,9 @@ Route::prefix('v1')->group(function () {
 
                 //ANTECEDENTES PSYQUIATRICOS-Corregir Carlos(Dinho)
                 Route::controller($this->physician . PyschologicalBackgroundController::class)->group(function () {
-                    Route::post('/psycological-background', 'store');
-                    Route::get('/psycological-background/{medical_history_id}', 'show');
-                    Route::put('/psycological-background/{medical_history_id}', 'update');
+                    Route::post('/psychological-background', 'store');
+                    Route::get('/psychological-background/{medical_history_id}', 'show');
+                    Route::put('/psychological-background/{medical_history_id}', 'update');
                 });
 
                 // HISTORIAL DE VACUNACION

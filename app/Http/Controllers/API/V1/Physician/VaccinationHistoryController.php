@@ -23,13 +23,7 @@ class VaccinationHistoryController extends Controller
             'store',
             'previusMedication',
         ]);
-        // $this->user =  empty(auth()->id()) ? NULL : User::findOrFail(auth()->id());
         $this->physician = empty(auth()->id()) ? null : Physician::where('user_id', auth()->id())->firstOrFail();
-    }
-
-    public function index()
-    {
-        //
     }
 
     public function store(VaccinationHistoryRequest $request)
@@ -51,7 +45,6 @@ class VaccinationHistoryController extends Controller
                 'vaccination_history_id' => $vaccination_history->id,
             ]);
             DB::commit();
-
             return (new VaccinationHistoryResource($vaccination_history))->additional(['message' => 'Informacion guardada.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 400);
@@ -62,12 +55,10 @@ class VaccinationHistoryController extends Controller
     {
         try {
             $medical_history = $this->medicalHistory($medical_history_id);
-            $vaccinationhistory = MedicalHistoryVaccination::where('patient_id', $medical_history->patient_id)->with('vaccination_history')
-                ->get();
-            if (! $vaccinationhistory) {
+            $vaccinationhistory = MedicalHistoryVaccination::where('patient_id', $medical_history->patient_id)->with('vaccination_history')->get();
+            if (!$vaccinationhistory) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
-
             return MedicalHistoryVaccinationResource::collection($vaccinationhistory)->additional(['message' => 'Historial de vacunación.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -78,12 +69,8 @@ class VaccinationHistoryController extends Controller
     {
         try {
             $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
-
             if ($medical_history) {
-                $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
-                    ->where('physician_id', $this->physician->id)
-                    ->count();
-
+                $medical_appointments = MedicalAppointment::where([['patient_id', $medical_history->patient_id], ['physician_id', $this->physician->id]])->count();
                 if ($medical_appointments > 0) {
                     return $medical_history;
                 }

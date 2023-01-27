@@ -21,13 +21,7 @@ class PerinatalBackgroundController extends Controller
             'store',
             'previusMedication',
         ]);
-        // $this->user =  empty(auth()->id()) ? NULL : User::findOrFail(auth()->id());
         $this->physician = empty(auth()->id()) ? null : Physician::where('user_id', auth()->id())->firstOrFail();
-    }
-
-    public function index()
-    {
-        //
     }
 
     public function store(PerinatalBackgroundRequest $request)
@@ -44,18 +38,16 @@ class PerinatalBackgroundController extends Controller
                 return "Petición incorrecta";
             } */
             $medicalHistory = $this->medicalhistory($request->patient_id);
-            if (! $medicalHistory || $medicalHistory->perinatalBackground) {
+            if (!$medicalHistory || $medicalHistory->perinatalBackground) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
             $perinatalBackground = PerinatalBackground::create($request->validated());
             $medicalHistory->perinatal_background_id = $perinatalBackground->id;
             $medicalHistory->save();
             DB::commit();
-
             return (new PerinatalBackgroundResource($perinatalBackground))->additional(['message' => 'Informacion guardada.']);
         } catch (\Throwable $th) {
             DB::rollback();
-
             return response()->json(['error' => $th->getMessage()], 400);
         }
     }
@@ -65,10 +57,9 @@ class PerinatalBackgroundController extends Controller
         try {
             $medicalHistory = $this->medicalhistory($medical_history_id);
             $perinatalBackground = $medicalHistory->perinatalBackground;
-            if (! $perinatalBackground) {
+            if (!$perinatalBackground) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
-
             return (new PerinatalBackgroundResource($perinatalBackground))->additional(['message' => 'Informacion encontrada.']);
         } catch (\Throwable $th) {
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
@@ -84,11 +75,9 @@ class PerinatalBackgroundController extends Controller
             $perinatalBackground->update($request->validated());
             $perinatalBackground->save();
             DB::commit();
-
             return (new PerinatalBackgroundResource($perinatalBackground))->additional(['message' => 'Informacion actualizada con exito.']);
         } catch (\Throwable $th) {
             DB::rollback();
-
             return response()->json(['error' => $th->getMessage()], 400);
         }
     }
@@ -97,12 +86,8 @@ class PerinatalBackgroundController extends Controller
     {
         try {
             $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
-
             if ($medical_history) {
-                $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
-                    ->where('physician_id', $this->physician->id)
-                    ->count();
-
+                $medical_appointments = MedicalAppointment::where([['patient_id', $medical_history->patient_id], ['physician_id', $this->physician->id]])->count();
                 if ($medical_appointments > 0) {
                     return $medical_history;
                 }
