@@ -63,14 +63,14 @@ class FacilitySeeder extends Seeder
                 'type_schedule' => 'perm',
                 'consultation_length' => '01:30',
                 'accessibility_and_others' => [
-                    'accessibility' => [
+                    'accessibility' => [[
                         'parking_with_access_to_the_establishment' => true,
                         'wheelchair_lift_or_ramp' => true,
                         'toilets_with_wheelchair_access' => false,
                         'rest_area_with_wheelchair_access' => false,
                         'staff_trained_in_sign_language' => false,
                         'braille_signage_for_blind_people' => false,
-                    ],
+                    ]],
                     'usual_audiences' => [
                         'lgtb_friendly' => true,
                         'safe_space_for_transgender_people' => false,
