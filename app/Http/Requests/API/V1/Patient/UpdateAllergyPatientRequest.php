@@ -24,9 +24,9 @@ class UpdateAllergyPatientRequest extends FormRequest
     public function rules()
     {
         return [
-            'food_allergy' => 'sometimes|required',
-            'drug_allergy' => 'sometimes|required',
-            'environmental_allergy' => 'sometimes|required',
+            'food_allergy' => 'required',
+            'drug_allergy' => 'required',
+            'environmental_allergy' => 'required',
         ];
     }
 }
