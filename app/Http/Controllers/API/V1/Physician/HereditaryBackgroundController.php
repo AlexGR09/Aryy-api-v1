@@ -28,7 +28,9 @@ class HereditaryBackgroundController extends Controller
     public function show(Patient $patient)
     {
         $medicalHistory = MedicalHistory::where('patient_id', $patient->id)->first();
-
+        if(empty($medicalHistory) || $medicalHistory->hereditarybackground()->exists() == false){
+            return conflict('Este registro medico no tiene antecedentes hereditarios',[]);
+        }
         return (new HereditaryBackgroundResource(
             $medicalHistory->hereditarybackground
         ))->additional(['message' => '..']);
