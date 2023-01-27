@@ -25,8 +25,11 @@ class UpdateAllergyPatientRequest extends FormRequest
     {
         return [
             'food_allergy' => 'required|array|min:1',
+            'food_allergy.*' => 'required|string',
             'drug_allergy' => 'required|array|min:1',
+            'drug_allergy.*' => 'required|string',
             'environmental_allergy' => 'required|array|min:1',
+            'environmental_allergy.*' => 'required|string',
         ];
     }
 }
