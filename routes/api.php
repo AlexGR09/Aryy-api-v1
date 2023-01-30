@@ -234,7 +234,7 @@ Route::prefix('v1')->group(function () {
 
             //LISTADO DE PACIENTES
             Route::controller($this->physician . MyPatientsController::class)->group(function () {
-                Route::get('/patients','index');
+                Route::get('/list-patients','index');
             });
         });
 
