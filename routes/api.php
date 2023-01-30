@@ -400,9 +400,9 @@ Route::prefix('v1')->group(function () {
         Route::post('physician/allergies/patient', [AllergyController::class, 'store']);
         Route::put('physician/allergies/patient/{patient}', [AllergyController::class, 'update']);
 
-        Route::get('basic-information/vital-signs/patient/{patient}/medical-appointment/{medicalAppointment}', [BasicInformationController::class, 'show']);
-        Route::post('basic-information/vital-signs', [BasicInformationController::class, 'store']);
-        Route::put('basic-information/vital-signs/patient/{patient}/medical-appointment/{medicalAppointment}', [BasicInformationController::class, 'update']);
+        // Route::get('basic-information/vital-signs/patient/{patient}/medical-appointment/{medicalAppointment}', [BasicInformationController::class, 'show']);
+        // Route::post('basic-information/vital-signs', [BasicInformationController::class, 'store']);
+        // Route::put('basic-information/vital-signs/patient/{patient}/medical-appointment/{medicalAppointment}', [BasicInformationController::class, 'update']);
     });
 
     Route::prefix('medical-history')->group(function () {
