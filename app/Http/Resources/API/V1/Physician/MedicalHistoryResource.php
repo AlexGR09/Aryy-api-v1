@@ -7,6 +7,7 @@ use App\Http\Resources\API\V1\Patient\HereditaryBackgroundResource;
 use App\Http\Resources\API\V1\Patient\NonPathologicalBackgroundResource;
 use App\Http\Resources\API\V1\Patient\PathologicalBackgroundResource;
 use App\Http\Resources\API\V1\Patient\PatientResource;
+use App\Http\Resources\API\V1\Patient\VaccinationHistoryResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class MedicalHistoryResource extends JsonResource

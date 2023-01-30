@@ -165,7 +165,7 @@ Route::prefix('v1')->group(function () {
             Route::prefix('medical-history')->group(function () {
 
                 Route::controller($this->physician . MedicalHistoryController::class)->group(function () {
-                    Route::get('/{patient_id}', 'index');
+                    Route::get('patient/{patient_id}', 'index');
                 });
                 //HISTORIAL GINECOLOGICO
                 Route::controller($this->physician . GynecologicalHistoryController::class)->group(function () {
@@ -230,6 +230,11 @@ Route::prefix('v1')->group(function () {
             //EDITAR ESTADO DEL TRATAMIENTO
             Route::controller($this->physician . StatusTreatmentController::class)->group(function () {
                 Route::put('status-medicine/{medical_history_id}', 'update');
+            });
+
+            //LISTADO DE PACIENTES
+            Route::controller($this->physician . MyPatientsController::class)->group(function () {
+                Route::get('/patients','index');
             });
         });
 
