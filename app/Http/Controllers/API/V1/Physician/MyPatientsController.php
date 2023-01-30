@@ -26,24 +26,4 @@ class MyPatientsController extends Controller
 
         return ( PatientListResource::collection($medicalAppointment));
     }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //$medicalHistory =>
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
 }
