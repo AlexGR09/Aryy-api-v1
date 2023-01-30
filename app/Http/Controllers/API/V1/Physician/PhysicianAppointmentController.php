@@ -17,7 +17,7 @@ class PhysicianAppointmentController extends Controller
         $maxDays = 15;
         $currentDay = $request->since_day ? Carbon::parse($request->since_day) : \Carbon\Carbon::now();
         $availableDays = [];
-
+        $availableDayIndex = 0;
         $currentDay = (new AppointmentService)->nextValidDayTime($currentDay);
 
         $currentDayNumber = 0;
@@ -65,16 +65,16 @@ class PhysicianAppointmentController extends Controller
                     $availableHour
                 );
                 // $availableDate = $availableDate->toArray();
-                is_null($availableDate) ? $availableDays[] = [
+                is_null($availableDate) ? $availableDays[$availableDayIndex][] = [
                     'date' => $availableHour->toDateTimeString(),
                     'occupied' => false
                 ] :
-                    $availableDays[] = [
+                    $availableDays[$availableDayIndex][] = [
                         'date' => $availableHour->toDateTimeString(),
                         'occupied' => true
                     ];
             }
-
+            $availableDayIndex += 1;
             $currentDay->addDay();
         }
 
