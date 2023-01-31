@@ -113,13 +113,9 @@ class FavoriteController extends Controller
                     return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
                 }
                 $favoritePhysician = Favorite::where([['physician_id', $physician_id], ['patient_id', $patient]])->first();
-                if (empty($favoritePhysician)) {
-                    return response()->json(['message' => 'Aun no tiene favoritos']);
-                }
                 $favoritePhysician->delete();
                 return response()->json(['message' => 'Especialista eliminado']);
             }
-            /////////////
             $patient = $this->patient($patient_id);
             if (!$patient) {
                 return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
