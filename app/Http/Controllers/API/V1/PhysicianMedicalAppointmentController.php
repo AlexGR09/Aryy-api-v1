@@ -23,7 +23,7 @@ class PhysicianMedicalAppointmentController extends Controller
 
     public function destroy(Patient $patient, MedicalAppointment $medicalAppointment)
     {
-        $medicalAppointmentUpdated = tap($medicalAppointment->where('patient', $patient->id))->update(['status' => 'cancelled']);
+        $medicalAppointmentUpdated = tap($medicalAppointment->where('patient_id', $patient->id))->update(['status' => 'cancelled']);
         return response()->json(['data' => $medicalAppointmentUpdated]);
     }
 }
