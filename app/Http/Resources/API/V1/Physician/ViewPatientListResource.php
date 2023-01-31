@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Resources\API\V1\Patient;
+namespace App\Http\Resources\API\V1\Physician;
 
+use App\Http\Resources\API\V1\Auth\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class FavoritePhysicianResource extends JsonResource
+class ViewPatientListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +16,9 @@ class FavoritePhysicianResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'user_id' => $this->user_id,
-            'professional_name' => $this->professional_name,
-            'specialty' => $this->specialty,
+            'id'=>$this->id,
+            'full_name'=>$this->full_name,
+            'user_info'=>new UserResource($this->user),
         ];
     }
 }

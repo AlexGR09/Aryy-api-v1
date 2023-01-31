@@ -6,7 +6,6 @@ use App\Http\Controllers\API\V1\FacilityController;
 use App\Http\Controllers\API\V1\Patient\AllergyController;
 use App\Http\Controllers\API\V1\Patient\AppointmentController as PatientAppointmentController;
 use App\Http\Controllers\API\V1\Patient\BasicInformationController;
-use App\Http\Controllers\API\V1\Patient\PatientController;
 use App\Http\Controllers\API\V1\Patient\PaymentMethodController;
 use App\Http\Controllers\API\V1\Patient\VitalSignController;
 use App\Http\Controllers\API\V1\PermissionController;
@@ -167,26 +166,25 @@ Route::prefix('v1')->group(function () {
             Route::prefix('medical-history')->group(function () {
 
                 Route::controller($this->physician . MedicalHistoryController::class)->group(function () {
-                    Route::get('/{patient_id}', 'index');
+                    Route::get('patient/{patient_id}', 'index');
                 });
-                //Antecedentes ginecologicos - Corregir Carlos(Dinho)
+                //HISTORIAL GINECOLOGICO
                 Route::controller($this->physician . GynecologicalHistoryController::class)->group(function () {
                     Route::post('/gynecological-history', 'store');
                     Route::get('/gynecological-history/{medical_history_id}', 'show');
                     Route::put('/gynecological-history/{medical_history_id}', 'update');
                 });
-                //Antecedentes perinatales-Corregir Carlos(Dinho)
+                //ANTECEDENTES PERINATALES 
                 Route::controller($this->physician . PerinatalBackgroundController::class)->group(function () {
                     Route::post('/perinatal-background', 'store');
                     Route::get('/perinatal-background/{medical_history_id}', 'show');
                     Route::put('/perinatal-background/{medical_history_id}', 'update');
                 });
-
-                //ANTECEDENTES PSYQUIATRICOS-Corregir Carlos(Dinho)
+                //HISTORIAL PSIQUIATRICO
                 Route::controller($this->physician . PyschologicalBackgroundController::class)->group(function () {
-                    Route::post('/psycological-background', 'store');
-                    Route::get('/psycological-background/{medical_history_id}', 'show');
-                    Route::put('/psycological-background/{medical_history_id}', 'update');
+                    Route::post('/psychological-background', 'store');
+                    Route::get('/psychological-background/{medical_history_id}', 'show');
+                    Route::put('/psychological-background/{medical_history_id}', 'update');
                 });
 
                 // HISTORIAL DE VACUNACION
@@ -233,6 +231,11 @@ Route::prefix('v1')->group(function () {
             //EDITAR ESTADO DEL TRATAMIENTO
             Route::controller($this->physician . StatusTreatmentController::class)->group(function () {
                 Route::put('status-medicine/{medical_history_id}', 'update');
+            });
+
+            //LISTADO DE PACIENTES
+            Route::controller($this->physician . MyPatientsController::class)->group(function () {
+                Route::get('/list-patients','index');
             });
         });
 
@@ -322,9 +325,10 @@ Route::prefix('v1')->group(function () {
             });
             //MEDICOS FAVORITOS DE UN PACIENTE
             Route::controller($this->patient . FavoriteController::class)->group(function () {
-                Route::post('/favorites/{physician_id}', 'store');
-                Route::get('/favorites', 'show');
-                Route::get('/favorites/{physician_id}','physicianInfo');
+                Route::post('{patient_id}/favorites/{physician_id}', 'store');
+                Route::get('{patient_id}/favorites', 'show');
+                Route::get('{patient_id}/favorites/{physician_id}', 'physicianInfo');
+                Route::delete('{patient_id}/favorites/{physician_id}', 'destroy');
             });
         });
         /* RUTAS ADMINISTRATIVAS */

@@ -32,7 +32,6 @@ class CalendarAppointmentController extends Controller
             'show',
             'store',
         ]);
-        // $this->user =  empty(auth()->id()) ? NULL : User::findOrFail(auth()->id());
         $this->physician = empty(auth()->id()) ? null : Physician::where('user_id', auth()->id())->firstOrFail();
     }
 
@@ -52,38 +51,28 @@ class CalendarAppointmentController extends Controller
         switch ($type) {
             case 'all':
                 $todayAppointments = MedicalAppointment::where('physician_id', $this->physician->id)->get();
-
                 return new CalendarAppointmentCollection($todayAppointments); //RETORNA LA COLECCION
                 break;
             case 'today':
-
-                $todayAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
-                    ->where('appointment_date', $dateToday)
-                    ->get();
-
+                $todayAppointments = MedicalAppointment::where([['physician_id', $this->physician->id], ['appointment_date', $dateToday]])->get();
                 return new CalendarAppointmentCollection($todayAppointments); //RETORNA LA COLECCION
                 break;
-
             case 'week':
                 $weekstart = $todaydatetime->startOfWeek()->toDateString(); // Inicio de la semana
                 $weekend = $todaydatetime->endOfWeek()->toDateString(); // Fin de la semana
                 $weekAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
                     ->whereBetween('appointment_date', [$weekstart, $weekend])
                     ->get();
-
                 return new CalendarAppointmentCollection($weekAppointments); //RETORNA LA COLECCION
                 break;
             case 'month':
                 $month_start = date('Y-m-01'); // SE DETERMINA EL INICO DEL MES
                 $month_end = date('Y-m-t'); //SE DETERMINA EL FIN DEL MES
-
                 $monthAppointments = MedicalAppointment::where('physician_id', $this->physician->id)
                     ->whereBetween('appointment_date', [$month_start, $month_end])
                     ->get();
-
                 return new CalendarAppointmentCollection($monthAppointments); //RETORNA LA COLECCION
                 break;
-
             default:
                 return response()->json(['Message' => 'Peticion Incorrecta', 400]);
                 break;
@@ -96,14 +85,14 @@ class CalendarAppointmentController extends Controller
             $user = User::where('phone_number', $request->phone_number)->first();
             DB::beginTransaction();
             //SE VERIFICA SI EL PERFIL DEL USUARIO EXISTE
-            if (! $user) {
+            if (!$user) {
                 $user = User::create([
                     'country_code' => $request->country_code,
                     'phone_number' => $request->phone_number,
                 ]);
             }
             $patient = Patient::where('user_id', $user->id)->first();
-            if (! $patient) {
+            if (!$patient) {
                 $patient = Patient::create([
                     'user_id' => $user->id,
                     'full_name' => $request->full_name,
@@ -133,11 +122,9 @@ class CalendarAppointmentController extends Controller
                 'status' => 'scheduled',
             ]);
             DB::commit();
-
             return (new CalendarResource($medicalAppointment))->additional(['message' => 'Cita agendada correctamente.']);
         } catch (\Throwable $th) {
             DB::rollback();
-
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
@@ -148,7 +135,6 @@ class CalendarAppointmentController extends Controller
             $appointment = $this->physician->medical_appointments()
                 ->where('id', $id)
                 ->first();
-
             return (new CalendarAppointmentResource($appointment))->additional(['message' => 'Cita encontrada.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -163,7 +149,6 @@ class CalendarAppointmentController extends Controller
                 ->first();
             $medicalAppointment->status = 'cancelled';
             $medicalAppointment->save();
-
             return response()->json(['status' => 'Cita cancelada con exito']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
@@ -174,15 +159,13 @@ class CalendarAppointmentController extends Controller
     public function facilityphysician()
     {
         $facility = FacilityPhysician::where('physician_id', $this->physician->id)->get();
-
         return FacilityPhysicanResource::collection($facility)->additional(['message' => 'Consultorio encontrado']);
     }
 
     public function patient($phone_number, Request $request)
     {
         $user = User::where('phone_number', $phone_number)->first();
-        $patient = Patient::where('user_id', $user->id)->where('full_name', 'LIKE', '%'.$request->full_name.'%')->get();
-
+        $patient = Patient::where('user_id', $user->id)->where('full_name', 'LIKE', '%' . $request->full_name . '%')->get();
         return PatientMedicalAppointmentResource::collection($patient)->additional(['message' => 'Paciente encontrado']);
     }
 }

@@ -24,6 +24,7 @@ class PatientSeeder extends Seeder
             [
 
                 'user_id' => 13,
+                'full_name'=>$faker->firstname,
                 'address' => json_encode($location, JSON_THROW_ON_ERROR),
                 'zip_code' => $faker->regexify('[0-9]{5}'),
                 'country_code' => '+52',
@@ -34,6 +35,7 @@ class PatientSeeder extends Seeder
             [
 
                 'user_id' => 13,
+                'full_name'=>$faker->firstname,
                 'address' => json_encode($location, JSON_THROW_ON_ERROR),
                 'zip_code' => $faker->regexify('[0-9]{5}'),
                 'country_code' => '+52',
@@ -44,6 +46,7 @@ class PatientSeeder extends Seeder
             [
 
                 'user_id' => 15,
+                'full_name'=>$faker->firstname,
                 'address' => json_encode($location, JSON_THROW_ON_ERROR),
                 'zip_code' => $faker->regexify('[0-9]{5}'),
                 'country_code' => '+52',
@@ -54,6 +57,7 @@ class PatientSeeder extends Seeder
             [
 
                 'user_id' => 16,
+                'full_name'=>$faker->firstname,
                 'address' => json_encode($location, JSON_THROW_ON_ERROR),
                 'zip_code' => $faker->regexify('[0-9]{5}'),
                 'country_code' => '+52',
@@ -64,6 +68,7 @@ class PatientSeeder extends Seeder
             [
 
                 'user_id' => 17,
+                'full_name'=>$faker->firstname,
                 'address' => json_encode($location, JSON_THROW_ON_ERROR),
                 'zip_code' => $faker->regexify('[0-9]{5}'),
                 'country_code' => '+52',
@@ -74,6 +79,7 @@ class PatientSeeder extends Seeder
             [
 
                 'user_id' => 18,
+                'full_name'=>$faker->firstname,
                 'address' => json_encode($location, JSON_THROW_ON_ERROR),
                 'zip_code' => $faker->regexify('[0-9]{5}'),
                 'country_code' => '+52',
@@ -84,6 +90,7 @@ class PatientSeeder extends Seeder
             [
 
                 'user_id' => 19,
+                'full_name'=>$faker->firstname,
                 'address' => json_encode($location, JSON_THROW_ON_ERROR),
                 'zip_code' => $faker->regexify('[0-9]{5}'),
                 'country_code' => '+52',
@@ -94,6 +101,7 @@ class PatientSeeder extends Seeder
             [
 
                 'user_id' => 20,
+                'full_name'=>$faker->firstname,
                 'address' => json_encode($location, JSON_THROW_ON_ERROR),
                 'zip_code' => $faker->regexify('[0-9]{5}'),
                 'country_code' => '+52',
@@ -104,6 +112,7 @@ class PatientSeeder extends Seeder
             [
 
                 'user_id' => 21,
+                'full_name'=>$faker->firstname,
                 'address' => json_encode($location, JSON_THROW_ON_ERROR),
                 'zip_code' => $faker->regexify('[0-9]{5}'),
                 'country_code' => '+52',
@@ -114,6 +123,7 @@ class PatientSeeder extends Seeder
             [
 
                 'user_id' => 22,
+                'full_name'=>$faker->firstname,
                 'address' => json_encode($location, JSON_THROW_ON_ERROR),
                 'zip_code' => $faker->regexify('[0-9]{5}'),
                 'country_code' => '+52',

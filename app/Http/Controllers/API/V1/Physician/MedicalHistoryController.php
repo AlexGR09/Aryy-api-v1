@@ -34,24 +34,4 @@ class MedicalHistoryController extends Controller
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
 }
