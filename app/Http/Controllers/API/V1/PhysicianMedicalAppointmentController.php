@@ -15,7 +15,7 @@ class PhysicianMedicalAppointmentController extends Controller
 {
     public function index(Patient $patient, Request $request)
     {
-        $attendance = $request->attendance;
+        $attendance = $request->attendance ? $request->attendance : 'scheduled';
         return new CheckMedicalAppointmentResource(Patient::with('medical_appointments','medical_appointments.physician','medical_appointments.physician.specialty','medical_appointments.facility')
         ->where('id' , $patient->id)
         ->whereHas('medical_appointments', function($q) use($attendance){
