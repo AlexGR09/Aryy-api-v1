@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('status', ['assisted', 'not-assisted', 'cancelled', 'scheduled','confirmed']);
             $table->string('note')->nullable();
             $table->enum('relationship',['Abuela / Abuelo','Madre / Padre','Hermana / Hermano','Esposa / Esposo','Hija / Hijo','Amigo / Amigo']);
+            $table->decimal('cost')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
