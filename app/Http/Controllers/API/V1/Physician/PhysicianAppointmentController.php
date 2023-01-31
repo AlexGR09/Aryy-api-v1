@@ -137,6 +137,9 @@ class PhysicianAppointmentController extends Controller
                 $dateTimeEnd = Carbon::parse($date->format('Y-m-d') . ' ' . $time->format('H:i'))
                     ->addMinutes(hourMinuteToMinutes($consultationLength))
                     ->format('H:i');
+                $cost = 0;
+                $firstAppointment ? $cost = $physician->first_time_consultation : $cost = $physician->subsequent_consultation;
+
                 $medicalAppointment = MedicalAppointment::create([
                     'patient_id' => $patient->id,
                     'physician_id' => $physician->id,
@@ -148,6 +151,7 @@ class PhysicianAppointmentController extends Controller
                     'appointment_type' => $firstAppointment ? 'Primera consulta' : 'Subsecuente',
                     'note' => $request->note,
                     'relationship' => $request->relationship,
+                    'cost' => $cost
                 ]);
 
                 return ok('Se agendo correctamente', $medicalAppointment);
