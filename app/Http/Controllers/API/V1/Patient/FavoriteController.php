@@ -24,7 +24,7 @@ class FavoriteController extends Controller
         ]);
     }
 
-    public function store($patient_id, $physician_id)
+    /* public function store($patient_id, $physician_id)
     {
         try {
             DB::beginTransaction();
@@ -52,7 +52,7 @@ class FavoriteController extends Controller
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
         }
-    }
+    } */
 
     public function show($patient_id)
     {
@@ -67,7 +67,7 @@ class FavoriteController extends Controller
         return response()->json(['message' => 'Aun no tiene favoritos']);
     }
 
-    public function destroy($patient_id, $physician_id)
+    /* public function destroy($patient_id, $physician_id)
     {
         $patient = $this->patient($patient_id);
         if (!$patient) {
@@ -79,7 +79,7 @@ class FavoriteController extends Controller
         }
         $favoritePhysician->delete();
         return response()->json(['message' => 'Especialista eliminado']);
-    }
+    } */
 
     public function physicianInfo($patient_id, $physician_id)
     {
@@ -105,29 +105,26 @@ class FavoriteController extends Controller
         return $patient->id;
     }
 
-    public function favoritephysician(Request $request,$patient_id,$physician_id){
+    public function favoritephysician(Request $request, $patient_id, $physician_id)
+    {
         try {
-            if ($request->favorite) {
-                $patient = $this->patient($patient_id);
-                if (!$patient) {
-                    return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
-                }
-                $favoritePhysician = Favorite::where([['physician_id', $physician_id], ['patient_id', $patient]])->first();
-                $favoritePhysician->delete();
-                return response()->json(['message' => 'Especialista eliminado']);
-            }
             $patient = $this->patient($patient_id);
-            if (!$patient) {
-                return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
-            }
-            Favorite::create([
-                'patient_id' => $patient,
-                'physician_id' => $physician_id,
-            ]);
-            return response()->json(["Medico agregado a favoritos"]);
+        if(!$patient){
+            return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
+        }
+        $favoritePhysician = Favorite::where([['physician_id', $physician_id], ['patient_id', $patient]])->first();
+        if($favoritePhysician){
+            $favoritePhysician->delete();
+            return response()->json(["Medico eliminado de favoritos"]);
+        }
+        Favorite::create([
+            'patient_id' => $patient,
+            'physician_id' => $physician_id,
+        ]);
+        return response()->json(["Medico agregado a favoritos"]);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error' => $th->getMessage()], 503);
-        } 
+        }
     }
 }

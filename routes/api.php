@@ -325,7 +325,7 @@ Route::prefix('v1')->group(function () {
             });
             //MEDICOS FAVORITOS DE UN PACIENTE
             Route::controller($this->patient . FavoriteController::class)->group(function () {
-                Route::post('{patient_id}/favorites/{physician_id}', 'favoritephysician');
+                Route::patch('{patient_id}/favorites/{physician_id}', 'favoritephysician');
                 Route::get('{patient_id}/favorites', 'show');
                 Route::get('{patient_id}/favorites/{physician_id}', 'physicianInfo');
                 /* Route::delete('{patient_id}/favorites/{physician_id}', 'destroy'); */
