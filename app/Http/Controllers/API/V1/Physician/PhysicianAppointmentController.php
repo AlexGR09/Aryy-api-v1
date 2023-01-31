@@ -64,15 +64,8 @@ class PhysicianAppointmentController extends Controller
                     $physician->facilities[0]->schedule->free_days,
                     $availableHour
                 );
-                // $availableDate = $availableDate->toArray();
-                is_null($availableDate) ? $availableDays[$availableDayIndex][] = [
-                    'date' => $availableHour->toDateTimeString(),
-                    'occupied' => false
-                ] :
-                    $availableDays[$availableDayIndex][] = [
-                        'date' => $availableHour->toDateTimeString(),
-                        'occupied' => true
-                    ];
+                $availableDays[$availableDayIndex]['date'] = $availableHour->format('Y-m-d');
+                $availableDays[$availableDayIndex]['hours'][] = [ 'hour' => $availableHour->format('H:i'), 'occupied' => is_null($availableDate) ? true : false];
             }
             $availableDayIndex += 1;
             $currentDay->addDay();
@@ -80,11 +73,11 @@ class PhysicianAppointmentController extends Controller
 
         return response()->json(['data' => $availableDays]);
     }
-    public function store(Patient $patient,Physician $physician, Request $request)
+    public function store(Patient $patient, Physician $physician, Request $request)
     {
-        $patientExists = Patient::where('id',$patient->id)->where('user_id',auth()->id())->exists();
-        if(!$patientExists){
-            return conflict('El paciente no pertenece al usuario',[]);
+        $patientExists = Patient::where('id', $patient->id)->where('user_id', auth()->id())->exists();
+        if (!$patientExists) {
+            return conflict('El paciente no pertenece al usuario', []);
         }
         $maxDays = 15;
 
@@ -107,8 +100,8 @@ class PhysicianAppointmentController extends Controller
                     $found = true;
                 }
             }
-            if(!$found){
-                return conflict('Selecciona un dia valido',[]);
+            if (!$found) {
+                return conflict('Selecciona un dia valido', []);
             }
             $restHours = explode(' a ', $schedule[$scheduleKey]->rest_hours);
             $restStartHour = Carbon::parse($restHours[0]);
@@ -131,19 +124,19 @@ class PhysicianAppointmentController extends Controller
             $firstAppointment = false;
 
             $patient
-            ->has('medical_appointments')
-            ->first()
-            ? 
-            $firstAppointment = false
-            :
-            $firstAppointment = true;
+                ->has('medical_appointments')
+                ->first()
+                ?
+                $firstAppointment = false
+                :
+                $firstAppointment = true;
 
 
 
             if (is_null($availableDate)) {
-                $dateTimeEnd = Carbon::parse($date->format('Y-m-d').' '.$time->format('H:i'))
-                ->addMinutes(hourMinuteToMinutes($consultationLength))
-                ->format('H:i');
+                $dateTimeEnd = Carbon::parse($date->format('Y-m-d') . ' ' . $time->format('H:i'))
+                    ->addMinutes(hourMinuteToMinutes($consultationLength))
+                    ->format('H:i');
                 $medicalAppointment = MedicalAppointment::create([
                     'patient_id' => $patient->id,
                     'physician_id' => $physician->id,
@@ -151,7 +144,7 @@ class PhysicianAppointmentController extends Controller
                     'status' => 'scheduled',
                     'appointment_date' => $date->format('Y-m-d'),
                     'appointment_time' => $time->format('H:i'),
-                    'appointment_time_end' => $dateTimeEnd, 
+                    'appointment_time_end' => $dateTimeEnd,
                     'appointment_type' => $firstAppointment ? 'Primera consulta' : 'Subsecuente',
                     'note' => $request->note,
                     'relationship' => $request->relationship,
@@ -168,11 +161,11 @@ class PhysicianAppointmentController extends Controller
         return response()->json(['data' => $availableDays]);
     }
 
-    public function update(Patient $patient, Physician $physician, MedicalAppointment $medicalAppointment ,Request $request)
+    public function update(Patient $patient, Physician $physician, MedicalAppointment $medicalAppointment, Request $request)
     {
-        $patientExists = Patient::where('id',$patient->id)->where('user_id',auth()->id())->exists();
-        if(!$patientExists){
-            return conflict('El paciente no pertenece al usuario',[]);
+        $patientExists = Patient::where('id', $patient->id)->where('user_id', auth()->id())->exists();
+        if (!$patientExists) {
+            return conflict('El paciente no pertenece al usuario', []);
         }
         $maxDays = 15;
 
@@ -195,8 +188,8 @@ class PhysicianAppointmentController extends Controller
                     $found = true;
                 }
             }
-            if(!$found){
-                return conflict('Selecciona un dia valido',[]);
+            if (!$found) {
+                return conflict('Selecciona un dia valido', []);
             }
             $restHours = explode(' a ', $schedule[$scheduleKey]->rest_hours);
             $restStartHour = Carbon::parse($restHours[0]);
@@ -219,26 +212,26 @@ class PhysicianAppointmentController extends Controller
             $firstAppointment = false;
 
             $patient
-            ->has('medical_appointments')
-            ->first()
-            ? 
-            $firstAppointment = false
-            :
-            $firstAppointment = true;
+                ->has('medical_appointments')
+                ->first()
+                ?
+                $firstAppointment = false
+                :
+                $firstAppointment = true;
 
 
 
             if (is_null($availableDate)) {
-                $dateTimeEnd = Carbon::parse($date->format('Y-m-d').' '.$time->format('H:i'))
-                ->addMinutes(hourMinuteToMinutes($consultationLength))
-                ->format('H:i');
+                $dateTimeEnd = Carbon::parse($date->format('Y-m-d') . ' ' . $time->format('H:i'))
+                    ->addMinutes(hourMinuteToMinutes($consultationLength))
+                    ->format('H:i');
                 $updatedMedicalAppointment = tap($medicalAppointment)->update([
                     'physician_id' => $physician->id,
                     'facility_id' => $physician->facilities[0]->id,
                     'status' => 'scheduled',
                     'appointment_date' => $date->format('Y-m-d'),
                     'appointment_time' => $time->format('H:i'),
-                    'appointment_time_end' => $dateTimeEnd, 
+                    'appointment_time_end' => $dateTimeEnd,
                     'note' => $request->note,
                     'relationship' => $request->relationship,
                 ]);
@@ -256,14 +249,14 @@ class PhysicianAppointmentController extends Controller
 
     public function destroy(Patient $patient, MedicalAppointment $medicalAppointment)
     {
-        $patientExists = Patient::where('id',$patient->id)->where('user_id',auth()->id())->exists();
-        if(!$patientExists){
-            return conflict('El paciente no pertenece al usuario',[]);
+        $patientExists = Patient::where('id', $patient->id)->where('user_id', auth()->id())->exists();
+        if (!$patientExists) {
+            return conflict('El paciente no pertenece al usuario', []);
         }
-        $medicalAppointmentDeleted = $medicalAppointment->where('id', $medicalAppointment->id)->where('patient_id',auth()->user()->patient->id)->delete();
+        $medicalAppointmentDeleted = $medicalAppointment->where('id', $medicalAppointment->id)->where('patient_id', auth()->user()->patient->id)->delete();
         if (!$medicalAppointmentDeleted) {
-            return ok('Hubo un problema al borrar la cita',[]);
+            return ok('Hubo un problema al borrar la cita', []);
         }
-        return ok('',$medicalAppointment);
+        return ok('', $medicalAppointment);
     }
 }
