@@ -18,7 +18,7 @@ class BasicInformationController extends Controller
     public function show(Patient $patient, MedicalAppointment $medicalAppointment)
     {
         $patientInfo = clone $patient;
-        $vitalSignId = $medicalAppointment->prescription->vital_sign_id;
+        $vitalSignId = $medicalAppointment?->prescription?->vital_sign_id;
         $vitalSign = VitalSign::find($vitalSignId);
         $medicalHistory = $patient->medicalHistory;
 
