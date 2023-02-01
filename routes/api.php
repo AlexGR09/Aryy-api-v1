@@ -359,7 +359,7 @@ Route::prefix('v1')->group(function () {
             Route::put('/calendar/patient/{patient}/physician/{physician}/medical-appointment/{medicalAppointment}', [PhysicianAppointmentController::class, 'update']);
 
         });
-        Route::group(['middleware' => ['role:Physician|Patient']], function () {
+        Route::group(['middleware' => ['role:Physician|Patient','is_patient_of_user']], function () {
             Route::get('/patient/{patient}/medical-appointment', [PhysicianMedicalAppointmentController::class, 'index']);
             Route::delete('/patient/{patient}/medical-appointment/{medicalAppointment}', [PhysicianMedicalAppointmentController::class, 'destroy']);
         });
@@ -398,7 +398,7 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::get('physician/{physician}/details', [PhysicianDetailController::class, 'show']);
-    Route::prefix('medical-records')->group(function () {
+    Route::group(['prefix' => 'medical-records','middleware' => 'is_patient_of_user'], function () {
         Route::get('vital-signs/patient/{patient}', [VitalSignController::class, 'show']);
         Route::post('vital-signs/patient', [VitalSignController::class, 'store']);
         Route::put('vital-signs/{vitalSign}/patient', [VitalSignController::class, 'update']);
@@ -413,7 +413,7 @@ Route::prefix('v1')->group(function () {
         // Route::put('basic-information/vital-signs/patient/{patient}/medical-appointment/{medicalAppointment}', [BasicInformationController::class, 'update']);
     });
 
-    Route::prefix('medical-history')->group(function () {
+    Route::group(['prefix' => 'medical-history','middleware' => 'is_patient_of_user'],function () {
         Route::get('physician/pathological-background/patient/{patient}', [PhysicianPathologicalBackgroundController::class, 'show']);
         Route::post('physician/pathological-background', [PhysicianPathologicalBackgroundController::class, 'store']);
         Route::put('physician/pathological-background/patient/{patient}', [PhysicianPathologicalBackgroundController::class, 'update']);
