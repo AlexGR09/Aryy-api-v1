@@ -62,14 +62,14 @@ class BasicInformationController extends Controller
         return ok('', $vitalSign);
     }
 
-    public function storePatientInfo(StorePatientInfoRequest $request)
+    public function storePatientInfo(Patient $patient, StorePatientInfoRequest $request)
     {
         $data = $request->validated();
-        User::find(Patient::find($data['patient_id'])->user->id)
+        $user = tap($patient->user)
         ->update([
             'phone_number' => $data['phone_number']
         ]);
-        Patient::find($data['patient_id'])
+        $patients = Patient::find($patient->id)
         ->update([
             'gender' => $data['gender'],
             'birthday' => $data['birthday'],
@@ -77,10 +77,10 @@ class BasicInformationController extends Controller
         ]);
 
         $medicalHistory = MedicalHistory::updateOrCreate(
-            ['patient_id', $data['patient_id']],
+            ['patient_id' =>  $patient->id],
             ['height', $data['height'], 'blood_type' => $data['blood_type']]
         );
 
-        return ok('',$medicalHistory);
+        return ok('',['medical_history' => $medicalHistory, 'patients' => $patients, 'user' => $user]);
     }
 }

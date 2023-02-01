@@ -13,7 +13,7 @@ class StorePatientInfoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,10 +24,9 @@ class StorePatientInfoRequest extends FormRequest
     public function rules()
     {
         return [
-            'patient_id' => 'required',
             'phone_number' => 'required',
             'full_name' => 'required',
-            'age' => 'required',
+            'birthday' => 'required',
             'blood_type' => 'required',
             'height' => 'required',
             'gender' => 'required|in:Masculino,Femenino'
