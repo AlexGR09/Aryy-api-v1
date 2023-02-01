@@ -33,7 +33,7 @@ class NonPathologicalBackgroundSeeder extends Seeder
             [
                 'id' => 4,
                 'drug_active' => 'Ibuprofeno • 10mg • Comprimido',
-                'previous_medication' => 'Naproxeno',
+                'previous_medication' => 'Naproxeno • 10mg • Comprimido',
             ],
             [
                 'id' => 5,
@@ -43,12 +43,12 @@ class NonPathologicalBackgroundSeeder extends Seeder
             [
                 'id' => 6,
                 'drug_active' => 'Simvastatina • 10mg • Comprimido',
-                'previous_medication' => 'Ibuprofeno',
+                'previous_medication' => 'Ibuprofeno • 10mg • Comprimido',
             ],
             [
                 'id' => 7,
                 'drug_active' => 'Omeprazol • 10mg • Comprimido',
-                'previous_medication' => 'Aspirina',
+                'previous_medication' => 'Aspirina • 10mg • Comprimido',
             ],
             [
                 'id' => 8,
@@ -58,12 +58,12 @@ class NonPathologicalBackgroundSeeder extends Seeder
             [
                 'id' => 9,
                 'drug_active' => 'Amlodipina • 10mg • Comprimido',
-                'previous_medication' => 'Ibuprofeno',
+                'previous_medication' => 'Ibuprofeno • 10mg • Comprimido',
             ],
             [
                 'id' => 10,
                 'drug_active' => 'Ibuprofeno • 10mg • Comprimido',
-                'previous_medication' => 'Salbutamol',
+                'previous_medication' => 'Salbutamol • 10mg • Comprimido',
             ],
 
         ]);
