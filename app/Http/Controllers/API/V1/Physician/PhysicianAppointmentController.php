@@ -54,6 +54,8 @@ class PhysicianAppointmentController extends Controller
             );
 
             $schedule[0]->free_days = [];
+            $availableDays[$availableDayIndex] = ['available_hours' => []];
+            $availableDays[$availableDayIndex] = ['occupied_hours' => []];
             foreach ($availableHours as $availableHour) {
                 $availableDate = $physician->appointmentAvailability(
                     $currentDay,
@@ -65,7 +67,13 @@ class PhysicianAppointmentController extends Controller
                     $availableHour
                 );
                 $availableDays[$availableDayIndex]['date'] = $availableHour->format('Y-m-d');
-                $availableDays[$availableDayIndex]['hours'][] = [ 'hour' => $availableHour->format('H:i'), 'occupied' => is_null($availableDate) ? true : false];
+
+                if(is_null($availableDate)){
+                    $availableDays[$availableDayIndex]['available_hours'][] = [ 'hour' => $availableHour->format('H:i'), 'occupied' => is_null($availableDate) ? true : false];
+                } else {
+                    $availableDays[$availableDayIndex]['occupied_hours'][] = [ 'hour' => $availableHour->format('H:i'), 'occupied' => is_null($availableDate) ? true : false];
+
+                }
             }
             $availableDayIndex += 1;
             $currentDay->addDay();
