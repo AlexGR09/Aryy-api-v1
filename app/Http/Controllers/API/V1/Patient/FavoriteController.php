@@ -105,7 +105,7 @@ class FavoriteController extends Controller
         return $patient->id;
     }
 
-    public function favoritephysician(Request $request, $patient_id, $physician_id)
+    public function favoritephysician($patient_id, $physician_id)
     {
         try {
             $patient = $this->patient($patient_id);
