@@ -5,10 +5,12 @@ namespace App\Http\Controllers\API\V1\Patient;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\StoreVitalSignRequest as PatientStoreVitalSignRequest;
 use App\Http\Requests\API\V1\Patient\UpdateVitalSignRequest as PatientUpdateVitalSignRequest;
+use App\Http\Requests\API\V1\StorePatientInfoRequest;
 use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
 use App\Models\Patient;
 use App\Models\Prescription;
+use App\Models\User;
 use App\Models\VitalSign;
 
 class BasicInformationController extends Controller
