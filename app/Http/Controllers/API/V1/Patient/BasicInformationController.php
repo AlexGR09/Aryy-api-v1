@@ -5,10 +5,12 @@ namespace App\Http\Controllers\API\V1\Patient;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\StoreVitalSignRequest as PatientStoreVitalSignRequest;
 use App\Http\Requests\API\V1\Patient\UpdateVitalSignRequest as PatientUpdateVitalSignRequest;
+use App\Http\Requests\API\V1\StorePatientInfoRequest;
 use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
 use App\Models\Patient;
 use App\Models\Prescription;
+use App\Models\User;
 use App\Models\VitalSign;
 
 class BasicInformationController extends Controller
@@ -58,5 +60,27 @@ class BasicInformationController extends Controller
             ->update($data);
 
         return ok('', $vitalSign);
+    }
+
+    public function storePatientInfo(Patient $patient, StorePatientInfoRequest $request)
+    {
+        $data = $request->validated();
+        $user = tap($patient->user)
+        ->update([
+            'phone_number' => $data['phone_number']
+        ]);
+        $patients = Patient::find($patient->id)
+        ->update([
+            'gender' => $data['gender'],
+            'birthday' => $data['birthday'],
+            'full_name' => $data['full_name']
+        ]);
+
+        $medicalHistory = MedicalHistory::updateOrCreate(
+            ['patient_id' =>  $patient->id],
+            ['height', $data['height'], 'blood_type' => $data['blood_type']]
+        );
+
+        return ok('',['medical_history' => $medicalHistory, 'patients' => $patients, 'user' => $user]);
     }
 }
