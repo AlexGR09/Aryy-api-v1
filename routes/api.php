@@ -396,6 +396,7 @@ Route::prefix('v1')->group(function () {
 
         Route::post('patients/{patient}/appointments', [PatientAppointmentController::class, 'store']);
     });
+    Route::post('basic-information/patient/', [BasicInformationController::class, 'storePatientInfo']);
 
     Route::get('physician/{physician}/details', [PhysicianDetailController::class, 'show']);
     Route::group(['prefix' => 'medical-records','middleware' => 'is_patient_of_user'], function () {
