@@ -59,4 +59,25 @@ class BasicInformationController extends Controller
 
         return ok('', $vitalSign);
     }
+
+    public function storePatientInfo(Patient $patient, StorePatientInfoRequest $request)
+    {
+        $data = $request->validated();
+        $user = tap($patient->user)
+        ->update([
+            'phone_number' => $data['phone_number']
+        ]);
+        $patients = Patient::find($patient->id)
+        ->update([
+            'gender' => $data['gender'],
+            'birthday' => $data['birthday'],
+            'full_name' => $data['full_name']
+        ]);
+
+        $medicalHistory = MedicalHistory::updateOrCreate(
+            ['patient_id' =>  $patient->id],
+            ['height', $data['height'], 'blood_type' => $data['blood_type']]
+        );
+        return ok('',['medical_history' => $medicalHistory, 'patients' => $patients, 'user' => $user]);
+    }
 }
