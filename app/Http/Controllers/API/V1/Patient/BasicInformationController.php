@@ -78,7 +78,7 @@ class BasicInformationController extends Controller
 
         $medicalHistory = MedicalHistory::updateOrCreate(
             ['patient_id' =>  $patient->id],
-            ['height', $data['height'], 'blood_type' => $data['blood_type']]
+            ['height' => $data['height'], 'blood_type' => $data['blood_type']]
         );
         return ok('',['medical_history' => $medicalHistory, 'patients' => $patients, 'user' => $user]);
     }
