@@ -400,7 +400,7 @@ Route::prefix('v1')->group(function () {
     Route::get('basic-information/patient/{patient}/medical-apointment/{medicalAppointment}', [BasicInformationController::class, 'show']);
 
     Route::get('physician/{physician}/details', [PhysicianDetailController::class, 'show']);
-    Route::group(['prefix' => 'medical-records','middleware' => 'is_patient_of_user'], function () {
+    Route::group(['prefix' => 'medical-records'], function () {
         Route::get('vital-signs/patient/{patient}', [VitalSignController::class, 'show']);
         Route::post('vital-signs/patient', [VitalSignController::class, 'store']);
         Route::put('vital-signs/{vitalSign}/patient', [VitalSignController::class, 'update']);
@@ -415,7 +415,7 @@ Route::prefix('v1')->group(function () {
         // Route::put('basic-information/vital-signs/patient/{patient}/medical-appointment/{medicalAppointment}', [BasicInformationController::class, 'update']);
     });
 
-    Route::group(['prefix' => 'medical-history','middleware' => 'is_patient_of_user'],function () {
+    Route::group(['prefix' => 'medical-history'],function () {
         Route::get('physician/pathological-background/patient/{patient}', [PhysicianPathologicalBackgroundController::class, 'show']);
         Route::post('physician/pathological-background', [PhysicianPathologicalBackgroundController::class, 'store']);
         Route::put('physician/pathological-background/patient/{patient}', [PhysicianPathologicalBackgroundController::class, 'update']);
