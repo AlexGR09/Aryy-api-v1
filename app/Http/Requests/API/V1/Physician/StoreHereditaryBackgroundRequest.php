@@ -37,8 +37,8 @@ class StoreHereditaryBackgroundRequest extends FormRequest
             'cancer.type' => 'string',
             'kidney_stones.family' => 'string',
             'kidney_stones.type' => 'string',
-            'blood_diseases.family'=> 'string',
-            'blood_diseases.type'=> 'string',
+            'blood_diseases.family' => 'string',
+            'blood_diseases.type' => 'string',
         ];
     }
 }

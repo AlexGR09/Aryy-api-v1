@@ -27,15 +27,16 @@ class PhysicianMedicalAppointmentController extends Controller
 
     public function destroy(Patient $patient, MedicalAppointment $medicalAppointment)
     {
-        if($medicalAppointment->status === 'cancelled'){
+        if ($medicalAppointment->status === 'cancelled') {
             return conflict('La cita ya fue cancelada', []);
         }
         $medicalAppointmentUpdated = tap(MedicalAppointment::where([
-            ['id',$medicalAppointment->id],
-            ['patient_id', $patient->id]
+            ['id', $medicalAppointment->id],
+            ['patient_id', $patient->id],
         ]))
         ->update(['status' => 'cancelled'])
         ->first();
+
         return response()->json(['data' => $medicalAppointmentUpdated]);
     }
 }

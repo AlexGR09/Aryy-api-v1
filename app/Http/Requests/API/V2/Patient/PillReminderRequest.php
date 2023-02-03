@@ -20,7 +20,7 @@ class PillReminderRequest extends FormRequest
             'start_treatment' => 'required|date',
             'end_treatment' => 'required|date',
             'first_take' => 'required|date_format:H:i',
-            'instruction' => 'nullable|string'
+            'instruction' => 'nullable|string',
         ];
     }
 }

@@ -131,6 +131,7 @@ class Physician extends Model
         $availableHour)
     {
         $currentSearch = $availableHour->copy()->format('Y-m-d');
+
         return $this->medical_appointments()
         ->where('appointment_date', '>=', $currentDay->copy()->format('Y-m-d'))
         ->where('appointment_time', '>=', $currentDay->copy()->setTime($startHour->hour, $startHour->minute, 0)->format('H:i'))
@@ -138,12 +139,12 @@ class Physician extends Model
         ->where('appointment_time', '<=', $currentDay->copy()->setTime($endHour->hour, $endHour->minute, 0)->format('H:i'))
 
         // ->whereNotBetween('appointment_time', [
-        //     $currentDay->copy()->setTime($restStartHour->hour, $restStartHour->minute, 0)->format('H:i'), 
+        //     $currentDay->copy()->setTime($restStartHour->hour, $restStartHour->minute, 0)->format('H:i'),
         //     $currentDay->copy()->setTime($restEndtHour->hour, $restEndtHour->minute, 0)->format('H:i')
         //     ])
 
         ->whereNotIn('appointment_date', $freeDays)
-        ->where('appointment_date',$currentSearch )
+        ->where('appointment_date', $currentSearch)
         ->where('appointment_time', $availableHour->copy()->format('H:i'))
         ->first();
     }
@@ -163,11 +164,11 @@ class Physician extends Model
         ->where('appointment_date', '<=', $currentDate->copy()->format('Y-m-d'))
         ->where('appointment_time', '<=', $currentDate->copy()->setTime($endHour->hour, $endHour->minute, 0)->format('H:i'))
         ->where('appointment_date', $currentDate->copy()->format('Y-m-d'))
-        ->where('appointment_time',  $currentTime->copy()->format('H:i'))
+        ->where('appointment_time', $currentTime->copy()->format('H:i'))
         ->whereNotBetween('appointment_time', [
-            $currentDate->copy()->setTime($restStartHour->hour, $restStartHour->minute, 0)->format('H:i'), 
-            $currentDate->copy()->setTime($restEndtHour->hour, $restEndtHour->minute, 0)->format('H:i')
-            ])
+            $currentDate->copy()->setTime($restStartHour->hour, $restStartHour->minute, 0)->format('H:i'),
+            $currentDate->copy()->setTime($restEndtHour->hour, $restEndtHour->minute, 0)->format('H:i'),
+        ])
         ->whereNotIn('appointment_date', $freeDays)
         ->first();
     }

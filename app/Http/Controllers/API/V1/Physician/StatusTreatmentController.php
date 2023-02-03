@@ -36,16 +36,19 @@ class StatusTreatmentController extends Controller
                 $drug_active->previous_medication = $drug_active->drug_active;
                 $drug_active->drug_active = null;
                 $drug_active->save();
+
                 return response()->json(['Trataniento Completado', $request->drug_active]);
             }
-            $new_medicine = $drug_active->previous_medication . ',' . $drug_active->drug_active;
+            $new_medicine = $drug_active->previous_medication.','.$drug_active->drug_active;
             $drug_active->previous_medication = $new_medicine;
             $drug_active->drug_active = null;
             $drug_active->save();
             DB::commit();
+
             return response()->json(['Trataniento Completado']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
         }
     }

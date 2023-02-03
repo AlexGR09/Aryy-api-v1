@@ -29,7 +29,7 @@ class StorePatientInfoRequest extends FormRequest
             'birthday' => 'required',
             'blood_type' => 'required',
             'height' => 'required',
-            'gender' => 'required|in:Masculino,Femenino'
+            'gender' => 'required|in:Masculino,Femenino',
         ];
     }
 }
