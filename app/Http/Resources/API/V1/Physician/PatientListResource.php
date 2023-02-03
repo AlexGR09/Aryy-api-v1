@@ -16,6 +16,7 @@ class PatientListResource extends JsonResource
     public function toArray($request)
     {
         $lastAppointment = MedicalAppointment::where('physician_id', $this->physician_id)->latest()->first();
+
         return [
             'id' => $this->id,
             'patient_id' => $this->patient_id,
