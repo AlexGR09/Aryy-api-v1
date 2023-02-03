@@ -23,6 +23,7 @@ class PyschologicalBackgroundController extends Controller
         ]);
         $this->physician = empty(auth()->id()) ? null : Physician::where('user_id', auth()->id())->firstOrFail();
     }
+
     public function store(PyschologicalBackgroundRequest $request)
     {
         try {
@@ -37,16 +38,18 @@ class PyschologicalBackgroundController extends Controller
                 return "Petición incorrecta";
             } */
             $medicalHistory = $this->medicalhistory($request->patient_id);
-            if (!$medicalHistory || $medicalHistory->pyschologicalBackground) {
+            if (! $medicalHistory || $medicalHistory->pyschologicalBackground) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
             $pyschological = $medicalHistory->pyschologicalbackground()->create($request->validated());
             $medicalHistory->pyschological_background_id = $pyschological->id;
             $medicalHistory->save();
             DB::commit();
+
             return (new PyschologicalBackgroundResource($pyschological))->additional(['message' => 'Antecedentes psiquiatricos guardados con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['Petición incorrecta' => $th->getMessage()], 201);
         }
     }
@@ -56,13 +59,15 @@ class PyschologicalBackgroundController extends Controller
         try {
             $medicalHistory = $this->medicalhistory($medical_history_id);
             $pyschological = $medicalHistory->pyschologicalBackground;
-            if (!$pyschological) {
+            if (! $pyschological) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
             DB::commit();
+
             return (new PyschologicalBackgroundResource($pyschological))->additional(['message' => 'Antecedentes psiquiatricos.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
         }
     }
@@ -76,9 +81,11 @@ class PyschologicalBackgroundController extends Controller
             $pyschologicalBackground->update($request->validated());
             $pyschologicalBackground->save();
             DB::commit();
+
             return (new PyschologicalBackgroundResource($pyschologicalBackground))->additional(['message' => 'Registro antecedentes psiquiatricos actualizado con éxito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
         }
     }

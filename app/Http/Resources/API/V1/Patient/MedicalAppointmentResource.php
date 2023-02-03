@@ -30,7 +30,7 @@ class MedicalAppointmentResource extends JsonResource
             // 'deleted_at' => $this->deleted_at,
             'cost' => $this->cost,
             'physician' => new PhysicianResource($this->whenLoaded('physician')),
-            'facility' => new FacilityResource($this->whenLoaded('facility'))
+            'facility' => new FacilityResource($this->whenLoaded('facility')),
         ];
     }
 }

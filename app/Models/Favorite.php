@@ -9,15 +9,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Favorite extends Model
 {
     use HasFactory,SoftDeletes;
+
     protected $fillable = [
         'patient_id',
         'physician_id',
     ];
 
-    public function patient(){
+    public function patient()
+    {
         return $this->hasMany(Patient::class);
     }
-    public function physician(){
-        return $this->hasMany('App\Models\Physician','id','physician_id');
+
+    public function physician()
+    {
+        return $this->hasMany('App\Models\Physician', 'id', 'physician_id');
     }
 }

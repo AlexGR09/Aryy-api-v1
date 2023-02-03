@@ -97,5 +97,4 @@ class Patient extends Model
     {
         return $this->hasMany(PillReminder::class);
     }
-
 }

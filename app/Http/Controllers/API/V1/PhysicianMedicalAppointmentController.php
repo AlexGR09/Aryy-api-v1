@@ -13,9 +13,10 @@ class PhysicianMedicalAppointmentController extends Controller
     public function index(Patient $patient, Request $request)
     {
         $attendance = $request->attendance ? $request->attendance : 'scheduled';
-        return new CheckMedicalAppointmentResource(Patient::with('medical_appointments','medical_appointments.physician','medical_appointments.physician.specialty','medical_appointments.facility')
-        ->where('id' , $patient->id)
-        ->whereHas('medical_appointments', function($q) use($attendance){
+
+        return new CheckMedicalAppointmentResource(Patient::with('medical_appointments', 'medical_appointments.physician', 'medical_appointments.physician.specialty', 'medical_appointments.facility')
+        ->where('id', $patient->id)
+        ->whereHas('medical_appointments', function ($q) use ($attendance) {
             $q->where('status', $attendance);
         })
         ->first());
@@ -23,15 +24,16 @@ class PhysicianMedicalAppointmentController extends Controller
 
     public function destroy(Patient $patient, MedicalAppointment $medicalAppointment)
     {
-        if($medicalAppointment->status === 'cancelled'){
+        if ($medicalAppointment->status === 'cancelled') {
             return conflict('La cita ya fue cancelada', []);
         }
         $medicalAppointmentUpdated = tap(MedicalAppointment::where([
-            ['id',$medicalAppointment->id],
-            ['patient_id', $patient->id]
+            ['id', $medicalAppointment->id],
+            ['patient_id', $patient->id],
         ]))
         ->update(['status' => 'cancelled'])
         ->first();
+
         return response()->json(['data' => $medicalAppointmentUpdated]);
     }
 }

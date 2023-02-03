@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\API\V1\Patient;
 
-use App\Http\Resources\API\V1\Physician\PhysicianResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class FavoriteResource extends JsonResource
@@ -18,7 +17,7 @@ class FavoriteResource extends JsonResource
         return [
             'id' => $this->id,
             'physician_id' => $this->physician_id,
-            'physician'=>FavoritePhysicianResource::collection($this->physician)
+            'physician' => FavoritePhysicianResource::collection($this->physician),
         ];
     }
 }

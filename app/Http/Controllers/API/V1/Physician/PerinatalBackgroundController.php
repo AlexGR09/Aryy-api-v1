@@ -38,16 +38,18 @@ class PerinatalBackgroundController extends Controller
                 return "Petición incorrecta";
             } */
             $medicalHistory = $this->medicalhistory($request->patient_id);
-            if (!$medicalHistory || $medicalHistory->perinatalBackground) {
+            if (! $medicalHistory || $medicalHistory->perinatalBackground) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
             $perinatalBackground = PerinatalBackground::create($request->validated());
             $medicalHistory->perinatal_background_id = $perinatalBackground->id;
             $medicalHistory->save();
             DB::commit();
+
             return (new PerinatalBackgroundResource($perinatalBackground))->additional(['message' => 'Informacion guardada.']);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 400);
         }
     }
@@ -57,9 +59,10 @@ class PerinatalBackgroundController extends Controller
         try {
             $medicalHistory = $this->medicalhistory($medical_history_id);
             $perinatalBackground = $medicalHistory->perinatalBackground;
-            if (!$perinatalBackground) {
+            if (! $perinatalBackground) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
+
             return (new PerinatalBackgroundResource($perinatalBackground))->additional(['message' => 'Informacion encontrada.']);
         } catch (\Throwable $th) {
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
@@ -75,9 +78,11 @@ class PerinatalBackgroundController extends Controller
             $perinatalBackground->update($request->validated());
             $perinatalBackground->save();
             DB::commit();
+
             return (new PerinatalBackgroundResource($perinatalBackground))->additional(['message' => 'Informacion actualizada con exito.']);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 400);
         }
     }

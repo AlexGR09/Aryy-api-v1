@@ -17,7 +17,7 @@ class PhysicianResource extends JsonResource
         return [
             'id' => $this->id,
             'professional_name' => $this->professional_name,
-            'specialty' =>  SpecialtyResource::collection($this->whenLoaded('specialty'))
+            'specialty' => SpecialtyResource::collection($this->whenLoaded('specialty')),
         ];
     }
 }

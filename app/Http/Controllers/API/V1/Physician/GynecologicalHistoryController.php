@@ -39,16 +39,18 @@ class GynecologicalHistoryController extends Controller
                 return "Petición incorrecta";
             } */
             $medicalHistory = $this->medicalhistory($request->patient_id);
-            if (!$medicalHistory || $medicalHistory->gynecological_history_id) {
+            if (! $medicalHistory || $medicalHistory->gynecological_history_id) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
             $gynecologicalHistory = ObgynBackground::create($request->validated());
             $medicalHistory->gynecological_history_id = $gynecologicalHistory->id;
             $medicalHistory->save();
             DB::commit();
+
             return (new GynecologicalHistoryResource($gynecologicalHistory))->additional(['message' => 'Informacion de antecedentes ginecologicos guardado con exito.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
         }
     }
@@ -59,12 +61,14 @@ class GynecologicalHistoryController extends Controller
             $medicalHistory = $this->medicalhistory($medical_history_id);
             $gynecologicalHistory = ObgynBackground::where('id', $medicalHistory->gynecological_history_id)
                 ->first();
-            if (!$gynecologicalHistory) {
+            if (! $gynecologicalHistory) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
+
             return (new GynecologicalHistoryResource($gynecologicalHistory))->additional(['message' => 'Informacion encontrada.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
         }
     }
@@ -78,9 +82,11 @@ class GynecologicalHistoryController extends Controller
             $gynecologicalHistory->update($request->validated());
             $gynecologicalHistory->save();
             DB::commit();
+
             return (new GynecologicalHistoryResource($gynecologicalHistory))->additional(['message' => 'Informacion actualizada.']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
         }
     }
