@@ -9,8 +9,6 @@ use App\Http\Requests\API\V1\StorePatientInfoRequest;
 use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
 use App\Models\Patient;
-use App\Models\Prescription;
-use App\Models\User;
 use App\Models\VitalSign;
 
 class BasicInformationController extends Controller
@@ -18,7 +16,7 @@ class BasicInformationController extends Controller
     public function show(Patient $patient, MedicalAppointment $medicalAppointment)
     {
         $patientInfo = clone $patient;
-        $vitalSignId = $medicalAppointment->prescription->vital_sign_id;
+        $vitalSignId = $medicalAppointment?->prescription?->vital_sign_id;
         $vitalSign = VitalSign::find($vitalSignId);
         $medicalHistory = $patient->medicalHistory;
 
@@ -36,18 +34,18 @@ class BasicInformationController extends Controller
         $medicalAppointment = MedicalAppointment::where(
             [
                 ['id', $data['medical_appointment_id']],
-                ['patient_id', $patient->id]
+                ['patient_id', $patient->id],
             ]
         )
         ->first();
-        if(empty($medicalAppointment)){
-            return not_found('Recurso no encontrado',[]);
+        if (empty($medicalAppointment)) {
+            return not_found('Recurso no encontrado', []);
         }
-        if(!empty($medicalAppointment->prescription->vital_sign_id)){
-            return conflict('Este registro ya tiene una relacion signos vitales',[]);
+        if (! empty($medicalAppointment->prescription->vital_sign_id)) {
+            return conflict('Este registro ya tiene una relacion signos vitales', []);
         }
         $vitalSign = VitalSign::create($data);
-        $medicalAppointment->prescription()->update(['vital_sign_id' =>  $vitalSign->id]);
+        $medicalAppointment->prescription()->update(['vital_sign_id' => $vitalSign->id]);
 
         return ok('', $vitalSign);
     }
@@ -67,20 +65,20 @@ class BasicInformationController extends Controller
         $data = $request->validated();
         $user = tap($patient->user)
         ->update([
-            'phone_number' => $data['phone_number']
+            'phone_number' => $data['phone_number'],
         ]);
         $patients = Patient::find($patient->id)
         ->update([
             'gender' => $data['gender'],
             'birthday' => $data['birthday'],
-            'full_name' => $data['full_name']
+            'full_name' => $data['full_name'],
         ]);
 
         $medicalHistory = MedicalHistory::updateOrCreate(
-            ['patient_id' =>  $patient->id],
-            ['height', $data['height'], 'blood_type' => $data['blood_type']]
+            ['patient_id' => $patient->id],
+            ['height' => $data['height'], 'blood_type' => $data['blood_type']]
         );
 
-        return ok('',['medical_history' => $medicalHistory, 'patients' => $patients, 'user' => $user]);
+        return ok('', ['medical_history' => $medicalHistory, 'patients' => $patients, 'user' => $user]);
     }
 }

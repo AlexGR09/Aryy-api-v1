@@ -8,7 +8,6 @@ use App\Http\Requests\API\V1\Patient\UpdateVitalSignRequest as PatientUpdateVita
 use App\Models\MedicalAppointment;
 use App\Models\Patient;
 use App\Models\Prescription;
-use App\Models\User;
 use App\Models\VitalSign;
 
 class VitalSignController extends Controller
@@ -36,10 +35,10 @@ class VitalSignController extends Controller
         $vitalSign = VitalSign::create($data);
 
         $prescription = Prescription::create(['vital_sign_id' => $vitalSign->id]);
-        
+
         MedicalAppointment::where('patient_id', $patient->id)
         ->update(['prescription_id' => $prescription->id]);
-        
+
         return ok('', $vitalSign);
     }
 
@@ -52,6 +51,7 @@ class VitalSignController extends Controller
             ->prescription()
             ->vitalSign()
             ->update($patient);
+
         return ok('', $patient
             ->medical_appointments()
             ->prescription()

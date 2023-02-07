@@ -24,6 +24,7 @@ class Patient extends Model
         'emergency_number',
         'id_card',
         'patient_folder',
+        'timezone',
     ];
     // public function health_insurance()
     // {
@@ -97,5 +98,4 @@ class Patient extends Model
     {
         return $this->hasMany(PillReminder::class);
     }
-
 }
