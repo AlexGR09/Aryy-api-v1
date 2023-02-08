@@ -60,6 +60,8 @@ class MedicalAppointment extends Model
     }
 
     protected $casts = [
-        'cost' => 'float'
+        'cost' => 'float',
+        'appointment_time' => 'datetime',
+        'appointment_time_end' => 'datetime'
     ];
 }
