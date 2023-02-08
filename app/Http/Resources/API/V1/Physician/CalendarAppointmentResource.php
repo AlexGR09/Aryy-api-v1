@@ -12,7 +12,7 @@ class CalendarAppointmentResource extends JsonResource
         return [
             'appointment_id' => $this->id,
             'appointment_date' => Carbon::parse($this->appointment_date)->translatedFormat('d-F-y'),
-            'appointment_time' => $this->appointment_time,
+            'appointment_time' => $this->appointment_time->format('H:i:s'),
             'appointment_type' => $this->appointment_type,
             'status' => $this->status,
             'patient' => [
