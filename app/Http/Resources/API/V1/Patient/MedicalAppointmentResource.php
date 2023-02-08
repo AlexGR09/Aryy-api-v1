@@ -24,13 +24,13 @@ class MedicalAppointmentResource extends JsonResource
             'appointment_time' => $this->appointment_time->format('H:i'),
             'appointment_time_end' => $this->appointment_time_end->format('H:i'),
             'appointment_type' => $this->appointment_type,
-            // 'status' => $this->status,
+            'status' => $this->status,
             // 'note' => $this->note,
             // 'relationship' => $this->relationship,
             // 'deleted_at' => $this->deleted_at,
             'cost' => $this->cost,
             'physician' => new PhysicianResource($this->whenLoaded('physician')),
-            'facility' => new FacilityResource($this->whenLoaded('facility'))
+            'facility' => new FacilityResource($this->whenLoaded('facility')),
         ];
     }
 }

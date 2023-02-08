@@ -68,11 +68,10 @@ class PhysicianAppointmentController extends Controller
                 );
                 $availableDays[$availableDayIndex]['date'] = $availableHour->format('Y-m-d');
 
-                if(is_null($availableDate)){
-                    $availableDays[$availableDayIndex]['available_hours'][] = [ 'hour' => $availableHour->format('H:i'), 'occupied' => is_null($availableDate) ? true : false];
+                if (is_null($availableDate)) {
+                    $availableDays[$availableDayIndex]['available_hours'][] = ['hour' => $availableHour->format('H:i'), 'occupied' => is_null($availableDate) ? true : false];
                 } else {
-                    $availableDays[$availableDayIndex]['occupied_hours'][] = [ 'hour' => $availableHour->format('H:i'), 'occupied' => is_null($availableDate) ? true : false];
-
+                    $availableDays[$availableDayIndex]['occupied_hours'][] = ['hour' => $availableHour->format('H:i'), 'occupied' => is_null($availableDate) ? true : false];
                 }
             }
             $availableDayIndex += 1;
@@ -81,10 +80,11 @@ class PhysicianAppointmentController extends Controller
 
         return response()->json(['data' => $availableDays]);
     }
+
     public function store(Patient $patient, Physician $physician, Request $request)
     {
         $patientExists = Patient::where('id', $patient->id)->where('user_id', auth()->id())->exists();
-        if (!$patientExists) {
+        if (! $patientExists) {
             return conflict('El paciente no pertenece al usuario', []);
         }
         $maxDays = 15;
@@ -108,7 +108,7 @@ class PhysicianAppointmentController extends Controller
                     $found = true;
                 }
             }
-            if (!$found) {
+            if (! $found) {
                 return conflict('Selecciona un dia valido', []);
             }
             $restHours = explode(' a ', $schedule[$scheduleKey]->rest_hours);
@@ -134,15 +134,11 @@ class PhysicianAppointmentController extends Controller
             $patient
                 ->has('medical_appointments')
                 ->first()
-                ?
-                $firstAppointment = false
-                :
-                $firstAppointment = true;
-
-
+                ? $firstAppointment = false
+                : $firstAppointment = true;
 
             if (is_null($availableDate)) {
-                $dateTimeEnd = Carbon::parse($date->format('Y-m-d') . ' ' . $time->format('H:i'))
+                $dateTimeEnd = Carbon::parse($date->format('Y-m-d').' '.$time->format('H:i'))
                     ->addMinutes(hourMinuteToMinutes($consultationLength))
                     ->format('H:i');
                 $cost = 0;
@@ -159,16 +155,14 @@ class PhysicianAppointmentController extends Controller
                     'appointment_type' => $firstAppointment ? 'Primera consulta' : 'Subsecuente',
                     'note' => $request->note,
                     'relationship' => $request->relationship,
-                    'cost' => $cost
+                    'cost' => $cost,
                 ]);
 
                 return ok('Se agendo correctamente', $medicalAppointment);
-            } else {
-                return conflict('Ya existe una cita en ese horario', []);
             }
+
+            return conflict('Ya existe una cita en ese horario', []);
         }
-
-
 
         return response()->json(['data' => $availableDays]);
     }
@@ -176,7 +170,7 @@ class PhysicianAppointmentController extends Controller
     public function update(Patient $patient, Physician $physician, MedicalAppointment $medicalAppointment, Request $request)
     {
         $patientExists = Patient::where('id', $patient->id)->where('user_id', auth()->id())->exists();
-        if (!$patientExists) {
+        if (! $patientExists) {
             return conflict('El paciente no pertenece al usuario', []);
         }
         $maxDays = 15;
@@ -200,7 +194,7 @@ class PhysicianAppointmentController extends Controller
                     $found = true;
                 }
             }
-            if (!$found) {
+            if (! $found) {
                 return conflict('Selecciona un dia valido', []);
             }
             $restHours = explode(' a ', $schedule[$scheduleKey]->rest_hours);
@@ -226,15 +220,11 @@ class PhysicianAppointmentController extends Controller
             $patient
                 ->has('medical_appointments')
                 ->first()
-                ?
-                $firstAppointment = false
-                :
-                $firstAppointment = true;
-
-
+                ? $firstAppointment = false
+                : $firstAppointment = true;
 
             if (is_null($availableDate)) {
-                $dateTimeEnd = Carbon::parse($date->format('Y-m-d') . ' ' . $time->format('H:i'))
+                $dateTimeEnd = Carbon::parse($date->format('Y-m-d').' '.$time->format('H:i'))
                     ->addMinutes(hourMinuteToMinutes($consultationLength))
                     ->format('H:i');
                 $updatedMedicalAppointment = tap($medicalAppointment)->update([
@@ -249,12 +239,10 @@ class PhysicianAppointmentController extends Controller
                 ]);
 
                 return ok('Se agendo correctamente', $updatedMedicalAppointment);
-            } else {
-                return conflict('Ya existe una cita en ese horario', []);
             }
+
+            return conflict('Ya existe una cita en ese horario', []);
         }
-
-
 
         return response()->json(['data' => $availableDays]);
     }
@@ -262,13 +250,14 @@ class PhysicianAppointmentController extends Controller
     public function destroy(Patient $patient, MedicalAppointment $medicalAppointment)
     {
         $patientExists = Patient::where('id', $patient->id)->where('user_id', auth()->id())->exists();
-        if (!$patientExists) {
+        if (! $patientExists) {
             return conflict('El paciente no pertenece al usuario', []);
         }
         $medicalAppointmentDeleted = $medicalAppointment->where('id', $medicalAppointment->id)->where('patient_id', auth()->user()->patient->id)->delete();
-        if (!$medicalAppointmentDeleted) {
+        if (! $medicalAppointmentDeleted) {
             return ok('Hubo un problema al borrar la cita', []);
         }
+
         return ok('', $medicalAppointment);
     }
 }

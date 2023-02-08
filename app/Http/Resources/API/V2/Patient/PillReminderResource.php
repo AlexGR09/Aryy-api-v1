@@ -14,11 +14,11 @@ class PillReminderResource extends JsonResource
             'drug' => $this->drug,
             'doce' => $this->doce,
             'frecuency' => $this->frecuency,
-            'start_treatment'=> $this->start_treatment,
-            'end_treatment'=> $this->end_treatment,
-            'first_take'=> $this->first_take,
-            'instruction'=> $this->instruction,
-            'status'=> $this->status,
+            'start_treatment' => $this->start_treatment,
+            'end_treatment' => $this->end_treatment,
+            'first_take' => $this->first_take,
+            'instruction' => $this->instruction,
+            'status' => $this->status,
         ];
     }
 }

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use App\Http\Resources\API\V1\Patient\FavoriteResource;
 use App\Http\Resources\API\V1\Patient\InfoPhysicianResource;
 use App\Models\Favorite;
 use App\Models\Patient;
 use App\Models\Physician;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FavoriteController extends Controller
 {
@@ -20,7 +20,7 @@ class FavoriteController extends Controller
             'show',
             'destroy',
             'physicianInfo',
-            'favoritephysician'
+            'favoritephysician',
         ]);
     }
 
@@ -57,13 +57,14 @@ class FavoriteController extends Controller
     public function show($patient_id)
     {
         $patient = $this->patient($patient_id);
-        if (!$patient) {
+        if (! $patient) {
             return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
         }
         $favorite = Favorite::where('patient_id', $patient)->get();
         if (count($favorite) > 0) {
-            return (FavoriteResource::collection($favorite));
+            return FavoriteResource::collection($favorite);
         }
+
         return response()->json(['message' => 'Aun no tiene favoritos']);
     }
 
@@ -84,14 +85,16 @@ class FavoriteController extends Controller
     public function physicianInfo($patient_id, $physician_id)
     {
         $patient = $this->patient($patient_id);
-        if (!$patient) {
+        if (! $patient) {
             return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
         }
         $favoritePhysician = Favorite::where([['physician_id', $physician_id], ['patient_id', $patient]])->first();
         if ($favoritePhysician) {
             $physician = Physician::where('id', $favoritePhysician->physician_id)->firstOrFail();
-            return (new InfoPhysicianResource($physician));
+
+            return new InfoPhysicianResource($physician);
         }
+
         return response()->json(['message' => 'No se encontro la informacion del medico']);
     }
 
@@ -99,9 +102,10 @@ class FavoriteController extends Controller
     {
         //Se verifica que el perfil de paciente este relacionada con el perfil del usuario logeado
         $patient = Patient::where([['id', $patient_id], ['user_id', auth()->id()]])->first();
-        if (!$patient) {
+        if (! $patient) {
             return $patient;
         }
+
         return $patient->id;
     }
 
@@ -109,21 +113,24 @@ class FavoriteController extends Controller
     {
         try {
             $patient = $this->patient($patient_id);
-        if(!$patient){
-            return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
-        }
-        $favoritePhysician = Favorite::where([['physician_id', $physician_id], ['patient_id', $patient]])->first();
-        if($favoritePhysician){
-            $favoritePhysician->delete();
-            return response()->json(["Medico eliminado de favoritos"]);
-        }
-        Favorite::create([
-            'patient_id' => $patient,
-            'physician_id' => $physician_id,
-        ]);
-        return response()->json(["Medico agregado a favoritos"]);
+            if (! $patient) {
+                return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
+            }
+            $favoritePhysician = Favorite::where([['physician_id', $physician_id], ['patient_id', $patient]])->first();
+            if ($favoritePhysician) {
+                $favoritePhysician->delete();
+
+                return response()->json(['Medico eliminado de favoritos']);
+            }
+            Favorite::create([
+                'patient_id' => $patient,
+                'physician_id' => $physician_id,
+            ]);
+
+            return response()->json(['Medico agregado a favoritos']);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json(['error' => $th->getMessage()], 503);
         }
     }

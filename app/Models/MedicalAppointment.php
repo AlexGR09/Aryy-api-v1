@@ -21,9 +21,15 @@ class MedicalAppointment extends Model
         'physician_id',
         'facility_id',
         'prescription_id',
-        'cost'
+        'cost',
     ];
-    
+
+    protected $casts = [
+        'cost' => 'float',
+        'appointment_time' => 'datetime',
+        'appointment_time_end' => 'datetime'
+    ];
+
     public function scopeGreaterThanDate($query, $date, $time)
     {
         return $query->where('appointment_date', '>=', $date)
@@ -58,10 +64,4 @@ class MedicalAppointment extends Model
     {
         return $this->belongsTo(Prescription::class);
     }
-
-    protected $casts = [
-        'cost' => 'float',
-        'appointment_time' => 'datetime',
-        'appointment_time_end' => 'datetime'
-    ];
 }

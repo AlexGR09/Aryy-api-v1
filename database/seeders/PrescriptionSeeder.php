@@ -10,13 +10,13 @@ class PrescriptionSeeder extends Seeder
     public function run()
     {
         $treatment = [
-            "brand" => "loperemx",
-			"drug_name" => "loperamida",
-			"presentation" => "tabletas",
-			"instruction" => "Tomar después de los alimentos",
-			"amount" => "1",
-			"frequency" => "cada 8hrs",
-			"duration_days" => random_int(3,14)
+            'brand' => 'loperemx',
+            'drug_name' => 'loperamida',
+            'presentation' => 'tabletas',
+            'instruction' => 'Tomar después de los alimentos',
+            'amount' => '1',
+            'frequency' => 'cada 8hrs',
+            'duration_days' => random_int(3, 14),
         ];
 
         DB::table('prescriptions')->insert([

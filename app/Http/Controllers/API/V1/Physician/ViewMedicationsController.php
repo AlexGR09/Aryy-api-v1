@@ -26,10 +26,11 @@ class ViewMedicationsController extends Controller
     {
         try {
             $medicalHistory = $this->medicalhistory($id);
-            if (!$medicalHistory) {
+            if (! $medicalHistory) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
             $drug_active = $medicalHistory->nonpathologicalbackground;
+
             return (new ViewMedicationsResource($drug_active))->additional(['message' => 'Informacion de Medicacion.']);
         } catch (\Throwable $th) {
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
@@ -40,10 +41,11 @@ class ViewMedicationsController extends Controller
     {
         try {
             $medicalHistory = $this->medicalhistory($id);
-            if (!$medicalHistory) {
+            if (! $medicalHistory) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
             $previus_medication = $medicalHistory->nonpathologicalbackground;
+
             return (new PreviousMedicationResource($previus_medication))->additional(['message' => 'Informacion de Medicacion.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);

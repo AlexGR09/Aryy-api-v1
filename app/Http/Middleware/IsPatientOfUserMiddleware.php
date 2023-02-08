@@ -18,25 +18,26 @@ class IsPatientOfUserMiddleware
     public function handle(Request $request, Closure $next)
     {
         $patientId = null;
-        if($request->route('patient')){
+        if ($request->route('patient')) {
             $patientId = $request->route('patient')->id;
         }
-        if($request->route('patient_id')){
+        if ($request->route('patient_id')) {
             $patientId = $request->route('patient_id');
         }
-        
-        if(empty($patientId)){
-            return conflict('Debes pasar un id de paciente',[]);
+
+        if (empty($patientId)) {
+            return conflict('Debes pasar un id de paciente', []);
         }
         $patient = Patient::where(
             [
-                ['id', $patientId], 
-                ['user_id', auth()->id()
-            ]
-        ])->first();
+                ['id', $patientId],
+                ['user_id', auth()->id(),
+                ],
+            ])->first();
         if (empty($patient)) {
-            return conflict('No puedes acceder a este paciente',[]);
+            return conflict('No puedes acceder a este paciente', []);
         }
+
         return $next($request);
     }
 }
