@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreFacilityRequest;
+use App\Http\Requests\API\V1\Physician\StoreFacilityRequest as PhysicianStoreFacilityRequest;
 use App\Http\Resources\API\V1\Physician\FacilityResource;
 use App\Models\Facility;
 
@@ -20,8 +20,8 @@ class FacilityController extends Controller
     public function index()
     {
         return FacilityResource::collection(
-            Facility::whereHas('users', function ($query) {
-                $query->where('user_id', auth()->id());
+            Facility::whereHas('physicians', function ($query) {
+                $query->where('physicians.id', $this->physicianId);
             })->get()
         );
     }
