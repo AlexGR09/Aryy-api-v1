@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1\Patient;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\API\V1\Patient\Favorite2Resource;
 use App\Http\Resources\API\V1\Patient\FavoriteResource;
 use App\Http\Resources\API\V1\Patient\InfoPhysicianResource;
 use App\Models\Favorite;
@@ -57,7 +58,7 @@ class FavoriteController extends Controller
     public function show($patient_id)
     {
         $patient = $this->patient($patient_id);
-        if (! $patient) {
+        if (!$patient) {
             return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
         }
         $favorite = Favorite::where('patient_id', $patient)->get();
@@ -85,7 +86,7 @@ class FavoriteController extends Controller
     public function physicianInfo($patient_id, $physician_id)
     {
         $patient = $this->patient($patient_id);
-        if (! $patient) {
+        if (!$patient) {
             return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
         }
         $favoritePhysician = Favorite::where([['physician_id', $physician_id], ['patient_id', $patient]])->first();
@@ -102,7 +103,7 @@ class FavoriteController extends Controller
     {
         //Se verifica que el perfil de paciente este relacionada con el perfil del usuario logeado
         $patient = Patient::where([['id', $patient_id], ['user_id', auth()->id()]])->first();
-        if (! $patient) {
+        if (!$patient) {
             return $patient;
         }
 
@@ -113,21 +114,21 @@ class FavoriteController extends Controller
     {
         try {
             $patient = $this->patient($patient_id);
-            if (! $patient) {
+            if (!$patient) {
                 return response()->json(['message' => '¡¡No puedes acceder a este perfil!!']);
             }
             $favoritePhysician = Favorite::where([['physician_id', $physician_id], ['patient_id', $patient]])->first();
             if ($favoritePhysician) {
                 $favoritePhysician->delete();
-
-                return response()->json(['Medico eliminado de favoritos']);
+                return response()->json(['is_favorite' => false]);
             }
-            Favorite::create([
+            $favorite = Favorite::create([
                 'patient_id' => $patient,
                 'physician_id' => $physician_id,
+                'is_favorite' => 1,
             ]);
 
-            return response()->json(['Medico agregado a favoritos']);
+            return (new Favorite2Resource($favorite));
         } catch (\Throwable $th) {
             DB::rollBack();
 

@@ -13,6 +13,7 @@ class Favorite extends Model
     protected $fillable = [
         'patient_id',
         'physician_id',
+        'is_favorite'
     ];
 
     public function patient()

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('patient_id')->constrained('patients');
             $table->foreignId('physician_id')->constrained('physicians');
+            $table->boolean('is_favorite')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
