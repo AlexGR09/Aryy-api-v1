@@ -26,6 +26,8 @@ class MedicalAppointment extends Model
 
     protected $casts = [
         'cost' => 'float',
+        'appointment_time' => 'datetime',
+        'appointment_time_end' => 'datetime'
     ];
 
     public function scopeGreaterThanDate($query, $date, $time)
