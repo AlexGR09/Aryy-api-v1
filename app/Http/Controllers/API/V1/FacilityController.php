@@ -12,7 +12,7 @@ class FacilityController extends Controller
     private $physicianId;
     public function __construct()
     {
-        $this->middleware(['role:Physician,Administrator'])
+        $this->middleware(['role:Physician|Administrator'])
         ->only(
             [
                 'store',
