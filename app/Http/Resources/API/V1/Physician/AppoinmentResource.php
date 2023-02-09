@@ -21,6 +21,6 @@ class AppoinmentResource extends JsonResource
             'appointment_date' => $this->appointment_date,
             'address' => $this->address,
             'status'=> $this->status,
-        ]
+        ];
     }
 }
