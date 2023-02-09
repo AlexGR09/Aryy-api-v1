@@ -24,7 +24,7 @@ class MedicalAppointmentResource extends JsonResource
             'appointment_time' => $this->appointment_time,
             'appointment_time_end' => $this->appointment_time_end,
             'appointment_type' => $this->appointment_type,
-            // 'status' => $this->status,
+            'status' => $this->status,
             // 'note' => $this->note,
             // 'relationship' => $this->relationship,
             // 'deleted_at' => $this->deleted_at,

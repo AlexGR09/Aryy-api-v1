@@ -23,6 +23,7 @@ return new class extends Migration
             $table->json('id_card')->nullable();
             $table->string('patient_folder')->nullable();
             $table->string('patient_profile_photo')->nullable();
+            $table->string('timezone')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -394,7 +394,7 @@ Route::prefix('v1')->group(function () {
 
         Route::post('patients/{patient}/appointments', [PatientAppointmentController::class, 'store']);
     });
-    Route::post('basic-information/patient/', [BasicInformationController::class, 'storePatientInfo']);
+    Route::put('basic-information/patient/{patient}', [BasicInformationController::class, 'storePatientInfo']);
     Route::get('basic-information/patient/{patient}/medical-apointment/{medicalAppointment}', [BasicInformationController::class, 'show']);
 
     Route::get('physician/{physician}/details', [PhysicianDetailController::class, 'show']);
