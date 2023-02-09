@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FullFacilityRequest;
-use App\Http\Resources\API\V1\Physician\FacilityResource;
+use App\Http\Requests\API\V1\Physician\FullFacilityRequest;
+use App\Http\Resources\API\V1\Patient\FacilityResource;
+use App\Http\Resources\API\V1\Physician\FacilityResource as PhysicianFacilityResource;
 use App\Models\Facility;
 
 class FullFacilityController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('facility_user');
+        // $this->middleware('facility_user');
+        $this->middleware(['role:Physician|Administrator','facility_physician']);
     }
 
     public function store(Facility $facility, FullFacilityRequest $request)
@@ -25,6 +27,6 @@ class FullFacilityController extends Controller
             $facilityUpdatedOrCreated->users()->attach(['user_id' => auth()->id()]);
         }
 
-        return new FacilityResource($facilityUpdatedOrCreated);
+        return new PhysicianFacilityResource($facilityUpdatedOrCreated);
     }
 }
