@@ -16,7 +16,18 @@ class FullFacilityController extends Controller
         $this->middleware(['role:Physician|Administrator','facility_physician']);
     }
 
-    public function store(Facility $facility, FullFacilityRequest $request)
+    public function store(FullFacilityRequest $request)
+    {
+        $facility = Facility::create($request->validated());
+
+        if (! optional($facility)->id) {
+            $facility->physicians()->attach(['physician' => auth()->user()->physician->id]);
+        }
+
+        return new PhysicianFacilityResource($facility);
+    }
+
+    public function update(Facility $facility, FullFacilityRequest $request)
     {
         $facilityUpdatedOrCreated = Facility::updateOrCreate(
             ['id' => optional($facility)->id],

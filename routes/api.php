@@ -349,7 +349,8 @@ Route::prefix('v1')->group(function () {
         Route::get('facilities/{facility}', [FacilityController::class, 'show']);
         Route::post('facilities', [FacilityController::class, 'store']);
         Route::put('facilities/schedule/{facility}', [FacilityScheduleController::class, 'schedule']);
-        Route::post('facilities/full/{facility?}', [FullFacilityController::class, 'store']);
+        Route::post('facilities/full', [FullFacilityController::class, 'store']);
+        Route::post('facilities/full/{facility?}', [FullFacilityController::class, 'update']);
         Route::delete('facilities/{facility}', [FacilityController::class, 'delete']);
 
         Route::group(['middleware' => ['role:Physician|Patient']], function () {
