@@ -17,7 +17,7 @@ class Favorite2Resource extends JsonResource
         return [
             'id' => $this->id,
             'physician_id' => $this->physician_id,
-            'physician' => (new FavoritePhysicianResource($this->physician)),
+            'patient_id' => $this->patient_id,
             'is_favorite'=>boolval($this->is_favorite)
         ];
     }

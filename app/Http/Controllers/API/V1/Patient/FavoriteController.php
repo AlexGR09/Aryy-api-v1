@@ -120,6 +120,7 @@ class FavoriteController extends Controller
             $favoritePhysician = Favorite::where([['physician_id', $physician_id], ['patient_id', $patient]])->first();
             if ($favoritePhysician) {
                 $favoritePhysician->delete();
+                return response()->json(['is_favorite' => false]);
             }
             $favorite = Favorite::create([
                 'patient_id' => $patient,
