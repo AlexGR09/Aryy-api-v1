@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\API\V1\Physician;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,9 +24,10 @@ class FacilityScheduleRequest extends FormRequest
         return [
             // 'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             // 'extension' => 'nullable',
-            'schedule.*.day' => 'required',
-            'schedule.*.attention_time' => 'required',
-            'schedule.*.rest_hours' => 'required',
+            'schedule.week.*.day' => 'required',
+            'schedule.week.*.attention_time' => 'required',
+            'schedule.week.*.rest_hours' => 'required',
+            'schedule.free_days' => 'required',
             'type_schedule' => 'required',
             'consultation_length' => 'required',
             // 'accessibility_and_others.accessibility.parking_with_access_to_the_establishment' => 'required',
