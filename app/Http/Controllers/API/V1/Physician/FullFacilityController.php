@@ -19,11 +19,7 @@ class FullFacilityController extends Controller
     public function store(FullFacilityRequest $request)
     {
         $facility = Facility::create($request->validated());
-
-        if (! optional($facility)->id) {
-            $facility->physicians()->attach(['physician' => auth()->user()->physician->id]);
-        }
-
+        $facility->physicians()->attach(['physician' => auth()->user()->physician->id]);
         return new PhysicianFacilityResource($facility);
     }
 
