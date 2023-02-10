@@ -26,7 +26,7 @@ class FacilityResource extends JsonResource
             'accessibility_and_others' => $this->accessibility_and_others,
             'city_id' => $this->city_id,
             'coordinates' => $this->coordinates,
-
+            'calling_attetion_schedule' => $this->calling_attetion_schedule,
             // 'attetion_time' => $this->attetion_time,
             // 'state' => $this->state,
             // 'city' => $this->city,
