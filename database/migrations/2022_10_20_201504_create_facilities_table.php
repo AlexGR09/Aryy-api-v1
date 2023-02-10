@@ -21,6 +21,7 @@ return new class extends Migration
             $table->json('accessibility_and_others')->nullable();
             $table->json('coordinates')->nullable();
             $table->foreignId('city_id')->constrained()->nullable();
+            $table->json('calling_attetion_schedule')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -23,6 +23,7 @@ class Facility extends Model
         'accessibility_and_others',
         'city_id',
         'coordinates',
+        'calling_attetion_schedule',
     ];
 
     /**
@@ -34,6 +35,7 @@ class Facility extends Model
         'location' => 'object',
         'schedule' => 'object',
         'accessibility_and_others' => 'object',
+        'calling_attetion_schedule' => 'object'
     ];
 
     protected $hidden = ['pivot'];
