@@ -32,7 +32,7 @@ class Prescription extends Model
 
     public function vitalSigns()
     {
-        return $this->belongsTo(VitalSing::class);
+        return $this->belongsTo(VitalSign::class);
     }
 
     public function medicalappointment()

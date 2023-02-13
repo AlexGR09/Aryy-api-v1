@@ -38,8 +38,10 @@ class FullFacilityRequest extends FormRequest
             'calling_attetion_schedule.*.attention_time2' => 'nullable',
             // 'type_schedule' => 'required',
             // 'consultation_length' => 'required',
-            'accessibility_and_others.accessibility.parking_with_access_to_the_establishment' => 'required',
-            'accessibility_and_others.accessibility.wheelchair_lift_or_ramp' => 'required',
+            // 'accessibility_and_others.accessibility.parking_with_access_to_the_establishment' => 'required',
+            'accessibility_and_others.accessibility.wheelchair_ramp' => 'required',
+            'accessibility_and_others.accessibility.wheelchair_lift' => 'required',
+
             'accessibility_and_others.accessibility.toilets_with_wheelchair_access' => 'required',
             'accessibility_and_others.accessibility.rest_area_with_wheelchair_access' => 'required',
             'accessibility_and_others.accessibility.staff_trained_in_sign_language' => 'required',

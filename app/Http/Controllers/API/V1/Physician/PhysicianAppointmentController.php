@@ -18,7 +18,6 @@ class PhysicianAppointmentController extends Controller
         $currentDay = $request->since_day ? Carbon::parse($request->since_day) : \Carbon\Carbon::now();
         $availableDays = [];
         $availableDayIndex = 0;
-        $currentDay = (new AppointmentService)->nextValidDayTime($currentDay);
 
         $currentDayNumber = 0;
         $consultationLength = $physician->facilities[0]->consultation_length;
@@ -38,6 +37,8 @@ class PhysicianAppointmentController extends Controller
                 }
                 $currentDay->addDay();
             }
+            $currentDay = (new AppointmentService)->nextValidDayTime($currentDay, $schedule[$scheduleKey]->attention_time, $schedule[$scheduleKey]->rest_hours);
+
             $restHours = explode(' a ', $schedule[$scheduleKey]->rest_hours);
             $restStartHour = Carbon::parse($restHours[0]);
             $restEndtHour = Carbon::parse($restHours[1]);
@@ -253,7 +254,7 @@ class PhysicianAppointmentController extends Controller
         if (! $patientExists) {
             return conflict('El paciente no pertenece al usuario', []);
         }
-        $medicalAppointmentDeleted = $medicalAppointment->where('id', $medicalAppointment->id)->where('patient_id', auth()->user()->patient->id)->delete();
+        $medicalAppointmentDeleted = $medicalAppointment->where('id', $medicalAppointment->id)->where('patient_id', $patient->id)->delete();
         if (! $medicalAppointmentDeleted) {
             return ok('Hubo un problema al borrar la cita', []);
         }

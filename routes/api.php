@@ -7,6 +7,7 @@ use App\Http\Controllers\API\V1\Patient\AllergyController;
 use App\Http\Controllers\API\V1\Patient\AppointmentController as PatientAppointmentController;
 use App\Http\Controllers\API\V1\Patient\BasicInformationController;
 use App\Http\Controllers\API\V1\Patient\PaymentMethodController;
+use App\Http\Controllers\API\V1\Patient\PrescriptionController as PatientPrescriptionController;
 use App\Http\Controllers\API\V1\Patient\VitalSignController;
 use App\Http\Controllers\API\V1\PermissionController;
 use App\Http\Controllers\API\V1\Physician\AppointmentsDetailController;
@@ -394,6 +395,9 @@ Route::prefix('v1')->group(function () {
         });
 
         Route::post('patients/{patient}/appointments', [PatientAppointmentController::class, 'store']);
+
+        Route::get('patients/medical-appointments/{medicalAppointment}/prescription', [PatientPrescriptionController::class, 'index']);
+
     });
     Route::put('basic-information/patient/{patient}', [BasicInformationController::class, 'storePatientInfo']);
     Route::get('basic-information/patient/{patient}/medical-apointment/{medicalAppointment}', [BasicInformationController::class, 'show']);

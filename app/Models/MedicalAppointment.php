@@ -64,4 +64,8 @@ class MedicalAppointment extends Model
     {
         return $this->belongsTo(Prescription::class);
     }
+
+    public function medicalHistory(){
+        return $this->belongsTo(MedicalHistory::class, 'patient_id', 'patient_id');
+    }
 }
