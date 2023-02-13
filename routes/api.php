@@ -359,7 +359,7 @@ Route::prefix('v1')->group(function () {
             Route::post('/calendar/patient/{patient}/physician/{physician}/medical-appointment', [PhysicianAppointmentController::class, 'store']);
             Route::put('/calendar/patient/{patient}/physician/{physician}/medical-appointment/{medicalAppointment}', [PhysicianAppointmentController::class, 'update']);
         });
-        Route::group(['middleware' => ['role:Physician|Patient', 'is_patient_of_user']], function () {
+        Route::group(['middleware' => ['role:Physician|Patient']], function () {
             Route::get('/patient/{patient}/medical-appointment', [PhysicianMedicalAppointmentController::class, 'index']);
             Route::delete('/patient/{patient}/medical-appointment/{medicalAppointment}', [PhysicianMedicalAppointmentController::class, 'destroy']);
         });

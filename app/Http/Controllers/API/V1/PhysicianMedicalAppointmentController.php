@@ -16,8 +16,14 @@ class PhysicianMedicalAppointmentController extends Controller
         $patientMedicalAppointment = Patient::with('medical_appointments.physician','medical_appointments.physician.specialty','medical_appointments.facility')
         ->withWhereHas('medical_appointments', function ($query) use($attendance){
             $query->whereIn('status', $attendance);
+            $query->when(auth()->user()->hasRole('Physician'),function($q){
+                $q->where('medical_appointments.physician_id' , auth()->user()->physician->id);
+            });
         })
         ->where('patients.id' , $patient->id)
+        ->when(auth()->user()->hasRole('Patient'),function($q){
+            return $q->where('patients.user_id' , auth()->id());
+        })
         ->first();
         if(empty($patientMedicalAppointment)){
             return conflict('El paciente no tiene citas', []);

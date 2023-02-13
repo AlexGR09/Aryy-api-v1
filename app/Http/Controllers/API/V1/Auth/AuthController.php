@@ -28,7 +28,8 @@ class AuthController extends Controller
 
             return (new UserResource($user))->additional([
                 'message' => 'Bienvenido a Aryy.',
-                'access_token' => $token, ]);
+                'access_token' => $token, 
+            ]);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
