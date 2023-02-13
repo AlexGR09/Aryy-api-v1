@@ -236,7 +236,8 @@ class UserSeeder extends Seeder
         // ASIGNANDO ROLES A USUARIOS
         $user1 = User::where('id', 1)->first();
         $user1->assignRole(['Administrator']);
-
+        $medico = User::where('id', 2)->first();
+        $medico->assignRole(['User', 'Patient']);
         //medicos
         $medico = User::where('id', 3)->first();
         $medico->assignRole(['User', 'Physician']);
