@@ -172,4 +172,8 @@ class Physician extends Model
         ->whereNotIn('appointment_date', $freeDays)
         ->first();
     }
+
+    public function subscription(){
+        return $this->belongsToMany(Plan::class, 'subscriptions', 'physician_id', 'plan_id');
+    }
 }

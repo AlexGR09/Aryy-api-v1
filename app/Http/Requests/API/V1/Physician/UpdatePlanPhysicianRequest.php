@@ -4,7 +4,7 @@ namespace App\Http\Requests\API\V1\Physician;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePlanUserRequest extends FormRequest
+class UpdatePlanPhysicianRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,6 @@ class StorePlanUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'physician_id' => 'required|exists:\App\Models\Physician,id',
             'plan_id' => 'required|exists:\App\Models\Plan,id',
         ];
     }
