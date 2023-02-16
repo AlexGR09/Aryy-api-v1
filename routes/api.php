@@ -374,10 +374,10 @@ Route::prefix('v1')->group(function () {
         Route::get('plans', [PlanController::class, 'index']);
         Route::apiresource('payment-methods', PaymentMethodController::class);
         Route::group(['middleware' => ['role:Physician']], function () {
-            Route::get('users/subscriptions', [SubscriptionUserController::class, 'index']);
-            Route::post('users/subscriptions', [SubscriptionUserController::class, 'store'])->middleware('user_subscription');
-            Route::delete('users/subscriptions', [SubscriptionUserController::class, 'destroy']);
-            Route::put('users/subscriptions', [SubscriptionUserController::class, 'update']);
+            Route::get('/physician/{physician}/subscriptions', [SubscriptionUserController::class, 'index']);
+            Route::post('/subscriptions', [SubscriptionUserController::class, 'store'])->middleware('user_subscription');
+            Route::delete('/physician/{physician}/subscriptions', [SubscriptionUserController::class, 'destroy']);
+            Route::put('/physician/{physician}/subscriptions', [SubscriptionUserController::class, 'update']);
         });
 
         // CALENDARIO DE CITAS

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\Physician\StorePlanUserRequest;
+use App\Http\Requests\API\V1\Physician\StorePlanPhysicianRequest;
+use App\Http\Requests\API\V1\Physician\StorePlanUserRequest;
+use App\Http\Requests\API\V1\Physician\UpdatePlanPhysicianRequest;
+use App\Models\Physician;
 use App\Models\User;
 
 class SubscriptionUserController extends Controller
@@ -13,11 +16,11 @@ class SubscriptionUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Physician $physician)
     {
-        return ok('', User::withWhereHas('userSubscription', function ($q) {
-            return $q->where('user_id', auth()->id());
-        })->first()?->userSubscription);
+        return ok('', Physician::withWhereHas('subscription', function ($q) use($physician) {
+            return $q->where('physician_id', $physician->id);
+        })->first()->subscription);
     }
 
     /**
@@ -26,16 +29,12 @@ class SubscriptionUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePlanUserRequest $request)
+    public function store(StorePlanPhysicianRequest $request)
     {
-        auth()
-        ->user()
-        ->userSubscription()
-        ->attach(
-            $request->validated()
-        );
-
-        return User::with('userSubscription')->find(auth()->id());
+        $data = $request->validated();
+        $physician = Physician::find($data["physician_id"]);
+        $physician->subscription()->attach($data["plan_id"]);
+        return ok('', $physician->subscription);
     }
 
     /**
@@ -56,16 +55,11 @@ class SubscriptionUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StorePlanUserRequest $request)
+    public function update(Physician $physician, UpdatePlanPhysicianRequest $request)
     {
-        auth()
-        ->user()
-        ->userSubscription()
-        ->sync(
-            $request->validated()
-        );
-
-        return User::with('userSubscription')->find(auth()->id());
+        $data = $request->validated();
+        $physician->subscription()->sync($data["plan_id"]);
+        return ok('', $physician->subscription);
     }
 
     /**
@@ -74,8 +68,9 @@ class SubscriptionUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(Physician $physician)
     {
-        return User::find(auth()->id())->userSubscription()->detach();
+        $physician->subscription()->detach();
+        return ok('',);
     }
 }
