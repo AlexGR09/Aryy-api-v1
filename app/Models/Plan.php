@@ -16,6 +16,6 @@ class Plan extends Model
 
     public function userPlan()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Physician::class);
     }
 }

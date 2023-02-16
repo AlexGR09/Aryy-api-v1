@@ -67,6 +67,6 @@ class User extends Authenticatable
 
     public function userSubscription()
     {
-        return $this->belongsToMany(Plan::class, 'subscriptions', 'user_id', 'plan_id');
+        return $this->belongsToMany(Plan::class, 'subscriptions', 'physician_id', 'plan_id');
     }
 }
