@@ -49,7 +49,7 @@ class CalendarAppointmentController extends Controller
         switch ($type) {
             case 'all':
                 $todayAppointments = MedicalAppointment::where('physician_id', $this->physician->id)->get();
-
+                /* return $todayAppointments->appointment_time_end->format('H:i:s'); // */
                 return new CalendarAppointmentCollection($todayAppointments); //RETORNA LA COLECCION
                 break;
             case 'today':

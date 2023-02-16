@@ -19,6 +19,7 @@ class Appointment extends Model
     ];
 
     protected $casts = [
-        'appointment_date' => 'datetime',
+        'appointment_date' => 'date',
+        'appointment_time_end' => 'time',
     ];
 }
