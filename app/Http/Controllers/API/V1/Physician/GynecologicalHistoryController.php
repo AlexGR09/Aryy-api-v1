@@ -62,7 +62,7 @@ class GynecologicalHistoryController extends Controller
             $gynecologicalHistory = ObgynBackground::where('id', $medicalHistory->gynecological_history_id)
                 ->first();
             if (! $gynecologicalHistory) {
-                return response()->json(['message' => 'No se encontraron resultados'], 404);
+                return response()->json(['message' => 'No se encontro el historial ginecologico'], 404);
             }
 
             return (new GynecologicalHistoryResource($gynecologicalHistory))->additional(['message' => 'Informacion encontrada.']);

@@ -39,7 +39,7 @@ class PerinatalBackgroundController extends Controller
             } */
             $medicalHistory = $this->medicalhistory($request->patient_id);
             if (! $medicalHistory || $medicalHistory->perinatalBackground) {
-                return response()->json(['message' => 'No se encontraron resultados'], 404);
+                return response()->json(['message' => 'No se encontro el historial de antecendentes perinatales'], 404);
             }
             $perinatalBackground = PerinatalBackground::create($request->validated());
             $medicalHistory->perinatal_background_id = $perinatalBackground->id;
