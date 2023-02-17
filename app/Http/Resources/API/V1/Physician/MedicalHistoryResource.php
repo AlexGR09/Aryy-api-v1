@@ -20,6 +20,7 @@ class MedicalHistoryResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'medical_history' => $this->id,
             'patient_id' => $this->patient_id,
             'patient' => new PatientResource($this->patient),
             'height' => $this->height,
