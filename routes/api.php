@@ -171,7 +171,7 @@ Route::prefix('v1')->group(function () {
                 //HISTORIAL GINECOLOGICO
                 Route::controller($this->physician.GynecologicalHistoryController::class)->group(function () {
                     Route::post('/gynecological-history', 'store');
-                    Route::get('/gynecological-history/{medical_history_id}', 'show');
+                    Route::get('/{medical_history_id}/gynecological-history', 'show');
                     Route::put('gynecological-history/{medical_history_id}', 'update');
                 });
                 //ANTECEDENTES PERINATALES
