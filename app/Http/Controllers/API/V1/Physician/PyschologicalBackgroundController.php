@@ -39,7 +39,7 @@ class PyschologicalBackgroundController extends Controller
             } */
             $medicalHistory = $this->medicalhistory($request->patient_id);
             if (! $medicalHistory || $medicalHistory->pyschologicalBackground) {
-                return response()->json(['message' => 'No se encontraron resultados'], 404);
+                return response()->json(['message' => 'No se encontro historial psicologico de este paciente'], 404);
             }
             $pyschological = $medicalHistory->pyschologicalbackground()->create($request->validated());
             $medicalHistory->pyschological_background_id = $pyschological->id;

@@ -11,6 +11,7 @@ class VaccinationHistory extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'patient_id',
         'vaccine',
         'dose',
         'lot_number',

@@ -166,31 +166,31 @@ Route::prefix('v1')->group(function () {
 
             Route::prefix('medical-history')->group(function () {
                 Route::controller($this->physician.MedicalHistoryController::class)->group(function () {
-                    Route::get('patient/{patient_id}', 'index');
+                    Route::get('{patient_id}/patient/', 'index');
                 });
                 //HISTORIAL GINECOLOGICO
                 Route::controller($this->physician.GynecologicalHistoryController::class)->group(function () {
                     Route::post('/gynecological-history', 'store');
-                    Route::get('/gynecological-history/{medical_history_id}', 'show');
-                    Route::put('/gynecological-history/{medical_history_id}', 'update');
+                    Route::get('{medical_history_id}/gynecological-history/', 'show');
+                    Route::put('{medical_history_id}/gynecological-history/', 'update');
                 });
                 //ANTECEDENTES PERINATALES
                 Route::controller($this->physician.PerinatalBackgroundController::class)->group(function () {
                     Route::post('/perinatal-background', 'store');
-                    Route::get('/perinatal-background/{medical_history_id}', 'show');
-                    Route::put('/perinatal-background/{medical_history_id}', 'update');
+                    Route::get('{medical_history_id}/perinatal-background/', 'show');
+                    Route::put('{medical_history_id}/perinatal-background/', 'update');
                 });
                 //HISTORIAL PSIQUIATRICO
                 Route::controller($this->physician.PyschologicalBackgroundController::class)->group(function () {
                     Route::post('/psychological-background', 'store');
-                    Route::get('/psychological-background/{medical_history_id}', 'show');
-                    Route::put('/psychological-background/{medical_history_id}', 'update');
+                    Route::get('{medical_history_id}/psychological-background/', 'show');
+                    Route::put('{medical_history_id}/psychological-background/', 'update');
                 });
 
                 // HISTORIAL DE VACUNACION
                 Route::controller($this->physician.VaccinationHistoryController::class)->group(function () {
                     Route::post('vaccination-history', 'store');
-                    Route::get('vaccination-history/{medical_history_id}', 'show');
+                    Route::get('{medical_history_id}/vaccination-history/', 'show');
                 });
 
                 // ANTECEDENTES POSTNATALES
