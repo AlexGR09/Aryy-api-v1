@@ -15,6 +15,7 @@ class GynecologicalHistoryResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'medical_history_id' => $this->id,
             'first_menstruation' => $this->first_menstruation,
             'last_menstruation' => $this->last_menstruation,
             'bleeding' => $this->bleeding,
