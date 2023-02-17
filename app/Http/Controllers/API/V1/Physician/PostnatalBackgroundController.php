@@ -22,13 +22,13 @@ class PostnatalBackgroundController extends Controller
         $this->physician = Physician::where('user_id', auth()->id())->first();
     }
 
-    public function show(Request $request, $medical_history_id)
+    public function show(Request $request, $patient_id)
     {
         try {
-            $medical_history = $this->medicalHistory($medical_history_id);
+            $medical_history = $this->medicalHistory($patient_id);
 
-            if (! $medical_history) {
-                return response()->json(['message' => 'No se encontraron resultados'], 404);
+            if (! $medical_history || ! $medical_history->postnatal_background) {
+                return response()->json(['message' => 'No existe historial médico o registro postnatal'], 404);
             }
 
             return (new PosnatalBackgroundResource($medical_history->postnatal_background))
@@ -38,13 +38,13 @@ class PostnatalBackgroundController extends Controller
         }
     }
 
-    public function store(PosnatalBackgroundRequest $request, $medical_history_id)
+    public function store(PosnatalBackgroundRequest $request, $patient_id)
     {
         try {
-            $medical_history = $this->medicalHistory($medical_history_id);
+            $medical_history = $this->medicalHistory($patient_id);
 
             if (! $medical_history || $medical_history->postnatal_background) {
-                return response()->json(['message' => 'No se encontraron resultados'], 404);
+                return response()->json(['message' => 'Historial médico no existe o registro postnatal ya existe'], 404);
             }
 
             $postnatal_background = PostnatalBackground::create($request->validated());
@@ -61,13 +61,13 @@ class PostnatalBackgroundController extends Controller
         }
     }
 
-    public function update(PosnatalBackgroundRequest $request, $medical_history_id)
+    public function update(PosnatalBackgroundRequest $request, $patient_id)
     {
         try {
-            $medical_history = $this->medicalHistory($medical_history_id);
+            $medical_history = $this->medicalHistory($patient_id);
 
             if (! $medical_history || ! $medical_history->postnatal_background) {
-                return response()->json(['message' => 'No se encontraron resultados'], 404);
+                return response()->json(['message' => 'Historial médico no existe o registro postnatal no existe'], 404);
             }
 
             $postnatal_background = $medical_history->postnatal_background;
@@ -82,10 +82,26 @@ class PostnatalBackgroundController extends Controller
     }
 
     // SE ASEGURA QUE EL MÉDICO PUEDA VER INFORMACIÓN SÓLO DEL PACIENTE QUE HA ATENDIDO
-    public function medicalHistory($medical_history_id)
+    public function medicalHistory($patient_id)
     {
+        // try {
+        //     $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
+
+        //     if ($medical_history) {
+        //         $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
+        //             ->where('physician_id', $this->physician->id)
+        //             ->count();
+
+        //         if ($medical_appointments > 0) {
+        //             return $medical_history;
+        //         }
+        //     }
+        // } catch (\Throwable $th) {
+        //     return response()->json(['error' => $th->getMessage()], 503);
+        // }
+
         try {
-            $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
+            $medical_history = MedicalHistory::where('patient_id', $patient_id)->first();
 
             if ($medical_history) {
                 $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
