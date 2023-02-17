@@ -195,9 +195,9 @@ Route::prefix('v1')->group(function () {
 
                 // ANTECEDENTES POSTNATALES
                 Route::controller($this->physician.PostnatalBackgroundController::class)->group(function () {
-                    Route::get('/{medical_history_id}/postnatal-background', 'show');
-                    Route::post('/{medical_history_id}/postnatal-background', 'store');
-                    Route::put('/{medical_history_id}/postnatal-background', 'update');
+                    Route::get('/postnatal-background/patient/{patient_id}', 'show');
+                    Route::post('/postnatal-background/patient/{patient_id}', 'store');
+                    Route::put('/postnatal-background/patient/{patient_id}', 'update');
                 });
 
                 //VISUALIZAR LOS MEDICAMENTOS ACTIVOS Y MEDICAMENTOS ANTERIORES DE UN PACIENTE
