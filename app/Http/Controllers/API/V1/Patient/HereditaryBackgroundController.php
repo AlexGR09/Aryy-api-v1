@@ -38,16 +38,7 @@ class HereditaryBackgroundController extends Controller
             $patient = Patient::where('user_id', auth()->id())
                 ->firstOrFail();
 
-            $hereditary_background = HereditaryBackground::create([
-                'diabetes' => $request->diabetes,
-                'heart_diseases' => $request->heart_diseases,
-                'blood_pressure' => $request->blood_pressure,
-                'thyroid_diseases' => $request->thyroid_diseases,
-                'cancer' => $request->cancer,
-                'kidney_stones' => $request->kidney_stones,
-                'blood_diseases' => $request->blood_diseases,
-            ]);
-
+            $hereditary_background = HereditaryBackground::create($request->validated());
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->update([
                 'hereditary_background_id' => $hereditary_background->id,
             ]);
@@ -86,14 +77,14 @@ class HereditaryBackgroundController extends Controller
                 ->firstOrFail();
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
             $hereditary_background = HereditaryBackground::where('id', $medical_history->hereditary_background_id)->firstOrFail();
-
-            $hereditary_background->diabetes = $request->diabetes;
+            $hereditary_background->update($request->validated());
+            /* $hereditary_background->diabetes = $request->diabetes;
             $hereditary_background->heart_diseases = $request->heart_diseases;
             $hereditary_background->blood_pressure = $request->blood_pressure;
             $hereditary_background->thyroid_diseases = $request->thyroid_diseases;
             $hereditary_background->cancer = $request->cancer;
             $hereditary_background->kidney_stones = $request->kidney_stones;
-            $hereditary_background->save();
+            $hereditary_background->save(); */
 
             return (new HereditaryBackgroundResource($hereditary_background))->additional(['message' => 'Informacion actualizada con exito.']);
         } catch (\Throwable $th) {
