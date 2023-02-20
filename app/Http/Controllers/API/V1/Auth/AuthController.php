@@ -7,16 +7,17 @@ use App\Http\Requests\API\V1\Auth\LoginRequest;
 use App\Http\Requests\API\V1\Auth\RegisterRequest;
 use App\Http\Resources\API\V1\Auth\UserResource;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
-    public function login(LoginRequest $request)
+    public function login(Request $request)
     {
         try {
-            $user = User::where('email', $request->email)->first();
+            $user = User::where('email', $request->email)->orWhere('phone_number',$request->phone_number)->first();
             if (! $user || ! Hash::check($request->password, $user->password)) {
                 return response()->json(['message' => 'Correo o contraseña inválida, intente de nuevo.'], 503);
             }
