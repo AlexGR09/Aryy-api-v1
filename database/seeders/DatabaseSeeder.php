@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CatalogueMedicalServicesSpecialtiesSeeder::class);
         $this->call(CatalogueLanguageSeeder::class);
         /*FIN DE SEEDER DE CATALOGOS*/
-        $this->call(UserSeeder::class);
+        //$this->call(UserSeeder::class);
         $this->call(PatientSeeder::class);
         $this->call(PhysicianSeeder::class);
         $this->call(PhysicianSpecialtySeeder::class);
