@@ -12,6 +12,24 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PermissionSeeder::class);
         $this->call(RoleSeeder::class);
+        $this->call(CatalogueCountrySeeder::class);
+        $this->call(CatalogueStateSeeder::class);
+        $this->call(CatalogueCitySeeder::class);
+        $this->call(CatalogueAllergiesSeeder::class);
+        $this->call(CatalogueOccupationSeeder::class);
+        $this->call(CatalogueInsuranceSeeder::class);
+        $this->call(CatalogueSpecialtySeeder::class);
+        $this->call(CatalogueSubSpecialtySeeder::class);
+        $this->call(CatalogueDiseaseSeeder::class);
+        $this->call(CatalogueMedicalServiceSeeder::class);
+        $this->call(CatalogueRelationshipsSeeder::class);
+        $this->call(CatalogueKinshipSeeder::class);
+        $this->call(CatalogueSymptomSeeder::class);
+        $this->call(CatalogueSpecialtiesDiseasesSeeder::class);
+        $this->call(CatalogueMedicalServicesSpecialtiesSeeder::class);
+        $this->call(CatalogueLanguageSeeder::class);
+        /*FIN DE SEEDER DE CATALOGOS*/
+        /*SEEDER GENERALES*/
         $this->call(UserSeeder::class);
         $this->call(CountrySeeder::class);
         $this->call(StateSeeder::class);
