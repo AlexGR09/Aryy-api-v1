@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Http\Controllers\API\V1\Search\CatalogueSearchController;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class BloodTypeSeeder extends Seeder
+class CatalogueBloodTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.

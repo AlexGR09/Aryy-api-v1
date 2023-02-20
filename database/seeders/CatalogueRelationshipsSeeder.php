@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class RelationshipsSeeder extends Seeder
+class CatalogueRelationshipsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
