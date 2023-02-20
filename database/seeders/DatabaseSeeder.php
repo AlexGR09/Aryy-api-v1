@@ -10,8 +10,9 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $this->call(PermissionSeeder::class);
-        $this->call(RoleSeeder::class);
+        /*SEEDER DE CATALOGOS*/
+        $this->call(CataloguePermissionSeeder::class);
+        $this->call(CatalogueRoleSeeder::class);
         $this->call(CatalogueCountrySeeder::class);
         $this->call(CatalogueStateSeeder::class);
         $this->call(CatalogueCitySeeder::class);
@@ -31,26 +32,11 @@ class DatabaseSeeder extends Seeder
         /*FIN DE SEEDER DE CATALOGOS*/
         /*SEEDER GENERALES*/
         $this->call(UserSeeder::class);
-        $this->call(CountrySeeder::class);
-        $this->call(StateSeeder::class);
-        $this->call(CitySeeder::class);
         $this->call(PatientSeeder::class);
-        $this->call(AllergiesSeeder::class);
-        $this->call(OccupationSeeder::class);
-        $this->call(InsuranceSeeder::class);
-        $this->call(SpecialtySeeder::class);
-        $this->call(SubSpecialtySeeder::class);
-        $this->call(DiseaseSeeder::class);
-        $this->call(MedicalServiceSeeder::class);
-        $this->call(RelationshipsSeeder::class);
-        $this->call(KinshipSeeder::class);
-        $this->call(SymptomSeeder::class);
         $this->call(PhysicianSeeder::class);
         $this->call(PhysicianSpecialtySeeder::class);
         $this->call(FacilitySeeder::class);
         $this->call(FacilityPyshicianSeeder::class);
-        $this->call(SpecialtiesDiseasesSeeder::class);
-        $this->call(MedicalServicesSpecialtiesSeeder::class);
         $this->call(MedicalServicesPhysicianSeeder::class);
         $this->call(DiseasesPhysicianSeeder::class);
         // $this->call(SearchProcedureSeeder::class);
@@ -62,10 +48,8 @@ class DatabaseSeeder extends Seeder
         $this->call(FavoriteSeeder::class);
         $this->call(HealthInsuranceSeeder::class);
         $this->call(OcupationPatientSeeder::class);
-        $this->call(LanguageSeeder::class);
         $this->call(AppointmentSeeder::class);
         $this->call(PlanSeeder::class);
-        $this->call(BloodTypeSeeder::class);
         $this->call(PersonalizedQuestionnaireSeeder::class);
         $this->call(VitalSignSeeder::class);
         $this->call(PrescriptionSeeder::class);
