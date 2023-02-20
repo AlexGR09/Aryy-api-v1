@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CatalogueKinshipSeeder extends Seeder
+class KinshipSeeder extends Seeder
 {
     /**
      * Run the database seeds.
