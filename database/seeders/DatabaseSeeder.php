@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CatalogueSpecialtiesDiseasesSeeder::class);
         $this->call(CatalogueMedicalServicesSpecialtiesSeeder::class);
         $this->call(CatalogueLanguageSeeder::class);
+        $this->call(CatalogueBloodTypeSeeder::class);
         /*FIN DE SEEDER DE CATALOGOS*/
         /*SEEDER GENERALES*/
         $this->call(UserSeeder::class);
