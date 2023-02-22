@@ -52,10 +52,10 @@ class VaccinationHistoryController extends Controller
         }
     }
 
-    public function show($medical_history_id)
+    public function show($patient_id)
     {
         try {
-            $medical_history = $this->medicalHistory($medical_history_id);
+            $medical_history = $this->medicalHistory($patient_id);
             $vaccinationhistory = MedicalHistoryVaccination::where('patient_id', $medical_history->patient_id)->with('vaccination_history')->get();
             if (! $vaccinationhistory) {
                 return response()->json(['message' => 'No se encontro el historial de vacunacion'], 404);
@@ -67,10 +67,11 @@ class VaccinationHistoryController extends Controller
         }
     }
 
-    public function medicalhistory($medical_history_id)
+    public function medicalhistory($patient_id)
     {
         try {
-            $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
+            $medical_history = MedicalHistory::where('id', $patient_id)->first();
+            return $medical_history;
             if ($medical_history) {
                 $medical_appointments = MedicalAppointment::where([['patient_id', $medical_history->patient_id], ['physician_id', $this->physician->id]])->count();
                 if ($medical_appointments > 0) {

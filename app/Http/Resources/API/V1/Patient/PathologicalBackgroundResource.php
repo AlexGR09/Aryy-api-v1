@@ -14,6 +14,7 @@ class PathologicalBackgroundResource extends JsonResource
     public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
     {
         return [
+            'pathological_background_id' => $this->id,        
             'previous_surgeries' => $this->previous_surgeries,
             'blood_transfusions' => $this->blood_transfusions,
             'diabetes' => $this->diabetes,

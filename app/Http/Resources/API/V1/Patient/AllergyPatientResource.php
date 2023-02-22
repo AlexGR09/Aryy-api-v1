@@ -14,6 +14,7 @@ class AllergyPatientResource extends JsonResource
     public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
     {
         return [
+            'allergy_patient_id' => $this->id,
             'patient_id' => $this->id,
             'food_allergy' => $this->food_allergy,
             'drug_allergy' => $this->drug_allergy,

@@ -55,10 +55,10 @@ class GynecologicalHistoryController extends Controller
         }
     }
 
-    public function show($medical_history_id)
+    public function show($patient_id)
     {
         try {
-            $medicalHistory = $this->medicalhistory($medical_history_id);
+            $medicalHistory = $this->medicalhistory($patient_id);
             $gynecologicalHistory = ObgynBackground::where('id', $medicalHistory->gynecological_history_id)
                 ->first();
             if (! $gynecologicalHistory) {
@@ -73,11 +73,11 @@ class GynecologicalHistoryController extends Controller
         }
     }
 
-    public function update(GynecologicalHistoryRequest $request, $medical_history_id)
+    public function update(GynecologicalHistoryRequest $request, $patient_id)
     {
         try {
             DB::beginTransaction();
-            $medicalHistory = $this->medicalhistory($medical_history_id);
+            $medicalHistory = $this->medicalhistory($patient_id);
             $gynecologicalHistory = ObgynBackground::where('id', $medicalHistory->gynecological_history_id)->first();
             $gynecologicalHistory->update($request->validated());
             $gynecologicalHistory->save();
@@ -91,10 +91,10 @@ class GynecologicalHistoryController extends Controller
         }
     }
 
-    public function medicalhistory($medical_history_id)
+    public function medicalhistory($patient_id)
     {
         try {
-            $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
+            $medical_history = MedicalHistory::where('patient_id', $patient_id)->first();
             if ($medical_history) {
                 $medical_appointments = MedicalAppointment::where([['patient_id', $medical_history->patient_id], ['physician_id', $this->physician->id]])->count();
                 if ($medical_appointments > 0) {

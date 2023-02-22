@@ -78,9 +78,7 @@ class MedicalHistory extends Model
     {
         return $this->belongsTo(PostnatalBackground::class);
     }
-
-    public function ObgynBackground()
-    {
-        return $this->belongsTo(ObgynBackground::class);
+    public function gynecological_history(){
+    return $this->belongsTo(ObgynBackground::class);
     }
 }

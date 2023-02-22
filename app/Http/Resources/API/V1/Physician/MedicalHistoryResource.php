@@ -7,6 +7,7 @@ use App\Http\Resources\API\V1\Patient\HereditaryBackgroundResource;
 use App\Http\Resources\API\V1\Patient\NonPathologicalBackgroundResource;
 use App\Http\Resources\API\V1\Patient\PathologicalBackgroundResource;
 use App\Http\Resources\API\V1\Patient\PatientResource;
+use App\Http\Resources\API\V1\Patient\PosnatalBackgroundResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class MedicalHistoryResource extends JsonResource
@@ -27,22 +28,22 @@ class MedicalHistoryResource extends JsonResource
             'weight' => $this->weight,
             'imc' => $this->imc,
             'blood_type' => $this->blood_type,
-            'allergy_patient_id' => $this->allergy_patient_id,
+            /*allergy_patient*/
             'allergypatient' => new AllergyPatientResource($this->allergyPatient),
-            'pathological_background_id' => $this->pathological_background_id,
+            /*pathological_background*/
             'pathological_background' => new PathologicalBackgroundResource($this->pathologicalBackground),
-            'non_pathological_background_id' => $this->non_pathological_background_id,
+            /*non_pathological_background*/
             'non_pathological_background' => new NonPathologicalBackgroundResource($this->nonpathologicalbackground),
-            'hereditary_background_id' => $this->hereditary_background_id,
+            /*hereditary_background*/
             'hereditarybackground' => new HereditaryBackgroundResource($this->hereditarybackground),
-            'gynecological_history_id' => $this->gynecological_history_id,
-            'gynecological_history' => new GynecologicalHistoryResource($this->ObgynBackground),
-            'pyschological_background_id' => $this->pyschological_background_id,
+            /*gynecological_history*/
+            'gynecological_history' => new GynecologicalHistoryResource($this->gynecological_history),
+            /*pyschological_background*/
             'pyschological_history' => new PyschologicalBackgroundResource($this->pyschologicalBackground),
-            'perinatal_background_id' => $this->perinatal_background_id,
+            /*perinatal_background*/
             'perinatal_background' => new PerinatalBackgroundResource($this->perinatalBackground),
-            'posnatal_background_id' => $this->posnatal_background_id,
-            'posnatal_background' => new PerinatalBackgroundResource($this->postnatal_background),
+            /*posnatal_background*/
+            'posnatal_background' => new PosnatalBackgroundResource($this->postnatal_background),
         ];
     }
 }

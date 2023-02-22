@@ -15,8 +15,8 @@ class MedicalHistoryVaccinationResource extends JsonResource
      */
     public function toArray($request): array
     {
-        return[
-            'id' => $this->id,
+        return [
+            'patient_vaccination_history_id' => $this->id,
             'vaccination_history_id' => $this->vaccination_history_id,
             'vacination' => VaccinationHistoryResource::collection($this->vaccination_history),
             'patient_id' => $this->patient_id,

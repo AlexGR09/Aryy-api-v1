@@ -31,14 +31,14 @@ class PerinatalBackgroundController extends Controller
             $todaydatetime = date('Y-m-d');
 
             /* $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)
-                ->where('physician_id', $this->physician->id)
-                ->first();
+            ->where('physician_id', $this->physician->id)
+            ->first();
             //se compara la fecha actual con la fecha de la cita
             if ($medicalAppointment->appointment_date != $todaydatetime) {
-                return "Petición incorrecta";
+            return "Petición incorrecta";
             } */
             $medicalHistory = $this->medicalhistory($request->patient_id);
-            if (! $medicalHistory || $medicalHistory->perinatalBackground) {
+            if (!$medicalHistory || $medicalHistory->perinatalBackground) {
                 return response()->json(['message' => 'No se encontro el historial de antecendentes perinatales'], 404);
             }
             $perinatalBackground = PerinatalBackground::create($request->validated());
@@ -54,12 +54,12 @@ class PerinatalBackgroundController extends Controller
         }
     }
 
-    public function show($medical_history_id)
+    public function show($patient_id)
     {
         try {
-            $medicalHistory = $this->medicalhistory($medical_history_id);
+            $medicalHistory = $this->medicalhistory($patient_id);
             $perinatalBackground = $medicalHistory->perinatalBackground;
-            if (! $perinatalBackground) {
+            if (!$perinatalBackground) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
 
@@ -69,11 +69,11 @@ class PerinatalBackgroundController extends Controller
         }
     }
 
-    public function update(PerinatalBackgroundRequest $request, $medical_history_id)
+    public function update(PerinatalBackgroundRequest $request, $patient_id)
     {
         try {
             DB::beginTransaction();
-            $medicalHistory = $this->medicalhistory($medical_history_id);
+            $medicalHistory = $this->medicalhistory($patient_id);
             $perinatalBackground = $medicalHistory->perinatalBackground;
             $perinatalBackground->update($request->validated());
             $perinatalBackground->save();
@@ -87,10 +87,10 @@ class PerinatalBackgroundController extends Controller
         }
     }
 
-    public function medicalhistory($medical_history_id)
+    public function medicalhistory($patient_id)
     {
         try {
-            $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
+            $medical_history = MedicalHistory::where('id', $patient_id)->first();
             if ($medical_history) {
                 $medical_appointments = MedicalAppointment::where([['patient_id', $medical_history->patient_id], ['physician_id', $this->physician->id]])->count();
                 if ($medical_appointments > 0) {

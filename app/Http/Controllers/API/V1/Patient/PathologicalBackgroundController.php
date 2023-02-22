@@ -35,20 +35,7 @@ class PathologicalBackgroundController extends Controller
 
             DB::beginTransaction();
 
-            $pathological_background = PathologicalBackground::create([
-                'blood_transfusions' => $request->blood_transfusions,
-                'diabetes' => $request->diabetes,
-                'heart_diseases' => $request->heart_diseases,
-                'blood_pressure' => $request->blood_pressure,
-                'thyroid_diseases' => $request->thyroid_diseases,
-                'cancer' => $request->cancer,
-                'kidney_stones' => $request->kidney_stones,
-                'hepatitis' => $request->hepatitis,
-                'trauma' => $request->trauma,
-                'respiratory_diseases' => $request->respiratory_diseases,
-                'ets' => $request->ets,
-                'gastrointestinal_pathologies' => $request->gastrointestinal_pathologies,
-            ]);
+            $pathological_background = PathologicalBackground::create($request->validated());
 
             $medical_history = MedicalHistory::where('patient_id', $patient->id)->firstOrFail();
             $medical_history->pathological_background_id = $pathological_background->id;

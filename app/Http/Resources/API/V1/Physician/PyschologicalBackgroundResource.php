@@ -15,6 +15,7 @@ class PyschologicalBackgroundResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'Pyschological_background_id'=>$this->id,
             'family_history' => $this->family_history,
             'disease_awareness' => $this->disease_awareness,
             'areas_affected_by_the_disease' => $this->areas_affected_by_the_disease,

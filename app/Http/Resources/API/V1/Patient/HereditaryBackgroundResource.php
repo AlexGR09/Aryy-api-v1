@@ -14,6 +14,7 @@ class HereditaryBackgroundResource extends JsonResource
     public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
     {
         return [
+            'hereditary_background_id' => $this->id,
             'diabetes' => $this->diabetes,
             'heart_diseases' => $this->heart_diseases,
             'blood_pressure' => $this->blood_pressure,

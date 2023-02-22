@@ -14,6 +14,7 @@ class NonPathologicalBackgroundResource extends JsonResource
     public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
     {
         return [
+            'non_pathological_backgroud_id' => $this->id,
             'physical_activity' => $this->physical_activity,
             'rest_time' => $this->rest_time,
             'smoking' => $this->smoking,
