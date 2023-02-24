@@ -172,19 +172,19 @@ Route::prefix('v1')->group(function () {
                 Route::controller($this->physician.GynecologicalHistoryController::class)->group(function () {
                     Route::post('/gynecological-history', 'store');
                     Route::get('/patient/{patient_id}/gynecological-history', 'show');
-                    Route::put('/patient/{patient_id}/gynecological-history', 'update');
+                    Route::patch('/patient/{patient_id}/gynecological-history','update');
                 });
                 //ANTECEDENTES PERINATALES
                 Route::controller($this->physician.PerinatalBackgroundController::class)->group(function () {
                     Route::post('/perinatal-background', 'store');
                     Route::get('/patient/{patient_id}/perinatal-background', 'show');
-                    Route::put('/patient/{patient_id}/perinatal-background', 'update');
+                    Route::patch('/patient/{patient_id}/perinatal-background','update');
                 });
                 //HISTORIAL PSIQUIATRICO
                 Route::controller($this->physician.PyschologicalBackgroundController::class)->group(function () {
                     Route::post('/psychological-background', 'store');
                     Route::get('/patient/{patient_id}/psychological-background', 'show');
-                    Route::put('/patient/{patient_id}/psychological-background', 'update');
+                    Route::patch('/patient/{patient_id}/psychological-background','update');
                 });
 
                 // HISTORIAL DE VACUNACION
@@ -202,8 +202,7 @@ Route::prefix('v1')->group(function () {
 
                 //VISUALIZAR LOS MEDICAMENTOS ACTIVOS Y MEDICAMENTOS ANTERIORES DE UN PACIENTE
                 Route::controller($this->physician.ViewMedicationsController::class)->group(function () {
-                    Route::get('/current-medication/{patient_id}', 'drugActive');
-                    Route::get('/previous-medication/{patient_id}', 'previousMedication');
+                    Route::get('/patient/{patient_id}/medication','medicationPatient');
                 });
             });
 
@@ -230,7 +229,9 @@ Route::prefix('v1')->group(function () {
 
             //EDITAR ESTADO DEL TRATAMIENTO
             Route::controller($this->physician.StatusTreatmentController::class)->group(function () {
-                Route::put('status-medicine/{medical_history_id}', 'update');
+                /* Route::put('status-medicine/{medical_history_id}', 'update'); */
+                Route::put('/patient/{patient_id}/status-treatment', 'update');
+                
             });
 
             //LISTADO DE PACIENTES

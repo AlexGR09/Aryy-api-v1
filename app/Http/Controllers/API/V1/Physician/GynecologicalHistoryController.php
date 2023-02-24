@@ -10,7 +10,7 @@ use App\Models\MedicalHistory;
 use App\Models\ObgynBackground;
 use App\Models\Physician;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Http\Request;
 class GynecologicalHistoryController extends Controller
 {
     protected $physician;
@@ -32,14 +32,14 @@ class GynecologicalHistoryController extends Controller
             $todaydatetime = date('Y-m-d');
 
             /* $medicalAppointment = MedicalAppointment::where('patient_id', $request->patient_id)
-                ->where('physician_id', $this->physician->id)
-                ->first();
+            ->where('physician_id', $this->physician->id)
+            ->first();
             //se compara la fecha actual con la fecha de la cita
             if ($medicalAppointment->appointment_date != $todaydatetime) {
-                return "Petición incorrecta";
+            return "Petición incorrecta";
             } */
             $medicalHistory = $this->medicalhistory($request->patient_id);
-            if (! $medicalHistory || $medicalHistory->gynecological_history_id) {
+            if (!$medicalHistory || $medicalHistory->gynecological_history_id) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
             $gynecologicalHistory = ObgynBackground::create($request->validated());
@@ -61,7 +61,7 @@ class GynecologicalHistoryController extends Controller
             $medicalHistory = $this->medicalhistory($patient_id);
             $gynecologicalHistory = ObgynBackground::where('id', $medicalHistory->gynecological_history_id)
                 ->first();
-            if (! $gynecologicalHistory) {
+            if (!$gynecologicalHistory) {
                 return response()->json(['message' => 'No se encontro el historial ginecologico'], 404);
             }
 

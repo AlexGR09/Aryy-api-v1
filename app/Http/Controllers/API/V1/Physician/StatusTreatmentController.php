@@ -22,11 +22,11 @@ class StatusTreatmentController extends Controller
         $this->physician = empty(auth()->id()) ? null : Physician::where('user_id', auth()->id())->firstOrFail();
     }
 
-    public function update(Request $request, $medical_history_id)
+    public function update(Request $request, $patient_id)
     {
         try {
             DB::beginTransaction();
-            $medicalHistory = $this->medicalhistory($medical_history_id);
+            $medicalHistory = $this->medicalhistory($patient_id);
             $cita = MedicalAppointment::where([['patient_id', $medicalHistory->patient_id], ['physician_id', $this->physician->id]])->count();
             if ($cita < 1) {
                 return response()->json(['Petición incorrecta']);
@@ -37,7 +37,7 @@ class StatusTreatmentController extends Controller
                 $drug_active->drug_active = null;
                 $drug_active->save();
 
-                return response()->json(['Trataniento Completado', $request->drug_active]);
+                return response()->json(['Trataniento Completado']);
             }
             $new_medicine = $drug_active->previous_medication.','.$drug_active->drug_active;
             $drug_active->previous_medication = $new_medicine;
@@ -52,11 +52,10 @@ class StatusTreatmentController extends Controller
             return response()->json(['Petición incorrecta' => $th->getMessage()], 400);
         }
     }
-
-    public function medicalhistory($medical_history_id)
+    public function medicalhistory($patient_id)
     {
         try {
-            $medical_history = MedicalHistory::where('id', $medical_history_id)->first();
+            $medical_history = MedicalHistory::where('patient_id', $patient_id)->first();
             if ($medical_history) {
                 $medical_appointments = MedicalAppointment::where([['patient_id', $medical_history->patient_id], ['physician_id', $this->physician->id]])->count();
                 if ($medical_appointments > 0) {
