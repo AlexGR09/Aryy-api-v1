@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('note')->nullable();
             $table->enum('relationship', ['Abuela / Abuelo', 'Madre / Padre', 'Hermana / Hermano', 'Esposa / Esposo', 'Hija / Hijo', 'Amigo / Amigo'])->nullable();
             $table->decimal('cost')->nullable();
+            $table->boolean('notified_by_physician')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
