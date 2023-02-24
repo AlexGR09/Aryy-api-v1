@@ -22,6 +22,7 @@ class MedicalAppointment extends Model
         'facility_id',
         'prescription_id',
         'cost',
+        'notified_by_physician',
     ];
 
     protected $casts = [
