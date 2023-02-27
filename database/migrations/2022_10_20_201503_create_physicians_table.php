@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('languages')->nullable();
             $table->enum('is_verified', ['not_verified', 'in_verification', 'verified'])->default('not_verified');
             $table->string('physician_profile_photo')->nullable();
-            $table->decimal('first_time_consultation', 8, 2);
-            $table->decimal('subsequent_consultation', 8, 2);
+            $table->decimal('first_time_consultation', 8, 2)->nullable();
+            $table->decimal('subsequent_consultation', 8, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
