@@ -110,6 +110,10 @@ Route::prefix('v1')->group(function () {
             Route::controller($this->catalogues.BloodTypeController::class)->group(function () {
                 Route::get('/blood-type', 'index');
             });
+            Route::controller($this->catalogues . AlergyController::class)->group(function () {
+                Route::get('/allergy', 'index');
+            }
+            );
         });
 
         /* RUTAS DEL MÉDICO */

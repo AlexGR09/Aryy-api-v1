@@ -4,14 +4,14 @@ namespace App\Http\Controllers\API\V1\Catalogues;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Catalogues\AlergyRequest;
-use App\Http\Resources\API\V1\Catalogues\AlergyResource;
-use App\Models\Alergy;
+use App\Http\Resources\API\V1\Catalogues\AllergyResource;
+use App\Models\Allergy;
 
 class AlergyController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:show alergies')->only(
+        $this->middleware('role_or_permission:User|show cities')->only(
             [
                 'index',
                 'show',
@@ -45,9 +45,9 @@ class AlergyController extends Controller
     public function index()
     {
         try {
-            $alergies = Alergy::paginate(5);
+            $alergies = Allergy::paginate(5);
 
-            return AlergyResource::collection($alergies)->additional(['message' => 'Alergias existentes']);
+            return AllergyResource::collection($alergies)->additional(['message' => 'Alergias existentes']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -62,9 +62,9 @@ class AlergyController extends Controller
     public function store(AlergyRequest $request)
     {
         try {
-            $state = Alergy::create(['name' => $request->name]);
+            $state = Allergy::create(['name' => $request->name]);
 
-            return (new AlergyResource($state))->additional(['message' => 'Alergia creada con éxito.']);
+            return (new AllergyResource($state))->additional(['message' => 'Alergia creada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -81,10 +81,10 @@ class AlergyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Alergy $alergy)
+    public function show(Allergy $alergy)
     {
         try {
-            return (new AlergyResource($alergy))->additional(['message' => 'Alergia encontrada.']);
+            return (new AllergyResource($alergy))->additional(['message' => 'Alergia encontrada.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -97,13 +97,13 @@ class AlergyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AlergyRequest $request, Alergy $alergy)
+    public function update(AlergyRequest $request, Allergy $alergy)
     {
         try {
             $alergy->name = $request->name;
             $alergy->save();
 
-            return (new AlergyResource($alergy))->additional(['message' => 'Alergia actualizada con éxito.']);
+            return (new AllergyResource($alergy))->additional(['message' => 'Alergia actualizada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
@@ -120,7 +120,7 @@ class AlergyController extends Controller
         try {
             $alergy->delete();
 
-            return (new AlergyResource($alergy))->additional(['message' => 'Alergia eliminada con éxito.']);
+            return (new AllergyResource($alergy))->additional(['message' => 'Alergia eliminada con éxito.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
