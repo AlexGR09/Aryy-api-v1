@@ -30,6 +30,12 @@ class DatabaseSeeder extends Seeder
         $this->call(CatalogueMedicalServicesSpecialtiesSeeder::class);
         $this->call(CatalogueLanguageSeeder::class);
         $this->call(CatalogueBloodTypeSeeder::class);
+        $this->call(CatalogueThyroidDiseaseSeeder::class);
+        $this->call(CatalogueCancerSeeder::class);
+        $this->call(CatalogueBloodDiseaseSeeder::class);
+        $this->call(CatalogueKidneyStoneSeeder::class);
+        $this->call(CatalogueHepatitisSeeder::class);
+        $this->call(CatalogueRespiratoryPathologySeeder::class);
         /*FIN DE SEEDER DE CATALOGOS*/
         /*SEEDER GENERALES*/
         $this->call(UserSeeder::class);
