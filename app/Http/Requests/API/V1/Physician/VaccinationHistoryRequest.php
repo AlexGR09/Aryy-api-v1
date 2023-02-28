@@ -24,10 +24,10 @@ class VaccinationHistoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'vaccine' => 'string',
-            'dose' => 'string',
-            'lot_number' => 'string',
-            'application_date' => 'date',
+            'vaccine' => 'nullable|string',
+            'dose' => 'nullable|string',
+            'lot_number' => 'nullable|string',
+            'application_date' => 'nullable|date',
         ];
     }
 }

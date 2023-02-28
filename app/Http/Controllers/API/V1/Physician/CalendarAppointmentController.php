@@ -146,11 +146,11 @@ class CalendarAppointmentController extends Controller
         }
     }
 
-    public function update($id)
+    public function update($appointment_id)
     {
         try {
             $medicalAppointment = $this->physician->medical_appointments()
-                ->where('id', $id)
+                ->where('id', $appointment_id)
                 ->first();
             $medicalAppointment->status = 'cancelled';
             $medicalAppointment->save();

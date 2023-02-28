@@ -24,16 +24,16 @@ class PyschologicalBackgroundRequest extends FormRequest
     public function rules()
     {
         return [
-            'family_history' => 'string',
-            'disease_awareness' => 'string',
-            'areas_affected_by_the_disease' => 'string',
-            'family_support_group' => 'string',
-            'family_group_of_the_patient' => 'string',
-            'aspects_of_social_life' => 'string',
-            'aspects_of_working_life' => 'string',
-            'relationship_whit_authority' => 'string',
+            'family_history' => 'nullable|string',
+            'disease_awareness' => 'nullable|string',
+            'areas_affected_by_the_disease' => 'nullable|string',
+            'family_support_group' => 'nullable|string',
+            'family_group_of_the_patient' => 'nullable|string',
+            'aspects_of_social_life' => 'nullable|string',
+            'aspects_of_working_life' => 'nullable|string',
+            'relationship_whit_authority' => 'nullable|string',
             'inpulse_control' => 'string',
-            'frustration_management' => 'string',
+            'frustration_management' => 'nullable|string',
         ];
     }
 }

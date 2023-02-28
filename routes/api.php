@@ -199,9 +199,9 @@ Route::prefix('v1')->group(function () {
 
                 // ANTECEDENTES POSTNATALES
                 Route::controller($this->physician.PostnatalBackgroundController::class)->group(function () {
-                    Route::get('/postnatal-background/patient/{patient_id}', 'show');
+                    Route::get('/patient/{patient_id}/postnatal-background', 'show');
                     Route::post('/postnatal-background/patient/{patient_id}', 'store');
-                    Route::put('/postnatal-background/patient/{patient_id}', 'update');
+                    Route::patch('/patient/{patient_id}/postnatal-background', 'update');
                 });
 
                 //VISUALIZAR LOS MEDICAMENTOS ACTIVOS Y MEDICAMENTOS ANTERIORES DE UN PACIENTE
@@ -408,6 +408,7 @@ Route::prefix('v1')->group(function () {
     Route::get('basic-information/patient/{patient}/medical-apointment/{medicalAppointment}', [BasicInformationController::class, 'show']);
 
     Route::get('physician/{physician}/details', [PhysicianDetailController::class, 'show']);
+
     Route::group(['prefix' => 'medical-records'], function () {
         Route::get('vital-signs/patient/{patient}', [VitalSignController::class, 'show']);
         Route::post('vital-signs/patient', [VitalSignController::class, 'store']);
