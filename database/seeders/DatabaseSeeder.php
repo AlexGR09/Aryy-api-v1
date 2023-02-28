@@ -62,5 +62,14 @@ class DatabaseSeeder extends Seeder
         $this->call(PrescriptionSeeder::class);
         $this->call(MedicalAppointmentSeeder::class);
         $this->call(PillReminderSeeder::class);
+
+        $this->call(CatalogueAlimentaryAllergySeeder::class);
+        $this->call(CatalogueDrugAllergySeeder::class);
+        $this->call(CatalogueEnviromentalFactorSeeder::class);
+        $this->call(CatalogueInsuranceSeeder::class);
+        $this->call(CataloguePathologyGastrointestinalSeeder::class);
+        $this->call(CatalogueSexualTransmisionSeeder::class);
+
+        
     }
 }
