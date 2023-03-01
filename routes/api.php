@@ -230,6 +230,10 @@ Route::prefix('v1')->group(function () {
                 );
                 //Actualizar las alergias o alergia de un paciente
                 Route::patch('patient/{patient_id}/allergies', [AllergyController::class, 'update']);
+
+                Route::get('patient/{patient}/allergies', [AllergyController::class, 'show']);
+
+                Route::post('/patient/{patient_id}/allergies', [AllergyController::class, 'store']);
             }
             );
 
@@ -465,8 +469,8 @@ Route::prefix('v1')->group(function () {
         Route::put('vital-signs/{vitalSign}/patient', [VitalSignController::class, 'update']);
 
         Route::get('info/patient/{patient}', [VitalSignController::class, 'patientInfo']);
-        Route::get('physician/allergies/patient/{patient}', [AllergyController::class, 'show']);
-        Route::post('physician/allergies/patient', [AllergyController::class, 'store']);
+        /* Route::get('physician/allergies/patient/{patient}', [AllergyController::class, 'show']);
+        Route::post('physician/allergies/patient', [AllergyController::class, 'store']); */
         /* Route::patch('physician/allergies/patient/{patient_id}', [AllergyController::class, 'update']); */
 
         // Route::get('basic-information/vital-signs/patient/{patient}/medical-appointment/{medicalAppointment}', [BasicInformationController::class, 'show']);

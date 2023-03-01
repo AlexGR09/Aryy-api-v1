@@ -18,17 +18,17 @@ class AllergyController extends Controller
         return ok('', optional($medicalHistory)->allergyPatient);
     }
 
-    public function store(StoreAllergyPatientRequest $request)
+    public function store(StoreAllergyPatientRequest $request,$patient_id)
     {
         $data = $request->validated();
-        $medicalHistory = MedicalHistory::where('patient_id', $data['patient_id'])->first();
+        $medicalHistory = MedicalHistory::where('patient_id', $patient_id)->first();
         if ($medicalHistory?->allergyPatient()->exists()) {
             return unauthorized('Ya existe un registro de alergias');
         }
 
         $allergyPatient = AllergyPatient::create($data);
         MedicalHistory::updateOrCreate(
-            ['patient_id' => $data['patient_id']],
+            ['patient_id' => $patient_id],
             ['allergy_patient_id' => $allergyPatient->id]
         );
 
