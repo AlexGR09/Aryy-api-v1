@@ -24,12 +24,12 @@ class UpdateAllergyPatientRequest extends FormRequest
     public function rules()
     {
         return [
-            'food_allergy' => 'required|array|min:1',
-            'food_allergy.*' => 'required|string',
-            'drug_allergy' => 'required|array|min:1',
-            'drug_allergy.*' => 'required|string',
-            'environmental_allergy' => 'required|array|min:1',
-            'environmental_allergy.*' => 'required|string',
+            'food_allergy' => 'nullable|array|min:1',
+            'food_allergy.*' => 'nullable|string',
+            'drug_allergy' => 'nullable|array|min:1',
+            'drug_allergy.*' => 'nullable|string',
+            'environmental_allergy' => 'nullable|array|min:1',
+            'environmental_allergy.*' => 'nullable|string',
         ];
     }
 }

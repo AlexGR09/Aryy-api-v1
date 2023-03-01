@@ -35,9 +35,9 @@ class AllergyController extends Controller
         return ok('', $allergyPatient);
     }
 
-    public function update(Patient $patient, UpdateAllergyPatientRequest $request)
-    {
-        $medicalHistory = MedicalHistory::where('patient_id', $patient->id)->first();
+    public function update(Patient $patient_id, UpdateAllergyPatientRequest $request)
+    {  
+        $medicalHistory = MedicalHistory::where('patient_id', $patient_id->id)->first();
         optional($medicalHistory)->allergyPatient()->update($request->validated());
 
         return ok('', optional($medicalHistory)->allergyPatient);
