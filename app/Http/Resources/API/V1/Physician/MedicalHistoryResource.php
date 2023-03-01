@@ -5,8 +5,10 @@ namespace App\Http\Resources\API\V1\Physician;
 use App\Http\Resources\API\V1\Patient\AllergyPatientResource;
 use App\Http\Resources\API\V1\Patient\HereditaryBackgroundResource;
 use App\Http\Resources\API\V1\Patient\NonPathologicalBackgroundResource;
+use App\Http\Resources\API\V1\Patient\ObstetricGynecologicalBackgroundResource;
 use App\Http\Resources\API\V1\Patient\PathologicalBackgroundResource;
 use App\Http\Resources\API\V1\Patient\PatientResource;
+use App\Http\Resources\API\V1\Patient\PerinatalBackgroundResource;
 use App\Http\Resources\API\V1\Patient\PosnatalBackgroundResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -37,13 +39,13 @@ class MedicalHistoryResource extends JsonResource
             /*hereditary_background*/
             'hereditarybackground' => new HereditaryBackgroundResource($this->hereditarybackground),
             /*gynecological_history*/
-            'gynecological_history' => new GynecologicalHistoryResource($this->gynecological_history),
+            'obstetricGynecologicalBackground' => new ObstetricGynecologicalBackgroundResource($this->obstetricGynecologicalBackground),
             /*pyschological_background*/
             'pyschological_history' => new PyschologicalBackgroundResource($this->pyschologicalBackground),
             /*perinatal_background*/
             'perinatal_background' => new PerinatalBackgroundResource($this->perinatalBackground),
             /*posnatal_background*/
-            'posnatal_background' => new PosnatalBackgroundResource($this->postnatal_background),
+            'posnatal_background' => new PosnatalBackgroundResource($this->postnatalBackground),
         ];
     }
 }

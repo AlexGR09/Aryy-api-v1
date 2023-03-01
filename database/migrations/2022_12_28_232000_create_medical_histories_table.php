@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('hereditary_background_id')->nullable()->constrained('hereditary_backgrounds')->onDelete('cascade');
             //$table->foreignId('vaccination_history_id')->nullable()->constrained('vaccination_histories')->onDelete('cascade');
             $table->foreignId('postnatal_background_id')->nullable()->constrained()->onDelete('cascade');
-            $table->foreignId('gynecological_history_id')->nullable()->constrained('obgyn_backgrounds')->onDelete('cascade');
+            $table->foreignId('obstetric_gynecological_background_id')->nullable()->constrained('obstetric_gynecological_backgrounds')->onDelete('cascade');
             $table->foreignId('perinatal_background_id')->nullable()->constrained('perinatal_backgrounds')->onDelete('cascade');
             $table->foreignId('pyschological_background_id')->nullable()->constrained('pyschological_backgrounds')->onDelete('cascade');
             $table->timestamps();

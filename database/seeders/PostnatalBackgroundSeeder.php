@@ -16,7 +16,7 @@ class PostnatalBackgroundSeeder extends Seeder
         ];
         DB::table('postnatal_backgrounds')->insert([
             [
-                'id' => 1,
+           
                 'delivery_details' => 'no me dolió',
                 'baby_name' => 'stewie',
                 'baby_weight' => '3 kg',
@@ -25,7 +25,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'emotonial_state' => 'bien',
             ],
             [
-                'id' => 2,
+               
                 'delivery_details' => 'si me dolió',
                 'baby_name' => 'dewey',
                 'baby_weight' => '2.7 kg',
@@ -34,7 +34,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'emotonial_state' => 'bien',
             ],
             [
-                'id' => 3,
+            
                 'delivery_details' => 'si me dolió',
                 'baby_name' => 'hermione',
                 'baby_weight' => '2.6 kg',
@@ -43,7 +43,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'emotonial_state' => 'bien',
             ],
             [
-                'id' => 4,
+   
                 'delivery_details' => 'no me dolió',
                 'baby_name' => 'annie',
                 'baby_weight' => '2.5 kg',
@@ -52,7 +52,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'emotonial_state' => 'bien',
             ],
             [
-                'id' => 5,
+               
                 'delivery_details' => 'si me dolió',
                 'baby_name' => 'george',
                 'baby_weight' => '2.7 kg',
@@ -61,7 +61,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'emotonial_state' => 'bien',
             ],
             [
-                'id' => 6,
+                
                 'delivery_details' => 'si me dolió',
                 'baby_name' => 'bryan',
                 'baby_weight' => '2.9 kg',
@@ -70,7 +70,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'emotonial_state' => 'bien',
             ],
             [
-                'id' => 7,
+              
                 'delivery_details' => 'si me dolió',
                 'baby_name' => 'glen',
                 'baby_weight' => '3.2 kg',
@@ -79,7 +79,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'emotonial_state' => 'bien',
             ],
             [
-                'id' => 8,
+         
                 'delivery_details' => 'si me dolió',
                 'baby_name' => 'ronald',
                 'baby_weight' => '3.0 kg',
@@ -88,7 +88,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'emotonial_state' => 'bien',
             ],
             [
-                'id' => 9,
+                
                 'delivery_details' => 'si me dolió',
                 'baby_name' => 'stevie',
                 'baby_weight' => '2.7 kg',
@@ -97,7 +97,7 @@ class PostnatalBackgroundSeeder extends Seeder
                 'emotonial_state' => 'bien',
             ],
             [
-                'id' => 10,
+               
                 'delivery_details' => 'si me dolió',
                 'baby_name' => 'maggie',
                 'baby_weight' => '3.3 kg',

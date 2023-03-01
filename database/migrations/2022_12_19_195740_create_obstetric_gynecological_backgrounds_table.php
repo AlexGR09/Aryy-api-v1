@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('obgyn_backgrounds', function (Blueprint $table) {
+        Schema::create('obstetric_gynecological_backgrounds', function (Blueprint $table) {
             $table->id();
             $table->date('first_menstruation')->nullable();
             $table->date('last_menstruation')->nullable();
@@ -42,6 +42,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('obgyn_backgrounds');
+        Schema::dropIfExists('obstetric_gynecological_backgrounds');
     }
 };

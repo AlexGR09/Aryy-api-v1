@@ -30,6 +30,12 @@ class DatabaseSeeder extends Seeder
         $this->call(CatalogueMedicalServicesSpecialtiesSeeder::class);
         $this->call(CatalogueLanguageSeeder::class);
         $this->call(CatalogueBloodTypeSeeder::class);
+        $this->call(CatalogueThyroidDiseaseSeeder::class);
+        $this->call(CatalogueCancerSeeder::class);
+        $this->call(CatalogueBloodDiseaseSeeder::class);
+        $this->call(CatalogueKidneyStoneSeeder::class);
+        $this->call(CatalogueHepatitisSeeder::class);
+        $this->call(CatalogueRespiratoryPathologySeeder::class);
         /*FIN DE SEEDER DE CATALOGOS*/
         /*SEEDER GENERALES*/
         $this->call(UserSeeder::class);
@@ -44,6 +50,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AllergiesPatientSeeder::class);
         $this->call(PostnatalBackgroundSeeder::class);
         $this->call(NonPathologicalBackgroundSeeder::class);
+        $this->call(ObstetricGynecologicalBackgroundSeeder::class);
+        $this->call(PerinatalBackgroundSeeder::class);
         $this->call(MedicalHistorySeeder::class);
         //$this->call(BasicInformationSeeder::class);
         $this->call(FavoriteSeeder::class);
@@ -56,5 +64,14 @@ class DatabaseSeeder extends Seeder
         $this->call(PrescriptionSeeder::class);
         $this->call(MedicalAppointmentSeeder::class);
         $this->call(PillReminderSeeder::class);
+
+        $this->call(CatalogueAlimentaryAllergySeeder::class);
+        $this->call(CatalogueDrugAllergySeeder::class);
+        $this->call(CatalogueEnviromentalFactorSeeder::class);
+        $this->call(CatalogueInsuranceSeeder::class);
+        $this->call(CataloguePathologyGastrointestinalSeeder::class);
+        $this->call(CatalogueSexualTransmisionSeeder::class);
+
+        
     }
 }

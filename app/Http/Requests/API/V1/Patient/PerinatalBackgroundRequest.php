@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\API\V1\Physician;
+namespace App\Http\Requests\API\V1\Patient;
 
 use Illuminate\Foundation\Http\FormRequest;
 
