@@ -173,10 +173,10 @@ Route::prefix('v1')->group(function () {
                     Route::get('/patient/{patient_id}', 'index');
                 });
                 //HISTORIAL GINECOLOGICO
-                Route::controller($this->physician.GynecologicalHistoryController::class)->group(function () {
+                Route::controller($this->physician.ObstetricGynecologicalBackgroundController::class)->group(function () {
                     Route::post('/gynecological-history', 'store');
                     Route::get('/patient/{patient_id}/gynecological-history', 'show');
-                    Route::patch('/patient/{patient_id}/gynecological-history','update');
+                    Route::patch('/patient/{patient_id}/obstetric-gynecological-background','update');
                 });
                 //ANTECEDENTES PERINATALES
                 Route::controller($this->physician.PerinatalBackgroundController::class)->group(function () {
@@ -199,9 +199,9 @@ Route::prefix('v1')->group(function () {
 
                 // ANTECEDENTES POSTNATALES
                 Route::controller($this->physician.PostnatalBackgroundController::class)->group(function () {
-                    Route::get('/postnatal-background/patient/{patient_id}', 'show');
-                    Route::post('/postnatal-background/patient/{patient_id}', 'store');
-                    Route::put('/postnatal-background/patient/{patient_id}', 'update');
+                    Route::get('/patient/{patient_id}/postnatal-background', 'show');
+                    Route::post('/patient/{patient_id}/postnatal-background', 'store');
+                    Route::patch('/patient/{patient_id}/postnatal-background', 'update');
                 });
 
                 //VISUALIZAR LOS MEDICAMENTOS ACTIVOS Y MEDICAMENTOS ANTERIORES DE UN PACIENTE

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\API\V1\Physician;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\V1\Physician\PerinatalBackgroundRequest;
-use App\Http\Resources\API\V1\Physician\PerinatalBackgroundResource;
+use App\Http\Requests\API\V1\Patient\PerinatalBackgroundRequest;
+use App\Http\Resources\API\V1\Patient\PerinatalBackgroundResource;
 use App\Models\MedicalAppointment;
 use App\Models\MedicalHistory;
 use App\Models\PerinatalBackground;
@@ -72,27 +72,34 @@ class PerinatalBackgroundController extends Controller
     public function update(PerinatalBackgroundRequest $request, $patient_id)
     {
         try {
-            DB::beginTransaction();
-            $medicalHistory = $this->medicalhistory($patient_id);
-            $perinatalBackground = $medicalHistory->perinatalBackground;
+            $medical_history = $this->medicalHistory($patient_id);
+
+            if (! $medical_history || ! $medical_history->perinatalBackground) {
+                return response()->json(['message' => 'Historial médico no existe o registro perinatal no existe'], 404);
+            }
+
+            $perinatalBackground = $medical_history->perinatalBackground;
+
             $perinatalBackground->update($request->validated());
-            $perinatalBackground->save();
-            DB::commit();
 
-            return (new PerinatalBackgroundResource($perinatalBackground))->additional(['message' => 'Informacion actualizada con exito.']);
+            return (new perinatalBackgroundResource($perinatalBackground))
+                ->additional(['message' => 'Antecedente perinatalo actualizado con éxito.']);
         } catch (\Throwable $th) {
-            DB::rollback();
-
-            return response()->json(['error' => $th->getMessage()], 400);
+            return response()->json(['error' => $th->getMessage()], 503);
         }
     }
 
-    public function medicalhistory($patient_id)
+    // SE ASEGURA QUE EL MÉDICO PUEDA VER INFORMACIÓN SÓLO DEL PACIENTE QUE HA ATENDIDO
+    public function medicalHistory($patient_id)
     {
         try {
-            $medical_history = MedicalHistory::where('id', $patient_id)->first();
+            $medical_history = MedicalHistory::where('patient_id', $patient_id)->first();
+
             if ($medical_history) {
-                $medical_appointments = MedicalAppointment::where([['patient_id', $medical_history->patient_id], ['physician_id', $this->physician->id]])->count();
+                $medical_appointments = MedicalAppointment::where('patient_id', $medical_history->patient_id)
+                    ->where('physician_id', $this->physician->id)
+                    ->count();
+
                 if ($medical_appointments > 0) {
                     return $medical_history;
                 }

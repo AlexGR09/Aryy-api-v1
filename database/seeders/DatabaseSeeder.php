@@ -50,6 +50,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AllergiesPatientSeeder::class);
         $this->call(PostnatalBackgroundSeeder::class);
         $this->call(NonPathologicalBackgroundSeeder::class);
+        $this->call(ObstetricGynecologicalBackgroundSeeder::class);
+        $this->call(PerinatalBackgroundSeeder::class);
         $this->call(MedicalHistorySeeder::class);
         //$this->call(BasicInformationSeeder::class);
         $this->call(FavoriteSeeder::class);

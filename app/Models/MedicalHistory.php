@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MedicalHistory extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'patient_id',
@@ -26,7 +27,7 @@ class MedicalHistory extends Model
         'vaccination_history_id',
         'perinatal_background_id',
         'postnatal_background_id',
-        'gynecological_history_id',
+        'obstetric_gynecological_background_id',
     ];
 
     protected $casts = [
@@ -74,11 +75,12 @@ class MedicalHistory extends Model
         return $this->belongsTo(PerinatalBackground::class);
     }
 
-    public function postnatal_background()
+    public function postnatalBackground()
     {
         return $this->belongsTo(PostnatalBackground::class);
     }
-    public function gynecological_history(){
-    return $this->belongsTo(ObgynBackground::class);
+    public function obstetricGynecologicalBackground()
+    {
+        return $this->belongsTo(ObstetricGynecologicalBackground::class);
     }
 }

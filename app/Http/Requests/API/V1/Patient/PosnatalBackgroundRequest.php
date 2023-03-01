@@ -14,7 +14,6 @@ class PosnatalBackgroundRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'medical_history_id' => 'required|numeric',
             'delivery_details' => 'nullable|string|max:255',
             'baby_name' => 'nullable|string|max:60',
             'baby_weight' => 'nullable|string|max:20',

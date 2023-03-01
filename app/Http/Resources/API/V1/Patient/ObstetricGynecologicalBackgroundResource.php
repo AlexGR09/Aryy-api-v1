@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\API\V1\Physician;
+namespace App\Http\Resources\API\V1\Patient;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GynecologicalHistoryResource extends JsonResource
+class ObstetricGynecologicalBackgroundResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,7 +15,7 @@ class GynecologicalHistoryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'gynecological_history_id' => $this->id,
+            'obstetric_gynecological_background_id' => $this->id,
             'first_menstruation' => $this->first_menstruation,
             'last_menstruation' => $this->last_menstruation,
             'bleeding' => $this->bleeding,
