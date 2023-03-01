@@ -24,7 +24,7 @@ class PerinatalBackgroundController extends Controller
         $this->physician = empty(auth()->id()) ? null : Physician::where('user_id', auth()->id())->firstOrFail();
     }
 
-    public function store(PerinatalBackgroundRequest $request)
+    public function store(PerinatalBackgroundRequest $request, $patient_id)
     {
         try {
             DB::beginTransaction();
@@ -37,7 +37,7 @@ class PerinatalBackgroundController extends Controller
             if ($medicalAppointment->appointment_date != $todaydatetime) {
             return "Petición incorrecta";
             } */
-            $medicalHistory = $this->medicalhistory($request->patient_id);
+            $medicalHistory = $this->medicalhistory($patient_id);
             if (!$medicalHistory || $medicalHistory->perinatalBackground) {
                 return response()->json(['message' => 'No se encontro el historial de antecendentes perinatales'], 404);
             }

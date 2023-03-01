@@ -190,20 +190,20 @@ Route::prefix('v1')->group(function () {
                 );
                 //HISTORIAL GINECOLOGICO
                 Route::controller($this->physician.ObstetricGynecologicalBackgroundController::class)->group(function () {
-                    Route::post('/gynecological-history', 'store');
-                    Route::get('/patient/{patient_id}/gynecological-history', 'show');
+                    Route::post('/patient/{patient_id}/obstetric-gynecological-background', 'store');
+                    Route::get('/patient/{patient_id}/obstetric-gynecological-background', 'show');
                     Route::patch('/patient/{patient_id}/obstetric-gynecological-background','update');
                 });
                 //ANTECEDENTES PERINATALES
                 Route::controller($this->physician . PerinatalBackgroundController::class)->group(function () {
-                    Route::post('/perinatal-background', 'store');
+                    Route::post('/patient/{patient_id}/perinatal-background', 'store');
                     Route::get('/patient/{patient_id}/perinatal-background', 'show');
                     Route::patch('/patient/{patient_id}/perinatal-background', 'update');
                 }
                 );
                 //HISTORIAL PSIQUIATRICO
                 Route::controller($this->physician . PyschologicalBackgroundController::class)->group(function () {
-                    Route::post('/psychological-background', 'store');
+                    Route::post('/patient/{patient_id}/psychological-background', 'store');
                     Route::get('/patient/{patient_id}/psychological-background', 'show');
                     Route::patch('/patient/{patient_id}/psychological-background', 'update');
                 }
@@ -211,7 +211,7 @@ Route::prefix('v1')->group(function () {
 
                 // HISTORIAL DE VACUNACION
                 Route::controller($this->physician . VaccinationHistoryController::class)->group(function () {
-                    Route::post('vaccination-history', 'store');
+                    Route::post('/patient/{patient_id}/vaccination-history', 'store');
                     Route::get('/patient/{patient_id}/vaccination-history', 'show');
                 }
                 );
@@ -228,7 +228,7 @@ Route::prefix('v1')->group(function () {
                     Route::get('/patient/{patient_id}/medication', 'medicationPatient');
                 }
                 );
-
+                //Actualizar las alergias o alergia de un paciente
                 Route::patch('patient/{patient_id}/allergies', [AllergyController::class, 'update']);
             }
             );

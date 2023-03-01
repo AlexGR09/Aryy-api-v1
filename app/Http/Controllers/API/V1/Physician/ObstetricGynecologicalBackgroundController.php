@@ -25,7 +25,7 @@ class ObstetricGynecologicalBackgroundController extends Controller
         $this->physician = empty(auth()->id()) ? null : Physician::where('user_id', auth()->id())->firstOrFail();
     }
 
-    public function store(ObstetricGynecologicalBackgroundRequest $request)
+    public function store(ObstetricGynecologicalBackgroundRequest $request, $patient_id)
     {
         try {
             DB::beginTransaction();
@@ -38,12 +38,12 @@ class ObstetricGynecologicalBackgroundController extends Controller
             if ($medicalAppointment->appointment_date != $todaydatetime) {
             return "Petición incorrecta";
             } */
-            $medicalHistory = $this->medicalhistory($request->patient_id);
-            if (!$medicalHistory || $medicalHistory->gynecological_history_id) {
+            $medicalHistory = $this->medicalhistory($patient_id);
+            if (!$medicalHistory || $medicalHistory->obstetricGynecologicalBackground) {
                 return response()->json(['message' => 'No se encontraron resultados'], 404);
             }
             $gynecologicalHistory = ObstetricGynecologicalBackground::create($request->validated());
-            $medicalHistory->gynecological_history_id = $gynecologicalHistory->id;
+            $medicalHistory->obstetric_gynecological_background_id = $gynecologicalHistory->id;
             $medicalHistory->save();
             DB::commit();
 
@@ -59,7 +59,7 @@ class ObstetricGynecologicalBackgroundController extends Controller
     {
         try {
             $medicalHistory = $this->medicalhistory($patient_id);
-            $gynecologicalHistory = ObstetricGynecologicalBackground::where('id', $medicalHistory->gynecological_history_id)
+            $gynecologicalHistory = ObstetricGynecologicalBackground::where('id', $medicalHistory->obstetric_gynecological_background_id)
                 ->first();
             if (!$gynecologicalHistory) {
                 return response()->json(['message' => 'No se encontro el historial ginecologico'], 404);

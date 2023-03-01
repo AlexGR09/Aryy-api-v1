@@ -26,7 +26,7 @@ class VaccinationHistoryController extends Controller
         $this->physician = empty(auth()->id()) ? null : Physician::where('user_id', auth()->id())->firstOrFail();
     }
 
-    public function store(VaccinationHistoryRequest $request)
+    public function store(VaccinationHistoryRequest $request,$patient_id)
     {
         try {
             DB::beginTransaction();
@@ -38,7 +38,7 @@ class VaccinationHistoryController extends Controller
              if ($medicalAppointment->appointment_date != $todaydatetime) {
                  return "Petición incorrecta";
              } */
-            $medical_history = $this->medicalhistory($request->patient_id);
+            $medical_history = $this->medicalhistory($patient_id);
             $vaccination_history = VaccinationHistory::create($request->validated());
             $medical_history_vaccination = MedicalHistoryVaccination::create([
                 'patient_id' => $request->patient_id,
