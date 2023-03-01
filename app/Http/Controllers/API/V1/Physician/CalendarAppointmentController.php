@@ -133,11 +133,11 @@ class CalendarAppointmentController extends Controller
         }
     }
 
-    public function show($id)
+    public function show($appointment_id)
     {
         try {
             $appointment = $this->physician->medical_appointments()
-                ->where('id', $id)
+                ->where('id', $appointment_id)
                 ->first();
 
             return (new CalendarAppointmentResource($appointment))->additional(['message' => 'Cita encontrada.']);
