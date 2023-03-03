@@ -4,7 +4,7 @@ namespace App\Http\Resources\API\V1\Patient;
 
 use App\Http\Resources\API\V1\Catalogues\CityResource;
 use App\Http\Resources\API\V1\Catalogues\OccupationResource;
-use App\Http\Resources\API\V1\UserResource;
+use App\Http\Resources\API\V1\Auth\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PatientResource extends JsonResource
@@ -25,8 +25,8 @@ class PatientResource extends JsonResource
             'main_profile' => $this->main_profile,
             'occupations_patient' => OccupationResource::collection($this->occupations),
             'user_id' => $this->user_id,
-            /*             'user' => new UserResource($this->user)
- */            // 'city' => new CityResource($this->city),
+            'user' => new UserResource($this->user)
+            // 'city' => new CityResource($this->city),
             // 'occupation_patient' => $this->occupationpatient,
 
         ];
