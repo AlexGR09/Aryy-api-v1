@@ -41,12 +41,12 @@ class PathologicalBackgroundController extends Controller
     {
         $data = $request->validated();
         $medicalHistory = MedicalHistory::where('patient_id', $patient->id)->first();
-        $medicalHistory->pathologicalBackground()
-        ->update($data);
+        if(optional($medicalHistory)->pathological_background_id == null){
+            return conflict('El paciente no tiene historial medico',[]);
+        } 
+        $pathologicalBackground = tap(PathologicalBackground::find($medicalHistory->pathological_background_id))->update($request->validated());
 
-        return (new PathologicalBackgroundResource(
-            $medicalHistory->pathologicalBackground
-        ))
-        ->additional(['message' => 'Informacion guardada con exito.']);
+        return (new PathologicalBackgroundResource(PathologicalBackground::find($medicalHistory->pathological_background_id)))->additional(['message' => 'Informacion actualizada con exito.']);
+
     }
 }
