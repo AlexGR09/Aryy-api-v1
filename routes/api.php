@@ -423,18 +423,24 @@ Route::prefix('v1')->group(function () {
         // Route::put('basic-information/vital-signs/patient/{patient}/medical-appointment/{medicalAppointment}', [BasicInformationController::class, 'update']);
     });
 
+    // Route::patch('/physician/medical-history/patient/{patient}/pathological-background',[PatientPathologicalBackgroundController::class, 'update']);
+    // Route::patch('/physician/medical-history/patient/{patient}/non-pathological-background',[PatientNonPathologicalBackgroundController::class, 'update']);
+    // Route::patch('/physician/medical-history/patient/{patient}/hereditary-background',[PatientHereditaryBackgroundController::class, 'update']);
+    // Route::patch('/physician/medical-history/patient/{patient}/psychological-background',[PatientPhysicologicalBackgroundController::class, 'update']);
+
+    
     Route::group(['prefix' => 'medical-history'], function () {
         Route::get('physician/pathological-background/patient/{patient}', [PhysicianPathologicalBackgroundController::class, 'show']);
         Route::post('physician/pathological-background', [PhysicianPathologicalBackgroundController::class, 'store']);
-        Route::put('physician/pathological-background/patient/{patient}', [PhysicianPathologicalBackgroundController::class, 'update']);
+        Route::patch('physician/pathological-background/patient/{patient}', [PhysicianPathologicalBackgroundController::class, 'update']);
 
         Route::get('physician/non-pathological-background/patient/{patient}', [PhysicianNonPathologicalBackgroundController::class, 'show']);
         Route::post('physician/non-pathological-background', [PhysicianNonPathologicalBackgroundController::class, 'store']);
-        Route::put('physician/non-pathological-background/patient/{patient}', [PhysicianNonPathologicalBackgroundController::class, 'update']);
+        Route::patch('physician/non-pathological-background/patient/{patient}', [PhysicianNonPathologicalBackgroundController::class, 'update']);
 
         Route::get('physician/hereditary-background/patient/{patient}', [PhysicianHereditaryBackgroundController::class, 'show']);
         Route::post('physician/hereditary-background', [PhysicianHereditaryBackgroundController::class, 'store']);
-        Route::put('physician/hereditary-background/patient/{patient}', [PhysicianHereditaryBackgroundController::class, 'update']);
+        Route::patch('physician/hereditary-background/patient/{patient}', [PhysicianHereditaryBackgroundController::class, 'update']);
 
         Route::put('basic-information/patient/{patient}', [BasicInformationController::class, 'show']);
     });
