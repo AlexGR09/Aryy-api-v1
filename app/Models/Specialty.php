@@ -24,4 +24,8 @@ class Specialty extends Model
     // {
     //     return $this->hasMany('App\Models\SpecialtiesPhysician');
     // }
+
+    public function medicalServicesSpecialty(){
+        return $this->belongsTo(MedicalServicesSpecialty::class);
+    }
 }

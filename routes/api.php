@@ -95,8 +95,16 @@ Route::prefix('v1')->group(function () {
             Route::resource('/occupations', $this->catalogues . OccupationController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);
             //MEDICAL SERVICES
-            Route::resource('/medical-services', $this->catalogues . MedicalServiceController::class)
-                ->only(['index', 'store', 'show', 'update', 'destroy']);
+            /* Route::resource('/medical-services', $this->catalogues . MedicalServiceController::class)
+                ->only(['index', 'store', 'show', 'update', 'destroy']); */
+            Route::controller($this->catalogues.MedicalServiceController::class)->group(function(){
+                Route::get('/medical_services','index');
+                Route::post('/medical_services','post');
+                Route::put('/medical_services/{medical_services}','update');
+                Route::delete('/medical_services/{medical_services}', 'destroy');
+
+                Route::get('/specialty/{specialty_id}/medical-services','medicalServicesSpecialty');
+            });
             //INSURANCE
             Route::resource('/insurances', $this->catalogues . InsuranceController::class)
                 ->only(['index', 'store', 'show', 'update', 'destroy']);

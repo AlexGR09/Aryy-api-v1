@@ -25,4 +25,8 @@ class MedicalService extends Model
     {
         return $this->belongsToMany(\App\Models\Physician::class, 'medical_service_physician');
     }
+    public function medicalServicesSpecialty()
+    {
+        return $this->belongsTo(MedicalServicesSpecialty::class);
+    }
 }

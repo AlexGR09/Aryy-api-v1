@@ -4,7 +4,10 @@ namespace App\Http\Controllers\API\V1\Catalogues;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\V1\Catalogues\MedicalServiceResource;
+use App\Http\Resources\API\V1\Catalogues\MedicalServicesSpecialtyResource;
 use App\Models\MedicalService;
+use App\Models\MedicalServicesSpecialty;
+use App\Models\Specialty;
 use Illuminate\Http\Request;
 
 class MedicalServiceController extends Controller
@@ -77,5 +80,11 @@ class MedicalServiceController extends Controller
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
         }
+    }
+
+    public function medicalServicesSpecialty($specialty_id){
+
+        $medicalServices_Specialty = MedicalServicesSpecialty::where('specialty_id', $specialty_id)->get();
+        return MedicalServicesSpecialtyResource::collection($medicalServices_Specialty);
     }
 }
