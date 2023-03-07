@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\API\V1\Physician;
 
+use DateTime;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CalendarResource extends JsonResource
