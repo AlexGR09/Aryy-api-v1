@@ -15,7 +15,7 @@ class CalendarResource extends JsonResource
     public function toArray($request)
     {
         $date_start = $this->appointment_date.'T'.$this->appointment_time->format('H:i:s');
-        $date_end = $this->appointment_date.'T'.$this->appointment_time_end->format('H:i:s');
+        $date_end = $this->appointment_date.' '.$this->appointment_time_end->format('H:i:s');
 
         return[
             'id_appointment' => $this->id,
