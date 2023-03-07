@@ -69,9 +69,9 @@ return [
     |
     */
 
-    'timezone' => 'America/Mexico_City',,
+    'timezone' => env('America/Mexico_City'),
 
-    /*
+    /*timezone' => 'America/Mexico_City',
     |--------------------------------------------------------------------------
     | Application Locale Configuration
     |--------------------------------------------------------------------------
