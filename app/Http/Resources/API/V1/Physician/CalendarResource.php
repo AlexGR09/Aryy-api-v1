@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources\API\V1\Physician;
 
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CalendarResource extends JsonResource
@@ -14,9 +16,10 @@ class CalendarResource extends JsonResource
      */
     public function toArray($request)
     {
-        $date_start = $this->appointment_date.'T'.$this->appointment_time->format('H:i:s');
-        $date_end = $this->appointment_date.' '.$this->appointment_time_end->format('H:i:s');
-
+        $fecha = $this->appointment_date.' '.$this->appointment_time->format('H:i:s');
+        $fecha2 = $this->appointment_date.' '.$this->appointment_time_end->format('H:i:s');
+    $date_start = (new DateTime($fecha))->format('c');
+    $date_end =(new DateTime($fecha2))->format('c');
         return[
             'id_appointment' => $this->id,
             'patient_full_name' => $this->patient->full_name,
