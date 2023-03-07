@@ -107,8 +107,7 @@ class CalendarAppointmentController extends Controller
                 return response()->json(['message' => 'No se puede agendar una cita en un horario no disponible'], 503);
             }
             $time = strtotime($request->appointment_time) + strtotime($facility->consultation_length); //SUMA LA DURACION DE LA CONSULTA A LA HORA DE LA CITA
-            $date_time_end = date('H:i:s', $time);
-            return $date_time_end.'------'.$time->timezone('America/Mexico_City'); //SE LE DA EL FORMATO DE HORA */
+            $date_time_end = date('H:i:s', $time); //SE LE DA EL FORMATO DE HORA */
             $medicalAppointment = MedicalAppointment::greaterThanDate($request->appointment_date, $request->appointment_time)
                 ->first();
             if (! empty($medicalAppointment)) {
