@@ -21,7 +21,7 @@ return new class extends Migration
             $table->json('alcoholim')->nullable();
             $table->string('other_substances')->nullable();
             $table->enum('diet', ['Dieta mediterránea', 'Dieta de la zona', 'Dieta vegetariana', 'Dieta vegana', 'Dieta de la fertilidad', 'Dieta hipocalórica', 'Dieta hipercalórica', 'Dieta volumétrica', 'Dieta keto', 'Dieta detox', 'Dieta Ornish / Ovolactovegetariana', 'Dieta Dash', 'Dieta paleo'])->nullable();
-            $table->string('previous_medication')->nullable();
+            $table->json('previous_medication')->nullable();
             $table->json('drug_active')->nullable();
             $table->timestamps();
             $table->softDeletes();

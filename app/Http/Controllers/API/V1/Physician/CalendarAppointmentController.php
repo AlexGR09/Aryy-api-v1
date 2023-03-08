@@ -11,6 +11,7 @@ use App\Http\Resources\API\V1\Physician\PatientMedicalAppointmentResource;
 use App\Models\Facility;
 use App\Models\FacilityPhysician;
 use App\Models\MedicalAppointment;
+use App\Models\MedicalHistory;
 use App\Models\Patient;
 use App\Models\Physician;
 use App\Models\User;
@@ -101,14 +102,16 @@ class CalendarAppointmentController extends Controller
                     'country_code' => $request->country_code,
                     'emergency_number' => $request->emergency_number,
                 ]);
+                $newMideicalHistory = MedicalHistory::create([
+                    'patient_id' => $patient->id,
+                ]);
             }
             $facility = Facility::find($request->facility_id);
             if (! $facility->checkValidDate($request->appointment_date, $request->appointment_time)) {
                 return response()->json(['message' => 'No se puede agendar una cita en un horario no disponible'], 503);
             }
             $time = strtotime($request->appointment_time) + strtotime($facility->consultation_length); //SUMA LA DURACION DE LA CONSULTA A LA HORA DE LA CITA
-            $date_time_end = date('H:i:s', $time);
-            return $date_time_end.'------'.$time; //SE LE DA EL FORMATO DE HORA */
+            $date_time_end = date('H:i:s', $time); //SE LE DA EL FORMATO DE HORA */
             $medicalAppointment = MedicalAppointment::greaterThanDate($request->appointment_date, $request->appointment_time)
                 ->first();
             if (! empty($medicalAppointment)) {
@@ -124,6 +127,7 @@ class CalendarAppointmentController extends Controller
                 'facility_id' => $request->facility_id,
                 'status' => 'scheduled',
             ]);
+            
             DB::commit();
 
             return (new CalendarResource($medicalAppointment))->additional(['message' => 'Cita agendada correctamente.']);
