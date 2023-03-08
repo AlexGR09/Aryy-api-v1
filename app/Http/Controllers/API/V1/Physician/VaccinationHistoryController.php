@@ -41,7 +41,7 @@ class VaccinationHistoryController extends Controller
             $medical_history = $this->medicalhistory($patient_id);
             $vaccination_history = VaccinationHistory::create($request->validated());
             $medical_history_vaccination = MedicalHistoryVaccination::create([
-                'patient_id' => $request->patient_id,
+                'patient_id' => $patient_id,
                 'vaccination_history_id' => $vaccination_history->id,
             ]);
             DB::commit();
