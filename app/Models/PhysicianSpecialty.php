@@ -17,7 +17,7 @@ class PhysicianSpecialty extends Model
         'specialty_id',
         'physician_id',
         'license',
-        'lincense_photo',
+        'license_photo',
         'institution',
     ];
 
