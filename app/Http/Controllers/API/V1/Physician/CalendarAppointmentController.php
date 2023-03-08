@@ -11,6 +11,7 @@ use App\Http\Resources\API\V1\Physician\PatientMedicalAppointmentResource;
 use App\Models\Facility;
 use App\Models\FacilityPhysician;
 use App\Models\MedicalAppointment;
+use App\Models\MedicalHistory;
 use App\Models\Patient;
 use App\Models\Physician;
 use App\Models\User;
@@ -101,6 +102,9 @@ class CalendarAppointmentController extends Controller
                     'country_code' => $request->country_code,
                     'emergency_number' => $request->emergency_number,
                 ]);
+                $newMideicalHistory = MedicalHistory::create([
+                    'patient_id' => $patient->id,
+                ]);
             }
             $facility = Facility::find($request->facility_id);
             if (! $facility->checkValidDate($request->appointment_date, $request->appointment_time)) {
@@ -123,6 +127,7 @@ class CalendarAppointmentController extends Controller
                 'facility_id' => $request->facility_id,
                 'status' => 'scheduled',
             ]);
+            
             DB::commit();
 
             return (new CalendarResource($medicalAppointment))->additional(['message' => 'Cita agendada correctamente.']);
