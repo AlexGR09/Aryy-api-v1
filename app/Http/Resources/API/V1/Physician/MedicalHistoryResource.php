@@ -46,6 +46,7 @@ class MedicalHistoryResource extends JsonResource
             'perinatal_background' => new PerinatalBackgroundResource($this->perinatalBackground),
             /*posnatal_background*/
             'posnatal_background' => new PosnatalBackgroundResource($this->postnatalBackground),
+            'vaccination_history'=>MedicalHistoryVaccinationResource::collection($this->vaccinationhistory)
         ];
     }
 }

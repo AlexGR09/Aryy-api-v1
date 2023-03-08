@@ -62,7 +62,7 @@ class MedicalHistory extends Model
 
     public function vaccinationhistory()
     {
-        return $this->hasMany('App\Models\MedicalHistoryVaccination', 'patient_id', 'id');
+        return $this->hasMany('App\Models\MedicalHistoryVaccination', 'patient_id', 'patient_id');
     }
 
     public function pyschologicalBackground()
