@@ -15,15 +15,15 @@ class NonPathologicalBackgroundSeeder extends Seeder
     public function run()
     {
         $medicine_ac = [
-            'Ibuprofeno • 10mg • Comprimido,Paracetamol - 10mg - Comprimido',
-            'Amoxilina • 10mg • Comprimido,Paracetamol - 10mg - Comprimido',
-            'Omeprazol • 10mg • Comprimido,Paracetamol - 10mg - Comprimido'
+            ['medicine' => 'Ibuprofeno • 10mg • Comprimido,Paracetamol - 10mg - Comprimido'],
+            ['medicine' => 'Amoxilina • 10mg • Comprimido,Paracetamol - 10mg - Comprimido'],
+            ['medicine' => 'Omeprazol • 10mg • Comprimido,Paracetamol - 10mg - Comprimido']
         ];
 
         DB::table('non_pathological_backgrounds')->insert([
             [
                 'id' => 1,
-                'drug_active' =>json_encode($medicine_ac),
+                'drug_active' => json_encode($medicine_ac),
                 'previous_medication' => 'N/A',
             ],
             [
