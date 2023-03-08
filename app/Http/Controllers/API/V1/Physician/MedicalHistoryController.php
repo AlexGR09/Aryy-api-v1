@@ -25,9 +25,9 @@ class MedicalHistoryController extends Controller
             $medical_appointment = MedicalAppointment::where('patient_id', $patient_id)
                 ->where('physician_id', $this->physician->id)
                 ->first();
-            $medicalHistory = MedicalHistory::where('patient_id', $medical_appointment->patient_id)->first();
+            $medicalHistory = MedicalHistory::where('patient_id', $medical_appointment->patient_id)->get();
 
-            return new MedicalHistoryResource($medicalHistory);
+            return MedicalHistoryResource::collection($medicalHistory);
             //return MedicalAppointmentResource::collection($medical_appointment)->additional(['message' => 'Citas médicas.']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 503);
