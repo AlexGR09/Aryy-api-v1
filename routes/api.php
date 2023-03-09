@@ -112,8 +112,25 @@ Route::prefix('v1')->group(function () {
             });
             Route::controller($this->catalogues . AlergyController::class)->group(function () {
                 Route::get('/allergy', 'index');
-            }
-            );
+            });
+            // ENFERMEDADES TIROIDEAS
+            Route::resource('/thyroid-diseases', $this->catalogues. ThyroidDiseaseController::class)
+                ->only(['index', 'show']);
+            // CÁNCERES
+            Route::resource('/cancers', $this->catalogues.CancerController::class)
+                ->only(['index', 'show']);
+            // ENFERMEDADES DE LA SANGRE
+            Route::resource('/blood-diseases', $this->catalogues.BloodDiseaseController::class)
+                ->only(['index', 'show']);
+            // CÁLCULOS RENALES
+            Route::resource('/kidney-stones', $this->catalogues.KidneyStoneController::class)
+                ->only(['index', 'show']);
+            // HEPATITIS
+            Route::resource('/hepatitis', $this->catalogues.HepatitisController::class)
+                ->only(['index', 'show']);
+            // PATOLOGÍAS RESPIRATORIAS
+            Route::resource('/respiratory-pathologies', $this->catalogues.RespiratoryPathologyController::class)
+                ->only(['index', 'show']);
         });
 
         /* RUTAS DEL MÉDICO */

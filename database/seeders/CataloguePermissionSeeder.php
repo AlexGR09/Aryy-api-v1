@@ -30,6 +30,7 @@ class CataloguePermissionSeeder extends Seeder
             ['name' => 'show user profile', 'guard_name' => 'sanctum'],
             ['name' => 'edit user profile', 'guard_name' => 'sanctum'],
             ['name' => 'delete user profile', 'guard_name' => 'sanctum'],
+
             // CATÁLOGOS
             // CRUD ESPECIALIDADES
             ['name' => 'show specialties', 'guard_name' => 'sanctum'],
@@ -76,6 +77,37 @@ class CataloguePermissionSeeder extends Seeder
             ['name' => 'create cities', 'guard_name' => 'sanctum'],
             ['name' => 'edit cities', 'guard_name' => 'sanctum'],
             ['name' => 'delete cities', 'guard_name' => 'sanctum'],
+            // CRUD ENFERMEDADES TIROIDEAS
+            ['name' => 'show thyroid diseases', 'guard_name' => 'sanctum'],
+            ['name' => 'create thyroid diseases', 'guard_name' => 'sanctum'],
+            ['name' => 'edit thyroid diseases', 'guard_name' => 'sanctum'],
+            ['name' => 'delete thyroid diseases', 'guard_name' => 'sanctum'],
+            // CRUD CANCERES
+            ['name' => 'show cancers', 'guard_name' => 'sanctum'],
+            ['name' => 'create cancers', 'guard_name' => 'sanctum'],
+            ['name' => 'edit cancers', 'guard_name' => 'sanctum'],
+            ['name' => 'delete cancers', 'guard_name' => 'sanctum'],
+            // CRUD ENFERMEDADES DE LA SANGRE
+            ['name' => 'show blood diseases', 'guard_name' => 'sanctum'],
+            ['name' => 'create blood diseases', 'guard_name' => 'sanctum'],
+            ['name' => 'edit blood diseases', 'guard_name' => 'sanctum'],
+            ['name' => 'delete blood diseases', 'guard_name' => 'sanctum'],
+            // CRUD CÁLCULOS RENALES
+            ['name' => 'show kidney stones', 'guard_name' => 'sanctum'],
+            ['name' => 'create kidney stones', 'guard_name' => 'sanctum'],
+            ['name' => 'edit kidney stones', 'guard_name' => 'sanctum'],
+            ['name' => 'delete kidney stones', 'guard_name' => 'sanctum'],
+            // HEPATITIS
+            ['name' => 'show hepatitis', 'guard_name' => 'sanctum'],
+            ['name' => 'create hepatitis', 'guard_name' => 'sanctum'],
+            ['name' => 'edit hepatitis', 'guard_name' => 'sanctum'],
+            ['name' => 'delete hepatitis', 'guard_name' => 'sanctum'],
+            // PATOLOGÍAS RESPIRATORIAS
+            ['name' => 'show respiratory pathologies', 'guard_name' => 'sanctum'],
+            ['name' => 'create respiratory pathologies', 'guard_name' => 'sanctum'],
+            ['name' => 'edit respiratory pathologies', 'guard_name' => 'sanctum'],
+            ['name' => 'delete respiratory pathologies', 'guard_name' => 'sanctum'],
+
             // NUEVOS USUARIOS
             ['name' => 'complete physician profile', 'guard_name' => 'sanctum'],
             // PACIENTES
