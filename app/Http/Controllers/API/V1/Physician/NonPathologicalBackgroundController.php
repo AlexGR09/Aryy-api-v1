@@ -25,7 +25,6 @@ class NonPathologicalBackgroundController extends Controller
     public function store(StoreNonPathologicalBackgroundRequest $request)
     {
         $data = $request->validated();
-
         $nonPathologicalBackground = NonPathologicalBackground::create($data);
         MedicalHistory::where('patient_id', $data['patient_id'])->update([
             'non_pathological_background_id' => $nonPathologicalBackground->id,

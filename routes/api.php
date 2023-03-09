@@ -499,7 +499,7 @@ Route::prefix('v1')->group(function () {
         Route::patch('physician/pathological-background/patient/{patient}', [PhysicianPathologicalBackgroundController::class, 'update']);
 
         Route::get('physician/non-pathological-background/patient/{patient}', [PhysicianNonPathologicalBackgroundController::class, 'show']);
-        Route::post('physician/non-pathological-background', [PhysicianNonPathologicalBackgroundController::class, 'store']);
+        Route::post('/physician/non-pathological-background', [PhysicianNonPathologicalBackgroundController::class, 'store']);
         Route::patch('physician/non-pathological-background/patient/{patient}', [PhysicianNonPathologicalBackgroundController::class, 'update']);
 
         Route::get('physician/hereditary-background/patient/{patient}', [PhysicianHereditaryBackgroundController::class, 'show']);

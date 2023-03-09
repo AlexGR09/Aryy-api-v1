@@ -56,8 +56,10 @@ class UpdateNonPathologicalBackgroundRequest extends FormRequest
                     'Dieta paleo',
                 ]),
             ],
-            'drug_active' => 'sometimes|string',
-            'previous_medication' => 'sometimes|string',
+            'drug_active' => 'sometimes|array',
+            'drug_active.*.medicine'=>'string',
+            'previous_medication' => 'sometimes|array',
+            'previous_medication.*.medicine' => 'string',
         ];
     }
 }
