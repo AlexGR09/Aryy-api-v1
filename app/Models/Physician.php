@@ -14,6 +14,7 @@ class Physician extends Model
         'user_id',
         'professional_name',
         'gender',
+        'birthday',
         'certificates',
         'social_networks',
         'biography',

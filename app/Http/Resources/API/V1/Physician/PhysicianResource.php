@@ -15,6 +15,7 @@ class PhysicianResource extends JsonResource
             'user'=>new UserResource($this->user),
             'professional_name' => $this->professional_name,
             'gender' => $this->gender,
+            'birthday'=>$this->birthday,
             'certificates' => $this->certificates,
             'social_networks' => $this->social_networks,
             'biography' => $this->biography,
