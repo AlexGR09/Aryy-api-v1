@@ -13,6 +13,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->string('professional_name');
             $table->enum('gender', ['Masculino', 'Femenino'])->nullable();
+            $table->date('birthday')->nullable();
             $table->json('certificates')->nullable();
             $table->json('social_networks')->nullable();
             $table->string('biography')->nullable();
