@@ -12,6 +12,7 @@ class TestJoseController extends Controller
     public function index(Request $request)
     {
         try {
+        //testing
             // PARÁMETROS A UTILIZAR
             $value = $request->value;
             $resSearch = [
