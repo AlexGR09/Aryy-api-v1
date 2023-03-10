@@ -17,7 +17,7 @@ class ViewMedicationsResource extends JsonResource
         return [
             'id' => $this->id,
             'medication' => $this->drug_active,
-            'previous_medication' => explode(',', $this->previous_medication),
+            'previous_medication' => $this->previous_medication,
         ];
     }
 }
