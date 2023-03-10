@@ -25,4 +25,8 @@ class TaxData extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+    public function physician()
+    {
+        return $this->belongsTo(Physician::class);
+    }
 }
