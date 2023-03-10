@@ -508,7 +508,8 @@ Route::prefix('v1')->group(function () {
 
     
     Route::group(['prefix' => 'medical-history'], function () {
-        Route::get('physician/pathological-background/patient/{patient}', [PhysicianPathologicalBackgroundController::class, 'show']);
+        Route::get('physician/pathological-background/patient/{patient}', [Physician
+        logicalBackgroundController::class, 'show']);
         Route::post('physician/pathological-background', [PhysicianPathologicalBackgroundController::class, 'store']);
         Route::patch('physician/pathological-background/patient/{patient}', [PhysicianPathologicalBackgroundController::class, 'update']);
 
