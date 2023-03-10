@@ -24,9 +24,9 @@ class PathologicalBackgroundResource extends JsonResource
         });
 
         // Obtener los elementos nulos y dividirlos en trozos de 2
-        $nullArrayChunks = array_chunk(array_filter($array, function ($value) {
+        $nullArrayChunks = array_filter($array, function ($value) {
             return is_null($value);
-        }), 2);
+        });
 
         /* print_r($nonNullArray);
         print_r($nullArrayChunks); */
