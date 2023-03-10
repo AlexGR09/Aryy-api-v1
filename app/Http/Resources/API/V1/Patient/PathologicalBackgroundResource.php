@@ -27,9 +27,6 @@ class PathologicalBackgroundResource extends JsonResource
         $nullArrayChunks = array_filter($array, function ($value) {
             return is_null($value);
         });
-
-        /* print_r($nonNullArray);
-        print_r($nullArrayChunks); */
         return [
             /* 'pathological_background_id' => $this->id,        
             'previous_surgeries' => $this->previous_surgeries,
