@@ -7,7 +7,6 @@ use App\Http\Resources\API\V1\Physician\CalendarAppointmentCollection;
 use App\Http\Resources\API\V1\Physician\CalendarAppointmentResource;
 use App\Http\Resources\API\V1\Physician\CalendarResource;
 use App\Http\Resources\API\V1\Physician\FacilityPhysicanResource;
-use App\Http\Resources\API\V1\Physician\NewPatientAppointmentResource;
 use App\Http\Resources\API\V1\Physician\PatientMedicalAppointmentResource;
 use App\Models\Facility;
 use App\Models\FacilityPhysician;
@@ -113,26 +112,21 @@ class CalendarAppointmentController extends Controller
             if (!$facility->checkValidDate($request->appointment_date, $request->appointment_time)) {
                 return response()->json(['message' => 'No se puede agendar una cita en un horario no disponible'], 503);
             }
-            //le damos formato de fecha al valor appointment date
-            $appointmentDate = Carbon::createFromFormat('Y-m-d',$request->appointment_date);
-            $appointmentDate=$appointmentDate->format('Y-m-d');
-
-            $appointmentTime = strtotime($request->appointment_time);
-            $dateTime = date('H:i:s',$appointmentTime);
-
-            $time = strtotime($request->appointment_time) + strtotime($facility->consultation_length); //SUMA LA DURACION DE LA CONSULTA A LA HORA DE LA CITA
+            $appointmentTime = $request->appointment_time;
+            $appointmentTime = Carbon::createFromFormat('H:i:s', $appointmentTime,'UTC');
+            
+            $time = strtotime($appointmentTime) + strtotime($facility->consultation_length); //SUMA LA DURACION DE LA CONSULTA A LA HORA DE LA CITA
             $date_time_end = date('H:i:s', $time); //SE LE DA EL FORMATO DE HORA */
 
-
-            $medicalAppointment = MedicalAppointment::greaterThanDate($appointmentDate, $dateTime)
+            $medicalAppointment = MedicalAppointment::greaterThanDate($request->appointment_date, $request->appointment_time)
                 ->first();
             if (!empty($medicalAppointment)) {
                 return response()->json(['message' => 'Fecha y horario no disponibles'], 503);
             }
             $medicalAppointment = MedicalAppointment::create([
-                'appointment_date' => $appointmentDate,
+                'appointment_date' => $request->appointment_date,
                 'appointment_type' => $request->appointment_type,
-                'appointment_time' => $dateTime,
+                'appointment_time' => $appointmentTime,
                 'appointment_time_end' => $date_time_end,
                 'patient_id' => $patient->id,
                 'physician_id' => $this->physician->id,
@@ -141,7 +135,8 @@ class CalendarAppointmentController extends Controller
             ]);
 
             DB::commit();
-           return (new CalendarResource($medicalAppointment))->additional(['message' => 'Cita agendada correctamente.']);
+
+            return (new CalendarResource($medicalAppointment))->additional(['message' => 'Cita agendada correctamente.']);
         } catch (\Throwable $th) {
             DB::rollback();
 
@@ -246,7 +241,7 @@ class CalendarAppointmentController extends Controller
 
             DB::commit();
 
-            return (new NewPatientAppointmentResource($medicalAppointment))->additional(['message' => 'Cita agendada correctamente.']);
+            return (new CalendarResource($medicalAppointment))->additional(['message' => 'Cita agendada correctamente.']);
         } catch (\Throwable $th) {
             DB::rollback();
 
