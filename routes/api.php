@@ -464,8 +464,10 @@ Route::prefix('v1')->group(function () {
             Route::get('/appointments', [$this->physician . CalendarAppointmentController::class, 'index']);
             Route::get('/appointments/{appointment_id}', [$this->physician . CalendarAppointmentController::class, 'show']);
             //REGISTRO DE CITAS Y PACIENTE
-            Route::post('/new-appointments', [$this->physician . CalendarAppointmentController::class, 'store']);
+            Route::post('/appointments', [$this->physician . CalendarAppointmentController::class, 'store']);
             Route::put('/appointments/{appointment_id}', [$this->physician . CalendarAppointmentController::class, 'update']);
+
+            Route::post('/new-patient-appointment', [$this->physician . CalendarAppointmentController::class, 'newEmergencyPatient']);
 
             //consulta para los selects
             Route::get('/facilityphysician', [$this->physician . CalendarAppointmentController::class, 'facilityphysician']);
@@ -508,8 +510,7 @@ Route::prefix('v1')->group(function () {
 
     
     Route::group(['prefix' => 'medical-history'], function () {
-        Route::get('physician/pathological-background/patient/{patient}', [
-        PhysicianPathologicalBackgroundController::class, 'show']);
+        Route::get('physician/pathological-background/patient/{patient}', [PhysicianPathologicalBackgroundController::class, 'show']);
         Route::post('physician/pathological-background', [PhysicianPathologicalBackgroundController::class, 'store']);
         Route::patch('physician/pathological-background/patient/{patient}', [PhysicianPathologicalBackgroundController::class, 'update']);
 

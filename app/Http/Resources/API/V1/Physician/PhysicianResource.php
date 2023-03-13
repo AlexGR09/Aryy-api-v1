@@ -12,10 +12,10 @@ class PhysicianResource extends JsonResource
         return [
             'physician_id' => $this->id,
             'user_id' => $this->user_id,
-            'user'=>new UserResource($this->user),
+            'user' => new UserResource($this->user),
             'professional_name' => $this->professional_name,
             'gender' => $this->gender,
-            'birthday'=>$this->birthday,
+            'birthday'=> $this->birthday,
             'certificates' => $this->certificates,
             'social_networks' => $this->social_networks,
             'biography' => $this->biography,

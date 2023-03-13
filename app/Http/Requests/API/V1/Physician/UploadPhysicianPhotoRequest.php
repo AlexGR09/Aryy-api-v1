@@ -8,13 +8,13 @@ class UploadPhysicianPhotoRequest extends FormRequest
 {
     public function authorize()
     {
-        return true;
+        return auth()->check();
     }
 
     public function rules()
     {
         return [
-            'physician_photo' => 'required',
+            'physician_photo' => 'required|array',
             'physician_photo.*' => 'required|image|mimes:jpg,png|max:3000',
         ];
     }
