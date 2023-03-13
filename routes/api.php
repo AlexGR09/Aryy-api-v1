@@ -464,7 +464,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/appointments', [$this->physician . CalendarAppointmentController::class, 'index']);
             Route::get('/appointments/{appointment_id}', [$this->physician . CalendarAppointmentController::class, 'show']);
             //REGISTRO DE CITAS Y PACIENTE
-            Route::post('/appointments', [$this->physician . CalendarAppointmentController::class, 'store']);
+            Route::post('/new-appointments', [$this->physician . CalendarAppointmentController::class, 'store']);
             Route::put('/appointments/{appointment_id}', [$this->physician . CalendarAppointmentController::class, 'update']);
 
             //ruta de prueba
