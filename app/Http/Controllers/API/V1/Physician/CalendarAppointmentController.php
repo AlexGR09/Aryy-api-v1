@@ -118,9 +118,7 @@ class CalendarAppointmentController extends Controller
 
             $appointmentTime = strtotime($request->appointment_time);
             $dateTime = date('H:i:s',$appointmentTime);
-            $dateTime = Carbon::createFromFormat('Y-m-d H:i:s', $request->appointment_date . ' ' . $request->appointment_time, 'UTC')
-                ->setTimezone('UTC')
-                ->toDateTimeString();
+            
             $time = strtotime($dateTime) + strtotime($facility->consultation_length); //SUMA LA DURACION DE LA CONSULTA A LA HORA DE LA CITA
             $date_time_end = date('H:i:s', $time); //SE LE DA EL FORMATO DE HORA */
 
