@@ -110,18 +110,18 @@ class CalendarAppointmentController extends Controller
             if (! $facility->checkValidDate($request->appointment_date, $request->appointment_time)) {
                 return response()->json(['message' => 'No se puede agendar una cita en un horario no disponible'], 503);
             }
-<<<<<<< HEAD
-            $appointmentTime = $request->appointment_time;
-            $appointmentTime = Carbon::createFromFormat('H:i:s', $appointmentTime,'UTC');
-            
-            $time = strtotime($appointmentTime) + strtotime($facility->consultation_length); //SUMA LA DURACION DE LA CONSULTA A LA HORA DE LA CITA
-            $date_time_end = date('H:i:s', $time); //SE LE DA EL FORMATO DE HORA */
+            //le damos formato de fecha al valor appointment date
+            $appointmentDate = Carbon::createFromFormat('Y-m-d',$request->appointment_date);
+            $appointmentDate=$appointmentDate->format('Y-m-d');
 
-=======
+            $appointmentTime = strtotime($request->appointment_time);
+            $dateTime = date('H:i:s',$appointmentTime);
+
             $time = strtotime($request->appointment_time) + strtotime($facility->consultation_length); //SUMA LA DURACION DE LA CONSULTA A LA HORA DE LA CITA
             $date_time_end = date('H:i:s', $time); //SE LE DA EL FORMATO DE HORA */
->>>>>>> parent of bce5191 (nueva ruta para registrar un nuevo usuario en consultorio)
-            $medicalAppointment = MedicalAppointment::greaterThanDate($request->appointment_date, $request->appointment_time)
+
+
+            $medicalAppointment = MedicalAppointment::greaterThanDate($appointmentDate, $dateTime)
                 ->first();
             if (! empty($medicalAppointment)) {
                 return response()->json(['message' => 'Fecha y horario no disponibles'], 503);
@@ -129,11 +129,7 @@ class CalendarAppointmentController extends Controller
             $medicalAppointment = MedicalAppointment::create([
                 'appointment_date' => $request->appointment_date,
                 'appointment_type' => $request->appointment_type,
-<<<<<<< HEAD
-                'appointment_time' => $appointmentTime,
-=======
-                'appointment_time' => $request->appointment_time,
->>>>>>> parent of bce5191 (nueva ruta para registrar un nuevo usuario en consultorio)
+                'appointment_time' => $dateTime,
                 'appointment_time_end' => $date_time_end,
                 'patient_id' => $patient->id,
                 'physician_id' => $this->physician->id,
@@ -194,7 +190,6 @@ class CalendarAppointmentController extends Controller
 
         return PatientMedicalAppointmentResource::collection($patient)->additional(['message' => 'Paciente encontrado']);
     }
-<<<<<<< HEAD
 
     public function newEmergencyPatient(Request $request)
     {
@@ -249,7 +244,7 @@ class CalendarAppointmentController extends Controller
 
             DB::commit();
 
-            return (new CalendarResource($medicalAppointment))->additional(['message' => 'Cita agendada correctamente.']);
+            return (new NewPatientAppointmentResource($medicalAppointment))->additional(['message' => 'Cita agendada correctamente.']);
         } catch (\Throwable $th) {
             DB::rollback();
 
@@ -257,6 +252,3 @@ class CalendarAppointmentController extends Controller
         }
     }
 }
-=======
-}
->>>>>>> parent of bce5191 (nueva ruta para registrar un nuevo usuario en consultorio)
