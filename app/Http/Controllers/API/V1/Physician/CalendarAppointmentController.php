@@ -112,6 +112,7 @@ class CalendarAppointmentController extends Controller
             if (! $facility->checkValidDate($request->appointment_date, $request->appointment_time)) {
                 return response()->json(['message' => 'No se puede agendar una cita en un horario no disponible'], 503);
             }
+            date_default_timezone_set('UTC');
             //le damos formato de fecha al valor appointment date
             $appointmentDate = Carbon::createFromFormat('Y-m-d',$request->appointment_date);
             $appointmentDate=$appointmentDate->format('Y-m-d');
