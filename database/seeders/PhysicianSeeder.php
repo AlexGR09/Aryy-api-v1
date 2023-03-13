@@ -10,13 +10,13 @@ class PhysicianSeeder extends Seeder
 {
     public function run()
     {
-    $faker = Faker::create();
+        $faker = Faker::create();
         DB::table('physicians')->insert([
             [
                 'user_id' => 3,
                 'professional_name' => 'Medico 1',
-                'gender'=>'Masculino',
-                'birthday'=> $faker->date(),
+                'gender' => 'Masculino',
+                'birthday' => $faker->date(),
                 'is_verified' => 'verified',
                 'first_time_consultation' => 100,
                 'subsequent_consultation' => 50,
@@ -34,8 +34,7 @@ class PhysicianSeeder extends Seeder
                 'user_id' => 5,
                 'professional_name' => 'Dr. Menganito',
                 'gender' => 'Masculino',
-                'birthday' => $faker->date(),
-                'is_verified' => 'verified',
+                'birthday' => $faker->date(), 'is_verified' => 'verified',
                 'first_time_consultation' => 100,
                 'subsequent_consultation' => 50,
             ],

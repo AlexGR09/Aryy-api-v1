@@ -33,7 +33,7 @@ class Facility extends Model
      */
     protected $casts = [
         'location' => 'object',
-        'schedule' => 'array',
+        'schedule' => 'object',
         'accessibility_and_others' => 'object',
         'calling_attetion_schedule' => 'object'
     ];

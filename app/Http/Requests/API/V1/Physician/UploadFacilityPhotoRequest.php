@@ -14,7 +14,7 @@ class UploadFacilityPhotoRequest extends FormRequest
     public function rules()
     {
         return [
-            'facility_photo' => 'required',
+            'facility_photo' => 'required|array',
             'facility_photo.*' => 'required|image|mimes:jpg,png|max:3000',
         ];
     }
