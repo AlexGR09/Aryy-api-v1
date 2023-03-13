@@ -16,6 +16,7 @@ use App\Models\MedicalHistory;
 use App\Models\Patient;
 use App\Models\Physician;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
