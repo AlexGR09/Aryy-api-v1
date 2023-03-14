@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1\Patient;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Patient\StoreAllergyPatientRequest;
 use App\Http\Requests\API\V1\Patient\UpdateAllergyPatientRequest;
+use App\Http\Resources\API\V1\Patient\AllergyPatientResource;
 use App\Models\AllergyPatient;
 use App\Models\MedicalHistory;
 use App\Models\Patient;
@@ -14,8 +15,8 @@ class AllergyController extends Controller
     public function show(Patient $patient)
     {
         $medicalHistory = MedicalHistory::where('patient_id', $patient->id)->first();
-
-        return ok('', optional($medicalHistory)->allergyPatient);
+        return (new AllergyPatientResource($medicalHistory->allergyPatient))->additional(['message' => 'Informacion de Medicacion.']);
+        //return ok('', optional($medicalHistory)->allergyPatient);
     }
 
     public function store(StoreAllergyPatientRequest $request,$patient_id)

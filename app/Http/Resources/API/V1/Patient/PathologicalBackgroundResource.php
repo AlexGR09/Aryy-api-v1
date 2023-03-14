@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\API\V1\Patient;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PathologicalBackgroundResource extends JsonResource
@@ -13,6 +14,7 @@ class PathologicalBackgroundResource extends JsonResource
      */
     public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
     {
+        $updated_at = Carbon::createFromFormat('Y-m-d H:i:s', $this->updated_at)->format('Y-m-d');
         return [
             'pathological_background_id' => $this->id,        
             'previous_surgeries' => $this->previous_surgeries,
@@ -29,6 +31,7 @@ class PathologicalBackgroundResource extends JsonResource
             'ets' => $this->ets,
             'gastrointestinal_pathologies' => $this->gastrointestinal_pathologies,
             'blood_diseases' => $this->blood_diseases,
+            'updated_at' => 'Editado el ' . $updated_at,
         ];
     }
 }

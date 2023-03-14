@@ -152,19 +152,6 @@ class CatalogueOccupationSeeder extends Seeder
             ['name' => 'político'],
             ['name' => 'presidente'],
             ['name' => 'sacerdote'],
-            ['name' => 'aspirante'],
-            ['name' => 'carrera'],
-            ['name' => 'certificado'],
-            ['name' => 'carta de presentación'],
-            ['name' => 'diploma'],
-            ['name' => 'anuncio de empleo'],
-            ['name' => 'solicitud de empleo'],
-            ['name' => 'entrevista de trabajo'],
-            ['name' => 'salario'],
-            ['name' => 'habilidades'],
-            ['name' => 'habilidades sociales'],
-            ['name' => 'vacante'],
-            ['name' => 'experiencia laboral'],
         ]);
     }
 }

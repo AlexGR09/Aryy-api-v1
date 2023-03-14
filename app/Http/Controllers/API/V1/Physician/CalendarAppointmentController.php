@@ -112,11 +112,7 @@ class CalendarAppointmentController extends Controller
             if (! $facility->checkValidDate($request->appointment_date, $request->appointment_time)) {
                 return response()->json(['message' => 'No se puede agendar una cita en un horario no disponible'], 503);
             }
-            date_default_timezone_set('UTC');
-            //le damos formato de fecha al valor appointment date
-            $appointmentDate = Carbon::createFromFormat('Y-m-d',$request->appointment_date);
-            $appointmentDate=$appointmentDate->format('Y-m-d');
-
+            
             $appointmentTime = strtotime($request->appointment_time);
             $dateTime = date('H:i:s',$appointmentTime);
             
@@ -124,13 +120,13 @@ class CalendarAppointmentController extends Controller
             $date_time_end = date('H:i:s', $time); //SE LE DA EL FORMATO DE HORA */
 
 
-            $medicalAppointment = MedicalAppointment::greaterThanDate($appointmentDate, $dateTime)
+            $medicalAppointment = MedicalAppointment::greaterThanDate($$request->appointment_date, $dateTime)
                 ->first();
             if (! empty($medicalAppointment)) {
                 return response()->json(['message' => 'Fecha y horario no disponibles'], 503);
             }
             $medicalAppointment = MedicalAppointment::create([
-                'appointment_date' => $appointmentDate,
+                'appointment_date' => $$request->appointment_date,
                 'appointment_type' => $request->appointment_type,
                 'appointment_time' => $dateTime,
                 'appointment_time_end' => $date_time_end,
